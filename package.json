@@ -1,0 +1,25 @@
+{
+    "name": "voxpopuli",
+    "description": "",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:deathcap/voxpopuli.git"
+    },
+    "dependencies": {
+        "voxel": "0.3.1",
+        "voxel-engine": "0.18.4",
+        "voxel-highlight": "0.0.9",
+        "voxel-player": "0.1.0",
+        "voxel-fly": "0.1.2",
+        "voxel-walk": "0.0.5",
+        "extend": "1.2.1"
+    },
+    "devDependencies": {
+        "browserify": "2.35.1",
+        "beefy": "0.4.5"
+    },
+    "scripts": {
+        "start": "beefy test.js:bundle.js 8080 --live"
+    }
+}
