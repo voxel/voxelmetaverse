@@ -20,6 +20,6 @@
         "beefy": "0.4.5"
     },
     "scripts": {
-        "start": "beefy test.js:bundle.js 8080 --live"
+        "start": "beefy index.js:bundle.js 8080 --live"
     }
 }
