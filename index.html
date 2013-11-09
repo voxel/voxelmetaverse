@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Voxpopuli</title>
+<style>
+body {
+  background-color: gray;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#container {
+  user-select: none;
+}
+
+#crosshair {
+  /* centered on screen */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -16px 0 0 -16px;
+  width: 32px;
+  height: 32px;
+}
+
+#stats {
+  bottom: 0px;
+  right: 0px;
+}
+
+.bar-tab {
+  right: 33% !important;
+  left: 33% !important;
+}
+
+.logo {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.errorMessage {
+  text-align: center;
+  width: 200px;
+  margin: 20px auto;
+}
+</style>
+</head>
+<body>
+<img class="logo" src="logo-white.png">
+<div id="container"></div>
+<div id="crosshair"><img src="crosshair4.png"></div>
+<script src="bundle.js"></script>
+</body>
+</html>
