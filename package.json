@@ -13,13 +13,15 @@
         "voxel-player": "0.1.0",
         "voxel-fly": "0.1.2",
         "voxel-walk": "0.0.5",
-        "extend": "1.2.1"
+        "extend": "1.2.1",
+        "coffee-script": "1.6.3",
+        "coffeeify": "0.5.2"
     },
     "devDependencies": {
         "browserify": "2.35.1",
         "beefy": "0.4.5"
     },
     "scripts": {
-        "start": "beefy index.js:bundle.js 8080 --live"
+        "start": "beefy index.coffee:bundle.js 8080 --live -- -t coffeeify"
     }
 }
