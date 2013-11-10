@@ -46,6 +46,16 @@ module.exports = (opts, setup) ->
   
   return game
 
+ACTION_BREAK = 0
+ACTION_INTERACT = 1
+ACTION_PICK = 2
+getAction = (kb_state) ->
+  switch
+    when kb_state['fire'] && kb_state['firealt'] then ACTION_PICK  # TODO: block picking
+    when kb_state['fire'] then ACTION_BREAK
+    when kb_state['firealt'] then ACTION_INTERACT
+    else ACTION_BREAK
+
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
@@ -75,14 +85,18 @@ defaultSetup = (game, avatar) ->
 
   game.on 'fire', (target, state) ->
     console.log "fire #{target}, #{state}"
-    position = blockPosPlace
-    if position
-      game.createBlock position, currentMaterial
-    else
-      position = blockPosErase
-      game.setBlock(position, 0) if position
+    console.log "state #{JSON.stringify(state)}"
 
-  
+    console.log "action = #{getAction state}"
+
+    switch getAction(state)
+      when ACTION_BREAK
+        if blockPosErase?
+          game.setBlock blockPosErase, 0
+      when ACTION_INTERACT
+        if blockPosPlace?
+          game.createBlock blockPosPlace, currentMaterial if blockPosPlace? # TODO: always get adjacent
+
   game.on 'tick', () ->
     walk.render target.playerSkin
     vx = Math.abs target.velocity.x
