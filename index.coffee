@@ -74,6 +74,11 @@ defaultSetup = (game, avatar) ->
   window.addEventListener 'keydown', (ev) ->
     avatar.toggle() if ev.keyCode == 'R'.charCodeAt(0)
 
+  # cancel context-menu on right-click
+  window.addEventListener 'contextmenu', (event) ->
+    event.preventDefault()
+    return false
+
   # block interaction stuff, uses highlight data
   currentMaterial = 1
 
