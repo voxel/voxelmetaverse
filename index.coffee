@@ -66,15 +66,9 @@ defaultSetup = (game, avatar) ->
   console.log "setting flyer"
   game.flyer = makeFly target
 
-  blockPosPlace = blockPosErase = null
-
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
   hl = game.highlighter = highlight game, { color:  0xff0000 }
-  hl.on 'highlight', (voxelPos) => blockPosErase = voxelPos
-  hl.on 'remove', (voxelPos) => blockPosErase = null
-  hl.on 'highlight-adjacent', (voxelPos) => blockPosPlace = voxelPos
-  hl.on 'remove-adjacent', (voxelPos) => blockPosPlace = null
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
@@ -89,13 +83,18 @@ defaultSetup = (game, avatar) ->
 
     console.log "action = #{getAction state}"
 
+    REACH_DISTANCE = 8
+    hit = game.raycastVoxels game.cameraPosition(), game.cameraVector(), REACH_DISTANCE
+
+    console.log "hit = #{JSON.stringify(hit)}"
+
     switch getAction(state)
       when ACTION_BREAK
-        if blockPosErase?
-          game.setBlock blockPosErase, 0
+        if hit.voxel?
+          game.setBlock hit.voxel, 0
       when ACTION_INTERACT
-        if blockPosPlace?
-          game.createBlock blockPosPlace, currentMaterial if blockPosPlace? # TODO: always get adjacent
+        if hit.adjacent?
+          game.createBlock hit.adjacent, currentMaterial
 
   game.on 'tick', () ->
     walk.render target.playerSkin
