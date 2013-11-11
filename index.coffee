@@ -19,10 +19,16 @@ module.exports = (opts, setup) ->
     chunkDistance: 2
     materials: [
       ['grass_top', 'dirt', 'grass_dirt_side'],
-      'obsidian',
       'dirt',
+      ['log_oak_top', 'log_oak_top', 'log_oak_side'],
+      'stone_smooth',
+      'stone_cobble',
+      'ore_coal',
+      'brick_red',
+      'obsidian',
+      'glass',
       ]
-    texturePath: '/textures/'
+    texturePath: '/ProgrammerArt/images/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: true
@@ -92,15 +98,19 @@ defaultSetup = (game, avatar) ->
       avatar.playerSkin.head.visible = show
 
       avatar.pov(game.pov) 
+    else if '0'.charCodeAt(0) < ev.keyCode <= '9'.charCodeAt(0)
+      slot = ev.keyCode - '0'.charCodeAt(0)
+      console.log "switching to slot #{slot}"
 
+      game.currentMaterial = slot
 
   # cancel context-menu on right-click
   window.addEventListener 'contextmenu', (event) ->
     event.preventDefault()
     return false
 
-  # block interaction stuff, uses highlight data
-  currentMaterial = 1
+  # block interaction: left/right-click to break/place blocks, uses raytracing
+  game.currentMaterial = 1
 
   game.on 'fire', (target, state) ->
     console.log "fire #{target}, #{state}"
@@ -119,7 +129,7 @@ defaultSetup = (game, avatar) ->
           game.setBlock hit.voxel, 0
       when ACTION_INTERACT
         if hit.adjacent?
-          game.createBlock hit.adjacent, currentMaterial
+          game.createBlock hit.adjacent, game.currentMaterial
 
   game.on 'tick', () ->
     walk.render target.playerSkin

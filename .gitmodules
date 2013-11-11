@@ -1,0 +1,3 @@
+[submodule "ProgrammerArt"]
+	path = ProgrammerArt
+	url = git@github.com:deathcap/ProgrammerArt.git
