@@ -17,8 +17,12 @@ module.exports = (opts, setup) ->
   defaults =
     generate: voxel.generator['Valley']
     chunkDistance: 2
-    materials: ['#fff', '#000'],
-    materialFlatColor: true,
+    materials: [
+      ['grass_top', 'dirt', 'grass_dirt_side'],
+      'obsidian',
+      'dirt',
+      ]
+    texturePath: '/textures/'
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: true
@@ -125,4 +129,3 @@ defaultSetup = (game, avatar) ->
       walk.stopWalking() 
     else
       walk.startWalking()
-
