@@ -34,6 +34,7 @@ module.exports = (opts, setup) ->
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
+      jumpTimer: 50
 
   opts = extend {}, defaults, opts || {}
 

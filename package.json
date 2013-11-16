@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "voxel": "0.3.1",
-        "voxel-engine": "0.18.4",
+        "voxel-engine": "git@github.com:deathcap/voxel-engine.git",
         "voxel-highlight": "0.0.9",
         "voxel-player": "0.1.0",
         "voxel-fly": "git@github.com:deathcap/voxel-fly.git",
