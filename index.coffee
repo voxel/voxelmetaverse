@@ -31,7 +31,8 @@ module.exports = (opts, setup) ->
     texturePath: '/ProgrammerArt/images/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
-      discreteFire: true
+      discreteFire: false
+      fireRate: 100 # ms between firing
 
   opts = extend {}, defaults, opts || {}
 
