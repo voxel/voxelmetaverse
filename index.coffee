@@ -26,6 +26,7 @@ module.exports = (opts, setup) ->
       'ore_coal',
       'brick_red',
       'obsidian',
+      'leaves_oak',
       'glass',
       ]
     texturePath: '/ProgrammerArt/images/' # subproject with textures
@@ -99,8 +100,10 @@ defaultSetup = (game, avatar) ->
       avatar.playerSkin.head.visible = show
 
       avatar.pov(game.pov) 
-    else if '0'.charCodeAt(0) < ev.keyCode <= '9'.charCodeAt(0)
+    else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
+      if slot == 0
+        slot = 10
       console.log "switching to slot #{slot}"
 
       game.currentMaterial = slot
