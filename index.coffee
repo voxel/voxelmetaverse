@@ -18,18 +18,18 @@ module.exports = (opts, setup) ->
     generate: voxel.generator['Valley']
     chunkDistance: 2
     materials: [
-      ['grass_top', 'dirt', 'grass_dirt_side'],
+      ['grass_top', 'dirt', 'grass_side'],
       'dirt',
-      ['log_oak_top', 'log_oak_top', 'log_oak_side'],
-      'stone_smooth',
-      'stone_cobble',
-      'ore_coal',
-      'brick_red',
+      ['log_oak_top', 'log_oak_top', 'log_oak'],
+      'stone',
+      'cobblestone',
+      'coal_ore',
+      'brick',
       'obsidian',
-      'leaves_oak',
+      'leaves_oak_opaque',
       'glass',
       ]
-    texturePath: '/ProgrammerArt/images/' # subproject with textures
+    texturePath: '/ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: false
