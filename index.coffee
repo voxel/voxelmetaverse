@@ -29,7 +29,7 @@ module.exports = (opts, setup) ->
       'leaves_oak_opaque',
       'glass',
       ]
-    texturePath: '/ProgrammerArt/textures/blocks/' # subproject with textures
+    texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: false
