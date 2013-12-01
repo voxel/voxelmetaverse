@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var ACTION_BREAK, ACTION_INTERACT, ACTION_PICK, createGame, defaultSetup, extend, fly, getAction, highlight, player, voxel, walk;
+var ACTION_BREAK, ACTION_INTERACT, ACTION_PICK, createGame, defaultSetup, extend, fly, getAction, highlight, home, player, voxel, walk;
 
 console.log("Hello");
 
@@ -25,13 +25,12 @@ module.exports = function(opts, setup) {
     generate: voxel.generator['Valley'],
     chunkDistance: 2,
     materials: [['grass_top', 'dirt', 'grass_side'], 'dirt', ['log_oak_top', 'log_oak_top', 'log_oak'], 'stone', 'cobblestone', 'coal_ore', 'brick', 'obsidian', 'leaves_oak_opaque', 'glass'],
-    texturePath: '/ProgrammerArt/textures/blocks/',
+    texturePath: 'ProgrammerArt/textures/blocks/',
     worldOrigin: [0, 0, 0],
     controls: {
       discreteFire: false,
       fireRate: 100,
-      jumpSpeed: 0.001,
-      jumpTimer: 12.5
+      jumpSpeed: 0.001
     }
   };
   opts = extend({}, defaults, opts || {});
@@ -49,10 +48,14 @@ module.exports = function(opts, setup) {
   game.pov = 'third';
   avatar.pov(game.pov);
   avatar.possess();
-  avatar.yaw.position.set(2, 14, 4);
+  home(avatar);
   game.avatar = avatar;
   setup(game, avatar);
   return game;
+};
+
+home = function(avatar) {
+  return avatar.yaw.position.set(2, 14, 4);
 };
 
 ACTION_BREAK = 0;
@@ -109,6 +112,8 @@ defaultSetup = function(game, avatar) {
       }
       console.log("switching to slot " + slot);
       return game.currentMaterial = slot;
+    } else if (ev.keyCode === 'H'.charCodeAt(0)) {
+      return home(game.avatar);
     }
   });
   window.addEventListener('contextmenu', function(event) {
@@ -118,12 +123,8 @@ defaultSetup = function(game, avatar) {
   game.currentMaterial = 1;
   game.on('fire', function(target, state) {
     var REACH_DISTANCE, hit;
-    console.log("fire " + target + ", " + state);
-    console.log("state " + (JSON.stringify(state)));
-    console.log("action = " + (getAction(state)));
     REACH_DISTANCE = 8;
     hit = game.raycastVoxels(game.cameraPosition(), game.cameraVector(), REACH_DISTANCE);
-    console.log("hit = " + (JSON.stringify(hit)));
     switch (getAction(state)) {
       case ACTION_BREAK:
         if (hit.voxel != null) {
@@ -530,6 +531,7 @@ Game.prototype.defaultButtons = {
 , '<space>': 'jump'
 , '<shift>': 'crouch'
 , '<control>': 'alt'
+, '<tab>': 'sprint'
 }
 
 // used in methods that have identity function(pos) {}
@@ -42670,10 +42672,10 @@ function Control(state, opts) {
   this._roll_target =
   this._target = null
   this.speed = opts.speed || 0.0032
-  this.max_speed = opts.maxSpeed || 0.0112
-  this.jump_max_speed = opts.jumpMaxSpeed || 0.016
+  this.walk_max_speed = opts.walkMaxSpeed || 0.0056
+  this.run_max_speed = opts.runMaxSpeed || 0.0112
+  this.jump_accel = opts.jumpAccel || 0.000085
   this.jump_max_timer = opts.jumpTimer || 200
-  this.jump_speed = opts.jumpSpeed || 0.004
   this.jump_speed_move = opts.jumpSpeedMove || 0.1
   this.jump_timer = 0
   this.jumping = false
@@ -42730,10 +42732,10 @@ proto.tick = function(dt) {
   var state = this.state
     , target = this._target
     , speed = this.speed
-    , jump_speed = this.jump_speed
     , jump_speed_move = this.jump_speed_move
-    , okay_z = abs(target.velocity.z) < this.max_speed
-    , okay_x = abs(target.velocity.x) < this.max_speed
+    , max_speed = this.state.sprint ? this.run_max_speed : this.walk_max_speed
+    , okay_z = abs(target.velocity.z) < max_speed
+    , okay_x = abs(target.velocity.x) < max_speed
     , at_rest = target.atRestY()
 
   if(!this._target) return
@@ -42744,11 +42746,11 @@ proto.tick = function(dt) {
     this.z_accel_timer = max(0, this.z_accel_timer - dt)
   }
   if(state.backward) {
-    if(target.velocity.z < this.max_speed)
-      target.velocity.z = max(min(this.max_speed, move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity.z)
+    if(target.velocity.z < max_speed)
+      target.velocity.z = max(min(max_speed, move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity.z)
   } else if(state.forward) {
-    if(target.velocity.z > -this.max_speed)
-      target.velocity.z = min(max(-this.max_speed, -move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity.z)
+    if(target.velocity.z > -max_speed)
+      target.velocity.z = min(max(-max_speed, -move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity.z)
   } else {
     this.z_accel_timer = this.accel_max_timer
 
@@ -42760,11 +42762,11 @@ proto.tick = function(dt) {
   }
 
   if(state.right) {
-    if(target.velocity.x < this.max_speed)
-      target.velocity.x = max(min(this.max_speed, move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity.x)
+    if(target.velocity.x < max_speed)
+      target.velocity.x = max(min(max_speed, move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity.x)
   } else if(state.left) {
-    if(target.velocity.x > -this.max_speed)
-      target.velocity.x = min(max(-this.max_speed, -move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity.x)
+    if(target.velocity.x > -max_speed)
+      target.velocity.x = min(max(-max_speed, -move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity.x)
   } else {
     this.x_accel_timer = this.accel_max_timer
   }
@@ -42778,7 +42780,11 @@ proto.tick = function(dt) {
     } else {
       this.jumping = true
       if(this.jump_timer > 0) {
-        target.velocity.y = min(target.velocity.y + jump_speed * min(dt, this.jump_timer), this.jump_max_speed)
+        var old_velocity = target.velocity.y
+
+        target.velocity.y += this.jump_accel * min(dt, this.jump_timer)
+        target.position.y += (old_velocity + target.velocity.y) * 0.5 * min(dt, this.jump_timer)
+        //console.log(target.position.y+"\t"+target.velocity.y)
       }
       this.jump_timer = max(this.jump_timer - dt, 0)
     }
@@ -44259,7 +44265,7 @@ View.prototype.createRenderer = function(opts) {
   opts.antialias = opts.antialias || true
   this.renderer = new THREE.WebGLRenderer(opts)
   this.renderer.setSize(this.width, this.height)
-  this.renderer.setClearColorHex(this.skyColor, 1.0)
+  this.renderer.setClearColor(this.skyColor, 1.0)
   this.renderer.clear()
 }
 
