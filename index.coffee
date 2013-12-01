@@ -16,6 +16,7 @@ module.exports = (opts, setup) ->
 
   defaults =
     generate: voxel.generator['Valley']
+    mesher: voxel.meshers.greedy
     chunkDistance: 2
     materials: [
       ['grass_top', 'dirt', 'grass_side'],
