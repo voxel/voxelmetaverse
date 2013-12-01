@@ -35,7 +35,7 @@ module.exports = (opts, setup) ->
       discreteFire: false
       fireRate: 100 # ms between firing
       jumpSpeed: 0.001
-      jumpTimer: 12.5
+      #jumpTimer: 200.0
 
   opts = extend {}, defaults, opts || {}
 
@@ -56,12 +56,15 @@ module.exports = (opts, setup) ->
   game.pov = 'third'
   avatar.pov(game.pov)
   avatar.possess()
-  avatar.yaw.position.set 2, 14, 4
-  game.avatar = avatar  # for debugging
+  home(avatar)
+  game.avatar = avatar
        
   setup game, avatar
   
   return game
+
+home = (avatar) ->
+  avatar.yaw.position.set 2, 14, 4
 
 ACTION_BREAK = 0
 ACTION_INTERACT = 1
@@ -110,6 +113,9 @@ defaultSetup = (game, avatar) ->
 
       game.currentMaterial = slot
 
+    else if ev.keyCode == 'H'.charCodeAt(0)
+      home(game.avatar)
+
   # cancel context-menu on right-click
   window.addEventListener 'contextmenu', (event) ->
     event.preventDefault()
@@ -119,15 +125,9 @@ defaultSetup = (game, avatar) ->
   game.currentMaterial = 1
 
   game.on 'fire', (target, state) ->
-    console.log "fire #{target}, #{state}"
-    console.log "state #{JSON.stringify(state)}"
-
-    console.log "action = #{getAction state}"
 
     REACH_DISTANCE = 8
     hit = game.raycastVoxels game.cameraPosition(), game.cameraVector(), REACH_DISTANCE
-
-    console.log "hit = #{JSON.stringify(hit)}"
 
     switch getAction(state)
       when ACTION_BREAK
