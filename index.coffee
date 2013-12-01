@@ -119,15 +119,9 @@ defaultSetup = (game, avatar) ->
   game.currentMaterial = 1
 
   game.on 'fire', (target, state) ->
-    console.log "fire #{target}, #{state}"
-    console.log "state #{JSON.stringify(state)}"
-
-    console.log "action = #{getAction state}"
 
     REACH_DISTANCE = 8
     hit = game.raycastVoxels game.cameraPosition(), game.cameraVector(), REACH_DISTANCE
-
-    console.log "hit = #{JSON.stringify(hit)}"
 
     switch getAction(state)
       when ACTION_BREAK
