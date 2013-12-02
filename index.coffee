@@ -77,15 +77,17 @@ getAction = (kb_state) ->
     when kb_state['firealt'] then ACTION_INTERACT
     else ACTION_BREAK
 
+GAME_MODE_SURVIVAL = 0
+GAME_MODE_CREATIVE = 1
+
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
-  console.log "making fly"
   makeFly = fly game
-  console.log "getting target"
   target = game.controls.target()
-  console.log "setting flyer"
+  game.mode = GAME_MODE_SURVIVAL
   game.flyer = makeFly target
+  game.flyer.enabled = false
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
@@ -116,6 +118,17 @@ defaultSetup = (game, avatar) ->
 
     else if ev.keyCode == 'H'.charCodeAt(0)
       home(game.avatar)
+    else if ev.keyCode == 'C'.charCodeAt(0)
+      if game.mode == GAME_MODE_SURVIVAL
+        game.mode = GAME_MODE_CREATIVE
+        game.flyer.enabled = true
+        console.log("creative mode")
+      else
+        game.mode = GAME_MODE_SURVIVAL
+        if game.flyer.flying
+          game.flyer.stopFlying()
+        game.flyer.enabled = false
+        console.log("survival mode")
 
   # cancel context-menu on right-click
   window.addEventListener 'contextmenu', (event) ->
