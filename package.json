@@ -22,6 +22,7 @@
         "beefy": "0.4.5"
     },
     "scripts": {
-        "start": "beefy test.coffee:bundle.js 8080 -- -t coffeeify"
+        "start": "beefy test.coffee:bundle.js 8080 -- -t coffeeify",
+        "deploy": "./deploy.sh"
     }
 }
