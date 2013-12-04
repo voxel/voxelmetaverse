@@ -3,6 +3,7 @@
 console.log "Hello"
 
 createGame = require 'voxel-engine'
+oculus = require 'voxel-oculus'
 highlight = require 'voxel-highlight'
 player = require 'voxel-player'
 voxel = require 'voxel'
@@ -43,7 +44,11 @@ module.exports = (opts, setup) ->
   # setup the game and add some trees
   console.log "creating game"
   game = createGame opts
-  console.log "created"
+
+  if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
+    # Oculus Rift support TODO: allow in-game toggling
+    effect = new oculus(game, { distortion: 0.2, separation: 0.5 })
+
   container = opts.container || document.body
   window.game = game # for debugging
   game.appendTo container
