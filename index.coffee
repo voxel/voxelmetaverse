@@ -133,6 +133,9 @@ defaultSetup = (game, avatar) ->
   game.on 'place', (adjacent) ->
     game.createBlock adjacent, game.currentMaterial
 
+  game.on 'break', (goner) ->
+    game.setBlock goner, 0
+
   game.on 'tick', () ->
     walk.render target.playerSkin
     vx = Math.abs target.velocity.x
