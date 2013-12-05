@@ -59,7 +59,7 @@ module.exports = (opts, setup) ->
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
   avatar = createPlayer opts.playerSkin || 'player.png'
-  avatar.pov('third');
+  avatar.pov('first');
   avatar.possess()
   home(avatar)
   game.avatar = avatar
