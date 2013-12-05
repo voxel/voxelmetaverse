@@ -11,7 +11,7 @@
         "voxel-engine": "git@github.com:deathcap/voxel-engine.git",
         "voxel-oculus": "git@github.com:deathcap/voxel-oculus.git",
         "voxel-highlight": "0.0.9",
-        "voxel-player": "0.1.0",
+        "voxel-player": "git@github.com:deathcap/voxel-player.git",
         "voxel-fly": "git@github.com:deathcap/voxel-fly.git",
         "voxel-walk": "0.0.5",
         "extend": "1.2.1",

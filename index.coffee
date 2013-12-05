@@ -59,8 +59,7 @@ module.exports = (opts, setup) ->
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
   avatar = createPlayer opts.playerSkin || 'player.png'
-  game.pov = 'third'
-  avatar.pov(game.pov)
+  avatar.pov('third');
   avatar.possess()
   home(avatar)
   game.avatar = avatar
@@ -101,18 +100,7 @@ defaultSetup = (game, avatar) ->
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
-      game.pov = {first: 'third', third: 'first'}[game.pov] # toggle TODO: 2nd (facing)
-
-      # hide player in 1st person to fix obscuring view
-      show = game.pov != 'first'
-      avatar.playerSkin.rightArm.visible = show  # TODO: change visibility of entire skin model all at once instead of individual meshes
-      avatar.playerSkin.leftArm.visible = show
-      avatar.playerSkin.body.visible = show
-      avatar.playerSkin.rightLeg.visible = show
-      avatar.playerSkin.leftLeg.visible = show
-      avatar.playerSkin.head.visible = show
-
-      avatar.pov(game.pov) 
+      avatar.toggle()
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
