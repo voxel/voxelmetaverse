@@ -12,6 +12,7 @@ fly = require 'voxel-fly'
 walk = require 'voxel-walk'
 mine = require 'voxel-mine'
 reach = require 'voxel-reach'
+debris = require 'voxel-debris'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -109,6 +110,7 @@ defaultSetup = (game, avatar) ->
     else if ev.keyCode == 'H'.charCodeAt(0)
       home(game.avatar)
     else if ev.keyCode == 'C'.charCodeAt(0)
+      # TODO: add gamemode event? for plugins to handle instead of us
       if game.mode == GAME_MODE_SURVIVAL
         game.mode = GAME_MODE_CREATIVE
         game.flyer.enabled = true
@@ -133,7 +135,13 @@ defaultSetup = (game, avatar) ->
   game.on 'place', (adjacent) ->
     game.createBlock adjacent, game.currentMaterial
 
+  game.explode = debris(game, {power: 1.5})
+  game.explode.on 'collect', (item) ->
+    console.log("collect", item)
+
   game.on 'break', (goner) ->
+    #console.log "exploding",goner
+    #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
     game.setBlock goner, 0
 
   game.on 'tick', () ->
