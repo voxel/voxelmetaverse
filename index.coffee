@@ -78,8 +78,6 @@ home = (avatar) ->
 GAME_MODE_SURVIVAL = 0
 GAME_MODE_CREATIVE = 1
 
-BLOCK_HARDNESS = 3
-
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
@@ -90,7 +88,7 @@ defaultSetup = (game, avatar) ->
   game.flyer.enabled = false
 
   game.reach = reach(game)
-  game.mine = mine(game, {defaultHardness: BLOCK_HARDNESS})
+  game.mine = mine(game, {instaMine: false})
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
@@ -114,14 +112,14 @@ defaultSetup = (game, avatar) ->
       if game.mode == GAME_MODE_SURVIVAL
         game.mode = GAME_MODE_CREATIVE
         game.flyer.enabled = true
-        game.mine.hardness = 0
+        game.mine.instaMine = true
         console.log("creative mode")
       else
         game.mode = GAME_MODE_SURVIVAL
         if game.flyer.flying
           game.flyer.stopFlying()
         game.flyer.enabled = false
-        game.mine.hardness = BLOCK_HARDNESS
+        game.mine.instaMine = false
         console.log("survival mode")
 
   # cancel context-menu on right-click
