@@ -14,6 +14,7 @@
         "voxel-player": "git@github.com:deathcap/voxel-player.git",
         "voxel-fly": "git@github.com:deathcap/voxel-fly.git",
         "voxel-walk": "0.0.5",
+        "voxel-mine": "git@github.com:deathcap/voxel-mine.git",
         "extend": "1.2.1",
         "coffee-script": "1.6.3",
         "coffeeify": "0.5.2"

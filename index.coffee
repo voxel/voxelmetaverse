@@ -10,6 +10,7 @@ voxel = require 'voxel'
 extend = require 'extend'
 fly = require 'voxel-fly'
 walk = require 'voxel-walk'
+mine = require 'voxel-mine'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -72,15 +73,6 @@ module.exports = (opts, setup) ->
 home = (avatar) ->
   avatar.yaw.position.set 2, 14, 4
 
-ACTION_BREAK = 0
-ACTION_INTERACT = 1
-ACTION_PICK = 2
-getAction = (kb_state) ->
-  switch
-    when kb_state['fire'] && kb_state['firealt'] then ACTION_PICK  # TODO: block picking
-    when kb_state['fire'] then ACTION_BREAK
-    when kb_state['firealt'] then ACTION_INTERACT
-    else ACTION_BREAK
 
 GAME_MODE_SURVIVAL = 0
 GAME_MODE_CREATIVE = 1
@@ -93,6 +85,8 @@ defaultSetup = (game, avatar) ->
   game.mode = GAME_MODE_SURVIVAL
   game.flyer = makeFly target
   game.flyer.enabled = false
+
+  mine(game)
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
@@ -137,11 +131,15 @@ defaultSetup = (game, avatar) ->
     REACH_DISTANCE = 8
     hit = game.raycastVoxels game.cameraPosition(), game.cameraVector(), REACH_DISTANCE
 
-    switch getAction(state)
-      when ACTION_BREAK
-        if hit.voxel?
-          game.setBlock hit.voxel, 0
-      when ACTION_INTERACT
+    switch
+      # pick
+      #when state['fire'] && state['firealt'] then pick() # TODO: block picking
+
+      # break
+      #when state['fire'] then game.setBlock hit.voxel, 0 # moved to voxel-mine
+
+      # interact TODO: refactor
+      when state['firealt']
         if hit.adjacent?
           game.createBlock hit.adjacent, game.currentMaterial
 
