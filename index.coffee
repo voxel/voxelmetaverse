@@ -13,6 +13,7 @@ walk = require 'voxel-walk'
 mine = require 'voxel-mine'
 reach = require 'voxel-reach'
 debris = require 'voxel-debris'
+createDebug = require 'voxel-debug'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -44,7 +45,8 @@ module.exports = (opts, setup) ->
 
   opts = extend {}, defaults, opts || {}
 
-  # setup the game and add some trees
+  # setup the game 
+  # TODO: add some trees
   console.log "creating game"
   game = createGame opts
 
@@ -67,7 +69,7 @@ module.exports = (opts, setup) ->
   avatar.possess()
   home(avatar)
   game.avatar = avatar
-       
+      
   setup game, avatar
   
   return game
@@ -81,6 +83,9 @@ GAME_MODE_CREATIVE = 1
 
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
+
+  debug = createDebug(game)
+  debug.axis([0, 0, 0], 10)
 
   makeFly = fly game
   target = game.controls.target()
