@@ -48,6 +48,7 @@ module.exports = (opts, setup) ->
   if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
     # Oculus Rift support TODO: allow in-game toggling
     effect = new oculus(game, { distortion: 0.2, separation: 0.5 })
+    document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
   window.game = game # for debugging
