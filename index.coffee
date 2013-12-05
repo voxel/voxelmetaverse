@@ -11,6 +11,7 @@ extend = require 'extend'
 fly = require 'voxel-fly'
 walk = require 'voxel-walk'
 mine = require 'voxel-mine'
+reach = require 'voxel-reach'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -86,6 +87,7 @@ defaultSetup = (game, avatar) ->
   game.flyer = makeFly target
   game.flyer.enabled = false
 
+  reach(game)
   mine(game)
 
   console.log "configuring highlight "
@@ -126,22 +128,8 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  game.on 'fire', (target, state) ->
-
-    REACH_DISTANCE = 8
-    hit = game.raycastVoxels game.cameraPosition(), game.cameraVector(), REACH_DISTANCE
-
-    switch
-      # pick
-      #when state['fire'] && state['firealt'] then pick() # TODO: block picking
-
-      # break
-      #when state['fire'] then game.setBlock hit.voxel, 0 # moved to voxel-mine
-
-      # interact TODO: refactor
-      when state['firealt']
-        if hit.adjacent?
-          game.createBlock hit.adjacent, game.currentMaterial
+  game.on 'place', (adjacent) ->
+    game.createBlock adjacent, game.currentMaterial
 
   game.on 'tick', () ->
     walk.render target.playerSkin
