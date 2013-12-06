@@ -134,8 +134,14 @@ defaultSetup = (game, avatar) ->
     event.preventDefault()
     return false
 
-  reach.on 'place', (adjacent) ->
-    game.createBlock adjacent, game.currentMaterial
+  reach.on 'interact', (target) ->
+    if not target
+      console.log("waving")
+      return
+
+    game.createBlock target.adjacent, game.currentMaterial
+    #game.setBlock target.voxel, 0
+    # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
   mine.on 'break', (goner) ->
     #console.log "exploding",goner
