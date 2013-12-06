@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, createDebug, createGame, debris, defaultSetup, extend, fly, highlight, home, mine, oculus, player, reach, voxel, walk;
+var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, createDebug, createGame, createMine, createReach, debris, defaultSetup, extend, fly, highlight, home, oculus, player, voxel, walk;
 
 console.log("Hello");
 
@@ -19,9 +19,9 @@ fly = require('voxel-fly');
 
 walk = require('voxel-walk');
 
-mine = require('voxel-mine');
+createMine = require('voxel-mine');
 
-reach = require('voxel-reach');
+createReach = require('voxel-reach');
 
 debris = require('voxel-debris');
 
@@ -79,7 +79,7 @@ GAME_MODE_SURVIVAL = 0;
 GAME_MODE_CREATIVE = 1;
 
 defaultSetup = function(game, avatar) {
-  var debug, hl, makeFly, target;
+  var debug, hl, makeFly, mine, reach, target;
   console.log("entering setup");
   debug = createDebug(game);
   debug.axis([0, 0, 0], 10);
@@ -88,9 +88,10 @@ defaultSetup = function(game, avatar) {
   game.mode = GAME_MODE_SURVIVAL;
   game.flyer = makeFly(target);
   game.flyer.enabled = false;
-  game.reach = reach(game);
-  game.mine = mine(game, {
-    instaMine: false
+  reach = createReach(game);
+  mine = createMine(game, {
+    instaMine: false,
+    reach: reach
   });
   console.log("configuring highlight ");
   hl = game.highlighter = highlight(game, {
@@ -107,13 +108,13 @@ defaultSetup = function(game, avatar) {
       }
       console.log("switching to slot " + slot);
       return game.currentMaterial = slot;
-    } else if (ev.keyCode === 'H'.charCodeAt(0)) {
+    } else if (ev.keyCode === 'O'.charCodeAt(0)) {
       return home(game.avatar);
     } else if (ev.keyCode === 'C'.charCodeAt(0)) {
       if (game.mode === GAME_MODE_SURVIVAL) {
         game.mode = GAME_MODE_CREATIVE;
         game.flyer.enabled = true;
-        game.mine.instaMine = true;
+        mine.instaMine = true;
         return console.log("creative mode");
       } else {
         game.mode = GAME_MODE_SURVIVAL;
@@ -121,7 +122,7 @@ defaultSetup = function(game, avatar) {
           game.flyer.stopFlying();
         }
         game.flyer.enabled = false;
-        game.mine.instaMine = false;
+        mine.instaMine = false;
         return console.log("survival mode");
       }
     }
@@ -130,18 +131,22 @@ defaultSetup = function(game, avatar) {
     event.preventDefault();
     return false;
   });
-  game.currentMaterial = 1;
-  game.on('place', function(adjacent) {
-    return game.createBlock(adjacent, game.currentMaterial);
+  reach.on('interact', function(target) {
+    if (!target) {
+      console.log("waving");
+      return;
+    }
+    return game.createBlock(target.adjacent, game.currentMaterial);
   });
+  mine.on('break', function(goner) {
+    return game.setBlock(goner, 0);
+  });
+  game.currentMaterial = 1;
   game.explode = debris(game, {
     power: 1.5
   });
   game.explode.on('collect', function(item) {
     return console.log("collect", item);
-  });
-  game.on('break', function(goner) {
-    return game.setBlock(goner, 0);
   });
   return game.on('tick', function() {
     var vx, vz;
@@ -157,7 +162,7 @@ defaultSetup = function(game, avatar) {
 };
 
 
-},{"extend":2,"voxel":66,"voxel-debris":4,"voxel-debug":6,"voxel-engine":10,"voxel-fly":49,"voxel-highlight":54,"voxel-mine":57,"voxel-oculus":58,"voxel-player":59,"voxel-reach":61,"voxel-walk":64}],2:[function(require,module,exports){
+},{"extend":2,"voxel":68,"voxel-debris":4,"voxel-debug":6,"voxel-engine":10,"voxel-fly":49,"voxel-highlight":54,"voxel-mine":57,"voxel-oculus":59,"voxel-player":60,"voxel-reach":62,"voxel-walk":66}],2:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -37195,7 +37200,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{"__browserify_process":89}],4:[function(require,module,exports){
+},{"__browserify_process":91}],4:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -37282,7 +37287,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":80,"funstance":5}],5:[function(require,module,exports){
+},{"events":82,"funstance":5}],5:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -42581,7 +42586,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":11,"./lib/stats":12,"__browserify_process":89,"aabb-3d":13,"collide-3d-tilemap":14,"events":80,"gl-matrix":15,"inherits":16,"interact":17,"kb-controls":26,"path":81,"pin-it":31,"raf":32,"spatial-events":33,"three":35,"tic":36,"voxel":44,"voxel-control":37,"voxel-mesh":38,"voxel-physical":39,"voxel-raycast":40,"voxel-region-change":41,"voxel-texture":62,"voxel-view":42}],11:[function(require,module,exports){
+},{"./lib/detector":11,"./lib/stats":12,"__browserify_process":91,"aabb-3d":13,"collide-3d-tilemap":14,"events":82,"gl-matrix":15,"inherits":16,"interact":17,"kb-controls":26,"path":83,"pin-it":31,"raf":32,"spatial-events":33,"three":35,"tic":36,"voxel":44,"voxel-control":37,"voxel-mesh":38,"voxel-physical":39,"voxel-raycast":40,"voxel-region-change":41,"voxel-texture":64,"voxel-view":42}],11:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -46187,7 +46192,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":18,"events":80,"fullscreen":24,"pointer-lock":25,"stream":82}],18:[function(require,module,exports){
+},{"drag-stream":18,"events":82,"fullscreen":24,"pointer-lock":25,"stream":84}],18:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -46255,7 +46260,7 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":19,"stream":82,"through":23}],19:[function(require,module,exports){
+},{"domnode-dom":19,"stream":84,"through":23}],19:[function(require,module,exports){
 module.exports = require('./lib/index')
 
 },{"./lib/index":20}],20:[function(require,module,exports){
@@ -46405,7 +46410,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":82}],22:[function(require,module,exports){
+},{"stream":84}],22:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -46487,7 +46492,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":82}],23:[function(require,module,exports){
+},{"stream":84}],23:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -46587,7 +46592,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":89,"stream":82}],24:[function(require,module,exports){
+},{"__browserify_process":91,"stream":84}],24:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -46678,7 +46683,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":80}],25:[function(require,module,exports){
+},{"events":82}],25:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -46842,7 +46847,7 @@ function shim(el) {
     null
 }
 
-},{"events":80,"stream":82}],26:[function(require,module,exports){
+},{"events":82,"stream":84}],26:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -47051,7 +47056,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":28,"./types.json":29,"events":80}],28:[function(require,module,exports){
+},{"./init.json":28,"./types.json":29,"events":82}],28:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -47406,7 +47411,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":80}],33:[function(require,module,exports){
+},{"events":82}],33:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -84578,7 +84583,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":82}],38:[function(require,module,exports){
+},{"stream":84}],38:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -85198,7 +85203,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":13,"events":80}],42:[function(require,module,exports){
+},{"aabb-3d":13,"events":82}],42:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -85287,7 +85292,7 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":89}],43:[function(require,module,exports){
+},{"__browserify_process":91}],43:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -85424,7 +85429,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":80,"inherits":16}],44:[function(require,module,exports){
+},{"events":82,"inherits":16}],44:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -86076,9 +86081,9 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":80,"ever":50,"vkey":53}],50:[function(require,module,exports){
+},{"events":82,"ever":50,"vkey":53}],50:[function(require,module,exports){
 module.exports=require(27)
-},{"./init.json":51,"./types.json":52,"events":80}],51:[function(require,module,exports){
+},{"./init.json":51,"./types.json":52,"events":82}],51:[function(require,module,exports){
 module.exports=require(28)
 },{}],52:[function(require,module,exports){
 module.exports=require(29)
@@ -86251,7 +86256,7 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":80,"inherits":55,"underscore":56}],55:[function(require,module,exports){
+},{"events":82,"inherits":55,"underscore":56}],55:[function(require,module,exports){
 module.exports=require(16)
 },{}],56:[function(require,module,exports){
 //     Underscore.js 1.4.4
@@ -87484,7 +87489,11 @@ module.exports=require(16)
 },{}],57:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var Mine;
+  var EventEmitter, Mine, inherits;
+
+  inherits = require('inherits');
+
+  EventEmitter = (require('events')).EventEmitter;
 
   module.exports = function(game, opts) {
     return new Mine(game, opts);
@@ -87499,31 +87508,53 @@ module.exports=require(16)
     if (opts.instaMine == null) {
       opts.instaMine = false;
     }
+    if (opts.reach == null) {
+      throw "voxel-mine requires 'reach' option set to voxel-reach instance";
+    }
     this.opts = opts;
     this.instaMine = opts.instaMine;
     this.progress = 0;
+    this.reach = opts.reach;
     this.bindEvents();
     return this;
   };
 
   Mine.prototype.bindEvents = function() {
     var _this = this;
-    return this.game.on('mining', function(hit_voxel) {
-      if (hit_voxel == null) {
+    return this.reach.on('mining', function(target) {
+      if (!target) {
         console.log("no block mined");
         return;
       }
       _this.progress += 1;
       if (_this.instaMine || _this.progress > _this.opts.defaultHardness) {
         _this.progress = 0;
-        return game.emit('break', hit_voxel);
+        return _this.emit('break', target.voxel);
       }
     });
   };
 
+  Mine.prototype.drawDamage = function(at) {
+    var cube, geometry, material, mesh, obj;
+    geometry = new this.game.THREE.CubeGeometry(1, 1, 1);
+    material = new this.game.THREE.MeshLambertMaterial();
+    mesh = new this.game.THREE.Mesh(geometry, material);
+    obj = new game.THREE.Object3D();
+    obj.add(mesh);
+    obj.position.set(at[0] + 0.5, at[1] + 0.5, at[2] + 0.5);
+    return cube = game.addItem({
+      mesh: obj,
+      size: 1
+    });
+  };
+
+  inherits(Mine, EventEmitter);
+
 }).call(this);
 
-},{}],58:[function(require,module,exports){
+},{"events":82,"inherits":58}],58:[function(require,module,exports){
+module.exports=require(16)
+},{}],59:[function(require,module,exports){
 module.exports = function (game, opts) {
 	var THREE = game.THREE;
 	var renderer = game.view.renderer;
@@ -87643,7 +87674,7 @@ module.exports = function (game, opts) {
 	game.view.renderer = this;
 };
 
-},{}],59:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game) {
@@ -87737,7 +87768,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":60}],60:[function(require,module,exports){
+},{"minecraft-skin":61}],61:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -88109,8 +88140,11 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
+
+var inherits = require('inherits');
+var EventEmitter = require('events').EventEmitter;
 
 module.exports = function(game, opts) {
   return new Reach(game, opts);
@@ -88128,11 +88162,20 @@ function Reach(game, opts) {
   return this;
 }
 
+/* Get fractional part of a number
+  Math.floor(f) + frac(f) === f
+  frac(3.5) = 0.5
+  etc.
+ */
+function frac(f) {
+  return Math.abs(f % 1);
+}
+
 Reach.prototype.bindEvents = function() {
   var self = this;
 
   this.game.on('fire', function(target, state) {
-    var action, hit, voxel_target;
+    var action, hit, target;
 
     action = self.action(state);
     if (!action) {
@@ -88140,14 +88183,59 @@ Reach.prototype.bindEvents = function() {
     }
 
     hit = self.game.raycastVoxels(game.cameraPosition(), game.cameraVector(), self.opts.reachDistance);
-    if (action == 'mining') {
-      voxel_target = hit.voxel;
-    } else if (action == 'place') {
-      voxel_target = hit.adjacent;
-    }
 
-    self.game.emit(action, voxel_target);
+    target = self.specifyTarget(hit, action);
+
+    self.emit(action, target);
   });
+};
+
+// Get the hit voxel, side, and subcoordinates
+Reach.prototype.specifyTarget = function(hit, action) {
+  var voxel, adjacent, sub, side;
+
+  if (!hit) {
+    // air
+    return false;
+  }
+
+  // relative position within voxel where it was hit, range (1..0), for example (0.5, 0.5) is center:
+
+  // (1,1)--(0,1)
+  //   |      |
+  //   |      |
+  // (1,0)--(0,0)
+
+  sub = [frac(hit.position[0]), frac(hit.position[1]), frac(hit.position[2])];
+  // remove coordinate from direction, since it is always 0 (within epilson); convert 3D -> 2D
+  var fix = ((hit.normal.indexOf(1) + 1) || (hit.normal.indexOf(-1) + 1)) - 1; // TODO: deobfuscate
+  sub.splice(fix, 1);
+
+  side = this.normalToCardinal(hit.normal);
+
+  return {voxel: hit.voxel, adjacent: hit.adjacent, side: side, sub: sub};
+};
+
+Reach.prototype.normalToCardinal = function(normal) {
+  return {
+    "1,0,0": "east", // TODO: double-check these conventions
+    "-1,0,0": "west",
+    "0,1,0": "top",
+    "0,-1,0": "bottom",
+    "0,0,1": "south",
+    "0,0,-1": "north"
+  }[normal];
+};
+
+Reach.prototype.cardinalToNormal = function(direction) {
+  return {
+    "east": [1, 0, 0],
+    "west": [-1, 0, 0],
+    "top": [0, 1, 0],
+    "bottom": [0, -1, 0],
+    "south": [0, 0, 1],
+    "north": [0, 0, -1]
+  }[direction];
 };
 
 Reach.prototype.action = function(kb_state) {
@@ -88155,16 +88243,19 @@ Reach.prototype.action = function(kb_state) {
     // left-click (hold) = mining
     return 'mining';
   } else if (kb_state['firealt']) {
-    // right-click = place
-    return 'place';
+    // right-click = interact
+    return 'interact';
   // TODO: middle-click = pick
   } else {
     return undefined;
   }
-}
+};
 
+inherits(Reach, EventEmitter);
 
-},{}],62:[function(require,module,exports){
+},{"events":82,"inherits":63}],63:[function(require,module,exports){
+module.exports=require(16)
+},{}],64:[function(require,module,exports){
 var transparent = require('opaque').transparent;
 
 function Texture(opts) {
@@ -88382,7 +88473,7 @@ function defaults(obj) {
   return obj;
 }
 
-},{"opaque":63,"three":3}],63:[function(require,module,exports){
+},{"opaque":65,"three":3}],65:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -88412,7 +88503,7 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],64:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 var walkSpeed = 1.0
 var startedWalking = 0.0
 var stoppedWalking = 0.0
@@ -88466,25 +88557,25 @@ exports.isWalking = function(){
 exports.setAcceleration = function(newA){
   acceleration = newA
 }
-},{}],65:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 module.exports=require(43)
-},{"events":80,"inherits":71}],66:[function(require,module,exports){
+},{"events":82,"inherits":73}],68:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"./chunker":65,"./meshers/culled":67,"./meshers/greedy":68,"./meshers/monotone":69,"./meshers/stupid":70}],67:[function(require,module,exports){
+},{"./chunker":67,"./meshers/culled":69,"./meshers/greedy":70,"./meshers/monotone":71,"./meshers/stupid":72}],69:[function(require,module,exports){
 module.exports=require(45)
-},{}],68:[function(require,module,exports){
-module.exports=require(46)
-},{}],69:[function(require,module,exports){
-module.exports=require(47)
 },{}],70:[function(require,module,exports){
-module.exports=require(48)
+module.exports=require(46)
 },{}],71:[function(require,module,exports){
-module.exports=require(16)
+module.exports=require(47)
 },{}],72:[function(require,module,exports){
+module.exports=require(48)
+},{}],73:[function(require,module,exports){
+module.exports=require(16)
+},{}],74:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],73:[function(require,module,exports){
+},{"./index.coffee":1}],75:[function(require,module,exports){
 
 
 //
@@ -88702,7 +88793,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],74:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -88775,7 +88866,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":73,"_stream_readable":76,"_stream_writable":78,"timers":84,"util":85}],75:[function(require,module,exports){
+},{"_shims":75,"_stream_readable":78,"_stream_writable":80,"timers":86,"util":87}],77:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -88818,7 +88909,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":77,"util":85}],76:[function(require,module,exports){
+},{"_stream_transform":79,"util":87}],78:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89739,7 +89830,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":89,"_shims":73,"buffer":87,"events":80,"stream":82,"string_decoder":83,"timers":84,"util":85}],77:[function(require,module,exports){
+},{"__browserify_process":91,"_shims":75,"buffer":89,"events":82,"stream":84,"string_decoder":85,"timers":86,"util":87}],79:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89945,7 +90036,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":74,"util":85}],78:[function(require,module,exports){
+},{"_stream_duplex":76,"util":87}],80:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90315,7 +90406,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":87,"stream":82,"timers":84,"util":85}],79:[function(require,module,exports){
+},{"buffer":89,"stream":84,"timers":86,"util":87}],81:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90632,7 +90723,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":73,"util":85}],80:[function(require,module,exports){
+},{"_shims":75,"util":87}],82:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90913,7 +91004,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":85}],81:[function(require,module,exports){
+},{"util":87}],83:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91124,7 +91215,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":89,"_shims":73,"util":85}],82:[function(require,module,exports){
+},{"__browserify_process":91,"_shims":75,"util":87}],84:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91253,7 +91344,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":74,"_stream_passthrough":75,"_stream_readable":76,"_stream_transform":77,"_stream_writable":78,"events":80,"util":85}],83:[function(require,module,exports){
+},{"_stream_duplex":76,"_stream_passthrough":77,"_stream_readable":78,"_stream_transform":79,"_stream_writable":80,"events":82,"util":87}],85:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91446,7 +91537,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":87}],84:[function(require,module,exports){
+},{"buffer":89}],86:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -91565,7 +91656,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],85:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92110,7 +92201,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":73}],86:[function(require,module,exports){
+},{"_shims":75}],88:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -92196,7 +92287,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],87:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -93322,7 +93413,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":86,"assert":79,"base64-js":88}],88:[function(require,module,exports){
+},{"./buffer_ieee754":88,"assert":81,"base64-js":90}],90:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -93408,7 +93499,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],89:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -93462,5 +93553,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[72])
+},{}]},{},[74])
 ;
