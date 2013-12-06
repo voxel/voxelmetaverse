@@ -112,7 +112,7 @@ defaultSetup = (game, avatar) ->
 
       game.currentMaterial = slot
 
-    else if ev.keyCode == 'H'.charCodeAt(0)
+    else if ev.keyCode == 'O'.charCodeAt(0)
       home(game.avatar)
     else if ev.keyCode == 'C'.charCodeAt(0)
       # TODO: add gamemode event? for plugins to handle instead of us
