@@ -10,8 +10,8 @@ voxel = require 'voxel'
 extend = require 'extend'
 fly = require 'voxel-fly'
 walk = require 'voxel-walk'
-mine = require 'voxel-mine'
-reach = require 'voxel-reach'
+createMine = require 'voxel-mine'
+createReach = require 'voxel-reach'
 debris = require 'voxel-debris'
 createDebug = require 'voxel-debug'
 
@@ -93,8 +93,8 @@ defaultSetup = (game, avatar) ->
   game.flyer = makeFly target
   game.flyer.enabled = false
 
-  game.reach = reach(game)
-  game.mine = mine(game, {instaMine: false})
+  reach = createReach(game)
+  mine = createMine(game, {instaMine: false, reach: reach})
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
@@ -119,14 +119,14 @@ defaultSetup = (game, avatar) ->
       if game.mode == GAME_MODE_SURVIVAL
         game.mode = GAME_MODE_CREATIVE
         game.flyer.enabled = true
-        game.mine.instaMine = true
+        mine.instaMine = true
         console.log("creative mode")
       else
         game.mode = GAME_MODE_SURVIVAL
         if game.flyer.flying
           game.flyer.stopFlying()
         game.flyer.enabled = false
-        game.mine.instaMine = false
+        mine.instaMine = false
         console.log("survival mode")
 
   # cancel context-menu on right-click
@@ -134,20 +134,20 @@ defaultSetup = (game, avatar) ->
     event.preventDefault()
     return false
 
+  reach.on 'place', (adjacent) ->
+    game.createBlock adjacent, game.currentMaterial
+
+  mine.on 'break', (goner) ->
+    #console.log "exploding",goner
+    #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
+    game.setBlock goner, 0
+
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
-
-  game.on 'place', (adjacent) ->
-    game.createBlock adjacent, game.currentMaterial
 
   game.explode = debris(game, {power: 1.5})
   game.explode.on 'collect', (item) ->
     console.log("collect", item)
-
-  game.on 'break', (goner) ->
-    #console.log "exploding",goner
-    #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
-    game.setBlock goner, 0
 
   game.on 'tick', () ->
     walk.render target.playerSkin
