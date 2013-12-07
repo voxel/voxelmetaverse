@@ -10,7 +10,7 @@ createOculus = require 'voxel-oculus'
 createHighlight = require 'voxel-highlight'
 createPlayer = require 'voxel-player'
 createFly = require 'voxel-fly'
-walk = require 'voxel-walk'
+createWalk = require 'voxel-walk'
 createMine = require 'voxel-mine'
 createReach = require 'voxel-reach'
 createDebris = require 'voxel-debris'
@@ -96,6 +96,8 @@ defaultSetup = (game, avatar) ->
   game.flyer = createFlyForGame controlsTarget
   game.flyer.enabled = false
 
+  walk = createWalk(game, { skin: controlsTarget.playerSkin })
+
   reach = createReach(game, { reachDistance: REACH_DISTANCE })
   mine = createMine(game, {
     instaMine: false
@@ -169,10 +171,12 @@ defaultSetup = (game, avatar) ->
 
   # TODO: refactor into voxel-walk?
   game.on 'tick', () ->
-    walk.render controlsTarget.playerSkin
+    walk.render()
     vx = Math.abs controlsTarget.velocity.x
     vz = Math.abs controlsTarget.velocity.z
     if vx > 0.001 || vz > 0.001
       walk.stopWalking() 
     else
       walk.startWalking()
+
+

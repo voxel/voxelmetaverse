@@ -13,7 +13,7 @@
         "voxel-highlight": "0.0.9",
         "voxel-player": "git@github.com:deathcap/voxel-player.git",
         "voxel-fly": "git@github.com:deathcap/voxel-fly.git",
-        "voxel-walk": "0.0.5",
+        "voxel-walk": "git@github.com:deathcap/voxel-walk.git",
         "voxel-reach": "git@github.com:deathcap/voxel-reach.git",
         "voxel-mine": "git@github.com:deathcap/voxel-mine.git",
         "voxel-debris": "git@github.com:deathcap/voxel-debris.git",
