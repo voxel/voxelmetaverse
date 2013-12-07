@@ -89,9 +89,9 @@ defaultSetup = (game, avatar) ->
   debug.axis([0, 0, 0], 10)
 
   createFlyForGame = createFly game
-  target = game.controls.target()
+  controlsTarget = game.controls.target()
   game.mode = GAME_MODE_SURVIVAL
-  game.flyer = createFlyForGame target
+  game.flyer = createFlyForGame controlsTarget
   game.flyer.enabled = false
 
   reach = createReach(game)
@@ -163,9 +163,9 @@ defaultSetup = (game, avatar) ->
 
   # TODO: refactor into voxel-walk?
   game.on 'tick', () ->
-    walk.render target.playerSkin
-    vx = Math.abs target.velocity.x
-    vz = Math.abs target.velocity.z
+    walk.render controlsTarget.playerSkin
+    vx = Math.abs controlsTarget.velocity.x
+    vz = Math.abs controlsTarget.velocity.z
     if vx > 0.001 || vz > 0.001
       walk.stopWalking() 
     else
