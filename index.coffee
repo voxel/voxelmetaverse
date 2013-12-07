@@ -106,7 +106,11 @@ defaultSetup = (game, avatar) ->
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
-  highlight = createHighlight game, { color:  0xff0000, distance:  REACH_DISTANCE }
+  highlight = createHighlight game, { 
+    color:  0xff0000
+    distance: REACH_DISTANCE
+    adjacentActive: () -> false
+    }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
