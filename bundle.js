@@ -91,7 +91,9 @@ defaultSetup = function(game, avatar) {
   reach = createReach(game);
   mine = createMine(game, {
     instaMine: false,
-    reach: reach
+    reach: reach,
+    progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_",
+    progressTexturesCount: 9
   });
   console.log("configuring highlight ");
   hl = game.highlighter = highlight(game, {
@@ -87500,13 +87502,31 @@ module.exports=require(16)
   };
 
   Mine = function(game, opts) {
+    var _this = this;
     this.game = game;
     opts = opts != null ? opts : {};
     if (opts.defaultHardness == null) {
-      opts.defaultHardness = 3;
+      opts.defaultHardness = 9;
     }
     if (opts.instaMine == null) {
       opts.instaMine = false;
+    }
+    if (opts.progressTexturesBase == null) {
+      opts.progressTexturesBase = void 0;
+    }
+    if (opts.progressTexturesExt == null) {
+      opts.progressTexturesExt = ".png";
+    }
+    if (opts.progressTexturesCount == null) {
+      opts.progressTexturesCount = 9;
+    }
+    if (opts.applyTextureParams == null) {
+      opts.applyTextureParams = function(texture) {
+        texture.magFilter = _this.game.THREE.NearestFilter;
+        texture.minFilter = _this.game.THREE.LinearMipMapLinearFilter;
+        texture.wrapT = _this.game.THREE.RepeatWrapping;
+        return texture.wrapS = _this.game.THREE.RepeatWrapping;
+      };
     }
     if (opts.reach == null) {
       throw "voxel-mine requires 'reach' option set to voxel-reach instance";
@@ -87515,37 +87535,188 @@ module.exports=require(16)
     this.instaMine = opts.instaMine;
     this.progress = 0;
     this.reach = opts.reach;
+    this.texturesEnabled = this.opts.progressTexturesBase != null;
+    this.overlay = null;
+    this.setupTextures();
     this.bindEvents();
     return this;
   };
 
+  Mine.prototype.setupTextures = function() {
+    var i, path, _i, _ref, _results;
+    if (!this.texturesEnabled) {
+      return;
+    }
+    this.progressTextures = [];
+    _results = [];
+    for (i = _i = 0, _ref = this.opts.progressTexturesCount; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      path = this.opts.progressTexturesBase + i + this.opts.progressTexturesExt;
+      _results.push(this.progressTextures.push(this.game.THREE.ImageUtils.loadTexture(path)));
+    }
+    return _results;
+  };
+
+  Mine.prototype.getHardness = function(target) {
+    return this.opts.defaultHardness;
+  };
+
   Mine.prototype.bindEvents = function() {
     var _this = this;
-    return this.reach.on('mining', function(target) {
+    this.reach.on('mining', function(target) {
       if (!target) {
         console.log("no block mined");
         return;
       }
       _this.progress += 1;
-      if (_this.instaMine || _this.progress > _this.opts.defaultHardness) {
+      if (_this.instaMine || _this.progress > _this.getHardness(target)) {
         _this.progress = 0;
-        return _this.emit('break', target.voxel);
+        _this.emit('break', target.voxel);
       }
+      return _this.updateForStage();
+    });
+    this.reach.on('start mining', function(target) {
+      if (!target) {
+        return;
+      }
+      return _this.createOverlay(target);
+    });
+    return this.reach.on('stop mining', function(target) {
+      if (!target) {
+        return;
+      }
+      _this.destroyOverlay();
+      return _this.progress = 0;
     });
   };
 
-  Mine.prototype.drawDamage = function(at) {
-    var cube, geometry, material, mesh, obj;
-    geometry = new this.game.THREE.CubeGeometry(1, 1, 1);
+  Mine.prototype.createOverlay = function(target) {
+    var geometry, material, mesh, obj, offset;
+    if (this.instaMine || !this.texturesEnabled) {
+      return;
+    }
+    this.destroyOverlay();
+    geometry = new this.game.THREE.Geometry();
+    if (target.normal[2] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      offset = [0, 0, 1];
+    } else if (target.normal[1] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      offset = [0, 1, 0];
+    } else if (target.normal[0] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      offset = [1, 0, 0];
+    } else if (target.normal[0] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      offset = [0, 0, 0];
+    } else if (target.normal[1] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      offset = [0, 0, 0];
+    } else if (target.normal[2] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      offset = [0, 0, 0];
+    } else {
+      console.log("unknown face", target.normal);
+      return;
+    }
+    geometry.faces.push(new this.game.THREE.Face3(0, 1, 2));
+    geometry.faces.push(new this.game.THREE.Face3(0, 2, 3));
+    geometry.computeCentroids();
+    geometry.computeFaceNormals();
+    geometry.computeVertexNormals();
+    geometry.faceVertexUvs = [
+      [
+        [
+          {
+            x: 0,
+            y: 0
+          }, {
+            x: 1,
+            y: 0
+          }, {
+            x: 1,
+            y: 1
+          }, {
+            x: 0,
+            y: 1
+          }
+        ], [
+          {
+            x: 0,
+            y: 0
+          }, {
+            x: 1,
+            y: 1
+          }, {
+            x: 1,
+            y: 0
+          }, {
+            x: 0,
+            y: 1
+          }
+        ]
+      ]
+    ];
     material = new this.game.THREE.MeshLambertMaterial();
+    material.map = this.progressTextures[0];
+    this.opts.applyTextureParams(material.map);
+    material.side = this.game.THREE.FrontSide;
+    material.transparent = true;
+    material.depthWrite = false;
+    material.depthTest = false;
     mesh = new this.game.THREE.Mesh(geometry, material);
-    obj = new game.THREE.Object3D();
+    obj = new this.game.THREE.Object3D();
     obj.add(mesh);
-    obj.position.set(at[0] + 0.5, at[1] + 0.5, at[2] + 0.5);
-    return cube = game.addItem({
+    obj.position.set(target.voxel[0] + offset[0], target.voxel[1] + offset[1], target.voxel[2] + offset[2]);
+    this.overlay = this.game.addItem({
       mesh: obj,
       size: 1
     });
+    return this.overlay;
+  };
+
+  Mine.prototype.updateForStage = function() {
+    var index, texture;
+    if (!this.texturesEnabled) {
+      return;
+    }
+    index = Math.floor((this.progress / this.getHardness()) * (this.progressTextures.length - 1));
+    texture = this.progressTextures[index];
+    return this.setOverlayTexture(texture);
+  };
+
+  Mine.prototype.setOverlayTexture = function(texture) {
+    if (!this.overlay || !this.texturesEnabled) {
+      return;
+    }
+    this.opts.applyTextureParams(texture);
+    this.overlay.mesh.children[0].material.map = texture;
+    return this.overlay.mesh.children[0].material.needsUpdate = true;
+  };
+
+  Mine.prototype.destroyOverlay = function() {
+    if (!this.overlay || !this.texturesEnabled) {
+      return;
+    }
+    this.game.removeItem(this.overlay);
+    return this.overlay = null;
   };
 
   inherits(Mine, EventEmitter);
@@ -88154,8 +88325,10 @@ function Reach(game, opts) {
   this.game = game;
   opts = opts || {};
   opts.reachDistance = opts.reachDistance || 8;
+  opts.mouseButton = opts.mouseButton || 0; // left
 
   this.opts = opts;
+  this.currentTarget = null;
 
   this.bindEvents();
 
@@ -88174,6 +88347,7 @@ function frac(f) {
 Reach.prototype.bindEvents = function() {
   var self = this;
 
+  // Continuously fired events while button is held down
   this.game.on('fire', function(target, state) {
     var action, hit, target;
 
@@ -88182,17 +88356,38 @@ Reach.prototype.bindEvents = function() {
       return;
     }
 
-    hit = self.game.raycastVoxels(game.cameraPosition(), game.cameraVector(), self.opts.reachDistance);
+    target = self.specifyTarget();
 
-    target = self.specifyTarget(hit, action);
+    if (action === 'mining' && this.currentTarget) {
+      // changing target while mouse held (moving mouse)
+      if (target === false || target.voxel.join(',') !== this.currentTarget.voxel.join(',')) {
+        self.emit('stop mining', this.currentTarget);
+        self.emit('start mining', target);
+      }
+    }
+    this.currentTarget = target;
 
     self.emit(action, target);
   });
+
+  // Edge triggered
+  // TODO: refactor
+  window.addEventListener('mousedown', function(ev) {
+      if (ev.button !== self.opts.mouseButton) return; 
+      self.emit('start mining', self.specifyTarget());
+  });
+  window.addEventListener('mouseup', function(ev) {
+      if (ev.button !== self.opts.mouseButton)  return;
+      self.currentTarget = null;
+      self.emit('stop mining', self.specifyTarget());
+  });
 };
 
-// Get the hit voxel, side, and subcoordinates
-Reach.prototype.specifyTarget = function(hit, action) {
-  var voxel, adjacent, sub, side;
+// Raytrace and get the hit voxel, side, and subcoordinates
+Reach.prototype.specifyTarget = function() {
+  var voxel, adjacent, sub, side, hit;
+
+  hit = this.game.raycastVoxels(this.game.cameraPosition(), this.game.cameraVector(), this.opts.reachDistance);
 
   if (!hit) {
     // air
@@ -88213,7 +88408,7 @@ Reach.prototype.specifyTarget = function(hit, action) {
 
   side = this.normalToCardinal(hit.normal);
 
-  return {voxel: hit.voxel, adjacent: hit.adjacent, side: side, sub: sub};
+  return {voxel: hit.voxel, adjacent: hit.adjacent, side: side, sub: sub, normal: hit.normal};
 };
 
 Reach.prototype.normalToCardinal = function(normal) {
@@ -88247,6 +88442,7 @@ Reach.prototype.action = function(kb_state) {
     return 'interact';
   // TODO: middle-click = pick
   } else {
+    console.log("undefined event!");
     return undefined;
   }
 };
