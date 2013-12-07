@@ -94,7 +94,12 @@ defaultSetup = (game, avatar) ->
   game.flyer.enabled = false
 
   reach = createReach(game)
-  mine = createMine(game, {instaMine: false, reach: reach})
+  mine = createMine(game, {
+    instaMine: false
+    reach: reach
+    progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
+    progressTexturesCount: 9
+  })
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
