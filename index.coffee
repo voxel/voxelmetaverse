@@ -61,11 +61,9 @@ module.exports = (opts, setup) ->
   game.appendTo container
   return game if game.notCapable()
 
-  createPlayerForGame = createPlayer game
-
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = createPlayerForGame opts.playerSkin || 'player.png'
+  avatar = createPlayer(game, {image: 'player.png'})
   avatar.pov('first');
   avatar.possess()
   home(avatar)
