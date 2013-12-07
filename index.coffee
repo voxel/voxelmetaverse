@@ -96,7 +96,14 @@ defaultSetup = (game, avatar) ->
   game.flyer = createFlyForGame controlsTarget
   game.flyer.enabled = false
 
-  walk = createWalk(game, { skin: controlsTarget.playerSkin })
+  walk = createWalk(game, { 
+    skin: controlsTarget.playerSkin
+    bindGameEvents: true
+    shouldStopWalking: () =>
+      vx = Math.abs(controlsTarget.velocity.x)
+      vz = Math.abs(controlsTarget.velocity.z)
+      return vx > 0.001 || vz > 0.001
+    })
 
   reach = createReach(game, { reachDistance: REACH_DISTANCE })
   mine = createMine(game, {
@@ -168,15 +175,5 @@ defaultSetup = (game, avatar) ->
   debris = createDebris(game, {power: 1.5})
   debris.on 'collect', (item) ->
     console.log("collect", item)
-
-  # TODO: refactor into voxel-walk?
-  game.on 'tick', () ->
-    walk.render()
-    vx = Math.abs controlsTarget.velocity.x
-    vz = Math.abs controlsTarget.velocity.z
-    if vx > 0.001 || vz > 0.001
-      walk.stopWalking() 
-    else
-      walk.startWalking()
 
 
