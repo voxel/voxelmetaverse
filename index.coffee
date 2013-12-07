@@ -90,11 +90,10 @@ defaultSetup = (game, avatar) ->
   debug = createDebug(game)
   debug.axis([0, 0, 0], 10)
 
-  createFlyForGame = createFly game
-  controlsTarget = game.controls.target()
   game.mode = GAME_MODE_SURVIVAL
-  game.flyer = createFlyForGame controlsTarget
-  game.flyer.enabled = false
+  controlsTarget = game.controls.target()
+
+  game.flyer = createFly(game, {physical: controlsTarget, flySpeed: 0.8, enabled: false})
 
   walk = createWalk(game, { 
     skin: controlsTarget.playerSkin
