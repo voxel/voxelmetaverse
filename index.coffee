@@ -2,17 +2,18 @@
 
 console.log "Hello"
 
-createGame = require 'voxel-engine'
-oculus = require 'voxel-oculus'
-highlight = require 'voxel-highlight'
-player = require 'voxel-player'
 voxel = require 'voxel'
 extend = require 'extend'
-fly = require 'voxel-fly'
+
+createGame = require 'voxel-engine'
+createOculus = require 'voxel-oculus'
+createHighlight = require 'voxel-highlight'
+createPlayer = require 'voxel-player'
+createFly = require 'voxel-fly'
 walk = require 'voxel-walk'
 createMine = require 'voxel-mine'
 createReach = require 'voxel-reach'
-debris = require 'voxel-debris'
+createDebris = require 'voxel-debris'
 createDebug = require 'voxel-debug'
 
 module.exports = (opts, setup) ->
@@ -52,7 +53,7 @@ module.exports = (opts, setup) ->
 
   if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
     # Oculus Rift support TODO: allow in-game toggling
-    effect = new oculus(game, { distortion: 0.2, separation: 0.5 })
+    oculus = new createOculus(game, { distortion: 0.2, separation: 0.5 })
     document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
@@ -60,11 +61,11 @@ module.exports = (opts, setup) ->
   game.appendTo container
   return game if game.notCapable()
 
-  createPlayer = player game
+  createPlayerForGame = createPlayer game
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = createPlayer opts.playerSkin || 'player.png'
+  avatar = createPlayerForGame opts.playerSkin || 'player.png'
   avatar.pov('first');
   avatar.possess()
   home(avatar)
@@ -87,10 +88,10 @@ defaultSetup = (game, avatar) ->
   debug = createDebug(game)
   debug.axis([0, 0, 0], 10)
 
-  makeFly = fly game
+  createFlyForGame = createFly game
   target = game.controls.target()
   game.mode = GAME_MODE_SURVIVAL
-  game.flyer = makeFly target
+  game.flyer = createFlyForGame target
   game.flyer.enabled = false
 
   reach = createReach(game)
@@ -103,7 +104,7 @@ defaultSetup = (game, avatar) ->
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
-  hl = game.highlighter = highlight game, { color:  0xff0000 }
+  highlight = createHighlight game, { color:  0xff0000 }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
@@ -156,10 +157,11 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  game.explode = debris(game, {power: 1.5})
-  game.explode.on 'collect', (item) ->
+  debris = createDebris(game, {power: 1.5})
+  debris.on 'collect', (item) ->
     console.log("collect", item)
 
+  # TODO: refactor into voxel-walk?
   game.on 'tick', () ->
     walk.render target.playerSkin
     vx = Math.abs target.velocity.x
