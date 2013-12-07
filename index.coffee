@@ -82,6 +82,8 @@ home = (avatar) ->
 GAME_MODE_SURVIVAL = 0
 GAME_MODE_CREATIVE = 1
 
+REACH_DISTANCE = 8
+
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
@@ -94,7 +96,7 @@ defaultSetup = (game, avatar) ->
   game.flyer = createFlyForGame controlsTarget
   game.flyer.enabled = false
 
-  reach = createReach(game)
+  reach = createReach(game, { reachDistance: REACH_DISTANCE })
   mine = createMine(game, {
     instaMine: false
     reach: reach
@@ -104,7 +106,7 @@ defaultSetup = (game, avatar) ->
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
-  highlight = createHighlight game, { color:  0xff0000 }
+  highlight = createHighlight game, { color:  0xff0000, distance:  REACH_DISTANCE }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
