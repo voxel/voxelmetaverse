@@ -4,9 +4,8 @@ console.log "Hello"
 
 voxel = require 'voxel'
 extend = require 'extend'
-
+datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
-
 createPlugins = require 'voxel-plugins'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
@@ -95,8 +94,10 @@ REACH_DISTANCE = 8
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
-  game.plugins.load 'debug', {}
-  #debug.axis([0, 0, 0], 10)
+  gui = new datgui.GUI()
+  console.log 'gui',gui
+  debug = game.plugins.load 'debug', {gui: gui}
+  debug.axis([0, 0, 0], 10)
 
   game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
