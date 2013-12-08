@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, REACH_DISTANCE, createDebris, createDebug, createFly, createGame, createHighlight, createMine, createOculus, createPlayer, createPlugins, createReach, createWalk, defaultSetup, extend, home, voxel;
+var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, REACH_DISTANCE, createGame, createPlugins, createTerrain, createTree, datgui, defaultSetup, extend, home, voxel;
 
 console.log("Hello");
 
@@ -7,37 +7,43 @@ voxel = require('voxel');
 
 extend = require('extend');
 
+datgui = require('dat-gui');
+
 createGame = require('voxel-engine');
 
 createPlugins = require('voxel-plugins');
 
-createOculus = require('voxel-oculus');
+createTerrain = require('voxel-perlin-terrain');
 
-createHighlight = require('voxel-highlight');
+createTree = require('voxel-forest');
 
-createPlayer = require('voxel-player');
+require('voxel-oculus');
 
-createFly = require('voxel-fly');
+require('voxel-highlight');
 
-createWalk = require('voxel-walk');
+require('voxel-player');
 
-createMine = require('voxel-mine');
+require('voxel-fly');
 
-createReach = require('voxel-reach');
+require('voxel-walk');
 
-createDebris = require('voxel-debris');
+require('voxel-mine');
 
-createDebug = require('voxel-debug');
+require('voxel-reach');
+
+require('voxel-debris');
+
+require('voxel-debug');
 
 module.exports = function(opts, setup) {
-  var avatar, container, defaults, game, plugins;
+  var avatar, container, defaults, game, generateChunk, generateTrees, plugins;
   setup || (setup = defaultSetup);
   console.log("initializing");
   defaults = {
-    generate: voxel.generator['Valley'],
+    generateChunks: false,
     mesher: voxel.meshers.greedy,
     chunkDistance: 2,
-    materials: [['grass_top', 'dirt', 'grass_side'], 'dirt', ['log_oak_top', 'log_oak_top', 'log_oak'], 'stone', 'cobblestone', 'coal_ore', 'brick', 'obsidian', 'leaves_oak_opaque', 'glass'],
+    materials: [['grass_top', 'dirt', 'grass_side'], 'dirt', 'stone', ['log_oak_top', 'log_oak_top', 'log_oak'], 'cobblestone', 'coal_ore', 'brick', 'obsidian', 'leaves_oak_opaque', 'glass'],
     texturePath: 'ProgrammerArt/textures/blocks/',
     worldOrigin: [0, 0, 0],
     controls: {
@@ -49,16 +55,66 @@ module.exports = function(opts, setup) {
   opts = extend({}, defaults, opts || {});
   console.log("creating game");
   game = createGame(opts);
+  generateChunk = createTerrain('foo', 0, 5, 20);
+  game.voxels.on('missingChunk', function(p) {
+    var chunk, i, voxels, width, _i, _ref;
+    width = 32;
+    if (p[1] === 0) {
+      voxels = generateChunk(p, width);
+      createTree(game, {
+        bark: 4,
+        leaves: 9,
+        position: {
+          x: width / 2,
+          y: 0,
+          z: width / 2
+        },
+        treetype: 1,
+        setBlock: function(pos, value) {
+          var idx;
+          idx = pos.x + pos.y * width + pos.z * width * width;
+          voxels[idx] = value;
+          return false;
+        }
+      });
+    } else if (p[1] > 0) {
+      voxels = new Int8Array(width * width * width);
+    } else {
+      voxels = new Int8Array(width * width * width);
+      for (i = _i = 0, _ref = width * width * width; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+        voxels[i] = 3;
+      }
+    }
+    chunk = {
+      position: p,
+      dims: [game.chunkSize, game.chunkSize, game.chunkSize],
+      voxels: voxels
+    };
+    return game.showChunk(chunk);
+  });
+  generateTrees = function() {
+    var i, _i, _results;
+    _results = [];
+    for (i = _i = 0; _i <= 250; i = ++_i) {
+      _results.push(createTree(game, {
+        bark: 4,
+        leaves: 9,
+        checkOccupied: false,
+        treetype: 2
+      }));
+    }
+    return _results;
+  };
   console.log("initializing plugins");
   plugins = createPlugins(game, {
     require: require
   });
-  plugins.preconfigure("voxel-oculus", {
+  plugins.preconfigure("oculus", {
     distortion: 0.2,
     separation: 0.5
   });
-  if (window.location.href.indexOf("rift") !== -1 || window.location.hash.indexOf("rift") !== -1) {
-    plugins.enable("voxel-oculus");
+  if (window.location.href.indexOf('rift') !== -1 || window.location.hash.indexOf('rift') !== -1) {
+    plugins.enable('oculus');
   }
   container = opts.container || document.body;
   window.game = game;
@@ -66,7 +122,7 @@ module.exports = function(opts, setup) {
   if (game.notCapable()) {
     return game;
   }
-  avatar = createPlayer(game, {
+  avatar = game.plugins.load('player', {
     image: 'player.png'
   });
   avatar.pov('first');
@@ -78,7 +134,7 @@ module.exports = function(opts, setup) {
 };
 
 home = function(avatar) {
-  return avatar.yaw.position.set(2, 14, 4);
+  return avatar.yaw.position.set(2, 5, 4);
 };
 
 GAME_MODE_SURVIVAL = 0;
@@ -88,19 +144,23 @@ GAME_MODE_CREATIVE = 1;
 REACH_DISTANCE = 8;
 
 defaultSetup = function(game, avatar) {
-  var controlsTarget, debris, debug, highlight, mine, reach, walk,
+  var controlsTarget, debris, debug, gui, highlight, mine, reach,
     _this = this;
   console.log("entering setup");
-  debug = createDebug(game);
+  gui = new datgui.GUI();
+  console.log('gui', gui);
+  debug = game.plugins.load('debug', {
+    gui: gui
+  });
   debug.axis([0, 0, 0], 10);
   game.mode = GAME_MODE_SURVIVAL;
   controlsTarget = game.controls.target();
-  game.flyer = createFly(game, {
+  game.flyer = game.plugins.load('fly', {
     physical: controlsTarget,
     flySpeed: 0.8,
     enabled: false
   });
-  walk = createWalk(game, {
+  game.plugins.load('walk', {
     skin: controlsTarget.playerSkin,
     bindGameEvents: true,
     shouldStopWalking: function() {
@@ -110,17 +170,17 @@ defaultSetup = function(game, avatar) {
       return vx > 0.001 || vz > 0.001;
     }
   });
-  reach = createReach(game, {
+  reach = game.plugins.load('reach', {
     reachDistance: REACH_DISTANCE
   });
-  mine = createMine(game, {
+  mine = game.plugins.load('mine', {
     instaMine: false,
     reach: reach,
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_",
     progressTexturesCount: 9
   });
   console.log("configuring highlight ");
-  highlight = createHighlight(game, {
+  highlight = game.plugins.load('highlight', {
     color: 0xff0000,
     distance: REACH_DISTANCE,
     adjacentActive: function() {
@@ -132,7 +192,7 @@ defaultSetup = function(game, avatar) {
     if (ev.keyCode === 'R'.charCodeAt(0)) {
       return avatar.toggle();
     } else if (ev.keyCode === 'T'.charCodeAt(0)) {
-      return game.plugins.toggle("voxel-oculus");
+      return game.plugins.toggle("oculus");
     } else if (('0'.charCodeAt(0) <= (_ref = ev.keyCode) && _ref <= '9'.charCodeAt(0))) {
       slot = ev.keyCode - '0'.charCodeAt(0);
       if (slot === 0) {
@@ -174,7 +234,7 @@ defaultSetup = function(game, avatar) {
     return game.setBlock(goner, 0);
   });
   game.currentMaterial = 1;
-  debris = createDebris(game, {
+  debris = game.plugins.load('debris', {
     power: 1.5
   });
   return debris.on('collect', function(item) {
@@ -183,7 +243,4427 @@ defaultSetup = function(game, avatar) {
 };
 
 
-},{"extend":2,"voxel":69,"voxel-debris":4,"voxel-debug":6,"voxel-engine":10,"voxel-fly":49,"voxel-highlight":54,"voxel-mine":57,"voxel-oculus":59,"voxel-player":60,"voxel-plugins":62,"voxel-reach":63,"voxel-walk":67}],2:[function(require,module,exports){
+},{"dat-gui":2,"extend":5,"voxel":82,"voxel-debris":7,"voxel-debug":9,"voxel-engine":20,"voxel-fly":59,"voxel-forest":64,"voxel-highlight":65,"voxel-mine":68,"voxel-oculus":70,"voxel-perlin-terrain":71,"voxel-player":73,"voxel-plugins":75,"voxel-reach":76,"voxel-walk":80}],2:[function(require,module,exports){
+module.exports = require('./vendor/dat.gui')
+module.exports.color = require('./vendor/dat.color')
+},{"./vendor/dat.color":3,"./vendor/dat.gui":4}],3:[function(require,module,exports){
+/**
+ * dat-gui JavaScript Controller Library
+ * http://code.google.com/p/dat-gui
+ *
+ * Copyright 2011 Data Arts Team, Google Creative Lab
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/** @namespace */
+var dat = module.exports = dat || {};
+
+/** @namespace */
+dat.color = dat.color || {};
+
+/** @namespace */
+dat.utils = dat.utils || {};
+
+dat.utils.common = (function () {
+  
+  var ARR_EACH = Array.prototype.forEach;
+  var ARR_SLICE = Array.prototype.slice;
+
+  /**
+   * Band-aid methods for things that should be a lot easier in JavaScript.
+   * Implementation and structure inspired by underscore.js
+   * http://documentcloud.github.com/underscore/
+   */
+
+  return { 
+    
+    BREAK: {},
+  
+    extend: function(target) {
+      
+      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
+        
+        for (var key in obj)
+          if (!this.isUndefined(obj[key])) 
+            target[key] = obj[key];
+        
+      }, this);
+      
+      return target;
+      
+    },
+    
+    defaults: function(target) {
+      
+      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
+        
+        for (var key in obj)
+          if (this.isUndefined(target[key])) 
+            target[key] = obj[key];
+        
+      }, this);
+      
+      return target;
+    
+    },
+    
+    compose: function() {
+      var toCall = ARR_SLICE.call(arguments);
+            return function() {
+              var args = ARR_SLICE.call(arguments);
+              for (var i = toCall.length -1; i >= 0; i--) {
+                args = [toCall[i].apply(this, args)];
+              }
+              return args[0];
+            }
+    },
+    
+    each: function(obj, itr, scope) {
+
+      
+      if (ARR_EACH && obj.forEach === ARR_EACH) { 
+        
+        obj.forEach(itr, scope);
+        
+      } else if (obj.length === obj.length + 0) { // Is number but not NaN
+        
+        for (var key = 0, l = obj.length; key < l; key++)
+          if (key in obj && itr.call(scope, obj[key], key) === this.BREAK) 
+            return;
+            
+      } else {
+
+        for (var key in obj) 
+          if (itr.call(scope, obj[key], key) === this.BREAK)
+            return;
+            
+      }
+            
+    },
+    
+    defer: function(fnc) {
+      setTimeout(fnc, 0);
+    },
+    
+    toArray: function(obj) {
+      if (obj.toArray) return obj.toArray();
+      return ARR_SLICE.call(obj);
+    },
+
+    isUndefined: function(obj) {
+      return obj === undefined;
+    },
+    
+    isNull: function(obj) {
+      return obj === null;
+    },
+    
+    isNaN: function(obj) {
+      return obj !== obj;
+    },
+    
+    isArray: Array.isArray || function(obj) {
+      return obj.constructor === Array;
+    },
+    
+    isObject: function(obj) {
+      return obj === Object(obj);
+    },
+    
+    isNumber: function(obj) {
+      return obj === obj+0;
+    },
+    
+    isString: function(obj) {
+      return obj === obj+'';
+    },
+    
+    isBoolean: function(obj) {
+      return obj === false || obj === true;
+    },
+    
+    isFunction: function(obj) {
+      return Object.prototype.toString.call(obj) === '[object Function]';
+    }
+  
+  };
+    
+})();
+
+
+dat.color.toString = (function (common) {
+
+  return function(color) {
+
+    if (color.a == 1 || common.isUndefined(color.a)) {
+
+      var s = color.hex.toString(16);
+      while (s.length < 6) {
+        s = '0' + s;
+      }
+
+      return '#' + s;
+
+    } else {
+
+      return 'rgba(' + Math.round(color.r) + ',' + Math.round(color.g) + ',' + Math.round(color.b) + ',' + color.a + ')';
+
+    }
+
+  }
+
+})(dat.utils.common);
+
+
+dat.Color = dat.color.Color = (function (interpret, math, toString, common) {
+
+  var Color = function() {
+
+    this.__state = interpret.apply(this, arguments);
+
+    if (this.__state === false) {
+      throw 'Failed to interpret color arguments';
+    }
+
+    this.__state.a = this.__state.a || 1;
+
+
+  };
+
+  Color.COMPONENTS = ['r','g','b','h','s','v','hex','a'];
+
+  common.extend(Color.prototype, {
+
+    toString: function() {
+      return toString(this);
+    },
+
+    toOriginal: function() {
+      return this.__state.conversion.write(this);
+    }
+
+  });
+
+  defineRGBComponent(Color.prototype, 'r', 2);
+  defineRGBComponent(Color.prototype, 'g', 1);
+  defineRGBComponent(Color.prototype, 'b', 0);
+
+  defineHSVComponent(Color.prototype, 'h');
+  defineHSVComponent(Color.prototype, 's');
+  defineHSVComponent(Color.prototype, 'v');
+
+  Object.defineProperty(Color.prototype, 'a', {
+
+    get: function() {
+      return this.__state.a;
+    },
+
+    set: function(v) {
+      this.__state.a = v;
+    }
+
+  });
+
+  Object.defineProperty(Color.prototype, 'hex', {
+
+    get: function() {
+
+      if (!this.__state.space !== 'HEX') {
+        this.__state.hex = math.rgb_to_hex(this.r, this.g, this.b);
+      }
+
+      return this.__state.hex;
+
+    },
+
+    set: function(v) {
+
+      this.__state.space = 'HEX';
+      this.__state.hex = v;
+
+    }
+
+  });
+
+  function defineRGBComponent(target, component, componentHexIndex) {
+
+    Object.defineProperty(target, component, {
+
+      get: function() {
+
+        if (this.__state.space === 'RGB') {
+          return this.__state[component];
+        }
+
+        recalculateRGB(this, component, componentHexIndex);
+
+        return this.__state[component];
+
+      },
+
+      set: function(v) {
+
+        if (this.__state.space !== 'RGB') {
+          recalculateRGB(this, component, componentHexIndex);
+          this.__state.space = 'RGB';
+        }
+
+        this.__state[component] = v;
+
+      }
+
+    });
+
+  }
+
+  function defineHSVComponent(target, component) {
+
+    Object.defineProperty(target, component, {
+
+      get: function() {
+
+        if (this.__state.space === 'HSV')
+          return this.__state[component];
+
+        recalculateHSV(this);
+
+        return this.__state[component];
+
+      },
+
+      set: function(v) {
+
+        if (this.__state.space !== 'HSV') {
+          recalculateHSV(this);
+          this.__state.space = 'HSV';
+        }
+
+        this.__state[component] = v;
+
+      }
+
+    });
+
+  }
+
+  function recalculateRGB(color, component, componentHexIndex) {
+
+    if (color.__state.space === 'HEX') {
+
+      color.__state[component] = math.component_from_hex(color.__state.hex, componentHexIndex);
+
+    } else if (color.__state.space === 'HSV') {
+
+      common.extend(color.__state, math.hsv_to_rgb(color.__state.h, color.__state.s, color.__state.v));
+
+    } else {
+
+      throw 'Corrupted color state';
+
+    }
+
+  }
+
+  function recalculateHSV(color) {
+
+    var result = math.rgb_to_hsv(color.r, color.g, color.b);
+
+    common.extend(color.__state,
+        {
+          s: result.s,
+          v: result.v
+        }
+    );
+
+    if (!common.isNaN(result.h)) {
+      color.__state.h = result.h;
+    } else if (common.isUndefined(color.__state.h)) {
+      color.__state.h = 0;
+    }
+
+  }
+
+  return Color;
+
+})(dat.color.interpret = (function (toString, common) {
+
+  var result, toReturn;
+
+  var interpret = function() {
+
+    toReturn = false;
+
+    var original = arguments.length > 1 ? common.toArray(arguments) : arguments[0];
+
+    common.each(INTERPRETATIONS, function(family) {
+
+      if (family.litmus(original)) {
+
+        common.each(family.conversions, function(conversion, conversionName) {
+
+          result = conversion.read(original);
+
+          if (toReturn === false && result !== false) {
+            toReturn = result;
+            result.conversionName = conversionName;
+            result.conversion = conversion;
+            return common.BREAK;
+
+          }
+
+        });
+
+        return common.BREAK;
+
+      }
+
+    });
+
+    return toReturn;
+
+  };
+
+  var INTERPRETATIONS = [
+
+    // Strings
+    {
+
+      litmus: common.isString,
+
+      conversions: {
+
+        THREE_CHAR_HEX: {
+
+          read: function(original) {
+
+            var test = original.match(/^#([A-F0-9])([A-F0-9])([A-F0-9])$/i);
+            if (test === null) return false;
+
+            return {
+              space: 'HEX',
+              hex: parseInt(
+                  '0x' +
+                      test[1].toString() + test[1].toString() +
+                      test[2].toString() + test[2].toString() +
+                      test[3].toString() + test[3].toString())
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        SIX_CHAR_HEX: {
+
+          read: function(original) {
+
+            var test = original.match(/^#([A-F0-9]{6})$/i);
+            if (test === null) return false;
+
+            return {
+              space: 'HEX',
+              hex: parseInt('0x' + test[1].toString())
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        CSS_RGB: {
+
+          read: function(original) {
+
+            var test = original.match(/^rgb\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
+            if (test === null) return false;
+
+            return {
+              space: 'RGB',
+              r: parseFloat(test[1]),
+              g: parseFloat(test[2]),
+              b: parseFloat(test[3])
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        CSS_RGBA: {
+
+          read: function(original) {
+
+            var test = original.match(/^rgba\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\,\s*(.+)\s*\)/);
+            if (test === null) return false;
+
+            return {
+              space: 'RGB',
+              r: parseFloat(test[1]),
+              g: parseFloat(test[2]),
+              b: parseFloat(test[3]),
+              a: parseFloat(test[4])
+            };
+
+          },
+
+          write: toString
+
+        }
+
+      }
+
+    },
+
+    // Numbers
+    {
+
+      litmus: common.isNumber,
+
+      conversions: {
+
+        HEX: {
+          read: function(original) {
+            return {
+              space: 'HEX',
+              hex: original,
+              conversionName: 'HEX'
+            }
+          },
+
+          write: function(color) {
+            return color.hex;
+          }
+        }
+
+      }
+
+    },
+
+    // Arrays
+    {
+
+      litmus: common.isArray,
+
+      conversions: {
+
+        RGB_ARRAY: {
+          read: function(original) {
+            if (original.length != 3) return false;
+            return {
+              space: 'RGB',
+              r: original[0],
+              g: original[1],
+              b: original[2]
+            };
+          },
+
+          write: function(color) {
+            return [color.r, color.g, color.b];
+          }
+
+        },
+
+        RGBA_ARRAY: {
+          read: function(original) {
+            if (original.length != 4) return false;
+            return {
+              space: 'RGB',
+              r: original[0],
+              g: original[1],
+              b: original[2],
+              a: original[3]
+            };
+          },
+
+          write: function(color) {
+            return [color.r, color.g, color.b, color.a];
+          }
+
+        }
+
+      }
+
+    },
+
+    // Objects
+    {
+
+      litmus: common.isObject,
+
+      conversions: {
+
+        RGBA_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.r) &&
+                common.isNumber(original.g) &&
+                common.isNumber(original.b) &&
+                common.isNumber(original.a)) {
+              return {
+                space: 'RGB',
+                r: original.r,
+                g: original.g,
+                b: original.b,
+                a: original.a
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              r: color.r,
+              g: color.g,
+              b: color.b,
+              a: color.a
+            }
+          }
+        },
+
+        RGB_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.r) &&
+                common.isNumber(original.g) &&
+                common.isNumber(original.b)) {
+              return {
+                space: 'RGB',
+                r: original.r,
+                g: original.g,
+                b: original.b
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              r: color.r,
+              g: color.g,
+              b: color.b
+            }
+          }
+        },
+
+        HSVA_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.h) &&
+                common.isNumber(original.s) &&
+                common.isNumber(original.v) &&
+                common.isNumber(original.a)) {
+              return {
+                space: 'HSV',
+                h: original.h,
+                s: original.s,
+                v: original.v,
+                a: original.a
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              h: color.h,
+              s: color.s,
+              v: color.v,
+              a: color.a
+            }
+          }
+        },
+
+        HSV_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.h) &&
+                common.isNumber(original.s) &&
+                common.isNumber(original.v)) {
+              return {
+                space: 'HSV',
+                h: original.h,
+                s: original.s,
+                v: original.v
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              h: color.h,
+              s: color.s,
+              v: color.v
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+
+  ];
+
+  return interpret;
+
+
+})(dat.color.toString,
+dat.utils.common),
+dat.color.math = (function () {
+
+  var tmpComponent;
+
+  return {
+
+    hsv_to_rgb: function(h, s, v) {
+
+      var hi = Math.floor(h / 60) % 6;
+
+      var f = h / 60 - Math.floor(h / 60);
+      var p = v * (1.0 - s);
+      var q = v * (1.0 - (f * s));
+      var t = v * (1.0 - ((1.0 - f) * s));
+      var c = [
+        [v, t, p],
+        [q, v, p],
+        [p, v, t],
+        [p, q, v],
+        [t, p, v],
+        [v, p, q]
+      ][hi];
+
+      return {
+        r: c[0] * 255,
+        g: c[1] * 255,
+        b: c[2] * 255
+      };
+
+    },
+
+    rgb_to_hsv: function(r, g, b) {
+
+      var min = Math.min(r, g, b),
+          max = Math.max(r, g, b),
+          delta = max - min,
+          h, s;
+
+      if (max != 0) {
+        s = delta / max;
+      } else {
+        return {
+          h: NaN,
+          s: 0,
+          v: 0
+        };
+      }
+
+      if (r == max) {
+        h = (g - b) / delta;
+      } else if (g == max) {
+        h = 2 + (b - r) / delta;
+      } else {
+        h = 4 + (r - g) / delta;
+      }
+      h /= 6;
+      if (h < 0) {
+        h += 1;
+      }
+
+      return {
+        h: h * 360,
+        s: s,
+        v: max / 255
+      };
+    },
+
+    rgb_to_hex: function(r, g, b) {
+      var hex = this.hex_with_component(0, 2, r);
+      hex = this.hex_with_component(hex, 1, g);
+      hex = this.hex_with_component(hex, 0, b);
+      return hex;
+    },
+
+    component_from_hex: function(hex, componentIndex) {
+      return (hex >> (componentIndex * 8)) & 0xFF;
+    },
+
+    hex_with_component: function(hex, componentIndex, value) {
+      return value << (tmpComponent = componentIndex * 8) | (hex & ~ (0xFF << tmpComponent));
+    }
+
+  }
+
+})(),
+dat.color.toString,
+dat.utils.common);
+},{}],4:[function(require,module,exports){
+/**
+ * dat-gui JavaScript Controller Library
+ * http://code.google.com/p/dat-gui
+ *
+ * Copyright 2011 Data Arts Team, Google Creative Lab
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ */
+
+/** @namespace */
+var dat = module.exports = dat || {};
+
+/** @namespace */
+dat.gui = dat.gui || {};
+
+/** @namespace */
+dat.utils = dat.utils || {};
+
+/** @namespace */
+dat.controllers = dat.controllers || {};
+
+/** @namespace */
+dat.dom = dat.dom || {};
+
+/** @namespace */
+dat.color = dat.color || {};
+
+dat.utils.css = (function () {
+  return {
+    load: function (url, doc) {
+      doc = doc || document;
+      var link = doc.createElement('link');
+      link.type = 'text/css';
+      link.rel = 'stylesheet';
+      link.href = url;
+      doc.getElementsByTagName('head')[0].appendChild(link);
+    },
+    inject: function(css, doc) {
+      doc = doc || document;
+      var injected = document.createElement('style');
+      injected.type = 'text/css';
+      injected.innerHTML = css;
+      doc.getElementsByTagName('head')[0].appendChild(injected);
+    }
+  }
+})();
+
+
+dat.utils.common = (function () {
+  
+  var ARR_EACH = Array.prototype.forEach;
+  var ARR_SLICE = Array.prototype.slice;
+
+  /**
+   * Band-aid methods for things that should be a lot easier in JavaScript.
+   * Implementation and structure inspired by underscore.js
+   * http://documentcloud.github.com/underscore/
+   */
+
+  return { 
+    
+    BREAK: {},
+  
+    extend: function(target) {
+      
+      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
+        
+        for (var key in obj)
+          if (!this.isUndefined(obj[key])) 
+            target[key] = obj[key];
+        
+      }, this);
+      
+      return target;
+      
+    },
+    
+    defaults: function(target) {
+      
+      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
+        
+        for (var key in obj)
+          if (this.isUndefined(target[key])) 
+            target[key] = obj[key];
+        
+      }, this);
+      
+      return target;
+    
+    },
+    
+    compose: function() {
+      var toCall = ARR_SLICE.call(arguments);
+            return function() {
+              var args = ARR_SLICE.call(arguments);
+              for (var i = toCall.length -1; i >= 0; i--) {
+                args = [toCall[i].apply(this, args)];
+              }
+              return args[0];
+            }
+    },
+    
+    each: function(obj, itr, scope) {
+
+      
+      if (ARR_EACH && obj.forEach === ARR_EACH) { 
+        
+        obj.forEach(itr, scope);
+        
+      } else if (obj.length === obj.length + 0) { // Is number but not NaN
+        
+        for (var key = 0, l = obj.length; key < l; key++)
+          if (key in obj && itr.call(scope, obj[key], key) === this.BREAK) 
+            return;
+            
+      } else {
+
+        for (var key in obj) 
+          if (itr.call(scope, obj[key], key) === this.BREAK)
+            return;
+            
+      }
+            
+    },
+    
+    defer: function(fnc) {
+      setTimeout(fnc, 0);
+    },
+    
+    toArray: function(obj) {
+      if (obj.toArray) return obj.toArray();
+      return ARR_SLICE.call(obj);
+    },
+
+    isUndefined: function(obj) {
+      return obj === undefined;
+    },
+    
+    isNull: function(obj) {
+      return obj === null;
+    },
+    
+    isNaN: function(obj) {
+      return obj !== obj;
+    },
+    
+    isArray: Array.isArray || function(obj) {
+      return obj.constructor === Array;
+    },
+    
+    isObject: function(obj) {
+      return obj === Object(obj);
+    },
+    
+    isNumber: function(obj) {
+      return obj === obj+0;
+    },
+    
+    isString: function(obj) {
+      return obj === obj+'';
+    },
+    
+    isBoolean: function(obj) {
+      return obj === false || obj === true;
+    },
+    
+    isFunction: function(obj) {
+      return Object.prototype.toString.call(obj) === '[object Function]';
+    }
+  
+  };
+    
+})();
+
+
+dat.controllers.Controller = (function (common) {
+
+  /**
+   * @class An "abstract" class that represents a given property of an object.
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var Controller = function(object, property) {
+
+    this.initialValue = object[property];
+
+    /**
+     * Those who extend this class will put their DOM elements in here.
+     * @type {DOMElement}
+     */
+    this.domElement = document.createElement('div');
+
+    /**
+     * The object to manipulate
+     * @type {Object}
+     */
+    this.object = object;
+
+    /**
+     * The name of the property to manipulate
+     * @type {String}
+     */
+    this.property = property;
+
+    /**
+     * The function to be called on change.
+     * @type {Function}
+     * @ignore
+     */
+    this.__onChange = undefined;
+
+    /**
+     * The function to be called on finishing change.
+     * @type {Function}
+     * @ignore
+     */
+    this.__onFinishChange = undefined;
+
+  };
+
+  common.extend(
+
+      Controller.prototype,
+
+      /** @lends dat.controllers.Controller.prototype */
+      {
+
+        /**
+         * Specify that a function fire every time someone changes the value with
+         * this Controller.
+         *
+         * @param {Function} fnc This function will be called whenever the value
+         * is modified via this Controller.
+         * @returns {dat.controllers.Controller} this
+         */
+        onChange: function(fnc) {
+          this.__onChange = fnc;
+          return this;
+        },
+
+        /**
+         * Specify that a function fire every time someone "finishes" changing
+         * the value wih this Controller. Useful for values that change
+         * incrementally like numbers or strings.
+         *
+         * @param {Function} fnc This function will be called whenever
+         * someone "finishes" changing the value via this Controller.
+         * @returns {dat.controllers.Controller} this
+         */
+        onFinishChange: function(fnc) {
+          this.__onFinishChange = fnc;
+          return this;
+        },
+
+        /**
+         * Change the value of <code>object[property]</code>
+         *
+         * @param {Object} newValue The new value of <code>object[property]</code>
+         */
+        setValue: function(newValue) {
+          this.object[this.property] = newValue;
+          if (this.__onChange) {
+            this.__onChange.call(this, newValue);
+          }
+          this.updateDisplay();
+          return this;
+        },
+
+        /**
+         * Gets the value of <code>object[property]</code>
+         *
+         * @returns {Object} The current value of <code>object[property]</code>
+         */
+        getValue: function() {
+          return this.object[this.property];
+        },
+
+        /**
+         * Refreshes the visual display of a Controller in order to keep sync
+         * with the object's current value.
+         * @returns {dat.controllers.Controller} this
+         */
+        updateDisplay: function() {
+          return this;
+        },
+
+        /**
+         * @returns {Boolean} true if the value has deviated from initialValue
+         */
+        isModified: function() {
+          return this.initialValue !== this.getValue()
+        }
+
+      }
+
+  );
+
+  return Controller;
+
+
+})(dat.utils.common);
+
+
+dat.dom.dom = (function (common) {
+
+  var EVENT_MAP = {
+    'HTMLEvents': ['change'],
+    'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover'],
+    'KeyboardEvents': ['keydown']
+  };
+
+  var EVENT_MAP_INV = {};
+  common.each(EVENT_MAP, function(v, k) {
+    common.each(v, function(e) {
+      EVENT_MAP_INV[e] = k;
+    });
+  });
+
+  var CSS_VALUE_PIXELS = /(\d+(\.\d+)?)px/;
+
+  function cssValueToPixels(val) {
+
+    if (val === '0' || common.isUndefined(val)) return 0;
+
+    var match = val.match(CSS_VALUE_PIXELS);
+
+    if (!common.isNull(match)) {
+      return parseFloat(match[1]);
+    }
+
+    // TODO ...ems? %?
+
+    return 0;
+
+  }
+
+  /**
+   * @namespace
+   * @member dat.dom
+   */
+  var dom = {
+
+    /**
+     * 
+     * @param elem
+     * @param selectable
+     */
+    makeSelectable: function(elem, selectable) {
+
+      if (elem === undefined || elem.style === undefined) return;
+
+      elem.onselectstart = selectable ? function() {
+        return false;
+      } : function() {
+      };
+
+      elem.style.MozUserSelect = selectable ? 'auto' : 'none';
+      elem.style.KhtmlUserSelect = selectable ? 'auto' : 'none';
+      elem.unselectable = selectable ? 'on' : 'off';
+
+    },
+
+    /**
+     *
+     * @param elem
+     * @param horizontal
+     * @param vertical
+     */
+    makeFullscreen: function(elem, horizontal, vertical) {
+
+      if (common.isUndefined(horizontal)) horizontal = true;
+      if (common.isUndefined(vertical)) vertical = true;
+
+      elem.style.position = 'absolute';
+
+      if (horizontal) {
+        elem.style.left = 0;
+        elem.style.right = 0;
+      }
+      if (vertical) {
+        elem.style.top = 0;
+        elem.style.bottom = 0;
+      }
+
+    },
+
+    /**
+     *
+     * @param elem
+     * @param eventType
+     * @param params
+     */
+    fakeEvent: function(elem, eventType, params, aux) {
+      params = params || {};
+      var className = EVENT_MAP_INV[eventType];
+      if (!className) {
+        throw new Error('Event type ' + eventType + ' not supported.');
+      }
+      var evt = document.createEvent(className);
+      switch (className) {
+        case 'MouseEvents':
+          var clientX = params.x || params.clientX || 0;
+          var clientY = params.y || params.clientY || 0;
+          evt.initMouseEvent(eventType, params.bubbles || false,
+              params.cancelable || true, window, params.clickCount || 1,
+              0, //screen X
+              0, //screen Y
+              clientX, //client X
+              clientY, //client Y
+              false, false, false, false, 0, null);
+          break;
+        case 'KeyboardEvents':
+          var init = evt.initKeyboardEvent || evt.initKeyEvent; // webkit || moz
+          common.defaults(params, {
+            cancelable: true,
+            ctrlKey: false,
+            altKey: false,
+            shiftKey: false,
+            metaKey: false,
+            keyCode: undefined,
+            charCode: undefined
+          });
+          init(eventType, params.bubbles || false,
+              params.cancelable, window,
+              params.ctrlKey, params.altKey,
+              params.shiftKey, params.metaKey,
+              params.keyCode, params.charCode);
+          break;
+        default:
+          evt.initEvent(eventType, params.bubbles || false,
+              params.cancelable || true);
+          break;
+      }
+      common.defaults(evt, aux);
+      elem.dispatchEvent(evt);
+    },
+
+    /**
+     *
+     * @param elem
+     * @param event
+     * @param func
+     * @param bool
+     */
+    bind: function(elem, event, func, bool) {
+      bool = bool || false;
+      if (elem.addEventListener)
+        elem.addEventListener(event, func, bool);
+      else if (elem.attachEvent)
+        elem.attachEvent('on' + event, func);
+      return dom;
+    },
+
+    /**
+     *
+     * @param elem
+     * @param event
+     * @param func
+     * @param bool
+     */
+    unbind: function(elem, event, func, bool) {
+      bool = bool || false;
+      if (elem.removeEventListener)
+        elem.removeEventListener(event, func, bool);
+      else if (elem.detachEvent)
+        elem.detachEvent('on' + event, func);
+      return dom;
+    },
+
+    /**
+     *
+     * @param elem
+     * @param className
+     */
+    addClass: function(elem, className) {
+      if (elem.className === undefined) {
+        elem.className = className;
+      } else if (elem.className !== className) {
+        var classes = elem.className.split(/ +/);
+        if (classes.indexOf(className) == -1) {
+          classes.push(className);
+          elem.className = classes.join(' ').replace(/^\s+/, '').replace(/\s+$/, '');
+        }
+      }
+      return dom;
+    },
+
+    /**
+     *
+     * @param elem
+     * @param className
+     */
+    removeClass: function(elem, className) {
+      if (className) {
+        if (elem.className === undefined) {
+          // elem.className = className;
+        } else if (elem.className === className) {
+          elem.removeAttribute('class');
+        } else {
+          var classes = elem.className.split(/ +/);
+          var index = classes.indexOf(className);
+          if (index != -1) {
+            classes.splice(index, 1);
+            elem.className = classes.join(' ');
+          }
+        }
+      } else {
+        elem.className = undefined;
+      }
+      return dom;
+    },
+
+    hasClass: function(elem, className) {
+      return new RegExp('(?:^|\\s+)' + className + '(?:\\s+|$)').test(elem.className) || false;
+    },
+
+    /**
+     *
+     * @param elem
+     */
+    getWidth: function(elem) {
+
+      var style = getComputedStyle(elem);
+
+      return cssValueToPixels(style['border-left-width']) +
+          cssValueToPixels(style['border-right-width']) +
+          cssValueToPixels(style['padding-left']) +
+          cssValueToPixels(style['padding-right']) +
+          cssValueToPixels(style['width']);
+    },
+
+    /**
+     *
+     * @param elem
+     */
+    getHeight: function(elem) {
+
+      var style = getComputedStyle(elem);
+
+      return cssValueToPixels(style['border-top-width']) +
+          cssValueToPixels(style['border-bottom-width']) +
+          cssValueToPixels(style['padding-top']) +
+          cssValueToPixels(style['padding-bottom']) +
+          cssValueToPixels(style['height']);
+    },
+
+    /**
+     *
+     * @param elem
+     */
+    getOffset: function(elem) {
+      var offset = {left: 0, top:0};
+      if (elem.offsetParent) {
+        do {
+          offset.left += elem.offsetLeft;
+          offset.top += elem.offsetTop;
+        } while (elem = elem.offsetParent);
+      }
+      return offset;
+    },
+
+    // http://stackoverflow.com/posts/2684561/revisions
+    /**
+     * 
+     * @param elem
+     */
+    isActive: function(elem) {
+      return elem === document.activeElement && ( elem.type || elem.href );
+    }
+
+  };
+
+  return dom;
+
+})(dat.utils.common);
+
+
+dat.controllers.OptionController = (function (Controller, dom, common) {
+
+  /**
+   * @class Provides a select input to alter the property of an object, using a
+   * list of accepted values.
+   *
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   * @param {Object|string[]} options A map of labels to acceptable values, or
+   * a list of acceptable string values.
+   *
+   * @member dat.controllers
+   */
+  var OptionController = function(object, property, options) {
+
+    OptionController.superclass.call(this, object, property);
+
+    var _this = this;
+
+    /**
+     * The drop down menu
+     * @ignore
+     */
+    this.__select = document.createElement('select');
+
+    if (common.isArray(options)) {
+      var map = {};
+      common.each(options, function(element) {
+        map[element] = element;
+      });
+      options = map;
+    }
+
+    common.each(options, function(value, key) {
+
+      var opt = document.createElement('option');
+      opt.innerHTML = key;
+      opt.setAttribute('value', value);
+      _this.__select.appendChild(opt);
+
+    });
+
+    // Acknowledge original value
+    this.updateDisplay();
+
+    dom.bind(this.__select, 'change', function() {
+      var desiredValue = this.options[this.selectedIndex].value;
+      _this.setValue(desiredValue);
+    });
+
+    this.domElement.appendChild(this.__select);
+
+  };
+
+  OptionController.superclass = Controller;
+
+  common.extend(
+
+      OptionController.prototype,
+      Controller.prototype,
+
+      {
+
+        setValue: function(v) {
+          var toReturn = OptionController.superclass.prototype.setValue.call(this, v);
+          if (this.__onFinishChange) {
+            this.__onFinishChange.call(this, this.getValue());
+          }
+          return toReturn;
+        },
+
+        updateDisplay: function() {
+          this.__select.value = this.getValue();
+          return OptionController.superclass.prototype.updateDisplay.call(this);
+        }
+
+      }
+
+  );
+
+  return OptionController;
+
+})(dat.controllers.Controller,
+dat.dom.dom,
+dat.utils.common);
+
+
+dat.controllers.NumberController = (function (Controller, common) {
+
+  /**
+   * @class Represents a given property of an object that is a number.
+   *
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   * @param {Object} [params] Optional parameters
+   * @param {Number} [params.min] Minimum allowed value
+   * @param {Number} [params.max] Maximum allowed value
+   * @param {Number} [params.step] Increment by which to change value
+   *
+   * @member dat.controllers
+   */
+  var NumberController = function(object, property, params) {
+
+    NumberController.superclass.call(this, object, property);
+
+    params = params || {};
+
+    this.__min = params.min;
+    this.__max = params.max;
+    this.__step = params.step;
+
+    if (common.isUndefined(this.__step)) {
+
+      if (this.initialValue == 0) {
+        this.__impliedStep = 1; // What are we, psychics?
+      } else {
+        // Hey Doug, check this out.
+        this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
+      }
+
+    } else {
+
+      this.__impliedStep = this.__step;
+
+    }
+
+    this.__precision = numDecimals(this.__impliedStep);
+
+
+  };
+
+  NumberController.superclass = Controller;
+
+  common.extend(
+
+      NumberController.prototype,
+      Controller.prototype,
+
+      /** @lends dat.controllers.NumberController.prototype */
+      {
+
+        setValue: function(v) {
+
+          if (this.__min !== undefined && v < this.__min) {
+            v = this.__min;
+          } else if (this.__max !== undefined && v > this.__max) {
+            v = this.__max;
+          }
+
+          if (this.__step !== undefined && v % this.__step != 0) {
+            v = Math.round(v / this.__step) * this.__step;
+          }
+
+          return NumberController.superclass.prototype.setValue.call(this, v);
+
+        },
+
+        /**
+         * Specify a minimum value for <code>object[property]</code>.
+         *
+         * @param {Number} minValue The minimum value for
+         * <code>object[property]</code>
+         * @returns {dat.controllers.NumberController} this
+         */
+        min: function(v) {
+          this.__min = v;
+          return this;
+        },
+
+        /**
+         * Specify a maximum value for <code>object[property]</code>.
+         *
+         * @param {Number} maxValue The maximum value for
+         * <code>object[property]</code>
+         * @returns {dat.controllers.NumberController} this
+         */
+        max: function(v) {
+          this.__max = v;
+          return this;
+        },
+
+        /**
+         * Specify a step value that dat.controllers.NumberController
+         * increments by.
+         *
+         * @param {Number} stepValue The step value for
+         * dat.controllers.NumberController
+         * @default if minimum and maximum specified increment is 1% of the
+         * difference otherwise stepValue is 1
+         * @returns {dat.controllers.NumberController} this
+         */
+        step: function(v) {
+          this.__step = v;
+          return this;
+        }
+
+      }
+
+  );
+
+  function numDecimals(x) {
+    x = x.toString();
+    if (x.indexOf('.') > -1) {
+      return x.length - x.indexOf('.') - 1;
+    } else {
+      return 0;
+    }
+  }
+
+  return NumberController;
+
+})(dat.controllers.Controller,
+dat.utils.common);
+
+
+dat.controllers.NumberControllerBox = (function (NumberController, dom, common) {
+
+  /**
+   * @class Represents a given property of an object that is a number and
+   * provides an input element with which to manipulate it.
+   *
+   * @extends dat.controllers.Controller
+   * @extends dat.controllers.NumberController
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   * @param {Object} [params] Optional parameters
+   * @param {Number} [params.min] Minimum allowed value
+   * @param {Number} [params.max] Maximum allowed value
+   * @param {Number} [params.step] Increment by which to change value
+   *
+   * @member dat.controllers
+   */
+  var NumberControllerBox = function(object, property, params) {
+
+    this.__truncationSuspended = false;
+
+    NumberControllerBox.superclass.call(this, object, property, params);
+
+    var _this = this;
+
+    /**
+     * {Number} Previous mouse y position
+     * @ignore
+     */
+    var prev_y;
+
+    this.__input = document.createElement('input');
+    this.__input.setAttribute('type', 'text');
+
+    // Makes it so manually specified values are not truncated.
+
+    dom.bind(this.__input, 'change', onChange);
+    dom.bind(this.__input, 'blur', onBlur);
+    dom.bind(this.__input, 'mousedown', onMouseDown);
+    dom.bind(this.__input, 'keydown', function(e) {
+
+      // When pressing entire, you can be as precise as you want.
+      if (e.keyCode === 13) {
+        _this.__truncationSuspended = true;
+        this.blur();
+        _this.__truncationSuspended = false;
+      }
+
+    });
+
+    function onChange() {
+      var attempted = parseFloat(_this.__input.value);
+      if (!common.isNaN(attempted)) _this.setValue(attempted);
+    }
+
+    function onBlur() {
+      onChange();
+      if (_this.__onFinishChange) {
+        _this.__onFinishChange.call(_this, _this.getValue());
+      }
+    }
+
+    function onMouseDown(e) {
+      dom.bind(window, 'mousemove', onMouseDrag);
+      dom.bind(window, 'mouseup', onMouseUp);
+      prev_y = e.clientY;
+    }
+
+    function onMouseDrag(e) {
+
+      var diff = prev_y - e.clientY;
+      _this.setValue(_this.getValue() + diff * _this.__impliedStep);
+
+      prev_y = e.clientY;
+
+    }
+
+    function onMouseUp() {
+      dom.unbind(window, 'mousemove', onMouseDrag);
+      dom.unbind(window, 'mouseup', onMouseUp);
+    }
+
+    this.updateDisplay();
+
+    this.domElement.appendChild(this.__input);
+
+  };
+
+  NumberControllerBox.superclass = NumberController;
+
+  common.extend(
+
+      NumberControllerBox.prototype,
+      NumberController.prototype,
+
+      {
+
+        updateDisplay: function() {
+
+          this.__input.value = this.__truncationSuspended ? this.getValue() : roundToDecimal(this.getValue(), this.__precision);
+          return NumberControllerBox.superclass.prototype.updateDisplay.call(this);
+        }
+
+      }
+
+  );
+
+  function roundToDecimal(value, decimals) {
+    var tenTo = Math.pow(10, decimals);
+    return Math.round(value * tenTo) / tenTo;
+  }
+
+  return NumberControllerBox;
+
+})(dat.controllers.NumberController,
+dat.dom.dom,
+dat.utils.common);
+
+
+dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, common, styleSheet) {
+
+  /**
+   * @class Represents a given property of an object that is a number, contains
+   * a minimum and maximum, and provides a slider element with which to
+   * manipulate it. It should be noted that the slider element is made up of
+   * <code>&lt;div&gt;</code> tags, <strong>not</strong> the html5
+   * <code>&lt;slider&gt;</code> element.
+   *
+   * @extends dat.controllers.Controller
+   * @extends dat.controllers.NumberController
+   * 
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   * @param {Number} minValue Minimum allowed value
+   * @param {Number} maxValue Maximum allowed value
+   * @param {Number} stepValue Increment by which to change value
+   *
+   * @member dat.controllers
+   */
+  var NumberControllerSlider = function(object, property, min, max, step) {
+
+    NumberControllerSlider.superclass.call(this, object, property, { min: min, max: max, step: step });
+
+    var _this = this;
+
+    this.__background = document.createElement('div');
+    this.__foreground = document.createElement('div');
+    
+
+
+    dom.bind(this.__background, 'mousedown', onMouseDown);
+    
+    dom.addClass(this.__background, 'slider');
+    dom.addClass(this.__foreground, 'slider-fg');
+
+    function onMouseDown(e) {
+
+      dom.bind(window, 'mousemove', onMouseDrag);
+      dom.bind(window, 'mouseup', onMouseUp);
+
+      onMouseDrag(e);
+    }
+
+    function onMouseDrag(e) {
+
+      e.preventDefault();
+
+      var offset = dom.getOffset(_this.__background);
+      var width = dom.getWidth(_this.__background);
+      
+      _this.setValue(
+        map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
+      );
+
+      return false;
+
+    }
+
+    function onMouseUp() {
+      dom.unbind(window, 'mousemove', onMouseDrag);
+      dom.unbind(window, 'mouseup', onMouseUp);
+      if (_this.__onFinishChange) {
+        _this.__onFinishChange.call(_this, _this.getValue());
+      }
+    }
+
+    this.updateDisplay();
+
+    this.__background.appendChild(this.__foreground);
+    this.domElement.appendChild(this.__background);
+
+  };
+
+  NumberControllerSlider.superclass = NumberController;
+
+  /**
+   * Injects default stylesheet for slider elements.
+   */
+  NumberControllerSlider.useDefaultStyles = function() {
+    css.inject(styleSheet);
+  };
+
+  common.extend(
+
+      NumberControllerSlider.prototype,
+      NumberController.prototype,
+
+      {
+
+        updateDisplay: function() {
+          var pct = (this.getValue() - this.__min)/(this.__max - this.__min);
+          this.__foreground.style.width = pct*100+'%';
+          return NumberControllerSlider.superclass.prototype.updateDisplay.call(this);
+        }
+
+      }
+
+
+
+  );
+
+  function map(v, i1, i2, o1, o2) {
+    return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
+  }
+
+  return NumberControllerSlider;
+  
+})(dat.controllers.NumberController,
+dat.dom.dom,
+dat.utils.css,
+dat.utils.common,
+".slider {\n  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);\n  height: 1em;\n  border-radius: 1em;\n  background-color: #eee;\n  padding: 0 0.5em;\n  overflow: hidden;\n}\n\n.slider-fg {\n  padding: 1px 0 2px 0;\n  background-color: #aaa;\n  height: 1em;\n  margin-left: -0.5em;\n  padding-right: 0.5em;\n  border-radius: 1em 0 0 1em;\n}\n\n.slider-fg:after {\n  display: inline-block;\n  border-radius: 1em;\n  background-color: #fff;\n  border:  1px solid #aaa;\n  content: '';\n  float: right;\n  margin-right: -1em;\n  margin-top: -1px;\n  height: 0.9em;\n  width: 0.9em;\n}");
+
+
+dat.controllers.FunctionController = (function (Controller, dom, common) {
+
+  /**
+   * @class Provides a GUI interface to fire a specified method, a property of an object.
+   *
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var FunctionController = function(object, property, text) {
+
+    FunctionController.superclass.call(this, object, property);
+
+    var _this = this;
+
+    this.__button = document.createElement('div');
+    this.__button.innerHTML = text === undefined ? 'Fire' : text;
+    dom.bind(this.__button, 'click', function(e) {
+      e.preventDefault();
+      _this.fire();
+      return false;
+    });
+
+    dom.addClass(this.__button, 'button');
+
+    this.domElement.appendChild(this.__button);
+
+
+  };
+
+  FunctionController.superclass = Controller;
+
+  common.extend(
+
+      FunctionController.prototype,
+      Controller.prototype,
+      {
+        
+        fire: function() {
+          if (this.__onChange) {
+            this.__onChange.call(this);
+          }
+          if (this.__onFinishChange) {
+            this.__onFinishChange.call(this, this.getValue());
+          }
+          this.getValue().call(this.object);
+        }
+      }
+
+  );
+
+  return FunctionController;
+
+})(dat.controllers.Controller,
+dat.dom.dom,
+dat.utils.common);
+
+
+dat.controllers.BooleanController = (function (Controller, dom, common) {
+
+  /**
+   * @class Provides a checkbox input to alter the boolean property of an object.
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var BooleanController = function(object, property) {
+
+    BooleanController.superclass.call(this, object, property);
+
+    var _this = this;
+    this.__prev = this.getValue();
+
+    this.__checkbox = document.createElement('input');
+    this.__checkbox.setAttribute('type', 'checkbox');
+
+
+    dom.bind(this.__checkbox, 'change', onChange, false);
+
+    this.domElement.appendChild(this.__checkbox);
+
+    // Match original value
+    this.updateDisplay();
+
+    function onChange() {
+      _this.setValue(!_this.__prev);
+    }
+
+  };
+
+  BooleanController.superclass = Controller;
+
+  common.extend(
+
+      BooleanController.prototype,
+      Controller.prototype,
+
+      {
+
+        setValue: function(v) {
+          var toReturn = BooleanController.superclass.prototype.setValue.call(this, v);
+          if (this.__onFinishChange) {
+            this.__onFinishChange.call(this, this.getValue());
+          }
+          this.__prev = this.getValue();
+          return toReturn;
+        },
+
+        updateDisplay: function() {
+          
+          if (this.getValue() === true) {
+            this.__checkbox.setAttribute('checked', 'checked');
+            this.__checkbox.checked = true;    
+          } else {
+              this.__checkbox.checked = false;
+          }
+
+          return BooleanController.superclass.prototype.updateDisplay.call(this);
+
+        }
+
+
+      }
+
+  );
+
+  return BooleanController;
+
+})(dat.controllers.Controller,
+dat.dom.dom,
+dat.utils.common);
+
+
+dat.color.toString = (function (common) {
+
+  return function(color) {
+
+    if (color.a == 1 || common.isUndefined(color.a)) {
+
+      var s = color.hex.toString(16);
+      while (s.length < 6) {
+        s = '0' + s;
+      }
+
+      return '#' + s;
+
+    } else {
+
+      return 'rgba(' + Math.round(color.r) + ',' + Math.round(color.g) + ',' + Math.round(color.b) + ',' + color.a + ')';
+
+    }
+
+  }
+
+})(dat.utils.common);
+
+
+dat.color.interpret = (function (toString, common) {
+
+  var result, toReturn;
+
+  var interpret = function() {
+
+    toReturn = false;
+
+    var original = arguments.length > 1 ? common.toArray(arguments) : arguments[0];
+
+    common.each(INTERPRETATIONS, function(family) {
+
+      if (family.litmus(original)) {
+
+        common.each(family.conversions, function(conversion, conversionName) {
+
+          result = conversion.read(original);
+
+          if (toReturn === false && result !== false) {
+            toReturn = result;
+            result.conversionName = conversionName;
+            result.conversion = conversion;
+            return common.BREAK;
+
+          }
+
+        });
+
+        return common.BREAK;
+
+      }
+
+    });
+
+    return toReturn;
+
+  };
+
+  var INTERPRETATIONS = [
+
+    // Strings
+    {
+
+      litmus: common.isString,
+
+      conversions: {
+
+        THREE_CHAR_HEX: {
+
+          read: function(original) {
+
+            var test = original.match(/^#([A-F0-9])([A-F0-9])([A-F0-9])$/i);
+            if (test === null) return false;
+
+            return {
+              space: 'HEX',
+              hex: parseInt(
+                  '0x' +
+                      test[1].toString() + test[1].toString() +
+                      test[2].toString() + test[2].toString() +
+                      test[3].toString() + test[3].toString())
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        SIX_CHAR_HEX: {
+
+          read: function(original) {
+
+            var test = original.match(/^#([A-F0-9]{6})$/i);
+            if (test === null) return false;
+
+            return {
+              space: 'HEX',
+              hex: parseInt('0x' + test[1].toString())
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        CSS_RGB: {
+
+          read: function(original) {
+
+            var test = original.match(/^rgb\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
+            if (test === null) return false;
+
+            return {
+              space: 'RGB',
+              r: parseFloat(test[1]),
+              g: parseFloat(test[2]),
+              b: parseFloat(test[3])
+            };
+
+          },
+
+          write: toString
+
+        },
+
+        CSS_RGBA: {
+
+          read: function(original) {
+
+            var test = original.match(/^rgba\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\,\s*(.+)\s*\)/);
+            if (test === null) return false;
+
+            return {
+              space: 'RGB',
+              r: parseFloat(test[1]),
+              g: parseFloat(test[2]),
+              b: parseFloat(test[3]),
+              a: parseFloat(test[4])
+            };
+
+          },
+
+          write: toString
+
+        }
+
+      }
+
+    },
+
+    // Numbers
+    {
+
+      litmus: common.isNumber,
+
+      conversions: {
+
+        HEX: {
+          read: function(original) {
+            return {
+              space: 'HEX',
+              hex: original,
+              conversionName: 'HEX'
+            }
+          },
+
+          write: function(color) {
+            return color.hex;
+          }
+        }
+
+      }
+
+    },
+
+    // Arrays
+    {
+
+      litmus: common.isArray,
+
+      conversions: {
+
+        RGB_ARRAY: {
+          read: function(original) {
+            if (original.length != 3) return false;
+            return {
+              space: 'RGB',
+              r: original[0],
+              g: original[1],
+              b: original[2]
+            };
+          },
+
+          write: function(color) {
+            return [color.r, color.g, color.b];
+          }
+
+        },
+
+        RGBA_ARRAY: {
+          read: function(original) {
+            if (original.length != 4) return false;
+            return {
+              space: 'RGB',
+              r: original[0],
+              g: original[1],
+              b: original[2],
+              a: original[3]
+            };
+          },
+
+          write: function(color) {
+            return [color.r, color.g, color.b, color.a];
+          }
+
+        }
+
+      }
+
+    },
+
+    // Objects
+    {
+
+      litmus: common.isObject,
+
+      conversions: {
+
+        RGBA_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.r) &&
+                common.isNumber(original.g) &&
+                common.isNumber(original.b) &&
+                common.isNumber(original.a)) {
+              return {
+                space: 'RGB',
+                r: original.r,
+                g: original.g,
+                b: original.b,
+                a: original.a
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              r: color.r,
+              g: color.g,
+              b: color.b,
+              a: color.a
+            }
+          }
+        },
+
+        RGB_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.r) &&
+                common.isNumber(original.g) &&
+                common.isNumber(original.b)) {
+              return {
+                space: 'RGB',
+                r: original.r,
+                g: original.g,
+                b: original.b
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              r: color.r,
+              g: color.g,
+              b: color.b
+            }
+          }
+        },
+
+        HSVA_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.h) &&
+                common.isNumber(original.s) &&
+                common.isNumber(original.v) &&
+                common.isNumber(original.a)) {
+              return {
+                space: 'HSV',
+                h: original.h,
+                s: original.s,
+                v: original.v,
+                a: original.a
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              h: color.h,
+              s: color.s,
+              v: color.v,
+              a: color.a
+            }
+          }
+        },
+
+        HSV_OBJ: {
+          read: function(original) {
+            if (common.isNumber(original.h) &&
+                common.isNumber(original.s) &&
+                common.isNumber(original.v)) {
+              return {
+                space: 'HSV',
+                h: original.h,
+                s: original.s,
+                v: original.v
+              }
+            }
+            return false;
+          },
+
+          write: function(color) {
+            return {
+              h: color.h,
+              s: color.s,
+              v: color.v
+            }
+          }
+
+        }
+
+      }
+
+    }
+
+
+  ];
+
+  return interpret;
+
+
+})(dat.color.toString,
+dat.utils.common);
+
+
+dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common) {
+
+  css.inject(styleSheet);
+
+  /** Outer-most className for GUI's */
+  var CSS_NAMESPACE = 'dg';
+
+  var HIDE_KEY_CODE = 72;
+
+  /** The only value shared between the JS and SCSS. Use caution. */
+  var CLOSE_BUTTON_HEIGHT = 20;
+
+  var DEFAULT_DEFAULT_PRESET_NAME = 'Default';
+
+  var SUPPORTS_LOCAL_STORAGE = (function() {
+    try {
+      return 'localStorage' in window && window['localStorage'] !== null;
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  var SAVE_DIALOGUE;
+
+  /** Have we yet to create an autoPlace GUI? */
+  var auto_place_virgin = true;
+
+  /** Fixed position div that auto place GUI's go inside */
+  var auto_place_container;
+
+  /** Are we hiding the GUI's ? */
+  var hide = false;
+
+  /** GUI's which should be hidden */
+  var hideable_guis = [];
+
+  /**
+   * A lightweight controller library for JavaScript. It allows you to easily
+   * manipulate variables and fire functions on the fly.
+   * @class
+   *
+   * @member dat.gui
+   *
+   * @param {Object} [params]
+   * @param {String} [params.name] The name of this GUI.
+   * @param {Object} [params.load] JSON object representing the saved state of
+   * this GUI.
+   * @param {Boolean} [params.auto=true]
+   * @param {dat.gui.GUI} [params.parent] The GUI I'm nested in.
+   * @param {Boolean} [params.closed] If true, starts closed
+   */
+  var GUI = function(params) {
+
+    var _this = this;
+
+    /**
+     * Outermost DOM Element
+     * @type DOMElement
+     */
+    this.domElement = document.createElement('div');
+    this.__ul = document.createElement('ul');
+    this.domElement.appendChild(this.__ul);
+
+    dom.addClass(this.domElement, CSS_NAMESPACE);
+
+    /**
+     * Nested GUI's by name
+     * @ignore
+     */
+    this.__folders = {};
+
+    this.__controllers = [];
+
+    /**
+     * List of objects I'm remembering for save, only used in top level GUI
+     * @ignore
+     */
+    this.__rememberedObjects = [];
+
+    /**
+     * Maps the index of remembered objects to a map of controllers, only used
+     * in top level GUI.
+     *
+     * @private
+     * @ignore
+     *
+     * @example
+     * [
+     *  {
+     *    propertyName: Controller,
+     *    anotherPropertyName: Controller
+     *  },
+     *  {
+     *    propertyName: Controller
+     *  }
+     * ]
+     */
+    this.__rememberedObjectIndecesToControllers = [];
+
+    this.__listening = [];
+
+    params = params || {};
+
+    // Default parameters
+    params = common.defaults(params, {
+      autoPlace: true,
+      width: GUI.DEFAULT_WIDTH
+    });
+
+    params = common.defaults(params, {
+      resizable: params.autoPlace,
+      hideable: params.autoPlace
+    });
+
+
+    if (!common.isUndefined(params.load)) {
+
+      // Explicit preset
+      if (params.preset) params.load.preset = params.preset;
+
+    } else {
+
+      params.load = { preset: DEFAULT_DEFAULT_PRESET_NAME };
+
+    }
+
+    if (common.isUndefined(params.parent) && params.hideable) {
+      hideable_guis.push(this);
+    }
+
+    // Only root level GUI's are resizable.
+    params.resizable = common.isUndefined(params.parent) && params.resizable;
+
+
+    if (params.autoPlace && common.isUndefined(params.scrollable)) {
+      params.scrollable = true;
+    }
+//    params.scrollable = common.isUndefined(params.parent) && params.scrollable === true;
+
+    // Not part of params because I don't want people passing this in via
+    // constructor. Should be a 'remembered' value.
+    var use_local_storage =
+        SUPPORTS_LOCAL_STORAGE &&
+            localStorage.getItem(getLocalStorageHash(this, 'isLocal')) === 'true';
+
+    Object.defineProperties(this,
+
+        /** @lends dat.gui.GUI.prototype */
+        {
+
+          /**
+           * The parent <code>GUI</code>
+           * @type dat.gui.GUI
+           */
+          parent: {
+            get: function() {
+              return params.parent;
+            }
+          },
+
+          scrollable: {
+            get: function() {
+              return params.scrollable;
+            }
+          },
+
+          /**
+           * Handles <code>GUI</code>'s element placement for you
+           * @type Boolean
+           */
+          autoPlace: {
+            get: function() {
+              return params.autoPlace;
+            }
+          },
+
+          /**
+           * The identifier for a set of saved values
+           * @type String
+           */
+          preset: {
+
+            get: function() {
+              if (_this.parent) {
+                return _this.getRoot().preset;
+              } else {
+                return params.load.preset;
+              }
+            },
+
+            set: function(v) {
+              if (_this.parent) {
+                _this.getRoot().preset = v;
+              } else {
+                params.load.preset = v;
+              }
+              setPresetSelectIndex(this);
+              _this.revert();
+            }
+
+          },
+
+          /**
+           * The width of <code>GUI</code> element
+           * @type Number
+           */
+          width: {
+            get: function() {
+              return params.width;
+            },
+            set: function(v) {
+              params.width = v;
+              setWidth(_this, v);
+            }
+          },
+
+          /**
+           * The name of <code>GUI</code>. Used for folders. i.e
+           * a folder's name
+           * @type String
+           */
+          name: {
+            get: function() {
+              return params.name;
+            },
+            set: function(v) {
+              // TODO Check for collisions among sibling folders
+              params.name = v;
+              if (title_row_name) {
+                title_row_name.innerHTML = params.name;
+              }
+            }
+          },
+
+          /**
+           * Whether the <code>GUI</code> is collapsed or not
+           * @type Boolean
+           */
+          closed: {
+            get: function() {
+              return params.closed;
+            },
+            set: function(v) {
+              params.closed = v;
+              if (params.closed) {
+                dom.addClass(_this.__ul, GUI.CLASS_CLOSED);
+              } else {
+                dom.removeClass(_this.__ul, GUI.CLASS_CLOSED);
+              }
+              // For browsers that aren't going to respect the CSS transition,
+              // Lets just check our height against the window height right off
+              // the bat.
+              this.onResize();
+
+              if (_this.__closeButton) {
+                _this.__closeButton.innerHTML = v ? GUI.TEXT_OPEN : GUI.TEXT_CLOSED;
+              }
+            }
+          },
+
+          /**
+           * Contains all presets
+           * @type Object
+           */
+          load: {
+            get: function() {
+              return params.load;
+            }
+          },
+
+          /**
+           * Determines whether or not to use <a href="https://developer.mozilla.org/en/DOM/Storage#localStorage">localStorage</a> as the means for
+           * <code>remember</code>ing
+           * @type Boolean
+           */
+          useLocalStorage: {
+
+            get: function() {
+              return use_local_storage;
+            },
+            set: function(bool) {
+              if (SUPPORTS_LOCAL_STORAGE) {
+                use_local_storage = bool;
+                if (bool) {
+                  dom.bind(window, 'unload', saveToLocalStorage);
+                } else {
+                  dom.unbind(window, 'unload', saveToLocalStorage);
+                }
+                localStorage.setItem(getLocalStorageHash(_this, 'isLocal'), bool);
+              }
+            }
+
+          }
+
+        });
+
+    // Are we a root level GUI?
+    if (common.isUndefined(params.parent)) {
+
+      params.closed = false;
+
+      dom.addClass(this.domElement, GUI.CLASS_MAIN);
+      dom.makeSelectable(this.domElement, false);
+
+      // Are we supposed to be loading locally?
+      if (SUPPORTS_LOCAL_STORAGE) {
+
+        if (use_local_storage) {
+
+          _this.useLocalStorage = true;
+
+          var saved_gui = localStorage.getItem(getLocalStorageHash(this, 'gui'));
+
+          if (saved_gui) {
+            params.load = JSON.parse(saved_gui);
+          }
+
+        }
+
+      }
+
+      this.__closeButton = document.createElement('div');
+      this.__closeButton.innerHTML = GUI.TEXT_CLOSED;
+      dom.addClass(this.__closeButton, GUI.CLASS_CLOSE_BUTTON);
+      this.domElement.appendChild(this.__closeButton);
+
+      dom.bind(this.__closeButton, 'click', function() {
+
+        _this.closed = !_this.closed;
+
+
+      });
+
+
+      // Oh, you're a nested GUI!
+    } else {
+
+      if (params.closed === undefined) {
+        params.closed = true;
+      }
+
+      var title_row_name = document.createTextNode(params.name);
+      dom.addClass(title_row_name, 'controller-name');
+
+      var title_row = addRow(_this, title_row_name);
+
+      var on_click_title = function(e) {
+        e.preventDefault();
+        _this.closed = !_this.closed;
+        return false;
+      };
+
+      dom.addClass(this.__ul, GUI.CLASS_CLOSED);
+
+      dom.addClass(title_row, 'title');
+      dom.bind(title_row, 'click', on_click_title);
+
+      if (!params.closed) {
+        this.closed = false;
+      }
+
+    }
+
+    if (params.autoPlace) {
+
+      if (common.isUndefined(params.parent)) {
+
+        if (auto_place_virgin) {
+          auto_place_container = document.createElement('div');
+          dom.addClass(auto_place_container, CSS_NAMESPACE);
+          dom.addClass(auto_place_container, GUI.CLASS_AUTO_PLACE_CONTAINER);
+          document.body.appendChild(auto_place_container);
+          auto_place_virgin = false;
+        }
+
+        // Put it in the dom for you.
+        auto_place_container.appendChild(this.domElement);
+
+        // Apply the auto styles
+        dom.addClass(this.domElement, GUI.CLASS_AUTO_PLACE);
+
+      }
+
+
+      // Make it not elastic.
+      if (!this.parent) setWidth(_this, params.width);
+
+    }
+
+    dom.bind(window, 'resize', function() { _this.onResize() });
+    dom.bind(this.__ul, 'webkitTransitionEnd', function() { _this.onResize(); });
+    dom.bind(this.__ul, 'transitionend', function() { _this.onResize() });
+    dom.bind(this.__ul, 'oTransitionEnd', function() { _this.onResize() });
+    this.onResize();
+
+
+    if (params.resizable) {
+      addResizeHandle(this);
+    }
+
+    function saveToLocalStorage() {
+      localStorage.setItem(getLocalStorageHash(_this, 'gui'), JSON.stringify(_this.getSaveObject()));
+    }
+
+    var root = _this.getRoot();
+    function resetWidth() {
+        var root = _this.getRoot();
+        root.width += 1;
+        common.defer(function() {
+          root.width -= 1;
+        });
+      }
+
+      if (!params.parent) {
+        resetWidth();
+      }
+
+  };
+
+  GUI.toggleHide = function() {
+
+    hide = !hide;
+    common.each(hideable_guis, function(gui) {
+      gui.domElement.style.zIndex = hide ? -999 : 999;
+      gui.domElement.style.opacity = hide ? 0 : 1;
+    });
+  };
+
+  GUI.CLASS_AUTO_PLACE = 'a';
+  GUI.CLASS_AUTO_PLACE_CONTAINER = 'ac';
+  GUI.CLASS_MAIN = 'main';
+  GUI.CLASS_CONTROLLER_ROW = 'cr';
+  GUI.CLASS_TOO_TALL = 'taller-than-window';
+  GUI.CLASS_CLOSED = 'closed';
+  GUI.CLASS_CLOSE_BUTTON = 'close-button';
+  GUI.CLASS_DRAG = 'drag';
+
+  GUI.DEFAULT_WIDTH = 245;
+  GUI.TEXT_CLOSED = 'Close Controls';
+  GUI.TEXT_OPEN = 'Open Controls';
+
+  dom.bind(window, 'keydown', function(e) {
+
+    if (document.activeElement.type !== 'text' &&
+        (e.which === HIDE_KEY_CODE || e.keyCode == HIDE_KEY_CODE)) {
+      GUI.toggleHide();
+    }
+
+  }, false);
+
+  common.extend(
+
+      GUI.prototype,
+
+      /** @lends dat.gui.GUI */
+      {
+
+        /**
+         * @param object
+         * @param property
+         * @returns {dat.controllers.Controller} The new controller that was added.
+         * @instance
+         */
+        add: function(object, property) {
+
+          return add(
+              this,
+              object,
+              property,
+              {
+                factoryArgs: Array.prototype.slice.call(arguments, 2)
+              }
+          );
+
+        },
+
+        /**
+         * @param object
+         * @param property
+         * @returns {dat.controllers.ColorController} The new controller that was added.
+         * @instance
+         */
+        addColor: function(object, property) {
+
+          return add(
+              this,
+              object,
+              property,
+              {
+                color: true
+              }
+          );
+
+        },
+
+        /**
+         * @param controller
+         * @instance
+         */
+        remove: function(controller) {
+
+          // TODO listening?
+          this.__ul.removeChild(controller.__li);
+          this.__controllers.slice(this.__controllers.indexOf(controller), 1);
+          var _this = this;
+          common.defer(function() {
+            _this.onResize();
+          });
+
+        },
+
+        destroy: function() {
+
+          if (this.autoPlace) {
+            auto_place_container.removeChild(this.domElement);
+          }
+
+        },
+
+        /**
+         * @param name
+         * @returns {dat.gui.GUI} The new folder.
+         * @throws {Error} if this GUI already has a folder by the specified
+         * name
+         * @instance
+         */
+        addFolder: function(name) {
+
+          // We have to prevent collisions on names in order to have a key
+          // by which to remember saved values
+          if (this.__folders[name] !== undefined) {
+            throw new Error('You already have a folder in this GUI by the' +
+                ' name "' + name + '"');
+          }
+
+          var new_gui_params = { name: name, parent: this };
+
+          // We need to pass down the autoPlace trait so that we can
+          // attach event listeners to open/close folder actions to
+          // ensure that a scrollbar appears if the window is too short.
+          new_gui_params.autoPlace = this.autoPlace;
+
+          // Do we have saved appearance data for this folder?
+
+          if (this.load && // Anything loaded?
+              this.load.folders && // Was my parent a dead-end?
+              this.load.folders[name]) { // Did daddy remember me?
+
+            // Start me closed if I was closed
+            new_gui_params.closed = this.load.folders[name].closed;
+
+            // Pass down the loaded data
+            new_gui_params.load = this.load.folders[name];
+
+          }
+
+          var gui = new GUI(new_gui_params);
+          this.__folders[name] = gui;
+
+          var li = addRow(this, gui.domElement);
+          dom.addClass(li, 'folder');
+          return gui;
+
+        },
+
+        open: function() {
+          this.closed = false;
+        },
+
+        close: function() {
+          this.closed = true;
+        },
+
+        onResize: function() {
+
+          var root = this.getRoot();
+
+          if (root.scrollable) {
+
+            var top = dom.getOffset(root.__ul).top;
+            var h = 0;
+
+            common.each(root.__ul.childNodes, function(node) {
+              if (! (root.autoPlace && node === root.__save_row))
+                h += dom.getHeight(node);
+            });
+
+            if (window.innerHeight - top - CLOSE_BUTTON_HEIGHT < h) {
+              dom.addClass(root.domElement, GUI.CLASS_TOO_TALL);
+              root.__ul.style.height = window.innerHeight - top - CLOSE_BUTTON_HEIGHT + 'px';
+            } else {
+              dom.removeClass(root.domElement, GUI.CLASS_TOO_TALL);
+              root.__ul.style.height = 'auto';
+            }
+
+          }
+
+          if (root.__resize_handle) {
+            common.defer(function() {
+              root.__resize_handle.style.height = root.__ul.offsetHeight + 'px';
+            });
+          }
+
+          if (root.__closeButton) {
+            root.__closeButton.style.width = root.width + 'px';
+          }
+
+        },
+
+        /**
+         * Mark objects for saving. The order of these objects cannot change as
+         * the GUI grows. When remembering new objects, append them to the end
+         * of the list.
+         *
+         * @param {Object...} objects
+         * @throws {Error} if not called on a top level GUI.
+         * @instance
+         */
+        remember: function() {
+
+          if (common.isUndefined(SAVE_DIALOGUE)) {
+            SAVE_DIALOGUE = new CenteredDiv();
+            SAVE_DIALOGUE.domElement.innerHTML = saveDialogueContents;
+          }
+
+          if (this.parent) {
+            throw new Error("You can only call remember on a top level GUI.");
+          }
+
+          var _this = this;
+
+          common.each(Array.prototype.slice.call(arguments), function(object) {
+            if (_this.__rememberedObjects.length == 0) {
+              addSaveMenu(_this);
+            }
+            if (_this.__rememberedObjects.indexOf(object) == -1) {
+              _this.__rememberedObjects.push(object);
+            }
+          });
+
+          if (this.autoPlace) {
+            // Set save row width
+            setWidth(this, this.width);
+          }
+
+        },
+
+        /**
+         * @returns {dat.gui.GUI} the topmost parent GUI of a nested GUI.
+         * @instance
+         */
+        getRoot: function() {
+          var gui = this;
+          while (gui.parent) {
+            gui = gui.parent;
+          }
+          return gui;
+        },
+
+        /**
+         * @returns {Object} a JSON object representing the current state of
+         * this GUI as well as its remembered properties.
+         * @instance
+         */
+        getSaveObject: function() {
+
+          var toReturn = this.load;
+
+          toReturn.closed = this.closed;
+
+          // Am I remembering any values?
+          if (this.__rememberedObjects.length > 0) {
+
+            toReturn.preset = this.preset;
+
+            if (!toReturn.remembered) {
+              toReturn.remembered = {};
+            }
+
+            toReturn.remembered[this.preset] = getCurrentPreset(this);
+
+          }
+
+          toReturn.folders = {};
+          common.each(this.__folders, function(element, key) {
+            toReturn.folders[key] = element.getSaveObject();
+          });
+
+          return toReturn;
+
+        },
+
+        save: function() {
+
+          if (!this.load.remembered) {
+            this.load.remembered = {};
+          }
+
+          this.load.remembered[this.preset] = getCurrentPreset(this);
+          markPresetModified(this, false);
+
+        },
+
+        saveAs: function(presetName) {
+
+          if (!this.load.remembered) {
+
+            // Retain default values upon first save
+            this.load.remembered = {};
+            this.load.remembered[DEFAULT_DEFAULT_PRESET_NAME] = getCurrentPreset(this, true);
+
+          }
+
+          this.load.remembered[presetName] = getCurrentPreset(this);
+          this.preset = presetName;
+          addPresetOption(this, presetName, true);
+
+        },
+
+        revert: function(gui) {
+
+          common.each(this.__controllers, function(controller) {
+            // Make revert work on Default.
+            if (!this.getRoot().load.remembered) {
+              controller.setValue(controller.initialValue);
+            } else {
+              recallSavedValue(gui || this.getRoot(), controller);
+            }
+          }, this);
+
+          common.each(this.__folders, function(folder) {
+            folder.revert(folder);
+          });
+
+          if (!gui) {
+            markPresetModified(this.getRoot(), false);
+          }
+
+
+        },
+
+        listen: function(controller) {
+
+          var init = this.__listening.length == 0;
+          this.__listening.push(controller);
+          if (init) updateDisplays(this.__listening);
+
+        }
+
+      }
+
+  );
+
+  function add(gui, object, property, params) {
+
+    if (object[property] === undefined) {
+      throw new Error("Object " + object + " has no property \"" + property + "\"");
+    }
+
+    var controller;
+
+    if (params.color) {
+
+      controller = new ColorController(object, property);
+
+    } else {
+
+      var factoryArgs = [object,property].concat(params.factoryArgs);
+      controller = controllerFactory.apply(gui, factoryArgs);
+
+    }
+
+    if (params.before instanceof Controller) {
+      params.before = params.before.__li;
+    }
+
+    recallSavedValue(gui, controller);
+
+    dom.addClass(controller.domElement, 'c');
+
+    var name = document.createElement('span');
+    dom.addClass(name, 'property-name');
+    name.innerHTML = controller.property;
+
+    var container = document.createElement('div');
+    container.appendChild(name);
+    container.appendChild(controller.domElement);
+
+    var li = addRow(gui, container, params.before);
+
+    dom.addClass(li, GUI.CLASS_CONTROLLER_ROW);
+    dom.addClass(li, typeof controller.getValue());
+
+    augmentController(gui, li, controller);
+
+    gui.__controllers.push(controller);
+
+    return controller;
+
+  }
+
+  /**
+   * Add a row to the end of the GUI or before another row.
+   *
+   * @param gui
+   * @param [dom] If specified, inserts the dom content in the new row
+   * @param [liBefore] If specified, places the new row before another row
+   */
+  function addRow(gui, dom, liBefore) {
+    var li = document.createElement('li');
+    if (dom) li.appendChild(dom);
+    if (liBefore) {
+      gui.__ul.insertBefore(li, params.before);
+    } else {
+      gui.__ul.appendChild(li);
+    }
+    gui.onResize();
+    return li;
+  }
+
+  function augmentController(gui, li, controller) {
+
+    controller.__li = li;
+    controller.__gui = gui;
+
+    common.extend(controller, {
+
+      options: function(options) {
+
+        if (arguments.length > 1) {
+          controller.remove();
+
+          return add(
+              gui,
+              controller.object,
+              controller.property,
+              {
+                before: controller.__li.nextElementSibling,
+                factoryArgs: [common.toArray(arguments)]
+              }
+          );
+
+        }
+
+        if (common.isArray(options) || common.isObject(options)) {
+          controller.remove();
+
+          return add(
+              gui,
+              controller.object,
+              controller.property,
+              {
+                before: controller.__li.nextElementSibling,
+                factoryArgs: [options]
+              }
+          );
+
+        }
+
+      },
+
+      name: function(v) {
+        controller.__li.firstElementChild.firstElementChild.innerHTML = v;
+        return controller;
+      },
+
+      listen: function() {
+        controller.__gui.listen(controller);
+        return controller;
+      },
+
+      remove: function() {
+        controller.__gui.remove(controller);
+        return controller;
+      }
+
+    });
+
+    // All sliders should be accompanied by a box.
+    if (controller instanceof NumberControllerSlider) {
+
+      var box = new NumberControllerBox(controller.object, controller.property,
+          { min: controller.__min, max: controller.__max, step: controller.__step });
+
+      common.each(['updateDisplay', 'onChange', 'onFinishChange'], function(method) {
+        var pc = controller[method];
+        var pb = box[method];
+        controller[method] = box[method] = function() {
+          var args = Array.prototype.slice.call(arguments);
+          pc.apply(controller, args);
+          return pb.apply(box, args);
+        }
+      });
+
+      dom.addClass(li, 'has-slider');
+      controller.domElement.insertBefore(box.domElement, controller.domElement.firstElementChild);
+
+    }
+    else if (controller instanceof NumberControllerBox) {
+
+      var r = function(returned) {
+
+        // Have we defined both boundaries?
+        if (common.isNumber(controller.__min) && common.isNumber(controller.__max)) {
+
+          // Well, then lets just replace this with a slider.
+          controller.remove();
+          return add(
+              gui,
+              controller.object,
+              controller.property,
+              {
+                before: controller.__li.nextElementSibling,
+                factoryArgs: [controller.__min, controller.__max, controller.__step]
+              });
+
+        }
+
+        return returned;
+
+      };
+
+      controller.min = common.compose(r, controller.min);
+      controller.max = common.compose(r, controller.max);
+
+    }
+    else if (controller instanceof BooleanController) {
+
+      dom.bind(li, 'click', function() {
+        dom.fakeEvent(controller.__checkbox, 'click');
+      });
+
+      dom.bind(controller.__checkbox, 'click', function(e) {
+        e.stopPropagation(); // Prevents double-toggle
+      })
+
+    }
+    else if (controller instanceof FunctionController) {
+
+      dom.bind(li, 'click', function() {
+        dom.fakeEvent(controller.__button, 'click');
+      });
+
+      dom.bind(li, 'mouseover', function() {
+        dom.addClass(controller.__button, 'hover');
+      });
+
+      dom.bind(li, 'mouseout', function() {
+        dom.removeClass(controller.__button, 'hover');
+      });
+
+    }
+    else if (controller instanceof ColorController) {
+
+      dom.addClass(li, 'color');
+      controller.updateDisplay = common.compose(function(r) {
+        li.style.borderLeftColor = controller.__color.toString();
+        return r;
+      }, controller.updateDisplay);
+
+      controller.updateDisplay();
+
+    }
+
+    controller.setValue = common.compose(function(r) {
+      if (gui.getRoot().__preset_select && controller.isModified()) {
+        markPresetModified(gui.getRoot(), true);
+      }
+      return r;
+    }, controller.setValue);
+
+  }
+
+  function recallSavedValue(gui, controller) {
+
+    // Find the topmost GUI, that's where remembered objects live.
+    var root = gui.getRoot();
+
+    // Does the object we're controlling match anything we've been told to
+    // remember?
+    var matched_index = root.__rememberedObjects.indexOf(controller.object);
+
+    // Why yes, it does!
+    if (matched_index != -1) {
+
+      // Let me fetch a map of controllers for thcommon.isObject.
+      var controller_map =
+          root.__rememberedObjectIndecesToControllers[matched_index];
+
+      // Ohp, I believe this is the first controller we've created for this
+      // object. Lets make the map fresh.
+      if (controller_map === undefined) {
+        controller_map = {};
+        root.__rememberedObjectIndecesToControllers[matched_index] =
+            controller_map;
+      }
+
+      // Keep track of this controller
+      controller_map[controller.property] = controller;
+
+      // Okay, now have we saved any values for this controller?
+      if (root.load && root.load.remembered) {
+
+        var preset_map = root.load.remembered;
+
+        // Which preset are we trying to load?
+        var preset;
+
+        if (preset_map[gui.preset]) {
+
+          preset = preset_map[gui.preset];
+
+        } else if (preset_map[DEFAULT_DEFAULT_PRESET_NAME]) {
+
+          // Uhh, you can have the default instead?
+          preset = preset_map[DEFAULT_DEFAULT_PRESET_NAME];
+
+        } else {
+
+          // Nada.
+
+          return;
+
+        }
+
+
+        // Did the loaded object remember thcommon.isObject?
+        if (preset[matched_index] &&
+
+          // Did we remember this particular property?
+            preset[matched_index][controller.property] !== undefined) {
+
+          // We did remember something for this guy ...
+          var value = preset[matched_index][controller.property];
+
+          // And that's what it is.
+          controller.initialValue = value;
+          controller.setValue(value);
+
+        }
+
+      }
+
+    }
+
+  }
+
+  function getLocalStorageHash(gui, key) {
+    // TODO how does this deal with multiple GUI's?
+    return document.location.href + '.' + key;
+
+  }
+
+  function addSaveMenu(gui) {
+
+    var div = gui.__save_row = document.createElement('li');
+
+    dom.addClass(gui.domElement, 'has-save');
+
+    gui.__ul.insertBefore(div, gui.__ul.firstChild);
+
+    dom.addClass(div, 'save-row');
+
+    var gears = document.createElement('span');
+    gears.innerHTML = '&nbsp;';
+    dom.addClass(gears, 'button gears');
+
+    // TODO replace with FunctionController
+    var button = document.createElement('span');
+    button.innerHTML = 'Save';
+    dom.addClass(button, 'button');
+    dom.addClass(button, 'save');
+
+    var button2 = document.createElement('span');
+    button2.innerHTML = 'New';
+    dom.addClass(button2, 'button');
+    dom.addClass(button2, 'save-as');
+
+    var button3 = document.createElement('span');
+    button3.innerHTML = 'Revert';
+    dom.addClass(button3, 'button');
+    dom.addClass(button3, 'revert');
+
+    var select = gui.__preset_select = document.createElement('select');
+
+    if (gui.load && gui.load.remembered) {
+
+      common.each(gui.load.remembered, function(value, key) {
+        addPresetOption(gui, key, key == gui.preset);
+      });
+
+    } else {
+      addPresetOption(gui, DEFAULT_DEFAULT_PRESET_NAME, false);
+    }
+
+    dom.bind(select, 'change', function() {
+
+
+      for (var index = 0; index < gui.__preset_select.length; index++) {
+        gui.__preset_select[index].innerHTML = gui.__preset_select[index].value;
+      }
+
+      gui.preset = this.value;
+
+    });
+
+    div.appendChild(select);
+    div.appendChild(gears);
+    div.appendChild(button);
+    div.appendChild(button2);
+    div.appendChild(button3);
+
+    if (SUPPORTS_LOCAL_STORAGE) {
+
+      var saveLocally = document.getElementById('dg-save-locally');
+      var explain = document.getElementById('dg-local-explain');
+
+      saveLocally.style.display = 'block';
+
+      var localStorageCheckBox = document.getElementById('dg-local-storage');
+
+      if (localStorage.getItem(getLocalStorageHash(gui, 'isLocal')) === 'true') {
+        localStorageCheckBox.setAttribute('checked', 'checked');
+      }
+
+      function showHideExplain() {
+        explain.style.display = gui.useLocalStorage ? 'block' : 'none';
+      }
+
+      showHideExplain();
+
+      // TODO: Use a boolean controller, fool!
+      dom.bind(localStorageCheckBox, 'change', function() {
+        gui.useLocalStorage = !gui.useLocalStorage;
+        showHideExplain();
+      });
+
+    }
+
+    var newConstructorTextArea = document.getElementById('dg-new-constructor');
+
+    dom.bind(newConstructorTextArea, 'keydown', function(e) {
+      if (e.metaKey && (e.which === 67 || e.keyCode == 67)) {
+        SAVE_DIALOGUE.hide();
+      }
+    });
+
+    dom.bind(gears, 'click', function() {
+      newConstructorTextArea.innerHTML = JSON.stringify(gui.getSaveObject(), undefined, 2);
+      SAVE_DIALOGUE.show();
+      newConstructorTextArea.focus();
+      newConstructorTextArea.select();
+    });
+
+    dom.bind(button, 'click', function() {
+      gui.save();
+    });
+
+    dom.bind(button2, 'click', function() {
+      var presetName = prompt('Enter a new preset name.');
+      if (presetName) gui.saveAs(presetName);
+    });
+
+    dom.bind(button3, 'click', function() {
+      gui.revert();
+    });
+
+//    div.appendChild(button2);
+
+  }
+
+  function addResizeHandle(gui) {
+
+    gui.__resize_handle = document.createElement('div');
+
+    common.extend(gui.__resize_handle.style, {
+
+      width: '6px',
+      marginLeft: '-3px',
+      height: '200px',
+      cursor: 'ew-resize',
+      position: 'absolute'
+//      border: '1px solid blue'
+
+    });
+
+    var pmouseX;
+
+    dom.bind(gui.__resize_handle, 'mousedown', dragStart);
+    dom.bind(gui.__closeButton, 'mousedown', dragStart);
+
+    gui.domElement.insertBefore(gui.__resize_handle, gui.domElement.firstElementChild);
+
+    function dragStart(e) {
+
+      e.preventDefault();
+
+      pmouseX = e.clientX;
+
+      dom.addClass(gui.__closeButton, GUI.CLASS_DRAG);
+      dom.bind(window, 'mousemove', drag);
+      dom.bind(window, 'mouseup', dragStop);
+
+      return false;
+
+    }
+
+    function drag(e) {
+
+      e.preventDefault();
+
+      gui.width += pmouseX - e.clientX;
+      gui.onResize();
+      pmouseX = e.clientX;
+
+      return false;
+
+    }
+
+    function dragStop() {
+
+      dom.removeClass(gui.__closeButton, GUI.CLASS_DRAG);
+      dom.unbind(window, 'mousemove', drag);
+      dom.unbind(window, 'mouseup', dragStop);
+
+    }
+
+  }
+
+  function setWidth(gui, w) {
+    gui.domElement.style.width = w + 'px';
+    // Auto placed save-rows are position fixed, so we have to
+    // set the width manually if we want it to bleed to the edge
+    if (gui.__save_row && gui.autoPlace) {
+      gui.__save_row.style.width = w + 'px';
+    }if (gui.__closeButton) {
+      gui.__closeButton.style.width = w + 'px';
+    }
+  }
+
+  function getCurrentPreset(gui, useInitialValues) {
+
+    var toReturn = {};
+
+    // For each object I'm remembering
+    common.each(gui.__rememberedObjects, function(val, index) {
+
+      var saved_values = {};
+
+      // The controllers I've made for thcommon.isObject by property
+      var controller_map =
+          gui.__rememberedObjectIndecesToControllers[index];
+
+      // Remember each value for each property
+      common.each(controller_map, function(controller, property) {
+        saved_values[property] = useInitialValues ? controller.initialValue : controller.getValue();
+      });
+
+      // Save the values for thcommon.isObject
+      toReturn[index] = saved_values;
+
+    });
+
+    return toReturn;
+
+  }
+
+  function addPresetOption(gui, name, setSelected) {
+    var opt = document.createElement('option');
+    opt.innerHTML = name;
+    opt.value = name;
+    gui.__preset_select.appendChild(opt);
+    if (setSelected) {
+      gui.__preset_select.selectedIndex = gui.__preset_select.length - 1;
+    }
+  }
+
+  function setPresetSelectIndex(gui) {
+    for (var index = 0; index < gui.__preset_select.length; index++) {
+      if (gui.__preset_select[index].value == gui.preset) {
+        gui.__preset_select.selectedIndex = index;
+      }
+    }
+  }
+
+  function markPresetModified(gui, modified) {
+    var opt = gui.__preset_select[gui.__preset_select.selectedIndex];
+//    console.log('mark', modified, opt);
+    if (modified) {
+      opt.innerHTML = opt.value + "*";
+    } else {
+      opt.innerHTML = opt.value;
+    }
+  }
+
+  function updateDisplays(controllerArray) {
+
+
+    if (controllerArray.length != 0) {
+
+      requestAnimationFrame(function() {
+        updateDisplays(controllerArray);
+      });
+
+    }
+
+    common.each(controllerArray, function(c) {
+      c.updateDisplay();
+    });
+
+  }
+
+  return GUI;
+
+})(dat.utils.css,
+"<div id=\"dg-save\" class=\"dg dialogue\">\n\n  Here's the new load parameter for your <code>GUI</code>'s constructor:\n\n  <textarea id=\"dg-new-constructor\"></textarea>\n\n  <div id=\"dg-save-locally\">\n\n    <input id=\"dg-local-storage\" type=\"checkbox\"/> Automatically save\n    values to <code>localStorage</code> on exit.\n\n    <div id=\"dg-local-explain\">The values saved to <code>localStorage</code> will\n      override those passed to <code>dat.GUI</code>'s constructor. This makes it\n      easier to work incrementally, but <code>localStorage</code> is fragile,\n      and your friends may not see the same values you do.\n      \n    </div>\n    \n  </div>\n\n</div>",
+".dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save ul{margin-top:27px}.dg.a.has-save ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height 0.1s ease-out;-o-transition:height 0.1s ease-out;-moz-transition:height 0.1s ease-out;transition:height 0.1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li > *{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}\n",
+dat.controllers.factory = (function (OptionController, NumberControllerBox, NumberControllerSlider, StringController, FunctionController, BooleanController, common) {
+
+      return function(object, property) {
+
+        var initialValue = object[property];
+
+        // Providing options?
+        if (common.isArray(arguments[2]) || common.isObject(arguments[2])) {
+          return new OptionController(object, property, arguments[2]);
+        }
+
+        // Providing a map?
+
+        if (common.isNumber(initialValue)) {
+
+          if (common.isNumber(arguments[2]) && common.isNumber(arguments[3])) {
+
+            // Has min and max.
+            return new NumberControllerSlider(object, property, arguments[2], arguments[3]);
+
+          } else {
+
+            return new NumberControllerBox(object, property, { min: arguments[2], max: arguments[3] });
+
+          }
+
+        }
+
+        if (common.isString(initialValue)) {
+          return new StringController(object, property);
+        }
+
+        if (common.isFunction(initialValue)) {
+          return new FunctionController(object, property, '');
+        }
+
+        if (common.isBoolean(initialValue)) {
+          return new BooleanController(object, property);
+        }
+
+      }
+
+    })(dat.controllers.OptionController,
+dat.controllers.NumberControllerBox,
+dat.controllers.NumberControllerSlider,
+dat.controllers.StringController = (function (Controller, dom, common) {
+
+  /**
+   * @class Provides a text input to alter the string property of an object.
+   *
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var StringController = function(object, property) {
+
+    StringController.superclass.call(this, object, property);
+
+    var _this = this;
+
+    this.__input = document.createElement('input');
+    this.__input.setAttribute('type', 'text');
+
+    dom.bind(this.__input, 'keyup', onChange);
+    dom.bind(this.__input, 'change', onChange);
+    dom.bind(this.__input, 'blur', onBlur);
+    dom.bind(this.__input, 'keydown', function(e) {
+      if (e.keyCode === 13) {
+        this.blur();
+      }
+    });
+    
+
+    function onChange() {
+      _this.setValue(_this.__input.value);
+    }
+
+    function onBlur() {
+      if (_this.__onFinishChange) {
+        _this.__onFinishChange.call(_this, _this.getValue());
+      }
+    }
+
+    this.updateDisplay();
+
+    this.domElement.appendChild(this.__input);
+
+  };
+
+  StringController.superclass = Controller;
+
+  common.extend(
+
+      StringController.prototype,
+      Controller.prototype,
+
+      {
+
+        updateDisplay: function() {
+          // Stops the caret from moving on account of:
+          // keyup -> setValue -> updateDisplay
+          if (!dom.isActive(this.__input)) {
+            this.__input.value = this.getValue();
+          }
+          return StringController.superclass.prototype.updateDisplay.call(this);
+        }
+
+      }
+
+  );
+
+  return StringController;
+
+})(dat.controllers.Controller,
+dat.dom.dom,
+dat.utils.common),
+dat.controllers.FunctionController,
+dat.controllers.BooleanController,
+dat.utils.common),
+dat.controllers.Controller,
+dat.controllers.BooleanController,
+dat.controllers.FunctionController,
+dat.controllers.NumberControllerBox,
+dat.controllers.NumberControllerSlider,
+dat.controllers.OptionController,
+dat.controllers.ColorController = (function (Controller, dom, Color, interpret, common) {
+
+  var ColorController = function(object, property) {
+
+    ColorController.superclass.call(this, object, property);
+
+    this.__color = new Color(this.getValue());
+    this.__temp = new Color(0);
+
+    var _this = this;
+
+    this.domElement = document.createElement('div');
+
+    dom.makeSelectable(this.domElement, false);
+
+    this.__selector = document.createElement('div');
+    this.__selector.className = 'selector';
+
+    this.__saturation_field = document.createElement('div');
+    this.__saturation_field.className = 'saturation-field';
+
+    this.__field_knob = document.createElement('div');
+    this.__field_knob.className = 'field-knob';
+    this.__field_knob_border = '2px solid ';
+
+    this.__hue_knob = document.createElement('div');
+    this.__hue_knob.className = 'hue-knob';
+
+    this.__hue_field = document.createElement('div');
+    this.__hue_field.className = 'hue-field';
+
+    this.__input = document.createElement('input');
+    this.__input.type = 'text';
+    this.__input_textShadow = '0 1px 1px ';
+
+    dom.bind(this.__input, 'keydown', function(e) {
+      if (e.keyCode === 13) { // on enter
+        onBlur.call(this);
+      }
+    });
+
+    dom.bind(this.__input, 'blur', onBlur);
+
+    dom.bind(this.__selector, 'mousedown', function(e) {
+
+      dom
+        .addClass(this, 'drag')
+        .bind(window, 'mouseup', function(e) {
+          dom.removeClass(_this.__selector, 'drag');
+        });
+
+    });
+
+    var value_field = document.createElement('div');
+
+    common.extend(this.__selector.style, {
+      width: '122px',
+      height: '102px',
+      padding: '3px',
+      backgroundColor: '#222',
+      boxShadow: '0px 1px 3px rgba(0,0,0,0.3)'
+    });
+
+    common.extend(this.__field_knob.style, {
+      position: 'absolute',
+      width: '12px',
+      height: '12px',
+      border: this.__field_knob_border + (this.__color.v < .5 ? '#fff' : '#000'),
+      boxShadow: '0px 1px 3px rgba(0,0,0,0.5)',
+      borderRadius: '12px',
+      zIndex: 1
+    });
+    
+    common.extend(this.__hue_knob.style, {
+      position: 'absolute',
+      width: '15px',
+      height: '2px',
+      borderRight: '4px solid #fff',
+      zIndex: 1
+    });
+
+    common.extend(this.__saturation_field.style, {
+      width: '100px',
+      height: '100px',
+      border: '1px solid #555',
+      marginRight: '3px',
+      display: 'inline-block',
+      cursor: 'pointer'
+    });
+
+    common.extend(value_field.style, {
+      width: '100%',
+      height: '100%',
+      background: 'none'
+    });
+    
+    linearGradient(value_field, 'top', 'rgba(0,0,0,0)', '#000');
+
+    common.extend(this.__hue_field.style, {
+      width: '15px',
+      height: '100px',
+      display: 'inline-block',
+      border: '1px solid #555',
+      cursor: 'ns-resize'
+    });
+
+    hueGradient(this.__hue_field);
+
+    common.extend(this.__input.style, {
+      outline: 'none',
+//      width: '120px',
+      textAlign: 'center',
+//      padding: '4px',
+//      marginBottom: '6px',
+      color: '#fff',
+      border: 0,
+      fontWeight: 'bold',
+      textShadow: this.__input_textShadow + 'rgba(0,0,0,0.7)'
+    });
+
+    dom.bind(this.__saturation_field, 'mousedown', fieldDown);
+    dom.bind(this.__field_knob, 'mousedown', fieldDown);
+
+    dom.bind(this.__hue_field, 'mousedown', function(e) {
+      setH(e);
+      dom.bind(window, 'mousemove', setH);
+      dom.bind(window, 'mouseup', unbindH);
+    });
+
+    function fieldDown(e) {
+      setSV(e);
+      // document.body.style.cursor = 'none';
+      dom.bind(window, 'mousemove', setSV);
+      dom.bind(window, 'mouseup', unbindSV);
+    }
+
+    function unbindSV() {
+      dom.unbind(window, 'mousemove', setSV);
+      dom.unbind(window, 'mouseup', unbindSV);
+      // document.body.style.cursor = 'default';
+    }
+
+    function onBlur() {
+      var i = interpret(this.value);
+      if (i !== false) {
+        _this.__color.__state = i;
+        _this.setValue(_this.__color.toOriginal());
+      } else {
+        this.value = _this.__color.toString();
+      }
+    }
+
+    function unbindH() {
+      dom.unbind(window, 'mousemove', setH);
+      dom.unbind(window, 'mouseup', unbindH);
+    }
+
+    this.__saturation_field.appendChild(value_field);
+    this.__selector.appendChild(this.__field_knob);
+    this.__selector.appendChild(this.__saturation_field);
+    this.__selector.appendChild(this.__hue_field);
+    this.__hue_field.appendChild(this.__hue_knob);
+
+    this.domElement.appendChild(this.__input);
+    this.domElement.appendChild(this.__selector);
+
+    this.updateDisplay();
+
+    function setSV(e) {
+
+      e.preventDefault();
+
+      var w = dom.getWidth(_this.__saturation_field);
+      var o = dom.getOffset(_this.__saturation_field);
+      var s = (e.clientX - o.left + document.body.scrollLeft) / w;
+      var v = 1 - (e.clientY - o.top + document.body.scrollTop) / w;
+
+      if (v > 1) v = 1;
+      else if (v < 0) v = 0;
+
+      if (s > 1) s = 1;
+      else if (s < 0) s = 0;
+
+      _this.__color.v = v;
+      _this.__color.s = s;
+
+      _this.setValue(_this.__color.toOriginal());
+
+
+      return false;
+
+    }
+
+    function setH(e) {
+
+      e.preventDefault();
+
+      var s = dom.getHeight(_this.__hue_field);
+      var o = dom.getOffset(_this.__hue_field);
+      var h = 1 - (e.clientY - o.top + document.body.scrollTop) / s;
+
+      if (h > 1) h = 1;
+      else if (h < 0) h = 0;
+
+      _this.__color.h = h * 360;
+
+      _this.setValue(_this.__color.toOriginal());
+
+      return false;
+
+    }
+
+  };
+
+  ColorController.superclass = Controller;
+
+  common.extend(
+
+      ColorController.prototype,
+      Controller.prototype,
+
+      {
+
+        updateDisplay: function() {
+
+          var i = interpret(this.getValue());
+
+          if (i !== false) {
+
+            var mismatch = false;
+
+            // Check for mismatch on the interpreted value.
+
+            common.each(Color.COMPONENTS, function(component) {
+              if (!common.isUndefined(i[component]) &&
+                  !common.isUndefined(this.__color.__state[component]) &&
+                  i[component] !== this.__color.__state[component]) {
+                mismatch = true;
+                return {}; // break
+              }
+            }, this);
+
+            // If nothing diverges, we keep our previous values
+            // for statefulness, otherwise we recalculate fresh
+            if (mismatch) {
+              common.extend(this.__color.__state, i);
+            }
+
+          }
+
+          common.extend(this.__temp.__state, this.__color.__state);
+
+          this.__temp.a = 1;
+
+          var flip = (this.__color.v < .5 || this.__color.s > .5) ? 255 : 0;
+          var _flip = 255 - flip;
+
+          common.extend(this.__field_knob.style, {
+            marginLeft: 100 * this.__color.s - 7 + 'px',
+            marginTop: 100 * (1 - this.__color.v) - 7 + 'px',
+            backgroundColor: this.__temp.toString(),
+            border: this.__field_knob_border + 'rgb(' + flip + ',' + flip + ',' + flip +')'
+          });
+
+          this.__hue_knob.style.marginTop = (1 - this.__color.h / 360) * 100 + 'px'
+
+          this.__temp.s = 1;
+          this.__temp.v = 1;
+
+          linearGradient(this.__saturation_field, 'left', '#fff', this.__temp.toString());
+
+          common.extend(this.__input.style, {
+            backgroundColor: this.__input.value = this.__color.toString(),
+            color: 'rgb(' + flip + ',' + flip + ',' + flip +')',
+            textShadow: this.__input_textShadow + 'rgba(' + _flip + ',' + _flip + ',' + _flip +',.7)'
+          });
+
+        }
+
+      }
+
+  );
+  
+  var vendors = ['-moz-','-o-','-webkit-','-ms-',''];
+  
+  function linearGradient(elem, x, a, b) {
+    elem.style.background = '';
+    common.each(vendors, function(vendor) {
+      elem.style.cssText += 'background: ' + vendor + 'linear-gradient('+x+', '+a+' 0%, ' + b + ' 100%); ';
+    });
+  }
+  
+  function hueGradient(elem) {
+    elem.style.background = '';
+    elem.style.cssText += 'background: -moz-linear-gradient(top,  #ff0000 0%, #ff00ff 17%, #0000ff 34%, #00ffff 50%, #00ff00 67%, #ffff00 84%, #ff0000 100%);'
+    elem.style.cssText += 'background: -webkit-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
+    elem.style.cssText += 'background: -o-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
+    elem.style.cssText += 'background: -ms-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
+    elem.style.cssText += 'background: linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
+  }
+
+
+  return ColorController;
+
+})(dat.controllers.Controller,
+dat.dom.dom,
+dat.color.Color = (function (interpret, math, toString, common) {
+
+  var Color = function() {
+
+    this.__state = interpret.apply(this, arguments);
+
+    if (this.__state === false) {
+      throw 'Failed to interpret color arguments';
+    }
+
+    this.__state.a = this.__state.a || 1;
+
+
+  };
+
+  Color.COMPONENTS = ['r','g','b','h','s','v','hex','a'];
+
+  common.extend(Color.prototype, {
+
+    toString: function() {
+      return toString(this);
+    },
+
+    toOriginal: function() {
+      return this.__state.conversion.write(this);
+    }
+
+  });
+
+  defineRGBComponent(Color.prototype, 'r', 2);
+  defineRGBComponent(Color.prototype, 'g', 1);
+  defineRGBComponent(Color.prototype, 'b', 0);
+
+  defineHSVComponent(Color.prototype, 'h');
+  defineHSVComponent(Color.prototype, 's');
+  defineHSVComponent(Color.prototype, 'v');
+
+  Object.defineProperty(Color.prototype, 'a', {
+
+    get: function() {
+      return this.__state.a;
+    },
+
+    set: function(v) {
+      this.__state.a = v;
+    }
+
+  });
+
+  Object.defineProperty(Color.prototype, 'hex', {
+
+    get: function() {
+
+      if (!this.__state.space !== 'HEX') {
+        this.__state.hex = math.rgb_to_hex(this.r, this.g, this.b);
+      }
+
+      return this.__state.hex;
+
+    },
+
+    set: function(v) {
+
+      this.__state.space = 'HEX';
+      this.__state.hex = v;
+
+    }
+
+  });
+
+  function defineRGBComponent(target, component, componentHexIndex) {
+
+    Object.defineProperty(target, component, {
+
+      get: function() {
+
+        if (this.__state.space === 'RGB') {
+          return this.__state[component];
+        }
+
+        recalculateRGB(this, component, componentHexIndex);
+
+        return this.__state[component];
+
+      },
+
+      set: function(v) {
+
+        if (this.__state.space !== 'RGB') {
+          recalculateRGB(this, component, componentHexIndex);
+          this.__state.space = 'RGB';
+        }
+
+        this.__state[component] = v;
+
+      }
+
+    });
+
+  }
+
+  function defineHSVComponent(target, component) {
+
+    Object.defineProperty(target, component, {
+
+      get: function() {
+
+        if (this.__state.space === 'HSV')
+          return this.__state[component];
+
+        recalculateHSV(this);
+
+        return this.__state[component];
+
+      },
+
+      set: function(v) {
+
+        if (this.__state.space !== 'HSV') {
+          recalculateHSV(this);
+          this.__state.space = 'HSV';
+        }
+
+        this.__state[component] = v;
+
+      }
+
+    });
+
+  }
+
+  function recalculateRGB(color, component, componentHexIndex) {
+
+    if (color.__state.space === 'HEX') {
+
+      color.__state[component] = math.component_from_hex(color.__state.hex, componentHexIndex);
+
+    } else if (color.__state.space === 'HSV') {
+
+      common.extend(color.__state, math.hsv_to_rgb(color.__state.h, color.__state.s, color.__state.v));
+
+    } else {
+
+      throw 'Corrupted color state';
+
+    }
+
+  }
+
+  function recalculateHSV(color) {
+
+    var result = math.rgb_to_hsv(color.r, color.g, color.b);
+
+    common.extend(color.__state,
+        {
+          s: result.s,
+          v: result.v
+        }
+    );
+
+    if (!common.isNaN(result.h)) {
+      color.__state.h = result.h;
+    } else if (common.isUndefined(color.__state.h)) {
+      color.__state.h = 0;
+    }
+
+  }
+
+  return Color;
+
+})(dat.color.interpret,
+dat.color.math = (function () {
+
+  var tmpComponent;
+
+  return {
+
+    hsv_to_rgb: function(h, s, v) {
+
+      var hi = Math.floor(h / 60) % 6;
+
+      var f = h / 60 - Math.floor(h / 60);
+      var p = v * (1.0 - s);
+      var q = v * (1.0 - (f * s));
+      var t = v * (1.0 - ((1.0 - f) * s));
+      var c = [
+        [v, t, p],
+        [q, v, p],
+        [p, v, t],
+        [p, q, v],
+        [t, p, v],
+        [v, p, q]
+      ][hi];
+
+      return {
+        r: c[0] * 255,
+        g: c[1] * 255,
+        b: c[2] * 255
+      };
+
+    },
+
+    rgb_to_hsv: function(r, g, b) {
+
+      var min = Math.min(r, g, b),
+          max = Math.max(r, g, b),
+          delta = max - min,
+          h, s;
+
+      if (max != 0) {
+        s = delta / max;
+      } else {
+        return {
+          h: NaN,
+          s: 0,
+          v: 0
+        };
+      }
+
+      if (r == max) {
+        h = (g - b) / delta;
+      } else if (g == max) {
+        h = 2 + (b - r) / delta;
+      } else {
+        h = 4 + (r - g) / delta;
+      }
+      h /= 6;
+      if (h < 0) {
+        h += 1;
+      }
+
+      return {
+        h: h * 360,
+        s: s,
+        v: max / 255
+      };
+    },
+
+    rgb_to_hex: function(r, g, b) {
+      var hex = this.hex_with_component(0, 2, r);
+      hex = this.hex_with_component(hex, 1, g);
+      hex = this.hex_with_component(hex, 0, b);
+      return hex;
+    },
+
+    component_from_hex: function(hex, componentIndex) {
+      return (hex >> (componentIndex * 8)) & 0xFF;
+    },
+
+    hex_with_component: function(hex, componentIndex, value) {
+      return value << (tmpComponent = componentIndex * 8) | (hex & ~ (0xFF << tmpComponent));
+    }
+
+  }
+
+})(),
+dat.color.toString,
+dat.utils.common),
+dat.color.interpret,
+dat.utils.common),
+dat.utils.requestAnimationFrame = (function () {
+
+  /**
+   * requirejs version of Paul Irish's RequestAnimationFrame
+   * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+   */
+
+  return window.webkitRequestAnimationFrame ||
+      window.mozRequestAnimationFrame ||
+      window.oRequestAnimationFrame ||
+      window.msRequestAnimationFrame ||
+      function(callback, element) {
+
+        window.setTimeout(callback, 1000 / 60);
+
+      };
+})(),
+dat.dom.CenteredDiv = (function (dom, common) {
+
+
+  var CenteredDiv = function() {
+
+    this.backgroundElement = document.createElement('div');
+    common.extend(this.backgroundElement.style, {
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      top: 0,
+      left: 0,
+      display: 'none',
+      zIndex: '1000',
+      opacity: 0,
+      WebkitTransition: 'opacity 0.2s linear'
+    });
+
+    dom.makeFullscreen(this.backgroundElement);
+    this.backgroundElement.style.position = 'fixed';
+
+    this.domElement = document.createElement('div');
+    common.extend(this.domElement.style, {
+      position: 'fixed',
+      display: 'none',
+      zIndex: '1001',
+      opacity: 0,
+      WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear'
+    });
+
+
+    document.body.appendChild(this.backgroundElement);
+    document.body.appendChild(this.domElement);
+
+    var _this = this;
+    dom.bind(this.backgroundElement, 'click', function() {
+      _this.hide();
+    });
+
+
+  };
+
+  CenteredDiv.prototype.show = function() {
+
+    var _this = this;
+    
+
+
+    this.backgroundElement.style.display = 'block';
+
+    this.domElement.style.display = 'block';
+    this.domElement.style.opacity = 0;
+//    this.domElement.style.top = '52%';
+    this.domElement.style.webkitTransform = 'scale(1.1)';
+
+    this.layout();
+
+    common.defer(function() {
+      _this.backgroundElement.style.opacity = 1;
+      _this.domElement.style.opacity = 1;
+      _this.domElement.style.webkitTransform = 'scale(1)';
+    });
+
+  };
+
+  CenteredDiv.prototype.hide = function() {
+
+    var _this = this;
+
+    var hide = function() {
+
+      _this.domElement.style.display = 'none';
+      _this.backgroundElement.style.display = 'none';
+
+      dom.unbind(_this.domElement, 'webkitTransitionEnd', hide);
+      dom.unbind(_this.domElement, 'transitionend', hide);
+      dom.unbind(_this.domElement, 'oTransitionEnd', hide);
+
+    };
+
+    dom.bind(this.domElement, 'webkitTransitionEnd', hide);
+    dom.bind(this.domElement, 'transitionend', hide);
+    dom.bind(this.domElement, 'oTransitionEnd', hide);
+
+    this.backgroundElement.style.opacity = 0;
+//    this.domElement.style.top = '48%';
+    this.domElement.style.opacity = 0;
+    this.domElement.style.webkitTransform = 'scale(1.1)';
+
+  };
+
+  CenteredDiv.prototype.layout = function() {
+    this.domElement.style.left = window.innerWidth/2 - dom.getWidth(this.domElement) / 2 + 'px';
+    this.domElement.style.top = window.innerHeight/2 - dom.getHeight(this.domElement) / 2 + 'px';
+  };
+  
+  function lockScroll(e) {
+    console.log(e);
+  }
+
+  return CenteredDiv;
+
+})(dat.dom.dom,
+dat.utils.common),
+dat.dom.dom,
+dat.utils.common);
+},{}],5:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -263,7 +4743,7 @@ module.exports = function extend() {
 	return target;
 };
 
-},{}],3:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var process=require("__browserify_process");var self = self || {};
 
 // High-resulution counter: emulate window.performance.now() for THREE.CLOCK
@@ -37221,7 +41701,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{"__browserify_process":92}],4:[function(require,module,exports){
+},{"__browserify_process":105}],7:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -37308,7 +41788,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":83,"funstance":5}],5:[function(require,module,exports){
+},{"events":96,"funstance":8}],8:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -37332,18 +41812,18 @@ module.exports = function (obj, fn) {
     return f;
 };
 
-},{}],6:[function(require,module,exports){
-function Debug(opts) {
-  if (opts.THREE) opts = {game: opts}
-  this.game = opts.game
+},{}],9:[function(require,module,exports){
+function Debug(game, opts) {
+  if (opts.THREE) game = opts
+  this.game = game
   this.gui = opts.gui || new (require('dat-gui')).GUI()
   this.liveData = true
   this._datum = []
   this._init()
   this.open()
 }
-module.exports = function(opts) {
-  return new Debug(opts)
+module.exports = function(game, opts) {
+  return new Debug(game, opts)
 }
 module.exports.Debug = Debug
 
@@ -37381,6 +41861,7 @@ Debug.prototype._init = function() {
   this._player()
   this._camera()
   this._chunks()
+  this._render()
   function update(folder) {
     for (var i in folder.__controllers) {
       folder.__controllers[i].updateDisplay()
@@ -37462,4427 +41943,750 @@ Debug.prototype._chunks = function() {
   folder.add(d, 'voxels')
 }
 
-},{"dat-gui":7}],7:[function(require,module,exports){
-module.exports = require('./vendor/dat.gui')
-module.exports.color = require('./vendor/dat.color')
-},{"./vendor/dat.color":8,"./vendor/dat.gui":9}],8:[function(require,module,exports){
-/**
- * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
- *
- * Copyright 2011 Data Arts Team, Google Creative Lab
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- */
+Debug.prototype._render = function() {
+  var self = this
+  var folder = this.folder.addFolder('render')
+  this.mesherName = 'greedy'
+  folder.add(this, 'mesherName', ['greedy', 'culled']).onChange(function(value) {
+    self.game.mesher = require('voxel').meshers[value]
+    self.game.showAllChunks()
+  })
 
-/** @namespace */
-var dat = module.exports = dat || {};
+  folder.add(this.game, 'meshType', ['surfaceMesh', 'wireMesh']).onChange(function(value) {
+    // refresh chunks on change
+    self.game.showAllChunks() 
+  })
+}
 
-/** @namespace */
-dat.color = dat.color || {};
+},{"dat-gui":10,"voxel":14}],10:[function(require,module,exports){
+module.exports=require(2)
+},{"./vendor/dat.color":11,"./vendor/dat.gui":12}],11:[function(require,module,exports){
+module.exports=require(3)
+},{}],12:[function(require,module,exports){
+module.exports=require(4)
+},{}],13:[function(require,module,exports){
+var events = require('events')
+var inherits = require('inherits')
 
-/** @namespace */
-dat.utils = dat.utils || {};
+module.exports = function(opts) {
+  return new Chunker(opts)
+}
 
-dat.utils.common = (function () {
-  
-  var ARR_EACH = Array.prototype.forEach;
-  var ARR_SLICE = Array.prototype.slice;
+module.exports.Chunker = Chunker
 
-  /**
-   * Band-aid methods for things that should be a lot easier in JavaScript.
-   * Implementation and structure inspired by underscore.js
-   * http://documentcloud.github.com/underscore/
-   */
+function Chunker(opts) {
+  this.distance = opts.chunkDistance || 2
+  this.chunkSize = opts.chunkSize || 32
+  this.cubeSize = opts.cubeSize || 25
+  this.generateVoxelChunk = opts.generateVoxelChunk
+  this.chunks = {}
+  this.meshes = {}
 
-  return { 
-    
-    BREAK: {},
-  
-    extend: function(target) {
-      
-      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
-        
-        for (var key in obj)
-          if (!this.isUndefined(obj[key])) 
-            target[key] = obj[key];
-        
-      }, this);
-      
-      return target;
-      
-    },
-    
-    defaults: function(target) {
-      
-      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
-        
-        for (var key in obj)
-          if (this.isUndefined(target[key])) 
-            target[key] = obj[key];
-        
-      }, this);
-      
-      return target;
-    
-    },
-    
-    compose: function() {
-      var toCall = ARR_SLICE.call(arguments);
-            return function() {
-              var args = ARR_SLICE.call(arguments);
-              for (var i = toCall.length -1; i >= 0; i--) {
-                args = [toCall[i].apply(this, args)];
-              }
-              return args[0];
-            }
-    },
-    
-    each: function(obj, itr, scope) {
+  if (this.chunkSize & this.chunkSize-1 !== 0)
+    throw new Error('chunkSize must be a power of 2')
+  var bits = 0;
+  for (var size = this.chunkSize; size > 0; size >>= 1) bits++;
+  this.chunkBits = bits - 1;
+}
 
-      
-      if (ARR_EACH && obj.forEach === ARR_EACH) { 
-        
-        obj.forEach(itr, scope);
-        
-      } else if (obj.length === obj.length + 0) { // Is number but not NaN
-        
-        for (var key = 0, l = obj.length; key < l; key++)
-          if (key in obj && itr.call(scope, obj[key], key) === this.BREAK) 
-            return;
-            
-      } else {
+inherits(Chunker, events.EventEmitter)
 
-        for (var key in obj) 
-          if (itr.call(scope, obj[key], key) === this.BREAK)
-            return;
-            
+Chunker.prototype.nearbyChunks = function(position, distance) {
+  var current = this.chunkAtPosition(position)
+  var x = current[0]
+  var y = current[1]
+  var z = current[2]
+  var dist = distance || this.distance
+  var nearby = []
+  for (var cx = (x - dist); cx !== (x + dist); ++cx) {
+    for (var cy = (y - dist); cy !== (y + dist); ++cy) {
+      for (var cz = (z - dist); cz !== (z + dist); ++cz) {
+        nearby.push([cx, cy, cz])
       }
-            
-    },
-    
-    defer: function(fnc) {
-      setTimeout(fnc, 0);
-    },
-    
-    toArray: function(obj) {
-      if (obj.toArray) return obj.toArray();
-      return ARR_SLICE.call(obj);
-    },
-
-    isUndefined: function(obj) {
-      return obj === undefined;
-    },
-    
-    isNull: function(obj) {
-      return obj === null;
-    },
-    
-    isNaN: function(obj) {
-      return obj !== obj;
-    },
-    
-    isArray: Array.isArray || function(obj) {
-      return obj.constructor === Array;
-    },
-    
-    isObject: function(obj) {
-      return obj === Object(obj);
-    },
-    
-    isNumber: function(obj) {
-      return obj === obj+0;
-    },
-    
-    isString: function(obj) {
-      return obj === obj+'';
-    },
-    
-    isBoolean: function(obj) {
-      return obj === false || obj === true;
-    },
-    
-    isFunction: function(obj) {
-      return Object.prototype.toString.call(obj) === '[object Function]';
-    }
-  
-  };
-    
-})();
-
-
-dat.color.toString = (function (common) {
-
-  return function(color) {
-
-    if (color.a == 1 || common.isUndefined(color.a)) {
-
-      var s = color.hex.toString(16);
-      while (s.length < 6) {
-        s = '0' + s;
-      }
-
-      return '#' + s;
-
-    } else {
-
-      return 'rgba(' + Math.round(color.r) + ',' + Math.round(color.g) + ',' + Math.round(color.b) + ',' + color.a + ')';
-
-    }
-
-  }
-
-})(dat.utils.common);
-
-
-dat.Color = dat.color.Color = (function (interpret, math, toString, common) {
-
-  var Color = function() {
-
-    this.__state = interpret.apply(this, arguments);
-
-    if (this.__state === false) {
-      throw 'Failed to interpret color arguments';
-    }
-
-    this.__state.a = this.__state.a || 1;
-
-
-  };
-
-  Color.COMPONENTS = ['r','g','b','h','s','v','hex','a'];
-
-  common.extend(Color.prototype, {
-
-    toString: function() {
-      return toString(this);
-    },
-
-    toOriginal: function() {
-      return this.__state.conversion.write(this);
-    }
-
-  });
-
-  defineRGBComponent(Color.prototype, 'r', 2);
-  defineRGBComponent(Color.prototype, 'g', 1);
-  defineRGBComponent(Color.prototype, 'b', 0);
-
-  defineHSVComponent(Color.prototype, 'h');
-  defineHSVComponent(Color.prototype, 's');
-  defineHSVComponent(Color.prototype, 'v');
-
-  Object.defineProperty(Color.prototype, 'a', {
-
-    get: function() {
-      return this.__state.a;
-    },
-
-    set: function(v) {
-      this.__state.a = v;
-    }
-
-  });
-
-  Object.defineProperty(Color.prototype, 'hex', {
-
-    get: function() {
-
-      if (!this.__state.space !== 'HEX') {
-        this.__state.hex = math.rgb_to_hex(this.r, this.g, this.b);
-      }
-
-      return this.__state.hex;
-
-    },
-
-    set: function(v) {
-
-      this.__state.space = 'HEX';
-      this.__state.hex = v;
-
-    }
-
-  });
-
-  function defineRGBComponent(target, component, componentHexIndex) {
-
-    Object.defineProperty(target, component, {
-
-      get: function() {
-
-        if (this.__state.space === 'RGB') {
-          return this.__state[component];
-        }
-
-        recalculateRGB(this, component, componentHexIndex);
-
-        return this.__state[component];
-
-      },
-
-      set: function(v) {
-
-        if (this.__state.space !== 'RGB') {
-          recalculateRGB(this, component, componentHexIndex);
-          this.__state.space = 'RGB';
-        }
-
-        this.__state[component] = v;
-
-      }
-
-    });
-
-  }
-
-  function defineHSVComponent(target, component) {
-
-    Object.defineProperty(target, component, {
-
-      get: function() {
-
-        if (this.__state.space === 'HSV')
-          return this.__state[component];
-
-        recalculateHSV(this);
-
-        return this.__state[component];
-
-      },
-
-      set: function(v) {
-
-        if (this.__state.space !== 'HSV') {
-          recalculateHSV(this);
-          this.__state.space = 'HSV';
-        }
-
-        this.__state[component] = v;
-
-      }
-
-    });
-
-  }
-
-  function recalculateRGB(color, component, componentHexIndex) {
-
-    if (color.__state.space === 'HEX') {
-
-      color.__state[component] = math.component_from_hex(color.__state.hex, componentHexIndex);
-
-    } else if (color.__state.space === 'HSV') {
-
-      common.extend(color.__state, math.hsv_to_rgb(color.__state.h, color.__state.s, color.__state.v));
-
-    } else {
-
-      throw 'Corrupted color state';
-
-    }
-
-  }
-
-  function recalculateHSV(color) {
-
-    var result = math.rgb_to_hsv(color.r, color.g, color.b);
-
-    common.extend(color.__state,
-        {
-          s: result.s,
-          v: result.v
-        }
-    );
-
-    if (!common.isNaN(result.h)) {
-      color.__state.h = result.h;
-    } else if (common.isUndefined(color.__state.h)) {
-      color.__state.h = 0;
-    }
-
-  }
-
-  return Color;
-
-})(dat.color.interpret = (function (toString, common) {
-
-  var result, toReturn;
-
-  var interpret = function() {
-
-    toReturn = false;
-
-    var original = arguments.length > 1 ? common.toArray(arguments) : arguments[0];
-
-    common.each(INTERPRETATIONS, function(family) {
-
-      if (family.litmus(original)) {
-
-        common.each(family.conversions, function(conversion, conversionName) {
-
-          result = conversion.read(original);
-
-          if (toReturn === false && result !== false) {
-            toReturn = result;
-            result.conversionName = conversionName;
-            result.conversion = conversion;
-            return common.BREAK;
-
-          }
-
-        });
-
-        return common.BREAK;
-
-      }
-
-    });
-
-    return toReturn;
-
-  };
-
-  var INTERPRETATIONS = [
-
-    // Strings
-    {
-
-      litmus: common.isString,
-
-      conversions: {
-
-        THREE_CHAR_HEX: {
-
-          read: function(original) {
-
-            var test = original.match(/^#([A-F0-9])([A-F0-9])([A-F0-9])$/i);
-            if (test === null) return false;
-
-            return {
-              space: 'HEX',
-              hex: parseInt(
-                  '0x' +
-                      test[1].toString() + test[1].toString() +
-                      test[2].toString() + test[2].toString() +
-                      test[3].toString() + test[3].toString())
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        SIX_CHAR_HEX: {
-
-          read: function(original) {
-
-            var test = original.match(/^#([A-F0-9]{6})$/i);
-            if (test === null) return false;
-
-            return {
-              space: 'HEX',
-              hex: parseInt('0x' + test[1].toString())
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        CSS_RGB: {
-
-          read: function(original) {
-
-            var test = original.match(/^rgb\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
-            if (test === null) return false;
-
-            return {
-              space: 'RGB',
-              r: parseFloat(test[1]),
-              g: parseFloat(test[2]),
-              b: parseFloat(test[3])
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        CSS_RGBA: {
-
-          read: function(original) {
-
-            var test = original.match(/^rgba\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\,\s*(.+)\s*\)/);
-            if (test === null) return false;
-
-            return {
-              space: 'RGB',
-              r: parseFloat(test[1]),
-              g: parseFloat(test[2]),
-              b: parseFloat(test[3]),
-              a: parseFloat(test[4])
-            };
-
-          },
-
-          write: toString
-
-        }
-
-      }
-
-    },
-
-    // Numbers
-    {
-
-      litmus: common.isNumber,
-
-      conversions: {
-
-        HEX: {
-          read: function(original) {
-            return {
-              space: 'HEX',
-              hex: original,
-              conversionName: 'HEX'
-            }
-          },
-
-          write: function(color) {
-            return color.hex;
-          }
-        }
-
-      }
-
-    },
-
-    // Arrays
-    {
-
-      litmus: common.isArray,
-
-      conversions: {
-
-        RGB_ARRAY: {
-          read: function(original) {
-            if (original.length != 3) return false;
-            return {
-              space: 'RGB',
-              r: original[0],
-              g: original[1],
-              b: original[2]
-            };
-          },
-
-          write: function(color) {
-            return [color.r, color.g, color.b];
-          }
-
-        },
-
-        RGBA_ARRAY: {
-          read: function(original) {
-            if (original.length != 4) return false;
-            return {
-              space: 'RGB',
-              r: original[0],
-              g: original[1],
-              b: original[2],
-              a: original[3]
-            };
-          },
-
-          write: function(color) {
-            return [color.r, color.g, color.b, color.a];
-          }
-
-        }
-
-      }
-
-    },
-
-    // Objects
-    {
-
-      litmus: common.isObject,
-
-      conversions: {
-
-        RGBA_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.r) &&
-                common.isNumber(original.g) &&
-                common.isNumber(original.b) &&
-                common.isNumber(original.a)) {
-              return {
-                space: 'RGB',
-                r: original.r,
-                g: original.g,
-                b: original.b,
-                a: original.a
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              r: color.r,
-              g: color.g,
-              b: color.b,
-              a: color.a
-            }
-          }
-        },
-
-        RGB_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.r) &&
-                common.isNumber(original.g) &&
-                common.isNumber(original.b)) {
-              return {
-                space: 'RGB',
-                r: original.r,
-                g: original.g,
-                b: original.b
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              r: color.r,
-              g: color.g,
-              b: color.b
-            }
-          }
-        },
-
-        HSVA_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.h) &&
-                common.isNumber(original.s) &&
-                common.isNumber(original.v) &&
-                common.isNumber(original.a)) {
-              return {
-                space: 'HSV',
-                h: original.h,
-                s: original.s,
-                v: original.v,
-                a: original.a
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              h: color.h,
-              s: color.s,
-              v: color.v,
-              a: color.a
-            }
-          }
-        },
-
-        HSV_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.h) &&
-                common.isNumber(original.s) &&
-                common.isNumber(original.v)) {
-              return {
-                space: 'HSV',
-                h: original.h,
-                s: original.s,
-                v: original.v
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              h: color.h,
-              s: color.s,
-              v: color.v
-            }
-          }
-
-        }
-
-      }
-
-    }
-
-
-  ];
-
-  return interpret;
-
-
-})(dat.color.toString,
-dat.utils.common),
-dat.color.math = (function () {
-
-  var tmpComponent;
-
-  return {
-
-    hsv_to_rgb: function(h, s, v) {
-
-      var hi = Math.floor(h / 60) % 6;
-
-      var f = h / 60 - Math.floor(h / 60);
-      var p = v * (1.0 - s);
-      var q = v * (1.0 - (f * s));
-      var t = v * (1.0 - ((1.0 - f) * s));
-      var c = [
-        [v, t, p],
-        [q, v, p],
-        [p, v, t],
-        [p, q, v],
-        [t, p, v],
-        [v, p, q]
-      ][hi];
-
-      return {
-        r: c[0] * 255,
-        g: c[1] * 255,
-        b: c[2] * 255
-      };
-
-    },
-
-    rgb_to_hsv: function(r, g, b) {
-
-      var min = Math.min(r, g, b),
-          max = Math.max(r, g, b),
-          delta = max - min,
-          h, s;
-
-      if (max != 0) {
-        s = delta / max;
-      } else {
-        return {
-          h: NaN,
-          s: 0,
-          v: 0
-        };
-      }
-
-      if (r == max) {
-        h = (g - b) / delta;
-      } else if (g == max) {
-        h = 2 + (b - r) / delta;
-      } else {
-        h = 4 + (r - g) / delta;
-      }
-      h /= 6;
-      if (h < 0) {
-        h += 1;
-      }
-
-      return {
-        h: h * 360,
-        s: s,
-        v: max / 255
-      };
-    },
-
-    rgb_to_hex: function(r, g, b) {
-      var hex = this.hex_with_component(0, 2, r);
-      hex = this.hex_with_component(hex, 1, g);
-      hex = this.hex_with_component(hex, 0, b);
-      return hex;
-    },
-
-    component_from_hex: function(hex, componentIndex) {
-      return (hex >> (componentIndex * 8)) & 0xFF;
-    },
-
-    hex_with_component: function(hex, componentIndex, value) {
-      return value << (tmpComponent = componentIndex * 8) | (hex & ~ (0xFF << tmpComponent));
-    }
-
-  }
-
-})(),
-dat.color.toString,
-dat.utils.common);
-},{}],9:[function(require,module,exports){
-/**
- * dat-gui JavaScript Controller Library
- * http://code.google.com/p/dat-gui
- *
- * Copyright 2011 Data Arts Team, Google Creative Lab
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- */
-
-/** @namespace */
-var dat = module.exports = dat || {};
-
-/** @namespace */
-dat.gui = dat.gui || {};
-
-/** @namespace */
-dat.utils = dat.utils || {};
-
-/** @namespace */
-dat.controllers = dat.controllers || {};
-
-/** @namespace */
-dat.dom = dat.dom || {};
-
-/** @namespace */
-dat.color = dat.color || {};
-
-dat.utils.css = (function () {
-  return {
-    load: function (url, doc) {
-      doc = doc || document;
-      var link = doc.createElement('link');
-      link.type = 'text/css';
-      link.rel = 'stylesheet';
-      link.href = url;
-      doc.getElementsByTagName('head')[0].appendChild(link);
-    },
-    inject: function(css, doc) {
-      doc = doc || document;
-      var injected = document.createElement('style');
-      injected.type = 'text/css';
-      injected.innerHTML = css;
-      doc.getElementsByTagName('head')[0].appendChild(injected);
     }
   }
-})();
+  return nearby
+}
 
-
-dat.utils.common = (function () {
-  
-  var ARR_EACH = Array.prototype.forEach;
-  var ARR_SLICE = Array.prototype.slice;
-
-  /**
-   * Band-aid methods for things that should be a lot easier in JavaScript.
-   * Implementation and structure inspired by underscore.js
-   * http://documentcloud.github.com/underscore/
-   */
-
-  return { 
-    
-    BREAK: {},
-  
-    extend: function(target) {
-      
-      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
-        
-        for (var key in obj)
-          if (!this.isUndefined(obj[key])) 
-            target[key] = obj[key];
-        
-      }, this);
-      
-      return target;
-      
-    },
-    
-    defaults: function(target) {
-      
-      this.each(ARR_SLICE.call(arguments, 1), function(obj) {
-        
-        for (var key in obj)
-          if (this.isUndefined(target[key])) 
-            target[key] = obj[key];
-        
-      }, this);
-      
-      return target;
-    
-    },
-    
-    compose: function() {
-      var toCall = ARR_SLICE.call(arguments);
-            return function() {
-              var args = ARR_SLICE.call(arguments);
-              for (var i = toCall.length -1; i >= 0; i--) {
-                args = [toCall[i].apply(this, args)];
-              }
-              return args[0];
-            }
-    },
-    
-    each: function(obj, itr, scope) {
-
-      
-      if (ARR_EACH && obj.forEach === ARR_EACH) { 
-        
-        obj.forEach(itr, scope);
-        
-      } else if (obj.length === obj.length + 0) { // Is number but not NaN
-        
-        for (var key = 0, l = obj.length; key < l; key++)
-          if (key in obj && itr.call(scope, obj[key], key) === this.BREAK) 
-            return;
-            
-      } else {
-
-        for (var key in obj) 
-          if (itr.call(scope, obj[key], key) === this.BREAK)
-            return;
-            
-      }
-            
-    },
-    
-    defer: function(fnc) {
-      setTimeout(fnc, 0);
-    },
-    
-    toArray: function(obj) {
-      if (obj.toArray) return obj.toArray();
-      return ARR_SLICE.call(obj);
-    },
-
-    isUndefined: function(obj) {
-      return obj === undefined;
-    },
-    
-    isNull: function(obj) {
-      return obj === null;
-    },
-    
-    isNaN: function(obj) {
-      return obj !== obj;
-    },
-    
-    isArray: Array.isArray || function(obj) {
-      return obj.constructor === Array;
-    },
-    
-    isObject: function(obj) {
-      return obj === Object(obj);
-    },
-    
-    isNumber: function(obj) {
-      return obj === obj+0;
-    },
-    
-    isString: function(obj) {
-      return obj === obj+'';
-    },
-    
-    isBoolean: function(obj) {
-      return obj === false || obj === true;
-    },
-    
-    isFunction: function(obj) {
-      return Object.prototype.toString.call(obj) === '[object Function]';
+Chunker.prototype.requestMissingChunks = function(position) {
+  var self = this
+  this.nearbyChunks(position).map(function(chunk) {
+    if (!self.chunks[chunk.join('|')]) {
+      self.emit('missingChunk', chunk)
     }
-  
-  };
-    
-})();
+  })
+}
 
+Chunker.prototype.getBounds = function(x, y, z) {
+  var bits = this.chunkBits
+  var low = [x << bits, y << bits, z << bits]
+  var high = [(x+1) << bits, (y+1) << bits, (z+1) << bits]
+  return [low, high]
+}
 
-dat.controllers.Controller = (function (common) {
+Chunker.prototype.generateChunk = function(x, y, z) {
+  var self = this
+  var bounds = this.getBounds(x, y, z)
+  var chunk = this.generateVoxelChunk(bounds[0], bounds[1], x, y, z)
+  var position = [x, y, z]
+  chunk.position = position
+  this.chunks[position.join('|')] = chunk
+  return chunk
+}
 
-  /**
-   * @class An "abstract" class that represents a given property of an object.
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   *
-   * @member dat.controllers
-   */
-  var Controller = function(object, property) {
+Chunker.prototype.chunkAtCoordinates = function(x, y, z) {
+  var bits = this.chunkBits;
+  var cx = x >> bits;
+  var cy = y >> bits;
+  var cz = z >> bits;
+  var chunkPos = [cx, cy, cz];
+  return chunkPos;
+}
 
-    this.initialValue = object[property];
+Chunker.prototype.chunkAtPosition = function(position) {
+  var cubeSize = this.cubeSize;
+  var x = Math.floor(position[0] / cubeSize)
+  var y = Math.floor(position[1] / cubeSize)
+  var z = Math.floor(position[2] / cubeSize)
+  var chunkPos = this.chunkAtCoordinates(x, y, z)
+  return chunkPos
+};
 
-    /**
-     * Those who extend this class will put their DOM elements in here.
-     * @type {DOMElement}
-     */
-    this.domElement = document.createElement('div');
+Chunker.prototype.voxelIndexFromCoordinates = function(x, y, z) {
+  var bits = this.chunkBits
+  var mask = (1 << bits) - 1
+  var vidx = (x & mask) + ((y & mask) << bits) + ((z & mask) << bits * 2)
+  return vidx
+}
 
-    /**
-     * The object to manipulate
-     * @type {Object}
-     */
-    this.object = object;
+Chunker.prototype.voxelIndexFromPosition = function(pos) {
+  var v = this.voxelVector(pos)
+  return this.voxelIndex(v)
+}
 
-    /**
-     * The name of the property to manipulate
-     * @type {String}
-     */
-    this.property = property;
+Chunker.prototype.voxelAtCoordinates = function(x, y, z, val) {
+  var ckey = this.chunkAtCoordinates(x, y, z).join('|')
+  var chunk = this.chunks[ckey]
+  if (!chunk) return false
+  var vidx = this.voxelIndexFromCoordinates(x, y, z)
+  var v = chunk.voxels[vidx]
+  if (typeof val !== 'undefined') {
+    chunk.voxels[vidx] = val
+  }
+  return v
+}
 
-    /**
-     * The function to be called on change.
-     * @type {Function}
-     * @ignore
-     */
-    this.__onChange = undefined;
+Chunker.prototype.voxelAtPosition = function(pos, val) {
+  var cubeSize = this.cubeSize;
+  var x = Math.floor(pos[0] / cubeSize)
+  var y = Math.floor(pos[1] / cubeSize)
+  var z = Math.floor(pos[2] / cubeSize)
+  var v = this.voxelAtCoordinates(x, y, z, val)
+  return v;
+}
 
-    /**
-     * The function to be called on finishing change.
-     * @type {Function}
-     * @ignore
-     */
-    this.__onFinishChange = undefined;
+// deprecated
+Chunker.prototype.voxelIndex = function(voxelVector) {
+  var vidx = this.voxelIndexFromCoordinates(voxelVector[0], voxelVector[1], voxelVector[2])
+  return vidx
+}
 
-  };
+// deprecated
+Chunker.prototype.voxelVector = function(pos) {
+  var cubeSize = this.cubeSize
+  var mask = (1 << this.chunkBits) - 1
+  var vx = (Math.floor(pos[0] / cubeSize)) & mask
+  var vy = (Math.floor(pos[1] / cubeSize)) & mask
+  var vz = (Math.floor(pos[2] / cubeSize)) & mask
+  return [vx, vy, vz]
+};
 
-  common.extend(
+},{"events":96,"inherits":19}],14:[function(require,module,exports){
+var chunker = require('./chunker')
 
-      Controller.prototype,
+module.exports = function(opts) {
+  if (!opts.generateVoxelChunk) opts.generateVoxelChunk = function(low, high) {
+    return generate(low, high, module.exports.generator['Valley'])
+  }
+  return chunker(opts)
+}
 
-      /** @lends dat.controllers.Controller.prototype */
-      {
+module.exports.meshers = {
+  culled: require('./meshers/culled').mesher,
+  greedy: require('./meshers/greedy').mesher,
+  monotone: require('./meshers/monotone').mesher,
+  stupid: require('./meshers/stupid').mesher
+}
 
-        /**
-         * Specify that a function fire every time someone changes the value with
-         * this Controller.
-         *
-         * @param {Function} fnc This function will be called whenever the value
-         * is modified via this Controller.
-         * @returns {dat.controllers.Controller} this
-         */
-        onChange: function(fnc) {
-          this.__onChange = fnc;
-          return this;
-        },
+module.exports.Chunker = chunker.Chunker
+module.exports.geometry = {}
+module.exports.generator = {}
+module.exports.generate = generate
 
-        /**
-         * Specify that a function fire every time someone "finishes" changing
-         * the value wih this Controller. Useful for values that change
-         * incrementally like numbers or strings.
-         *
-         * @param {Function} fnc This function will be called whenever
-         * someone "finishes" changing the value via this Controller.
-         * @returns {dat.controllers.Controller} this
-         */
-        onFinishChange: function(fnc) {
-          this.__onFinishChange = fnc;
-          return this;
-        },
+// from https://github.com/mikolalysenko/mikolalysenko.github.com/blob/master/MinecraftMeshes2/js/testdata.js#L4
+function generate(l, h, f, game) {
+  var d = [ h[0]-l[0], h[1]-l[1], h[2]-l[2] ]
+  var v = new Int8Array(d[0]*d[1]*d[2])
+  var n = 0
+  for(var k=l[2]; k<h[2]; ++k)
+  for(var j=l[1]; j<h[1]; ++j)
+  for(var i=l[0]; i<h[0]; ++i, ++n) {
+    v[n] = f(i,j,k,n,game)
+  }
+  return {voxels:v, dims:d}
+}
 
-        /**
-         * Change the value of <code>object[property]</code>
-         *
-         * @param {Object} newValue The new value of <code>object[property]</code>
-         */
-        setValue: function(newValue) {
-          this.object[this.property] = newValue;
-          if (this.__onChange) {
-            this.__onChange.call(this, newValue);
-          }
-          this.updateDisplay();
-          return this;
-        },
+// shape and terrain generator functions
+module.exports.generator['Sphere'] = function(i,j,k) {
+  return i*i+j*j+k*k <= 16*16 ? 1 : 0
+}
 
-        /**
-         * Gets the value of <code>object[property]</code>
-         *
-         * @returns {Object} The current value of <code>object[property]</code>
-         */
-        getValue: function() {
-          return this.object[this.property];
-        },
+module.exports.generator['Noise'] = function(i,j,k) {
+  return Math.random() < 0.1 ? Math.random() * 0xffffff : 0;
+}
 
-        /**
-         * Refreshes the visual display of a Controller in order to keep sync
-         * with the object's current value.
-         * @returns {dat.controllers.Controller} this
-         */
-        updateDisplay: function() {
-          return this;
-        },
+module.exports.generator['Dense Noise'] = function(i,j,k) {
+  return Math.round(Math.random() * 0xffffff);
+}
 
-        /**
-         * @returns {Boolean} true if the value has deviated from initialValue
-         */
-        isModified: function() {
-          return this.initialValue !== this.getValue()
-        }
+module.exports.generator['Checker'] = function(i,j,k) {
+  return !!((i+j+k)&1) ? (((i^j^k)&2) ? 1 : 0xffffff) : 0;
+}
 
-      }
+module.exports.generator['Hill'] = function(i,j,k) {
+  return j <= 16 * Math.exp(-(i*i + k*k) / 64) ? 1 : 0;
+}
 
-  );
+module.exports.generator['Valley'] = function(i,j,k) {
+  return j <= (i*i + k*k) * 31 / (32*32*2) + 1 ? 1 : 0;
+}
 
-  return Controller;
-
-
-})(dat.utils.common);
-
-
-dat.dom.dom = (function (common) {
-
-  var EVENT_MAP = {
-    'HTMLEvents': ['change'],
-    'MouseEvents': ['click','mousemove','mousedown','mouseup', 'mouseover'],
-    'KeyboardEvents': ['keydown']
-  };
-
-  var EVENT_MAP_INV = {};
-  common.each(EVENT_MAP, function(v, k) {
-    common.each(v, function(e) {
-      EVENT_MAP_INV[e] = k;
-    });
-  });
-
-  var CSS_VALUE_PIXELS = /(\d+(\.\d+)?)px/;
-
-  function cssValueToPixels(val) {
-
-    if (val === '0' || common.isUndefined(val)) return 0;
-
-    var match = val.match(CSS_VALUE_PIXELS);
-
-    if (!common.isNull(match)) {
-      return parseFloat(match[1]);
-    }
-
-    // TODO ...ems? %?
-
+module.exports.generator['Hilly Terrain'] = function(i,j,k) {
+  var h0 = 3.0 * Math.sin(Math.PI * i / 12.0 - Math.PI * k * 0.1) + 27;    
+  if(j > h0+1) {
     return 0;
-
   }
-
-  /**
-   * @namespace
-   * @member dat.dom
-   */
-  var dom = {
-
-    /**
-     * 
-     * @param elem
-     * @param selectable
-     */
-    makeSelectable: function(elem, selectable) {
-
-      if (elem === undefined || elem.style === undefined) return;
-
-      elem.onselectstart = selectable ? function() {
-        return false;
-      } : function() {
-      };
-
-      elem.style.MozUserSelect = selectable ? 'auto' : 'none';
-      elem.style.KhtmlUserSelect = selectable ? 'auto' : 'none';
-      elem.unselectable = selectable ? 'on' : 'off';
-
-    },
-
-    /**
-     *
-     * @param elem
-     * @param horizontal
-     * @param vertical
-     */
-    makeFullscreen: function(elem, horizontal, vertical) {
-
-      if (common.isUndefined(horizontal)) horizontal = true;
-      if (common.isUndefined(vertical)) vertical = true;
-
-      elem.style.position = 'absolute';
-
-      if (horizontal) {
-        elem.style.left = 0;
-        elem.style.right = 0;
-      }
-      if (vertical) {
-        elem.style.top = 0;
-        elem.style.bottom = 0;
-      }
-
-    },
-
-    /**
-     *
-     * @param elem
-     * @param eventType
-     * @param params
-     */
-    fakeEvent: function(elem, eventType, params, aux) {
-      params = params || {};
-      var className = EVENT_MAP_INV[eventType];
-      if (!className) {
-        throw new Error('Event type ' + eventType + ' not supported.');
-      }
-      var evt = document.createEvent(className);
-      switch (className) {
-        case 'MouseEvents':
-          var clientX = params.x || params.clientX || 0;
-          var clientY = params.y || params.clientY || 0;
-          evt.initMouseEvent(eventType, params.bubbles || false,
-              params.cancelable || true, window, params.clickCount || 1,
-              0, //screen X
-              0, //screen Y
-              clientX, //client X
-              clientY, //client Y
-              false, false, false, false, 0, null);
-          break;
-        case 'KeyboardEvents':
-          var init = evt.initKeyboardEvent || evt.initKeyEvent; // webkit || moz
-          common.defaults(params, {
-            cancelable: true,
-            ctrlKey: false,
-            altKey: false,
-            shiftKey: false,
-            metaKey: false,
-            keyCode: undefined,
-            charCode: undefined
-          });
-          init(eventType, params.bubbles || false,
-              params.cancelable, window,
-              params.ctrlKey, params.altKey,
-              params.shiftKey, params.metaKey,
-              params.keyCode, params.charCode);
-          break;
-        default:
-          evt.initEvent(eventType, params.bubbles || false,
-              params.cancelable || true);
-          break;
-      }
-      common.defaults(evt, aux);
-      elem.dispatchEvent(evt);
-    },
-
-    /**
-     *
-     * @param elem
-     * @param event
-     * @param func
-     * @param bool
-     */
-    bind: function(elem, event, func, bool) {
-      bool = bool || false;
-      if (elem.addEventListener)
-        elem.addEventListener(event, func, bool);
-      else if (elem.attachEvent)
-        elem.attachEvent('on' + event, func);
-      return dom;
-    },
-
-    /**
-     *
-     * @param elem
-     * @param event
-     * @param func
-     * @param bool
-     */
-    unbind: function(elem, event, func, bool) {
-      bool = bool || false;
-      if (elem.removeEventListener)
-        elem.removeEventListener(event, func, bool);
-      else if (elem.detachEvent)
-        elem.detachEvent('on' + event, func);
-      return dom;
-    },
-
-    /**
-     *
-     * @param elem
-     * @param className
-     */
-    addClass: function(elem, className) {
-      if (elem.className === undefined) {
-        elem.className = className;
-      } else if (elem.className !== className) {
-        var classes = elem.className.split(/ +/);
-        if (classes.indexOf(className) == -1) {
-          classes.push(className);
-          elem.className = classes.join(' ').replace(/^\s+/, '').replace(/\s+$/, '');
-        }
-      }
-      return dom;
-    },
-
-    /**
-     *
-     * @param elem
-     * @param className
-     */
-    removeClass: function(elem, className) {
-      if (className) {
-        if (elem.className === undefined) {
-          // elem.className = className;
-        } else if (elem.className === className) {
-          elem.removeAttribute('class');
-        } else {
-          var classes = elem.className.split(/ +/);
-          var index = classes.indexOf(className);
-          if (index != -1) {
-            classes.splice(index, 1);
-            elem.className = classes.join(' ');
-          }
-        }
-      } else {
-        elem.className = undefined;
-      }
-      return dom;
-    },
-
-    hasClass: function(elem, className) {
-      return new RegExp('(?:^|\\s+)' + className + '(?:\\s+|$)').test(elem.className) || false;
-    },
-
-    /**
-     *
-     * @param elem
-     */
-    getWidth: function(elem) {
-
-      var style = getComputedStyle(elem);
-
-      return cssValueToPixels(style['border-left-width']) +
-          cssValueToPixels(style['border-right-width']) +
-          cssValueToPixels(style['padding-left']) +
-          cssValueToPixels(style['padding-right']) +
-          cssValueToPixels(style['width']);
-    },
-
-    /**
-     *
-     * @param elem
-     */
-    getHeight: function(elem) {
-
-      var style = getComputedStyle(elem);
-
-      return cssValueToPixels(style['border-top-width']) +
-          cssValueToPixels(style['border-bottom-width']) +
-          cssValueToPixels(style['padding-top']) +
-          cssValueToPixels(style['padding-bottom']) +
-          cssValueToPixels(style['height']);
-    },
-
-    /**
-     *
-     * @param elem
-     */
-    getOffset: function(elem) {
-      var offset = {left: 0, top:0};
-      if (elem.offsetParent) {
-        do {
-          offset.left += elem.offsetLeft;
-          offset.top += elem.offsetTop;
-        } while (elem = elem.offsetParent);
-      }
-      return offset;
-    },
-
-    // http://stackoverflow.com/posts/2684561/revisions
-    /**
-     * 
-     * @param elem
-     */
-    isActive: function(elem) {
-      return elem === document.activeElement && ( elem.type || elem.href );
-    }
-
-  };
-
-  return dom;
-
-})(dat.utils.common);
-
-
-dat.controllers.OptionController = (function (Controller, dom, common) {
-
-  /**
-   * @class Provides a select input to alter the property of an object, using a
-   * list of accepted values.
-   *
-   * @extends dat.controllers.Controller
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   * @param {Object|string[]} options A map of labels to acceptable values, or
-   * a list of acceptable string values.
-   *
-   * @member dat.controllers
-   */
-  var OptionController = function(object, property, options) {
-
-    OptionController.superclass.call(this, object, property);
-
-    var _this = this;
-
-    /**
-     * The drop down menu
-     * @ignore
-     */
-    this.__select = document.createElement('select');
-
-    if (common.isArray(options)) {
-      var map = {};
-      common.each(options, function(element) {
-        map[element] = element;
-      });
-      options = map;
-    }
-
-    common.each(options, function(value, key) {
-
-      var opt = document.createElement('option');
-      opt.innerHTML = key;
-      opt.setAttribute('value', value);
-      _this.__select.appendChild(opt);
-
-    });
-
-    // Acknowledge original value
-    this.updateDisplay();
-
-    dom.bind(this.__select, 'change', function() {
-      var desiredValue = this.options[this.selectedIndex].value;
-      _this.setValue(desiredValue);
-    });
-
-    this.domElement.appendChild(this.__select);
-
-  };
-
-  OptionController.superclass = Controller;
-
-  common.extend(
-
-      OptionController.prototype,
-      Controller.prototype,
-
-      {
-
-        setValue: function(v) {
-          var toReturn = OptionController.superclass.prototype.setValue.call(this, v);
-          if (this.__onFinishChange) {
-            this.__onFinishChange.call(this, this.getValue());
-          }
-          return toReturn;
-        },
-
-        updateDisplay: function() {
-          this.__select.value = this.getValue();
-          return OptionController.superclass.prototype.updateDisplay.call(this);
-        }
-
-      }
-
-  );
-
-  return OptionController;
-
-})(dat.controllers.Controller,
-dat.dom.dom,
-dat.utils.common);
-
-
-dat.controllers.NumberController = (function (Controller, common) {
-
-  /**
-   * @class Represents a given property of an object that is a number.
-   *
-   * @extends dat.controllers.Controller
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   * @param {Object} [params] Optional parameters
-   * @param {Number} [params.min] Minimum allowed value
-   * @param {Number} [params.max] Maximum allowed value
-   * @param {Number} [params.step] Increment by which to change value
-   *
-   * @member dat.controllers
-   */
-  var NumberController = function(object, property, params) {
-
-    NumberController.superclass.call(this, object, property);
-
-    params = params || {};
-
-    this.__min = params.min;
-    this.__max = params.max;
-    this.__step = params.step;
-
-    if (common.isUndefined(this.__step)) {
-
-      if (this.initialValue == 0) {
-        this.__impliedStep = 1; // What are we, psychics?
-      } else {
-        // Hey Doug, check this out.
-        this.__impliedStep = Math.pow(10, Math.floor(Math.log(this.initialValue)/Math.LN10))/10;
-      }
-
-    } else {
-
-      this.__impliedStep = this.__step;
-
-    }
-
-    this.__precision = numDecimals(this.__impliedStep);
-
-
-  };
-
-  NumberController.superclass = Controller;
-
-  common.extend(
-
-      NumberController.prototype,
-      Controller.prototype,
-
-      /** @lends dat.controllers.NumberController.prototype */
-      {
-
-        setValue: function(v) {
-
-          if (this.__min !== undefined && v < this.__min) {
-            v = this.__min;
-          } else if (this.__max !== undefined && v > this.__max) {
-            v = this.__max;
-          }
-
-          if (this.__step !== undefined && v % this.__step != 0) {
-            v = Math.round(v / this.__step) * this.__step;
-          }
-
-          return NumberController.superclass.prototype.setValue.call(this, v);
-
-        },
-
-        /**
-         * Specify a minimum value for <code>object[property]</code>.
-         *
-         * @param {Number} minValue The minimum value for
-         * <code>object[property]</code>
-         * @returns {dat.controllers.NumberController} this
-         */
-        min: function(v) {
-          this.__min = v;
-          return this;
-        },
-
-        /**
-         * Specify a maximum value for <code>object[property]</code>.
-         *
-         * @param {Number} maxValue The maximum value for
-         * <code>object[property]</code>
-         * @returns {dat.controllers.NumberController} this
-         */
-        max: function(v) {
-          this.__max = v;
-          return this;
-        },
-
-        /**
-         * Specify a step value that dat.controllers.NumberController
-         * increments by.
-         *
-         * @param {Number} stepValue The step value for
-         * dat.controllers.NumberController
-         * @default if minimum and maximum specified increment is 1% of the
-         * difference otherwise stepValue is 1
-         * @returns {dat.controllers.NumberController} this
-         */
-        step: function(v) {
-          this.__step = v;
-          return this;
-        }
-
-      }
-
-  );
-
-  function numDecimals(x) {
-    x = x.toString();
-    if (x.indexOf('.') > -1) {
-      return x.length - x.indexOf('.') - 1;
-    } else {
-      return 0;
-    }
+  if(h0 <= j) {
+    return 1;
   }
-
-  return NumberController;
-
-})(dat.controllers.Controller,
-dat.utils.common);
-
-
-dat.controllers.NumberControllerBox = (function (NumberController, dom, common) {
-
-  /**
-   * @class Represents a given property of an object that is a number and
-   * provides an input element with which to manipulate it.
-   *
-   * @extends dat.controllers.Controller
-   * @extends dat.controllers.NumberController
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   * @param {Object} [params] Optional parameters
-   * @param {Number} [params.min] Minimum allowed value
-   * @param {Number} [params.max] Maximum allowed value
-   * @param {Number} [params.step] Increment by which to change value
-   *
-   * @member dat.controllers
-   */
-  var NumberControllerBox = function(object, property, params) {
-
-    this.__truncationSuspended = false;
-
-    NumberControllerBox.superclass.call(this, object, property, params);
-
-    var _this = this;
-
-    /**
-     * {Number} Previous mouse y position
-     * @ignore
-     */
-    var prev_y;
-
-    this.__input = document.createElement('input');
-    this.__input.setAttribute('type', 'text');
-
-    // Makes it so manually specified values are not truncated.
-
-    dom.bind(this.__input, 'change', onChange);
-    dom.bind(this.__input, 'blur', onBlur);
-    dom.bind(this.__input, 'mousedown', onMouseDown);
-    dom.bind(this.__input, 'keydown', function(e) {
-
-      // When pressing entire, you can be as precise as you want.
-      if (e.keyCode === 13) {
-        _this.__truncationSuspended = true;
-        this.blur();
-        _this.__truncationSuspended = false;
-      }
-
-    });
-
-    function onChange() {
-      var attempted = parseFloat(_this.__input.value);
-      if (!common.isNaN(attempted)) _this.setValue(attempted);
-    }
-
-    function onBlur() {
-      onChange();
-      if (_this.__onFinishChange) {
-        _this.__onFinishChange.call(_this, _this.getValue());
-      }
-    }
-
-    function onMouseDown(e) {
-      dom.bind(window, 'mousemove', onMouseDrag);
-      dom.bind(window, 'mouseup', onMouseUp);
-      prev_y = e.clientY;
-    }
-
-    function onMouseDrag(e) {
-
-      var diff = prev_y - e.clientY;
-      _this.setValue(_this.getValue() + diff * _this.__impliedStep);
-
-      prev_y = e.clientY;
-
-    }
-
-    function onMouseUp() {
-      dom.unbind(window, 'mousemove', onMouseDrag);
-      dom.unbind(window, 'mouseup', onMouseUp);
-    }
-
-    this.updateDisplay();
-
-    this.domElement.appendChild(this.__input);
-
-  };
-
-  NumberControllerBox.superclass = NumberController;
-
-  common.extend(
-
-      NumberControllerBox.prototype,
-      NumberController.prototype,
-
-      {
-
-        updateDisplay: function() {
-
-          this.__input.value = this.__truncationSuspended ? this.getValue() : roundToDecimal(this.getValue(), this.__precision);
-          return NumberControllerBox.superclass.prototype.updateDisplay.call(this);
-        }
-
-      }
-
-  );
-
-  function roundToDecimal(value, decimals) {
-    var tenTo = Math.pow(10, decimals);
-    return Math.round(value * tenTo) / tenTo;
+  var h1 = 2.0 * Math.sin(Math.PI * i * 0.25 - Math.PI * k * 0.3) + 20;
+  if(h1 <= j) {
+    return 2;
   }
-
-  return NumberControllerBox;
-
-})(dat.controllers.NumberController,
-dat.dom.dom,
-dat.utils.common);
-
-
-dat.controllers.NumberControllerSlider = (function (NumberController, dom, css, common, styleSheet) {
-
-  /**
-   * @class Represents a given property of an object that is a number, contains
-   * a minimum and maximum, and provides a slider element with which to
-   * manipulate it. It should be noted that the slider element is made up of
-   * <code>&lt;div&gt;</code> tags, <strong>not</strong> the html5
-   * <code>&lt;slider&gt;</code> element.
-   *
-   * @extends dat.controllers.Controller
-   * @extends dat.controllers.NumberController
-   * 
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   * @param {Number} minValue Minimum allowed value
-   * @param {Number} maxValue Maximum allowed value
-   * @param {Number} stepValue Increment by which to change value
-   *
-   * @member dat.controllers
-   */
-  var NumberControllerSlider = function(object, property, min, max, step) {
-
-    NumberControllerSlider.superclass.call(this, object, property, { min: min, max: max, step: step });
-
-    var _this = this;
-
-    this.__background = document.createElement('div');
-    this.__foreground = document.createElement('div');
-    
-
-
-    dom.bind(this.__background, 'mousedown', onMouseDown);
-    
-    dom.addClass(this.__background, 'slider');
-    dom.addClass(this.__foreground, 'slider-fg');
-
-    function onMouseDown(e) {
-
-      dom.bind(window, 'mousemove', onMouseDrag);
-      dom.bind(window, 'mouseup', onMouseUp);
-
-      onMouseDrag(e);
-    }
-
-    function onMouseDrag(e) {
-
-      e.preventDefault();
-
-      var offset = dom.getOffset(_this.__background);
-      var width = dom.getWidth(_this.__background);
-      
-      _this.setValue(
-        map(e.clientX, offset.left, offset.left + width, _this.__min, _this.__max)
-      );
-
-      return false;
-
-    }
-
-    function onMouseUp() {
-      dom.unbind(window, 'mousemove', onMouseDrag);
-      dom.unbind(window, 'mouseup', onMouseUp);
-      if (_this.__onFinishChange) {
-        _this.__onFinishChange.call(_this, _this.getValue());
-      }
-    }
-
-    this.updateDisplay();
-
-    this.__background.appendChild(this.__foreground);
-    this.domElement.appendChild(this.__background);
-
-  };
-
-  NumberControllerSlider.superclass = NumberController;
-
-  /**
-   * Injects default stylesheet for slider elements.
-   */
-  NumberControllerSlider.useDefaultStyles = function() {
-    css.inject(styleSheet);
-  };
-
-  common.extend(
-
-      NumberControllerSlider.prototype,
-      NumberController.prototype,
-
-      {
-
-        updateDisplay: function() {
-          var pct = (this.getValue() - this.__min)/(this.__max - this.__min);
-          this.__foreground.style.width = pct*100+'%';
-          return NumberControllerSlider.superclass.prototype.updateDisplay.call(this);
-        }
-
-      }
-
-
-
-  );
-
-  function map(v, i1, i2, o1, o2) {
-    return o1 + (o2 - o1) * ((v - i1) / (i2 - i1));
+  if(2 < j) {
+    return Math.random() < 0.1 ? 0x222222 : 0xaaaaaa;
   }
-
-  return NumberControllerSlider;
-  
-})(dat.controllers.NumberController,
-dat.dom.dom,
-dat.utils.css,
-dat.utils.common,
-".slider {\n  box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);\n  height: 1em;\n  border-radius: 1em;\n  background-color: #eee;\n  padding: 0 0.5em;\n  overflow: hidden;\n}\n\n.slider-fg {\n  padding: 1px 0 2px 0;\n  background-color: #aaa;\n  height: 1em;\n  margin-left: -0.5em;\n  padding-right: 0.5em;\n  border-radius: 1em 0 0 1em;\n}\n\n.slider-fg:after {\n  display: inline-block;\n  border-radius: 1em;\n  background-color: #fff;\n  border:  1px solid #aaa;\n  content: '';\n  float: right;\n  margin-right: -1em;\n  margin-top: -1px;\n  height: 0.9em;\n  width: 0.9em;\n}");
-
-
-dat.controllers.FunctionController = (function (Controller, dom, common) {
-
-  /**
-   * @class Provides a GUI interface to fire a specified method, a property of an object.
-   *
-   * @extends dat.controllers.Controller
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   *
-   * @member dat.controllers
-   */
-  var FunctionController = function(object, property, text) {
-
-    FunctionController.superclass.call(this, object, property);
-
-    var _this = this;
-
-    this.__button = document.createElement('div');
-    this.__button.innerHTML = text === undefined ? 'Fire' : text;
-    dom.bind(this.__button, 'click', function(e) {
-      e.preventDefault();
-      _this.fire();
-      return false;
-    });
-
-    dom.addClass(this.__button, 'button');
-
-    this.domElement.appendChild(this.__button);
-
-
-  };
-
-  FunctionController.superclass = Controller;
-
-  common.extend(
-
-      FunctionController.prototype,
-      Controller.prototype,
-      {
-        
-        fire: function() {
-          if (this.__onChange) {
-            this.__onChange.call(this);
-          }
-          if (this.__onFinishChange) {
-            this.__onFinishChange.call(this, this.getValue());
-          }
-          this.getValue().call(this.object);
-        }
-      }
-
-  );
-
-  return FunctionController;
-
-})(dat.controllers.Controller,
-dat.dom.dom,
-dat.utils.common);
-
-
-dat.controllers.BooleanController = (function (Controller, dom, common) {
-
-  /**
-   * @class Provides a checkbox input to alter the boolean property of an object.
-   * @extends dat.controllers.Controller
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   *
-   * @member dat.controllers
-   */
-  var BooleanController = function(object, property) {
-
-    BooleanController.superclass.call(this, object, property);
-
-    var _this = this;
-    this.__prev = this.getValue();
-
-    this.__checkbox = document.createElement('input');
-    this.__checkbox.setAttribute('type', 'checkbox');
-
-
-    dom.bind(this.__checkbox, 'change', onChange, false);
-
-    this.domElement.appendChild(this.__checkbox);
-
-    // Match original value
-    this.updateDisplay();
-
-    function onChange() {
-      _this.setValue(!_this.__prev);
-    }
-
-  };
-
-  BooleanController.superclass = Controller;
-
-  common.extend(
-
-      BooleanController.prototype,
-      Controller.prototype,
-
-      {
-
-        setValue: function(v) {
-          var toReturn = BooleanController.superclass.prototype.setValue.call(this, v);
-          if (this.__onFinishChange) {
-            this.__onFinishChange.call(this, this.getValue());
-          }
-          this.__prev = this.getValue();
-          return toReturn;
-        },
-
-        updateDisplay: function() {
-          
-          if (this.getValue() === true) {
-            this.__checkbox.setAttribute('checked', 'checked');
-            this.__checkbox.checked = true;    
-          } else {
-              this.__checkbox.checked = false;
-          }
-
-          return BooleanController.superclass.prototype.updateDisplay.call(this);
-
-        }
-
-
-      }
-
-  );
-
-  return BooleanController;
-
-})(dat.controllers.Controller,
-dat.dom.dom,
-dat.utils.common);
-
-
-dat.color.toString = (function (common) {
-
-  return function(color) {
-
-    if (color.a == 1 || common.isUndefined(color.a)) {
-
-      var s = color.hex.toString(16);
-      while (s.length < 6) {
-        s = '0' + s;
-      }
-
-      return '#' + s;
-
-    } else {
-
-      return 'rgba(' + Math.round(color.r) + ',' + Math.round(color.g) + ',' + Math.round(color.b) + ',' + color.a + ')';
-
-    }
-
-  }
-
-})(dat.utils.common);
-
-
-dat.color.interpret = (function (toString, common) {
-
-  var result, toReturn;
-
-  var interpret = function() {
-
-    toReturn = false;
-
-    var original = arguments.length > 1 ? common.toArray(arguments) : arguments[0];
-
-    common.each(INTERPRETATIONS, function(family) {
-
-      if (family.litmus(original)) {
-
-        common.each(family.conversions, function(conversion, conversionName) {
-
-          result = conversion.read(original);
-
-          if (toReturn === false && result !== false) {
-            toReturn = result;
-            result.conversionName = conversionName;
-            result.conversion = conversion;
-            return common.BREAK;
-
-          }
-
-        });
-
-        return common.BREAK;
-
-      }
-
-    });
-
-    return toReturn;
-
-  };
-
-  var INTERPRETATIONS = [
-
-    // Strings
-    {
-
-      litmus: common.isString,
-
-      conversions: {
-
-        THREE_CHAR_HEX: {
-
-          read: function(original) {
-
-            var test = original.match(/^#([A-F0-9])([A-F0-9])([A-F0-9])$/i);
-            if (test === null) return false;
-
-            return {
-              space: 'HEX',
-              hex: parseInt(
-                  '0x' +
-                      test[1].toString() + test[1].toString() +
-                      test[2].toString() + test[2].toString() +
-                      test[3].toString() + test[3].toString())
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        SIX_CHAR_HEX: {
-
-          read: function(original) {
-
-            var test = original.match(/^#([A-F0-9]{6})$/i);
-            if (test === null) return false;
-
-            return {
-              space: 'HEX',
-              hex: parseInt('0x' + test[1].toString())
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        CSS_RGB: {
-
-          read: function(original) {
-
-            var test = original.match(/^rgb\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\)/);
-            if (test === null) return false;
-
-            return {
-              space: 'RGB',
-              r: parseFloat(test[1]),
-              g: parseFloat(test[2]),
-              b: parseFloat(test[3])
-            };
-
-          },
-
-          write: toString
-
-        },
-
-        CSS_RGBA: {
-
-          read: function(original) {
-
-            var test = original.match(/^rgba\(\s*(.+)\s*,\s*(.+)\s*,\s*(.+)\s*\,\s*(.+)\s*\)/);
-            if (test === null) return false;
-
-            return {
-              space: 'RGB',
-              r: parseFloat(test[1]),
-              g: parseFloat(test[2]),
-              b: parseFloat(test[3]),
-              a: parseFloat(test[4])
-            };
-
-          },
-
-          write: toString
-
-        }
-
-      }
-
-    },
-
-    // Numbers
-    {
-
-      litmus: common.isNumber,
-
-      conversions: {
-
-        HEX: {
-          read: function(original) {
-            return {
-              space: 'HEX',
-              hex: original,
-              conversionName: 'HEX'
-            }
-          },
-
-          write: function(color) {
-            return color.hex;
-          }
-        }
-
-      }
-
-    },
-
-    // Arrays
-    {
-
-      litmus: common.isArray,
-
-      conversions: {
-
-        RGB_ARRAY: {
-          read: function(original) {
-            if (original.length != 3) return false;
-            return {
-              space: 'RGB',
-              r: original[0],
-              g: original[1],
-              b: original[2]
-            };
-          },
-
-          write: function(color) {
-            return [color.r, color.g, color.b];
-          }
-
-        },
-
-        RGBA_ARRAY: {
-          read: function(original) {
-            if (original.length != 4) return false;
-            return {
-              space: 'RGB',
-              r: original[0],
-              g: original[1],
-              b: original[2],
-              a: original[3]
-            };
-          },
-
-          write: function(color) {
-            return [color.r, color.g, color.b, color.a];
-          }
-
-        }
-
-      }
-
-    },
-
-    // Objects
-    {
-
-      litmus: common.isObject,
-
-      conversions: {
-
-        RGBA_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.r) &&
-                common.isNumber(original.g) &&
-                common.isNumber(original.b) &&
-                common.isNumber(original.a)) {
-              return {
-                space: 'RGB',
-                r: original.r,
-                g: original.g,
-                b: original.b,
-                a: original.a
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              r: color.r,
-              g: color.g,
-              b: color.b,
-              a: color.a
-            }
-          }
-        },
-
-        RGB_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.r) &&
-                common.isNumber(original.g) &&
-                common.isNumber(original.b)) {
-              return {
-                space: 'RGB',
-                r: original.r,
-                g: original.g,
-                b: original.b
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              r: color.r,
-              g: color.g,
-              b: color.b
-            }
-          }
-        },
-
-        HSVA_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.h) &&
-                common.isNumber(original.s) &&
-                common.isNumber(original.v) &&
-                common.isNumber(original.a)) {
-              return {
-                space: 'HSV',
-                h: original.h,
-                s: original.s,
-                v: original.v,
-                a: original.a
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              h: color.h,
-              s: color.s,
-              v: color.v,
-              a: color.a
-            }
-          }
-        },
-
-        HSV_OBJ: {
-          read: function(original) {
-            if (common.isNumber(original.h) &&
-                common.isNumber(original.s) &&
-                common.isNumber(original.v)) {
-              return {
-                space: 'HSV',
-                h: original.h,
-                s: original.s,
-                v: original.v
-              }
-            }
-            return false;
-          },
-
-          write: function(color) {
-            return {
-              h: color.h,
-              s: color.s,
-              v: color.v
-            }
-          }
-
-        }
-
-      }
-
-    }
-
-
-  ];
-
-  return interpret;
-
-
-})(dat.color.toString,
-dat.utils.common);
-
-
-dat.GUI = dat.gui.GUI = (function (css, saveDialogueContents, styleSheet, controllerFactory, Controller, BooleanController, FunctionController, NumberControllerBox, NumberControllerSlider, OptionController, ColorController, requestAnimationFrame, CenteredDiv, dom, common) {
-
-  css.inject(styleSheet);
-
-  /** Outer-most className for GUI's */
-  var CSS_NAMESPACE = 'dg';
-
-  var HIDE_KEY_CODE = 72;
-
-  /** The only value shared between the JS and SCSS. Use caution. */
-  var CLOSE_BUTTON_HEIGHT = 20;
-
-  var DEFAULT_DEFAULT_PRESET_NAME = 'Default';
-
-  var SUPPORTS_LOCAL_STORAGE = (function() {
-    try {
-      return 'localStorage' in window && window['localStorage'] !== null;
-    } catch (e) {
-      return false;
-    }
-  })();
-
-  var SAVE_DIALOGUE;
-
-  /** Have we yet to create an autoPlace GUI? */
-  var auto_place_virgin = true;
-
-  /** Fixed position div that auto place GUI's go inside */
-  var auto_place_container;
-
-  /** Are we hiding the GUI's ? */
-  var hide = false;
-
-  /** GUI's which should be hidden */
-  var hideable_guis = [];
-
-  /**
-   * A lightweight controller library for JavaScript. It allows you to easily
-   * manipulate variables and fire functions on the fly.
-   * @class
-   *
-   * @member dat.gui
-   *
-   * @param {Object} [params]
-   * @param {String} [params.name] The name of this GUI.
-   * @param {Object} [params.load] JSON object representing the saved state of
-   * this GUI.
-   * @param {Boolean} [params.auto=true]
-   * @param {dat.gui.GUI} [params.parent] The GUI I'm nested in.
-   * @param {Boolean} [params.closed] If true, starts closed
-   */
-  var GUI = function(params) {
-
-    var _this = this;
-
-    /**
-     * Outermost DOM Element
-     * @type DOMElement
-     */
-    this.domElement = document.createElement('div');
-    this.__ul = document.createElement('ul');
-    this.domElement.appendChild(this.__ul);
-
-    dom.addClass(this.domElement, CSS_NAMESPACE);
-
-    /**
-     * Nested GUI's by name
-     * @ignore
-     */
-    this.__folders = {};
-
-    this.__controllers = [];
-
-    /**
-     * List of objects I'm remembering for save, only used in top level GUI
-     * @ignore
-     */
-    this.__rememberedObjects = [];
-
-    /**
-     * Maps the index of remembered objects to a map of controllers, only used
-     * in top level GUI.
-     *
-     * @private
-     * @ignore
-     *
-     * @example
-     * [
-     *  {
-     *    propertyName: Controller,
-     *    anotherPropertyName: Controller
-     *  },
-     *  {
-     *    propertyName: Controller
-     *  }
-     * ]
-     */
-    this.__rememberedObjectIndecesToControllers = [];
-
-    this.__listening = [];
-
-    params = params || {};
-
-    // Default parameters
-    params = common.defaults(params, {
-      autoPlace: true,
-      width: GUI.DEFAULT_WIDTH
-    });
-
-    params = common.defaults(params, {
-      resizable: params.autoPlace,
-      hideable: params.autoPlace
-    });
-
-
-    if (!common.isUndefined(params.load)) {
-
-      // Explicit preset
-      if (params.preset) params.load.preset = params.preset;
-
-    } else {
-
-      params.load = { preset: DEFAULT_DEFAULT_PRESET_NAME };
-
-    }
-
-    if (common.isUndefined(params.parent) && params.hideable) {
-      hideable_guis.push(this);
-    }
-
-    // Only root level GUI's are resizable.
-    params.resizable = common.isUndefined(params.parent) && params.resizable;
-
-
-    if (params.autoPlace && common.isUndefined(params.scrollable)) {
-      params.scrollable = true;
-    }
-//    params.scrollable = common.isUndefined(params.parent) && params.scrollable === true;
-
-    // Not part of params because I don't want people passing this in via
-    // constructor. Should be a 'remembered' value.
-    var use_local_storage =
-        SUPPORTS_LOCAL_STORAGE &&
-            localStorage.getItem(getLocalStorageHash(this, 'isLocal')) === 'true';
-
-    Object.defineProperties(this,
-
-        /** @lends dat.gui.GUI.prototype */
-        {
-
-          /**
-           * The parent <code>GUI</code>
-           * @type dat.gui.GUI
-           */
-          parent: {
-            get: function() {
-              return params.parent;
-            }
-          },
-
-          scrollable: {
-            get: function() {
-              return params.scrollable;
-            }
-          },
-
-          /**
-           * Handles <code>GUI</code>'s element placement for you
-           * @type Boolean
-           */
-          autoPlace: {
-            get: function() {
-              return params.autoPlace;
-            }
-          },
-
-          /**
-           * The identifier for a set of saved values
-           * @type String
-           */
-          preset: {
-
-            get: function() {
-              if (_this.parent) {
-                return _this.getRoot().preset;
-              } else {
-                return params.load.preset;
-              }
-            },
-
-            set: function(v) {
-              if (_this.parent) {
-                _this.getRoot().preset = v;
-              } else {
-                params.load.preset = v;
-              }
-              setPresetSelectIndex(this);
-              _this.revert();
-            }
-
-          },
-
-          /**
-           * The width of <code>GUI</code> element
-           * @type Number
-           */
-          width: {
-            get: function() {
-              return params.width;
-            },
-            set: function(v) {
-              params.width = v;
-              setWidth(_this, v);
-            }
-          },
-
-          /**
-           * The name of <code>GUI</code>. Used for folders. i.e
-           * a folder's name
-           * @type String
-           */
-          name: {
-            get: function() {
-              return params.name;
-            },
-            set: function(v) {
-              // TODO Check for collisions among sibling folders
-              params.name = v;
-              if (title_row_name) {
-                title_row_name.innerHTML = params.name;
-              }
-            }
-          },
-
-          /**
-           * Whether the <code>GUI</code> is collapsed or not
-           * @type Boolean
-           */
-          closed: {
-            get: function() {
-              return params.closed;
-            },
-            set: function(v) {
-              params.closed = v;
-              if (params.closed) {
-                dom.addClass(_this.__ul, GUI.CLASS_CLOSED);
-              } else {
-                dom.removeClass(_this.__ul, GUI.CLASS_CLOSED);
-              }
-              // For browsers that aren't going to respect the CSS transition,
-              // Lets just check our height against the window height right off
-              // the bat.
-              this.onResize();
-
-              if (_this.__closeButton) {
-                _this.__closeButton.innerHTML = v ? GUI.TEXT_OPEN : GUI.TEXT_CLOSED;
-              }
-            }
-          },
-
-          /**
-           * Contains all presets
-           * @type Object
-           */
-          load: {
-            get: function() {
-              return params.load;
-            }
-          },
-
-          /**
-           * Determines whether or not to use <a href="https://developer.mozilla.org/en/DOM/Storage#localStorage">localStorage</a> as the means for
-           * <code>remember</code>ing
-           * @type Boolean
-           */
-          useLocalStorage: {
-
-            get: function() {
-              return use_local_storage;
-            },
-            set: function(bool) {
-              if (SUPPORTS_LOCAL_STORAGE) {
-                use_local_storage = bool;
-                if (bool) {
-                  dom.bind(window, 'unload', saveToLocalStorage);
-                } else {
-                  dom.unbind(window, 'unload', saveToLocalStorage);
-                }
-                localStorage.setItem(getLocalStorageHash(_this, 'isLocal'), bool);
-              }
-            }
-
-          }
-
-        });
-
-    // Are we a root level GUI?
-    if (common.isUndefined(params.parent)) {
-
-      params.closed = false;
-
-      dom.addClass(this.domElement, GUI.CLASS_MAIN);
-      dom.makeSelectable(this.domElement, false);
-
-      // Are we supposed to be loading locally?
-      if (SUPPORTS_LOCAL_STORAGE) {
-
-        if (use_local_storage) {
-
-          _this.useLocalStorage = true;
-
-          var saved_gui = localStorage.getItem(getLocalStorageHash(this, 'gui'));
-
-          if (saved_gui) {
-            params.load = JSON.parse(saved_gui);
-          }
-
-        }
-
-      }
-
-      this.__closeButton = document.createElement('div');
-      this.__closeButton.innerHTML = GUI.TEXT_CLOSED;
-      dom.addClass(this.__closeButton, GUI.CLASS_CLOSE_BUTTON);
-      this.domElement.appendChild(this.__closeButton);
-
-      dom.bind(this.__closeButton, 'click', function() {
-
-        _this.closed = !_this.closed;
-
-
-      });
-
-
-      // Oh, you're a nested GUI!
-    } else {
-
-      if (params.closed === undefined) {
-        params.closed = true;
-      }
-
-      var title_row_name = document.createTextNode(params.name);
-      dom.addClass(title_row_name, 'controller-name');
-
-      var title_row = addRow(_this, title_row_name);
-
-      var on_click_title = function(e) {
-        e.preventDefault();
-        _this.closed = !_this.closed;
-        return false;
-      };
-
-      dom.addClass(this.__ul, GUI.CLASS_CLOSED);
-
-      dom.addClass(title_row, 'title');
-      dom.bind(title_row, 'click', on_click_title);
-
-      if (!params.closed) {
-        this.closed = false;
-      }
-
-    }
-
-    if (params.autoPlace) {
-
-      if (common.isUndefined(params.parent)) {
-
-        if (auto_place_virgin) {
-          auto_place_container = document.createElement('div');
-          dom.addClass(auto_place_container, CSS_NAMESPACE);
-          dom.addClass(auto_place_container, GUI.CLASS_AUTO_PLACE_CONTAINER);
-          document.body.appendChild(auto_place_container);
-          auto_place_virgin = false;
-        }
-
-        // Put it in the dom for you.
-        auto_place_container.appendChild(this.domElement);
-
-        // Apply the auto styles
-        dom.addClass(this.domElement, GUI.CLASS_AUTO_PLACE);
-
-      }
-
-
-      // Make it not elastic.
-      if (!this.parent) setWidth(_this, params.width);
-
-    }
-
-    dom.bind(window, 'resize', function() { _this.onResize() });
-    dom.bind(this.__ul, 'webkitTransitionEnd', function() { _this.onResize(); });
-    dom.bind(this.__ul, 'transitionend', function() { _this.onResize() });
-    dom.bind(this.__ul, 'oTransitionEnd', function() { _this.onResize() });
-    this.onResize();
-
-
-    if (params.resizable) {
-      addResizeHandle(this);
-    }
-
-    function saveToLocalStorage() {
-      localStorage.setItem(getLocalStorageHash(_this, 'gui'), JSON.stringify(_this.getSaveObject()));
-    }
-
-    var root = _this.getRoot();
-    function resetWidth() {
-        var root = _this.getRoot();
-        root.width += 1;
-        common.defer(function() {
-          root.width -= 1;
-        });
-      }
-
-      if (!params.parent) {
-        resetWidth();
-      }
-
-  };
-
-  GUI.toggleHide = function() {
-
-    hide = !hide;
-    common.each(hideable_guis, function(gui) {
-      gui.domElement.style.zIndex = hide ? -999 : 999;
-      gui.domElement.style.opacity = hide ? 0 : 1;
-    });
-  };
-
-  GUI.CLASS_AUTO_PLACE = 'a';
-  GUI.CLASS_AUTO_PLACE_CONTAINER = 'ac';
-  GUI.CLASS_MAIN = 'main';
-  GUI.CLASS_CONTROLLER_ROW = 'cr';
-  GUI.CLASS_TOO_TALL = 'taller-than-window';
-  GUI.CLASS_CLOSED = 'closed';
-  GUI.CLASS_CLOSE_BUTTON = 'close-button';
-  GUI.CLASS_DRAG = 'drag';
-
-  GUI.DEFAULT_WIDTH = 245;
-  GUI.TEXT_CLOSED = 'Close Controls';
-  GUI.TEXT_OPEN = 'Open Controls';
-
-  dom.bind(window, 'keydown', function(e) {
-
-    if (document.activeElement.type !== 'text' &&
-        (e.which === HIDE_KEY_CODE || e.keyCode == HIDE_KEY_CODE)) {
-      GUI.toggleHide();
-    }
-
-  }, false);
-
-  common.extend(
-
-      GUI.prototype,
-
-      /** @lends dat.gui.GUI */
-      {
-
-        /**
-         * @param object
-         * @param property
-         * @returns {dat.controllers.Controller} The new controller that was added.
-         * @instance
-         */
-        add: function(object, property) {
-
-          return add(
-              this,
-              object,
-              property,
-              {
-                factoryArgs: Array.prototype.slice.call(arguments, 2)
-              }
-          );
-
-        },
-
-        /**
-         * @param object
-         * @param property
-         * @returns {dat.controllers.ColorController} The new controller that was added.
-         * @instance
-         */
-        addColor: function(object, property) {
-
-          return add(
-              this,
-              object,
-              property,
-              {
-                color: true
-              }
-          );
-
-        },
-
-        /**
-         * @param controller
-         * @instance
-         */
-        remove: function(controller) {
-
-          // TODO listening?
-          this.__ul.removeChild(controller.__li);
-          this.__controllers.slice(this.__controllers.indexOf(controller), 1);
-          var _this = this;
-          common.defer(function() {
-            _this.onResize();
-          });
-
-        },
-
-        destroy: function() {
-
-          if (this.autoPlace) {
-            auto_place_container.removeChild(this.domElement);
-          }
-
-        },
-
-        /**
-         * @param name
-         * @returns {dat.gui.GUI} The new folder.
-         * @throws {Error} if this GUI already has a folder by the specified
-         * name
-         * @instance
-         */
-        addFolder: function(name) {
-
-          // We have to prevent collisions on names in order to have a key
-          // by which to remember saved values
-          if (this.__folders[name] !== undefined) {
-            throw new Error('You already have a folder in this GUI by the' +
-                ' name "' + name + '"');
-          }
-
-          var new_gui_params = { name: name, parent: this };
-
-          // We need to pass down the autoPlace trait so that we can
-          // attach event listeners to open/close folder actions to
-          // ensure that a scrollbar appears if the window is too short.
-          new_gui_params.autoPlace = this.autoPlace;
-
-          // Do we have saved appearance data for this folder?
-
-          if (this.load && // Anything loaded?
-              this.load.folders && // Was my parent a dead-end?
-              this.load.folders[name]) { // Did daddy remember me?
-
-            // Start me closed if I was closed
-            new_gui_params.closed = this.load.folders[name].closed;
-
-            // Pass down the loaded data
-            new_gui_params.load = this.load.folders[name];
-
-          }
-
-          var gui = new GUI(new_gui_params);
-          this.__folders[name] = gui;
-
-          var li = addRow(this, gui.domElement);
-          dom.addClass(li, 'folder');
-          return gui;
-
-        },
-
-        open: function() {
-          this.closed = false;
-        },
-
-        close: function() {
-          this.closed = true;
-        },
-
-        onResize: function() {
-
-          var root = this.getRoot();
-
-          if (root.scrollable) {
-
-            var top = dom.getOffset(root.__ul).top;
-            var h = 0;
-
-            common.each(root.__ul.childNodes, function(node) {
-              if (! (root.autoPlace && node === root.__save_row))
-                h += dom.getHeight(node);
-            });
-
-            if (window.innerHeight - top - CLOSE_BUTTON_HEIGHT < h) {
-              dom.addClass(root.domElement, GUI.CLASS_TOO_TALL);
-              root.__ul.style.height = window.innerHeight - top - CLOSE_BUTTON_HEIGHT + 'px';
-            } else {
-              dom.removeClass(root.domElement, GUI.CLASS_TOO_TALL);
-              root.__ul.style.height = 'auto';
-            }
-
-          }
-
-          if (root.__resize_handle) {
-            common.defer(function() {
-              root.__resize_handle.style.height = root.__ul.offsetHeight + 'px';
-            });
-          }
-
-          if (root.__closeButton) {
-            root.__closeButton.style.width = root.width + 'px';
-          }
-
-        },
-
-        /**
-         * Mark objects for saving. The order of these objects cannot change as
-         * the GUI grows. When remembering new objects, append them to the end
-         * of the list.
-         *
-         * @param {Object...} objects
-         * @throws {Error} if not called on a top level GUI.
-         * @instance
-         */
-        remember: function() {
-
-          if (common.isUndefined(SAVE_DIALOGUE)) {
-            SAVE_DIALOGUE = new CenteredDiv();
-            SAVE_DIALOGUE.domElement.innerHTML = saveDialogueContents;
-          }
-
-          if (this.parent) {
-            throw new Error("You can only call remember on a top level GUI.");
-          }
-
-          var _this = this;
-
-          common.each(Array.prototype.slice.call(arguments), function(object) {
-            if (_this.__rememberedObjects.length == 0) {
-              addSaveMenu(_this);
-            }
-            if (_this.__rememberedObjects.indexOf(object) == -1) {
-              _this.__rememberedObjects.push(object);
-            }
-          });
-
-          if (this.autoPlace) {
-            // Set save row width
-            setWidth(this, this.width);
-          }
-
-        },
-
-        /**
-         * @returns {dat.gui.GUI} the topmost parent GUI of a nested GUI.
-         * @instance
-         */
-        getRoot: function() {
-          var gui = this;
-          while (gui.parent) {
-            gui = gui.parent;
-          }
-          return gui;
-        },
-
-        /**
-         * @returns {Object} a JSON object representing the current state of
-         * this GUI as well as its remembered properties.
-         * @instance
-         */
-        getSaveObject: function() {
-
-          var toReturn = this.load;
-
-          toReturn.closed = this.closed;
-
-          // Am I remembering any values?
-          if (this.__rememberedObjects.length > 0) {
-
-            toReturn.preset = this.preset;
-
-            if (!toReturn.remembered) {
-              toReturn.remembered = {};
-            }
-
-            toReturn.remembered[this.preset] = getCurrentPreset(this);
-
-          }
-
-          toReturn.folders = {};
-          common.each(this.__folders, function(element, key) {
-            toReturn.folders[key] = element.getSaveObject();
-          });
-
-          return toReturn;
-
-        },
-
-        save: function() {
-
-          if (!this.load.remembered) {
-            this.load.remembered = {};
-          }
-
-          this.load.remembered[this.preset] = getCurrentPreset(this);
-          markPresetModified(this, false);
-
-        },
-
-        saveAs: function(presetName) {
-
-          if (!this.load.remembered) {
-
-            // Retain default values upon first save
-            this.load.remembered = {};
-            this.load.remembered[DEFAULT_DEFAULT_PRESET_NAME] = getCurrentPreset(this, true);
-
-          }
-
-          this.load.remembered[presetName] = getCurrentPreset(this);
-          this.preset = presetName;
-          addPresetOption(this, presetName, true);
-
-        },
-
-        revert: function(gui) {
-
-          common.each(this.__controllers, function(controller) {
-            // Make revert work on Default.
-            if (!this.getRoot().load.remembered) {
-              controller.setValue(controller.initialValue);
-            } else {
-              recallSavedValue(gui || this.getRoot(), controller);
-            }
-          }, this);
-
-          common.each(this.__folders, function(folder) {
-            folder.revert(folder);
-          });
-
-          if (!gui) {
-            markPresetModified(this.getRoot(), false);
-          }
-
-
-        },
-
-        listen: function(controller) {
-
-          var init = this.__listening.length == 0;
-          this.__listening.push(controller);
-          if (init) updateDisplays(this.__listening);
-
-        }
-
-      }
-
-  );
-
-  function add(gui, object, property, params) {
-
-    if (object[property] === undefined) {
-      throw new Error("Object " + object + " has no property \"" + property + "\"");
-    }
-
-    var controller;
-
-    if (params.color) {
-
-      controller = new ColorController(object, property);
-
-    } else {
-
-      var factoryArgs = [object,property].concat(params.factoryArgs);
-      controller = controllerFactory.apply(gui, factoryArgs);
-
-    }
-
-    if (params.before instanceof Controller) {
-      params.before = params.before.__li;
-    }
-
-    recallSavedValue(gui, controller);
-
-    dom.addClass(controller.domElement, 'c');
-
-    var name = document.createElement('span');
-    dom.addClass(name, 'property-name');
-    name.innerHTML = controller.property;
-
-    var container = document.createElement('div');
-    container.appendChild(name);
-    container.appendChild(controller.domElement);
-
-    var li = addRow(gui, container, params.before);
-
-    dom.addClass(li, GUI.CLASS_CONTROLLER_ROW);
-    dom.addClass(li, typeof controller.getValue());
-
-    augmentController(gui, li, controller);
-
-    gui.__controllers.push(controller);
-
-    return controller;
-
-  }
-
-  /**
-   * Add a row to the end of the GUI or before another row.
-   *
-   * @param gui
-   * @param [dom] If specified, inserts the dom content in the new row
-   * @param [liBefore] If specified, places the new row before another row
-   */
-  function addRow(gui, dom, liBefore) {
-    var li = document.createElement('li');
-    if (dom) li.appendChild(dom);
-    if (liBefore) {
-      gui.__ul.insertBefore(li, params.before);
-    } else {
-      gui.__ul.appendChild(li);
-    }
-    gui.onResize();
-    return li;
-  }
-
-  function augmentController(gui, li, controller) {
-
-    controller.__li = li;
-    controller.__gui = gui;
-
-    common.extend(controller, {
-
-      options: function(options) {
-
-        if (arguments.length > 1) {
-          controller.remove();
-
-          return add(
-              gui,
-              controller.object,
-              controller.property,
-              {
-                before: controller.__li.nextElementSibling,
-                factoryArgs: [common.toArray(arguments)]
-              }
-          );
-
-        }
-
-        if (common.isArray(options) || common.isObject(options)) {
-          controller.remove();
-
-          return add(
-              gui,
-              controller.object,
-              controller.property,
-              {
-                before: controller.__li.nextElementSibling,
-                factoryArgs: [options]
-              }
-          );
-
-        }
-
-      },
-
-      name: function(v) {
-        controller.__li.firstElementChild.firstElementChild.innerHTML = v;
-        return controller;
-      },
-
-      listen: function() {
-        controller.__gui.listen(controller);
-        return controller;
-      },
-
-      remove: function() {
-        controller.__gui.remove(controller);
-        return controller;
-      }
-
-    });
-
-    // All sliders should be accompanied by a box.
-    if (controller instanceof NumberControllerSlider) {
-
-      var box = new NumberControllerBox(controller.object, controller.property,
-          { min: controller.__min, max: controller.__max, step: controller.__step });
-
-      common.each(['updateDisplay', 'onChange', 'onFinishChange'], function(method) {
-        var pc = controller[method];
-        var pb = box[method];
-        controller[method] = box[method] = function() {
-          var args = Array.prototype.slice.call(arguments);
-          pc.apply(controller, args);
-          return pb.apply(box, args);
-        }
-      });
-
-      dom.addClass(li, 'has-slider');
-      controller.domElement.insertBefore(box.domElement, controller.domElement.firstElementChild);
-
-    }
-    else if (controller instanceof NumberControllerBox) {
-
-      var r = function(returned) {
-
-        // Have we defined both boundaries?
-        if (common.isNumber(controller.__min) && common.isNumber(controller.__max)) {
-
-          // Well, then lets just replace this with a slider.
-          controller.remove();
-          return add(
-              gui,
-              controller.object,
-              controller.property,
-              {
-                before: controller.__li.nextElementSibling,
-                factoryArgs: [controller.__min, controller.__max, controller.__step]
-              });
-
-        }
-
-        return returned;
-
-      };
-
-      controller.min = common.compose(r, controller.min);
-      controller.max = common.compose(r, controller.max);
-
-    }
-    else if (controller instanceof BooleanController) {
-
-      dom.bind(li, 'click', function() {
-        dom.fakeEvent(controller.__checkbox, 'click');
-      });
-
-      dom.bind(controller.__checkbox, 'click', function(e) {
-        e.stopPropagation(); // Prevents double-toggle
-      })
-
-    }
-    else if (controller instanceof FunctionController) {
-
-      dom.bind(li, 'click', function() {
-        dom.fakeEvent(controller.__button, 'click');
-      });
-
-      dom.bind(li, 'mouseover', function() {
-        dom.addClass(controller.__button, 'hover');
-      });
-
-      dom.bind(li, 'mouseout', function() {
-        dom.removeClass(controller.__button, 'hover');
-      });
-
-    }
-    else if (controller instanceof ColorController) {
-
-      dom.addClass(li, 'color');
-      controller.updateDisplay = common.compose(function(r) {
-        li.style.borderLeftColor = controller.__color.toString();
-        return r;
-      }, controller.updateDisplay);
-
-      controller.updateDisplay();
-
-    }
-
-    controller.setValue = common.compose(function(r) {
-      if (gui.getRoot().__preset_select && controller.isModified()) {
-        markPresetModified(gui.getRoot(), true);
-      }
-      return r;
-    }, controller.setValue);
-
-  }
-
-  function recallSavedValue(gui, controller) {
-
-    // Find the topmost GUI, that's where remembered objects live.
-    var root = gui.getRoot();
-
-    // Does the object we're controlling match anything we've been told to
-    // remember?
-    var matched_index = root.__rememberedObjects.indexOf(controller.object);
-
-    // Why yes, it does!
-    if (matched_index != -1) {
-
-      // Let me fetch a map of controllers for thcommon.isObject.
-      var controller_map =
-          root.__rememberedObjectIndecesToControllers[matched_index];
-
-      // Ohp, I believe this is the first controller we've created for this
-      // object. Lets make the map fresh.
-      if (controller_map === undefined) {
-        controller_map = {};
-        root.__rememberedObjectIndecesToControllers[matched_index] =
-            controller_map;
-      }
-
-      // Keep track of this controller
-      controller_map[controller.property] = controller;
-
-      // Okay, now have we saved any values for this controller?
-      if (root.load && root.load.remembered) {
-
-        var preset_map = root.load.remembered;
-
-        // Which preset are we trying to load?
-        var preset;
-
-        if (preset_map[gui.preset]) {
-
-          preset = preset_map[gui.preset];
-
-        } else if (preset_map[DEFAULT_DEFAULT_PRESET_NAME]) {
-
-          // Uhh, you can have the default instead?
-          preset = preset_map[DEFAULT_DEFAULT_PRESET_NAME];
-
-        } else {
-
-          // Nada.
-
-          return;
-
-        }
-
-
-        // Did the loaded object remember thcommon.isObject?
-        if (preset[matched_index] &&
-
-          // Did we remember this particular property?
-            preset[matched_index][controller.property] !== undefined) {
-
-          // We did remember something for this guy ...
-          var value = preset[matched_index][controller.property];
-
-          // And that's what it is.
-          controller.initialValue = value;
-          controller.setValue(value);
-
-        }
-
-      }
-
-    }
-
-  }
-
-  function getLocalStorageHash(gui, key) {
-    // TODO how does this deal with multiple GUI's?
-    return document.location.href + '.' + key;
-
-  }
-
-  function addSaveMenu(gui) {
-
-    var div = gui.__save_row = document.createElement('li');
-
-    dom.addClass(gui.domElement, 'has-save');
-
-    gui.__ul.insertBefore(div, gui.__ul.firstChild);
-
-    dom.addClass(div, 'save-row');
-
-    var gears = document.createElement('span');
-    gears.innerHTML = '&nbsp;';
-    dom.addClass(gears, 'button gears');
-
-    // TODO replace with FunctionController
-    var button = document.createElement('span');
-    button.innerHTML = 'Save';
-    dom.addClass(button, 'button');
-    dom.addClass(button, 'save');
-
-    var button2 = document.createElement('span');
-    button2.innerHTML = 'New';
-    dom.addClass(button2, 'button');
-    dom.addClass(button2, 'save-as');
-
-    var button3 = document.createElement('span');
-    button3.innerHTML = 'Revert';
-    dom.addClass(button3, 'button');
-    dom.addClass(button3, 'revert');
-
-    var select = gui.__preset_select = document.createElement('select');
-
-    if (gui.load && gui.load.remembered) {
-
-      common.each(gui.load.remembered, function(value, key) {
-        addPresetOption(gui, key, key == gui.preset);
-      });
-
-    } else {
-      addPresetOption(gui, DEFAULT_DEFAULT_PRESET_NAME, false);
-    }
-
-    dom.bind(select, 'change', function() {
-
-
-      for (var index = 0; index < gui.__preset_select.length; index++) {
-        gui.__preset_select[index].innerHTML = gui.__preset_select[index].value;
-      }
-
-      gui.preset = this.value;
-
-    });
-
-    div.appendChild(select);
-    div.appendChild(gears);
-    div.appendChild(button);
-    div.appendChild(button2);
-    div.appendChild(button3);
-
-    if (SUPPORTS_LOCAL_STORAGE) {
-
-      var saveLocally = document.getElementById('dg-save-locally');
-      var explain = document.getElementById('dg-local-explain');
-
-      saveLocally.style.display = 'block';
-
-      var localStorageCheckBox = document.getElementById('dg-local-storage');
-
-      if (localStorage.getItem(getLocalStorageHash(gui, 'isLocal')) === 'true') {
-        localStorageCheckBox.setAttribute('checked', 'checked');
-      }
-
-      function showHideExplain() {
-        explain.style.display = gui.useLocalStorage ? 'block' : 'none';
-      }
-
-      showHideExplain();
-
-      // TODO: Use a boolean controller, fool!
-      dom.bind(localStorageCheckBox, 'change', function() {
-        gui.useLocalStorage = !gui.useLocalStorage;
-        showHideExplain();
-      });
-
-    }
-
-    var newConstructorTextArea = document.getElementById('dg-new-constructor');
-
-    dom.bind(newConstructorTextArea, 'keydown', function(e) {
-      if (e.metaKey && (e.which === 67 || e.keyCode == 67)) {
-        SAVE_DIALOGUE.hide();
-      }
-    });
-
-    dom.bind(gears, 'click', function() {
-      newConstructorTextArea.innerHTML = JSON.stringify(gui.getSaveObject(), undefined, 2);
-      SAVE_DIALOGUE.show();
-      newConstructorTextArea.focus();
-      newConstructorTextArea.select();
-    });
-
-    dom.bind(button, 'click', function() {
-      gui.save();
-    });
-
-    dom.bind(button2, 'click', function() {
-      var presetName = prompt('Enter a new preset name.');
-      if (presetName) gui.saveAs(presetName);
-    });
-
-    dom.bind(button3, 'click', function() {
-      gui.revert();
-    });
-
-//    div.appendChild(button2);
-
-  }
-
-  function addResizeHandle(gui) {
-
-    gui.__resize_handle = document.createElement('div');
-
-    common.extend(gui.__resize_handle.style, {
-
-      width: '6px',
-      marginLeft: '-3px',
-      height: '200px',
-      cursor: 'ew-resize',
-      position: 'absolute'
-//      border: '1px solid blue'
-
-    });
-
-    var pmouseX;
-
-    dom.bind(gui.__resize_handle, 'mousedown', dragStart);
-    dom.bind(gui.__closeButton, 'mousedown', dragStart);
-
-    gui.domElement.insertBefore(gui.__resize_handle, gui.domElement.firstElementChild);
-
-    function dragStart(e) {
-
-      e.preventDefault();
-
-      pmouseX = e.clientX;
-
-      dom.addClass(gui.__closeButton, GUI.CLASS_DRAG);
-      dom.bind(window, 'mousemove', drag);
-      dom.bind(window, 'mouseup', dragStop);
-
-      return false;
-
-    }
-
-    function drag(e) {
-
-      e.preventDefault();
-
-      gui.width += pmouseX - e.clientX;
-      gui.onResize();
-      pmouseX = e.clientX;
-
-      return false;
-
-    }
-
-    function dragStop() {
-
-      dom.removeClass(gui.__closeButton, GUI.CLASS_DRAG);
-      dom.unbind(window, 'mousemove', drag);
-      dom.unbind(window, 'mouseup', dragStop);
-
-    }
-
-  }
-
-  function setWidth(gui, w) {
-    gui.domElement.style.width = w + 'px';
-    // Auto placed save-rows are position fixed, so we have to
-    // set the width manually if we want it to bleed to the edge
-    if (gui.__save_row && gui.autoPlace) {
-      gui.__save_row.style.width = w + 'px';
-    }if (gui.__closeButton) {
-      gui.__closeButton.style.width = w + 'px';
-    }
-  }
-
-  function getCurrentPreset(gui, useInitialValues) {
-
-    var toReturn = {};
-
-    // For each object I'm remembering
-    common.each(gui.__rememberedObjects, function(val, index) {
-
-      var saved_values = {};
-
-      // The controllers I've made for thcommon.isObject by property
-      var controller_map =
-          gui.__rememberedObjectIndecesToControllers[index];
-
-      // Remember each value for each property
-      common.each(controller_map, function(controller, property) {
-        saved_values[property] = useInitialValues ? controller.initialValue : controller.getValue();
-      });
-
-      // Save the values for thcommon.isObject
-      toReturn[index] = saved_values;
-
-    });
-
-    return toReturn;
-
-  }
-
-  function addPresetOption(gui, name, setSelected) {
-    var opt = document.createElement('option');
-    opt.innerHTML = name;
-    opt.value = name;
-    gui.__preset_select.appendChild(opt);
-    if (setSelected) {
-      gui.__preset_select.selectedIndex = gui.__preset_select.length - 1;
-    }
-  }
-
-  function setPresetSelectIndex(gui) {
-    for (var index = 0; index < gui.__preset_select.length; index++) {
-      if (gui.__preset_select[index].value == gui.preset) {
-        gui.__preset_select.selectedIndex = index;
-      }
-    }
-  }
-
-  function markPresetModified(gui, modified) {
-    var opt = gui.__preset_select[gui.__preset_select.selectedIndex];
-//    console.log('mark', modified, opt);
-    if (modified) {
-      opt.innerHTML = opt.value + "*";
-    } else {
-      opt.innerHTML = opt.value;
-    }
-  }
-
-  function updateDisplays(controllerArray) {
-
-
-    if (controllerArray.length != 0) {
-
-      requestAnimationFrame(function() {
-        updateDisplays(controllerArray);
-      });
-
-    }
-
-    common.each(controllerArray, function(c) {
-      c.updateDisplay();
-    });
-
-  }
-
-  return GUI;
-
-})(dat.utils.css,
-"<div id=\"dg-save\" class=\"dg dialogue\">\n\n  Here's the new load parameter for your <code>GUI</code>'s constructor:\n\n  <textarea id=\"dg-new-constructor\"></textarea>\n\n  <div id=\"dg-save-locally\">\n\n    <input id=\"dg-local-storage\" type=\"checkbox\"/> Automatically save\n    values to <code>localStorage</code> on exit.\n\n    <div id=\"dg-local-explain\">The values saved to <code>localStorage</code> will\n      override those passed to <code>dat.GUI</code>'s constructor. This makes it\n      easier to work incrementally, but <code>localStorage</code> is fragile,\n      and your friends may not see the same values you do.\n      \n    </div>\n    \n  </div>\n\n</div>",
-".dg ul{list-style:none;margin:0;padding:0;width:100%;clear:both}.dg.ac{position:fixed;top:0;left:0;right:0;height:0;z-index:0}.dg:not(.ac) .main{overflow:hidden}.dg.main{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear}.dg.main.taller-than-window{overflow-y:auto}.dg.main.taller-than-window .close-button{opacity:1;margin-top:-1px;border-top:1px solid #2c2c2c}.dg.main ul.closed .close-button{opacity:1 !important}.dg.main:hover .close-button,.dg.main .close-button.drag{opacity:1}.dg.main .close-button{-webkit-transition:opacity 0.1s linear;-o-transition:opacity 0.1s linear;-moz-transition:opacity 0.1s linear;transition:opacity 0.1s linear;border:0;position:absolute;line-height:19px;height:20px;cursor:pointer;text-align:center;background-color:#000}.dg.main .close-button:hover{background-color:#111}.dg.a{float:right;margin-right:15px;overflow-x:hidden}.dg.a.has-save ul{margin-top:27px}.dg.a.has-save ul.closed{margin-top:0}.dg.a .save-row{position:fixed;top:0;z-index:1002}.dg li{-webkit-transition:height 0.1s ease-out;-o-transition:height 0.1s ease-out;-moz-transition:height 0.1s ease-out;transition:height 0.1s ease-out}.dg li:not(.folder){cursor:auto;height:27px;line-height:27px;overflow:hidden;padding:0 4px 0 5px}.dg li.folder{padding:0;border-left:4px solid rgba(0,0,0,0)}.dg li.title{cursor:pointer;margin-left:-4px}.dg .closed li:not(.title),.dg .closed ul li,.dg .closed ul li > *{height:0;overflow:hidden;border:0}.dg .cr{clear:both;padding-left:3px;height:27px}.dg .property-name{cursor:default;float:left;clear:left;width:40%;overflow:hidden;text-overflow:ellipsis}.dg .c{float:left;width:60%}.dg .c input[type=text]{border:0;margin-top:4px;padding:3px;width:100%;float:right}.dg .has-slider input[type=text]{width:30%;margin-left:0}.dg .slider{float:left;width:66%;margin-left:-5px;margin-right:0;height:19px;margin-top:4px}.dg .slider-fg{height:100%}.dg .c input[type=checkbox]{margin-top:9px}.dg .c select{margin-top:5px}.dg .cr.function,.dg .cr.function .property-name,.dg .cr.function *,.dg .cr.boolean,.dg .cr.boolean *{cursor:pointer}.dg .selector{display:none;position:absolute;margin-left:-9px;margin-top:23px;z-index:10}.dg .c:hover .selector,.dg .selector.drag{display:block}.dg li.save-row{padding:0}.dg li.save-row .button{display:inline-block;padding:0px 6px}.dg.dialogue{background-color:#222;width:460px;padding:15px;font-size:13px;line-height:15px}#dg-new-constructor{padding:10px;color:#222;font-family:Monaco, monospace;font-size:10px;border:0;resize:none;box-shadow:inset 1px 1px 1px #888;word-wrap:break-word;margin:12px 0;display:block;width:440px;overflow-y:scroll;height:100px;position:relative}#dg-local-explain{display:none;font-size:11px;line-height:17px;border-radius:3px;background-color:#333;padding:8px;margin-top:10px}#dg-local-explain code{font-size:10px}#dat-gui-save-locally{display:none}.dg{color:#eee;font:11px 'Lucida Grande', sans-serif;text-shadow:0 -1px 0 #111}.dg.main::-webkit-scrollbar{width:5px;background:#1a1a1a}.dg.main::-webkit-scrollbar-corner{height:0;display:none}.dg.main::-webkit-scrollbar-thumb{border-radius:5px;background:#676767}.dg li:not(.folder){background:#1a1a1a;border-bottom:1px solid #2c2c2c}.dg li.save-row{line-height:25px;background:#dad5cb;border:0}.dg li.save-row select{margin-left:5px;width:108px}.dg li.save-row .button{margin-left:5px;margin-top:1px;border-radius:2px;font-size:9px;line-height:7px;padding:4px 4px 5px 4px;background:#c5bdad;color:#fff;text-shadow:0 1px 0 #b0a58f;box-shadow:0 -1px 0 #b0a58f;cursor:pointer}.dg li.save-row .button.gears{background:#c5bdad url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAsAAAANCAYAAAB/9ZQ7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAQJJREFUeNpiYKAU/P//PwGIC/ApCABiBSAW+I8AClAcgKxQ4T9hoMAEUrxx2QSGN6+egDX+/vWT4e7N82AMYoPAx/evwWoYoSYbACX2s7KxCxzcsezDh3evFoDEBYTEEqycggWAzA9AuUSQQgeYPa9fPv6/YWm/Acx5IPb7ty/fw+QZblw67vDs8R0YHyQhgObx+yAJkBqmG5dPPDh1aPOGR/eugW0G4vlIoTIfyFcA+QekhhHJhPdQxbiAIguMBTQZrPD7108M6roWYDFQiIAAv6Aow/1bFwXgis+f2LUAynwoIaNcz8XNx3Dl7MEJUDGQpx9gtQ8YCueB+D26OECAAQDadt7e46D42QAAAABJRU5ErkJggg==) 2px 1px no-repeat;height:7px;width:8px}.dg li.save-row .button:hover{background-color:#bab19e;box-shadow:0 -1px 0 #b0a58f}.dg li.folder{border-bottom:0}.dg li.title{padding-left:16px;background:#000 url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlI+hKgFxoCgAOw==) 6px 10px no-repeat;cursor:pointer;border-bottom:1px solid rgba(255,255,255,0.2)}.dg .closed li.title{background-image:url(data:image/gif;base64,R0lGODlhBQAFAJEAAP////Pz8////////yH5BAEAAAIALAAAAAAFAAUAAAIIlGIWqMCbWAEAOw==)}.dg .cr.boolean{border-left:3px solid #806787}.dg .cr.function{border-left:3px solid #e61d5f}.dg .cr.number{border-left:3px solid #2fa1d6}.dg .cr.number input[type=text]{color:#2fa1d6}.dg .cr.string{border-left:3px solid #1ed36f}.dg .cr.string input[type=text]{color:#1ed36f}.dg .cr.function:hover,.dg .cr.boolean:hover{background:#111}.dg .c input[type=text]{background:#303030;outline:none}.dg .c input[type=text]:hover{background:#3c3c3c}.dg .c input[type=text]:focus{background:#494949;color:#fff}.dg .c .slider{background:#303030;cursor:ew-resize}.dg .c .slider-fg{background:#2fa1d6}.dg .c .slider:hover{background:#3c3c3c}.dg .c .slider:hover .slider-fg{background:#44abda}\n",
-dat.controllers.factory = (function (OptionController, NumberControllerBox, NumberControllerSlider, StringController, FunctionController, BooleanController, common) {
-
-      return function(object, property) {
-
-        var initialValue = object[property];
-
-        // Providing options?
-        if (common.isArray(arguments[2]) || common.isObject(arguments[2])) {
-          return new OptionController(object, property, arguments[2]);
-        }
-
-        // Providing a map?
-
-        if (common.isNumber(initialValue)) {
-
-          if (common.isNumber(arguments[2]) && common.isNumber(arguments[3])) {
-
-            // Has min and max.
-            return new NumberControllerSlider(object, property, arguments[2], arguments[3]);
-
-          } else {
-
-            return new NumberControllerBox(object, property, { min: arguments[2], max: arguments[3] });
-
-          }
-
-        }
-
-        if (common.isString(initialValue)) {
-          return new StringController(object, property);
-        }
-
-        if (common.isFunction(initialValue)) {
-          return new FunctionController(object, property, '');
-        }
-
-        if (common.isBoolean(initialValue)) {
-          return new BooleanController(object, property);
-        }
-
-      }
-
-    })(dat.controllers.OptionController,
-dat.controllers.NumberControllerBox,
-dat.controllers.NumberControllerSlider,
-dat.controllers.StringController = (function (Controller, dom, common) {
-
-  /**
-   * @class Provides a text input to alter the string property of an object.
-   *
-   * @extends dat.controllers.Controller
-   *
-   * @param {Object} object The object to be manipulated
-   * @param {string} property The name of the property to be manipulated
-   *
-   * @member dat.controllers
-   */
-  var StringController = function(object, property) {
-
-    StringController.superclass.call(this, object, property);
-
-    var _this = this;
-
-    this.__input = document.createElement('input');
-    this.__input.setAttribute('type', 'text');
-
-    dom.bind(this.__input, 'keyup', onChange);
-    dom.bind(this.__input, 'change', onChange);
-    dom.bind(this.__input, 'blur', onBlur);
-    dom.bind(this.__input, 'keydown', function(e) {
-      if (e.keyCode === 13) {
-        this.blur();
-      }
-    });
-    
-
-    function onChange() {
-      _this.setValue(_this.__input.value);
-    }
-
-    function onBlur() {
-      if (_this.__onFinishChange) {
-        _this.__onFinishChange.call(_this, _this.getValue());
-      }
-    }
-
-    this.updateDisplay();
-
-    this.domElement.appendChild(this.__input);
-
-  };
-
-  StringController.superclass = Controller;
-
-  common.extend(
-
-      StringController.prototype,
-      Controller.prototype,
-
-      {
-
-        updateDisplay: function() {
-          // Stops the caret from moving on account of:
-          // keyup -> setValue -> updateDisplay
-          if (!dom.isActive(this.__input)) {
-            this.__input.value = this.getValue();
-          }
-          return StringController.superclass.prototype.updateDisplay.call(this);
-        }
-
-      }
-
-  );
-
-  return StringController;
-
-})(dat.controllers.Controller,
-dat.dom.dom,
-dat.utils.common),
-dat.controllers.FunctionController,
-dat.controllers.BooleanController,
-dat.utils.common),
-dat.controllers.Controller,
-dat.controllers.BooleanController,
-dat.controllers.FunctionController,
-dat.controllers.NumberControllerBox,
-dat.controllers.NumberControllerSlider,
-dat.controllers.OptionController,
-dat.controllers.ColorController = (function (Controller, dom, Color, interpret, common) {
-
-  var ColorController = function(object, property) {
-
-    ColorController.superclass.call(this, object, property);
-
-    this.__color = new Color(this.getValue());
-    this.__temp = new Color(0);
-
-    var _this = this;
-
-    this.domElement = document.createElement('div');
-
-    dom.makeSelectable(this.domElement, false);
-
-    this.__selector = document.createElement('div');
-    this.__selector.className = 'selector';
-
-    this.__saturation_field = document.createElement('div');
-    this.__saturation_field.className = 'saturation-field';
-
-    this.__field_knob = document.createElement('div');
-    this.__field_knob.className = 'field-knob';
-    this.__field_knob_border = '2px solid ';
-
-    this.__hue_knob = document.createElement('div');
-    this.__hue_knob.className = 'hue-knob';
-
-    this.__hue_field = document.createElement('div');
-    this.__hue_field.className = 'hue-field';
-
-    this.__input = document.createElement('input');
-    this.__input.type = 'text';
-    this.__input_textShadow = '0 1px 1px ';
-
-    dom.bind(this.__input, 'keydown', function(e) {
-      if (e.keyCode === 13) { // on enter
-        onBlur.call(this);
-      }
-    });
-
-    dom.bind(this.__input, 'blur', onBlur);
-
-    dom.bind(this.__selector, 'mousedown', function(e) {
-
-      dom
-        .addClass(this, 'drag')
-        .bind(window, 'mouseup', function(e) {
-          dom.removeClass(_this.__selector, 'drag');
-        });
-
-    });
-
-    var value_field = document.createElement('div');
-
-    common.extend(this.__selector.style, {
-      width: '122px',
-      height: '102px',
-      padding: '3px',
-      backgroundColor: '#222',
-      boxShadow: '0px 1px 3px rgba(0,0,0,0.3)'
-    });
-
-    common.extend(this.__field_knob.style, {
-      position: 'absolute',
-      width: '12px',
-      height: '12px',
-      border: this.__field_knob_border + (this.__color.v < .5 ? '#fff' : '#000'),
-      boxShadow: '0px 1px 3px rgba(0,0,0,0.5)',
-      borderRadius: '12px',
-      zIndex: 1
-    });
-    
-    common.extend(this.__hue_knob.style, {
-      position: 'absolute',
-      width: '15px',
-      height: '2px',
-      borderRight: '4px solid #fff',
-      zIndex: 1
-    });
-
-    common.extend(this.__saturation_field.style, {
-      width: '100px',
-      height: '100px',
-      border: '1px solid #555',
-      marginRight: '3px',
-      display: 'inline-block',
-      cursor: 'pointer'
-    });
-
-    common.extend(value_field.style, {
-      width: '100%',
-      height: '100%',
-      background: 'none'
-    });
-    
-    linearGradient(value_field, 'top', 'rgba(0,0,0,0)', '#000');
-
-    common.extend(this.__hue_field.style, {
-      width: '15px',
-      height: '100px',
-      display: 'inline-block',
-      border: '1px solid #555',
-      cursor: 'ns-resize'
-    });
-
-    hueGradient(this.__hue_field);
-
-    common.extend(this.__input.style, {
-      outline: 'none',
-//      width: '120px',
-      textAlign: 'center',
-//      padding: '4px',
-//      marginBottom: '6px',
-      color: '#fff',
-      border: 0,
-      fontWeight: 'bold',
-      textShadow: this.__input_textShadow + 'rgba(0,0,0,0.7)'
-    });
-
-    dom.bind(this.__saturation_field, 'mousedown', fieldDown);
-    dom.bind(this.__field_knob, 'mousedown', fieldDown);
-
-    dom.bind(this.__hue_field, 'mousedown', function(e) {
-      setH(e);
-      dom.bind(window, 'mousemove', setH);
-      dom.bind(window, 'mouseup', unbindH);
-    });
-
-    function fieldDown(e) {
-      setSV(e);
-      // document.body.style.cursor = 'none';
-      dom.bind(window, 'mousemove', setSV);
-      dom.bind(window, 'mouseup', unbindSV);
-    }
-
-    function unbindSV() {
-      dom.unbind(window, 'mousemove', setSV);
-      dom.unbind(window, 'mouseup', unbindSV);
-      // document.body.style.cursor = 'default';
-    }
-
-    function onBlur() {
-      var i = interpret(this.value);
-      if (i !== false) {
-        _this.__color.__state = i;
-        _this.setValue(_this.__color.toOriginal());
-      } else {
-        this.value = _this.__color.toString();
-      }
-    }
-
-    function unbindH() {
-      dom.unbind(window, 'mousemove', setH);
-      dom.unbind(window, 'mouseup', unbindH);
-    }
-
-    this.__saturation_field.appendChild(value_field);
-    this.__selector.appendChild(this.__field_knob);
-    this.__selector.appendChild(this.__saturation_field);
-    this.__selector.appendChild(this.__hue_field);
-    this.__hue_field.appendChild(this.__hue_knob);
-
-    this.domElement.appendChild(this.__input);
-    this.domElement.appendChild(this.__selector);
-
-    this.updateDisplay();
-
-    function setSV(e) {
-
-      e.preventDefault();
-
-      var w = dom.getWidth(_this.__saturation_field);
-      var o = dom.getOffset(_this.__saturation_field);
-      var s = (e.clientX - o.left + document.body.scrollLeft) / w;
-      var v = 1 - (e.clientY - o.top + document.body.scrollTop) / w;
-
-      if (v > 1) v = 1;
-      else if (v < 0) v = 0;
-
-      if (s > 1) s = 1;
-      else if (s < 0) s = 0;
-
-      _this.__color.v = v;
-      _this.__color.s = s;
-
-      _this.setValue(_this.__color.toOriginal());
-
-
-      return false;
-
-    }
-
-    function setH(e) {
-
-      e.preventDefault();
-
-      var s = dom.getHeight(_this.__hue_field);
-      var o = dom.getOffset(_this.__hue_field);
-      var h = 1 - (e.clientY - o.top + document.body.scrollTop) / s;
-
-      if (h > 1) h = 1;
-      else if (h < 0) h = 0;
-
-      _this.__color.h = h * 360;
-
-      _this.setValue(_this.__color.toOriginal());
-
-      return false;
-
-    }
-
-  };
-
-  ColorController.superclass = Controller;
-
-  common.extend(
-
-      ColorController.prototype,
-      Controller.prototype,
-
-      {
-
-        updateDisplay: function() {
-
-          var i = interpret(this.getValue());
-
-          if (i !== false) {
-
-            var mismatch = false;
-
-            // Check for mismatch on the interpreted value.
-
-            common.each(Color.COMPONENTS, function(component) {
-              if (!common.isUndefined(i[component]) &&
-                  !common.isUndefined(this.__color.__state[component]) &&
-                  i[component] !== this.__color.__state[component]) {
-                mismatch = true;
-                return {}; // break
-              }
-            }, this);
-
-            // If nothing diverges, we keep our previous values
-            // for statefulness, otherwise we recalculate fresh
-            if (mismatch) {
-              common.extend(this.__color.__state, i);
-            }
-
-          }
-
-          common.extend(this.__temp.__state, this.__color.__state);
-
-          this.__temp.a = 1;
-
-          var flip = (this.__color.v < .5 || this.__color.s > .5) ? 255 : 0;
-          var _flip = 255 - flip;
-
-          common.extend(this.__field_knob.style, {
-            marginLeft: 100 * this.__color.s - 7 + 'px',
-            marginTop: 100 * (1 - this.__color.v) - 7 + 'px',
-            backgroundColor: this.__temp.toString(),
-            border: this.__field_knob_border + 'rgb(' + flip + ',' + flip + ',' + flip +')'
-          });
-
-          this.__hue_knob.style.marginTop = (1 - this.__color.h / 360) * 100 + 'px'
-
-          this.__temp.s = 1;
-          this.__temp.v = 1;
-
-          linearGradient(this.__saturation_field, 'left', '#fff', this.__temp.toString());
-
-          common.extend(this.__input.style, {
-            backgroundColor: this.__input.value = this.__color.toString(),
-            color: 'rgb(' + flip + ',' + flip + ',' + flip +')',
-            textShadow: this.__input_textShadow + 'rgba(' + _flip + ',' + _flip + ',' + _flip +',.7)'
-          });
-
-        }
-
-      }
-
-  );
-  
-  var vendors = ['-moz-','-o-','-webkit-','-ms-',''];
-  
-  function linearGradient(elem, x, a, b) {
-    elem.style.background = '';
-    common.each(vendors, function(vendor) {
-      elem.style.cssText += 'background: ' + vendor + 'linear-gradient('+x+', '+a+' 0%, ' + b + ' 100%); ';
-    });
-  }
-  
-  function hueGradient(elem) {
-    elem.style.background = '';
-    elem.style.cssText += 'background: -moz-linear-gradient(top,  #ff0000 0%, #ff00ff 17%, #0000ff 34%, #00ffff 50%, #00ff00 67%, #ffff00 84%, #ff0000 100%);'
-    elem.style.cssText += 'background: -webkit-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
-    elem.style.cssText += 'background: -o-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
-    elem.style.cssText += 'background: -ms-linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
-    elem.style.cssText += 'background: linear-gradient(top,  #ff0000 0%,#ff00ff 17%,#0000ff 34%,#00ffff 50%,#00ff00 67%,#ffff00 84%,#ff0000 100%);'
-  }
-
-
-  return ColorController;
-
-})(dat.controllers.Controller,
-dat.dom.dom,
-dat.color.Color = (function (interpret, math, toString, common) {
-
-  var Color = function() {
-
-    this.__state = interpret.apply(this, arguments);
-
-    if (this.__state === false) {
-      throw 'Failed to interpret color arguments';
-    }
-
-    this.__state.a = this.__state.a || 1;
-
-
-  };
-
-  Color.COMPONENTS = ['r','g','b','h','s','v','hex','a'];
-
-  common.extend(Color.prototype, {
-
-    toString: function() {
-      return toString(this);
-    },
-
-    toOriginal: function() {
-      return this.__state.conversion.write(this);
-    }
-
-  });
-
-  defineRGBComponent(Color.prototype, 'r', 2);
-  defineRGBComponent(Color.prototype, 'g', 1);
-  defineRGBComponent(Color.prototype, 'b', 0);
-
-  defineHSVComponent(Color.prototype, 'h');
-  defineHSVComponent(Color.prototype, 's');
-  defineHSVComponent(Color.prototype, 'v');
-
-  Object.defineProperty(Color.prototype, 'a', {
-
-    get: function() {
-      return this.__state.a;
-    },
-
-    set: function(v) {
-      this.__state.a = v;
-    }
-
-  });
-
-  Object.defineProperty(Color.prototype, 'hex', {
-
-    get: function() {
-
-      if (!this.__state.space !== 'HEX') {
-        this.__state.hex = math.rgb_to_hex(this.r, this.g, this.b);
-      }
-
-      return this.__state.hex;
-
-    },
-
-    set: function(v) {
-
-      this.__state.space = 'HEX';
-      this.__state.hex = v;
-
-    }
-
-  });
-
-  function defineRGBComponent(target, component, componentHexIndex) {
-
-    Object.defineProperty(target, component, {
-
-      get: function() {
-
-        if (this.__state.space === 'RGB') {
-          return this.__state[component];
-        }
-
-        recalculateRGB(this, component, componentHexIndex);
-
-        return this.__state[component];
-
-      },
-
-      set: function(v) {
-
-        if (this.__state.space !== 'RGB') {
-          recalculateRGB(this, component, componentHexIndex);
-          this.__state.space = 'RGB';
-        }
-
-        this.__state[component] = v;
-
-      }
-
-    });
-
-  }
-
-  function defineHSVComponent(target, component) {
-
-    Object.defineProperty(target, component, {
-
-      get: function() {
-
-        if (this.__state.space === 'HSV')
-          return this.__state[component];
-
-        recalculateHSV(this);
-
-        return this.__state[component];
-
-      },
-
-      set: function(v) {
-
-        if (this.__state.space !== 'HSV') {
-          recalculateHSV(this);
-          this.__state.space = 'HSV';
-        }
-
-        this.__state[component] = v;
-
-      }
-
-    });
-
-  }
-
-  function recalculateRGB(color, component, componentHexIndex) {
-
-    if (color.__state.space === 'HEX') {
-
-      color.__state[component] = math.component_from_hex(color.__state.hex, componentHexIndex);
-
-    } else if (color.__state.space === 'HSV') {
-
-      common.extend(color.__state, math.hsv_to_rgb(color.__state.h, color.__state.s, color.__state.v));
-
-    } else {
-
-      throw 'Corrupted color state';
-
-    }
-
-  }
-
-  function recalculateHSV(color) {
-
-    var result = math.rgb_to_hsv(color.r, color.g, color.b);
-
-    common.extend(color.__state,
-        {
-          s: result.s,
-          v: result.v
-        }
-    );
-
-    if (!common.isNaN(result.h)) {
-      color.__state.h = result.h;
-    } else if (common.isUndefined(color.__state.h)) {
-      color.__state.h = 0;
-    }
-
-  }
-
-  return Color;
-
-})(dat.color.interpret,
-dat.color.math = (function () {
-
-  var tmpComponent;
-
+  return 3;
+}
+
+module.exports.scale = function ( x, fromLow, fromHigh, toLow, toHigh ) {
+  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow
+}
+
+// convenience function that uses the above functions to prebake some simple voxel geometries
+module.exports.generateExamples = function() {
   return {
+    'Sphere': generate([-16,-16,-16], [16,16,16], module.exports.generator['Sphere']),
+    'Noise': generate([0,0,0], [16,16,16], module.exports.generator['Noise']),
+    'Dense Noise': generate([0,0,0], [16,16,16], module.exports.generator['Dense Noise']),
+    'Checker': generate([0,0,0], [8,8,8], module.exports.generator['Checker']),
+    'Hill': generate([-16, 0, -16], [16,16,16], module.exports.generator['Hill']),
+    'Valley': generate([0,0,0], [32,32,32], module.exports.generator['Valley']),
+    'Hilly Terrain': generate([0, 0, 0], [32,32,32], module.exports.generator['Hilly Terrain'])
+  }
+}
 
-    hsv_to_rgb: function(h, s, v) {
 
-      var hi = Math.floor(h / 60) % 6;
+},{"./chunker":13,"./meshers/culled":15,"./meshers/greedy":16,"./meshers/monotone":17,"./meshers/stupid":18}],15:[function(require,module,exports){
+//Naive meshing (with face culling)
+function CulledMesh(volume, dims) {
+  //Precalculate direction vectors for convenience
+  var dir = new Array(3);
+  for(var i=0; i<3; ++i) {
+    dir[i] = [[0,0,0], [0,0,0]];
+    dir[i][0][(i+1)%3] = 1;
+    dir[i][1][(i+2)%3] = 1;
+  }
+  //March over the volume
+  var vertices = []
+    , faces = []
+    , x = [0,0,0]
+    , B = [[false,true]    //Incrementally update bounds (this is a bit ugly)
+          ,[false,true]
+          ,[false,true]]
+    , n = -dims[0]*dims[1];
+  for(           B[2]=[false,true],x[2]=-1; x[2]<dims[2]; B[2]=[true,(++x[2]<dims[2]-1)])
+  for(n-=dims[0],B[1]=[false,true],x[1]=-1; x[1]<dims[1]; B[1]=[true,(++x[1]<dims[1]-1)])
+  for(n-=1,      B[0]=[false,true],x[0]=-1; x[0]<dims[0]; B[0]=[true,(++x[0]<dims[0]-1)], ++n) {
+    //Read current voxel and 3 neighboring voxels using bounds check results
+    var p =   (B[0][0] && B[1][0] && B[2][0]) ? volume[n]                 : 0
+      , b = [ (B[0][1] && B[1][0] && B[2][0]) ? volume[n+1]               : 0
+            , (B[0][0] && B[1][1] && B[2][0]) ? volume[n+dims[0]]         : 0
+            , (B[0][0] && B[1][0] && B[2][1]) ? volume[n+dims[0]*dims[1]] : 0
+          ];
+    //Generate faces
+    for(var d=0; d<3; ++d)
+    if((!!p) !== (!!b[d])) {
+      var s = !p ? 1 : 0;
+      var t = [x[0],x[1],x[2]]
+        , u = dir[d][s]
+        , v = dir[d][s^1];
+      ++t[d];
+      
+      var vertex_count = vertices.length;
+      vertices.push([t[0],           t[1],           t[2]          ]);
+      vertices.push([t[0]+u[0],      t[1]+u[1],      t[2]+u[2]     ]);
+      vertices.push([t[0]+u[0]+v[0], t[1]+u[1]+v[1], t[2]+u[2]+v[2]]);
+      vertices.push([t[0]     +v[0], t[1]     +v[1], t[2]     +v[2]]);
+      faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, s ? b[d] : p]);
+    }
+  }
+  return { vertices:vertices, faces:faces };
+}
 
-      var f = h / 60 - Math.floor(h / 60);
-      var p = v * (1.0 - s);
-      var q = v * (1.0 - (f * s));
-      var t = v * (1.0 - ((1.0 - f) * s));
-      var c = [
-        [v, t, p],
-        [q, v, p],
-        [p, v, t],
-        [p, q, v],
-        [t, p, v],
-        [v, p, q]
-      ][hi];
 
-      return {
-        r: c[0] * 255,
-        g: c[1] * 255,
-        b: c[2] * 255
-      };
+if(exports) {
+  exports.mesher = CulledMesh;
+}
 
-    },
+},{}],16:[function(require,module,exports){
+var GreedyMesh = (function() {
+//Cache buffer internally
+var mask = new Int32Array(4096);
 
-    rgb_to_hsv: function(r, g, b) {
+return function(volume, dims) {
+  var vertices = [], faces = []
+    , dimsX = dims[0]
+    , dimsY = dims[1]
+    , dimsXY = dimsX * dimsY;
 
-      var min = Math.min(r, g, b),
-          max = Math.max(r, g, b),
-          delta = max - min,
-          h, s;
+  //Sweep over 3-axes
+  for(var d=0; d<3; ++d) {
+    var i, j, k, l, w, W, h, n, c
+      , u = (d+1)%3
+      , v = (d+2)%3
+      , x = [0,0,0]
+      , q = [0,0,0]
+      , du = [0,0,0]
+      , dv = [0,0,0]
+      , dimsD = dims[d]
+      , dimsU = dims[u]
+      , dimsV = dims[v]
+      , qdimsX, qdimsXY
+      , xd
 
-      if (max != 0) {
-        s = delta / max;
-      } else {
-        return {
-          h: NaN,
-          s: 0,
-          v: 0
-        };
-      }
-
-      if (r == max) {
-        h = (g - b) / delta;
-      } else if (g == max) {
-        h = 2 + (b - r) / delta;
-      } else {
-        h = 4 + (r - g) / delta;
-      }
-      h /= 6;
-      if (h < 0) {
-        h += 1;
-      }
-
-      return {
-        h: h * 360,
-        s: s,
-        v: max / 255
-      };
-    },
-
-    rgb_to_hex: function(r, g, b) {
-      var hex = this.hex_with_component(0, 2, r);
-      hex = this.hex_with_component(hex, 1, g);
-      hex = this.hex_with_component(hex, 0, b);
-      return hex;
-    },
-
-    component_from_hex: function(hex, componentIndex) {
-      return (hex >> (componentIndex * 8)) & 0xFF;
-    },
-
-    hex_with_component: function(hex, componentIndex, value) {
-      return value << (tmpComponent = componentIndex * 8) | (hex & ~ (0xFF << tmpComponent));
+    if (mask.length < dimsU * dimsV) {
+      mask = new Int32Array(dimsU * dimsV);
     }
 
+    q[d] =  1;
+    x[d] = -1;
+
+    qdimsX  = dimsX  * q[1]
+    qdimsXY = dimsXY * q[2]
+
+    // Compute mask
+    while (x[d] < dimsD) {
+      xd = x[d]
+      n = 0;
+
+      for(x[v] = 0; x[v] < dimsV; ++x[v]) {
+        for(x[u] = 0; x[u] < dimsU; ++x[u], ++n) {
+          var a = xd >= 0      && volume[x[0]      + dimsX * x[1]          + dimsXY * x[2]          ]
+            , b = xd < dimsD-1 && volume[x[0]+q[0] + dimsX * x[1] + qdimsX + dimsXY * x[2] + qdimsXY]
+          if (a ? b : !b) {
+            mask[n] = 0; continue;
+          }
+          mask[n] = a ? a : -b;
+        }
+      }
+
+      ++x[d];
+
+      // Generate mesh for mask using lexicographic ordering
+      n = 0;
+      for (j=0; j < dimsV; ++j) {
+        for (i=0; i < dimsU; ) {
+          c = mask[n];
+          if (!c) {
+            i++;  n++; continue;
+          }
+
+          //Compute width
+          w = 1;
+          while (c === mask[n+w] && i+w < dimsU) w++;
+
+          //Compute height (this is slightly awkward)
+          for (h=1; j+h < dimsV; ++h) {
+            k = 0;
+            while (k < w && c === mask[n+k+h*dimsU]) k++
+            if (k < w) break;
+          }
+
+          // Add quad
+          // The du/dv arrays are reused/reset
+          // for each iteration.
+          du[d] = 0; dv[d] = 0;
+          x[u]  = i;  x[v] = j;
+
+          if (c > 0) {
+            dv[v] = h; dv[u] = 0;
+            du[u] = w; du[v] = 0;
+          } else {
+            c = -c;
+            du[v] = h; du[u] = 0;
+            dv[u] = w; dv[v] = 0;
+          }
+          var vertex_count = vertices.length;
+          vertices.push([x[0],             x[1],             x[2]            ]);
+          vertices.push([x[0]+du[0],       x[1]+du[1],       x[2]+du[2]      ]);
+          vertices.push([x[0]+du[0]+dv[0], x[1]+du[1]+dv[1], x[2]+du[2]+dv[2]]);
+          vertices.push([x[0]      +dv[0], x[1]      +dv[1], x[2]      +dv[2]]);
+          faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, c]);
+
+          //Zero-out mask
+          W = n + w;
+          for(l=0; l<h; ++l) {
+            for(k=n; k<W; ++k) {
+              mask[k+l*dimsU] = 0;
+            }
+          }
+
+          //Increment counters and continue
+          i += w; n += w;
+        }
+      }
+    }
   }
+  return { vertices:vertices, faces:faces };
+}
+})();
 
-})(),
-dat.color.toString,
-dat.utils.common),
-dat.color.interpret,
-dat.utils.common),
-dat.utils.requestAnimationFrame = (function () {
+if(exports) {
+  exports.mesher = GreedyMesh;
+}
 
-  /**
-   * requirejs version of Paul Irish's RequestAnimationFrame
-   * http://paulirish.com/2011/requestanimationframe-for-smart-animating/
-   */
+},{}],17:[function(require,module,exports){
+"use strict";
 
-  return window.webkitRequestAnimationFrame ||
-      window.mozRequestAnimationFrame ||
-      window.oRequestAnimationFrame ||
-      window.msRequestAnimationFrame ||
-      function(callback, element) {
+var MonotoneMesh = (function(){
 
-        window.setTimeout(callback, 1000 / 60);
+function MonotonePolygon(c, v, ul, ur) {
+  this.color  = c;
+  this.left   = [[ul, v]];
+  this.right  = [[ur, v]];
+};
 
-      };
-})(),
-dat.dom.CenteredDiv = (function (dom, common) {
+MonotonePolygon.prototype.close_off = function(v) {
+  this.left.push([ this.left[this.left.length-1][0], v ]);
+  this.right.push([ this.right[this.right.length-1][0], v ]);
+};
 
-
-  var CenteredDiv = function() {
-
-    this.backgroundElement = document.createElement('div');
-    common.extend(this.backgroundElement.style, {
-      backgroundColor: 'rgba(0,0,0,0.8)',
-      top: 0,
-      left: 0,
-      display: 'none',
-      zIndex: '1000',
-      opacity: 0,
-      WebkitTransition: 'opacity 0.2s linear'
-    });
-
-    dom.makeFullscreen(this.backgroundElement);
-    this.backgroundElement.style.position = 'fixed';
-
-    this.domElement = document.createElement('div');
-    common.extend(this.domElement.style, {
-      position: 'fixed',
-      display: 'none',
-      zIndex: '1001',
-      opacity: 0,
-      WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear'
-    });
-
-
-    document.body.appendChild(this.backgroundElement);
-    document.body.appendChild(this.domElement);
-
-    var _this = this;
-    dom.bind(this.backgroundElement, 'click', function() {
-      _this.hide();
-    });
-
-
-  };
-
-  CenteredDiv.prototype.show = function() {
-
-    var _this = this;
-    
-
-
-    this.backgroundElement.style.display = 'block';
-
-    this.domElement.style.display = 'block';
-    this.domElement.style.opacity = 0;
-//    this.domElement.style.top = '52%';
-    this.domElement.style.webkitTransform = 'scale(1.1)';
-
-    this.layout();
-
-    common.defer(function() {
-      _this.backgroundElement.style.opacity = 1;
-      _this.domElement.style.opacity = 1;
-      _this.domElement.style.webkitTransform = 'scale(1)';
-    });
-
-  };
-
-  CenteredDiv.prototype.hide = function() {
-
-    var _this = this;
-
-    var hide = function() {
-
-      _this.domElement.style.display = 'none';
-      _this.backgroundElement.style.display = 'none';
-
-      dom.unbind(_this.domElement, 'webkitTransitionEnd', hide);
-      dom.unbind(_this.domElement, 'transitionend', hide);
-      dom.unbind(_this.domElement, 'oTransitionEnd', hide);
-
-    };
-
-    dom.bind(this.domElement, 'webkitTransitionEnd', hide);
-    dom.bind(this.domElement, 'transitionend', hide);
-    dom.bind(this.domElement, 'oTransitionEnd', hide);
-
-    this.backgroundElement.style.opacity = 0;
-//    this.domElement.style.top = '48%';
-    this.domElement.style.opacity = 0;
-    this.domElement.style.webkitTransform = 'scale(1.1)';
-
-  };
-
-  CenteredDiv.prototype.layout = function() {
-    this.domElement.style.left = window.innerWidth/2 - dom.getWidth(this.domElement) / 2 + 'px';
-    this.domElement.style.top = window.innerHeight/2 - dom.getHeight(this.domElement) / 2 + 'px';
-  };
-  
-  function lockScroll(e) {
-    console.log(e);
+MonotonePolygon.prototype.merge_run = function(v, u_l, u_r) {
+  var l = this.left[this.left.length-1][0]
+    , r = this.right[this.right.length-1][0]; 
+  if(l !== u_l) {
+    this.left.push([ l, v ]);
+    this.left.push([ u_l, v ]);
   }
+  if(r !== u_r) {
+    this.right.push([ r, v ]);
+    this.right.push([ u_r, v ]);
+  }
+};
 
-  return CenteredDiv;
 
-})(dat.dom.dom,
-dat.utils.common),
-dat.dom.dom,
-dat.utils.common);
-},{}],10:[function(require,module,exports){
+return function(volume, dims) {
+  function f(i,j,k) {
+    return volume[i + dims[0] * (j + dims[1] * k)];
+  }
+  //Sweep over 3-axes
+  var vertices = [], faces = [];
+  for(var d=0; d<3; ++d) {
+    var i, j, k
+      , u = (d+1)%3   //u and v are orthogonal directions to d
+      , v = (d+2)%3
+      , x = new Int32Array(3)
+      , q = new Int32Array(3)
+      , runs = new Int32Array(2 * (dims[u]+1))
+      , frontier = new Int32Array(dims[u])  //Frontier is list of pointers to polygons
+      , next_frontier = new Int32Array(dims[u])
+      , left_index = new Int32Array(2 * dims[v])
+      , right_index = new Int32Array(2 * dims[v])
+      , stack = new Int32Array(24 * dims[v])
+      , delta = [[0,0], [0,0]];
+    //q points along d-direction
+    q[d] = 1;
+    //Initialize sentinel
+    for(x[d]=-1; x[d]<dims[d]; ) {
+      // --- Perform monotone polygon subdivision ---
+      var n = 0
+        , polygons = []
+        , nf = 0;
+      for(x[v]=0; x[v]<dims[v]; ++x[v]) {
+        //Make one pass over the u-scan line of the volume to run-length encode polygon
+        var nr = 0, p = 0, c = 0;
+        for(x[u]=0; x[u]<dims[u]; ++x[u], p = c) {
+          //Compute the type for this face
+          var a = (0    <= x[d]      ? f(x[0],      x[1],      x[2])      : 0)
+            , b = (x[d] <  dims[d]-1 ? f(x[0]+q[0], x[1]+q[1], x[2]+q[2]) : 0);
+          c = a;
+          if((!a) === (!b)) {
+            c = 0;
+          } else if(!a) {
+            c = -b;
+          }
+          //If cell type doesn't match, start a new run
+          if(p !== c) {
+            runs[nr++] = x[u];
+            runs[nr++] = c;
+          }
+        }
+        //Add sentinel run
+        runs[nr++] = dims[u];
+        runs[nr++] = 0;
+        //Update frontier by merging runs
+        var fp = 0;
+        for(var i=0, j=0; i<nf && j<nr-2; ) {
+          var p    = polygons[frontier[i]]
+            , p_l  = p.left[p.left.length-1][0]
+            , p_r  = p.right[p.right.length-1][0]
+            , p_c  = p.color
+            , r_l  = runs[j]    //Start of run
+            , r_r  = runs[j+2]  //End of run
+            , r_c  = runs[j+1]; //Color of run
+          //Check if we can merge run with polygon
+          if(r_r > p_l && p_r > r_l && r_c === p_c) {
+            //Merge run
+            p.merge_run(x[v], r_l, r_r);
+            //Insert polygon into frontier
+            next_frontier[fp++] = frontier[i];
+            ++i;
+            j += 2;
+          } else {
+            //Check if we need to advance the run pointer
+            if(r_r <= p_r) {
+              if(!!r_c) {
+                var n_poly = new MonotonePolygon(r_c, x[v], r_l, r_r);
+                next_frontier[fp++] = polygons.length;
+                polygons.push(n_poly);
+              }
+              j += 2;
+            }
+            //Check if we need to advance the frontier pointer
+            if(p_r <= r_r) {
+              p.close_off(x[v]);
+              ++i;
+            }
+          }
+        }
+        //Close off any residual polygons
+        for(; i<nf; ++i) {
+          polygons[frontier[i]].close_off(x[v]);
+        }
+        //Add any extra runs to frontier
+        for(; j<nr-2; j+=2) {
+          var r_l  = runs[j]
+            , r_r  = runs[j+2]
+            , r_c  = runs[j+1];
+          if(!!r_c) {
+            var n_poly = new MonotonePolygon(r_c, x[v], r_l, r_r);
+            next_frontier[fp++] = polygons.length;
+            polygons.push(n_poly);
+          }
+        }
+        //Swap frontiers
+        var tmp = next_frontier;
+        next_frontier = frontier;
+        frontier = tmp;
+        nf = fp;
+      }
+      //Close off frontier
+      for(var i=0; i<nf; ++i) {
+        var p = polygons[frontier[i]];
+        p.close_off(dims[v]);
+      }
+      // --- Monotone subdivision of polygon is complete at this point ---
+      
+      x[d]++;
+      
+      //Now we just need to triangulate each monotone polygon
+      for(var i=0; i<polygons.length; ++i) {
+        var p = polygons[i]
+          , c = p.color
+          , flipped = false;
+        if(c < 0) {
+          flipped = true;
+          c = -c;
+        }
+        for(var j=0; j<p.left.length; ++j) {
+          left_index[j] = vertices.length;
+          var y = [0.0,0.0,0.0]
+            , z = p.left[j];
+          y[d] = x[d];
+          y[u] = z[0];
+          y[v] = z[1];
+          vertices.push(y);
+        }
+        for(var j=0; j<p.right.length; ++j) {
+          right_index[j] = vertices.length;
+          var y = [0.0,0.0,0.0]
+            , z = p.right[j];
+          y[d] = x[d];
+          y[u] = z[0];
+          y[v] = z[1];
+          vertices.push(y);
+        }
+        //Triangulate the monotone polygon
+        var bottom = 0
+          , top = 0
+          , l_i = 1
+          , r_i = 1
+          , side = true;  //true = right, false = left
+        
+        stack[top++] = left_index[0];
+        stack[top++] = p.left[0][0];
+        stack[top++] = p.left[0][1];
+        
+        stack[top++] = right_index[0];
+        stack[top++] = p.right[0][0];
+        stack[top++] = p.right[0][1];
+        
+        while(l_i < p.left.length || r_i < p.right.length) {
+          //Compute next side
+          var n_side = false;
+          if(l_i === p.left.length) {
+            n_side = true;
+          } else if(r_i !== p.right.length) {
+            var l = p.left[l_i]
+              , r = p.right[r_i];
+            n_side = l[1] > r[1];
+          }
+          var idx = n_side ? right_index[r_i] : left_index[l_i]
+            , vert = n_side ? p.right[r_i] : p.left[l_i];
+          if(n_side !== side) {
+            //Opposite side
+            while(bottom+3 < top) {
+              if(flipped === n_side) {
+                faces.push([ stack[bottom], stack[bottom+3], idx, c]);
+              } else {
+                faces.push([ stack[bottom+3], stack[bottom], idx, c]);              
+              }
+              bottom += 3;
+            }
+          } else {
+            //Same side
+            while(bottom+3 < top) {
+              //Compute convexity
+              for(var j=0; j<2; ++j)
+              for(var k=0; k<2; ++k) {
+                delta[j][k] = stack[top-3*(j+1)+k+1] - vert[k];
+              }
+              var det = delta[0][0] * delta[1][1] - delta[1][0] * delta[0][1];
+              if(n_side === (det > 0)) {
+                break;
+              }
+              if(det !== 0) {
+                if(flipped === n_side) {
+                  faces.push([ stack[top-3], stack[top-6], idx, c ]);
+                } else {
+                  faces.push([ stack[top-6], stack[top-3], idx, c ]);
+                }
+              }
+              top -= 3;
+            }
+          }
+          //Push vertex
+          stack[top++] = idx;
+          stack[top++] = vert[0];
+          stack[top++] = vert[1];
+          //Update loop index
+          if(n_side) {
+            ++r_i;
+          } else {
+            ++l_i;
+          }
+          side = n_side;
+        }
+      }
+    }
+  }
+  return { vertices:vertices, faces:faces };
+}
+})();
+
+if(exports) {
+  exports.mesher = MonotoneMesh;
+}
+
+},{}],18:[function(require,module,exports){
+//The stupidest possible way to generate a Minecraft mesh (I think)
+function StupidMesh(volume, dims) {
+  var vertices = [], faces = [], x = [0,0,0], n = 0;
+  for(x[2]=0; x[2]<dims[2]; ++x[2])
+  for(x[1]=0; x[1]<dims[1]; ++x[1])
+  for(x[0]=0; x[0]<dims[0]; ++x[0], ++n)
+  if(!!volume[n]) {
+    for(var d=0; d<3; ++d) {
+      var t = [x[0], x[1], x[2]]
+        , u = [0,0,0]
+        , v = [0,0,0];
+      u[(d+1)%3] = 1;
+      v[(d+2)%3] = 1;
+      for(var s=0; s<2; ++s) {
+        t[d] = x[d] + s;
+        var tmp = u;
+        u = v;
+        v = tmp;
+        var vertex_count = vertices.length;
+        vertices.push([t[0],           t[1],           t[2]          ]);
+        vertices.push([t[0]+u[0],      t[1]+u[1],      t[2]+u[2]     ]);
+        vertices.push([t[0]+u[0]+v[0], t[1]+u[1]+v[1], t[2]+u[2]+v[2]]);
+        vertices.push([t[0]     +v[0], t[1]     +v[1], t[2]     +v[2]]);
+        faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, volume[n]]);
+      }
+    }
+  }
+  return { vertices:vertices, faces:faces };
+}
+
+
+if(exports) {
+  exports.mesher = StupidMesh;
+}
+
+},{}],19:[function(require,module,exports){
+module.exports = inherits
+
+function inherits (c, p, proto) {
+  proto = proto || {}
+  var e = {}
+  ;[c.prototype, proto].forEach(function (s) {
+    Object.getOwnPropertyNames(s).forEach(function (k) {
+      e[k] = Object.getOwnPropertyDescriptor(s, k)
+    })
+  })
+  c.prototype = Object.create(p.prototype, e)
+  c.super = p
+}
+
+//function Child () {
+//  Child.super.call(this)
+//  console.error([this
+//                ,this.constructor
+//                ,this.constructor === Child
+//                ,this.constructor.super === Parent
+//                ,Object.getPrototypeOf(this) === Child.prototype
+//                ,Object.getPrototypeOf(Object.getPrototypeOf(this))
+//                 === Parent.prototype
+//                ,this instanceof Child
+//                ,this instanceof Parent])
+//}
+//function Parent () {}
+//inherits(Child, Parent)
+//new Child
+
+},{}],20:[function(require,module,exports){
 var process=require("__browserify_process");var voxel = require('voxel')
 var voxelMesh = require('voxel-mesh')
 var ray = require('voxel-raycast')
@@ -42000,8 +42804,8 @@ function Game(opts) {
   
   this.paused = true
   this.initializeRendering(opts)
-  
-  for (var chunkIndex in this.voxels.chunks) this.showChunk(this.voxels.chunks[chunkIndex])
+ 
+  this.showAllChunks()
 
   setTimeout(function() {
     self.asyncChunkGeneration = 'asyncChunkGeneration' in opts ? opts.asyncChunkGeneration : true
@@ -42371,12 +43175,19 @@ Game.prototype.removeFarChunks = function(playerPosition) {
     if (!chunk) return
     var chunkPosition = chunk.position
     if (mesh) {
-      self.scene.remove(mesh[self.meshType])
-      mesh[self.meshType].geometry.dispose()
+      if (mesh.surfaceMesh) {
+        self.scene.remove(mesh.surfaceMesh)
+        mesh.surfaceMesh.geometry.dispose()
+      }
+      if (mesh.wireMesh) {
+        mesh.wireMesh.geometry.dispose()
+        self.scene.remove(mesh.wireMesh)
+      }
       delete mesh.data
       delete mesh.geometry
       delete mesh.meshed
       delete mesh.surfaceMesh
+      delete mesh.wireMesh
     }
     delete self.voxels.chunks[chunkIndex]
     self.emit('removeChunk', chunkPosition)
@@ -42424,13 +43235,22 @@ Game.prototype.getChunkAtPosition = function(pos) {
   return chunk
 }
 
+Game.prototype.showAllChunks = function() {
+  for (var chunkIndex in this.voxels.chunks) {
+    this.showChunk(this.voxels.chunks[chunkIndex])
+  }
+}
+
 Game.prototype.showChunk = function(chunk) {
   var chunkIndex = chunk.position.join('|')
   var bounds = this.voxels.getBounds.apply(this.voxels, chunk.position)
   var scale = new THREE.Vector3(1, 1, 1)
   var mesh = voxelMesh(chunk, this.mesher, scale, this.THREE)
   this.voxels.chunks[chunkIndex] = chunk
-  if (this.voxels.meshes[chunkIndex]) this.scene.remove(this.voxels.meshes[chunkIndex][this.meshType])
+  if (this.voxels.meshes[chunkIndex]) {
+    if (this.voxels.meshes[chunkIndex].surfaceMesh) this.scene.remove(this.voxels.meshes[chunkIndex].surfaceMesh)
+    if (this.voxels.meshes[chunkIndex].wireMesh) this.scene.remove(this.voxels.meshes[chunkIndex].wireMesh)
+  }
   this.voxels.meshes[chunkIndex] = mesh
   if (this.isClient) {
     if (this.meshType === 'wireMesh') mesh.createWireMesh()
@@ -42607,7 +43427,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":11,"./lib/stats":12,"__browserify_process":92,"aabb-3d":13,"collide-3d-tilemap":14,"events":83,"gl-matrix":15,"inherits":16,"interact":17,"kb-controls":26,"path":84,"pin-it":31,"raf":32,"spatial-events":33,"three":35,"tic":36,"voxel":44,"voxel-control":37,"voxel-mesh":38,"voxel-physical":39,"voxel-raycast":40,"voxel-region-change":41,"voxel-texture":65,"voxel-view":42}],11:[function(require,module,exports){
+},{"./lib/detector":21,"./lib/stats":22,"__browserify_process":105,"aabb-3d":23,"collide-3d-tilemap":24,"events":96,"gl-matrix":25,"inherits":26,"interact":27,"kb-controls":36,"path":97,"pin-it":41,"raf":42,"spatial-events":43,"three":45,"tic":46,"voxel":54,"voxel-control":47,"voxel-mesh":48,"voxel-physical":49,"voxel-raycast":50,"voxel-region-change":51,"voxel-texture":78,"voxel-view":52}],21:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -42668,7 +43488,7 @@ module.exports = function() {
   };
 }
 
-},{}],12:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -42814,7 +43634,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],13:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -42913,7 +43733,7 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":15}],14:[function(require,module,exports){
+},{"gl-matrix":25}],24:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -43002,7 +43822,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],15:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -46075,38 +46895,9 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],16:[function(require,module,exports){
-module.exports = inherits
-
-function inherits (c, p, proto) {
-  proto = proto || {}
-  var e = {}
-  ;[c.prototype, proto].forEach(function (s) {
-    Object.getOwnPropertyNames(s).forEach(function (k) {
-      e[k] = Object.getOwnPropertyDescriptor(s, k)
-    })
-  })
-  c.prototype = Object.create(p.prototype, e)
-  c.super = p
-}
-
-//function Child () {
-//  Child.super.call(this)
-//  console.error([this
-//                ,this.constructor
-//                ,this.constructor === Child
-//                ,this.constructor.super === Parent
-//                ,Object.getPrototypeOf(this) === Child.prototype
-//                ,Object.getPrototypeOf(Object.getPrototypeOf(this))
-//                 === Parent.prototype
-//                ,this instanceof Child
-//                ,this instanceof Parent])
-//}
-//function Parent () {}
-//inherits(Child, Parent)
-//new Child
-
-},{}],17:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
+module.exports=require(19)
+},{}],27:[function(require,module,exports){
 var lock = require('pointer-lock')
   , drag = require('drag-stream')
   , full = require('fullscreen')
@@ -46213,7 +47004,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":18,"events":83,"fullscreen":24,"pointer-lock":25,"stream":85}],18:[function(require,module,exports){
+},{"drag-stream":28,"events":96,"fullscreen":34,"pointer-lock":35,"stream":98}],28:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -46281,10 +47072,10 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":19,"stream":85,"through":23}],19:[function(require,module,exports){
+},{"domnode-dom":29,"stream":98,"through":33}],29:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":20}],20:[function(require,module,exports){
+},{"./lib/index":30}],30:[function(require,module,exports){
 var WriteStream = require('./writable')
   , ReadStream = require('./readable')
   , DOMStream = {}
@@ -46322,7 +47113,7 @@ DOMStream.createEventStream = function(el, type, preventDefault) {
 module.exports = DOMStream
 
 
-},{"./readable":21,"./writable":22}],21:[function(require,module,exports){
+},{"./readable":31,"./writable":32}],31:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -46431,7 +47222,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":85}],22:[function(require,module,exports){
+},{"stream":98}],32:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -46513,7 +47304,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":85}],23:[function(require,module,exports){
+},{"stream":98}],33:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -46613,7 +47404,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":92,"stream":85}],24:[function(require,module,exports){
+},{"__browserify_process":105,"stream":98}],34:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -46704,7 +47495,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":83}],25:[function(require,module,exports){
+},{"events":96}],35:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -46868,7 +47659,7 @@ function shim(el) {
     null
 }
 
-},{"events":83,"stream":85}],26:[function(require,module,exports){
+},{"events":96,"stream":98}],36:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -46965,7 +47756,7 @@ module.exports = function(el, bindings, state) {
   }
 }
 
-},{"ever":27,"vkey":30}],27:[function(require,module,exports){
+},{"ever":37,"vkey":40}],37:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter;
 
 module.exports = function (elem) {
@@ -47077,7 +47868,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":28,"./types.json":29,"events":83}],28:[function(require,module,exports){
+},{"./init.json":38,"./types.json":39,"events":96}],38:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -47120,7 +47911,7 @@ module.exports={
   ]
 }
 
-},{}],29:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 module.exports={
   "MouseEvent" : [
     "click",
@@ -47165,7 +47956,7 @@ module.exports={
   ]
 }
 
-},{}],30:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -47303,7 +48094,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],31:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -47385,7 +48176,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],32:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -47432,7 +48223,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":83}],33:[function(require,module,exports){
+},{"events":96}],43:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -47564,7 +48355,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":34,"aabb-3d":13}],34:[function(require,module,exports){
+},{"./tree":44,"aabb-3d":23}],44:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -47690,7 +48481,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":13}],35:[function(require,module,exports){
+},{"aabb-3d":23}],45:[function(require,module,exports){
 var self = self || {};/**
  * @author mrdoob / http://mrdoob.com/
  * @author Larry Battle / http://bateru.com/news
@@ -84262,7 +85053,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{}],36:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -84309,7 +85100,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],37:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -84604,7 +85395,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":85}],38:[function(require,module,exports){
+},{"stream":98}],48:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -84755,7 +85546,7 @@ Mesh.prototype.faceVertexUv = function(i) {
 }
 ;
 
-},{"three":35}],39:[function(require,module,exports){
+},{"three":45}],49:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -84974,7 +85765,7 @@ proto.atRestZ = function() {
   return this.resting.z
 }
 
-},{"aabb-3d":13,"three":35}],40:[function(require,module,exports){
+},{"aabb-3d":23,"three":45}],50:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -85196,7 +85987,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],41:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -85224,7 +86015,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":13,"events":83}],42:[function(require,module,exports){
+},{"aabb-3d":23,"events":96}],52:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -85313,698 +86104,19 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":92}],43:[function(require,module,exports){
-var events = require('events')
-var inherits = require('inherits')
-
-module.exports = function(opts) {
-  return new Chunker(opts)
-}
-
-module.exports.Chunker = Chunker
-
-function Chunker(opts) {
-  this.distance = opts.chunkDistance || 2
-  this.chunkSize = opts.chunkSize || 32
-  this.cubeSize = opts.cubeSize || 25
-  this.generateVoxelChunk = opts.generateVoxelChunk
-  this.chunks = {}
-  this.meshes = {}
-
-  if (this.chunkSize & this.chunkSize-1 !== 0)
-    throw new Error('chunkSize must be a power of 2')
-  var bits = 0;
-  for (var size = this.chunkSize; size > 0; size >>= 1) bits++;
-  this.chunkBits = bits - 1;
-}
-
-inherits(Chunker, events.EventEmitter)
-
-Chunker.prototype.nearbyChunks = function(position, distance) {
-  var current = this.chunkAtPosition(position)
-  var x = current[0]
-  var y = current[1]
-  var z = current[2]
-  var dist = distance || this.distance
-  var nearby = []
-  for (var cx = (x - dist); cx !== (x + dist); ++cx) {
-    for (var cy = (y - dist); cy !== (y + dist); ++cy) {
-      for (var cz = (z - dist); cz !== (z + dist); ++cz) {
-        nearby.push([cx, cy, cz])
-      }
-    }
-  }
-  return nearby
-}
-
-Chunker.prototype.requestMissingChunks = function(position) {
-  var self = this
-  this.nearbyChunks(position).map(function(chunk) {
-    if (!self.chunks[chunk.join('|')]) {
-      self.emit('missingChunk', chunk)
-    }
-  })
-}
-
-Chunker.prototype.getBounds = function(x, y, z) {
-  var bits = this.chunkBits
-  var low = [x << bits, y << bits, z << bits]
-  var high = [(x+1) << bits, (y+1) << bits, (z+1) << bits]
-  return [low, high]
-}
-
-Chunker.prototype.generateChunk = function(x, y, z) {
-  var self = this
-  var bounds = this.getBounds(x, y, z)
-  var chunk = this.generateVoxelChunk(bounds[0], bounds[1], x, y, z)
-  var position = [x, y, z]
-  chunk.position = position
-  this.chunks[position.join('|')] = chunk
-  return chunk
-}
-
-Chunker.prototype.chunkAtCoordinates = function(x, y, z) {
-  var bits = this.chunkBits;
-  var cx = x >> bits;
-  var cy = y >> bits;
-  var cz = z >> bits;
-  var chunkPos = [cx, cy, cz];
-  return chunkPos;
-}
-
-Chunker.prototype.chunkAtPosition = function(position) {
-  var cubeSize = this.cubeSize;
-  var x = Math.floor(position[0] / cubeSize)
-  var y = Math.floor(position[1] / cubeSize)
-  var z = Math.floor(position[2] / cubeSize)
-  var chunkPos = this.chunkAtCoordinates(x, y, z)
-  return chunkPos
-};
-
-Chunker.prototype.voxelIndexFromCoordinates = function(x, y, z) {
-  var bits = this.chunkBits
-  var mask = (1 << bits) - 1
-  var vidx = (x & mask) + ((y & mask) << bits) + ((z & mask) << bits * 2)
-  return vidx
-}
-
-Chunker.prototype.voxelIndexFromPosition = function(pos) {
-  var v = this.voxelVector(pos)
-  return this.voxelIndex(v)
-}
-
-Chunker.prototype.voxelAtCoordinates = function(x, y, z, val) {
-  var ckey = this.chunkAtCoordinates(x, y, z).join('|')
-  var chunk = this.chunks[ckey]
-  if (!chunk) return false
-  var vidx = this.voxelIndexFromCoordinates(x, y, z)
-  var v = chunk.voxels[vidx]
-  if (typeof val !== 'undefined') {
-    chunk.voxels[vidx] = val
-  }
-  return v
-}
-
-Chunker.prototype.voxelAtPosition = function(pos, val) {
-  var cubeSize = this.cubeSize;
-  var x = Math.floor(pos[0] / cubeSize)
-  var y = Math.floor(pos[1] / cubeSize)
-  var z = Math.floor(pos[2] / cubeSize)
-  var v = this.voxelAtCoordinates(x, y, z, val)
-  return v;
-}
-
-// deprecated
-Chunker.prototype.voxelIndex = function(voxelVector) {
-  var vidx = this.voxelIndexFromCoordinates(voxelVector[0], voxelVector[1], voxelVector[2])
-  return vidx
-}
-
-// deprecated
-Chunker.prototype.voxelVector = function(pos) {
-  var cubeSize = this.cubeSize
-  var mask = (1 << this.chunkBits) - 1
-  var vx = (Math.floor(pos[0] / cubeSize)) & mask
-  var vy = (Math.floor(pos[1] / cubeSize)) & mask
-  var vz = (Math.floor(pos[2] / cubeSize)) & mask
-  return [vx, vy, vz]
-};
-
-},{"events":83,"inherits":16}],44:[function(require,module,exports){
-var chunker = require('./chunker')
-
-module.exports = function(opts) {
-  if (!opts.generateVoxelChunk) opts.generateVoxelChunk = function(low, high) {
-    return generate(low, high, module.exports.generator['Valley'])
-  }
-  return chunker(opts)
-}
-
-module.exports.meshers = {
-  culled: require('./meshers/culled').mesher,
-  greedy: require('./meshers/greedy').mesher,
-  monotone: require('./meshers/monotone').mesher,
-  stupid: require('./meshers/stupid').mesher
-}
-
-module.exports.Chunker = chunker.Chunker
-module.exports.geometry = {}
-module.exports.generator = {}
-module.exports.generate = generate
-
-// from https://github.com/mikolalysenko/mikolalysenko.github.com/blob/master/MinecraftMeshes2/js/testdata.js#L4
-function generate(l, h, f, game) {
-  var d = [ h[0]-l[0], h[1]-l[1], h[2]-l[2] ]
-  var v = new Int8Array(d[0]*d[1]*d[2])
-  var n = 0
-  for(var k=l[2]; k<h[2]; ++k)
-  for(var j=l[1]; j<h[1]; ++j)
-  for(var i=l[0]; i<h[0]; ++i, ++n) {
-    v[n] = f(i,j,k,n,game)
-  }
-  return {voxels:v, dims:d}
-}
-
-// shape and terrain generator functions
-module.exports.generator['Sphere'] = function(i,j,k) {
-  return i*i+j*j+k*k <= 16*16 ? 1 : 0
-}
-
-module.exports.generator['Noise'] = function(i,j,k) {
-  return Math.random() < 0.1 ? Math.random() * 0xffffff : 0;
-}
-
-module.exports.generator['Dense Noise'] = function(i,j,k) {
-  return Math.round(Math.random() * 0xffffff);
-}
-
-module.exports.generator['Checker'] = function(i,j,k) {
-  return !!((i+j+k)&1) ? (((i^j^k)&2) ? 1 : 0xffffff) : 0;
-}
-
-module.exports.generator['Hill'] = function(i,j,k) {
-  return j <= 16 * Math.exp(-(i*i + k*k) / 64) ? 1 : 0;
-}
-
-module.exports.generator['Valley'] = function(i,j,k) {
-  return j <= (i*i + k*k) * 31 / (32*32*2) + 1 ? 1 : 0;
-}
-
-module.exports.generator['Hilly Terrain'] = function(i,j,k) {
-  var h0 = 3.0 * Math.sin(Math.PI * i / 12.0 - Math.PI * k * 0.1) + 27;    
-  if(j > h0+1) {
-    return 0;
-  }
-  if(h0 <= j) {
-    return 1;
-  }
-  var h1 = 2.0 * Math.sin(Math.PI * i * 0.25 - Math.PI * k * 0.3) + 20;
-  if(h1 <= j) {
-    return 2;
-  }
-  if(2 < j) {
-    return Math.random() < 0.1 ? 0x222222 : 0xaaaaaa;
-  }
-  return 3;
-}
-
-module.exports.scale = function ( x, fromLow, fromHigh, toLow, toHigh ) {
-  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow
-}
-
-// convenience function that uses the above functions to prebake some simple voxel geometries
-module.exports.generateExamples = function() {
-  return {
-    'Sphere': generate([-16,-16,-16], [16,16,16], module.exports.generator['Sphere']),
-    'Noise': generate([0,0,0], [16,16,16], module.exports.generator['Noise']),
-    'Dense Noise': generate([0,0,0], [16,16,16], module.exports.generator['Dense Noise']),
-    'Checker': generate([0,0,0], [8,8,8], module.exports.generator['Checker']),
-    'Hill': generate([-16, 0, -16], [16,16,16], module.exports.generator['Hill']),
-    'Valley': generate([0,0,0], [32,32,32], module.exports.generator['Valley']),
-    'Hilly Terrain': generate([0, 0, 0], [32,32,32], module.exports.generator['Hilly Terrain'])
-  }
-}
-
-
-},{"./chunker":43,"./meshers/culled":45,"./meshers/greedy":46,"./meshers/monotone":47,"./meshers/stupid":48}],45:[function(require,module,exports){
-//Naive meshing (with face culling)
-function CulledMesh(volume, dims) {
-  //Precalculate direction vectors for convenience
-  var dir = new Array(3);
-  for(var i=0; i<3; ++i) {
-    dir[i] = [[0,0,0], [0,0,0]];
-    dir[i][0][(i+1)%3] = 1;
-    dir[i][1][(i+2)%3] = 1;
-  }
-  //March over the volume
-  var vertices = []
-    , faces = []
-    , x = [0,0,0]
-    , B = [[false,true]    //Incrementally update bounds (this is a bit ugly)
-          ,[false,true]
-          ,[false,true]]
-    , n = -dims[0]*dims[1];
-  for(           B[2]=[false,true],x[2]=-1; x[2]<dims[2]; B[2]=[true,(++x[2]<dims[2]-1)])
-  for(n-=dims[0],B[1]=[false,true],x[1]=-1; x[1]<dims[1]; B[1]=[true,(++x[1]<dims[1]-1)])
-  for(n-=1,      B[0]=[false,true],x[0]=-1; x[0]<dims[0]; B[0]=[true,(++x[0]<dims[0]-1)], ++n) {
-    //Read current voxel and 3 neighboring voxels using bounds check results
-    var p =   (B[0][0] && B[1][0] && B[2][0]) ? volume[n]                 : 0
-      , b = [ (B[0][1] && B[1][0] && B[2][0]) ? volume[n+1]               : 0
-            , (B[0][0] && B[1][1] && B[2][0]) ? volume[n+dims[0]]         : 0
-            , (B[0][0] && B[1][0] && B[2][1]) ? volume[n+dims[0]*dims[1]] : 0
-          ];
-    //Generate faces
-    for(var d=0; d<3; ++d)
-    if((!!p) !== (!!b[d])) {
-      var s = !p ? 1 : 0;
-      var t = [x[0],x[1],x[2]]
-        , u = dir[d][s]
-        , v = dir[d][s^1];
-      ++t[d];
-      
-      var vertex_count = vertices.length;
-      vertices.push([t[0],           t[1],           t[2]          ]);
-      vertices.push([t[0]+u[0],      t[1]+u[1],      t[2]+u[2]     ]);
-      vertices.push([t[0]+u[0]+v[0], t[1]+u[1]+v[1], t[2]+u[2]+v[2]]);
-      vertices.push([t[0]     +v[0], t[1]     +v[1], t[2]     +v[2]]);
-      faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, s ? b[d] : p]);
-    }
-  }
-  return { vertices:vertices, faces:faces };
-}
-
-
-if(exports) {
-  exports.mesher = CulledMesh;
-}
-
-},{}],46:[function(require,module,exports){
-var GreedyMesh = (function() {
-//Cache buffer internally
-var mask = new Int32Array(4096);
-
-return function(volume, dims) {
-  var vertices = [], faces = []
-    , dimsX = dims[0]
-    , dimsY = dims[1]
-    , dimsXY = dimsX * dimsY;
-
-  //Sweep over 3-axes
-  for(var d=0; d<3; ++d) {
-    var i, j, k, l, w, W, h, n, c
-      , u = (d+1)%3
-      , v = (d+2)%3
-      , x = [0,0,0]
-      , q = [0,0,0]
-      , du = [0,0,0]
-      , dv = [0,0,0]
-      , dimsD = dims[d]
-      , dimsU = dims[u]
-      , dimsV = dims[v]
-      , qdimsX, qdimsXY
-      , xd
-
-    if (mask.length < dimsU * dimsV) {
-      mask = new Int32Array(dimsU * dimsV);
-    }
-
-    q[d] =  1;
-    x[d] = -1;
-
-    qdimsX  = dimsX  * q[1]
-    qdimsXY = dimsXY * q[2]
-
-    // Compute mask
-    while (x[d] < dimsD) {
-      xd = x[d]
-      n = 0;
-
-      for(x[v] = 0; x[v] < dimsV; ++x[v]) {
-        for(x[u] = 0; x[u] < dimsU; ++x[u], ++n) {
-          var a = xd >= 0      && volume[x[0]      + dimsX * x[1]          + dimsXY * x[2]          ]
-            , b = xd < dimsD-1 && volume[x[0]+q[0] + dimsX * x[1] + qdimsX + dimsXY * x[2] + qdimsXY]
-          if (a ? b : !b) {
-            mask[n] = 0; continue;
-          }
-          mask[n] = a ? a : -b;
-        }
-      }
-
-      ++x[d];
-
-      // Generate mesh for mask using lexicographic ordering
-      n = 0;
-      for (j=0; j < dimsV; ++j) {
-        for (i=0; i < dimsU; ) {
-          c = mask[n];
-          if (!c) {
-            i++;  n++; continue;
-          }
-
-          //Compute width
-          w = 1;
-          while (c === mask[n+w] && i+w < dimsU) w++;
-
-          //Compute height (this is slightly awkward)
-          for (h=1; j+h < dimsV; ++h) {
-            k = 0;
-            while (k < w && c === mask[n+k+h*dimsU]) k++
-            if (k < w) break;
-          }
-
-          // Add quad
-          // The du/dv arrays are reused/reset
-          // for each iteration.
-          du[d] = 0; dv[d] = 0;
-          x[u]  = i;  x[v] = j;
-
-          if (c > 0) {
-            dv[v] = h; dv[u] = 0;
-            du[u] = w; du[v] = 0;
-          } else {
-            c = -c;
-            du[v] = h; du[u] = 0;
-            dv[u] = w; dv[v] = 0;
-          }
-          var vertex_count = vertices.length;
-          vertices.push([x[0],             x[1],             x[2]            ]);
-          vertices.push([x[0]+du[0],       x[1]+du[1],       x[2]+du[2]      ]);
-          vertices.push([x[0]+du[0]+dv[0], x[1]+du[1]+dv[1], x[2]+du[2]+dv[2]]);
-          vertices.push([x[0]      +dv[0], x[1]      +dv[1], x[2]      +dv[2]]);
-          faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, c]);
-
-          //Zero-out mask
-          W = n + w;
-          for(l=0; l<h; ++l) {
-            for(k=n; k<W; ++k) {
-              mask[k+l*dimsU] = 0;
-            }
-          }
-
-          //Increment counters and continue
-          i += w; n += w;
-        }
-      }
-    }
-  }
-  return { vertices:vertices, faces:faces };
-}
-})();
-
-if(exports) {
-  exports.mesher = GreedyMesh;
-}
-
-},{}],47:[function(require,module,exports){
-"use strict";
-
-var MonotoneMesh = (function(){
-
-function MonotonePolygon(c, v, ul, ur) {
-  this.color  = c;
-  this.left   = [[ul, v]];
-  this.right  = [[ur, v]];
-};
-
-MonotonePolygon.prototype.close_off = function(v) {
-  this.left.push([ this.left[this.left.length-1][0], v ]);
-  this.right.push([ this.right[this.right.length-1][0], v ]);
-};
-
-MonotonePolygon.prototype.merge_run = function(v, u_l, u_r) {
-  var l = this.left[this.left.length-1][0]
-    , r = this.right[this.right.length-1][0]; 
-  if(l !== u_l) {
-    this.left.push([ l, v ]);
-    this.left.push([ u_l, v ]);
-  }
-  if(r !== u_r) {
-    this.right.push([ r, v ]);
-    this.right.push([ u_r, v ]);
-  }
-};
-
-
-return function(volume, dims) {
-  function f(i,j,k) {
-    return volume[i + dims[0] * (j + dims[1] * k)];
-  }
-  //Sweep over 3-axes
-  var vertices = [], faces = [];
-  for(var d=0; d<3; ++d) {
-    var i, j, k
-      , u = (d+1)%3   //u and v are orthogonal directions to d
-      , v = (d+2)%3
-      , x = new Int32Array(3)
-      , q = new Int32Array(3)
-      , runs = new Int32Array(2 * (dims[u]+1))
-      , frontier = new Int32Array(dims[u])  //Frontier is list of pointers to polygons
-      , next_frontier = new Int32Array(dims[u])
-      , left_index = new Int32Array(2 * dims[v])
-      , right_index = new Int32Array(2 * dims[v])
-      , stack = new Int32Array(24 * dims[v])
-      , delta = [[0,0], [0,0]];
-    //q points along d-direction
-    q[d] = 1;
-    //Initialize sentinel
-    for(x[d]=-1; x[d]<dims[d]; ) {
-      // --- Perform monotone polygon subdivision ---
-      var n = 0
-        , polygons = []
-        , nf = 0;
-      for(x[v]=0; x[v]<dims[v]; ++x[v]) {
-        //Make one pass over the u-scan line of the volume to run-length encode polygon
-        var nr = 0, p = 0, c = 0;
-        for(x[u]=0; x[u]<dims[u]; ++x[u], p = c) {
-          //Compute the type for this face
-          var a = (0    <= x[d]      ? f(x[0],      x[1],      x[2])      : 0)
-            , b = (x[d] <  dims[d]-1 ? f(x[0]+q[0], x[1]+q[1], x[2]+q[2]) : 0);
-          c = a;
-          if((!a) === (!b)) {
-            c = 0;
-          } else if(!a) {
-            c = -b;
-          }
-          //If cell type doesn't match, start a new run
-          if(p !== c) {
-            runs[nr++] = x[u];
-            runs[nr++] = c;
-          }
-        }
-        //Add sentinel run
-        runs[nr++] = dims[u];
-        runs[nr++] = 0;
-        //Update frontier by merging runs
-        var fp = 0;
-        for(var i=0, j=0; i<nf && j<nr-2; ) {
-          var p    = polygons[frontier[i]]
-            , p_l  = p.left[p.left.length-1][0]
-            , p_r  = p.right[p.right.length-1][0]
-            , p_c  = p.color
-            , r_l  = runs[j]    //Start of run
-            , r_r  = runs[j+2]  //End of run
-            , r_c  = runs[j+1]; //Color of run
-          //Check if we can merge run with polygon
-          if(r_r > p_l && p_r > r_l && r_c === p_c) {
-            //Merge run
-            p.merge_run(x[v], r_l, r_r);
-            //Insert polygon into frontier
-            next_frontier[fp++] = frontier[i];
-            ++i;
-            j += 2;
-          } else {
-            //Check if we need to advance the run pointer
-            if(r_r <= p_r) {
-              if(!!r_c) {
-                var n_poly = new MonotonePolygon(r_c, x[v], r_l, r_r);
-                next_frontier[fp++] = polygons.length;
-                polygons.push(n_poly);
-              }
-              j += 2;
-            }
-            //Check if we need to advance the frontier pointer
-            if(p_r <= r_r) {
-              p.close_off(x[v]);
-              ++i;
-            }
-          }
-        }
-        //Close off any residual polygons
-        for(; i<nf; ++i) {
-          polygons[frontier[i]].close_off(x[v]);
-        }
-        //Add any extra runs to frontier
-        for(; j<nr-2; j+=2) {
-          var r_l  = runs[j]
-            , r_r  = runs[j+2]
-            , r_c  = runs[j+1];
-          if(!!r_c) {
-            var n_poly = new MonotonePolygon(r_c, x[v], r_l, r_r);
-            next_frontier[fp++] = polygons.length;
-            polygons.push(n_poly);
-          }
-        }
-        //Swap frontiers
-        var tmp = next_frontier;
-        next_frontier = frontier;
-        frontier = tmp;
-        nf = fp;
-      }
-      //Close off frontier
-      for(var i=0; i<nf; ++i) {
-        var p = polygons[frontier[i]];
-        p.close_off(dims[v]);
-      }
-      // --- Monotone subdivision of polygon is complete at this point ---
-      
-      x[d]++;
-      
-      //Now we just need to triangulate each monotone polygon
-      for(var i=0; i<polygons.length; ++i) {
-        var p = polygons[i]
-          , c = p.color
-          , flipped = false;
-        if(c < 0) {
-          flipped = true;
-          c = -c;
-        }
-        for(var j=0; j<p.left.length; ++j) {
-          left_index[j] = vertices.length;
-          var y = [0.0,0.0,0.0]
-            , z = p.left[j];
-          y[d] = x[d];
-          y[u] = z[0];
-          y[v] = z[1];
-          vertices.push(y);
-        }
-        for(var j=0; j<p.right.length; ++j) {
-          right_index[j] = vertices.length;
-          var y = [0.0,0.0,0.0]
-            , z = p.right[j];
-          y[d] = x[d];
-          y[u] = z[0];
-          y[v] = z[1];
-          vertices.push(y);
-        }
-        //Triangulate the monotone polygon
-        var bottom = 0
-          , top = 0
-          , l_i = 1
-          , r_i = 1
-          , side = true;  //true = right, false = left
-        
-        stack[top++] = left_index[0];
-        stack[top++] = p.left[0][0];
-        stack[top++] = p.left[0][1];
-        
-        stack[top++] = right_index[0];
-        stack[top++] = p.right[0][0];
-        stack[top++] = p.right[0][1];
-        
-        while(l_i < p.left.length || r_i < p.right.length) {
-          //Compute next side
-          var n_side = false;
-          if(l_i === p.left.length) {
-            n_side = true;
-          } else if(r_i !== p.right.length) {
-            var l = p.left[l_i]
-              , r = p.right[r_i];
-            n_side = l[1] > r[1];
-          }
-          var idx = n_side ? right_index[r_i] : left_index[l_i]
-            , vert = n_side ? p.right[r_i] : p.left[l_i];
-          if(n_side !== side) {
-            //Opposite side
-            while(bottom+3 < top) {
-              if(flipped === n_side) {
-                faces.push([ stack[bottom], stack[bottom+3], idx, c]);
-              } else {
-                faces.push([ stack[bottom+3], stack[bottom], idx, c]);              
-              }
-              bottom += 3;
-            }
-          } else {
-            //Same side
-            while(bottom+3 < top) {
-              //Compute convexity
-              for(var j=0; j<2; ++j)
-              for(var k=0; k<2; ++k) {
-                delta[j][k] = stack[top-3*(j+1)+k+1] - vert[k];
-              }
-              var det = delta[0][0] * delta[1][1] - delta[1][0] * delta[0][1];
-              if(n_side === (det > 0)) {
-                break;
-              }
-              if(det !== 0) {
-                if(flipped === n_side) {
-                  faces.push([ stack[top-3], stack[top-6], idx, c ]);
-                } else {
-                  faces.push([ stack[top-6], stack[top-3], idx, c ]);
-                }
-              }
-              top -= 3;
-            }
-          }
-          //Push vertex
-          stack[top++] = idx;
-          stack[top++] = vert[0];
-          stack[top++] = vert[1];
-          //Update loop index
-          if(n_side) {
-            ++r_i;
-          } else {
-            ++l_i;
-          }
-          side = n_side;
-        }
-      }
-    }
-  }
-  return { vertices:vertices, faces:faces };
-}
-})();
-
-if(exports) {
-  exports.mesher = MonotoneMesh;
-}
-
-},{}],48:[function(require,module,exports){
-//The stupidest possible way to generate a Minecraft mesh (I think)
-function StupidMesh(volume, dims) {
-  var vertices = [], faces = [], x = [0,0,0], n = 0;
-  for(x[2]=0; x[2]<dims[2]; ++x[2])
-  for(x[1]=0; x[1]<dims[1]; ++x[1])
-  for(x[0]=0; x[0]<dims[0]; ++x[0], ++n)
-  if(!!volume[n]) {
-    for(var d=0; d<3; ++d) {
-      var t = [x[0], x[1], x[2]]
-        , u = [0,0,0]
-        , v = [0,0,0];
-      u[(d+1)%3] = 1;
-      v[(d+2)%3] = 1;
-      for(var s=0; s<2; ++s) {
-        t[d] = x[d] + s;
-        var tmp = u;
-        u = v;
-        v = tmp;
-        var vertex_count = vertices.length;
-        vertices.push([t[0],           t[1],           t[2]          ]);
-        vertices.push([t[0]+u[0],      t[1]+u[1],      t[2]+u[2]     ]);
-        vertices.push([t[0]+u[0]+v[0], t[1]+u[1]+v[1], t[2]+u[2]+v[2]]);
-        vertices.push([t[0]     +v[0], t[1]     +v[1], t[2]     +v[2]]);
-        faces.push([vertex_count, vertex_count+1, vertex_count+2, vertex_count+3, volume[n]]);
-      }
-    }
-  }
-  return { vertices:vertices, faces:faces };
-}
-
-
-if(exports) {
-  exports.mesher = StupidMesh;
-}
-
-},{}],49:[function(require,module,exports){
+},{"__browserify_process":105}],53:[function(require,module,exports){
+module.exports=require(13)
+},{"events":96,"inherits":26}],54:[function(require,module,exports){
+arguments[4][14][0].apply(exports,arguments)
+},{"./chunker":53,"./meshers/culled":55,"./meshers/greedy":56,"./meshers/monotone":57,"./meshers/stupid":58}],55:[function(require,module,exports){
+module.exports=require(15)
+},{}],56:[function(require,module,exports){
+module.exports=require(16)
+},{}],57:[function(require,module,exports){
+module.exports=require(17)
+},{}],58:[function(require,module,exports){
+module.exports=require(18)
+},{}],59:[function(require,module,exports){
 var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
@@ -86020,7 +86132,7 @@ function Fly(game, opts) {
   if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
   this.noKeyEvents = opts.noKeyEvents || false
   this.flySpeed = opts.flySpeed || 0.8
-  this.enabled = opts.enabled || true
+  this.enabled = opts.enabled !== undefined ? opts.enabled : true
   if (!this.noKeyEvents) this.bindKeyEvents()
 }
 
@@ -86100,15 +86212,246 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":83,"ever":50,"vkey":53}],50:[function(require,module,exports){
-module.exports=require(27)
-},{"./init.json":51,"./types.json":52,"events":83}],51:[function(require,module,exports){
-module.exports=require(28)
-},{}],52:[function(require,module,exports){
-module.exports=require(29)
-},{}],53:[function(require,module,exports){
-module.exports=require(30)
-},{}],54:[function(require,module,exports){
+},{"events":96,"ever":60,"vkey":63}],60:[function(require,module,exports){
+module.exports=require(37)
+},{"./init.json":61,"./types.json":62,"events":96}],61:[function(require,module,exports){
+module.exports=require(38)
+},{}],62:[function(require,module,exports){
+module.exports=require(39)
+},{}],63:[function(require,module,exports){
+module.exports=require(40)
+},{}],64:[function(require,module,exports){
+module.exports = function (game, opts) {
+    if (!opts) opts = {};
+    if (opts.bark === undefined) opts.bark = 1;
+    if (opts.leaves === undefined) opts.leaves = 2;
+    if (!opts.height) opts.height = Math.random() * 16 + 4;
+    if (opts.base === undefined) opts.base = opts.height / 3;
+    if (opts.radius === undefined) opts.radius = opts.base;
+    if (opts.treetype === undefined) opts.treetype = 1;
+    if (opts.position === undefined) throw "voxel-forest requires position option";
+    if (opts.setBlock === undefined) throw "voxel-forest requires setBlock option";
+
+    var set = opts.setBlock;
+
+    var pos_ = {
+        x: opts.position.x, 
+        y: opts.position.y, 
+        z: opts.position.z
+    };
+    // clone position so it can be mutated
+    function position () {
+        return {
+            x: pos_.x, 
+            y: pos_.y, 
+            z: pos_.z
+        };
+    }
+    
+    function subspacetree() {
+        var around = [
+        [ 0, 1 ], [ 0, -1 ],
+        [ 1, 1 ], [ 1, 0 ], [ 1, -1 ],
+        [ -1, 1 ], [ -1, 0 ], [ -1, -1 ]
+        ];
+        for (var y = 0; y < opts.height - 1; y++) {
+            var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.y};
+            pos.y += y
+            if (set(pos, opts.bark)) break;
+            if (y < opts.base) continue;
+            around.forEach(function (offset) {
+                if (Math.random() > 0.5) return;
+                var x = offset[0]
+                var z = offset[1]
+                pos.x += x;
+                pos.z += z;
+                set(pos, opts.leaves);
+                pos.x -= x;
+                pos.z -= z;
+            });
+        }
+    }
+
+    function guybrushtree() {
+        var sphere = function(x,y,z, r) {
+            return x*x + y*y + z*z <= r*r;
+        }
+        for (var y = 0; y < opts.height - 1; y++) {
+            var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.y};
+            pos.y += y;
+            if (set(pos, opts.bark)) break;
+        }
+        var radius = opts.radius;
+        for (var xstep = -radius; xstep <= radius; xstep++) {
+            for (var ystep = -radius; ystep <= radius; ystep++) {
+                for (var zstep = -radius; zstep <= radius; zstep++) {
+                    if (sphere(xstep,ystep,zstep, radius)) {
+                        var leafpos = {
+                            x: pos.x + xstep,
+                            y: pos.y + ystep,
+                            z: pos.z + zstep
+                        }
+                        set(leafpos, opts.leaves);
+                    }
+                }
+            }
+        }
+    }
+    
+    function drawAxiom(axiom, angle, unitsize, units) {
+        var posstack = [];
+        
+        var penangle = 0;
+        var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.y};
+        pos.y += unitsize * 30;
+        function moveForward() {
+            var ryaw = penangle * Math.PI/180;
+            for (var i = 0; i < units; i++) {
+                pos.y += unitsize * Math.cos(ryaw);
+                pos.z += unitsize * Math.sin(ryaw);
+                set(pos,opts.leaves);
+            }
+        }
+
+        function setPoint() {
+            set(pos, opts.bark);
+        }
+        function setMaterial(value) {
+            mindex = value;
+        }
+        function yaw(angle) {
+            penangle += angle;
+        }
+        function pitch(angle) {
+            //turtle.pitch += angle;
+        }
+        function roll(angle) {
+            //turtle.roll += angle;
+        }
+        function PushState() {
+            //penstack.push(turtle);
+            posstack.push(pos);
+        }
+        function PopState() {
+          //  turtle = penstack.pop();
+            pos = posstack.pop();
+        }
+        
+        //F  - move forward one unit with the pen down
+        //G  - move forward one unit with the pen up
+        //#  - Changes draw medium.
+
+        // +  - yaw the turtle right by angle parameter
+        // -  - yaw the turtle left by angle parameter
+        // &  - pitch the turtle down by angle parameter
+        // ^  - pitch the turtle up by angle parameter
+        // /  - roll the turtle to the right by angle parameter
+        // *  - roll the turtle to the left by angle parameter
+        // [  - save in stack current state info
+        // ]  - recover from stack state info
+        for (var i = 0; i < axiom.length; i++) {
+            var c = axiom.charAt(i);
+            switch(c) {
+                case 'F':
+                    moveForward();
+                    setPoint();
+                    break;
+                case '+':
+                    yaw(+angle);
+                    break;
+                case '-':
+                    yaw(-angle);
+                    break;
+                case '&':
+                    pitch(+angle);
+                    break;
+                case '^':
+                    pitch(-angle);
+                    break;
+                case '/':
+                    roll(+angle);
+                    break;
+                case '*':
+                    roll(-angle);
+                    break;
+                case 'G':
+                    moveForward();
+                    break;
+                case '[':
+                    PushState();
+                    break;
+                case ']':
+                    PopState();
+                    break;
+                case '0':
+                    setMaterial(0);
+                    break;
+                case '1':
+                    setMaterial(1);
+                    break;
+                case '2':
+                    setMaterial(2);
+                    break;
+                case '3':
+                    setMaterial(3);
+                    break;
+
+            }
+        }
+            
+    }
+
+    function fractaltree() {
+        var axiom = "FX";
+        var rules = [ ["X", "X+YF+"], ["Y", "-FX-Y"]];
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        drawAxiom(axiom, 90, 1, 5);
+    }
+    
+    switch (opts.treetype) {
+        case 1:
+            subspacetree();
+            break;
+        case 2:
+            guybrushtree();
+            break;
+        case 3:
+            fractaltree();
+            break;
+        default:
+            subspacetree();
+    }
+};
+
+function regexRules(rules) {
+    var regexrule = '';
+    rules.forEach(function (rule) {
+        if (regexrule != '') {
+            regexrule = regexrule+ '|' ;
+        }
+        regexrule = regexrule+rule[0];
+    });
+    return new RegExp(regexrule, "g");
+}
+
+function applyRules(axiom, rules) {
+    function matchRule(match)
+    {
+        for (var i=0;i<rules.length;i++)
+        { 
+            if (rules[i][0] == match) return rules[i][1];
+        }
+        return '';
+    }
+    return axiom.replace(regexRules(rules), matchRule);
+}
+
+},{}],65:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -86275,9 +86618,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":83,"inherits":55,"underscore":56}],55:[function(require,module,exports){
-module.exports=require(16)
-},{}],56:[function(require,module,exports){
+},{"events":96,"inherits":66,"underscore":67}],66:[function(require,module,exports){
+module.exports=require(19)
+},{}],67:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -87505,7 +87848,7 @@ module.exports=require(16)
 
 }).call(this);
 
-},{}],57:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine, inherits;
@@ -87607,7 +87950,7 @@ module.exports=require(16)
   };
 
   Mine.prototype.createOverlay = function(target) {
-    var geometry, material, mesh, obj, offset;
+    var geometry, material, mesh, offset;
     if (this.instaMine || !this.texturesEnabled) {
       return;
     }
@@ -87700,13 +88043,10 @@ module.exports=require(16)
     material.polygonOffsetFactor = -1.0;
     material.polygonOffsetUnits = -1.0;
     mesh = new this.game.THREE.Mesh(geometry, material);
-    obj = new this.game.THREE.Object3D();
-    obj.add(mesh);
-    obj.position.set(target.voxel[0] + offset[0], target.voxel[1] + offset[1], target.voxel[2] + offset[2]);
-    this.overlay = this.game.addItem({
-      mesh: obj,
-      size: 1
-    });
+    this.overlay = new this.game.THREE.Object3D();
+    this.overlay.add(mesh);
+    this.overlay.position.set(target.voxel[0] + offset[0], target.voxel[1] + offset[1], target.voxel[2] + offset[2]);
+    this.game.scene.add(this.overlay);
     return this.overlay;
   };
 
@@ -87725,15 +88065,15 @@ module.exports=require(16)
       return;
     }
     this.opts.applyTextureParams(texture);
-    this.overlay.mesh.children[0].material.map = texture;
-    return this.overlay.mesh.children[0].material.needsUpdate = true;
+    this.overlay.children[0].material.map = texture;
+    return this.overlay.children[0].material.needsUpdate = true;
   };
 
   Mine.prototype.destroyOverlay = function() {
     if (!this.overlay || !this.texturesEnabled) {
       return;
     }
-    this.game.removeItem(this.overlay);
+    this.game.scene.remove(this.overlay);
     return this.overlay = null;
   };
 
@@ -87741,9 +88081,9 @@ module.exports=require(16)
 
 }).call(this);
 
-},{"events":83,"inherits":58}],58:[function(require,module,exports){
-module.exports=require(16)
-},{}],59:[function(require,module,exports){
+},{"events":96,"inherits":69}],69:[function(require,module,exports){
+module.exports=require(19)
+},{}],70:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -87876,7 +88216,356 @@ function Oculus(game, opts) {
 	};
 };
 
-},{}],60:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
+var noise = require('perlin').noise
+
+module.exports = function(seed, floor, ceiling, divisor) {
+  floor = floor || 0
+  ceiling = ceiling || 20 // minecraft's limit
+  divisor = divisor || 50
+  noise.seed(seed)
+  return function generateChunk(position, width) {
+    var startX = position[0] * width
+    var startY = position[1] * width
+    var startZ = position[2] * width
+    var chunk = new Int8Array(width * width * width)
+    pointsInside(startX, startZ, width, function(x, z) {
+      var n = noise.simplex2(x / divisor , z / divisor)
+      var y = ~~scale(n, -1, 1, floor, ceiling)
+      if (y === floor || startY < y && y < startY + width) {
+        var xidx = Math.abs((width + x % width) % width)
+        var yidx = Math.abs((width + y % width) % width)
+        var zidx = Math.abs((width + z % width) % width)
+        var idx = xidx + yidx * width + zidx * width * width
+        chunk[idx] = 1
+      }
+    })
+    return chunk
+  }
+}
+
+function pointsInside(startX, startY, width, func) {
+  for (var x = startX; x < startX + width; x++)
+    for (var y = startY; y < startY + width; y++)
+      func(x, y)
+}
+
+function scale( x, fromLow, fromHigh, toLow, toHigh ) {
+  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow
+}
+;
+},{"perlin":72}],72:[function(require,module,exports){
+/*
+ * A speed-improved perlin and simplex noise algorithms for 2D.
+ *
+ * Based on example code by Stefan Gustavson (stegu@itn.liu.se).
+ * Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
+ * Better rank ordering method by Stefan Gustavson in 2012.
+ * Converted to Javascript by Joseph Gentle.
+ *
+ * Version 2012-03-09
+ *
+ * This code was placed in the public domain by its original author,
+ * Stefan Gustavson. You may use it as you see fit, but
+ * attribution is appreciated.
+ *
+ */
+
+(function(global){
+  var module = global.noise = {};
+
+  function Grad(x, y, z) {
+    this.x = x; this.y = y; this.z = z;
+  }
+  
+  Grad.prototype.dot2 = function(x, y) {
+    return this.x*x + this.y*y;
+  };
+
+  Grad.prototype.dot3 = function(x, y, z) {
+    return this.x*x + this.y*y + this.z*z;
+  };
+
+  var grad3 = [new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
+               new Grad(1,0,1),new Grad(-1,0,1),new Grad(1,0,-1),new Grad(-1,0,-1),
+               new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)];
+
+  var p = [151,160,137,91,90,15,
+  131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
+  190, 6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,
+  88,237,149,56,87,174,20,125,136,171,168, 68,175,74,165,71,134,139,48,27,166,
+  77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,
+  102,143,54, 65,25,63,161, 1,216,80,73,209,76,132,187,208, 89,18,169,200,196,
+  135,130,116,188,159,86,164,100,109,198,173,186, 3,64,52,217,226,250,124,123,
+  5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,
+  223,183,170,213,119,248,152, 2,44,154,163, 70,221,153,101,155,167, 43,172,9,
+  129,22,39,253, 19,98,108,110,79,113,224,232,178,185, 112,104,218,246,97,228,
+  251,34,242,193,238,210,144,12,191,179,162,241, 81,51,145,235,249,14,239,107,
+  49,192,214, 31,181,199,106,157,184, 84,204,176,115,121,50,45,127, 4,150,254,
+  138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180];
+  // To remove the need for index wrapping, double the permutation table length
+  var perm = new Array(512);
+  var gradP = new Array(512);
+
+  // This isn't a very good seeding function, but it works ok. It supports 2^16
+  // different seed values. Write something better if you need more seeds.
+  module.seed = function(seed) {
+    if(seed > 0 && seed < 1) {
+      // Scale the seed out
+      seed *= 65536;
+    }
+
+    seed = Math.floor(seed);
+    if(seed < 256) {
+      seed |= seed << 8;
+    }
+
+    for(var i = 0; i < 256; i++) {
+      var v;
+      if (i & 1) {
+        v = p[i] ^ (seed & 255);
+      } else {
+        v = p[i] ^ ((seed>>8) & 255);
+      }
+
+      perm[i] = perm[i + 256] = v;
+      gradP[i] = gradP[i + 256] = grad3[v % 12];
+    }
+  };
+
+  module.seed(0);
+
+  /*
+  for(var i=0; i<256; i++) {
+    perm[i] = perm[i + 256] = p[i];
+    gradP[i] = gradP[i + 256] = grad3[perm[i] % 12];
+  }*/
+
+  // Skewing and unskewing factors for 2, 3, and 4 dimensions
+  var F2 = 0.5*(Math.sqrt(3)-1);
+  var G2 = (3-Math.sqrt(3))/6;
+
+  var F3 = 1/3;
+  var G3 = 1/6;
+
+  // 2D simplex noise
+  module.simplex2 = function(xin, yin) {
+    var n0, n1, n2; // Noise contributions from the three corners
+    // Skew the input space to determine which simplex cell we're in
+    var s = (xin+yin)*F2; // Hairy factor for 2D
+    var i = Math.floor(xin+s);
+    var j = Math.floor(yin+s);
+    var t = (i+j)*G2;
+    var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+    var y0 = yin-j+t;
+    // For the 2D case, the simplex shape is an equilateral triangle.
+    // Determine which simplex we are in.
+    var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+    if(x0>y0) { // lower triangle, XY order: (0,0)->(1,0)->(1,1)
+      i1=1; j1=0;
+    } else {    // upper triangle, YX order: (0,0)->(0,1)->(1,1)
+      i1=0; j1=1;
+    }
+    // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
+    // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
+    // c = (3-sqrt(3))/6
+    var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+    var y1 = y0 - j1 + G2;
+    var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
+    var y2 = y0 - 1 + 2 * G2;
+    // Work out the hashed gradient indices of the three simplex corners
+    i &= 255;
+    j &= 255;
+    var gi0 = gradP[i+perm[j]];
+    var gi1 = gradP[i+i1+perm[j+j1]];
+    var gi2 = gradP[i+1+perm[j+1]];
+    // Calculate the contribution from the three corners
+    var t0 = 0.5 - x0*x0-y0*y0;
+    if(t0<0) {
+      n0 = 0;
+    } else {
+      t0 *= t0;
+      n0 = t0 * t0 * gi0.dot2(x0, y0);  // (x,y) of grad3 used for 2D gradient
+    }
+    var t1 = 0.5 - x1*x1-y1*y1;
+    if(t1<0) {
+      n1 = 0;
+    } else {
+      t1 *= t1;
+      n1 = t1 * t1 * gi1.dot2(x1, y1);
+    }
+    var t2 = 0.5 - x2*x2-y2*y2;
+    if(t2<0) {
+      n2 = 0;
+    } else {
+      t2 *= t2;
+      n2 = t2 * t2 * gi2.dot2(x2, y2);
+    }
+    // Add contributions from each corner to get the final noise value.
+    // The result is scaled to return values in the interval [-1,1].
+    return 70 * (n0 + n1 + n2);
+  };
+
+  // 3D simplex noise
+  module.simplex3 = function(xin, yin, zin) {
+    var n0, n1, n2, n3; // Noise contributions from the four corners
+
+    // Skew the input space to determine which simplex cell we're in
+    var s = (xin+yin+zin)*F3; // Hairy factor for 2D
+    var i = Math.floor(xin+s);
+    var j = Math.floor(yin+s);
+    var k = Math.floor(zin+s);
+
+    var t = (i+j+k)*G3;
+    var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
+    var y0 = yin-j+t;
+    var z0 = zin-k+t;
+
+    // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
+    // Determine which simplex we are in.
+    var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
+    var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
+    if(x0 >= y0) {
+      if(y0 >= z0)      { i1=1; j1=0; k1=0; i2=1; j2=1; k2=0; }
+      else if(x0 >= z0) { i1=1; j1=0; k1=0; i2=1; j2=0; k2=1; }
+      else              { i1=0; j1=0; k1=1; i2=1; j2=0; k2=1; }
+    } else {
+      if(y0 < z0)      { i1=0; j1=0; k1=1; i2=0; j2=1; k2=1; }
+      else if(x0 < z0) { i1=0; j1=1; k1=0; i2=0; j2=1; k2=1; }
+      else             { i1=0; j1=1; k1=0; i2=1; j2=1; k2=0; }
+    }
+    // A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
+    // a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
+    // a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
+    // c = 1/6.
+    var x1 = x0 - i1 + G3; // Offsets for second corner
+    var y1 = y0 - j1 + G3;
+    var z1 = z0 - k1 + G3;
+
+    var x2 = x0 - i2 + 2 * G3; // Offsets for third corner
+    var y2 = y0 - j2 + 2 * G3;
+    var z2 = z0 - k2 + 2 * G3;
+
+    var x3 = x0 - 1 + 3 * G3; // Offsets for fourth corner
+    var y3 = y0 - 1 + 3 * G3;
+    var z3 = z0 - 1 + 3 * G3;
+
+    // Work out the hashed gradient indices of the four simplex corners
+    i &= 255;
+    j &= 255;
+    k &= 255;
+    var gi0 = gradP[i+   perm[j+   perm[k   ]]];
+    var gi1 = gradP[i+i1+perm[j+j1+perm[k+k1]]];
+    var gi2 = gradP[i+i2+perm[j+j2+perm[k+k2]]];
+    var gi3 = gradP[i+ 1+perm[j+ 1+perm[k+ 1]]];
+
+    // Calculate the contribution from the four corners
+    var t0 = 0.5 - x0*x0-y0*y0-z0*z0;
+    if(t0<0) {
+      n0 = 0;
+    } else {
+      t0 *= t0;
+      n0 = t0 * t0 * gi0.dot3(x0, y0, z0);  // (x,y) of grad3 used for 2D gradient
+    }
+    var t1 = 0.5 - x1*x1-y1*y1-z1*z1;
+    if(t1<0) {
+      n1 = 0;
+    } else {
+      t1 *= t1;
+      n1 = t1 * t1 * gi1.dot3(x1, y1, z1);
+    }
+    var t2 = 0.5 - x2*x2-y2*y2-z2*z2;
+    if(t2<0) {
+      n2 = 0;
+    } else {
+      t2 *= t2;
+      n2 = t2 * t2 * gi2.dot3(x2, y2, z2);
+    }
+    var t3 = 0.5 - x3*x3-y3*y3-z3*z3;
+    if(t3<0) {
+      n3 = 0;
+    } else {
+      t3 *= t3;
+      n3 = t3 * t3 * gi3.dot3(x3, y3, z3);
+    }
+    // Add contributions from each corner to get the final noise value.
+    // The result is scaled to return values in the interval [-1,1].
+    return 32 * (n0 + n1 + n2 + n3);
+
+  };
+
+  // ##### Perlin noise stuff
+
+  function fade(t) {
+    return t*t*t*(t*(t*6-15)+10);
+  }
+
+  function lerp(a, b, t) {
+    return (1-t)*a + t*b;
+  }
+
+  // 2D Perlin Noise
+  module.perlin2 = function(x, y) {
+    // Find unit grid cell containing point
+    var X = Math.floor(x), Y = Math.floor(y);
+    // Get relative xy coordinates of point within that cell
+    x = x - X; y = y - Y;
+    // Wrap the integer cells at 255 (smaller integer period can be introduced here)
+    X = X & 255; Y = Y & 255;
+
+    // Calculate noise contributions from each of the four corners
+    var n00 = gradP[X+perm[Y]].dot2(x, y);
+    var n01 = gradP[X+perm[Y+1]].dot2(x, y-1);
+    var n10 = gradP[X+1+perm[Y]].dot2(x-1, y);
+    var n11 = gradP[X+1+perm[Y+1]].dot2(x-1, y-1);
+
+    // Compute the fade curve value for x
+    var u = fade(x);
+
+    // Interpolate the four results
+    return lerp(
+        lerp(n00, n10, u),
+        lerp(n01, n11, u),
+       fade(y));
+  };
+
+  // 3D Perlin Noise
+  module.perlin3 = function(x, y, z) {
+    // Find unit grid cell containing point
+    var X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
+    // Get relative xyz coordinates of point within that cell
+    x = x - X; y = y - Y; z = z - Z;
+    // Wrap the integer cells at 255 (smaller integer period can be introduced here)
+    X = X & 255; Y = Y & 255; Z = Z & 255;
+
+    // Calculate noise contributions from each of the eight corners
+    var n000 = gradP[X+  perm[Y+  perm[Z  ]]].dot3(x,   y,     z);
+    var n001 = gradP[X+  perm[Y+  perm[Z+1]]].dot3(x,   y,   z-1);
+    var n010 = gradP[X+  perm[Y+1+perm[Z  ]]].dot3(x,   y-1,   z);
+    var n011 = gradP[X+  perm[Y+1+perm[Z+1]]].dot3(x,   y-1, z-1);
+    var n100 = gradP[X+1+perm[Y+  perm[Z  ]]].dot3(x-1,   y,   z);
+    var n101 = gradP[X+1+perm[Y+  perm[Z+1]]].dot3(x-1,   y, z-1);
+    var n110 = gradP[X+1+perm[Y+1+perm[Z  ]]].dot3(x-1, y-1,   z);
+    var n111 = gradP[X+1+perm[Y+1+perm[Z+1]]].dot3(x-1, y-1, z-1);
+
+    // Compute the fade curve value for x, y, z
+    var u = fade(x);
+    var v = fade(y);
+    var w = fade(z);
+
+    // Interpolate
+    return lerp(
+        lerp(
+          lerp(n000, n100, u),
+          lerp(n001, n101, u), w),
+        lerp(
+          lerp(n010, n110, u),
+          lerp(n011, n111, u), w),
+       v);
+  };
+
+})(typeof module === "undefined" ? this : module.exports);
+},{}],73:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -87972,7 +88661,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":61}],61:[function(require,module,exports){
+},{"minecraft-skin":74}],74:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -88344,7 +89033,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],62:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new Plugins(game, opts);
 };
@@ -88356,6 +89045,7 @@ function Plugins(game, opts) {
   opts = opts || {};
   this.require = opts.require || require;
   this.enableOnLoad = opts.enableOnLoad || true;
+  this.namePrefix = opts.namePrefix || "voxel-";
 
   // map plugin name to instances
   this.pluginMap = {};
@@ -88365,16 +89055,14 @@ function Plugins(game, opts) {
 
 // Loads a plugin instance
 Plugins.prototype.load = function(name, opts) {
-  console.log("loading plugin ",name,opts);
-  
   if (this.get(name)) {
     console.log("plugin already loaded: ", name);
     return false;
   }
 
   opts = opts || {};
-
-  var createPlugin = this.require(name);   // factory for constructor
+  
+  var createPlugin = this.require(this.namePrefix + name);   // factory for constructor
   if (!createPlugin) {
     console.log("plugin not found: ",name);
     return false;
@@ -88389,7 +89077,7 @@ Plugins.prototype.load = function(name, opts) {
   plugin.pluginEnabled = false;
   this.pluginMap[name] = plugin;
 
-  console.log("loaded plugin ",name,plugin);
+  console.log("Loaded plugin:",name,plugin);
 
   // plugins are enabled on load by default
   if (this.enableOnLoad) this.enable(plugin);
@@ -88437,7 +89125,6 @@ Plugins.prototype.listAll = function() {
 
 
 Plugins.prototype.enable = function(name) {
-  console.log("enabling plugin ",name);
   var plugin = this.get(name);
 
   if (!plugin) {
@@ -88490,7 +89177,6 @@ Plugins.prototype.disable = function(name) {
     }
   }
 
-  console.log("disabling X",plugin);
   plugin.pluginEnabled = false;
 
   // TODO: recursively disable dependants? or refuse to disable if has enabled dependants?
@@ -88527,7 +89213,7 @@ Plugins.prototype.unload = function(name) {
   return true;
 };
 
-},{}],63:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var inherits = require('inherits');
@@ -88560,6 +89246,12 @@ function frac(f) {
   return Math.abs(f % 1);
 }
 
+function targetsEqual(a, b) {
+  var strA = (a && a.voxel) ? a.voxel.join(',') : 'none';
+  var strB = (b && b.voxel) ? b.voxel.join(',') : 'none';
+  return strA === strB;
+}
+
 Reach.prototype.bindEvents = function() {
   var self = this;
 
@@ -88574,9 +89266,9 @@ Reach.prototype.bindEvents = function() {
 
     target = self.specifyTarget();
 
-    if (action === 'mining' && this.currentTarget) {
+    if (action === 'mining' && (this.currentTarget || target)) {
       // changing target while mouse held (moving mouse)
-      if (target === false || target.voxel.join(',') !== this.currentTarget.voxel.join(',')) {
+      if (!targetsEqual(target, this.currentTarget)) {
         self.emit('stop mining', this.currentTarget);
         self.emit('start mining', target);
       }
@@ -88665,9 +89357,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":83,"inherits":64}],64:[function(require,module,exports){
-module.exports=require(16)
-},{}],65:[function(require,module,exports){
+},{"events":96,"inherits":77}],77:[function(require,module,exports){
+module.exports=require(19)
+},{}],78:[function(require,module,exports){
 var transparent = require('opaque').transparent;
 
 function Texture(opts) {
@@ -88885,7 +89577,7 @@ function defaults(obj) {
   return obj;
 }
 
-},{"opaque":66,"three":3}],66:[function(require,module,exports){
+},{"opaque":79,"three":6}],79:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -88915,7 +89607,7 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],67:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 
 module.exports = function(game, opts) {
     return new Walk(game, opts)
@@ -89006,25 +89698,25 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],68:[function(require,module,exports){
-module.exports=require(43)
-},{"events":83,"inherits":74}],69:[function(require,module,exports){
-arguments[4][44][0].apply(exports,arguments)
-},{"./chunker":68,"./meshers/culled":70,"./meshers/greedy":71,"./meshers/monotone":72,"./meshers/stupid":73}],70:[function(require,module,exports){
-module.exports=require(45)
-},{}],71:[function(require,module,exports){
-module.exports=require(46)
-},{}],72:[function(require,module,exports){
-module.exports=require(47)
-},{}],73:[function(require,module,exports){
-module.exports=require(48)
-},{}],74:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
+module.exports=require(13)
+},{"events":96,"inherits":87}],82:[function(require,module,exports){
+arguments[4][14][0].apply(exports,arguments)
+},{"./chunker":81,"./meshers/culled":83,"./meshers/greedy":84,"./meshers/monotone":85,"./meshers/stupid":86}],83:[function(require,module,exports){
+module.exports=require(15)
+},{}],84:[function(require,module,exports){
 module.exports=require(16)
-},{}],75:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
+module.exports=require(17)
+},{}],86:[function(require,module,exports){
+module.exports=require(18)
+},{}],87:[function(require,module,exports){
+module.exports=require(19)
+},{}],88:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],76:[function(require,module,exports){
+},{"./index.coffee":1}],89:[function(require,module,exports){
 
 
 //
@@ -89242,7 +89934,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],77:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89315,7 +90007,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":76,"_stream_readable":79,"_stream_writable":81,"timers":87,"util":88}],78:[function(require,module,exports){
+},{"_shims":89,"_stream_readable":92,"_stream_writable":94,"timers":100,"util":101}],91:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89358,7 +90050,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":80,"util":88}],79:[function(require,module,exports){
+},{"_stream_transform":93,"util":101}],92:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90279,7 +90971,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":92,"_shims":76,"buffer":90,"events":83,"stream":85,"string_decoder":86,"timers":87,"util":88}],80:[function(require,module,exports){
+},{"__browserify_process":105,"_shims":89,"buffer":103,"events":96,"stream":98,"string_decoder":99,"timers":100,"util":101}],93:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90485,7 +91177,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":77,"util":88}],81:[function(require,module,exports){
+},{"_stream_duplex":90,"util":101}],94:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90855,7 +91547,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":90,"stream":85,"timers":87,"util":88}],82:[function(require,module,exports){
+},{"buffer":103,"stream":98,"timers":100,"util":101}],95:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91172,7 +91864,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":76,"util":88}],83:[function(require,module,exports){
+},{"_shims":89,"util":101}],96:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91453,7 +92145,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":88}],84:[function(require,module,exports){
+},{"util":101}],97:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91664,7 +92356,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":92,"_shims":76,"util":88}],85:[function(require,module,exports){
+},{"__browserify_process":105,"_shims":89,"util":101}],98:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91793,7 +92485,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":77,"_stream_passthrough":78,"_stream_readable":79,"_stream_transform":80,"_stream_writable":81,"events":83,"util":88}],86:[function(require,module,exports){
+},{"_stream_duplex":90,"_stream_passthrough":91,"_stream_readable":92,"_stream_transform":93,"_stream_writable":94,"events":96,"util":101}],99:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91986,7 +92678,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":90}],87:[function(require,module,exports){
+},{"buffer":103}],100:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -92105,7 +92797,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],88:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92650,7 +93342,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":76}],89:[function(require,module,exports){
+},{"_shims":89}],102:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -92736,7 +93428,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],90:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -93862,7 +94554,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":89,"assert":82,"base64-js":91}],91:[function(require,module,exports){
+},{"./buffer_ieee754":102,"assert":95,"base64-js":104}],104:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -93948,7 +94640,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],92:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -94002,5 +94694,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[75])
+},{}]},{},[88])
 ;
