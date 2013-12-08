@@ -6,6 +6,9 @@ voxel = require 'voxel'
 extend = require 'extend'
 
 createGame = require 'voxel-engine'
+
+createPlugins = require 'voxel-plugins'
+
 createOculus = require 'voxel-oculus'
 createHighlight = require 'voxel-highlight'
 createPlayer = require 'voxel-player'
@@ -51,15 +54,21 @@ module.exports = (opts, setup) ->
   console.log "creating game"
   game = createGame opts
 
+  console.log "initializing plugins"
+  plugins = createPlugins(game, {require: require})
+
+  plugins.preconfigure("voxel-oculus", { distortion: 0.2, separation: 0.5 })
+
   if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
     # Oculus Rift support TODO: allow in-game toggling
-    oculus = createOculus(game, { distortion: 0.2, separation: 0.5 })
-    document.getElementById("logo").style.visibility = "hidden"
+    plugins.enable("voxel-oculus")
+  #  document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
   window.game = game # for debugging
   game.appendTo container
   return game if game.notCapable()
+
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
@@ -122,6 +131,8 @@ defaultSetup = (game, avatar) ->
   window.addEventListener 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
       avatar.toggle()
+    else if ev.keyCode == 'T'.charCodeAt(0)
+      game.plugins.toggle("voxel-oculus")
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
