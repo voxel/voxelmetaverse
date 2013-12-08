@@ -8,7 +8,8 @@ datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 
-terrain = require 'voxel-perlin-terrain'
+createTerrain = require 'voxel-perlin-terrain'
+createTree = require 'voxel-forest'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-oculus'
@@ -55,11 +56,10 @@ module.exports = (opts, setup) ->
   opts = extend {}, defaults, opts || {}
 
   # setup the game 
-  # TODO: add some trees
   console.log "creating game"
   game = createGame opts
 
-  generateChunk = terrain 'foo', 0, 5, 20
+  generateChunk = createTerrain 'foo', 0, 5, 20
   game.voxels.on 'missingChunk', (p) ->
     voxels = generateChunk p, 32
     chunk = {
@@ -67,8 +67,17 @@ module.exports = (opts, setup) ->
       dims: [game.chunkSize, game.chunkSize, game.chunkSize]
       voxels: voxels
     }
+    #if p.join(',') == '0,0,0'
+    #  createTree game, {bark:4, leaves:9, position:{x:0, y:1, z:0}, checkOccupied:false}
+    #step = game.voxels.chunkSize * game.voxels.cubeSize
+    #createTree game, {bark:4, leaves:9, position:{x:p[0] * step, y:p[1] * step, z:p[2] * step}, checkOccupied:false}
     game.showChunk(chunk)
 
+  generateTrees = () ->
+    for i in [0..250]
+      createTree game, {bark:4, leaves:9, checkOccupied:false, treetype: 2}
+  # TODO: generate as part of chunk generation instead of after the fact
+  window.setTimeout generateTrees, 10000
 
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
