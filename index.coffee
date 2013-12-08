@@ -2,17 +2,21 @@
 
 console.log "Hello"
 
-createGame = require 'voxel-engine'
-oculus = require 'voxel-oculus'
-highlight = require 'voxel-highlight'
-player = require 'voxel-player'
 voxel = require 'voxel'
 extend = require 'extend'
-fly = require 'voxel-fly'
-walk = require 'voxel-walk'
+
+createGame = require 'voxel-engine'
+
+createPlugins = require 'voxel-plugins'
+
+createOculus = require 'voxel-oculus'
+createHighlight = require 'voxel-highlight'
+createPlayer = require 'voxel-player'
+createFly = require 'voxel-fly'
+createWalk = require 'voxel-walk'
 createMine = require 'voxel-mine'
 createReach = require 'voxel-reach'
-debris = require 'voxel-debris'
+createDebris = require 'voxel-debris'
 createDebug = require 'voxel-debug'
 
 module.exports = (opts, setup) ->
@@ -50,21 +54,25 @@ module.exports = (opts, setup) ->
   console.log "creating game"
   game = createGame opts
 
+  console.log "initializing plugins"
+  plugins = createPlugins(game, {require: require})
+
+  plugins.preconfigure("voxel-oculus", { distortion: 0.2, separation: 0.5 })
+
   if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
     # Oculus Rift support TODO: allow in-game toggling
-    effect = new oculus(game, { distortion: 0.2, separation: 0.5 })
-    document.getElementById("logo").style.visibility = "hidden"
+    plugins.enable("voxel-oculus")
+  #  document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
   window.game = game # for debugging
   game.appendTo container
   return game if game.notCapable()
 
-  createPlayer = player game
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = createPlayer opts.playerSkin || 'player.png'
+  avatar = createPlayer(game, {image: 'player.png'})
   avatar.pov('first');
   avatar.possess()
   home(avatar)
@@ -81,19 +89,29 @@ home = (avatar) ->
 GAME_MODE_SURVIVAL = 0
 GAME_MODE_CREATIVE = 1
 
+REACH_DISTANCE = 8
+
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
   debug = createDebug(game)
   debug.axis([0, 0, 0], 10)
 
-  makeFly = fly game
-  target = game.controls.target()
   game.mode = GAME_MODE_SURVIVAL
-  game.flyer = makeFly target
-  game.flyer.enabled = false
+  controlsTarget = game.controls.target()
 
-  reach = createReach(game)
+  game.flyer = createFly(game, {physical: controlsTarget, flySpeed: 0.8, enabled: false})
+
+  walk = createWalk(game, { 
+    skin: controlsTarget.playerSkin
+    bindGameEvents: true
+    shouldStopWalking: () =>
+      vx = Math.abs(controlsTarget.velocity.x)
+      vz = Math.abs(controlsTarget.velocity.z)
+      return vx > 0.001 || vz > 0.001
+    })
+
+  reach = createReach(game, { reachDistance: REACH_DISTANCE })
   mine = createMine(game, {
     instaMine: false
     reach: reach
@@ -103,12 +121,18 @@ defaultSetup = (game, avatar) ->
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
-  hl = game.highlighter = highlight game, { color:  0xff0000 }
+  highlight = createHighlight game, { 
+    color:  0xff0000
+    distance: REACH_DISTANCE
+    adjacentActive: () -> false
+    }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
       avatar.toggle()
+    else if ev.keyCode == 'T'.charCodeAt(0)
+      game.plugins.toggle("voxel-oculus")
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
@@ -156,15 +180,8 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  game.explode = debris(game, {power: 1.5})
-  game.explode.on 'collect', (item) ->
+  debris = createDebris(game, {power: 1.5})
+  debris.on 'collect', (item) ->
     console.log("collect", item)
 
-  game.on 'tick', () ->
-    walk.render target.playerSkin
-    vx = Math.abs target.velocity.x
-    vz = Math.abs target.velocity.z
-    if vx > 0.001 || vz > 0.001
-      walk.stopWalking() 
-    else
-      walk.startWalking()
+
