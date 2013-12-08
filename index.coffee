@@ -8,6 +8,8 @@ datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 
+terrain = require 'voxel-simplex-terrain'
+
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-oculus'
 require 'voxel-highlight'
@@ -23,15 +25,17 @@ module.exports = (opts, setup) ->
   setup ||= defaultSetup
   console.log "initializing"
 
+  
   defaults =
-    generate: voxel.generator['Valley']
+    #generate: voxel.generator['Valley']
+    generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     mesher: voxel.meshers.greedy
     chunkDistance: 2
     materials: [
       ['grass_top', 'dirt', 'grass_side'],
       'dirt',
-      ['log_oak_top', 'log_oak_top', 'log_oak'],
       'stone',
+      ['log_oak_top', 'log_oak_top', 'log_oak'],
       'cobblestone',
       'coal_ore',
       'brick',
@@ -83,7 +87,8 @@ module.exports = (opts, setup) ->
   return game
 
 home = (avatar) ->
-  avatar.yaw.position.set 2, 14, 4
+  #avatar.yaw.position.set 2, 14, 4
+  avatar.yaw.position.set 2, 42, 4
 
 
 GAME_MODE_SURVIVAL = 0
