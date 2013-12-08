@@ -4,34 +4,40 @@ console.log "Hello"
 
 voxel = require 'voxel'
 extend = require 'extend'
-
+datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
-
 createPlugins = require 'voxel-plugins'
 
-createOculus = require 'voxel-oculus'
-createHighlight = require 'voxel-highlight'
-createPlayer = require 'voxel-player'
-createFly = require 'voxel-fly'
-createWalk = require 'voxel-walk'
-createMine = require 'voxel-mine'
-createReach = require 'voxel-reach'
-createDebris = require 'voxel-debris'
-createDebug = require 'voxel-debug'
+createTerrain = require 'voxel-perlin-terrain'
+createTree = require 'voxel-forest'
+
+# plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-oculus'
+require 'voxel-highlight'
+require 'voxel-player'
+require 'voxel-fly'
+require 'voxel-walk'
+require 'voxel-mine'
+require 'voxel-reach'
+require 'voxel-debris'
+require 'voxel-debug'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
   console.log "initializing"
 
+  
   defaults =
-    generate: voxel.generator['Valley']
+    #generate: voxel.generator['Valley']
+    #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
+    generateChunks: false
     mesher: voxel.meshers.greedy
     chunkDistance: 2
     materials: [
       ['grass_top', 'dirt', 'grass_side'],
       'dirt',
-      ['log_oak_top', 'log_oak_top', 'log_oak'],
       'stone',
+      ['log_oak_top', 'log_oak_top', 'log_oak'],
       'cobblestone',
       'coal_ore',
       'brick',
@@ -50,18 +56,64 @@ module.exports = (opts, setup) ->
   opts = extend {}, defaults, opts || {}
 
   # setup the game 
-  # TODO: add some trees
   console.log "creating game"
   game = createGame opts
+
+  generateChunk = createTerrain 'foo', 0, 5, 20
+  game.voxels.on 'missingChunk', (p) ->
+    width = 32
+    if p[1] == 0
+      # ground surface level
+      voxels = generateChunk p, width
+      #voxels = new Int8Array(width * width * width)
+
+      # populate chunk with trees
+      # TODO: populate later, so structures can cross chunks??
+      createTree game, {
+        bark: 4
+        leaves: 9
+        position: {x:width/2, y:0, z:width/2} # TODO: position at top of surface
+        treetype: 1
+        setBlock: (pos, value) ->
+          idx = pos.x + pos.y * width + pos.z * width * width
+          voxels[idx] = value
+          return false  # returning true stops tree
+        }
+    else if p[1] > 0
+      # empty space above ground
+      voxels = new Int8Array(width * width * width)
+    else
+      # below ground
+      # TODO: ores
+      voxels = new Int8Array(width * width * width)
+      for i in [0..width * width * width]
+        voxels[i] = 3  # stone
+
+    chunk = {
+      position: p
+      dims: [game.chunkSize, game.chunkSize, game.chunkSize]
+      voxels: voxels
+    }
+    #if p.join(',') == '0,0,0'
+    #  createTree game, {bark:4, leaves:9, position:{x:0, y:1, z:0}, checkOccupied:false}
+    #step = game.voxels.chunkSize * game.voxels.cubeSize
+    #createTree game, {bark:4, leaves:9, position:{x:p[0] * step, y:p[1] * step, z:p[2] * step}, checkOccupied:false}
+    game.showChunk(chunk)
+
+  generateTrees = () ->
+    for i in [0..250]
+      createTree game, {bark:4, leaves:9, checkOccupied:false, treetype: 2}
+  # TODO: generate as part of chunk generation instead of after the fact
+  #window.setTimeout generateTrees, 10000
 
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
 
-  plugins.preconfigure("voxel-oculus", { distortion: 0.2, separation: 0.5 })
+  plugins.preconfigure "oculus", { distortion: 0.2, separation: 0.5 }
 
-  if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
-    # Oculus Rift support TODO: allow in-game toggling
-    plugins.enable("voxel-oculus")
+  if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
+    # Oculus Rift support
+    plugins.enable 'oculus'
   #  document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
@@ -72,7 +124,7 @@ module.exports = (opts, setup) ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = createPlayer(game, {image: 'player.png'})
+  avatar = game.plugins.load 'player', {image: 'player.png'}
   avatar.pov('first');
   avatar.possess()
   home(avatar)
@@ -83,7 +135,8 @@ module.exports = (opts, setup) ->
   return game
 
 home = (avatar) ->
-  avatar.yaw.position.set 2, 14, 4
+  #avatar.yaw.position.set 2, 14, 4
+  avatar.yaw.position.set 2, 5, 4
 
 
 GAME_MODE_SURVIVAL = 0
@@ -94,45 +147,47 @@ REACH_DISTANCE = 8
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
-  debug = createDebug(game)
+  gui = new datgui.GUI()
+  console.log 'gui',gui
+  debug = game.plugins.load 'debug', {gui: gui}
   debug.axis([0, 0, 0], 10)
 
   game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
 
-  game.flyer = createFly(game, {physical: controlsTarget, flySpeed: 0.8, enabled: false})
+  game.flyer = game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8, enabled: false}
 
-  walk = createWalk(game, { 
+  game.plugins.load 'walk', { 
     skin: controlsTarget.playerSkin
     bindGameEvents: true
     shouldStopWalking: () =>
       vx = Math.abs(controlsTarget.velocity.x)
       vz = Math.abs(controlsTarget.velocity.z)
       return vx > 0.001 || vz > 0.001
-    })
+    }
 
-  reach = createReach(game, { reachDistance: REACH_DISTANCE })
-  mine = createMine(game, {
+  reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
+  mine = game.plugins.load 'mine', {
     instaMine: false
     reach: reach
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
     progressTexturesCount: 9
-  })
+  }
 
   console.log "configuring highlight "
-  # highlight blocks when you look at them, hold <Ctrl> for block placement
-  highlight = createHighlight game, { 
+  # highlight blocks when you look at them
+  highlight = game.plugins.load 'highlight', {
     color:  0xff0000
     distance: REACH_DISTANCE
-    adjacentActive: () -> false
-    }
+    adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
+  }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
       avatar.toggle()
     else if ev.keyCode == 'T'.charCodeAt(0)
-      game.plugins.toggle("voxel-oculus")
+      game.plugins.toggle "oculus"
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
@@ -180,7 +235,7 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  debris = createDebris(game, {power: 1.5})
+  debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
     console.log("collect", item)
 
