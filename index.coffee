@@ -9,16 +9,16 @@ createGame = require 'voxel-engine'
 
 createPlugins = require 'voxel-plugins'
 
-# plugins
-createOculus = require 'voxel-oculus'
-createHighlight = require 'voxel-highlight'
-createPlayer = require 'voxel-player'
-createFly = require 'voxel-fly'
-createWalk = require 'voxel-walk'
-createMine = require 'voxel-mine'
-createReach = require 'voxel-reach'
-createDebris = require 'voxel-debris'
-createDebug = require 'voxel-debug'
+# plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-oculus'
+require 'voxel-highlight'
+require 'voxel-player'
+require 'voxel-fly'
+require 'voxel-walk'
+require 'voxel-mine'
+require 'voxel-reach'
+require 'voxel-debris'
+require 'voxel-debug'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -58,11 +58,11 @@ module.exports = (opts, setup) ->
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
 
-  plugins.preconfigure("voxel-oculus", { distortion: 0.2, separation: 0.5 })
+  plugins.preconfigure "oculus", { distortion: 0.2, separation: 0.5 }
 
-  if window.location.href.indexOf("rift") != -1 ||  window.location.hash.indexOf("rift") != -1
+  if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support TODO: allow in-game toggling
-    plugins.enable("voxel-oculus")
+    plugins.enable 'oculus'
   #  document.getElementById("logo").style.visibility = "hidden"
 
   container = opts.container || document.body
@@ -73,7 +73,7 @@ module.exports = (opts, setup) ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = game.plugins.load "voxel-player", {image: 'player.png'}
+  avatar = game.plugins.load 'player', {image: 'player.png'}
   avatar.pov('first');
   avatar.possess()
   home(avatar)
@@ -95,15 +95,15 @@ REACH_DISTANCE = 8
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
-  game.plugins.load("voxel-debug", {}) # TODO: allow disable
+  game.plugins.load 'debug', {}
   #debug.axis([0, 0, 0], 10)
 
   game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
 
-  game.flyer = game.plugins.load "voxel-fly", {physical: controlsTarget, flySpeed: 0.8, enabled: false}
+  game.flyer = game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8, enabled: false}
 
-  game.plugins.load "voxel-walk", { 
+  game.plugins.load 'walk', { 
     skin: controlsTarget.playerSkin
     bindGameEvents: true
     shouldStopWalking: () =>
@@ -112,8 +112,8 @@ defaultSetup = (game, avatar) ->
       return vx > 0.001 || vz > 0.001
     }
 
-  reach = game.plugins.load "voxel-reach", { reachDistance: REACH_DISTANCE }
-  mine = game.plugins.load "voxel-mine", {
+  reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
+  mine = game.plugins.load 'mine', {
     instaMine: false
     reach: reach
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
@@ -121,11 +121,11 @@ defaultSetup = (game, avatar) ->
   }
 
   console.log "configuring highlight "
-  # highlight blocks when you look at them, hold <Ctrl> for block placement
-  highlight = game.plugins.load "voxel-highlight", {
+  # highlight blocks when you look at them
+  highlight = game.plugins.load 'highlight', {
     color:  0xff0000
     distance: REACH_DISTANCE
-    adjacentActive: () -> false
+    adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
   # toggle between first and third person 
@@ -133,7 +133,7 @@ defaultSetup = (game, avatar) ->
     if ev.keyCode == 'R'.charCodeAt(0)
       avatar.toggle()
     else if ev.keyCode == 'T'.charCodeAt(0)
-      game.plugins.toggle("voxel-oculus")
+      game.plugins.toggle "oculus"
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
@@ -181,7 +181,7 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  debris = game.plugins.load("voxel-debris", {power: 1.5})
+  debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
     console.log("collect", item)
 
