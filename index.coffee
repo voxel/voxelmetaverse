@@ -61,13 +61,28 @@ module.exports = (opts, setup) ->
 
   generateChunk = createTerrain 'foo', 0, 5, 20
   game.voxels.on 'missingChunk', (p) ->
+    width = 32
     if p[1] == 0
       # ground surface level
-      voxels = generateChunk p, 32
+      voxels = generateChunk p, width
+      #voxels = new Int8Array(width * width * width)
+
+      # populate chunk with trees
+      # TODO: populate later, so structures can cross chunks??
+      createTree game, {
+        bark: 4
+        leaves: 9
+        position: {x:width/2, y:0, z:width/2} # TODO: position at top of surface
+        treetype: 1
+        setBlock: (pos, value) ->
+          idx = pos.x + pos.y * width + pos.z * width * width
+          voxels[idx] = value
+          return false  # returning true stops tree
+        }
     else
       # empty space
-      # TODO: ground
-      voxels = {}
+      # TODO: below ground
+      voxels = new Int8Array(width * width * width)
 
     chunk = {
       position: p
