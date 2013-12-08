@@ -61,7 +61,14 @@ module.exports = (opts, setup) ->
 
   generateChunk = createTerrain 'foo', 0, 5, 20
   game.voxels.on 'missingChunk', (p) ->
-    voxels = generateChunk p, 32
+    if p[1] == 0
+      # ground surface level
+      voxels = generateChunk p, 32
+    else
+      # empty space
+      # TODO: ground
+      voxels = {}
+
     chunk = {
       position: p
       dims: [game.chunkSize, game.chunkSize, game.chunkSize]
@@ -77,7 +84,7 @@ module.exports = (opts, setup) ->
     for i in [0..250]
       createTree game, {bark:4, leaves:9, checkOccupied:false, treetype: 2}
   # TODO: generate as part of chunk generation instead of after the fact
-  window.setTimeout generateTrees, 10000
+  #window.setTimeout generateTrees, 10000
 
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
