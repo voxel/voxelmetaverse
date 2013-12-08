@@ -79,10 +79,15 @@ module.exports = (opts, setup) ->
           voxels[idx] = value
           return false  # returning true stops tree
         }
-    else
-      # empty space
-      # TODO: below ground
+    else if p[1] > 0
+      # empty space above ground
       voxels = new Int8Array(width * width * width)
+    else
+      # below ground
+      # TODO: ores
+      voxels = new Int8Array(width * width * width)
+      for i in [0..width * width * width]
+        voxels[i] = 3  # stone
 
     chunk = {
       position: p
