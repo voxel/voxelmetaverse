@@ -9,6 +9,7 @@ createGame = require 'voxel-engine'
 
 createPlugins = require 'voxel-plugins'
 
+# plugins
 createOculus = require 'voxel-oculus'
 createHighlight = require 'voxel-highlight'
 createPlayer = require 'voxel-player'
@@ -72,7 +73,7 @@ module.exports = (opts, setup) ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = createPlayer(game, {image: 'player.png'})
+  avatar = game.plugins.load "voxel-player", {image: 'player.png'}
   avatar.pov('first');
   avatar.possess()
   home(avatar)
@@ -94,38 +95,38 @@ REACH_DISTANCE = 8
 defaultSetup = (game, avatar) ->
   console.log "entering setup"
 
-  debug = createDebug(game)
-  debug.axis([0, 0, 0], 10)
+  game.plugins.load("voxel-debug", {}) # TODO: allow disable
+  #debug.axis([0, 0, 0], 10)
 
   game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
 
-  game.flyer = createFly(game, {physical: controlsTarget, flySpeed: 0.8, enabled: false})
+  game.flyer = game.plugins.load "voxel-fly", {physical: controlsTarget, flySpeed: 0.8, enabled: false}
 
-  walk = createWalk(game, { 
+  game.plugins.load "voxel-walk", { 
     skin: controlsTarget.playerSkin
     bindGameEvents: true
     shouldStopWalking: () =>
       vx = Math.abs(controlsTarget.velocity.x)
       vz = Math.abs(controlsTarget.velocity.z)
       return vx > 0.001 || vz > 0.001
-    })
+    }
 
-  reach = createReach(game, { reachDistance: REACH_DISTANCE })
-  mine = createMine(game, {
+  reach = game.plugins.load "voxel-reach", { reachDistance: REACH_DISTANCE }
+  mine = game.plugins.load "voxel-mine", {
     instaMine: false
     reach: reach
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
     progressTexturesCount: 9
-  })
+  }
 
   console.log "configuring highlight "
   # highlight blocks when you look at them, hold <Ctrl> for block placement
-  highlight = createHighlight game, { 
+  highlight = game.plugins.load "voxel-highlight", {
     color:  0xff0000
     distance: REACH_DISTANCE
     adjacentActive: () -> false
-    }
+  }
 
   # toggle between first and third person 
   window.addEventListener 'keydown', (ev) ->
@@ -180,7 +181,7 @@ defaultSetup = (game, avatar) ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  debris = createDebris(game, {power: 1.5})
+  debris = game.plugins.load("voxel-debris", {power: 1.5})
   debris.on 'collect', (item) ->
     console.log("collect", item)
 
