@@ -23,7 +23,7 @@
     "coffee-script": "1.6.3",
     "coffeeify": "0.5.2",
     "dat-gui": "~0.5.0",
-    "voxel-simplex-terrain": "0.0.3"
+    "voxel-perlin-terrain": "~1.0.0"
   },
   "devDependencies": {
     "browserify": "2.35.1",

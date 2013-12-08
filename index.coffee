@@ -8,7 +8,7 @@ datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 
-terrain = require 'voxel-simplex-terrain'
+terrain = require 'voxel-perlin-terrain'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-oculus'
@@ -28,7 +28,8 @@ module.exports = (opts, setup) ->
   
   defaults =
     #generate: voxel.generator['Valley']
-    generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
+    #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
+    generateChunks: false
     mesher: voxel.meshers.greedy
     chunkDistance: 2
     materials: [
@@ -58,13 +59,24 @@ module.exports = (opts, setup) ->
   console.log "creating game"
   game = createGame opts
 
+  generateChunk = terrain 'foo', 0, 5, 20
+  game.voxels.on 'missingChunk', (p) ->
+    voxels = generateChunk p, 32
+    chunk = {
+      position: p
+      dims: [game.chunkSize, game.chunkSize, game.chunkSize]
+      voxels: voxels
+    }
+    game.showChunk(chunk)
+
+
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
 
   plugins.preconfigure "oculus", { distortion: 0.2, separation: 0.5 }
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
-    # Oculus Rift support TODO: allow in-game toggling
+    # Oculus Rift support
     plugins.enable 'oculus'
   #  document.getElementById("logo").style.visibility = "hidden"
 
@@ -88,7 +100,7 @@ module.exports = (opts, setup) ->
 
 home = (avatar) ->
   #avatar.yaw.position.set 2, 14, 4
-  avatar.yaw.position.set 2, 42, 4
+  avatar.yaw.position.set 2, 5, 4
 
 
 GAME_MODE_SURVIVAL = 0
