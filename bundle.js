@@ -1,34 +1,36 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, createDebug, createGame, createMine, createReach, debris, defaultSetup, extend, fly, highlight, home, oculus, player, voxel, walk;
+var GAME_MODE_CREATIVE, GAME_MODE_SURVIVAL, REACH_DISTANCE, createDebris, createDebug, createFly, createGame, createHighlight, createMine, createOculus, createPlayer, createPlugins, createReach, createWalk, defaultSetup, extend, home, voxel;
 
 console.log("Hello");
-
-createGame = require('voxel-engine');
-
-oculus = require('voxel-oculus');
-
-highlight = require('voxel-highlight');
-
-player = require('voxel-player');
 
 voxel = require('voxel');
 
 extend = require('extend');
 
-fly = require('voxel-fly');
+createGame = require('voxel-engine');
 
-walk = require('voxel-walk');
+createPlugins = require('voxel-plugins');
+
+createOculus = require('voxel-oculus');
+
+createHighlight = require('voxel-highlight');
+
+createPlayer = require('voxel-player');
+
+createFly = require('voxel-fly');
+
+createWalk = require('voxel-walk');
 
 createMine = require('voxel-mine');
 
 createReach = require('voxel-reach');
 
-debris = require('voxel-debris');
+createDebris = require('voxel-debris');
 
 createDebug = require('voxel-debug');
 
 module.exports = function(opts, setup) {
-  var avatar, container, createPlayer, defaults, effect, game;
+  var avatar, container, defaults, game, plugins;
   setup || (setup = defaultSetup);
   console.log("initializing");
   defaults = {
@@ -47,12 +49,16 @@ module.exports = function(opts, setup) {
   opts = extend({}, defaults, opts || {});
   console.log("creating game");
   game = createGame(opts);
+  console.log("initializing plugins");
+  plugins = createPlugins(game, {
+    require: require
+  });
+  plugins.preconfigure("voxel-oculus", {
+    distortion: 0.2,
+    separation: 0.5
+  });
   if (window.location.href.indexOf("rift") !== -1 || window.location.hash.indexOf("rift") !== -1) {
-    effect = new oculus(game, {
-      distortion: 0.2,
-      separation: 0.5
-    });
-    document.getElementById("logo").style.visibility = "hidden";
+    plugins.enable("voxel-oculus");
   }
   container = opts.container || document.body;
   window.game = game;
@@ -60,8 +66,9 @@ module.exports = function(opts, setup) {
   if (game.notCapable()) {
     return game;
   }
-  createPlayer = player(game);
-  avatar = createPlayer(opts.playerSkin || 'player.png');
+  avatar = createPlayer(game, {
+    image: 'player.png'
+  });
   avatar.pov('first');
   avatar.possess();
   home(avatar);
@@ -78,17 +85,34 @@ GAME_MODE_SURVIVAL = 0;
 
 GAME_MODE_CREATIVE = 1;
 
+REACH_DISTANCE = 8;
+
 defaultSetup = function(game, avatar) {
-  var debug, hl, makeFly, mine, reach, target;
+  var controlsTarget, debris, debug, highlight, mine, reach, walk,
+    _this = this;
   console.log("entering setup");
   debug = createDebug(game);
   debug.axis([0, 0, 0], 10);
-  makeFly = fly(game);
-  target = game.controls.target();
   game.mode = GAME_MODE_SURVIVAL;
-  game.flyer = makeFly(target);
-  game.flyer.enabled = false;
-  reach = createReach(game);
+  controlsTarget = game.controls.target();
+  game.flyer = createFly(game, {
+    physical: controlsTarget,
+    flySpeed: 0.8,
+    enabled: false
+  });
+  walk = createWalk(game, {
+    skin: controlsTarget.playerSkin,
+    bindGameEvents: true,
+    shouldStopWalking: function() {
+      var vx, vz;
+      vx = Math.abs(controlsTarget.velocity.x);
+      vz = Math.abs(controlsTarget.velocity.z);
+      return vx > 0.001 || vz > 0.001;
+    }
+  });
+  reach = createReach(game, {
+    reachDistance: REACH_DISTANCE
+  });
   mine = createMine(game, {
     instaMine: false,
     reach: reach,
@@ -96,13 +120,19 @@ defaultSetup = function(game, avatar) {
     progressTexturesCount: 9
   });
   console.log("configuring highlight ");
-  hl = game.highlighter = highlight(game, {
-    color: 0xff0000
+  highlight = createHighlight(game, {
+    color: 0xff0000,
+    distance: REACH_DISTANCE,
+    adjacentActive: function() {
+      return false;
+    }
   });
   window.addEventListener('keydown', function(ev) {
     var slot, _ref;
     if (ev.keyCode === 'R'.charCodeAt(0)) {
       return avatar.toggle();
+    } else if (ev.keyCode === 'T'.charCodeAt(0)) {
+      return game.plugins.toggle("voxel-oculus");
     } else if (('0'.charCodeAt(0) <= (_ref = ev.keyCode) && _ref <= '9'.charCodeAt(0))) {
       slot = ev.keyCode - '0'.charCodeAt(0);
       if (slot === 0) {
@@ -144,27 +174,16 @@ defaultSetup = function(game, avatar) {
     return game.setBlock(goner, 0);
   });
   game.currentMaterial = 1;
-  game.explode = debris(game, {
+  debris = createDebris(game, {
     power: 1.5
   });
-  game.explode.on('collect', function(item) {
+  return debris.on('collect', function(item) {
     return console.log("collect", item);
-  });
-  return game.on('tick', function() {
-    var vx, vz;
-    walk.render(target.playerSkin);
-    vx = Math.abs(target.velocity.x);
-    vz = Math.abs(target.velocity.z);
-    if (vx > 0.001 || vz > 0.001) {
-      return walk.stopWalking();
-    } else {
-      return walk.startWalking();
-    }
   });
 };
 
 
-},{"extend":2,"voxel":68,"voxel-debris":4,"voxel-debug":6,"voxel-engine":10,"voxel-fly":49,"voxel-highlight":54,"voxel-mine":57,"voxel-oculus":59,"voxel-player":60,"voxel-reach":62,"voxel-walk":66}],2:[function(require,module,exports){
+},{"extend":2,"voxel":69,"voxel-debris":4,"voxel-debug":6,"voxel-engine":10,"voxel-fly":49,"voxel-highlight":54,"voxel-mine":57,"voxel-oculus":59,"voxel-player":60,"voxel-plugins":62,"voxel-reach":63,"voxel-walk":67}],2:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -37202,7 +37221,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{"__browserify_process":91}],4:[function(require,module,exports){
+},{"__browserify_process":92}],4:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -37289,7 +37308,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":82,"funstance":5}],5:[function(require,module,exports){
+},{"events":83,"funstance":5}],5:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -42588,7 +42607,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":11,"./lib/stats":12,"__browserify_process":91,"aabb-3d":13,"collide-3d-tilemap":14,"events":82,"gl-matrix":15,"inherits":16,"interact":17,"kb-controls":26,"path":83,"pin-it":31,"raf":32,"spatial-events":33,"three":35,"tic":36,"voxel":44,"voxel-control":37,"voxel-mesh":38,"voxel-physical":39,"voxel-raycast":40,"voxel-region-change":41,"voxel-texture":64,"voxel-view":42}],11:[function(require,module,exports){
+},{"./lib/detector":11,"./lib/stats":12,"__browserify_process":92,"aabb-3d":13,"collide-3d-tilemap":14,"events":83,"gl-matrix":15,"inherits":16,"interact":17,"kb-controls":26,"path":84,"pin-it":31,"raf":32,"spatial-events":33,"three":35,"tic":36,"voxel":44,"voxel-control":37,"voxel-mesh":38,"voxel-physical":39,"voxel-raycast":40,"voxel-region-change":41,"voxel-texture":65,"voxel-view":42}],11:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -46194,7 +46213,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":18,"events":82,"fullscreen":24,"pointer-lock":25,"stream":84}],18:[function(require,module,exports){
+},{"drag-stream":18,"events":83,"fullscreen":24,"pointer-lock":25,"stream":85}],18:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -46262,7 +46281,7 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":19,"stream":84,"through":23}],19:[function(require,module,exports){
+},{"domnode-dom":19,"stream":85,"through":23}],19:[function(require,module,exports){
 module.exports = require('./lib/index')
 
 },{"./lib/index":20}],20:[function(require,module,exports){
@@ -46412,7 +46431,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":84}],22:[function(require,module,exports){
+},{"stream":85}],22:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -46494,7 +46513,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":84}],23:[function(require,module,exports){
+},{"stream":85}],23:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -46594,7 +46613,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":91,"stream":84}],24:[function(require,module,exports){
+},{"__browserify_process":92,"stream":85}],24:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -46685,7 +46704,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":82}],25:[function(require,module,exports){
+},{"events":83}],25:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -46849,7 +46868,7 @@ function shim(el) {
     null
 }
 
-},{"events":82,"stream":84}],26:[function(require,module,exports){
+},{"events":83,"stream":85}],26:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -47058,7 +47077,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":28,"./types.json":29,"events":82}],28:[function(require,module,exports){
+},{"./init.json":28,"./types.json":29,"events":83}],28:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -47413,7 +47432,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":82}],33:[function(require,module,exports){
+},{"events":83}],33:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -84585,7 +84604,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":84}],38:[function(require,module,exports){
+},{"stream":85}],38:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -85205,7 +85224,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":13,"events":82}],42:[function(require,module,exports){
+},{"aabb-3d":13,"events":83}],42:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -85294,7 +85313,7 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":91}],43:[function(require,module,exports){
+},{"__browserify_process":92}],43:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -85431,7 +85450,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":82,"inherits":16}],44:[function(require,module,exports){
+},{"events":83,"inherits":16}],44:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -85990,21 +86009,19 @@ var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
 
-var game
+module.exports = function(game, opts) {
+  return new Fly(game, opts)
 
-module.exports = function(gameInstance) {
-  // cache the game instance
-  game = gameInstance
-  return function makeFly(physical, noKeyEvents) {
-    return new Fly(physical, noKeyEvents)
-  }
 }
 
-function Fly(physical, noKeyEvents) {
-  this.flySpeed = 0.8
-  this.physical = physical
-  this.enabled = true
-  if (!noKeyEvents) this.bindKeyEvents()
+function Fly(game, opts) {
+  this.game = game
+  this.physical = opts.physical
+  if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
+  this.noKeyEvents = opts.noKeyEvents || false
+  this.flySpeed = opts.flySpeed || 0.8
+  this.enabled = opts.enabled || true
+  if (!this.noKeyEvents) this.bindKeyEvents()
 }
 
 Fly.prototype.bindKeyEvents = function(el) {
@@ -86021,7 +86038,7 @@ Fly.prototype.bindKeyEvents = function(el) {
     if (!self.enabled) return
 
     var key = vkey[ev.keyCode] || ev.char
-    var binding = game.keybindings[key]
+    var binding = self.game.keybindings[key]
     if (binding !== "jump") return
     if (counter === 1) {
       if (Date.now() - first > 300) {
@@ -86055,24 +86072,24 @@ Fly.prototype.startFlying = function() {
   var self = this
   this.flying = true
   var physical = this.physical
-  physical.removeForce(game.gravity)
+  physical.removeForce(this.game.gravity)
   physical.onGameTick = function(dt) {
     if (physical.atRestY() === -1) return self.stopFlying()
     physical.friction.x = self.flySpeed
     physical.friction.z = self.flySpeed
-    var press = game.controls.state
+    var press = self.game.controls.state
     if (press['crouch']) return physical.velocity.y = -0.01
     if (press['jump']) return physical.velocity.y = 0.01
     physical.velocity.y = 0
   }
-  game.on('tick', physical.onGameTick)
+  this.game.on('tick', physical.onGameTick)
 }
 
 Fly.prototype.stopFlying = function() {
   this.flying = false
   var physical = this.physical
-  physical.subjectTo(game.gravity)
-  game.removeListener('tick', physical.onGameTick)
+  physical.subjectTo(this.game.gravity)
+  this.game.removeListener('tick', physical.onGameTick)
 }
 
 Fly.prototype.toggleFlying = function() {
@@ -86083,9 +86100,9 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":82,"ever":50,"vkey":53}],50:[function(require,module,exports){
+},{"events":83,"ever":50,"vkey":53}],50:[function(require,module,exports){
 module.exports=require(27)
-},{"./init.json":51,"./types.json":52,"events":82}],51:[function(require,module,exports){
+},{"./init.json":51,"./types.json":52,"events":83}],51:[function(require,module,exports){
 module.exports=require(28)
 },{}],52:[function(require,module,exports){
 module.exports=require(29)
@@ -86258,7 +86275,7 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":82,"inherits":55,"underscore":56}],55:[function(require,module,exports){
+},{"events":83,"inherits":55,"underscore":56}],55:[function(require,module,exports){
 module.exports=require(16)
 },{}],56:[function(require,module,exports){
 //     Underscore.js 1.4.4
@@ -87679,8 +87696,9 @@ module.exports=require(16)
     this.opts.applyTextureParams(material.map);
     material.side = this.game.THREE.FrontSide;
     material.transparent = true;
-    material.depthWrite = false;
-    material.depthTest = false;
+    material.polygonOffset = true;
+    material.polygonOffsetFactor = -1.0;
+    material.polygonOffsetUnits = -1.0;
     mesh = new this.game.THREE.Mesh(geometry, material);
     obj = new this.game.THREE.Object3D();
     obj.add(mesh);
@@ -87723,10 +87741,14 @@ module.exports=require(16)
 
 }).call(this);
 
-},{"events":82,"inherits":58}],58:[function(require,module,exports){
+},{"events":83,"inherits":58}],58:[function(require,module,exports){
 module.exports=require(16)
 },{}],59:[function(require,module,exports){
 module.exports = function (game, opts) {
+    return new Oculus(game, opts);
+}
+
+function Oculus(game, opts) {
 	var THREE = game.THREE;
 	var renderer = game.view.renderer;
 
@@ -87805,7 +87827,6 @@ module.exports = function (game, opts) {
 		renderer.setSize( width, height );
 
 	};
-	this.setSize(game.width, game.height);
 
 	this.render = function ( scene, camera ) {
 		renderer.clear();
@@ -87842,22 +87863,35 @@ module.exports = function (game, opts) {
 		renderer.render( _scene, _oCamera );
 	};
 
-	game.view.renderer = this;
+	this.enable = function () {
+		this.originalRenderer = game.view.renderer;
+		this.setSize(game.width, game.height);
+		game.view.renderer = this;
+	};
+
+	this.disable = function () {
+		// TODO: anything else important we need to restore?
+		this.setSize(_width * 2, _height);
+		game.view.renderer = this.originalRenderer;
+	};
 };
 
 },{}],60:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
-module.exports = function (game) {
-    var mountPoint;
-    var possessed;
-    
-    return function (img, skinOpts) {
-        if (!skinOpts) {
-          skinOpts = {};
-        }
-        skinOpts.scale = skinOpts.scale || new game.THREE.Vector3(0.04, 0.04, 0.04);
-        var playerSkin = skin(game.THREE, img, skinOpts);
+module.exports = function (game, opts) {
+    return new Player(game, opts);
+};
+
+function Player(game, opts) {
+        var mountPoint;
+        var possessed;
+       
+        opts = opts || {};
+        opts.skinOpts = opts.skinOpts || {};
+        opts.skinOpts.scale = opts.skinOpts.scale || new game.THREE.Vector3(0.04, 0.04, 0.04);
+
+        var playerSkin = skin(game.THREE, opts.image, opts.skinOpts);
         var player = playerSkin.mesh;
         var physics = game.makePhysical(player);
         physics.playerSkin = playerSkin;
@@ -87926,7 +87960,6 @@ module.exports = function (game) {
         physics.position = physics.yaw.position;
         
         return physics;
-    }
 };
 
 function parseXYZ (x, y, z) {
@@ -88312,6 +88345,189 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 },{}],62:[function(require,module,exports){
+module.exports = function(game, opts) {
+  return new Plugins(game, opts);
+};
+
+function Plugins(game, opts) {
+  this.game = game;
+  this.game.plugins = this;
+
+  opts = opts || {};
+  this.require = opts.require || require;
+  this.enableOnLoad = opts.enableOnLoad || true;
+
+  // map plugin name to instances
+  this.pluginMap = {};
+
+  this.preconfigureOpts = {};
+}
+
+// Loads a plugin instance
+Plugins.prototype.load = function(name, opts) {
+  console.log("loading plugin ",name,opts);
+  
+  if (this.get(name)) {
+    console.log("plugin already loaded: ", name);
+    return false;
+  }
+
+  opts = opts || {};
+
+  var createPlugin = this.require(name);   // factory for constructor
+  if (!createPlugin) {
+    console.log("plugin not found: ",name);
+    return false;
+  }
+
+  var plugin = createPlugin(this.game, opts); // requires (game, opts) convention
+  if (!plugin) {
+    console.log("create plugin failed:",name,createPlugin,plugin);
+    return false;
+  }
+  plugin.pluginName = name;
+  plugin.pluginEnabled = false;
+  this.pluginMap[name] = plugin;
+
+  console.log("loaded plugin ",name,plugin);
+
+  // plugins are enabled on load by default
+  if (this.enableOnLoad) this.enable(plugin);
+
+  return plugin;
+};
+
+// Mark a plugin for on-demand loading in enable(), with given preconfigured options
+Plugins.prototype.preconfigure = function(name, opts) {
+  this.preconfigureOpts[name] = opts;
+};
+
+
+// Get a loaded plugin instance by name or instance
+Plugins.prototype.get = function(name) {
+  if (typeof name === "string")
+    return this.pluginMap[name];
+  else
+    // assume it is a plugin instance already, return as-is
+    return name;
+};
+
+Plugins.prototype.isEnabled = function(name) {
+  var plugin = this.get(name);
+
+  return !!(plugin && plugin.pluginEnabled);
+};
+
+Plugins.prototype.isLoaded = function(name) {
+  var plugin = this.get(name);
+
+  return !!(plugin && plugin.pluginName && this.pluginMap[plugin.pluginName]);
+};
+
+// Get list of enabled plugins
+Plugins.prototype.list = function() {
+  var self = this;
+  return this.listAll().filter(function(plugin) { return self.isEnabled(plugin); });
+};
+
+// Get list of all plugins
+Plugins.prototype.listAll = function() {
+  return Object.keys(this.pluginMap);
+};
+
+
+Plugins.prototype.enable = function(name) {
+  console.log("enabling plugin ",name);
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    if (this.preconfigureOpts[name]) {
+      // on-demand loading, with prespecified options
+      return this.load(name, this.preconfigureOpts[name]);
+    } else {
+      console.log("no such plugin loaded to enable: ",plugin,name);
+    }
+
+    return false;
+  } else {
+    if (plugin.pluginEnabled) {
+      console.log("already enabled: ",plugin,name);
+      return false;
+    }
+
+    if (plugin.enable) {
+      try {
+        plugin.enable();
+      } catch(e) {
+        console.log("failed to enable:",plugin,name,e);
+        return false;
+      }
+    }
+    plugin.pluginEnabled = true;
+  }
+  return true;
+};
+
+Plugins.prototype.disable = function(name) {
+  console.log("disabling plugin ",name);
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    console.log("no such plugin loaded to disable: ",plugin,name);
+    return false;
+  }
+  if (!this.isEnabled(plugin)) {
+    console.log("already disabled: ",plugin,name);
+    return false;
+  }
+
+  if (plugin.disable) {
+    try {
+      plugin.disable(); 
+    } catch (e) {
+      console.log("failed to disable:",plugin,name,e);
+      return false;
+    }
+  }
+
+  console.log("disabling X",plugin);
+  plugin.pluginEnabled = false;
+
+  // TODO: recursively disable dependants? or refuse to disable if has enabled dependants?
+  return true;
+};
+
+Plugins.prototype.toggle = function(name) {
+  if (this.isEnabled(name)) {
+    return this.disable(name);
+  } else {
+    return this.enable(name);
+  }
+};
+
+Plugins.prototype.unload = function(name) {
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    console.log("no plugin",plugin,name);
+    return false;
+  }
+
+  if (!this.pluginMap[plugin.pluginName]) {
+    console.log("no such plugin to unload: ",plugin);
+    return false;
+  }
+
+  if (this.isEnabled(plugin))
+    this.disable(plugin);
+
+  delete this.pluginMap[plugin.pluginName];
+  console.log("unloaded ",plugin);
+
+  return true;
+};
+
+},{}],63:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var inherits = require('inherits');
@@ -88449,9 +88665,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":82,"inherits":63}],63:[function(require,module,exports){
+},{"events":83,"inherits":64}],64:[function(require,module,exports){
 module.exports=require(16)
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 var transparent = require('opaque').transparent;
 
 function Texture(opts) {
@@ -88669,7 +88885,7 @@ function defaults(obj) {
   return obj;
 }
 
-},{"opaque":65,"three":3}],65:[function(require,module,exports){
+},{"opaque":66,"three":3}],66:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -88699,79 +88915,116 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],66:[function(require,module,exports){
-var walkSpeed = 1.0
-var startedWalking = 0.0
-var stoppedWalking = 0.0
-var walking = false
-var acceleration = 1.0
-
-exports.render = function(skin){
-  var time = Date.now() / 1000
-  if (walking && time < startedWalking + acceleration){
-    walkSpeed = (time - startedWalking) / acceleration
-  }
-  if (!walking && time < stoppedWalking + acceleration){
-    walkSpeed = -1 / acceleration * (time - stoppedWalking) + 1
-  }
-
-  skin.head.rotation.y = Math.sin(time * 1.5) / 3 * walkSpeed
-  skin.head.rotation.z = Math.sin(time) / 2 * walkSpeed
-  
-  skin.rightArm.rotation.z = 2 * Math.cos(0.6662 * time * 10 + Math.PI) * walkSpeed
-  skin.rightArm.rotation.x = 1 * (Math.cos(0.2812 * time * 10) - 1) * walkSpeed
-  skin.leftArm.rotation.z = 2 * Math.cos(0.6662 * time * 10) * walkSpeed
-  skin.leftArm.rotation.x = 1 * (Math.cos(0.2312 * time * 10) + 1) * walkSpeed
-  
-  skin.rightLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10) * walkSpeed
-  skin.leftLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10 + Math.PI) * walkSpeed
-}
-
-exports.startWalking = function(){
-  var now = Date.now() / 1000
-  walking = true
-  if (stoppedWalking + acceleration>now){
-    var progress = now - stoppedWalking;
-    startedWalking = now - (stoppedWalking + acceleration - now)
-  } else {
-    startedWalking = Date.now() / 1000
-  }
-}
-exports.stopWalking = function() {
-  var now = Date.now() / 1000
-  walking = false
-  if (startedWalking + acceleration > now){
-    stoppedWalking = now - (startedWalking + acceleration - now)
-  } else {
-    stoppedWalking = Date.now() / 1000
-  }
-}
-exports.isWalking = function(){
-  return walking
-}
-
-exports.setAcceleration = function(newA){
-  acceleration = newA
-}
 },{}],67:[function(require,module,exports){
+
+module.exports = function(game, opts) {
+    return new Walk(game, opts)
+}
+
+function Walk(game, opts) {
+  opts = opts || {}
+
+  this.game = game  // note: optional
+  this.skin = opts.skin
+  if (!this.skin) throw "voxel-walk requires skin opt"
+  this.walkSpeed = opts.walkSpeed || 1.0
+  this.startedWalking = 0.0
+  this.stoppedWalking = 0.0
+  this.walking = false
+  this.acceleration = opts.acceleration || 1.0
+
+  if (opts.bindGameEvents && this.game) {
+    this.shouldStopWalking = opts.shouldStopWalking
+    this.bindGameEvents()
+  }
+}
+
+Walk.prototype.bindGameEvents = function() {
+  var self = this
+
+  this.game.on('tick', function() {
+     self.render()
+     if (self.shouldStopWalking !== undefined) {
+       if (self.shouldStopWalking()) {
+         self.stopWalking() 
+       } else {
+         self.startWalking()
+       }
+     }
+  })
+}
+
+Walk.prototype.render = function() {
+  var time = Date.now() / 1000
+
+  if (this.walking && time < this.startedWalking + this.acceleration) {
+    this.walkSpeed = (time - this.startedWalking) / this.acceleration
+  }
+  if (!this.walking && time < this.stoppedWalking + this.acceleration){
+    this.walkSpeed = -1 / this.acceleration * (time - this.stoppedWalking) + 1
+  }
+
+
+  this.skin.head.rotation.y = Math.sin(time * 1.5) / 3 * this.walkSpeed
+  this.skin.head.rotation.z = Math.sin(time) / 2 * this.walkSpeed
+  
+  this.skin.rightArm.rotation.z = 2 * Math.cos(0.6662 * time * 10 + Math.PI) * this.walkSpeed
+  this.skin.rightArm.rotation.x = 1 * (Math.cos(0.2812 * time * 10) - 1) * this.walkSpeed
+  this.skin.leftArm.rotation.z = 2 * Math.cos(0.6662 * time * 10) * this.walkSpeed
+  this.skin.leftArm.rotation.x = 1 * (Math.cos(0.2312 * time * 10) + 1) * this.walkSpeed
+  
+  this.skin.rightLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10) * this.walkSpeed
+  this.skin.leftLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10 + Math.PI) * this.walkSpeed
+}
+
+Walk.prototype.startWalking = function(){
+  var now = Date.now() / 1000
+  this.walking = true
+  if (this.stoppedWalking + this.acceleration > now){
+    var progress = now - this.stoppedWalking
+    this.startedWalking = now - (this.stoppedWalking + this.acceleration - now)
+  } else {
+    this.startedWalking = Date.now() / 1000
+  }
+}
+
+Walk.prototype.stopWalking = function() {
+  var now = Date.now() / 1000
+  this.walking = false
+  if (this.startedWalking + this.acceleration > now){
+    this.stoppedWalking = now - (this.startedWalking + this.acceleration - now)
+  } else {
+    this.stoppedWalking = Date.now() / 1000
+  }
+}
+
+Walk.prototype.isWalking = function() {
+  return this.walking
+}
+
+Walk.prototype.setAcceleration = function(newA) {
+  this.acceleration = newA
+}
+
+},{}],68:[function(require,module,exports){
 module.exports=require(43)
-},{"events":82,"inherits":73}],68:[function(require,module,exports){
+},{"events":83,"inherits":74}],69:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"./chunker":67,"./meshers/culled":69,"./meshers/greedy":70,"./meshers/monotone":71,"./meshers/stupid":72}],69:[function(require,module,exports){
+},{"./chunker":68,"./meshers/culled":70,"./meshers/greedy":71,"./meshers/monotone":72,"./meshers/stupid":73}],70:[function(require,module,exports){
 module.exports=require(45)
-},{}],70:[function(require,module,exports){
-module.exports=require(46)
 },{}],71:[function(require,module,exports){
-module.exports=require(47)
+module.exports=require(46)
 },{}],72:[function(require,module,exports){
-module.exports=require(48)
+module.exports=require(47)
 },{}],73:[function(require,module,exports){
-module.exports=require(16)
+module.exports=require(48)
 },{}],74:[function(require,module,exports){
+module.exports=require(16)
+},{}],75:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],75:[function(require,module,exports){
+},{"./index.coffee":1}],76:[function(require,module,exports){
 
 
 //
@@ -88989,7 +89242,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89062,7 +89315,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":75,"_stream_readable":78,"_stream_writable":80,"timers":86,"util":87}],77:[function(require,module,exports){
+},{"_shims":76,"_stream_readable":79,"_stream_writable":81,"timers":87,"util":88}],78:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -89105,7 +89358,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":79,"util":87}],78:[function(require,module,exports){
+},{"_stream_transform":80,"util":88}],79:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90026,7 +90279,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":91,"_shims":75,"buffer":89,"events":82,"stream":84,"string_decoder":85,"timers":86,"util":87}],79:[function(require,module,exports){
+},{"__browserify_process":92,"_shims":76,"buffer":90,"events":83,"stream":85,"string_decoder":86,"timers":87,"util":88}],80:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90232,7 +90485,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":76,"util":87}],80:[function(require,module,exports){
+},{"_stream_duplex":77,"util":88}],81:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90602,7 +90855,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":89,"stream":84,"timers":86,"util":87}],81:[function(require,module,exports){
+},{"buffer":90,"stream":85,"timers":87,"util":88}],82:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90919,7 +91172,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":75,"util":87}],82:[function(require,module,exports){
+},{"_shims":76,"util":88}],83:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91200,7 +91453,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":87}],83:[function(require,module,exports){
+},{"util":88}],84:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91411,7 +91664,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":91,"_shims":75,"util":87}],84:[function(require,module,exports){
+},{"__browserify_process":92,"_shims":76,"util":88}],85:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91540,7 +91793,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":76,"_stream_passthrough":77,"_stream_readable":78,"_stream_transform":79,"_stream_writable":80,"events":82,"util":87}],85:[function(require,module,exports){
+},{"_stream_duplex":77,"_stream_passthrough":78,"_stream_readable":79,"_stream_transform":80,"_stream_writable":81,"events":83,"util":88}],86:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91733,7 +91986,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":89}],86:[function(require,module,exports){
+},{"buffer":90}],87:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -91852,7 +92105,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],87:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92397,7 +92650,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":75}],88:[function(require,module,exports){
+},{"_shims":76}],89:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -92483,7 +92736,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],89:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -93609,7 +93862,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":88,"assert":81,"base64-js":90}],90:[function(require,module,exports){
+},{"./buffer_ieee754":89,"assert":82,"base64-js":91}],91:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -93695,7 +93948,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -93749,5 +94002,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[74])
+},{}]},{},[75])
 ;
