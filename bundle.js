@@ -35,8 +35,10 @@ require('voxel-debris');
 
 require('voxel-debug');
 
+require('voxel-land');
+
 module.exports = function(opts, setup) {
-  var avatar, container, defaults, game, generateChunk, generateTrees, plugins;
+  var avatar, container, defaults, game, plugins;
   setup || (setup = defaultSetup);
   console.log("initializing");
   defaults = {
@@ -55,61 +57,14 @@ module.exports = function(opts, setup) {
   opts = extend({}, defaults, opts || {});
   console.log("creating game");
   game = createGame(opts);
-  generateChunk = createTerrain('foo', 0, 5, 20);
-  game.voxels.on('missingChunk', function(p) {
-    var chunk, i, voxels, width, _i, _ref;
-    width = 32;
-    if (p[1] === 0) {
-      voxels = generateChunk(p, width);
-      createTree(game, {
-        bark: 4,
-        leaves: 9,
-        position: {
-          x: width / 2,
-          y: 0,
-          z: width / 2
-        },
-        treetype: 1,
-        setBlock: function(pos, value) {
-          var idx;
-          idx = pos.x + pos.y * width + pos.z * width * width;
-          voxels[idx] = value;
-          return false;
-        }
-      });
-    } else if (p[1] > 0) {
-      voxels = new Int8Array(width * width * width);
-    } else {
-      voxels = new Int8Array(width * width * width);
-      for (i = _i = 0, _ref = width * width * width; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-        voxels[i] = 3;
-      }
-    }
-    chunk = {
-      position: p,
-      dims: [game.chunkSize, game.chunkSize, game.chunkSize],
-      voxels: voxels
-    };
-    return game.showChunk(chunk);
-  });
-  generateTrees = function() {
-    var i, _i, _results;
-    _results = [];
-    for (i = _i = 0; _i <= 250; i = ++_i) {
-      _results.push(createTree(game, {
-        bark: 4,
-        leaves: 9,
-        checkOccupied: false,
-        treetype: 2
-      }));
-    }
-    return _results;
-  };
   console.log("initializing plugins");
   plugins = createPlugins(game, {
     require: require
   });
-  plugins.preconfigure("oculus", {
+  plugins.load('land', {
+    populateTrees: true
+  });
+  plugins.preconfigure('oculus', {
     distortion: 0.2,
     separation: 0.5
   });
@@ -177,7 +132,15 @@ defaultSetup = function(game, avatar) {
     instaMine: false,
     reach: reach,
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_",
-    progressTexturesCount: 9
+    progressTexturesCount: 9,
+    defaultHardness: 9,
+    hardness: {
+      1: 5,
+      2: 5,
+      3: 90,
+      4: 8,
+      9: 2
+    }
   });
   console.log("configuring highlight ");
   highlight = game.plugins.load('highlight', {
@@ -243,7 +206,7 @@ defaultSetup = function(game, avatar) {
 };
 
 
-},{"dat-gui":2,"extend":5,"voxel":82,"voxel-debris":7,"voxel-debug":9,"voxel-engine":20,"voxel-fly":59,"voxel-forest":64,"voxel-highlight":65,"voxel-mine":68,"voxel-oculus":70,"voxel-perlin-terrain":71,"voxel-player":73,"voxel-plugins":75,"voxel-reach":76,"voxel-walk":80}],2:[function(require,module,exports){
+},{"dat-gui":2,"extend":5,"voxel":85,"voxel-debris":7,"voxel-debug":9,"voxel-engine":20,"voxel-fly":59,"voxel-forest":64,"voxel-highlight":65,"voxel-land":68,"voxel-mine":71,"voxel-oculus":73,"voxel-perlin-terrain":74,"voxel-player":76,"voxel-plugins":78,"voxel-reach":79,"voxel-walk":83}],2:[function(require,module,exports){
 module.exports = require('./vendor/dat.gui')
 module.exports.color = require('./vendor/dat.color')
 },{"./vendor/dat.color":3,"./vendor/dat.gui":4}],3:[function(require,module,exports){
@@ -41701,7 +41664,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{"__browserify_process":105}],7:[function(require,module,exports){
+},{"__browserify_process":108}],7:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -41788,7 +41751,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":96,"funstance":8}],8:[function(require,module,exports){
+},{"events":99,"funstance":8}],8:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -42101,7 +42064,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":96,"inherits":19}],14:[function(require,module,exports){
+},{"events":99,"inherits":19}],14:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -43427,7 +43390,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":21,"./lib/stats":22,"__browserify_process":105,"aabb-3d":23,"collide-3d-tilemap":24,"events":96,"gl-matrix":25,"inherits":26,"interact":27,"kb-controls":36,"path":97,"pin-it":41,"raf":42,"spatial-events":43,"three":45,"tic":46,"voxel":54,"voxel-control":47,"voxel-mesh":48,"voxel-physical":49,"voxel-raycast":50,"voxel-region-change":51,"voxel-texture":78,"voxel-view":52}],21:[function(require,module,exports){
+},{"./lib/detector":21,"./lib/stats":22,"__browserify_process":108,"aabb-3d":23,"collide-3d-tilemap":24,"events":99,"gl-matrix":25,"inherits":26,"interact":27,"kb-controls":36,"path":100,"pin-it":41,"raf":42,"spatial-events":43,"three":45,"tic":46,"voxel":54,"voxel-control":47,"voxel-mesh":48,"voxel-physical":49,"voxel-raycast":50,"voxel-region-change":51,"voxel-texture":81,"voxel-view":52}],21:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -47004,7 +46967,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":28,"events":96,"fullscreen":34,"pointer-lock":35,"stream":98}],28:[function(require,module,exports){
+},{"drag-stream":28,"events":99,"fullscreen":34,"pointer-lock":35,"stream":101}],28:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -47072,7 +47035,7 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":29,"stream":98,"through":33}],29:[function(require,module,exports){
+},{"domnode-dom":29,"stream":101,"through":33}],29:[function(require,module,exports){
 module.exports = require('./lib/index')
 
 },{"./lib/index":30}],30:[function(require,module,exports){
@@ -47222,7 +47185,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":98}],32:[function(require,module,exports){
+},{"stream":101}],32:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -47304,7 +47267,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":98}],33:[function(require,module,exports){
+},{"stream":101}],33:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -47404,7 +47367,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":105,"stream":98}],34:[function(require,module,exports){
+},{"__browserify_process":108,"stream":101}],34:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -47495,7 +47458,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":96}],35:[function(require,module,exports){
+},{"events":99}],35:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -47659,7 +47622,7 @@ function shim(el) {
     null
 }
 
-},{"events":96,"stream":98}],36:[function(require,module,exports){
+},{"events":99,"stream":101}],36:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -47868,7 +47831,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":38,"./types.json":39,"events":96}],38:[function(require,module,exports){
+},{"./init.json":38,"./types.json":39,"events":99}],38:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -48223,7 +48186,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":96}],43:[function(require,module,exports){
+},{"events":99}],43:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -85395,7 +85358,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":98}],48:[function(require,module,exports){
+},{"stream":101}],48:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -86015,7 +85978,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":23,"events":96}],52:[function(require,module,exports){
+},{"aabb-3d":23,"events":99}],52:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -86104,9 +86067,9 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":105}],53:[function(require,module,exports){
+},{"__browserify_process":108}],53:[function(require,module,exports){
 module.exports=require(13)
-},{"events":96,"inherits":26}],54:[function(require,module,exports){
+},{"events":99,"inherits":26}],54:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
 },{"./chunker":53,"./meshers/culled":55,"./meshers/greedy":56,"./meshers/monotone":57,"./meshers/stupid":58}],55:[function(require,module,exports){
 module.exports=require(15)
@@ -86212,9 +86175,9 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":96,"ever":60,"vkey":63}],60:[function(require,module,exports){
+},{"events":99,"ever":60,"vkey":63}],60:[function(require,module,exports){
 module.exports=require(37)
-},{"./init.json":61,"./types.json":62,"events":96}],61:[function(require,module,exports){
+},{"./init.json":61,"./types.json":62,"events":99}],61:[function(require,module,exports){
 module.exports=require(38)
 },{}],62:[function(require,module,exports){
 module.exports=require(39)
@@ -86618,7 +86581,7 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":96,"inherits":66,"underscore":67}],66:[function(require,module,exports){
+},{"events":99,"inherits":66,"underscore":67}],66:[function(require,module,exports){
 module.exports=require(19)
 },{}],67:[function(require,module,exports){
 //     Underscore.js 1.4.4
@@ -87849,412 +87812,128 @@ module.exports=require(19)
 }).call(this);
 
 },{}],68:[function(require,module,exports){
-// Generated by CoffeeScript 1.6.3
-(function() {
-  var EventEmitter, Mine, inherits;
+// # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
-  inherits = require('inherits');
+var createTree = require('voxel-forest');
+var perlin = require('perlin');
 
-  EventEmitter = (require('events')).EventEmitter;
-
-  module.exports = function(game, opts) {
-    return new Mine(game, opts);
-  };
-
-  Mine = function(game, opts) {
-    var _this = this;
-    this.game = game;
-    opts = opts != null ? opts : {};
-    if (opts.defaultHardness == null) {
-      opts.defaultHardness = 9;
-    }
-    if (opts.instaMine == null) {
-      opts.instaMine = false;
-    }
-    if (opts.progressTexturesBase == null) {
-      opts.progressTexturesBase = void 0;
-    }
-    if (opts.progressTexturesExt == null) {
-      opts.progressTexturesExt = ".png";
-    }
-    if (opts.progressTexturesCount == null) {
-      opts.progressTexturesCount = 9;
-    }
-    if (opts.applyTextureParams == null) {
-      opts.applyTextureParams = function(texture) {
-        texture.magFilter = _this.game.THREE.NearestFilter;
-        texture.minFilter = _this.game.THREE.LinearMipMapLinearFilter;
-        texture.wrapT = _this.game.THREE.RepeatWrapping;
-        return texture.wrapS = _this.game.THREE.RepeatWrapping;
-      };
-    }
-    if (opts.reach == null) {
-      throw "voxel-mine requires 'reach' option set to voxel-reach instance";
-    }
-    this.opts = opts;
-    this.instaMine = opts.instaMine;
-    this.progress = 0;
-    this.reach = opts.reach;
-    this.texturesEnabled = this.opts.progressTexturesBase != null;
-    this.overlay = null;
-    this.setupTextures();
-    this.bindEvents();
-    return this;
-  };
-
-  Mine.prototype.setupTextures = function() {
-    var i, path, _i, _ref, _results;
-    if (!this.texturesEnabled) {
-      return;
-    }
-    this.progressTextures = [];
-    _results = [];
-    for (i = _i = 0, _ref = this.opts.progressTexturesCount; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
-      path = this.opts.progressTexturesBase + i + this.opts.progressTexturesExt;
-      _results.push(this.progressTextures.push(this.game.THREE.ImageUtils.loadTexture(path)));
-    }
-    return _results;
-  };
-
-  Mine.prototype.getHardness = function(target) {
-    return this.opts.defaultHardness;
-  };
-
-  Mine.prototype.bindEvents = function() {
-    var _this = this;
-    this.reach.on('mining', function(target) {
-      if (!target) {
-        console.log("no block mined");
-        return;
-      }
-      _this.progress += 1;
-      if (_this.instaMine || _this.progress > _this.getHardness(target)) {
-        _this.progress = 0;
-        _this.emit('break', target.voxel);
-      }
-      return _this.updateForStage();
-    });
-    this.reach.on('start mining', function(target) {
-      if (!target) {
-        return;
-      }
-      return _this.createOverlay(target);
-    });
-    return this.reach.on('stop mining', function(target) {
-      if (!target) {
-        return;
-      }
-      _this.destroyOverlay();
-      return _this.progress = 0;
-    });
-  };
-
-  Mine.prototype.createOverlay = function(target) {
-    var geometry, material, mesh, offset;
-    if (this.instaMine || !this.texturesEnabled) {
-      return;
-    }
-    this.destroyOverlay();
-    geometry = new this.game.THREE.Geometry();
-    if (target.normal[2] === 1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
-      offset = [0, 0, 1];
-    } else if (target.normal[1] === 1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
-      offset = [0, 1, 0];
-    } else if (target.normal[0] === 1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
-      offset = [1, 0, 0];
-    } else if (target.normal[0] === -1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
-      offset = [0, 0, 0];
-    } else if (target.normal[1] === -1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
-      offset = [0, 0, 0];
-    } else if (target.normal[2] === -1) {
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
-      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
-      offset = [0, 0, 0];
-    } else {
-      console.log("unknown face", target.normal);
-      return;
-    }
-    geometry.faces.push(new this.game.THREE.Face3(0, 1, 2));
-    geometry.faces.push(new this.game.THREE.Face3(0, 2, 3));
-    geometry.computeCentroids();
-    geometry.computeFaceNormals();
-    geometry.computeVertexNormals();
-    geometry.faceVertexUvs = [
-      [
-        [
-          {
-            x: 0,
-            y: 0
-          }, {
-            x: 1,
-            y: 0
-          }, {
-            x: 1,
-            y: 1
-          }, {
-            x: 0,
-            y: 1
-          }
-        ], [
-          {
-            x: 0,
-            y: 0
-          }, {
-            x: 1,
-            y: 1
-          }, {
-            x: 1,
-            y: 0
-          }, {
-            x: 0,
-            y: 1
-          }
-        ]
-      ]
-    ];
-    material = new this.game.THREE.MeshLambertMaterial();
-    material.map = this.progressTextures[0];
-    this.opts.applyTextureParams(material.map);
-    material.side = this.game.THREE.FrontSide;
-    material.transparent = true;
-    material.polygonOffset = true;
-    material.polygonOffsetFactor = -1.0;
-    material.polygonOffsetUnits = -1.0;
-    mesh = new this.game.THREE.Mesh(geometry, material);
-    this.overlay = new this.game.THREE.Object3D();
-    this.overlay.add(mesh);
-    this.overlay.position.set(target.voxel[0] + offset[0], target.voxel[1] + offset[1], target.voxel[2] + offset[2]);
-    this.game.scene.add(this.overlay);
-    return this.overlay;
-  };
-
-  Mine.prototype.updateForStage = function() {
-    var index, texture;
-    if (!this.texturesEnabled) {
-      return;
-    }
-    index = Math.floor((this.progress / this.getHardness()) * (this.progressTextures.length - 1));
-    texture = this.progressTextures[index];
-    return this.setOverlayTexture(texture);
-  };
-
-  Mine.prototype.setOverlayTexture = function(texture) {
-    if (!this.overlay || !this.texturesEnabled) {
-      return;
-    }
-    this.opts.applyTextureParams(texture);
-    this.overlay.children[0].material.map = texture;
-    return this.overlay.children[0].material.needsUpdate = true;
-  };
-
-  Mine.prototype.destroyOverlay = function() {
-    if (!this.overlay || !this.texturesEnabled) {
-      return;
-    }
-    this.game.scene.remove(this.overlay);
-    return this.overlay = null;
-  };
-
-  inherits(Mine, EventEmitter);
-
-}).call(this);
-
-},{"events":96,"inherits":69}],69:[function(require,module,exports){
-module.exports=require(19)
-},{}],70:[function(require,module,exports){
-module.exports = function (game, opts) {
-    return new Oculus(game, opts);
+module.exports = function(game, opts) {
+  return new Land(game, opts);
 }
 
-function Oculus(game, opts) {
-	var THREE = game.THREE;
-	var renderer = game.view.renderer;
+function Land(game, opts) {
+  this.game = game;
+  this.seed = opts.seed || 'foo';
+  this.materials = opts.materials || {grass: 1, dirt: 2, stone: 3, bark: 4, leaves:9};
+  this.crustLower = opts.crustLower || 0;
+  this.crustUpper = opts.crustUpper || 5;
+  this.perlinDivisor = opts.perlinDivisor || 20;
+  this.populateTrees = (opts.populateTrees !== undefined) ? opts.populateTrees : true;
 
-	this.separation = 10;
-	this.distortion = 0.1;
-	this.aspectFactor = 1;
+  this.noise = perlin.noise;
+  this.noise.seed(opts.seed);
+}
 
-	if (opts) {
-		if (opts.separation !== undefined) this.separation = opts.separation;
-		if (opts.distortion !== undefined) this.distortion = opts.distortion;
-		if (opts.aspectFactor !== undefined) this.aspectFactor = opts.aspectFactor;
-	}
-
-	var _width, _height;
-
-	var _pCamera = new THREE.PerspectiveCamera();
-	_pCamera.matrixAutoUpdate = false;
-	_pCamera.target = new THREE.Vector3();
-
-	var _scene = new THREE.Scene();
-
-	var _oCamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 1, 1000 );
-	_oCamera.position.z = 1;
-	_scene.add( _oCamera );
-
-	// initialization
-	renderer.autoClear = false;
-
-	var _params = { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat };
-	var _renderTarget = new THREE.WebGLRenderTarget( 800, 600, _params );
-	var _material = new THREE.ShaderMaterial( {
-		uniforms: {
-			"tex": { type: "t", value: _renderTarget },
-			"c": { type: "f", value: this.distortion }
-		},
-		vertexShader: [
-			"varying vec2 vUv;",
-			"void main() {",
-			" vUv = uv;",
-			"	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
-			"}"
-		].join("\n"),
-
-        // Formula used from the paper: "Applying and removing lens distortion in post production"
-        // by Gergely Vass , Tamás Perlaki
-		// http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.136.3745
-		fragmentShader: [
-			"uniform float c;",
-			"uniform sampler2D tex;",
-			"varying vec2 vUv;",
-			"void main()",
-			"{",
-			"	vec2 uv = vUv;",
-			"	vec2 vector = uv * 2.0 - 1.0;",
-			"   float factor = 1.0/(1.0+c);",
-			"   float vectorLen = length(vector);",
-			"   vec2 direction = vector / vectorLen;",
-			"   float newLen = vectorLen + c * pow(vectorLen,3.0);",
-			"   vec2 newVector = direction * newLen * factor;",
-			"	newVector = (newVector + 1.0) / 2.0;",
-			"	if (newVector.x < 0.0 || newVector.x > 1.0 || newVector.y < 0.0 || newVector.y > 1.0)",
-			"		gl_FragColor = vec4(0.0,0.0,0.0,1.0);",
-			"	else",
-			"   	gl_FragColor = texture2D(tex, newVector);",
-			"}"
-		].join("\n")
-	} );
-	var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), _material );
-	_scene.add( mesh );
-
-	this.setSize = function ( width, height ) {
-		_width = width / 2;
-		_height = height;
-		_renderTarget = new THREE.WebGLRenderTarget( width, height, _params );
-		_material.uniforms[ "tex" ].value = _renderTarget;
-		renderer.setSize( width, height );
-
-	};
-
-	this.render = function ( scene, camera ) {
-		renderer.clear();
-    	_material.uniforms['c'].value = this.distortion;
-
-		// camera parameters
-		if (camera.matrixAutoUpdate) camera.updateMatrix();
-		_pCamera.fov = camera.fov;
-		_pCamera.aspect = camera.aspect / (2*this.aspectFactor);
-		_pCamera.near = camera.near;
-		_pCamera.far = camera.far;		
-		_pCamera.updateProjectionMatrix();
-
-
-		// Render left
-
-		_pCamera.matrix.copy(camera.matrixWorld);
-		_pCamera.applyMatrix(new THREE.Matrix4().makeTranslation(-this.separation, 0, 0));
- 		_pCamera.matrixWorldNeedsUpdate = true;
-
-		renderer.setViewport( 0, 0, _width, _height );
-		renderer.render( scene, _pCamera, _renderTarget, true );
-		renderer.render( _scene, _oCamera );
-
-		// Render right
-
-		_pCamera.matrix.copy(camera.matrixWorld);
-		_pCamera.applyMatrix(new THREE.Matrix4().makeTranslation(this.separation, 0, 0));
- 		_pCamera.matrixWorldNeedsUpdate = true;
-
-		renderer.setViewport( _width, 0, _width, _height );
-    	renderer.render( scene, _pCamera, _renderTarget, true );
-
-		renderer.render( _scene, _oCamera );
-	};
-
-	this.enable = function () {
-		this.originalRenderer = game.view.renderer;
-		this.setSize(game.width, game.height);
-		game.view.renderer = this;
-	};
-
-	this.disable = function () {
-		// TODO: anything else important we need to restore?
-		this.setSize(_width * 2, _height);
-		game.view.renderer = this.originalRenderer;
-	};
+Land.prototype.enable = function() {
+  this.bindEvents();
 };
 
-},{}],71:[function(require,module,exports){
-var noise = require('perlin').noise
+Land.prototype.disable = function() {
+  this.unbindEvents();
+};
 
-module.exports = function(seed, floor, ceiling, divisor) {
-  floor = floor || 0
-  ceiling = ceiling || 20 // minecraft's limit
-  divisor = divisor || 50
-  noise.seed(seed)
-  return function generateChunk(position, width) {
-    var startX = position[0] * width
-    var startY = position[1] * width
-    var startZ = position[2] * width
-    var chunk = new Int8Array(width * width * width)
-    pointsInside(startX, startZ, width, function(x, z) {
-      var n = noise.simplex2(x / divisor , z / divisor)
-      var y = ~~scale(n, -1, 1, floor, ceiling)
-      if (y === floor || startY < y && y < startY + width) {
-        var xidx = Math.abs((width + x % width) % width)
-        var yidx = Math.abs((width + y % width) % width)
-        var zidx = Math.abs((width + z % width) % width)
-        var idx = xidx + yidx * width + zidx * width * width
-        chunk[idx] = 1
+// calculate terrain height based on perlin noise 
+// see @maxogden's voxel-perlin-terrain https://github.com/maxogden/voxel-perlin-terrain
+Land.prototype.generateHeightMap = function(position, width) {
+  var startX = position[0] * width;
+  var startY = position[1] * width;
+  var startZ = position[2] * width;
+  var heightMap = new Int8Array(width * width);
+
+  for (var x = startX; x < startX + width; x++) {
+    for (var z = startZ; z < startZ + width; z++) {
+      var n = this.noise.simplex2(x / this.perlinDivisor, z / this.perlinDivisor);
+      var y = ~~scale(n, -1, 1, this.crustLower, this.crustUpper);
+
+      if (y === this.crustLower || startY < y && y < startY + width) {
+        var xidx = Math.abs((width + x % width) % width);
+        var yidx = Math.abs((width + y % width) % width);
+        var zidx = Math.abs((width + z % width) % width);
+        var idx = xidx + yidx * width + zidx * width * width;
+        heightMap[xidx + zidx * width] = yidx;
       }
-    })
-    return chunk
+    }
   }
-}
 
-function pointsInside(startX, startY, width, func) {
-  for (var x = startX; x < startX + width; x++)
-    for (var y = startY; y < startY + width; y++)
-      func(x, y)
-}
+  return heightMap;
+};
 
 function scale( x, fromLow, fromHigh, toLow, toHigh ) {
-  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow
+  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow;
 }
-;
-},{"perlin":72}],72:[function(require,module,exports){
+
+Land.prototype.bindEvents = function() {
+  var self = this;
+
+  this.game.voxels.on('missingChunk', this.missingChunk = function(p) {
+    var width = self.game.chunkSize;
+    var voxels = new Int8Array(width * width * width);
+
+    if (p[1] === 0) {
+      // ground surface level
+      var heightMap = self.generateHeightMap(p, width);
+
+      for (var x = 0; x < width; ++x) {
+        for (var z = 0; z < width; ++z) {
+          var height = heightMap[x + z * width];
+          var y = height;
+
+          // dirt with grass on top
+          voxels[x + y * width + z * width * width] = self.materials.grass;
+          while(y-- > 0)
+            voxels[x + y * width + z * width * width] = self.materials.dirt;
+
+          // populate chunk with trees
+          // TODO: populate later, so structures can cross chunks??
+          if (self.populateTrees && x === width/2 && z === width/2)  // TODO: populate randomly based on seed
+            createTree(self.game, { 
+              bark: self.materials.bark,
+              leaves: self.materials.leaves,
+              position: {x:x, y:height + 1, z:z}, // position at top of surface
+              treetype: 1,
+              setBlock: function (pos, value) {
+                idx = pos.x + pos.y * width + pos.z * width * width;
+                voxels[idx] = value;
+                return false;  // returning true stops tree
+              }
+            });
+        }
+      }
+    } else if (p[1] > 0) {
+      // empty space above ground
+    } else {
+      // below ground
+      // TODO: ores
+      for (var i = 0; i < width * width * width; ++i) {
+        voxels[i] = self.materials.stone;
+      }
+    }
+
+    var chunk = {
+      position: p,
+      dims: [self.game.chunkSize, self.game.chunkSize, self.game.chunkSize],
+      voxels: voxels
+    }
+
+    self.game.showChunk(chunk);
+  });
+};
+
+Land.prototype.unbindEvents = function() {
+  this.game.voxels.removeListener('missingChunk', this.missingChunk);
+};
+
+},{"perlin":69,"voxel-forest":70}],69:[function(require,module,exports){
 /*
  * A speed-improved perlin and simplex noise algorithms for 2D.
  *
@@ -88565,7 +88244,715 @@ function scale( x, fromLow, fromHigh, toLow, toHigh ) {
   };
 
 })(typeof module === "undefined" ? this : module.exports);
+},{}],70:[function(require,module,exports){
+module.exports = function (game, opts) {
+    if (!opts) opts = {};
+    if (opts.bark === undefined) opts.bark = 1;
+    if (opts.leaves === undefined) opts.leaves = 2;
+    if (!opts.height) opts.height = Math.random() * 16 + 4;
+    if (opts.base === undefined) opts.base = opts.height / 3;
+    if (opts.radius === undefined) opts.radius = opts.base;
+    if (opts.treetype === undefined) opts.treetype = 1;
+    if (opts.position === undefined) throw "voxel-forest requires position option";
+    if (opts.setBlock === undefined) throw "voxel-forest requires setBlock option";
+
+    var set = opts.setBlock;
+
+    var pos_ = {
+        x: opts.position.x, 
+        y: opts.position.y, 
+        z: opts.position.z
+    };
+    // clone position so it can be mutated
+    function position () {
+        return {
+            x: pos_.x, 
+            y: pos_.y, 
+            z: pos_.z
+        };
+    }
+   
+    /* TODO: factor out this 'can sustain'/'find solid ground, height map' check
+    var ymax = bounds.y.max * step;
+    var ymin = bounds.y.min * step;
+    if (opts.checkOccupied) {
+        if (occupied(pos_.y)) {
+            for (var y = pos_.y; occupied(y); y += 1);
+            if (y >= ymax) return false;
+            pos_.y = y;
+        }
+        else {
+            for (var y = pos_.y; !occupied(y); y -= 1);
+            if (y <= ymin) return false;
+            pos_.y = y + 1
+        }
+        function occupied (y) {
+            var pos = position();
+            pos.y = y;
+            return y <= ymax && y >= ymin && voxels.voxelAtPosition([pos.x,pos.y,pos.z]);
+        }
+    }
+    */
+    
+    var updated = {};
+    
+    function subspacetree() {
+        var around = [
+        [ 0, 1 ], [ 0, -1 ],
+        [ 1, 1 ], [ 1, 0 ], [ 1, -1 ],
+        [ -1, 1 ], [ -1, 0 ], [ -1, -1 ]
+        ];
+        for (var y = 0; y < opts.height - 1; y++) {
+            var pos = position();
+            pos.y += y
+            if (set(pos, opts.bark)) break;
+            if (y < opts.base) continue;
+            around.forEach(function (offset) {
+                if (Math.random() > 0.5) return;
+                var x = offset[0]
+                var z = offset[1]
+                pos.x += x;
+                pos.z += z;
+                set(pos, opts.leaves);
+                pos.x -= x;
+                pos.z -= z;
+            });
+        }
+    }
+
+    function guybrushtree() {
+        var sphere = function(x,y,z, r) {
+            return x*x + y*y + z*z <= r*r;
+        }
+        for (var y = 0; y < opts.height - 1; y++) {
+            var pos = position();
+            pos.y += y;
+            if (set(pos, opts.bark)) break;
+        }
+        var radius = opts.radius;
+        for (var xstep = -radius; xstep <= radius; xstep++) {
+            for (var ystep = -radius; ystep <= radius; ystep++) {
+                for (var zstep = -radius; zstep <= radius; zstep++) {
+                    if (sphere(xstep,ystep,zstep, radius)) {
+                        var leafpos = {
+                            x: pos.x + xstep,
+                            y: pos.y + ystep,
+                            z: pos.z + zstep
+                        }
+                        set(leafpos, opts.leaves);
+                    }
+                }
+            }
+        }
+    }
+    
+    function drawAxiom(axiom, angle, unitsize, units) {
+        var posstack = [];
+        
+        var penangle = 0;
+        var pos = position();
+        pos.y += unitsize * 30;
+        function moveForward() {
+            var ryaw = penangle * Math.PI/180;
+            for (var i = 0; i < units; i++) {
+                pos.y += unitsize * Math.cos(ryaw);
+                pos.z += unitsize * Math.sin(ryaw);
+                set(pos,opts.leaves);
+            }
+        }
+
+        function setPoint() {
+            set(pos, opts.bark);
+        }
+        function setMaterial(value) {
+            mindex = value;
+        }
+        function yaw(angle) {
+            penangle += angle;
+        }
+        function pitch(angle) {
+            //turtle.pitch += angle;
+        }
+        function roll(angle) {
+            //turtle.roll += angle;
+        }
+        function PushState() {
+            //penstack.push(turtle);
+            posstack.push(pos);
+        }
+        function PopState() {
+          //  turtle = penstack.pop();
+            pos = posstack.pop();
+        }
+        
+        //F  - move forward one unit with the pen down
+        //G  - move forward one unit with the pen up
+        //#  - Changes draw medium.
+
+        // +  - yaw the turtle right by angle parameter
+        // -  - yaw the turtle left by angle parameter
+        // &  - pitch the turtle down by angle parameter
+        // ^  - pitch the turtle up by angle parameter
+        // /  - roll the turtle to the right by angle parameter
+        // *  - roll the turtle to the left by angle parameter
+        // [  - save in stack current state info
+        // ]  - recover from stack state info
+        for (var i = 0; i < axiom.length; i++) {
+            var c = axiom.charAt(i);
+            switch(c) {
+                case 'F':
+                    moveForward();
+                    setPoint();
+                    break;
+                case '+':
+                    yaw(+angle);
+                    break;
+                case '-':
+                    yaw(-angle);
+                    break;
+                case '&':
+                    pitch(+angle);
+                    break;
+                case '^':
+                    pitch(-angle);
+                    break;
+                case '/':
+                    roll(+angle);
+                    break;
+                case '*':
+                    roll(-angle);
+                    break;
+                case 'G':
+                    moveForward();
+                    break;
+                case '[':
+                    PushState();
+                    break;
+                case ']':
+                    PopState();
+                    break;
+                case '0':
+                    setMaterial(0);
+                    break;
+                case '1':
+                    setMaterial(1);
+                    break;
+                case '2':
+                    setMaterial(2);
+                    break;
+                case '3':
+                    setMaterial(3);
+                    break;
+
+            }
+        }
+            
+    }
+
+    function fractaltree() {
+        var axiom = "FX";
+        var rules = [ ["X", "X+YF+"], ["Y", "-FX-Y"]];
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        axiom = applyRules(axiom,rules);
+        drawAxiom(axiom, 90, 1, 5);
+    }
+    
+    switch (opts.treetype) {
+        case 1:
+            subspacetree();
+            break;
+        case 2:
+            guybrushtree();
+            break;
+        case 3:
+            fractaltree();
+            break;
+        default:
+            subspacetree();
+    }
+    
+    
+    var pos = position();
+    //pos.y += y;
+    set(pos, opts.leaves);
+};
+
+function regexRules(rules) {
+        var regexrule = '';
+        rules.forEach(function (rule) {
+            if (regexrule != '') {
+                regexrule = regexrule+ '|' ;
+            }
+            regexrule = regexrule+rule[0];
+        });
+        return new RegExp(regexrule, "g");
+    }
+
+function applyRules(axiom, rules) {
+        function matchRule(match)
+        {
+            for (var i=0;i<rules.length;i++)
+            { 
+                if (rules[i][0] == match) return rules[i][1];
+            }
+            return '';
+        }
+        return axiom.replace(regexRules(rules), matchRule);
+    }
+        
+function randomChunk (bounds) {
+    var x = Math.random() * (bounds.x.max - bounds.x.min) + bounds.x.min;
+    var y = Math.random() * (bounds.y.max - bounds.y.min) + bounds.y.min;
+    var z = Math.random() * (bounds.z.max - bounds.z.min) + bounds.z.min;
+    return [ x, y, z ].map(Math.floor).join('|');
+}
+
+function boundingChunks (chunks) {
+    return Object.keys(chunks).reduce(function (acc, key) {
+        var s = key.split('|');
+        if (acc.x.min === undefined) acc.x.min = s[0]
+        if (acc.x.max === undefined) acc.x.max = s[0]
+        if (acc.y.min === undefined) acc.y.min = s[1]
+        if (acc.y.max === undefined) acc.y.max = s[1]
+        if (acc.z.min === undefined) acc.z.min = s[2]
+        if (acc.z.max === undefined) acc.z.max = s[2]
+        
+        acc.x.min = Math.min(acc.x.min, s[0]);
+        acc.x.max = Math.max(acc.x.max, s[0]);
+        acc.y.min = Math.min(acc.y.min, s[1]);
+        acc.y.max = Math.max(acc.y.max, s[1]);
+        acc.z.min = Math.min(acc.z.min, s[2]);
+        acc.z.max = Math.max(acc.z.max, s[2]);
+        
+        return acc;
+    }, {
+        x: {}, 
+        y: {}, 
+        z: {}
+    });
+}
+
+},{}],71:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, Mine, inherits;
+
+  inherits = require('inherits');
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  module.exports = function(game, opts) {
+    return new Mine(game, opts);
+  };
+
+  Mine = function(game, opts) {
+    var _this = this;
+    this.game = game;
+    opts = opts != null ? opts : {};
+    if (opts.defaultHardness == null) {
+      opts.defaultHardness = 9;
+    }
+    if (opts.hardness == null) {
+      opts.hardness = {};
+    }
+    if (opts.instaMine == null) {
+      opts.instaMine = false;
+    }
+    if (opts.progressTexturesBase == null) {
+      opts.progressTexturesBase = void 0;
+    }
+    if (opts.progressTexturesExt == null) {
+      opts.progressTexturesExt = ".png";
+    }
+    if (opts.progressTexturesCount == null) {
+      opts.progressTexturesCount = 9;
+    }
+    if (opts.applyTextureParams == null) {
+      opts.applyTextureParams = function(texture) {
+        texture.magFilter = _this.game.THREE.NearestFilter;
+        texture.minFilter = _this.game.THREE.LinearMipMapLinearFilter;
+        texture.wrapT = _this.game.THREE.RepeatWrapping;
+        return texture.wrapS = _this.game.THREE.RepeatWrapping;
+      };
+    }
+    if (opts.reach == null) {
+      throw "voxel-mine requires 'reach' option set to voxel-reach instance";
+    }
+    this.opts = opts;
+    this.instaMine = opts.instaMine;
+    this.progress = 0;
+    this.reach = opts.reach;
+    this.texturesEnabled = this.opts.progressTexturesBase != null;
+    this.overlay = null;
+    this.setupTextures();
+    this.bindEvents();
+    return this;
+  };
+
+  Mine.prototype.setupTextures = function() {
+    var i, path, _i, _ref, _results;
+    if (!this.texturesEnabled) {
+      return;
+    }
+    this.progressTextures = [];
+    _results = [];
+    for (i = _i = 0, _ref = this.opts.progressTexturesCount; 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      path = this.opts.progressTexturesBase + i + this.opts.progressTexturesExt;
+      _results.push(this.progressTextures.push(this.game.THREE.ImageUtils.loadTexture(path)));
+    }
+    return _results;
+  };
+
+  Mine.prototype.getHardness = function(target) {
+    var hardness, materialIndex, _ref;
+    materialIndex = this.game.getBlock(target.voxel);
+    hardness = (_ref = this.opts.hardness[materialIndex]) != null ? _ref : this.opts.defaultHardness;
+    return hardness;
+  };
+
+  Mine.prototype.bindEvents = function() {
+    var _this = this;
+    this.reach.on('mining', function(target) {
+      var hardness;
+      if (!target) {
+        console.log("no block mined");
+        return;
+      }
+      _this.progress += 1;
+      hardness = _this.getHardness(target);
+      if (_this.instaMine || _this.progress > hardness) {
+        _this.progress = 0;
+        _this.emit('break', target.voxel);
+      }
+      return _this.updateForStage(_this.progress, hardness);
+    });
+    this.reach.on('start mining', function(target) {
+      if (!target) {
+        return;
+      }
+      return _this.createOverlay(target);
+    });
+    return this.reach.on('stop mining', function(target) {
+      if (!target) {
+        return;
+      }
+      _this.destroyOverlay();
+      return _this.progress = 0;
+    });
+  };
+
+  Mine.prototype.createOverlay = function(target) {
+    var geometry, material, mesh, offset;
+    if (this.instaMine || !this.texturesEnabled) {
+      return;
+    }
+    this.destroyOverlay();
+    geometry = new this.game.THREE.Geometry();
+    if (target.normal[2] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      offset = [0, 0, 1];
+    } else if (target.normal[1] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      offset = [0, 1, 0];
+    } else if (target.normal[0] === 1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      offset = [1, 0, 0];
+    } else if (target.normal[0] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      offset = [0, 0, 0];
+    } else if (target.normal[1] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 1));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 1));
+      offset = [0, 0, 0];
+    } else if (target.normal[2] === -1) {
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 0, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(0, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 1, 0));
+      geometry.vertices.push(new this.game.THREE.Vector3(1, 0, 0));
+      offset = [0, 0, 0];
+    } else {
+      console.log("unknown face", target.normal);
+      return;
+    }
+    geometry.faces.push(new this.game.THREE.Face3(0, 1, 2));
+    geometry.faces.push(new this.game.THREE.Face3(0, 2, 3));
+    geometry.computeCentroids();
+    geometry.computeFaceNormals();
+    geometry.computeVertexNormals();
+    geometry.faceVertexUvs = [
+      [
+        [
+          {
+            x: 0,
+            y: 0
+          }, {
+            x: 1,
+            y: 0
+          }, {
+            x: 1,
+            y: 1
+          }, {
+            x: 0,
+            y: 1
+          }
+        ], [
+          {
+            x: 0,
+            y: 0
+          }, {
+            x: 1,
+            y: 1
+          }, {
+            x: 0,
+            y: 1
+          }, {
+            x: 0,
+            y: 1
+          }
+        ]
+      ]
+    ];
+    material = new this.game.THREE.MeshLambertMaterial();
+    material.map = this.progressTextures[0];
+    this.opts.applyTextureParams(material.map);
+    material.side = this.game.THREE.FrontSide;
+    material.transparent = true;
+    material.polygonOffset = true;
+    material.polygonOffsetFactor = -1.0;
+    material.polygonOffsetUnits = -1.0;
+    mesh = new this.game.THREE.Mesh(geometry, material);
+    this.overlay = new this.game.THREE.Object3D();
+    this.overlay.add(mesh);
+    this.overlay.position.set(target.voxel[0] + offset[0], target.voxel[1] + offset[1], target.voxel[2] + offset[2]);
+    this.game.scene.add(this.overlay);
+    return this.overlay;
+  };
+
+  Mine.prototype.updateForStage = function(progress, hardness) {
+    var index, texture;
+    if (!this.texturesEnabled) {
+      return;
+    }
+    index = Math.floor((progress / hardness) * (this.progressTextures.length - 1));
+    texture = this.progressTextures[index];
+    return this.setOverlayTexture(texture);
+  };
+
+  Mine.prototype.setOverlayTexture = function(texture) {
+    if (!this.overlay || !this.texturesEnabled) {
+      return;
+    }
+    this.opts.applyTextureParams(texture);
+    this.overlay.children[0].material.map = texture;
+    return this.overlay.children[0].material.needsUpdate = true;
+  };
+
+  Mine.prototype.destroyOverlay = function() {
+    if (!this.overlay || !this.texturesEnabled) {
+      return;
+    }
+    this.game.scene.remove(this.overlay);
+    return this.overlay = null;
+  };
+
+  inherits(Mine, EventEmitter);
+
+}).call(this);
+
+},{"events":99,"inherits":72}],72:[function(require,module,exports){
+module.exports=require(19)
 },{}],73:[function(require,module,exports){
+module.exports = function (game, opts) {
+    return new Oculus(game, opts);
+}
+
+function Oculus(game, opts) {
+	var THREE = game.THREE;
+	var renderer = game.view.renderer;
+
+	this.separation = 10;
+	this.distortion = 0.1;
+	this.aspectFactor = 1;
+
+	if (opts) {
+		if (opts.separation !== undefined) this.separation = opts.separation;
+		if (opts.distortion !== undefined) this.distortion = opts.distortion;
+		if (opts.aspectFactor !== undefined) this.aspectFactor = opts.aspectFactor;
+	}
+
+	var _width, _height;
+
+	var _pCamera = new THREE.PerspectiveCamera();
+	_pCamera.matrixAutoUpdate = false;
+	_pCamera.target = new THREE.Vector3();
+
+	var _scene = new THREE.Scene();
+
+	var _oCamera = new THREE.OrthographicCamera( -1, 1, 1, -1, 1, 1000 );
+	_oCamera.position.z = 1;
+	_scene.add( _oCamera );
+
+	// initialization
+	renderer.autoClear = false;
+
+	var _params = { minFilter: THREE.LinearFilter, magFilter: THREE.NearestFilter, format: THREE.RGBAFormat };
+	var _renderTarget = new THREE.WebGLRenderTarget( 800, 600, _params );
+	var _material = new THREE.ShaderMaterial( {
+		uniforms: {
+			"tex": { type: "t", value: _renderTarget },
+			"c": { type: "f", value: this.distortion }
+		},
+		vertexShader: [
+			"varying vec2 vUv;",
+			"void main() {",
+			" vUv = uv;",
+			"	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );",
+			"}"
+		].join("\n"),
+
+        // Formula used from the paper: "Applying and removing lens distortion in post production"
+        // by Gergely Vass , Tamás Perlaki
+		// http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.136.3745
+		fragmentShader: [
+			"uniform float c;",
+			"uniform sampler2D tex;",
+			"varying vec2 vUv;",
+			"void main()",
+			"{",
+			"	vec2 uv = vUv;",
+			"	vec2 vector = uv * 2.0 - 1.0;",
+			"   float factor = 1.0/(1.0+c);",
+			"   float vectorLen = length(vector);",
+			"   vec2 direction = vector / vectorLen;",
+			"   float newLen = vectorLen + c * pow(vectorLen,3.0);",
+			"   vec2 newVector = direction * newLen * factor;",
+			"	newVector = (newVector + 1.0) / 2.0;",
+			"	if (newVector.x < 0.0 || newVector.x > 1.0 || newVector.y < 0.0 || newVector.y > 1.0)",
+			"		gl_FragColor = vec4(0.0,0.0,0.0,1.0);",
+			"	else",
+			"   	gl_FragColor = texture2D(tex, newVector);",
+			"}"
+		].join("\n")
+	} );
+	var mesh = new THREE.Mesh( new THREE.PlaneGeometry( 2, 2 ), _material );
+	_scene.add( mesh );
+
+	this.setSize = function ( width, height ) {
+		_width = width / 2;
+		_height = height;
+		_renderTarget = new THREE.WebGLRenderTarget( width, height, _params );
+		_material.uniforms[ "tex" ].value = _renderTarget;
+		renderer.setSize( width, height );
+
+	};
+
+	this.render = function ( scene, camera ) {
+		renderer.clear();
+    	_material.uniforms['c'].value = this.distortion;
+
+		// camera parameters
+		if (camera.matrixAutoUpdate) camera.updateMatrix();
+		_pCamera.fov = camera.fov;
+		_pCamera.aspect = camera.aspect / (2*this.aspectFactor);
+		_pCamera.near = camera.near;
+		_pCamera.far = camera.far;		
+		_pCamera.updateProjectionMatrix();
+
+
+		// Render left
+
+		_pCamera.matrix.copy(camera.matrixWorld);
+		_pCamera.applyMatrix(new THREE.Matrix4().makeTranslation(-this.separation, 0, 0));
+ 		_pCamera.matrixWorldNeedsUpdate = true;
+
+		renderer.setViewport( 0, 0, _width, _height );
+		renderer.render( scene, _pCamera, _renderTarget, true );
+		renderer.render( _scene, _oCamera );
+
+		// Render right
+
+		_pCamera.matrix.copy(camera.matrixWorld);
+		_pCamera.applyMatrix(new THREE.Matrix4().makeTranslation(this.separation, 0, 0));
+ 		_pCamera.matrixWorldNeedsUpdate = true;
+
+		renderer.setViewport( _width, 0, _width, _height );
+    	renderer.render( scene, _pCamera, _renderTarget, true );
+
+		renderer.render( _scene, _oCamera );
+	};
+
+	this.enable = function () {
+		this.originalRenderer = game.view.renderer;
+		this.setSize(game.width, game.height);
+		game.view.renderer = this;
+	};
+
+	this.disable = function () {
+		// TODO: anything else important we need to restore?
+		this.setSize(_width * 2, _height);
+		game.view.renderer = this.originalRenderer;
+	};
+};
+
+},{}],74:[function(require,module,exports){
+var noise = require('perlin').noise
+
+module.exports = function(seed, floor, ceiling, divisor) {
+  floor = floor || 0
+  ceiling = ceiling || 20 // minecraft's limit
+  divisor = divisor || 50
+  noise.seed(seed)
+  return function generateChunk(position, width) {
+    var startX = position[0] * width
+    var startY = position[1] * width
+    var startZ = position[2] * width
+    var chunk = new Int8Array(width * width * width)
+    pointsInside(startX, startZ, width, function(x, z) {
+      var n = noise.simplex2(x / divisor , z / divisor)
+      var y = ~~scale(n, -1, 1, floor, ceiling)
+      if (y === floor || startY < y && y < startY + width) {
+        var xidx = Math.abs((width + x % width) % width)
+        var yidx = Math.abs((width + y % width) % width)
+        var zidx = Math.abs((width + z % width) % width)
+        var idx = xidx + yidx * width + zidx * width * width
+        chunk[idx] = 1
+      }
+    })
+    return chunk
+  }
+}
+
+function pointsInside(startX, startY, width, func) {
+  for (var x = startX; x < startX + width; x++)
+    for (var y = startY; y < startY + width; y++)
+      func(x, y)
+}
+
+function scale( x, fromLow, fromHigh, toLow, toHigh ) {
+  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow
+}
+;
+},{"perlin":75}],75:[function(require,module,exports){
+module.exports=require(69)
+},{}],76:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -88661,7 +89048,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":74}],74:[function(require,module,exports){
+},{"minecraft-skin":77}],77:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -89033,7 +89420,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],75:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new Plugins(game, opts);
 };
@@ -89213,7 +89600,7 @@ Plugins.prototype.unload = function(name) {
   return true;
 };
 
-},{}],76:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var inherits = require('inherits');
@@ -89357,9 +89744,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":96,"inherits":77}],77:[function(require,module,exports){
+},{"events":99,"inherits":80}],80:[function(require,module,exports){
 module.exports=require(19)
-},{}],78:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 var transparent = require('opaque').transparent;
 
 function Texture(opts) {
@@ -89577,7 +89964,7 @@ function defaults(obj) {
   return obj;
 }
 
-},{"opaque":79,"three":6}],79:[function(require,module,exports){
+},{"opaque":82,"three":6}],82:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -89607,7 +89994,7 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],80:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 
 module.exports = function(game, opts) {
     return new Walk(game, opts)
@@ -89698,25 +90085,25 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],81:[function(require,module,exports){
-module.exports=require(13)
-},{"events":96,"inherits":87}],82:[function(require,module,exports){
-arguments[4][14][0].apply(exports,arguments)
-},{"./chunker":81,"./meshers/culled":83,"./meshers/greedy":84,"./meshers/monotone":85,"./meshers/stupid":86}],83:[function(require,module,exports){
-module.exports=require(15)
 },{}],84:[function(require,module,exports){
-module.exports=require(16)
-},{}],85:[function(require,module,exports){
-module.exports=require(17)
-},{}],86:[function(require,module,exports){
-module.exports=require(18)
+module.exports=require(13)
+},{"events":99,"inherits":90}],85:[function(require,module,exports){
+arguments[4][14][0].apply(exports,arguments)
+},{"./chunker":84,"./meshers/culled":86,"./meshers/greedy":87,"./meshers/monotone":88,"./meshers/stupid":89}],86:[function(require,module,exports){
+module.exports=require(15)
 },{}],87:[function(require,module,exports){
-module.exports=require(19)
+module.exports=require(16)
 },{}],88:[function(require,module,exports){
+module.exports=require(17)
+},{}],89:[function(require,module,exports){
+module.exports=require(18)
+},{}],90:[function(require,module,exports){
+module.exports=require(19)
+},{}],91:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],89:[function(require,module,exports){
+},{"./index.coffee":1}],92:[function(require,module,exports){
 
 
 //
@@ -89934,7 +90321,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],90:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90007,7 +90394,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":89,"_stream_readable":92,"_stream_writable":94,"timers":100,"util":101}],91:[function(require,module,exports){
+},{"_shims":92,"_stream_readable":95,"_stream_writable":97,"timers":103,"util":104}],94:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90050,7 +90437,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":93,"util":101}],92:[function(require,module,exports){
+},{"_stream_transform":96,"util":104}],95:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -90971,7 +91358,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":105,"_shims":89,"buffer":103,"events":96,"stream":98,"string_decoder":99,"timers":100,"util":101}],93:[function(require,module,exports){
+},{"__browserify_process":108,"_shims":92,"buffer":106,"events":99,"stream":101,"string_decoder":102,"timers":103,"util":104}],96:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91177,7 +91564,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":90,"util":101}],94:[function(require,module,exports){
+},{"_stream_duplex":93,"util":104}],97:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91547,7 +91934,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":103,"stream":98,"timers":100,"util":101}],95:[function(require,module,exports){
+},{"buffer":106,"stream":101,"timers":103,"util":104}],98:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -91864,7 +92251,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":89,"util":101}],96:[function(require,module,exports){
+},{"_shims":92,"util":104}],99:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92145,7 +92532,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":101}],97:[function(require,module,exports){
+},{"util":104}],100:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92356,7 +92743,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":105,"_shims":89,"util":101}],98:[function(require,module,exports){
+},{"__browserify_process":108,"_shims":92,"util":104}],101:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92485,7 +92872,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":90,"_stream_passthrough":91,"_stream_readable":92,"_stream_transform":93,"_stream_writable":94,"events":96,"util":101}],99:[function(require,module,exports){
+},{"_stream_duplex":93,"_stream_passthrough":94,"_stream_readable":95,"_stream_transform":96,"_stream_writable":97,"events":99,"util":104}],102:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -92678,7 +93065,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":103}],100:[function(require,module,exports){
+},{"buffer":106}],103:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -92797,7 +93184,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],101:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -93342,7 +93729,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":89}],102:[function(require,module,exports){
+},{"_shims":92}],105:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -93428,7 +93815,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],103:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -94554,7 +94941,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":102,"assert":95,"base64-js":104}],104:[function(require,module,exports){
+},{"./buffer_ieee754":105,"assert":98,"base64-js":107}],107:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -94640,7 +95027,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -94694,5 +95081,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[88])
+},{}]},{},[91])
 ;
