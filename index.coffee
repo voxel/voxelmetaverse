@@ -21,6 +21,7 @@ require 'voxel-mine'
 require 'voxel-reach'
 require 'voxel-debris'
 require 'voxel-debug'
+require 'voxel-land'
 
 module.exports = (opts, setup) ->
   setup ||= defaultSetup
@@ -59,57 +60,12 @@ module.exports = (opts, setup) ->
   console.log "creating game"
   game = createGame opts
 
-  generateChunk = createTerrain 'foo', 0, 5, 20
-  game.voxels.on 'missingChunk', (p) ->
-    width = 32
-    if p[1] == 0
-      # ground surface level
-      voxels = generateChunk p, width
-      #voxels = new Int8Array(width * width * width)
-
-      # populate chunk with trees
-      # TODO: populate later, so structures can cross chunks??
-      createTree game, {
-        bark: 4
-        leaves: 9
-        position: {x:width/2, y:0, z:width/2} # TODO: position at top of surface
-        treetype: 1
-        setBlock: (pos, value) ->
-          idx = pos.x + pos.y * width + pos.z * width * width
-          voxels[idx] = value
-          return false  # returning true stops tree
-        }
-    else if p[1] > 0
-      # empty space above ground
-      voxels = new Int8Array(width * width * width)
-    else
-      # below ground
-      # TODO: ores
-      voxels = new Int8Array(width * width * width)
-      for i in [0..width * width * width]
-        voxels[i] = 3  # stone
-
-    chunk = {
-      position: p
-      dims: [game.chunkSize, game.chunkSize, game.chunkSize]
-      voxels: voxels
-    }
-    #if p.join(',') == '0,0,0'
-    #  createTree game, {bark:4, leaves:9, position:{x:0, y:1, z:0}, checkOccupied:false}
-    #step = game.voxels.chunkSize * game.voxels.cubeSize
-    #createTree game, {bark:4, leaves:9, position:{x:p[0] * step, y:p[1] * step, z:p[2] * step}, checkOccupied:false}
-    game.showChunk(chunk)
-
-  generateTrees = () ->
-    for i in [0..250]
-      createTree game, {bark:4, leaves:9, checkOccupied:false, treetype: 2}
-  # TODO: generate as part of chunk generation instead of after the fact
-  #window.setTimeout generateTrees, 10000
-
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
 
-  plugins.preconfigure "oculus", { distortion: 0.2, separation: 0.5 }
+  plugins.load 'land', {populateTrees: true}
+
+  plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 }
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
