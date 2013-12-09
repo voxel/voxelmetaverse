@@ -128,6 +128,15 @@ defaultSetup = (game, avatar) ->
     reach: reach
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
     progressTexturesCount: 9
+    defaultHardness: 9
+    hardness:
+      {1: 5, # grass
+      2: 5, # dirt
+      3: 90, # stone
+      4: 8, # log
+      9: 2, # leaves
+      }
+
   }
 
   console.log "configuring highlight "
