@@ -8,8 +8,7 @@ datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 
-createTerrain = require 'voxel-perlin-terrain'
-createTree = require 'voxel-forest'
+createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-oculus'
@@ -27,25 +26,25 @@ module.exports = (opts, setup) ->
   setup ||= defaultSetup
   console.log "initializing"
 
-  
+  registry = createRegistry null, {}
+  registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
+  registry.registerBlock 'dirt', {texture: 'dirt', hardness:2}
+  registry.registerBlock 'stone', {texture: 'stone', hardness:90}
+  registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
+  registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
+  registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
+  registry.registerBlock 'brick', {texture: 'brick'}
+  registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
+  registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
+  registry.registerBlock 'glass', {texture: 'glass'}
+
   defaults =
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     generateChunks: false
     mesher: voxel.meshers.greedy
     chunkDistance: 2
-    materials: [
-      ['grass_top', 'dirt', 'grass_side'],
-      'dirt',
-      'stone',
-      ['log_oak_top', 'log_oak_top', 'log_oak'],
-      'cobblestone',
-      'coal_ore',
-      'brick',
-      'obsidian',
-      'leaves_oak_opaque',
-      'glass',
-      ]
+    materials: registry.getBlockPropsAll('texture')
     texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
@@ -59,6 +58,7 @@ module.exports = (opts, setup) ->
   # setup the game 
   console.log "creating game"
   game = createGame opts
+  game.registry = registry
 
   console.log "initializing plugins"
   plugins = createPlugins(game, {require: require})
@@ -129,14 +129,7 @@ defaultSetup = (game, avatar) ->
     progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
     progressTexturesCount: 9
     defaultHardness: 9
-    hardness:
-      {1: 5, # grass
-      2: 5, # dirt
-      3: 90, # stone
-      4: 8, # log
-      9: 2, # leaves
-      }
-
+    hardness: this.game.registry.getBlockPropsAll('hardness')
   }
 
   console.log "configuring highlight "

@@ -24,7 +24,7 @@
     "coffeeify": "0.5.2",
     "dat-gui": "~0.5.0",
     "voxel-perlin-terrain": "~1.0.0",
-    "voxel-forest": "git://github.com/deathcap/voxel-forest.git",
+    "voxel-registry": "git://github.com/deathcap/voxel-registry.git",
     "voxel-land": "git://github.com/deathcap/voxel-land.git"
   },
   "devDependencies": {
