@@ -111,7 +111,8 @@ defaultSetup = (game, avatar) ->
   game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
 
-  game.flyer = game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8, enabled: false}
+  game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8}
+  game.plugins.disable 'fly'
 
   game.plugins.load 'walk', { 
     skin: controlsTarget.playerSkin
@@ -160,14 +161,12 @@ defaultSetup = (game, avatar) ->
       # TODO: add gamemode event? for plugins to handle instead of us
       if game.mode == GAME_MODE_SURVIVAL
         game.mode = GAME_MODE_CREATIVE
-        game.flyer.enabled = true
+        game.plugins.enable 'fly'
         mine.instaMine = true
         console.log("creative mode")
       else
         game.mode = GAME_MODE_SURVIVAL
-        if game.flyer.flying
-          game.flyer.stopFlying()
-        game.flyer.enabled = false
+        game.plugins.disable 'fly'
         mine.instaMine = false
         console.log("survival mode")
 
