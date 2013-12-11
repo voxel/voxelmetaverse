@@ -25,7 +25,7 @@ module.exports = () ->
   # TODO: move after game creation
   registry = createRegistry null, {}
   registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
-  registry.registerBlock 'dirt', {texture: 'dirt', hardness:2}
+  registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
   registry.registerBlock 'stone', {texture: 'stone', hardness:90}
   registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
   registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
