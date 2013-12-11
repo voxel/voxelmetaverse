@@ -89142,18 +89142,18 @@ function PluginsUI(game, opts) {
   this.pluginState = {};
   this.pluginItems = {};
 
+  // add all existing plugins, already loaded
   var list = this.plugins.listAll();
-
   for (var i = 0; i < list.length; ++i) {
-    var name = list[i];
-
-    this.pluginState[name] = this.plugins.isEnabled(name);
-
-    this.pluginItems[name] = this.folder.add(this.pluginState, name);
-    this.pluginItems[name].onChange(setStateForPlugin(this, name));
+    this.addPlugin(list[i]);
   }
 
-  // update GUI when plugin is disabled by something else
+  // and listen for events for new plugins, which haven't loaded yet
+  this.plugins.on('new plugin', function(name) {
+    self.addPlugin(name);
+  });
+
+  // update GUI when plugin is enabled/disabled by something else
   var self = this;
   this.plugins.on('plugin enabled', function(name) {
     self.pluginState[name] = true;
@@ -89165,6 +89165,13 @@ function PluginsUI(game, opts) {
     self.pluginItems[name].updateDisplay();
   });
 }
+
+// add plugin checkbox widget
+PluginsUI.prototype.addPlugin = function (name) {
+  this.pluginState[name] = this.plugins.isEnabled(name);
+  this.pluginItems[name] = this.folder.add(this.pluginState, name);
+  this.pluginItems[name].onChange(setStateForPlugin(this, name));
+};
 
 // set new plugin state when user toggles it in GUI
 function setStateForPlugin(self, name) {
@@ -89183,6 +89190,8 @@ module.exports=require(3)
 },{}],80:[function(require,module,exports){
 module.exports=require(4)
 },{}],81:[function(require,module,exports){
+// # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
+
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
 
@@ -89230,6 +89239,7 @@ Plugins.prototype.load = function(name, opts) {
     return false;
   }
   plugin.pluginName = name;
+  this.emit('new plugin', name);
 
   // plugins are enabled on load -- assumed constructor calls its own enable() method (if present)
   plugin.pluginEnabled = true;
@@ -89246,6 +89256,8 @@ Plugins.prototype.load = function(name, opts) {
 // Mark a plugin for on-demand loading in enable(), with given preconfigured options
 Plugins.prototype.preconfigure = function(name, opts) {
   this.preconfigureOpts[name] = opts;
+  if (!this.get(name)) 
+    this.emit('new plugin', name);
 };
 
 
