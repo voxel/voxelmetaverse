@@ -7,6 +7,7 @@
     "url": "git@github.com:deathcap/voxpopuli.git"
   },
   "dependencies": {
+    "ever": "0.0.3",
     "voxel-engine": "git://github.com/deathcap/voxel-engine.git",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git",

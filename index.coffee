@@ -1,5 +1,6 @@
 # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
+ever = require 'ever'
 datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -114,7 +115,7 @@ module.exports = () ->
   }
 
   game.mode = 'survival'
-  window.addEventListener 'keydown', (ev) ->
+  ever(document.body).on 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
       # toggle between first and third person 
       avatar.toggle()
@@ -144,7 +145,7 @@ module.exports = () ->
         console.log 'survival mode'
 
   # cancel context-menu on right-click
-  window.addEventListener 'contextmenu', (event) ->
+  ever(document.body).on 'contextmenu', (event) ->
     event.preventDefault()
     return false
 
