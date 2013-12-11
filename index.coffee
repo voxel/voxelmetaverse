@@ -22,19 +22,6 @@ require 'voxel-land'
 module.exports = () ->
   console.log 'voxpopuli starting'
 
-  # TODO: move after game creation
-  registry = createRegistry null, {}
-  registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
-  registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
-  registry.registerBlock 'stone', {texture: 'stone', hardness:90}
-  registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
-  registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
-  registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
-  registry.registerBlock 'brick', {texture: 'brick'}
-  registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
-  registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
-  registry.registerBlock 'glass', {texture: 'glass'}
-
   # setup the game 
   console.log 'creating game'
   game = createGame {
@@ -42,7 +29,7 @@ module.exports = () ->
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     generateChunks: false
     chunkDistance: 2
-    materials: registry.getBlockPropsAll 'texture'
+    materials: []  # added dynamically later
     texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
@@ -56,7 +43,30 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins(game, {require: require})
 
-  plugins.load 'land', {populateTrees: true}
+  registry = plugins.load 'registry', {}
+  registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
+  registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
+  registry.registerBlock 'stone', {texture: 'stone', hardness:90}
+  registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
+  registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
+  registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
+  registry.registerBlock 'brick', {texture: 'brick'}
+  registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
+  registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
+  registry.registerBlock 'glass', {texture: 'glass'}
+
+  game.materials.load registry.getBlockPropsAll 'texture'
+
+  plugins.load 'land', {
+    populateTrees: true
+    materials: {  # TODO: refactor
+      grass: registry.getBlockID 'grass'
+      dirt: registry.getBlockID 'dirt'
+      stone: registry.getBlockID 'stone'
+      bark: registry.getBlockID 'logOak'
+      leaves: registry.getBlockID 'leavesOak'
+    }
+  }
 
   plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 }
 
@@ -104,7 +114,7 @@ module.exports = () ->
     progressTexturesBase: 'ProgrammerArt/textures/blocks/destroy_stage_'
     progressTexturesCount: 9
     defaultHardness: 9
-    hardness: this.game.registry.getBlockPropsAll 'hardness'
+    hardness: registry.getBlockPropsAll 'hardness'
   }
 
   # highlight blocks when you look at them
