@@ -1,9 +1,5 @@
 # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
-console.log "Hello"
-
-voxel = require 'voxel'
-extend = require 'extend'
 datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -22,10 +18,10 @@ require 'voxel-debris'
 require 'voxel-debug'
 require 'voxel-land'
 
-module.exports = (opts, setup) ->
-  setup ||= defaultSetup
-  console.log "initializing"
+module.exports = () ->
+  console.log 'voxpopuli starting'
 
+  # TODO: move after game creation
   registry = createRegistry null, {}
   registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
   registry.registerBlock 'dirt', {texture: 'dirt', hardness:2}
@@ -38,29 +34,25 @@ module.exports = (opts, setup) ->
   registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
   registry.registerBlock 'glass', {texture: 'glass'}
 
-  defaults =
+  # setup the game 
+  console.log 'creating game'
+  game = createGame {
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     generateChunks: false
-    mesher: voxel.meshers.greedy
     chunkDistance: 2
-    materials: registry.getBlockPropsAll('texture')
+    materials: registry.getBlockPropsAll 'texture'
     texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
       jumpSpeed: 0.001
-      #jumpTimer: 200.0
+    }
 
-  opts = extend {}, defaults, opts || {}
-
-  # setup the game 
-  console.log "creating game"
-  game = createGame opts
   game.registry = registry
 
-  console.log "initializing plugins"
+  console.log 'initializing plugins'
   plugins = createPlugins(game, {require: require})
 
   plugins.load 'land', {populateTrees: true}
@@ -70,13 +62,12 @@ module.exports = (opts, setup) ->
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
     plugins.enable 'oculus'
-  #  document.getElementById("logo").style.visibility = "hidden"
+    document.getElementById('logo').style.visibility = 'hidden'
 
-  container = opts.container || document.body
-  window.game = game # for debugging
+  container = document.body
+  window.game = window.g = game # for debugging
   game.appendTo container
   return game if game.notCapable()
-
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
@@ -84,31 +75,12 @@ module.exports = (opts, setup) ->
   avatar.pov('first');
   avatar.possess()
   home(avatar)
-  game.avatar = avatar
-      
-  setup game, avatar
-  
-  return game
-
-home = (avatar) ->
-  #avatar.yaw.position.set 2, 14, 4
-  avatar.yaw.position.set 2, 5, 4
-
-
-GAME_MODE_SURVIVAL = 0
-GAME_MODE_CREATIVE = 1
-
-REACH_DISTANCE = 8
-
-defaultSetup = (game, avatar) ->
-  console.log "entering setup"
 
   gui = new datgui.GUI()
   console.log 'gui',gui
   debug = game.plugins.load 'debug', {gui: gui}
-  debug.axis([0, 0, 0], 10)
+  debug.axis [0, 0, 0], 10
 
-  game.mode = GAME_MODE_SURVIVAL
   controlsTarget = game.controls.target()
 
   game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8}
@@ -123,17 +95,17 @@ defaultSetup = (game, avatar) ->
       return vx > 0.001 || vz > 0.001
     }
 
+  REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
   mine = game.plugins.load 'mine', {
     instaMine: false
     reach: reach
-    progressTexturesBase: "ProgrammerArt/textures/blocks/destroy_stage_"
+    progressTexturesBase: 'ProgrammerArt/textures/blocks/destroy_stage_'
     progressTexturesCount: 9
     defaultHardness: 9
-    hardness: this.game.registry.getBlockPropsAll('hardness')
+    hardness: this.game.registry.getBlockPropsAll 'hardness'
   }
 
-  console.log "configuring highlight "
   # highlight blocks when you look at them
   highlight = game.plugins.load 'highlight', {
     color:  0xff0000
@@ -141,34 +113,35 @@ defaultSetup = (game, avatar) ->
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
-  # toggle between first and third person 
+  game.mode = 'survival'
   window.addEventListener 'keydown', (ev) ->
     if ev.keyCode == 'R'.charCodeAt(0)
+      # toggle between first and third person 
       avatar.toggle()
     else if ev.keyCode == 'T'.charCodeAt(0)
-      game.plugins.toggle "oculus"
+      game.plugins.toggle 'oculus'
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
       slot = ev.keyCode - '0'.charCodeAt(0)
       if slot == 0
         slot = 10
-      console.log "switching to slot #{slot}"
+      console.log 'switching to slot #{slot}'
 
       game.currentMaterial = slot
 
     else if ev.keyCode == 'O'.charCodeAt(0)
-      home(game.avatar)
+      home(avatar)
     else if ev.keyCode == 'C'.charCodeAt(0)
       # TODO: add gamemode event? for plugins to handle instead of us
-      if game.mode == GAME_MODE_SURVIVAL
-        game.mode = GAME_MODE_CREATIVE
+      if game.mode == 'survival'
+        game.mode = 'creative'
         game.plugins.enable 'fly'
         mine.instaMine = true
-        console.log("creative mode")
+        console.log 'creative mode'
       else
-        game.mode = GAME_MODE_SURVIVAL
+        game.mode = 'survival'
         game.plugins.disable 'fly'
         mine.instaMine = false
-        console.log("survival mode")
+        console.log 'survival mode'
 
   # cancel context-menu on right-click
   window.addEventListener 'contextmenu', (event) ->
@@ -177,7 +150,7 @@ defaultSetup = (game, avatar) ->
 
   reach.on 'interact', (target) ->
     if not target
-      console.log("waving")
+      console.log 'waving'
       return
 
     game.createBlock target.adjacent, game.currentMaterial
@@ -185,7 +158,6 @@ defaultSetup = (game, avatar) ->
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
   mine.on 'break', (goner) ->
-    #console.log "exploding",goner
     #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
     game.setBlock goner, 0
 
@@ -194,6 +166,12 @@ defaultSetup = (game, avatar) ->
 
   debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
-    console.log("collect", item)
+    console.log 'collect', item
+
+  return game
+
+home = (avatar) ->
+  #avatar.yaw.position.set 2, 14, 4
+  avatar.yaw.position.set 2, 5, 4
 
 
