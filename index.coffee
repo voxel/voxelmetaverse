@@ -4,6 +4,7 @@ ever = require 'ever'
 datgui = require 'dat-gui'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
+createPluginsUI = require 'voxel-plugins-ui'
 
 createRegistry = require 'voxel-registry'
 
@@ -41,7 +42,7 @@ module.exports = () ->
   game.registry = registry
 
   console.log 'initializing plugins'
-  plugins = createPlugins(game, {require: require})
+  plugins = createPlugins game, {require: require}
 
   registry = plugins.load 'registry', {}
   registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
@@ -87,11 +88,6 @@ module.exports = () ->
   avatar.possess()
   home(avatar)
 
-  gui = new datgui.GUI()
-  console.log 'gui',gui
-  debug = game.plugins.load 'debug', {gui: gui}
-  debug.axis [0, 0, 0], 10
-
   controlsTarget = game.controls.target()
 
   game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8}
@@ -129,6 +125,7 @@ module.exports = () ->
     if ev.keyCode == 'R'.charCodeAt(0)
       # toggle between first and third person 
       avatar.toggle()
+      # TODO: disable/re-enable voxel-walk in 1st/3rd person?
     else if ev.keyCode == 'T'.charCodeAt(0)
       game.plugins.toggle 'oculus'
     else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
@@ -178,6 +175,13 @@ module.exports = () ->
   debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
     console.log 'collect', item
+
+  gui = new datgui.GUI()
+  console.log 'gui',gui
+  debug = game.plugins.load 'debug', {gui: gui}
+  debug.axis [0, 0, 0], 10
+
+  pluginsUI = createPluginsUI game, {gui: gui}
 
   return game
 
