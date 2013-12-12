@@ -2,6 +2,7 @@
 
 ever = require 'ever'
 datgui = require 'dat-gui'
+createToolbar = require 'toolbar'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 createPluginsUI = require 'voxel-plugins-ui'
@@ -28,6 +29,7 @@ module.exports = () ->
   game = createGame {
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
+    useAtlas: false
     generateChunks: false
     chunkDistance: 2
     materials: []  # added dynamically later
@@ -39,7 +41,10 @@ module.exports = () ->
       jumpSpeed: 0.001
     }
 
-  game.registry = registry
+  toolbar = createToolbar {el: '#tools'}
+  toolbar.on 'select', (material) ->
+    game.currentMaterial = +material
+
 
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
