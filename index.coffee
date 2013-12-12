@@ -28,6 +28,7 @@ module.exports = () ->
   game = createGame {
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
+    useAtlas: false
     generateChunks: false
     chunkDistance: 2
     materials: []  # added dynamically later
