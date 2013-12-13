@@ -170,16 +170,16 @@ module.exports = () ->
     #game.setBlock target.voxel, 0
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
-  mine.on 'break', (goner) ->
-    #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
-    game.setBlock goner, 0
-
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
   debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
     console.log 'collect', item
+
+  mine.on 'break', (pos) =>
+    debris(pos, 2) # TODO: pass material
+    #game.setBlock pos, 0
 
   gui = new datgui.GUI()
   console.log 'gui',gui
