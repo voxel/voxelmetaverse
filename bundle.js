@@ -5590,6 +5590,13 @@ Debug.prototype._render = function() {
     // refresh chunks on change
     self.game.showAllChunks() 
   })
+
+  this.useAtlas = false;
+  folder.add(this, 'useAtlas').onChange(function(value) {
+    self.game.materials.opts.useAtlas = value;
+    self.game.materials = self.game.materials.reconfigure();
+    self.game.showAllChunks() 
+  });
 }
 
 },{"dat-gui":15,"voxel":19}],15:[function(require,module,exports){
@@ -49439,11 +49446,20 @@ module.exports = function(game, opts) {
     return new TextureSimple(game, opts);
 };
 
+function reconfigure(old) {
+  var ret = module.exports(old.game, old.opts);
+  ret.load(old.names);
+
+  return ret;
+}
+
 function Texture(game, opts) {
   if (!(this instanceof Texture)) return new Texture(game, opts || {});
   var self = this;
   this.game = game;
+  this.opts = opts;
   this.THREE = this.game.THREE;
+  this.names = [];
   this.materials = [];
   this.transparents = [];
   this.texturePath = opts.texturePath || '/textures/';
@@ -49510,8 +49526,13 @@ function Texture(game, opts) {
   this._meshQueue = [];
 }
 
+Texture.prototype.reconfigure = function() {
+  return reconfigure(this);
+};
+
 Texture.prototype.load = function(names, done) {
   if (!names || names.length === 0) return;
+  this.names = this.names.concat(names); // save for reconfiguration
 
   var self = this;
   if (!Array.isArray(names)) names = [names];
@@ -49827,27 +49848,38 @@ function TextureSimple(game, opts) {
   if (!(this instanceof TextureSimple)) return new TextureSimple(game, opts || {});
   var self = this;
   this.game = game;
-  this.THREE              = this.game.THREE || opts.THREE || require('three');
-  this.materials          = [];
-  this.texturePath        = opts.texturePath    || '/textures/';
-  this.materialParams     = opts.materialParams || {};
-  this.materialType       = opts.materialType   || this.THREE.MeshLambertMaterial;
-  this.materialIndex      = [];
-  this._animations        = [];
-  this._materialDefaults  = { ambient: 0xbbbbbb };
-  this.applyTextureParams = opts.applyTextureParams || function(map) {
+
+  opts = opts || {};
+  this.materialType = opts.materialType = opts.materialType || this.THREE.MeshLambertMaterial;
+  this.materialParams = opts.materialParams = opts.materialParams || {};
+  this._materialDefaults = opts.materialDefaults = opts.materialDefaults ||{ ambient: 0xbbbbbb };
+  this.applyTextureParams = opts.applyTextureParams = opts.applyTextureParams || function(map) {
     map.magFilter = self.THREE.NearestFilter;
     map.minFilter = self.THREE.LinearMipMapLinearFilter;
     map.wrapT     = self.THREE.RepeatWrapping;
     map.wrapS     = self.THREE.RepeatWrapping;
-  }
-}
+  };
+
+  this.THREE              = this.game.THREE || opts.THREE || require('three');
+  this.materials          = [];
+  this.names              = [];
+  this.texturePath        = opts.texturePath    || '/textures/';
+  this.materialIndex      = [];
+  this._animations        = [];
+
+  this.opts = opts;
+};
+
+TextureSimple.prototype.reconfigure = function() {
+  return reconfigure(this);
+};
 
 TextureSimple.prototype.load = function(names, opts) {
   if (!names || names.length === 0) return;
+  this.names = this.names.concat(names); // save for reconfiguration
 
   var self = this;
-  opts = self._options(opts);
+  opts = self.opts;
   if (!Array.isArray(names)) names = [names];
   if (!hasSubArray(names)) names = [names];
   return [].concat.apply([], names.map(function(name) {
@@ -49918,14 +49950,6 @@ TextureSimple.prototype._expandName = function(name) {
   // 0 is top, 1 is bottom, 2 is front/back, 3 is left/right
   if (name.length === 4) name = [name[2],name[2],name[0],name[1],name[3],name[3]];
   return name;
-};
-
-TextureSimple.prototype._options = function(opts) {
-  opts = opts || {};
-  opts.materialType = opts.materialType || this.materialType;
-  opts.materialParams = defaults(opts.materialParams || {}, this._materialDefaults, this.materialParams);
-  opts.applyTextureParams = opts.applyTextureParams || this.applyTextureParams;
-  return opts;
 };
 
 TextureSimple.prototype.paintMesh = function(mesh) {
