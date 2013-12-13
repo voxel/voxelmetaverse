@@ -173,17 +173,21 @@ module.exports = () ->
   # block interaction: left/right-click to break/place blocks, uses raytracing
   game.currentMaterial = 1
 
-  debris = game.plugins.load 'debris', {power: 1.5}
+  debris = plugins.load 'debris', {power: 1.5}
+  plugins.disable 'debris' # lag :(
+
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
   mine.on 'break', (pos) =>
-    debris(pos, 2) # TODO: pass material
-    #game.setBlock pos, 0
+    if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
+      debris(pos, 2) # TODO: pass material
+    else
+      game.setBlock pos, 0
 
   gui = new datgui.GUI()
   console.log 'gui',gui
-  debug = game.plugins.load 'debug', {gui: gui}
+  debug = plugins.load 'debug', {gui: gui}
   debug.axis [0, 0, 0], 10
 
   pluginsUI = createPluginsUI game, {gui: gui}
