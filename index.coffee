@@ -43,10 +43,6 @@ module.exports = () ->
       jumpSpeed: 0.001
     }
 
-  toolbar = createToolbar {el: '#tools'}
-  toolbar.on 'select', (material) ->
-    game.currentMaterial = +material
-
 
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
@@ -143,14 +139,6 @@ module.exports = () ->
       # TODO: disable/re-enable voxel-walk in 1st/3rd person?
     else if ev.keyCode == 'T'.charCodeAt(0)
       game.plugins.toggle 'oculus'
-    else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
-      slot = ev.keyCode - '0'.charCodeAt(0)
-      if slot == 0
-        slot = 10
-      console.log 'switching to slot #{slot}'
-
-      game.currentMaterial = slot
-
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
     else if ev.keyCode == 'C'.charCodeAt(0)
@@ -170,13 +158,23 @@ module.exports = () ->
   ever(document.body).on 'contextmenu', (event) ->
     event.preventDefault()
     return false
+  
+  playerInventory = new Inventory(10)
+  currentInventorySlot = 0
+  toolbar = createToolbar {el: '#tools'}
+  toolbar.on 'select', (slot) =>
+    currentInventorySlot = slot
 
-  reach.on 'interact', (target) ->
+  reach.on 'interact', (target) =>
     if not target
       console.log 'waving'
       return
 
-    game.createBlock target.adjacent, game.currentMaterial
+    currentItemPile = playerInventory.slot(currentInventorySlot)
+    currentMaterial = currentItemPile.item
+    currentBlockID = registry.getBlockID(currentMaterial)
+
+    game.createBlock target.adjacent, currentBlockID
     #game.setBlock target.voxel, 0
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
@@ -189,7 +187,6 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
-  playerInventory = new Inventory(10)
 
   mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
@@ -201,25 +198,25 @@ module.exports = () ->
     droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
 
     excess = playerInventory.give droppedPile
-    console.log ''+playerInventory,excess
 
     content = []
-    for slot in playerInventory.array
+    for slot, i in playerInventory.array
       if slot?
         # TODO: configurable item textures (for now only uses block top)
         blockTextures = registry.getBlockProps(slot.item).texture
         itemTexture = if typeof blockTextures == 'string' then blockTextures else blockTextures[0]
 
-        content.push {icon: game.materials.texturePath + itemTexture + '.png', label:''+slot.count, id:slot.item}
+        content.push {icon: game.materials.texturePath + itemTexture + '.png', label:''+slot.count, id:i}
       else
         content.push {}
 
-    toolbar.setContent content
+    toolbar.updateContent content
 
     if excess > 0
       # if didn't fit in inventory, un-mine the block since they can't carry it
       # TODO: handle partial fits, prevent dupes (canFit before giving?) -- needed once have custom drops
       game.setBlock target.voxel, target.value
+      # TOOD: some kind of notification
 
 
   gui = new datgui.GUI()
