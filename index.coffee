@@ -189,7 +189,7 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
-  playerInventory = new Inventory(1)
+  playerInventory = new Inventory(10)
 
   mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
@@ -197,8 +197,8 @@ module.exports = () ->
     else
       game.setBlock target.voxel, 0
 
-    # TODO: add as item name instead of id
-    droppedPile = new ItemPile(target.value, 1) # TODO: custom drops
+    blockName = registry.getBlockName(target.value)
+    droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
 
     excess = playerInventory.give droppedPile
     console.log ''+playerInventory,excess
