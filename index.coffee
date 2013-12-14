@@ -160,26 +160,29 @@ module.exports = () ->
     return false
   
   playerInventory = new Inventory(10)
+  game.playerInventory = playerInventory
   currentInventorySlot = 0
   toolbar = createToolbar {el: '#tools'}
   toolbar.on 'select', (slot) =>
     currentInventorySlot = slot
 
+  # right-click to place block
   reach.on 'interact', (target) =>
     if not target
       console.log 'waving'
       return
 
     currentItemPile = playerInventory.slot(currentInventorySlot)
+    if not currentItemPile?
+      console.log 'nothing in this inventory slot to use'
+      return
+
     currentMaterial = currentItemPile.item
     currentBlockID = registry.getBlockID(currentMaterial)
 
     game.createBlock target.adjacent, currentBlockID
     #game.setBlock target.voxel, 0
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
-
-  # block interaction: left/right-click to break/place blocks, uses raytracing
-  game.currentMaterial = 1
 
   debris = plugins.load 'debris', {power: 1.5}
   plugins.disable 'debris' # lag :(
@@ -188,6 +191,7 @@ module.exports = () ->
     console.log 'collect', item
 
 
+  # block broken after completed mining (from voxel-mine) by holding left-click
   mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
       debris(target.voxel, target.value)
@@ -208,7 +212,7 @@ module.exports = () ->
 
         content.push {icon: game.materials.texturePath + itemTexture + '.png', label:''+slot.count, id:i}
       else
-        content.push {}
+        content.push {id:i}
 
     toolbar.updateContent content
 
