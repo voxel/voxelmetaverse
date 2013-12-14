@@ -203,6 +203,19 @@ module.exports = () ->
     excess = playerInventory.give droppedPile
     console.log ''+playerInventory,excess
 
+    content = []
+    for slot in playerInventory.array
+      if slot?
+        # TODO: configurable item textures (for now only uses block top)
+        blockTextures = registry.getBlockProps(slot.item).texture
+        itemTexture = if typeof blockTextures == 'string' then blockTextures else blockTextures[0]
+
+        content.push {icon: game.materials.texturePath + itemTexture + '.png', label:''+slot.count, id:slot.item}
+      else
+        content.push {}
+
+    toolbar.setContent content
+
     if excess > 0
       # if didn't fit in inventory, un-mine the block since they can't carry it
       # TODO: handle partial fits, prevent dupes (canFit before giving?) -- needed once have custom drops
