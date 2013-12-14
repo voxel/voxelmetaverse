@@ -2,6 +2,8 @@
 
 ever = require 'ever'
 datgui = require 'dat-gui'
+ItemPile = require 'itempile'
+Inventory = require 'inventory'
 createToolbar = require 'toolbar'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -187,11 +189,18 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
+  playerInventory = new Inventory(10)
+
   mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
       debris(target.voxel, target.value)
     else
       game.setBlock target.voxel, 0
+
+    # TODO: add as item name instead of id
+    droppedPile = new ItemPile(target.value, 1) # TODO: custom drops
+    playerInventory.give droppedPile
+    console.log ''+playerInventory
 
   gui = new datgui.GUI()
   console.log 'gui',gui
