@@ -127,7 +127,14 @@ module.exports = () ->
   }
 
   game.mode = 'survival'
+
+  haveMouseInteract = false
+  game.interact.on 'attain', () => haveMouseInteract = true
+  game.interact.on 'release', () => haveMouseInteract = false
+
   ever(document.body).on 'keydown', (ev) ->
+    return if !haveMouseInteract    # don't care if typing into a GUI, etc. TODO: use kb-controls here too? (like voxel-engine)
+
     if ev.keyCode == 'R'.charCodeAt(0)
       # toggle between first and third person 
       avatar.toggle()
