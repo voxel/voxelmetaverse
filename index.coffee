@@ -189,7 +189,7 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
-  playerInventory = new Inventory(10)
+  playerInventory = new Inventory(1)
 
   mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
@@ -199,8 +199,15 @@ module.exports = () ->
 
     # TODO: add as item name instead of id
     droppedPile = new ItemPile(target.value, 1) # TODO: custom drops
-    playerInventory.give droppedPile
-    console.log ''+playerInventory
+
+    excess = playerInventory.give droppedPile
+    console.log ''+playerInventory,excess
+
+    if excess > 0
+      # if didn't fit in inventory, un-mine the block since they can't carry it
+      # TODO: handle partial fits, prevent dupes (canFit before giving?) -- needed once have custom drops
+      game.setBlock target.voxel, target.value
+
 
   gui = new datgui.GUI()
   console.log 'gui',gui
