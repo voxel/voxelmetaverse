@@ -33,7 +33,7 @@ module.exports = () ->
     generateChunks: false
     chunkDistance: 2
     materials: []  # added dynamically later
-    texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
+    texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: false
@@ -112,7 +112,8 @@ module.exports = () ->
   mine = game.plugins.load 'mine', {
     instaMine: false
     reach: reach
-    progressTexturesBase: 'ProgrammerArt/textures/blocks/destroy_stage_'
+    #progressTexturesDir: 'ProgrammerArt/textures/blocks/'
+    progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
     defaultHardness: 9
     hardness: registry.getBlockPropsAll 'hardness'
@@ -179,11 +180,11 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
-  mine.on 'break', (pos) =>
+  mine.on 'break', (target) =>
     if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
-      debris(pos, 2) # TODO: pass material
+      debris(target.voxel, target.value)
     else
-      game.setBlock pos, 0
+      game.setBlock target.voxel, 0
 
   gui = new datgui.GUI()
   console.log 'gui',gui

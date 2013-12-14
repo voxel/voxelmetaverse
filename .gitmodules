@@ -1,3 +1,3 @@
-[submodule "ProgrammerArt"]
-	path = ProgrammerArt
+[submodule "AssetPacks/ProgrammerArt"]
+	path = AssetPacks/ProgrammerArt
 	url = https://github.com/deathcap/ProgrammerArt.git
