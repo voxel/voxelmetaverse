@@ -170,13 +170,19 @@ module.exports = () ->
       console.log 'waving'
       return
 
+    # test if can place block here (not blocked by self), before consuming inventory
+    # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
+    if not game.canCreateBlock target.adjacent
+      console.log 'blocked'
+      return
+
     taken = inventoryToolbar.takeSelected(1)
     if not taken?
       console.log 'nothing in this inventory slot to use'
       return
 
     currentBlockID = registry.getBlockID(taken.item)
-    game.createBlock target.adjacent, currentBlockID  # TODO: handle failure (returns false, but then shouldn't consume item)
+    game.setBlock target.adjacent, currentBlockID
 
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
