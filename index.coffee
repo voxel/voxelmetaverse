@@ -2,6 +2,8 @@
 
 ever = require 'ever'
 datgui = require 'dat-gui'
+ItemPile = require 'itempile'
+Inventory = require 'inventory'
 createToolbar = require 'toolbar'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -10,6 +12,7 @@ createPluginsUI = require 'voxel-plugins-ui'
 createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-inventory-toolbar'
 require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-player'
@@ -33,17 +36,13 @@ module.exports = () ->
     generateChunks: false
     chunkDistance: 2
     materials: []  # added dynamically later
-    texturePath: 'ProgrammerArt/textures/blocks/' # subproject with textures
+    texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
     worldOrigin: [0, 0, 0],
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
       jumpSpeed: 0.001
     }
-
-  toolbar = createToolbar {el: '#tools'}
-  toolbar.on 'select', (material) ->
-    game.currentMaterial = +material
 
 
   console.log 'initializing plugins'
@@ -112,7 +111,8 @@ module.exports = () ->
   mine = game.plugins.load 'mine', {
     instaMine: false
     reach: reach
-    progressTexturesBase: 'ProgrammerArt/textures/blocks/destroy_stage_'
+    #progressTexturesDir: 'ProgrammerArt/textures/blocks/'
+    progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
     defaultHardness: 9
     hardness: registry.getBlockPropsAll 'hardness'
@@ -126,21 +126,30 @@ module.exports = () ->
   }
 
   game.mode = 'survival'
-  ever(document.body).on 'keydown', (ev) ->
+
+  playerInventory = new Inventory(10)
+  toolbar = createToolbar {el: '#tools'}
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
+
+  haveMouseInteract = false
+  game.interact.on 'attain', () => haveMouseInteract = true
+  game.interact.on 'release', () => haveMouseInteract = false
+
+  # one of everything, please..
+  creativeInventoryArray = []
+  for props in registry.blockProps
+    creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
+  survivalInventoryArray = []
+
+  ever(document.body).on 'keydown', (ev) =>
+    return if !haveMouseInteract    # don't care if typing into a GUI, etc. TODO: use kb-controls here too? (like voxel-engine)
+
     if ev.keyCode == 'R'.charCodeAt(0)
       # toggle between first and third person 
       avatar.toggle()
       # TODO: disable/re-enable voxel-walk in 1st/3rd person?
     else if ev.keyCode == 'T'.charCodeAt(0)
       game.plugins.toggle 'oculus'
-    else if '0'.charCodeAt(0) <= ev.keyCode <= '9'.charCodeAt(0)
-      slot = ev.keyCode - '0'.charCodeAt(0)
-      if slot == 0
-        slot = 10
-      console.log 'switching to slot #{slot}'
-
-      game.currentMaterial = slot
-
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
     else if ev.keyCode == 'C'.charCodeAt(0)
@@ -149,41 +158,75 @@ module.exports = () ->
         game.mode = 'creative'
         game.plugins.enable 'fly'
         mine.instaMine = true
+        survivalInventoryArray = inventoryToolbar.inventory.array
+        inventoryToolbar.inventory.array = creativeInventoryArray
+        inventoryToolbar.refresh()
         console.log 'creative mode'
       else
         game.mode = 'survival'
         game.plugins.disable 'fly'
         mine.instaMine = false
+        inventoryToolbar.inventory.array = survivalInventoryArray
+        inventoryToolbar.refresh()
         console.log 'survival mode'
 
   # cancel context-menu on right-click
   ever(document.body).on 'contextmenu', (event) ->
     event.preventDefault()
     return false
-
-  reach.on 'interact', (target) ->
+  
+  # right-click to place block
+  reach.on 'interact', (target) =>
     if not target
       console.log 'waving'
       return
 
-    game.createBlock target.adjacent, game.currentMaterial
-    #game.setBlock target.voxel, 0
+    # test if can place block here (not blocked by self), before consuming inventory
+    # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
+    if not game.canCreateBlock target.adjacent
+      console.log 'blocked'
+      return
+
+    taken = inventoryToolbar.takeSelected(1)
+    if not taken?
+      console.log 'nothing in this inventory slot to use'
+      return
+
+    currentBlockID = registry.getBlockID(taken.item)
+    game.setBlock target.adjacent, currentBlockID
+
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
-  mine.on 'break', (goner) ->
-    #game.explode goner # TODO: update voxel-debris for latest voxel-engine, doesn't pass materials?
-    game.setBlock goner, 0
+  debris = plugins.load 'debris', {power: 1.5}
+  plugins.disable 'debris' # lag :(
 
-  # block interaction: left/right-click to break/place blocks, uses raytracing
-  game.currentMaterial = 1
-
-  debris = game.plugins.load 'debris', {power: 1.5}
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
+
+  # block broken after completed mining (from voxel-mine) by holding left-click
+  mine.on 'break', (target) =>
+    if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
+      debris(target.voxel, target.value)
+    else
+      game.setBlock target.voxel, 0
+
+    blockName = registry.getBlockName(target.value)
+    droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
+
+    # adds to inventory and refreshes toolbar
+    excess = inventoryToolbar.give droppedPile
+
+    if excess > 0
+      # if didn't fit in inventory, un-mine the block since they can't carry it
+      # TODO: handle partial fits, prevent dupes (canFit before giving?) -- needed once have custom drops
+      game.setBlock target.voxel, target.value
+      # TOOD: some kind of notification
+
+
   gui = new datgui.GUI()
   console.log 'gui',gui
-  debug = game.plugins.load 'debug', {gui: gui}
+  debug = plugins.load 'debug', {gui: gui}
   debug.axis [0, 0, 0], 10
 
   pluginsUI = createPluginsUI game, {gui: gui}
