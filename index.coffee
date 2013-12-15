@@ -170,16 +170,14 @@ module.exports = () ->
       console.log 'waving'
       return
 
-    currentItemPile = playerInventory.slot(inventoryToolbar.currentSlot)
-    if not currentItemPile?
+    taken = inventoryToolbar.takeSelected(1)
+    if not taken?
       console.log 'nothing in this inventory slot to use'
       return
 
-    currentMaterial = currentItemPile.item
-    currentBlockID = registry.getBlockID(currentMaterial)
+    currentBlockID = registry.getBlockID(taken.item)
+    game.createBlock target.adjacent, currentBlockID  # TODO: handle failure (returns false, but then shouldn't consume item)
 
-    game.createBlock target.adjacent, currentBlockID
-    #game.setBlock target.voxel, 0
     # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
 
   debris = plugins.load 'debris', {power: 1.5}
