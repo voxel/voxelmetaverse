@@ -20,6 +20,7 @@
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git",
     "voxel-debris": "git://github.com/deathcap/voxel-debris.git",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git",
+    "voxel-inventory-toolbar": "git://github.com/deathcap/voxel-inventory-toolbar.git",
     "dat-gui": "~0.5.0",
     "toolbar": "git://github.com/deathcap/toolbar.git",
     "itempile": "git://github.com/deathcap/itempile.git",

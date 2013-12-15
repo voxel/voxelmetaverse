@@ -12,6 +12,7 @@ createPluginsUI = require 'voxel-plugins-ui'
 createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-inventory-toolbar'
 require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-player'
@@ -160,11 +161,8 @@ module.exports = () ->
     return false
   
   playerInventory = new Inventory(10)
-  game.playerInventory = playerInventory
-  currentInventorySlot = 0
   toolbar = createToolbar {el: '#tools'}
-  toolbar.on 'select', (slot) =>
-    currentInventorySlot = slot
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
 
   # right-click to place block
   reach.on 'interact', (target) =>
@@ -172,7 +170,7 @@ module.exports = () ->
       console.log 'waving'
       return
 
-    currentItemPile = playerInventory.slot(currentInventorySlot)
+    currentItemPile = playerInventory.slot(inventoryToolbar.currentSlot)
     if not currentItemPile?
       console.log 'nothing in this inventory slot to use'
       return
@@ -201,20 +199,8 @@ module.exports = () ->
     blockName = registry.getBlockName(target.value)
     droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
 
-    excess = playerInventory.give droppedPile
-
-    content = []
-    for slot, i in playerInventory.array
-      if slot?
-        # TODO: configurable item textures (for now only uses block top)
-        blockTextures = registry.getBlockProps(slot.item).texture
-        itemTexture = if typeof blockTextures == 'string' then blockTextures else blockTextures[0]
-
-        content.push {icon: game.materials.texturePath + itemTexture + '.png', label:''+slot.count, id:i}
-      else
-        content.push {id:i}
-
-    toolbar.updateContent content
+    # adds to inventory and refreshes toolbar
+    excess = inventoryToolbar.give droppedPile
 
     if excess > 0
       # if didn't fit in inventory, un-mine the block since they can't carry it
