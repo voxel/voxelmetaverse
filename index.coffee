@@ -135,7 +135,13 @@ module.exports = () ->
   game.interact.on 'attain', () => haveMouseInteract = true
   game.interact.on 'release', () => haveMouseInteract = false
 
-  ever(document.body).on 'keydown', (ev) ->
+  # one of everything, please..
+  creativeInventoryArray = []
+  for props in registry.blockProps
+    creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
+  survivalInventoryArray = []
+
+  ever(document.body).on 'keydown', (ev) =>
     return if !haveMouseInteract    # don't care if typing into a GUI, etc. TODO: use kb-controls here too? (like voxel-engine)
 
     if ev.keyCode == 'R'.charCodeAt(0)
@@ -152,18 +158,16 @@ module.exports = () ->
         game.mode = 'creative'
         game.plugins.enable 'fly'
         mine.instaMine = true
-
-        # set inventory to infinite everything
-        inventoryToolbar.inventory.array = []
-        for props in registry.blockProps
-          inventoryToolbar.inventory.array.push(new ItemPile(props.name, Infinity)) if props.name?
+        survivalInventoryArray = inventoryToolbar.inventory.array
+        inventoryToolbar.inventory.array = creativeInventoryArray
         inventoryToolbar.refresh()
-
         console.log 'creative mode'
       else
         game.mode = 'survival'
         game.plugins.disable 'fly'
         mine.instaMine = false
+        inventoryToolbar.inventory.array = survivalInventoryArray
+        inventoryToolbar.refresh()
         console.log 'survival mode'
 
   # cancel context-menu on right-click
