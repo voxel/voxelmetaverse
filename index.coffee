@@ -127,6 +127,10 @@ module.exports = () ->
 
   game.mode = 'survival'
 
+  playerInventory = new Inventory(10)
+  toolbar = createToolbar {el: '#tools'}
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
+
   haveMouseInteract = false
   game.interact.on 'attain', () => haveMouseInteract = true
   game.interact.on 'release', () => haveMouseInteract = false
@@ -148,6 +152,13 @@ module.exports = () ->
         game.mode = 'creative'
         game.plugins.enable 'fly'
         mine.instaMine = true
+
+        # set inventory to infinite everything
+        inventoryToolbar.inventory.array = []
+        for props in registry.blockProps
+          inventoryToolbar.inventory.array.push(new ItemPile(props.name, Infinity)) if props.name?
+        inventoryToolbar.refresh()
+
         console.log 'creative mode'
       else
         game.mode = 'survival'
@@ -160,10 +171,6 @@ module.exports = () ->
     event.preventDefault()
     return false
   
-  playerInventory = new Inventory(10)
-  toolbar = createToolbar {el: '#tools'}
-  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
-
   # right-click to place block
   reach.on 'interact', (target) =>
     if not target
