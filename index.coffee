@@ -116,12 +116,18 @@ module.exports = () ->
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
   mine = game.plugins.load 'mine', {
     reach: reach
-    heldItem: () => inventoryToolbar.held()
+    timeToMine: (target) =>
+      blockID = game.getBlock(target.voxel)
+      blockName = registry.getBlockName(blockID)
+      hardness = registry.getBlockProps(blockName)?.hardness
+
+      heldItem = inventoryToolbar.held()
+
+      return hardness || 9
+
     instaMine: false
     progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
-    defaultHardness: 9
-    hardness: registry.getBlockPropsAll 'hardness'
   }
 
   # highlight blocks when you look at them
