@@ -60,6 +60,9 @@ module.exports = () ->
   registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
   registry.registerBlock 'glass', {texture: 'glass'}
 
+  registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
+  registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
+
   game.materials.load registry.getBlockPropsAll 'texture'
 
   plugins.load 'land', {
@@ -117,13 +120,20 @@ module.exports = () ->
   mine = game.plugins.load 'mine', {
     reach: reach
     timeToMine: (target) =>
+      # the innate difficulty of mining this block
       blockID = game.getBlock(target.voxel)
       blockName = registry.getBlockName(blockID)
       hardness = registry.getBlockProps(blockName)?.hardness
+      hardness ?= 9
 
+      # effectiveness of currently held tool, shortens mining time
       heldItem = inventoryToolbar.held()
+      speed = 1.0
+      speed = registry.getItemProps(heldItem?.item)?.speed ? 1.0
+      finalTimeToMine = Math.max(hardness / speed, 0)
+      # TODO: more complex mining 'classes', e.g. shovel against dirt, axe against wood
 
-      return hardness || 9
+      return finalTimeToMine
 
     instaMine: false
     progressTexturesPrefix: 'destroy_stage_'
@@ -146,6 +156,7 @@ module.exports = () ->
   creativeInventoryArray = []
   for props in registry.blockProps
     creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
+
   survivalInventoryArray = []
 
   ever(document.body).on 'keydown', (ev) =>
@@ -159,6 +170,15 @@ module.exports = () ->
       game.plugins.toggle 'oculus'
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
+    else if ev.keyCode == 'P'.charCodeAt(0)
+      inventoryToolbar.give(new ItemPile('pickaxeDiamond'))
+      inventoryToolbar.refresh()
+      console.log 'gave diamond pickaxe' # until we have crafting
+    else if ev.keyCode == 'L'.charCodeAt(0)
+      inventoryToolbar.give(new ItemPile('pickaxeWood'))
+      inventoryToolbar.refresh()
+      console.log 'gave wooden pickaxe'
+
     else if ev.keyCode == 'C'.charCodeAt(0)
       # TODO: add gamemode event? for plugins to handle instead of us
       if game.mode == 'survival'
