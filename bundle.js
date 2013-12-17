@@ -101,6 +101,14 @@ module.exports = function() {
   registry.registerBlock('glass', {
     texture: 'glass'
   });
+  registry.registerItem('pickaxeWood', {
+    itemTexture: '../items/wood_pickaxe',
+    speed: 2.0
+  });
+  registry.registerItem('pickaxeDiamond', {
+    itemTexture: '../items/diamond_pickaxe',
+    speed: 10.0
+  });
   game.materials.load(registry.getBlockPropsAll('texture'));
   plugins.load('land', {
     populateTrees: true,
@@ -148,25 +156,6 @@ module.exports = function() {
       return vx > 0.001 || vz > 0.001;
     }
   });
-  REACH_DISTANCE = 8;
-  reach = game.plugins.load('reach', {
-    reachDistance: REACH_DISTANCE
-  });
-  mine = game.plugins.load('mine', {
-    instaMine: false,
-    reach: reach,
-    progressTexturesPrefix: 'destroy_stage_',
-    progressTexturesCount: 9,
-    defaultHardness: 9,
-    hardness: registry.getBlockPropsAll('hardness')
-  });
-  highlight = game.plugins.load('highlight', {
-    color: 0xff0000,
-    distance: REACH_DISTANCE,
-    adjacentActive: function() {
-      return false;
-    }
-  });
   game.mode = 'survival';
   playerInventory = new Inventory(10);
   toolbar = createToolbar({
@@ -176,6 +165,37 @@ module.exports = function() {
     toolbar: toolbar,
     inventory: playerInventory,
     registry: registry
+  });
+  REACH_DISTANCE = 8;
+  reach = game.plugins.load('reach', {
+    reachDistance: REACH_DISTANCE
+  });
+  mine = game.plugins.load('mine', {
+    reach: reach,
+    timeToMine: function(target) {
+      var blockID, blockName, finalTimeToMine, hardness, heldItem, speed, _ref, _ref1, _ref2;
+      blockID = game.getBlock(target.voxel);
+      blockName = registry.getBlockName(blockID);
+      hardness = (_ref = registry.getBlockProps(blockName)) != null ? _ref.hardness : void 0;
+      if (hardness == null) {
+        hardness = 9;
+      }
+      heldItem = inventoryToolbar.held();
+      speed = 1.0;
+      speed = (_ref1 = (_ref2 = registry.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref2.speed : void 0) != null ? _ref1 : 1.0;
+      finalTimeToMine = Math.max(hardness / speed, 0);
+      return finalTimeToMine;
+    },
+    instaMine: false,
+    progressTexturesPrefix: 'destroy_stage_',
+    progressTexturesCount: 9
+  });
+  highlight = game.plugins.load('highlight', {
+    color: 0xff0000,
+    distance: REACH_DISTANCE,
+    adjacentActive: function() {
+      return false;
+    }
   });
   haveMouseInteract = false;
   game.interact.on('attain', function() {
@@ -203,6 +223,18 @@ module.exports = function() {
       return game.plugins.toggle('oculus');
     } else if (ev.keyCode === 'O'.charCodeAt(0)) {
       return home(avatar);
+    } else if (ev.keyCode === 'P'.charCodeAt(0)) {
+      inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {
+        damage: 0
+      }));
+      inventoryToolbar.refresh();
+      return console.log('gave diamond pickaxe');
+    } else if (ev.keyCode === 'L'.charCodeAt(0)) {
+      inventoryToolbar.give(new ItemPile('pickaxeWood', 1, {
+        damage: 0
+      }));
+      inventoryToolbar.refresh();
+      return console.log('gave wooden pickaxe');
     } else if (ev.keyCode === 'C'.charCodeAt(0)) {
       if (game.mode === 'survival') {
         game.mode = 'creative';
@@ -236,7 +268,7 @@ module.exports = function() {
       console.log('blocked');
       return;
     }
-    taken = inventoryToolbar.takeSelected(1);
+    taken = inventoryToolbar.takeHeld(1);
     if (taken == null) {
       console.log('nothing in this inventory slot to use');
       return;
@@ -5160,6 +5192,9 @@ function objEquiv(a, b, opts) {
       if (itemPile.item !== this.item) {
         return false;
       }
+      if (itemPile.count === 0 || this.count === 0) {
+        return true;
+      }
       if (itemPile.hasTags() || this.hasTags()) {
         return false;
       }
@@ -5823,7 +5858,7 @@ for(i = 65; i < 91; ++i) {
 }
 
 // num0-9
-for(i = 96; i < 107; ++i) {
+for(i = 96; i < 106; ++i) {
   output[i] = '<num-'+(i - 96)+'>'
 }
 
@@ -11884,7 +11919,143 @@ module.exports=require(6)
 },{}],51:[function(require,module,exports){
 module.exports=require(7)
 },{}],52:[function(require,module,exports){
-module.exports=require(18)
+var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
+  , isOSX = /OS X/.test(ua)
+  , isOpera = /Opera/.test(ua)
+  , maybeFirefox = !/like Gecko/.test(ua) && !isOpera
+
+var i, output = module.exports = {
+  0:  isOSX ? '<menu>' : '<UNK>'
+, 1:  '<mouse 1>'
+, 2:  '<mouse 2>'
+, 3:  '<break>'
+, 4:  '<mouse 3>'
+, 5:  '<mouse 4>'
+, 6:  '<mouse 5>'
+, 8:  '<backspace>'
+, 9:  '<tab>'
+, 12: '<clear>'
+, 13: '<enter>'
+, 16: '<shift>'
+, 17: '<control>'
+, 18: '<alt>'
+, 19: '<pause>'
+, 20: '<caps-lock>'
+, 21: '<ime-hangul>'
+, 23: '<ime-junja>'
+, 24: '<ime-final>'
+, 25: '<ime-kanji>'
+, 27: '<escape>'
+, 28: '<ime-convert>'
+, 29: '<ime-nonconvert>'
+, 30: '<ime-accept>'
+, 31: '<ime-mode-change>'
+, 27: '<escape>'
+, 32: '<space>'
+, 33: '<page-up>'
+, 34: '<page-down>'
+, 35: '<end>'
+, 36: '<home>'
+, 37: '<left>'
+, 38: '<up>'
+, 39: '<right>'
+, 40: '<down>'
+, 41: '<select>'
+, 42: '<print>'
+, 43: '<execute>'
+, 44: '<snapshot>'
+, 45: '<insert>'
+, 46: '<delete>'
+, 47: '<help>'
+, 91: '<meta>'  // meta-left -- no one handles left and right properly, so we coerce into one.
+, 92: '<meta>'  // meta-right
+, 93: isOSX ? '<meta>' : '<menu>'      // chrome,opera,safari all report this for meta-right (osx mbp).
+, 95: '<sleep>'
+, 106: '<num-*>'
+, 107: '<num-+>'
+, 108: '<num-enter>'
+, 109: '<num-->'
+, 110: '<num-.>'
+, 111: '<num-/>'
+, 144: '<num-lock>'
+, 145: '<scroll-lock>'
+, 160: '<shift-left>'
+, 161: '<shift-right>'
+, 162: '<control-left>'
+, 163: '<control-right>'
+, 164: '<alt-left>'
+, 165: '<alt-right>'
+, 166: '<browser-back>'
+, 167: '<browser-forward>'
+, 168: '<browser-refresh>'
+, 169: '<browser-stop>'
+, 170: '<browser-search>'
+, 171: '<browser-favorites>'
+, 172: '<browser-home>'
+
+  // ff/osx reports '<volume-mute>' for '-'
+, 173: isOSX && maybeFirefox ? '-' : '<volume-mute>'
+, 174: '<volume-down>'
+, 175: '<volume-up>'
+, 176: '<next-track>'
+, 177: '<prev-track>'
+, 178: '<stop>'
+, 179: '<play-pause>'
+, 180: '<launch-mail>'
+, 181: '<launch-media-select>'
+, 182: '<launch-app 1>'
+, 183: '<launch-app 2>'
+, 186: ';'
+, 187: '='
+, 188: ','
+, 189: '-'
+, 190: '.'
+, 191: '/'
+, 192: '`'
+, 219: '['
+, 220: '\\'
+, 221: ']'
+, 222: "'"
+, 223: '<meta>'
+, 224: '<meta>'       // firefox reports meta here.
+, 226: '<alt-gr>'
+, 229: '<ime-process>'
+, 231: isOpera ? '`' : '<unicode>'
+, 246: '<attention>'
+, 247: '<crsel>'
+, 248: '<exsel>'
+, 249: '<erase-eof>'
+, 250: '<play>'
+, 251: '<zoom>'
+, 252: '<no-name>'
+, 253: '<pa-1>'
+, 254: '<clear>'
+}
+
+for(i = 58; i < 65; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// 0-9
+for(i = 48; i < 58; ++i) {
+  output[i] = (i - 48)+''
+}
+
+// A-Z
+for(i = 65; i < 91; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// num0-9
+for(i = 96; i < 107; ++i) {
+  output[i] = '<num-'+(i - 96)+'>'
+}
+
+// F1-F24
+for(i = 112; i < 136; ++i) {
+  output[i] = 'F'+(i-111)
+}
+
 },{}],53:[function(require,module,exports){
 module.exports = pin
 
@@ -52453,6 +52624,7 @@ module.exports=require(17)
 
     InventoryToolbar.prototype.give = function(itemPile) {
       var ret;
+      console.log('inventoryToolbar calling give', itemPile);
       ret = this.inventory.give(itemPile);
       this.refresh();
       return ret;
@@ -52465,7 +52637,7 @@ module.exports=require(17)
       return ret;
     };
 
-    InventoryToolbar.prototype.takeSelected = function(count) {
+    InventoryToolbar.prototype.takeHeld = function(count) {
       var ret;
       if (count == null) {
         count = 1;
@@ -52475,6 +52647,10 @@ module.exports=require(17)
       return ret;
     };
 
+    InventoryToolbar.prototype.held = function() {
+      return this.inventory.slot(this.currentSlot);
+    };
+
     InventoryToolbar.prototype.refresh = function() {
       var content, i, itemTexture, label, slot, _i, _len, _ref;
       content = [];
@@ -52482,9 +52658,11 @@ module.exports=require(17)
       for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
         slot = _ref[i];
         if (slot != null) {
-          itemTexture = this.registry.getBlockProps(slot.item).itemTexture;
+          itemTexture = this.registry.getItemProps(slot.item).itemTexture;
           if (slot.count === Infinity) {
             label = slot.item;
+          } else if (slot.count === 1) {
+            label = '';
           } else {
             label = '' + slot.count;
           }
@@ -53251,14 +53429,14 @@ function boundingChunks (chunks) {
     __extends(Mine, _super);
 
     function Mine(game, opts) {
-      var _this = this;
+      var _ref,
+        _this = this;
       this.game = game;
       opts = opts != null ? opts : {};
-      if (opts.hardness == null) {
-        opts.hardness = [];
-      }
-      if (opts.defaultHardness == null) {
-        opts.defaultHardness = 9;
+      if (opts.timeToMine == null) {
+        opts.timeToMine = function(voxel) {
+          return 9;
+        };
       }
       if (opts.instaMine == null) {
         opts.instaMine = false;
@@ -53280,13 +53458,16 @@ function boundingChunks (chunks) {
           return texture.wrapS = _this.game.THREE.RepeatWrapping;
         };
       }
-      if (opts.reach == null) {
-        throw "voxel-mine requires 'reach' option set to voxel-reach instance";
-      }
+      this.reach = (function() {
+        if ((_ref = opts.reach) != null) {
+          return _ref;
+        } else {
+          throw "voxel-mine requires 'reach' option set to voxel-reach instance";
+        }
+      })();
       this.opts = opts;
       this.instaMine = opts.instaMine;
       this.progress = 0;
-      this.reach = opts.reach;
       this.texturesEnabled = this.opts.progressTexturesPrefix != null;
       this.overlay = null;
       this.setupTextures();
@@ -53306,7 +53487,7 @@ function boundingChunks (chunks) {
         return;
       }
       _this.progress += 1;
-      hardness = _this.getHardness(target);
+      hardness = _this.opts.timeToMine(target);
       if (_this.instaMine || _this.progress > hardness) {
         _this.progress = 0;
         _this.emit('break', target);
@@ -53346,13 +53527,6 @@ function boundingChunks (chunks) {
       _results.push(this.progressTextures.push(this.game.THREE.ImageUtils.loadTexture(path)));
     }
     return _results;
-  };
-
-  Mine.prototype.getHardness = function(target) {
-    var hardness, materialIndex, _ref;
-    materialIndex = this.game.getBlock(target.voxel);
-    hardness = (_ref = this.opts.hardness[materialIndex - 1]) != null ? _ref : this.opts.defaultHardness;
-    return hardness;
   };
 
   Mine.prototype.createOverlay = function(target) {
@@ -54530,12 +54704,14 @@ module.exports = function(game, opts) {
 function Registry(game, opts) {
   this.blockProps = [ {} ];
   this.blockName2ID = { air:0 };
+
+  this.itemProps = {};
 }
 
 Registry.prototype.registerBlock = function(name, props) {
   var nextID = this.blockProps.length;
   if (this.blockName2ID[name])
-    throw "registerBlock: duplicate block name "+name+", existing ID "+this.blockName2ID[name]+" attempted overwrite by "+nextID
+    throw "registerBlock: duplicate block name "+name+", existing ID "+this.blockName2ID[name]+" attempted overwrite by "+nextID;
 
   // default properties
   props.name = props.name || name;
@@ -54570,6 +54746,22 @@ Registry.prototype.getBlockPropsAll = function(prop) {
   }
   return props;
 };
+
+
+Registry.prototype.registerItem = function(name, props) {
+  if (this.itemProps[name])
+    throw "registerItem: duplicate item name "+name+", existing properties: "+this.itemProps[name];
+  if (this.blockName2ID[name])
+    throw "registerItem: item name "+name+" conflicts with existing block name of ID "+this.blockName2ID[name];
+
+  this.itemProps[name] = props;
+};
+
+Registry.prototype.getItemProps = function(name) {
+  return this.itemProps[name] || this.getBlockProps(name); // blocks are implicitly also items
+};
+
+
 
 },{}],101:[function(require,module,exports){
 
