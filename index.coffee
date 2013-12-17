@@ -60,6 +60,9 @@ module.exports = () ->
   registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
   registry.registerBlock 'glass', {texture: 'glass'}
 
+  registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
+  registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
+
   game.materials.load registry.getBlockPropsAll 'texture'
 
   plugins.load 'land', {
@@ -106,16 +109,35 @@ module.exports = () ->
       return vx > 0.001 || vz > 0.001
     }
 
+  game.mode = 'survival'
+
+  playerInventory = new Inventory(10)
+  toolbar = createToolbar {el: '#tools'}
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
+
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
   mine = game.plugins.load 'mine', {
-    instaMine: false
     reach: reach
-    #progressTexturesDir: 'ProgrammerArt/textures/blocks/'
+    timeToMine: (target) =>
+      # the innate difficulty of mining this block
+      blockID = game.getBlock(target.voxel)
+      blockName = registry.getBlockName(blockID)
+      hardness = registry.getBlockProps(blockName)?.hardness
+      hardness ?= 9
+
+      # effectiveness of currently held tool, shortens mining time
+      heldItem = inventoryToolbar.held()
+      speed = 1.0
+      speed = registry.getItemProps(heldItem?.item)?.speed ? 1.0
+      finalTimeToMine = Math.max(hardness / speed, 0)
+      # TODO: more complex mining 'classes', e.g. shovel against dirt, axe against wood
+
+      return finalTimeToMine
+
+    instaMine: false
     progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
-    defaultHardness: 9
-    hardness: registry.getBlockPropsAll 'hardness'
   }
 
   # highlight blocks when you look at them
@@ -125,11 +147,6 @@ module.exports = () ->
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
-  game.mode = 'survival'
-
-  playerInventory = new Inventory(10)
-  toolbar = createToolbar {el: '#tools'}
-  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
 
   haveMouseInteract = false
   game.interact.on 'attain', () => haveMouseInteract = true
@@ -139,6 +156,7 @@ module.exports = () ->
   creativeInventoryArray = []
   for props in registry.blockProps
     creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
+
   survivalInventoryArray = []
 
   ever(document.body).on 'keydown', (ev) =>
@@ -152,6 +170,15 @@ module.exports = () ->
       game.plugins.toggle 'oculus'
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
+    else if ev.keyCode == 'P'.charCodeAt(0)
+      inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
+      inventoryToolbar.refresh()
+      console.log 'gave diamond pickaxe' # until we have crafting
+    else if ev.keyCode == 'L'.charCodeAt(0)
+      inventoryToolbar.give(new ItemPile('pickaxeWood', 1, {damage:0}))
+      inventoryToolbar.refresh()
+      console.log 'gave wooden pickaxe'
+
     else if ev.keyCode == 'C'.charCodeAt(0)
       # TODO: add gamemode event? for plugins to handle instead of us
       if game.mode == 'survival'
@@ -187,7 +214,7 @@ module.exports = () ->
       console.log 'blocked'
       return
 
-    taken = inventoryToolbar.takeSelected(1)
+    taken = inventoryToolbar.takeHeld(1)
     if not taken?
       console.log 'nothing in this inventory slot to use'
       return
