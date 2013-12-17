@@ -171,11 +171,11 @@ module.exports = () ->
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
     else if ev.keyCode == 'P'.charCodeAt(0)
-      inventoryToolbar.give(new ItemPile('pickaxeDiamond'))
+      inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
       inventoryToolbar.refresh()
       console.log 'gave diamond pickaxe' # until we have crafting
     else if ev.keyCode == 'L'.charCodeAt(0)
-      inventoryToolbar.give(new ItemPile('pickaxeWood'))
+      inventoryToolbar.give(new ItemPile('pickaxeWood', 1, {damage:0}))
       inventoryToolbar.refresh()
       console.log 'gave wooden pickaxe'
 
