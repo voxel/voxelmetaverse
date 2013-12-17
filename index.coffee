@@ -106,12 +106,18 @@ module.exports = () ->
       return vx > 0.001 || vz > 0.001
     }
 
+  game.mode = 'survival'
+
+  playerInventory = new Inventory(10)
+  toolbar = createToolbar {el: '#tools'}
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
+
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
   mine = game.plugins.load 'mine', {
-    instaMine: false
     reach: reach
-    #progressTexturesDir: 'ProgrammerArt/textures/blocks/'
+    heldItem: () => inventoryToolbar.held()
+    instaMine: false
     progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
     defaultHardness: 9
@@ -125,11 +131,6 @@ module.exports = () ->
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
-  game.mode = 'survival'
-
-  playerInventory = new Inventory(10)
-  toolbar = createToolbar {el: '#tools'}
-  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
 
   haveMouseInteract = false
   game.interact.on 'attain', () => haveMouseInteract = true
@@ -187,7 +188,7 @@ module.exports = () ->
       console.log 'blocked'
       return
 
-    taken = inventoryToolbar.takeSelected(1)
+    taken = inventoryToolbar.takeHeld(1)
     if not taken?
       console.log 'nothing in this inventory slot to use'
       return
