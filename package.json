@@ -25,6 +25,7 @@
     "toolbar": "git://github.com/deathcap/toolbar.git",
     "itempile": "git://github.com/deathcap/itempile.git",
     "inventory": "git://github.com/deathcap/inventory.git",
+    "inventory-window": "git://github.com/deathcap/inventory-window.git",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git",
     "voxel-land": "git://github.com/deathcap/voxel-land.git"
   },
