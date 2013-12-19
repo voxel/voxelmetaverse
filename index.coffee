@@ -2,8 +2,11 @@
 
 ever = require 'ever'
 datgui = require 'dat-gui'
+
 ItemPile = require 'itempile'
 Inventory = require 'inventory'
+InventoryWindow = require 'inventory-window'
+
 createToolbar = require 'toolbar'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -170,6 +173,31 @@ module.exports = () ->
       game.plugins.toggle 'oculus'
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
+    else if ev.keyCode == 'E'.charCodeAt(0)
+      # inventory window
+
+      # TODO
+      
+      if not window.iw?
+        window.iw = new InventoryWindow {
+          inventory: playerInventory
+          getTexture: (itemPile) -> game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png'
+          }
+        container = iw.createContainer()
+
+        container.style.position = 'absolute'
+        container.style.top = '100px'
+        container.style.left = '100px'
+        container.style.zIndex = 1
+        document.body.appendChild(container)
+      else
+        if window.iw.container.style.visibility == 'hidden'
+          window.iw.refresh()   # TODO: refresh automatically
+          window.iw.container.style.visibility = ''
+        else
+          window.iw.container.style.visibility = 'hidden'
+        
+
     else if ev.keyCode == 'P'.charCodeAt(0)
       inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
       inventoryToolbar.refresh()
