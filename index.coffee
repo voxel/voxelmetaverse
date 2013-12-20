@@ -114,9 +114,9 @@ module.exports = () ->
 
   game.mode = 'survival'
 
-  playerInventory = new Inventory(10)
+  playerInventory = new Inventory(50)
   toolbar = createToolbar {el: '#tools'}
-  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, registry:registry}
+  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
@@ -180,6 +180,7 @@ module.exports = () ->
       
       if not window.iw?
         window.iw = new InventoryWindow {
+          width: 10
           inventory: playerInventory
           getTexture: (itemPile) -> game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png'
           }
