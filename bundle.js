@@ -159,13 +159,14 @@ module.exports = function() {
     }
   });
   game.mode = 'survival';
-  playerInventory = new Inventory(10);
+  playerInventory = new Inventory(50);
   toolbar = createToolbar({
     el: '#tools'
   });
   inventoryToolbar = plugins.load('inventory-toolbar', {
     toolbar: toolbar,
     inventory: playerInventory,
+    inventorySize: 10,
     registry: registry
   });
   REACH_DISTANCE = 8;
@@ -228,6 +229,7 @@ module.exports = function() {
     } else if (ev.keyCode === 'E'.charCodeAt(0)) {
       if (window.iw == null) {
         window.iw = new InventoryWindow({
+          width: 10,
           inventory: playerInventory,
           getTexture: function(itemPile) {
             return game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png';
@@ -4999,16 +5001,24 @@ module.exports={
       this.heldNode = void 0;
       this.heldItemPile = void 0;
       this.container = void 0;
+      this.resolvedImageURLs = {};
+      this.mouseButtonDown = void 0;
       this.enable();
     }
 
     InventoryWindow.prototype.enable = function() {
       var _this = this;
-      return ever(document).on('mousemove', function(ev) {
+      ever(document).on('mousemove', function(ev) {
         if (!_this.heldNode) {
           return;
         }
         return _this.positionAtMouse(_this.heldNode, ev);
+      });
+      ever(document).on('mouseup', function(ev) {
+        return _this.mouseButtonDown = void 0;
+      });
+      return this.inventory.on('changed', function() {
+        return _this.refresh();
       });
     };
 
@@ -5016,7 +5026,7 @@ module.exports={
       var container, i, node, slotItem, widthpx, _i, _ref;
       container = document.createElement('div');
       for (i = _i = 0, _ref = this.inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        slotItem = this.inventory.slot(i);
+        slotItem = this.inventory.get(i);
         node = this.createSlotNode(slotItem);
         this.bindSlotNodeEvent(node, i);
         this.slotNodes.push(node);
@@ -5029,8 +5039,19 @@ module.exports={
 
     InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
       var _this = this;
-      return ever(node).on('mousedown', function(ev) {
+      ever(node).on('mousedown', function(ev) {
         return _this.clickSlot(index, ev);
+      });
+      return ever(node).on('mouseover', function(ev) {
+        if (_this.heldItemPile == null) {
+          return;
+        }
+        if (_this.mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(_this.heldItemPile, ev);
+        return _this.refreshSlotNode(index);
       });
     };
 
@@ -5045,7 +5066,7 @@ module.exports={
     };
 
     InventoryWindow.prototype.populateSlotNode = function(div, itemPile) {
-      var src, text;
+      var newImage, src, text;
       if ((itemPile != null) && itemPile.count > 0) {
         src = this.getTexture(itemPile);
         text = itemPile.count;
@@ -5059,12 +5080,18 @@ module.exports={
         src = void 0;
         text = '';
       }
-      div.style.backgroundImage = src != null ? 'url(' + src + ')' : '';
-      return div.textContent = text;
+      newImage = src != null ? 'url(' + src + ')' : '';
+      if (this.resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        this.resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+      if (div.textContent !== text) {
+        return div.textContent = text;
+      }
     };
 
     InventoryWindow.prototype.refreshSlotNode = function(index) {
-      return this.populateSlotNode(this.slotNodes[index], this.inventory.array[index]);
+      return this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
     };
 
     InventoryWindow.prototype.refresh = function() {
@@ -5097,7 +5124,7 @@ module.exports={
       }
       this.heldItemPile = itemPile;
       this.heldNode = this.createSlotNode(this.heldItemPile);
-      this.heldNode.setAttribute('style', style = this.heldNode.getAttribute('style') + "position: absolute;user-select: none;-moz-user-select: none;-webkit-user-select: none;pointer-events: none;");
+      this.heldNode.setAttribute('style', style = this.heldNode.getAttribute('style') + "position: absolute;user-select: none;-moz-user-select: none;-webkit-user-select: none;pointer-events: none;z-index: 10;");
       this.positionAtMouse(this.heldNode, ev);
       return document.body.appendChild(this.heldNode);
     };
@@ -5108,41 +5135,52 @@ module.exports={
       return this.heldItemPile = void 0;
     };
 
+    InventoryWindow.prototype.dropOneHeld = function(index) {
+      var oneHeld, tmp;
+      if (this.inventory.get(index)) {
+        oneHeld = this.heldItemPile.splitPile(1);
+        if (this.inventory.get(index).mergePile(oneHeld) === false) {
+          this.heldItemPile.increase(1);
+          tmp = this.heldItemPile;
+          this.heldItemPile = this.inventory.get(index);
+          return this.inventory.set(index, tmp);
+        } else {
+          return this.inventory.changed();
+        }
+      } else {
+        return this.inventory.set(index, this.heldItemPile.splitPile(1));
+      }
+    };
+
     InventoryWindow.prototype.clickSlot = function(index, ev) {
-      var itemPile, oneHeld, tmp, _ref;
-      itemPile = this.inventory.slot(index);
+      var itemPile, tmp, _ref;
+      itemPile = this.inventory.get(index);
       console.log('clickSlot', index, itemPile);
+      this.mouseButtonDown = ev.button;
       if (ev.button !== this.secondaryMouseButton) {
         if (!this.heldItemPile) {
-          this.heldItemPile = this.inventory.array[index];
-          this.inventory.array[index] = void 0;
+          this.heldItemPile = this.inventory.get(index);
+          this.inventory.set(index, void 0);
         } else {
-          if (this.inventory.array[index]) {
-            if (this.inventory.array[index].mergePile(this.heldItemPile) === false) {
+          if (this.inventory.get(index)) {
+            if (this.inventory.get(index).mergePile(this.heldItemPile) === false) {
               tmp = this.heldItemPile;
-              this.heldItemPile = this.inventory.array[index];
-              this.inventory.array[index] = tmp;
+              this.heldItemPile = this.inventory.get(index);
+              this.inventory.set(index, tmp);
+            } else {
+              this.inventory.changed();
             }
           } else {
-            this.inventory.array[index] = this.heldItemPile;
+            this.inventory.set(index, this.heldItemPile);
             this.heldItemPile = void 0;
           }
         }
       } else {
         if (!this.heldItemPile) {
-          this.heldItemPile = (_ref = this.inventory.array[index]) != null ? _ref.splitPile(0.5) : void 0;
+          this.heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+          this.inventory.changed();
         } else {
-          if (this.inventory.array[index]) {
-            oneHeld = this.heldItemPile.splitPile(1);
-            if (this.inventory.array[index].mergePile(oneHeld) === false) {
-              this.heldItemPile.increase(1);
-              tmp = this.heldItemPile;
-              this.heldItemPile = this.inventory.array[index];
-              this.inventory.array[index] = tmp;
-            }
-          } else {
-            this.inventory.array[index] = this.heldItemPile.splitPile(1);
-          }
+          this.dropOneHeld(index);
         }
       }
       this.createHeldNode(this.heldItemPile, ev);
@@ -5182,6 +5220,10 @@ module.exports=require(7)
       this.array = new Array(size);
     }
 
+    Inventory.prototype.changed = function() {
+      return this.emit('changed');
+    };
+
     Inventory.prototype.give = function(itemPile) {
       var excess, i, _i, _j, _ref, _ref1;
       excess = itemPile.count;
@@ -5202,15 +5244,8 @@ module.exports=require(7)
           break;
         }
       }
-      this.emit('changed');
+      this.changed();
       return excess;
-    };
-
-    Inventory.prototype.swap = function(a, b) {
-      var tmp;
-      tmp = this.array[a];
-      this.array[a] = this.array[b];
-      return this.array[b] = tmp;
     };
 
     Inventory.prototype.take = function(itemPile) {
@@ -5222,7 +5257,7 @@ module.exports=require(7)
           given = this.takeAt(i, n);
         }
       }
-      return this.emit('changed');
+      return this.changed();
     };
 
     Inventory.prototype.takeAt = function(position, count) {
@@ -5234,7 +5269,7 @@ module.exports=require(7)
       if (this.array[position].count === 0) {
         this.array[position] = void 0;
       }
-      this.emit('changed');
+      this.changed();
       return ret;
     };
 
@@ -5274,8 +5309,13 @@ module.exports=require(7)
       return this.array.length;
     };
 
-    Inventory.prototype.slot = function(i) {
+    Inventory.prototype.get = function(i) {
       return this.array[i];
+    };
+
+    Inventory.prototype.set = function(i, itemPile) {
+      this.array[i] = itemPile;
+      return this.changed();
     };
 
     return Inventory;
@@ -52822,7 +52862,7 @@ module.exports=require(21)
     __extends(InventoryToolbar, _super);
 
     function InventoryToolbar(game, opts) {
-      var _ref, _ref1, _ref2,
+      var _ref, _ref1, _ref2, _ref3,
         _this = this;
       this.game = game;
       if (opts == null) {
@@ -52849,6 +52889,7 @@ module.exports=require(21)
           throw 'voxel-inventory-toolbar requires "registry" option set to voxel-registry instance';
         }
       })();
+      this.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
       this.inventory.on('changed', function() {
         return _this.refresh();
       });
@@ -52886,23 +52927,22 @@ module.exports=require(21)
     };
 
     InventoryToolbar.prototype.held = function() {
-      return this.inventory.slot(this.currentSlot);
+      return this.inventory.get(this.currentSlot);
     };
 
     InventoryToolbar.prototype.refresh = function() {
-      var content, i, itemTexture, label, slot, _i, _len, _ref;
+      var content, i, itemPile, itemTexture, label, _i, _ref;
       content = [];
-      _ref = this.inventory.array;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        slot = _ref[i];
-        if (slot != null) {
-          itemTexture = this.registry.getItemProps(slot.item).itemTexture;
-          if (slot.count === Infinity) {
-            label = slot.item;
-          } else if (slot.count === 1) {
+      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        itemPile = this.inventory.get(i);
+        if (itemPile != null) {
+          itemTexture = this.registry.getItemProps(itemPile.item).itemTexture;
+          if (itemPile.count === Infinity) {
+            label = itemPile.item;
+          } else if (itemPile.count === 1) {
             label = '';
           } else {
-            label = '' + slot.count;
+            label = '' + itemPile.count;
           }
           content.push({
             icon: this.game.materials.texturePath + itemTexture + '.png',
