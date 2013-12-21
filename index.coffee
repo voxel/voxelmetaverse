@@ -7,7 +7,6 @@ ItemPile = require 'itempile'
 Inventory = require 'inventory'
 InventoryWindow = require 'inventory-window'
 
-createToolbar = require 'toolbar'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 createPluginsUI = require 'voxel-plugins-ui'
@@ -15,7 +14,8 @@ createPluginsUI = require 'voxel-plugins-ui'
 createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
-require 'voxel-inventory-toolbar'
+require 'voxel-inventory-hotbar'
+require 'voxel-inventory-dialog'
 require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-player'
@@ -29,6 +29,10 @@ require 'voxel-land'
 
 module.exports = () ->
   console.log 'voxpopuli starting'
+
+  if window.performance && window.performance.timing
+    loadingTime = Date.now() - window.performance.timing.navigationStart
+    console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
   # setup the game 
   console.log 'creating game'
@@ -44,7 +48,7 @@ module.exports = () ->
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
-      jumpSpeed: 0.001
+      jumpTimer: 25
     }
 
 
@@ -115,8 +119,11 @@ module.exports = () ->
   game.mode = 'survival'
 
   playerInventory = new Inventory(50)
-  toolbar = createToolbar {el: '#tools'}
-  inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
+  #toolbar = createToolbar {el: '#tools'}
+  #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
+  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
+
+  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory, registry:registry}
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
@@ -130,7 +137,7 @@ module.exports = () ->
       hardness ?= 9
 
       # effectiveness of currently held tool, shortens mining time
-      heldItem = inventoryToolbar.held()
+      heldItem = inventoryHotbar.held()
       speed = 1.0
       speed = registry.getItemProps(heldItem?.item)?.speed ? 1.0
       finalTimeToMine = Math.max(hardness / speed, 0)
@@ -174,38 +181,12 @@ module.exports = () ->
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
     else if ev.keyCode == 'E'.charCodeAt(0)
-      # inventory window
-
-      # TODO
-      
-      if not window.iw?
-        window.iw = new InventoryWindow {
-          width: 10
-          inventory: playerInventory
-          getTexture: (itemPile) -> game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png'
-          }
-        container = iw.createContainer()
-
-        container.style.position = 'absolute'
-        container.style.top = '100px'
-        container.style.left = '100px'
-        container.style.zIndex = 1
-        document.body.appendChild(container)
-      else
-        if window.iw.container.style.visibility == 'hidden'
-          window.iw.refresh()   # TODO: refresh automatically
-          window.iw.container.style.visibility = ''
-        else
-          window.iw.container.style.visibility = 'hidden'
-        
-
+      inventoryDialog.toggle()
     else if ev.keyCode == 'P'.charCodeAt(0)
-      inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
-      inventoryToolbar.refresh()
+      inventoryHotbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
       console.log 'gave diamond pickaxe' # until we have crafting
     else if ev.keyCode == 'L'.charCodeAt(0)
-      inventoryToolbar.give(new ItemPile('pickaxeWood', 1, {damage:0}))
-      inventoryToolbar.refresh()
+      inventoryHotbar.give(new ItemPile('pickaxeWood', 1, {damage:0}))
       console.log 'gave wooden pickaxe'
 
     else if ev.keyCode == 'C'.charCodeAt(0)
@@ -214,16 +195,16 @@ module.exports = () ->
         game.mode = 'creative'
         game.plugins.enable 'fly'
         mine.instaMine = true
-        survivalInventoryArray = inventoryToolbar.inventory.array
-        inventoryToolbar.inventory.array = creativeInventoryArray
-        inventoryToolbar.refresh()
+        survivalInventoryArray = inventoryHotbar.inventory.array
+        inventoryHotbar.inventory.array = creativeInventoryArray
+        inventoryHotbar.refresh()
         console.log 'creative mode'
       else
         game.mode = 'survival'
         game.plugins.disable 'fly'
         mine.instaMine = false
-        inventoryToolbar.inventory.array = survivalInventoryArray
-        inventoryToolbar.refresh()
+        inventoryHotbar.inventory.array = survivalInventoryArray
+        inventoryHotbar.refresh()
         console.log 'survival mode'
 
   # cancel context-menu on right-click
@@ -243,7 +224,7 @@ module.exports = () ->
       console.log 'blocked'
       return
 
-    taken = inventoryToolbar.takeHeld(1)
+    taken = inventoryHotbar.takeHeld(1)
     if not taken?
       console.log 'nothing in this inventory slot to use'
       return
@@ -271,7 +252,7 @@ module.exports = () ->
     droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
 
     # adds to inventory and refreshes toolbar
-    excess = inventoryToolbar.give droppedPile
+    excess = inventoryHotbar.give droppedPile
 
     if excess > 0
       # if didn't fit in inventory, un-mine the block since they can't carry it
