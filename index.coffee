@@ -29,6 +29,10 @@ require 'voxel-land'
 module.exports = () ->
   console.log 'voxpopuli starting'
 
+  if window.performance && window.performance.timing
+    loadingTime = Date.now() - window.performance.timing.navigationStart
+    console.log "User-perceived page loading time: #{loadingTime / 1000}s"
+
   # setup the game 
   console.log 'creating game'
   game = createGame {
