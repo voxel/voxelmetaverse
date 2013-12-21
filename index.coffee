@@ -187,8 +187,8 @@ module.exports = () ->
         container = iw.createContainer()
 
         container.style.position = 'absolute'
-        container.style.top = '100px'
-        container.style.left = '100px'
+        container.style.top = '20%'
+        container.style.left = '30%'
         container.style.zIndex = 1
         document.body.appendChild(container)
       else
