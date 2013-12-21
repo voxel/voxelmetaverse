@@ -15,6 +15,7 @@ createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-inventory-hotbar'
+require 'voxel-inventory-dialog'
 require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-player'
@@ -122,6 +123,8 @@ module.exports = () ->
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
   inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
 
+  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory, registry:registry}
+
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
   mine = game.plugins.load 'mine', {
@@ -178,31 +181,7 @@ module.exports = () ->
     else if ev.keyCode == 'O'.charCodeAt(0)
       home(avatar)
     else if ev.keyCode == 'E'.charCodeAt(0)
-      # inventory window
-
-      # TODO
-      
-      if not window.iw?
-        window.iw = new InventoryWindow {
-          width: 10
-          inventory: playerInventory
-          getTexture: (itemPile) -> game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png'
-          }
-        container = iw.createContainer()
-
-        container.style.position = 'absolute'
-        container.style.top = '20%'
-        container.style.left = '30%'
-        container.style.zIndex = 1
-        document.body.appendChild(container)
-      else
-        if window.iw.container.style.visibility == 'hidden'
-          window.iw.refresh()   # TODO: refresh automatically
-          window.iw.container.style.visibility = ''
-        else
-          window.iw.container.style.visibility = 'hidden'
-        
-
+      inventoryDialog.toggle()
     else if ev.keyCode == 'P'.charCodeAt(0)
       inventoryHotbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
       console.log 'gave diamond pickaxe' # until we have crafting
