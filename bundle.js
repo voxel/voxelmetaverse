@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var Inventory, InventoryWindow, ItemPile, createGame, createPlugins, createPluginsUI, createRegistry, createToolbar, datgui, ever, home;
+var Inventory, InventoryWindow, ItemPile, createGame, createPlugins, createPluginsUI, createRegistry, datgui, ever, home;
 
 ever = require('ever');
 
@@ -11,8 +11,6 @@ Inventory = require('inventory');
 
 InventoryWindow = require('inventory-window');
 
-createToolbar = require('toolbar');
-
 createGame = require('voxel-engine');
 
 createPlugins = require('voxel-plugins');
@@ -21,7 +19,9 @@ createPluginsUI = require('voxel-plugins-ui');
 
 createRegistry = require('voxel-registry');
 
-require('voxel-inventory-toolbar');
+require('voxel-inventory-hotbar');
+
+require('voxel-inventory-dialog');
 
 require('voxel-oculus');
 
@@ -44,9 +44,13 @@ require('voxel-debug');
 require('voxel-land');
 
 module.exports = function() {
-  var REACH_DISTANCE, avatar, container, controlsTarget, creativeInventoryArray, debris, debug, game, gui, haveMouseInteract, highlight, inventoryToolbar, mine, playerInventory, plugins, pluginsUI, props, reach, registry, survivalInventoryArray, toolbar, _i, _len, _ref,
+  var REACH_DISTANCE, avatar, container, controlsTarget, creativeInventoryArray, debris, debug, game, gui, haveMouseInteract, highlight, inventoryDialog, inventoryHotbar, loadingTime, mine, playerInventory, plugins, pluginsUI, props, reach, registry, survivalInventoryArray, _i, _len, _ref,
     _this = this;
   console.log('voxpopuli starting');
+  if (window.performance && window.performance.timing) {
+    loadingTime = Date.now() - window.performance.timing.navigationStart;
+    console.log("User-perceived page loading time: " + (loadingTime / 1000) + "s");
+  }
   console.log('creating game');
   game = createGame({
     useAtlas: false,
@@ -58,7 +62,7 @@ module.exports = function() {
     controls: {
       discreteFire: false,
       fireRate: 100,
-      jumpSpeed: 0.001
+      jumpTimer: 25
     }
   });
   console.log('initializing plugins');
@@ -160,13 +164,13 @@ module.exports = function() {
   });
   game.mode = 'survival';
   playerInventory = new Inventory(50);
-  toolbar = createToolbar({
-    el: '#tools'
-  });
-  inventoryToolbar = plugins.load('inventory-toolbar', {
-    toolbar: toolbar,
+  inventoryHotbar = plugins.load('inventory-hotbar', {
     inventory: playerInventory,
     inventorySize: 10,
+    registry: registry
+  });
+  inventoryDialog = plugins.load('inventory-dialog', {
+    playerInventory: playerInventory,
     registry: registry
   });
   REACH_DISTANCE = 8;
@@ -183,7 +187,7 @@ module.exports = function() {
       if (hardness == null) {
         hardness = 9;
       }
-      heldItem = inventoryToolbar.held();
+      heldItem = inventoryHotbar.held();
       speed = 1.0;
       speed = (_ref1 = (_ref2 = registry.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref2.speed : void 0) != null ? _ref1 : 1.0;
       finalTimeToMine = Math.max(hardness / speed, 0);
@@ -227,55 +231,32 @@ module.exports = function() {
     } else if (ev.keyCode === 'O'.charCodeAt(0)) {
       return home(avatar);
     } else if (ev.keyCode === 'E'.charCodeAt(0)) {
-      if (window.iw == null) {
-        window.iw = new InventoryWindow({
-          width: 10,
-          inventory: playerInventory,
-          getTexture: function(itemPile) {
-            return game.materials.texturePath + registry.getItemProps(itemPile.item).itemTexture + '.png';
-          }
-        });
-        container = iw.createContainer();
-        container.style.position = 'absolute';
-        container.style.top = '100px';
-        container.style.left = '100px';
-        container.style.zIndex = 1;
-        return document.body.appendChild(container);
-      } else {
-        if (window.iw.container.style.visibility === 'hidden') {
-          window.iw.refresh();
-          return window.iw.container.style.visibility = '';
-        } else {
-          return window.iw.container.style.visibility = 'hidden';
-        }
-      }
+      return inventoryDialog.toggle();
     } else if (ev.keyCode === 'P'.charCodeAt(0)) {
-      inventoryToolbar.give(new ItemPile('pickaxeDiamond', 1, {
+      inventoryHotbar.give(new ItemPile('pickaxeDiamond', 1, {
         damage: 0
       }));
-      inventoryToolbar.refresh();
       return console.log('gave diamond pickaxe');
     } else if (ev.keyCode === 'L'.charCodeAt(0)) {
-      inventoryToolbar.give(new ItemPile('pickaxeWood', 1, {
+      inventoryHotbar.give(new ItemPile('pickaxeWood', 1, {
         damage: 0
       }));
-      inventoryToolbar.refresh();
       return console.log('gave wooden pickaxe');
     } else if (ev.keyCode === 'C'.charCodeAt(0)) {
       if (game.mode === 'survival') {
         game.mode = 'creative';
         game.plugins.enable('fly');
         mine.instaMine = true;
-        survivalInventoryArray = inventoryToolbar.inventory.array;
-        inventoryToolbar.inventory.array = creativeInventoryArray;
-        inventoryToolbar.refresh();
+        survivalInventoryArray = inventoryHotbar.inventory.array;
+        inventoryHotbar.inventory.array = creativeInventoryArray;
+        inventoryHotbar.refresh();
         return console.log('creative mode');
       } else {
         game.mode = 'survival';
         game.plugins.disable('fly');
         mine.instaMine = false;
-        inventoryToolbar.inventory.array = survivalInventoryArray;
-        inventoryToolbar.refresh();
+        inventoryHotbar.inventory.array = survivalInventoryArray;
+        inventoryHotbar.refresh();
         return console.log('survival mode');
       }
     }
@@ -294,7 +275,7 @@ module.exports = function() {
       console.log('blocked');
       return;
     }
-    taken = inventoryToolbar.takeHeld(1);
+    taken = inventoryHotbar.takeHeld(1);
     if (taken == null) {
       console.log('nothing in this inventory slot to use');
       return;
@@ -318,7 +299,7 @@ module.exports = function() {
     }
     blockName = registry.getBlockName(target.value);
     droppedPile = new ItemPile(blockName, 1);
-    excess = inventoryToolbar.give(droppedPile);
+    excess = inventoryHotbar.give(droppedPile);
     if (excess > 0) {
       return game.setBlock(target.voxel, target.value);
     }
@@ -340,7 +321,7 @@ home = function(avatar) {
 };
 
 
-},{"dat-gui":2,"ever":5,"inventory":12,"inventory-window":8,"itempile":16,"toolbar":18,"voxel-debris":23,"voxel-debug":25,"voxel-engine":36,"voxel-fly":80,"voxel-highlight":85,"voxel-inventory-toolbar":88,"voxel-land":89,"voxel-mine":92,"voxel-oculus":93,"voxel-player":94,"voxel-plugins":100,"voxel-plugins-ui":96,"voxel-reach":102,"voxel-registry":104,"voxel-walk":105}],2:[function(require,module,exports){
+},{"dat-gui":2,"ever":5,"inventory":12,"inventory-window":8,"itempile":16,"voxel-debris":18,"voxel-debug":20,"voxel-engine":31,"voxel-fly":75,"voxel-highlight":80,"voxel-inventory-dialog":83,"voxel-inventory-hotbar":92,"voxel-land":100,"voxel-mine":103,"voxel-oculus":104,"voxel-player":105,"voxel-plugins":111,"voxel-plugins-ui":107,"voxel-reach":113,"voxel-registry":115,"voxel-walk":116}],2:[function(require,module,exports){
 module.exports = require('./vendor/dat.gui')
 module.exports.color = require('./vendor/dat.color')
 },{"./vendor/dat.color":3,"./vendor/dat.gui":4}],3:[function(require,module,exports){
@@ -4872,7 +4853,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":6,"./types.json":7,"events":114}],6:[function(require,module,exports){
+},{"./init.json":6,"./types.json":7,"events":125}],6:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -4975,7 +4956,7 @@ module.exports={
     __extends(InventoryWindow, _super);
 
     function InventoryWindow(opts) {
-      var _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      var _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
       if (opts == null) {
         opts = {};
       }
@@ -4993,16 +4974,18 @@ module.exports={
           throw 'inventory-window requires "getTexture" option set to callback';
         }
       })();
-      this.width = (_ref2 = opts.width) != null ? _ref2 : 5;
-      this.textureSize = (_ref3 = opts.textureSize) != null ? _ref3 : 16 * 5;
-      this.borderSize = (_ref4 = opts.borderSize) != null ? _ref4 : 4;
-      this.secondaryMouseButton = (_ref5 = opts.secondaryMouseButton) != null ? _ref5 : 2;
+      this.inventorySize = (_ref2 = opts.inventorySize) != null ? _ref2 : this.inventory.size();
+      this.width = (_ref3 = opts.width) != null ? _ref3 : 5;
+      this.textureSize = (_ref4 = opts.textureSize) != null ? _ref4 : 16 * 5;
+      this.borderSize = (_ref5 = opts.borderSize) != null ? _ref5 : 4;
+      this.secondaryMouseButton = (_ref6 = opts.secondaryMouseButton) != null ? _ref6 : 2;
       this.slotNodes = [];
       this.heldNode = void 0;
       this.heldItemPile = void 0;
       this.container = void 0;
       this.resolvedImageURLs = {};
       this.mouseButtonDown = void 0;
+      this.selectedIndex = void 0;
       this.enable();
     }
 
@@ -5025,9 +5008,10 @@ module.exports={
     InventoryWindow.prototype.createContainer = function() {
       var container, i, node, slotItem, widthpx, _i, _ref;
       container = document.createElement('div');
-      for (i = _i = 0, _ref = this.inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         slotItem = this.inventory.get(i);
         node = this.createSlotNode(slotItem);
+        this.setBorderStyle(node, i);
         this.bindSlotNodeEvent(node, i);
         this.slotNodes.push(node);
         container.appendChild(node);
@@ -5065,7 +5049,7 @@ module.exports={
       return div;
     };
 
-    InventoryWindow.prototype.populateSlotNode = function(div, itemPile) {
+    InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
       var newImage, src, text;
       if ((itemPile != null) && itemPile.count > 0) {
         src = this.getTexture(itemPile);
@@ -5090,14 +5074,32 @@ module.exports={
       }
     };
 
+    InventoryWindow.prototype.setBorderStyle = function(node, index) {
+      if (index === this.selectedIndex) {
+        return node.style.border = "" + this.borderSize + "px dotted black";
+      } else {
+        return node.style.border = "" + this.borderSize + "px solid black";
+      }
+    };
+
+    InventoryWindow.prototype.setSelected = function(index) {
+      this.selectedIndex = index;
+      return this.refresh();
+    };
+
+    InventoryWindow.prototype.getSelected = function(index) {
+      return this.selectedIndex;
+    };
+
     InventoryWindow.prototype.refreshSlotNode = function(index) {
-      return this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+      this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+      return this.setBorderStyle(this.slotNodes[index], index);
     };
 
     InventoryWindow.prototype.refresh = function() {
       var i, _i, _ref, _results;
       _results = [];
-      for (i = _i = 0, _ref = this.inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         _results.push(this.refreshSlotNode(i));
       }
       return _results;
@@ -5193,9 +5195,9 @@ module.exports={
 
 }).call(this);
 
-},{"events":114,"ever":9}],9:[function(require,module,exports){
+},{"events":125,"ever":9}],9:[function(require,module,exports){
 module.exports=require(5)
-},{"./init.json":10,"./types.json":11,"events":114}],10:[function(require,module,exports){
+},{"./init.json":10,"./types.json":11,"events":125}],10:[function(require,module,exports){
 module.exports=require(6)
 },{}],11:[function(require,module,exports){
 module.exports=require(7)
@@ -5324,7 +5326,7 @@ module.exports=require(7)
 
 }).call(this);
 
-},{"deep-equal":13,"events":114,"itempile":14}],13:[function(require,module,exports){
+},{"deep-equal":13,"events":125,"itempile":14}],13:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var Object_keys = typeof Object.keys === 'function'
     ? Object.keys
@@ -5572,586 +5574,6 @@ module.exports=require(14)
 },{"deep-equal":17}],17:[function(require,module,exports){
 module.exports=require(13)
 },{}],18:[function(require,module,exports){
-var keymaster = require('./lib/keymaster.js')
-var inherits = require('inherits')
-var events = require('events')
-var elementClass = require('element-class')
-var vkey = require('vkey')
-
-module.exports = function(opts) {
-  return new HUD(opts)
-}
-
-function HUD(opts) {
-  if (!(this instanceof HUD)) return new HUD(opts)
-  var self = this
-  if (!opts) opts = {}
-  if (opts instanceof HTMLElement) opts = {el: opts}
-  this.opts = opts
-  this.el = opts.el || 'nav'
-  if (typeof this.el !== 'object') this.el = document.querySelector(this.el)
-  // setup toolbar if provided only a container
-  if (this.el.getElementsByClassName('tab-inner').length===0) this.createTabInner()
-  this.toolbarKeys = opts.toolbarKeys || ['1','2','3','4','5','6','7','8','9','0']
-  this.bindEvents()
-}
-
-inherits(HUD, events.EventEmitter)
-
-HUD.prototype.onKeyDown = function() {
-  var self = this
-  keymaster.getPressedKeyCodes().map(function(keyCode) {
-    var pressed = vkey[keyCode]
-    var idx = self.toolbarKeys.indexOf(pressed)
-    if (idx > -1) return self.switchToolbar(idx)
-  })
-}
-
-HUD.prototype.bindEvents = function() {
-  var self = this
-  if (!this.opts.noKeydown) window.addEventListener('keydown', this.onKeyDown.bind(this))
-  var list = this.el.querySelectorAll('li')
-  list = Array.prototype.slice.call(list);
-  list.map(function(li) { 
-    li.addEventListener('click', self.onItemClick.bind(self))
-  })
-}
-
-HUD.prototype.onItemClick = function(ev) {
-  ev.preventDefault()
-  var idx = this.toolbarIndexOf(ev.currentTarget)
-  if (idx > -1) this.switchToolbar(idx)
-}
-
-HUD.prototype.addClass = function(el, className) {
-  if (!el) return
-  return elementClass(el).add(className)
-}
-
-HUD.prototype.removeClass = function(el, className) {
-  if (!el) return
-  return elementClass(el).remove(className)
-}
-
-HUD.prototype.toolbarIndexOf = function(li) {
-  var list = this.el.querySelectorAll('.tab-item') 
-  list = Array.prototype.slice.call(list)
-  var idx = list.indexOf(li)
-  return idx
-}
-
-HUD.prototype.switchToolbar = function(num) {
-  this.removeClass(this.el.querySelector('.active'), 'active')
-  var selected = this.el.querySelectorAll('.tab-item')[num]
-  this.addClass(selected, 'active')
-  var active = this.el.querySelector('.active .tab-label')
-  if (!active) return
-  var dataID = active.getAttribute('data-id')
-  this.emit('select', dataID ? dataID : active.innerText)
-}
-
-HUD.prototype.emptyContent = function() {
-  this.el.removeChild(this.el.getElementsByClassName('tab-inner')[0])
-  this.createTabInner()
-}
-
-HUD.prototype.createTabInner = function() {
-  var tabInner = document.createElement('ul')
-  tabInner.className = 'tab-inner'
-  this.el.appendChild(tabInner)
-}
-
-HUD.prototype.setContent = function(content) {
-  var self = this
-  // remove any previous content
-  this.emptyContent()
-  // add new content
-  return content.map(function(item){
-    return self.addContent(item)
-  }) 
-}
-
-HUD.prototype.updateContent = function(content) {
-  var self = this
-
-  var inner = this.el.getElementsByClassName('tab-inner')[0]
-  var items = inner.children;
-
-  for (var i = 0; i < items.length; ++i) {
-    var item = items[i]
-
-    var img = item.children[0]
-    var label = item.children[1]
-
-    var newIcon = content[i].icon || 'data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA='
-    var newLabel = content[i].label || ''
-    var newId = content[i].id || 0
-
-    if (img.src !== newIcon) img.src = newIcon
-    if (label.textContent !== newLabel) label.textContent = newLabel
-    if (label.attributes["data-id"].value !== newId) label.attributes["data-id"].value = newId
-  }
-}
-
-HUD.prototype.addContent = function(item) {
-  var self = this
-  // create new tab
-  var tabItem = document.createElement('li')
-  tabItem.className = 'tab-item'
-  // create the icon, if provided
-  if (item.icon) {
-    var tabIcon = document.createElement('img')
-    tabIcon.className = 'tab-icon'
-    tabIcon.src = item.icon
-    tabItem.appendChild(tabIcon)
-  }
-  // create the label
-  var tabLabel = document.createElement('div')
-  tabLabel.className = 'tab-label'
-  if (item.label) tabLabel.innerText = item.label
-  if (item.id !== undefined) tabLabel.setAttribute('data-id',item.id)
-  tabItem.appendChild(tabLabel)
-  // add item to toolbar
-  this.el.getElementsByClassName('tab-inner')[0].appendChild(tabItem)
-  // bind click event for new item
-  tabItem.addEventListener('click', self.onItemClick.bind(self))
-  return tabItem
-}
-
-},{"./lib/keymaster.js":19,"element-class":20,"events":114,"inherits":21,"vkey":22}],19:[function(require,module,exports){
-//     keymaster.js
-//     (c) 2011-2012 Thomas Fuchs
-//     keymaster.js may be freely distributed under the MIT license.
-
-;(function(global){
-  var k,
-    _handlers = {},
-    _mods = { 16: false, 18: false, 17: false, 91: false },
-    _scope = 'all',
-    // modifier keys
-    _MODIFIERS = {
-      '⇧': 16, shift: 16,
-      '⌥': 18, alt: 18, option: 18,
-      '⌃': 17, ctrl: 17, control: 17,
-      '⌘': 91, command: 91
-    },
-    // special keys
-    _MAP = {
-      backspace: 8, tab: 9, clear: 12,
-      enter: 13, 'return': 13,
-      esc: 27, escape: 27, space: 32,
-      left: 37, up: 38,
-      right: 39, down: 40,
-      del: 46, 'delete': 46,
-      home: 36, end: 35,
-      pageup: 33, pagedown: 34,
-      ',': 188, '.': 190, '/': 191,
-      '`': 192, '-': 189, '=': 187,
-      ';': 186, '\'': 222,
-      '[': 219, ']': 221, '\\': 220
-    },
-    _downKeys = [];
-
-  for(k=1;k<20;k++) _MODIFIERS['f'+k] = 111+k;
-
-  // IE doesn't support Array#indexOf, so have a simple replacement
-  function index(array, item){
-    var i = array.length;
-    while(i--) if(array[i]===item) return i;
-    return -1;
-  }
-
-  // handle keydown event
-  function dispatch(event, scope){
-    var key, handler, k, i, modifiersMatch;
-    key = event.keyCode;
-
-    if (index(_downKeys, key) == -1) {
-        _downKeys.push(key);
-    }
-
-    // if a modifier key, set the key.<modifierkeyname> property to true and return
-    if(key == 93 || key == 224) key = 91; // right command on webkit, command on Gecko
-    if(key in _mods) {
-      _mods[key] = true;
-      // 'assignKey' from inside this closure is exported to window.key
-      for(k in _MODIFIERS) if(_MODIFIERS[k] == key) assignKey[k] = true;
-      return;
-    }
-
-    // see if we need to ignore the keypress (filter() can can be overridden)
-    // by default ignore key presses if a select, textarea, or input is focused
-    if(!assignKey.filter.call(this, event)) return;
-
-    // abort if no potentially matching shortcuts found
-    if (!(key in _handlers)) return;
-
-    // for each potential shortcut
-    for (i = 0; i < _handlers[key].length; i++) {
-      handler = _handlers[key][i];
-
-      // see if it's in the current scope
-      if(handler.scope == scope || handler.scope == 'all'){
-        // check if modifiers match if any
-        modifiersMatch = handler.mods.length > 0;
-        for(k in _mods)
-          if((!_mods[k] && index(handler.mods, +k) > -1) ||
-            (_mods[k] && index(handler.mods, +k) == -1)) modifiersMatch = false;
-        // call the handler and stop the event if neccessary
-        if((handler.mods.length == 0 && !_mods[16] && !_mods[18] && !_mods[17] && !_mods[91]) || modifiersMatch){
-          if(handler.method(event, handler)===false){
-            if(event.preventDefault) event.preventDefault();
-              else event.returnValue = false;
-            if(event.stopPropagation) event.stopPropagation();
-            if(event.cancelBubble) event.cancelBubble = true;
-          }
-        }
-      }
-    }
-  };
-
-  // unset modifier keys on keyup
-  function clearModifier(event){
-    var key = event.keyCode, k,
-        i = index(_downKeys, key);
-
-    // remove key from _downKeys
-    if (i >= 0) {
-        _downKeys.splice(i, 1);
-    }
-
-    if(key == 93 || key == 224) key = 91;
-    if(key in _mods) {
-      _mods[key] = false;
-      for(k in _MODIFIERS) if(_MODIFIERS[k] == key) assignKey[k] = false;
-    }
-  };
-
-  function resetModifiers() {
-    for(k in _mods) _mods[k] = false;
-    for(k in _MODIFIERS) assignKey[k] = false;
-  }
-
-  // parse and assign shortcut
-  function assignKey(key, scope, method){
-    var keys, mods, i, mi;
-    if (method === undefined) {
-      method = scope;
-      scope = 'all';
-    }
-    key = key.replace(/\s/g,'');
-    keys = key.split(',');
-
-    if((keys[keys.length-1])=='')
-      keys[keys.length-2] += ',';
-    // for each shortcut
-    for (i = 0; i < keys.length; i++) {
-      // set modifier keys if any
-      mods = [];
-      key = keys[i].split('+');
-      if(key.length > 1){
-        mods = key.slice(0,key.length-1);
-        for (mi = 0; mi < mods.length; mi++)
-          mods[mi] = _MODIFIERS[mods[mi]];
-        key = [key[key.length-1]];
-      }
-      // convert to keycode and...
-      key = key[0]
-      key = _MAP[key] || key.toUpperCase().charCodeAt(0);
-      // ...store handler
-      if (!(key in _handlers)) _handlers[key] = [];
-      _handlers[key].push({ shortcut: keys[i], scope: scope, method: method, key: keys[i], mods: mods });
-    }
-  };
-
-  // Returns true if the key with code 'keyCode' is currently down
-  // Converts strings into key codes.
-  function isPressed(keyCode) {
-      if (typeof(keyCode)=='string') {
-          if (keyCode.length == 1) {
-              keyCode = (keyCode.toUpperCase()).charCodeAt(0);
-          } else {
-              return false;
-          }
-      }
-      return index(_downKeys, keyCode) != -1;
-  }
-
-  function getPressedKeyCodes() {
-      return _downKeys.slice(0);
-  }
-
-  function filter(event){
-    var tagName = (event.target || event.srcElement).tagName;
-    // ignore keypressed in any elements that support keyboard data input
-    return !(tagName == 'INPUT' || tagName == 'SELECT' || tagName == 'TEXTAREA');
-  }
-
-  // initialize key.<modifier> to false
-  for(k in _MODIFIERS) assignKey[k] = false;
-
-  // set current scope (default 'all')
-  function setScope(scope){ _scope = scope || 'all' };
-  function getScope(){ return _scope || 'all' };
-
-  // delete all handlers for a given scope
-  function deleteScope(scope){
-    var key, handlers, i;
-
-    for (key in _handlers) {
-      handlers = _handlers[key];
-      for (i = 0; i < handlers.length; ) {
-        if (handlers[i].scope === scope) handlers.splice(i, 1);
-        else i++;
-      }
-    }
-  };
-
-  // cross-browser events
-  function addEvent(object, event, method) {
-    if (object.addEventListener)
-      object.addEventListener(event, method, false);
-    else if(object.attachEvent)
-      object.attachEvent('on'+event, function(){ method(window.event) });
-  };
-
-  // set the handlers globally on document
-  addEvent(document, 'keydown', function(event) { dispatch(event, _scope) }); // Passing _scope to a callback to ensure it remains the same by execution. Fixes #48
-  addEvent(document, 'keyup', clearModifier);
-
-  // reset modifiers to false whenever the window is (re)focused.
-  addEvent(window, 'focus', resetModifiers);
-
-  // store previously defined key
-  var previousKey = global.key;
-
-  // restore previously defined key and return reference to our key object
-  function noConflict() {
-    var k = global.key;
-    global.key = previousKey;
-    return k;
-  }
-
-  // set window.key and window.key.set/get/deleteScope, and the default filter
-  global.key = assignKey;
-  global.key.setScope = setScope;
-  global.key.getScope = getScope;
-  global.key.deleteScope = deleteScope;
-  global.key.filter = filter;
-  global.key.isPressed = isPressed;
-  global.key.getPressedKeyCodes = getPressedKeyCodes;
-  global.key.noConflict = noConflict;
-
-  if(typeof module !== 'undefined') module.exports = global.key;
-
-})(this);
-},{}],20:[function(require,module,exports){
-module.exports = function(opts) {
-  return new ElementClass(opts)
-}
-
-function ElementClass(opts) {
-  if (!(this instanceof ElementClass)) return new ElementClass(opts)
-  var self = this
-  if (!opts) opts = {}
-  if (opts instanceof HTMLElement) opts = {el: opts}
-  this.opts = opts
-  this.el = opts.el || document.body
-  if (typeof this.el !== 'object') this.el = document.querySelector(this.el)
-}
-
-ElementClass.prototype.add = function(className) {
-  var el = this.el
-  if (!el) return
-  if (el.className === "") return el.className = className
-  var classes = el.className.split(' ')
-  if (classes.indexOf(className) > -1) return classes
-  classes.push(className)
-  el.className = classes.join(' ')
-  return classes
-}
-
-ElementClass.prototype.remove = function(className) {
-  var el = this.el
-  if (!el) return
-  if (el.className === "") return
-  var classes = el.className.split(' ')
-  var idx = classes.indexOf(className)
-  if (idx > -1) classes.splice(idx, 1)
-  el.className = classes.join(' ')
-  return classes
-}
-
-},{}],21:[function(require,module,exports){
-module.exports = inherits
-
-function inherits (c, p, proto) {
-  proto = proto || {}
-  var e = {}
-  ;[c.prototype, proto].forEach(function (s) {
-    Object.getOwnPropertyNames(s).forEach(function (k) {
-      e[k] = Object.getOwnPropertyDescriptor(s, k)
-    })
-  })
-  c.prototype = Object.create(p.prototype, e)
-  c.super = p
-}
-
-//function Child () {
-//  Child.super.call(this)
-//  console.error([this
-//                ,this.constructor
-//                ,this.constructor === Child
-//                ,this.constructor.super === Parent
-//                ,Object.getPrototypeOf(this) === Child.prototype
-//                ,Object.getPrototypeOf(Object.getPrototypeOf(this))
-//                 === Parent.prototype
-//                ,this instanceof Child
-//                ,this instanceof Parent])
-//}
-//function Parent () {}
-//inherits(Child, Parent)
-//new Child
-
-},{}],22:[function(require,module,exports){
-var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
-  , isOSX = /OS X/.test(ua)
-  , isOpera = /Opera/.test(ua)
-  , maybeFirefox = !/like Gecko/.test(ua) && !isOpera
-
-var i, output = module.exports = {
-  0:  isOSX ? '<menu>' : '<UNK>'
-, 1:  '<mouse 1>'
-, 2:  '<mouse 2>'
-, 3:  '<break>'
-, 4:  '<mouse 3>'
-, 5:  '<mouse 4>'
-, 6:  '<mouse 5>'
-, 8:  '<backspace>'
-, 9:  '<tab>'
-, 12: '<clear>'
-, 13: '<enter>'
-, 16: '<shift>'
-, 17: '<control>'
-, 18: '<alt>'
-, 19: '<pause>'
-, 20: '<caps-lock>'
-, 21: '<ime-hangul>'
-, 23: '<ime-junja>'
-, 24: '<ime-final>'
-, 25: '<ime-kanji>'
-, 27: '<escape>'
-, 28: '<ime-convert>'
-, 29: '<ime-nonconvert>'
-, 30: '<ime-accept>'
-, 31: '<ime-mode-change>'
-, 27: '<escape>'
-, 32: '<space>'
-, 33: '<page-up>'
-, 34: '<page-down>'
-, 35: '<end>'
-, 36: '<home>'
-, 37: '<left>'
-, 38: '<up>'
-, 39: '<right>'
-, 40: '<down>'
-, 41: '<select>'
-, 42: '<print>'
-, 43: '<execute>'
-, 44: '<snapshot>'
-, 45: '<insert>'
-, 46: '<delete>'
-, 47: '<help>'
-, 91: '<meta>'  // meta-left -- no one handles left and right properly, so we coerce into one.
-, 92: '<meta>'  // meta-right
-, 93: isOSX ? '<meta>' : '<menu>'      // chrome,opera,safari all report this for meta-right (osx mbp).
-, 95: '<sleep>'
-, 106: '<num-*>'
-, 107: '<num-+>'
-, 108: '<num-enter>'
-, 109: '<num-->'
-, 110: '<num-.>'
-, 111: '<num-/>'
-, 144: '<num-lock>'
-, 145: '<scroll-lock>'
-, 160: '<shift-left>'
-, 161: '<shift-right>'
-, 162: '<control-left>'
-, 163: '<control-right>'
-, 164: '<alt-left>'
-, 165: '<alt-right>'
-, 166: '<browser-back>'
-, 167: '<browser-forward>'
-, 168: '<browser-refresh>'
-, 169: '<browser-stop>'
-, 170: '<browser-search>'
-, 171: '<browser-favorites>'
-, 172: '<browser-home>'
-
-  // ff/osx reports '<volume-mute>' for '-'
-, 173: isOSX && maybeFirefox ? '-' : '<volume-mute>'
-, 174: '<volume-down>'
-, 175: '<volume-up>'
-, 176: '<next-track>'
-, 177: '<prev-track>'
-, 178: '<stop>'
-, 179: '<play-pause>'
-, 180: '<launch-mail>'
-, 181: '<launch-media-select>'
-, 182: '<launch-app 1>'
-, 183: '<launch-app 2>'
-, 186: ';'
-, 187: '='
-, 188: ','
-, 189: '-'
-, 190: '.'
-, 191: '/'
-, 192: '`'
-, 219: '['
-, 220: '\\'
-, 221: ']'
-, 222: "'"
-, 223: '<meta>'
-, 224: '<meta>'       // firefox reports meta here.
-, 226: '<alt-gr>'
-, 229: '<ime-process>'
-, 231: isOpera ? '`' : '<unicode>'
-, 246: '<attention>'
-, 247: '<crsel>'
-, 248: '<exsel>'
-, 249: '<erase-eof>'
-, 250: '<play>'
-, 251: '<zoom>'
-, 252: '<no-name>'
-, 253: '<pa-1>'
-, 254: '<clear>'
-}
-
-for(i = 58; i < 65; ++i) {
-  output[i] = String.fromCharCode(i)
-}
-
-// 0-9
-for(i = 48; i < 58; ++i) {
-  output[i] = (i - 48)+''
-}
-
-// A-Z
-for(i = 65; i < 91; ++i) {
-  output[i] = String.fromCharCode(i)
-}
-
-// num0-9
-for(i = 96; i < 106; ++i) {
-  output[i] = '<num-'+(i - 96)+'>'
-}
-
-// F1-F24
-for(i = 112; i < 136; ++i) {
-  output[i] = 'F'+(i-111)
-}
-
-},{}],23:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -6234,7 +5656,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":114,"funstance":24}],24:[function(require,module,exports){
+},{"events":125,"funstance":19}],19:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -6258,7 +5680,7 @@ module.exports = function (obj, fn) {
     return f;
 };
 
-},{}],25:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 function Debug(game, opts) {
   if (opts.THREE) game = opts
   this.game = game
@@ -6430,13 +5852,13 @@ Debug.prototype._render = function() {
   });
 }
 
-},{"dat-gui":26,"voxel":30}],26:[function(require,module,exports){
+},{"dat-gui":21,"voxel":25}],21:[function(require,module,exports){
 module.exports=require(2)
-},{"./vendor/dat.color":27,"./vendor/dat.gui":28}],27:[function(require,module,exports){
+},{"./vendor/dat.color":22,"./vendor/dat.gui":23}],22:[function(require,module,exports){
 module.exports=require(3)
-},{}],28:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports=require(4)
-},{}],29:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -6573,7 +5995,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":114,"inherits":35}],30:[function(require,module,exports){
+},{"events":125,"inherits":30}],25:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -6669,7 +6091,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":29,"./meshers/culled":31,"./meshers/greedy":32,"./meshers/monotone":33,"./meshers/stupid":34}],31:[function(require,module,exports){
+},{"./chunker":24,"./meshers/culled":26,"./meshers/greedy":27,"./meshers/monotone":28,"./meshers/stupid":29}],26:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -6721,7 +6143,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],32:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -6838,7 +6260,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],33:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -7091,7 +6513,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],34:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -7127,9 +6549,38 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],35:[function(require,module,exports){
-module.exports=require(21)
-},{}],36:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
+module.exports = inherits
+
+function inherits (c, p, proto) {
+  proto = proto || {}
+  var e = {}
+  ;[c.prototype, proto].forEach(function (s) {
+    Object.getOwnPropertyNames(s).forEach(function (k) {
+      e[k] = Object.getOwnPropertyDescriptor(s, k)
+    })
+  })
+  c.prototype = Object.create(p.prototype, e)
+  c.super = p
+}
+
+//function Child () {
+//  Child.super.call(this)
+//  console.error([this
+//                ,this.constructor
+//                ,this.constructor === Child
+//                ,this.constructor.super === Parent
+//                ,Object.getPrototypeOf(this) === Child.prototype
+//                ,Object.getPrototypeOf(Object.getPrototypeOf(this))
+//                 === Parent.prototype
+//                ,this instanceof Child
+//                ,this instanceof Parent])
+//}
+//function Parent () {}
+//inherits(Child, Parent)
+//new Child
+
+},{}],31:[function(require,module,exports){
 var process=require("__browserify_process");var voxel = require('voxel')
 var voxelMesh = require('voxel-mesh')
 var ray = require('voxel-raycast')
@@ -7867,7 +7318,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":37,"./lib/stats":38,"__browserify_process":123,"aabb-3d":39,"collide-3d-tilemap":40,"events":114,"gl-matrix":41,"inherits":42,"interact":43,"kb-controls":52,"path":115,"pin-it":57,"raf":58,"spatial-events":59,"three":61,"tic":62,"voxel":75,"voxel-control":63,"voxel-mesh":64,"voxel-physical":65,"voxel-raycast":66,"voxel-region-change":67,"voxel-texture":68,"voxel-view":73}],37:[function(require,module,exports){
+},{"./lib/detector":32,"./lib/stats":33,"__browserify_process":134,"aabb-3d":34,"collide-3d-tilemap":35,"events":125,"gl-matrix":36,"inherits":37,"interact":38,"kb-controls":47,"path":126,"pin-it":52,"raf":53,"spatial-events":54,"three":56,"tic":57,"voxel":70,"voxel-control":58,"voxel-mesh":59,"voxel-physical":60,"voxel-raycast":61,"voxel-region-change":62,"voxel-texture":63,"voxel-view":68}],32:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -7928,7 +7379,7 @@ module.exports = function() {
   };
 }
 
-},{}],38:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -8074,7 +7525,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],39:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -8173,7 +7624,7 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":41}],40:[function(require,module,exports){
+},{"gl-matrix":36}],35:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -8262,7 +7713,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],41:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -11335,9 +10786,9 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],42:[function(require,module,exports){
-module.exports=require(21)
-},{}],43:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
+module.exports=require(30)
+},{}],38:[function(require,module,exports){
 var lock = require('pointer-lock')
   , drag = require('drag-stream')
   , full = require('fullscreen')
@@ -11444,7 +10895,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":44,"events":114,"fullscreen":50,"pointer-lock":51,"stream":116}],44:[function(require,module,exports){
+},{"drag-stream":39,"events":125,"fullscreen":45,"pointer-lock":46,"stream":127}],39:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -11512,10 +10963,10 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":45,"stream":116,"through":49}],45:[function(require,module,exports){
+},{"domnode-dom":40,"stream":127,"through":44}],40:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":46}],46:[function(require,module,exports){
+},{"./lib/index":41}],41:[function(require,module,exports){
 var WriteStream = require('./writable')
   , ReadStream = require('./readable')
   , DOMStream = {}
@@ -11553,7 +11004,7 @@ DOMStream.createEventStream = function(el, type, preventDefault) {
 module.exports = DOMStream
 
 
-},{"./readable":47,"./writable":48}],47:[function(require,module,exports){
+},{"./readable":42,"./writable":43}],42:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11662,7 +11113,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":116}],48:[function(require,module,exports){
+},{"stream":127}],43:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11744,7 +11195,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":116}],49:[function(require,module,exports){
+},{"stream":127}],44:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -11844,7 +11295,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":123,"stream":116}],50:[function(require,module,exports){
+},{"__browserify_process":134,"stream":127}],45:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -11935,7 +11386,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":114}],51:[function(require,module,exports){
+},{"events":125}],46:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -12099,7 +11550,7 @@ function shim(el) {
     null
 }
 
-},{"events":114,"stream":116}],52:[function(require,module,exports){
+},{"events":125,"stream":127}],47:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -12196,13 +11647,13 @@ module.exports = function(el, bindings, state) {
   }
 }
 
-},{"ever":53,"vkey":56}],53:[function(require,module,exports){
+},{"ever":48,"vkey":51}],48:[function(require,module,exports){
 module.exports=require(5)
-},{"./init.json":54,"./types.json":55,"events":114}],54:[function(require,module,exports){
+},{"./init.json":49,"./types.json":50,"events":125}],49:[function(require,module,exports){
 module.exports=require(6)
-},{}],55:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 module.exports=require(7)
-},{}],56:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -12340,7 +11791,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],57:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -12422,7 +11873,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],58:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -12469,7 +11920,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":114}],59:[function(require,module,exports){
+},{"events":125}],54:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -12601,7 +12052,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":60,"aabb-3d":39}],60:[function(require,module,exports){
+},{"./tree":55,"aabb-3d":34}],55:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -12727,7 +12178,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":39}],61:[function(require,module,exports){
+},{"aabb-3d":34}],56:[function(require,module,exports){
 var self = self || {};/**
  * @author mrdoob / http://mrdoob.com/
  * @author Larry Battle / http://bateru.com/news
@@ -49299,7 +48750,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{}],62:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -49346,7 +48797,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],63:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -49368,8 +48819,9 @@ function Control(state, opts) {
   this.speed = opts.speed || 0.0032
   this.walk_max_speed = opts.walkMaxSpeed || 0.0056
   this.run_max_speed = opts.runMaxSpeed || 0.0112
-  this.jump_accel = opts.jumpAccel || 0.000085
+  this.jump_max_speed = opts.jumpMaxSpeed || 0.016
   this.jump_max_timer = opts.jumpTimer || 200
+  this.jump_speed = opts.jumpSpeed || 0.004
   this.jump_speed_move = opts.jumpSpeedMove || 0.1
   this.jump_timer = 0
   this.jumping = false
@@ -49426,6 +48878,7 @@ proto.tick = function(dt) {
   var state = this.state
     , target = this._target
     , speed = this.speed
+    , jump_speed = this.jump_speed
     , jump_speed_move = this.jump_speed_move
     , max_speed = this.state.sprint ? this.run_max_speed : this.walk_max_speed
     , okay_z = abs(target.velocity.z) < max_speed
@@ -49474,11 +48927,7 @@ proto.tick = function(dt) {
     } else {
       this.jumping = true
       if(this.jump_timer > 0) {
-        var old_velocity = target.velocity.y
-
-        target.velocity.y += this.jump_accel * min(dt, this.jump_timer)
-        target.position.y += (old_velocity + target.velocity.y) * 0.5 * min(dt, this.jump_timer)
-        //console.log(target.position.y+"\t"+target.velocity.y)
+        target.velocity.y = min(target.velocity.y + jump_speed * min(dt, this.jump_timer), this.jump_max_speed)
       }
       this.jump_timer = max(this.jump_timer - dt, 0)
     }
@@ -49641,7 +49090,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":116}],64:[function(require,module,exports){
+},{"stream":127}],59:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -49792,7 +49241,7 @@ Mesh.prototype.faceVertexUv = function(i) {
 }
 ;
 
-},{"three":61}],65:[function(require,module,exports){
+},{"three":56}],60:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -50011,7 +49460,7 @@ proto.atRestZ = function() {
   return this.resting.z
 }
 
-},{"aabb-3d":39,"three":61}],66:[function(require,module,exports){
+},{"aabb-3d":34,"three":56}],61:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -50233,7 +49682,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],67:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -50261,7 +49710,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":39,"events":114}],68:[function(require,module,exports){
+},{"aabb-3d":34,"events":125}],63:[function(require,module,exports){
 var tic = require('tic')();
 var createAtlas = require('atlaspack');
 var isTransparent = require('opaque').transparent;
@@ -50888,7 +50337,7 @@ function hasSubArray(ar) {
 }
 
 
-},{"atlaspack":69,"opaque":70,"three":61,"tic":71,"voxel-fakeao":72}],69:[function(require,module,exports){
+},{"atlaspack":64,"opaque":65,"three":56,"tic":66,"voxel-fakeao":67}],64:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -51146,7 +50595,7 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],70:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -51176,9 +50625,9 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],71:[function(require,module,exports){
-module.exports=require(62)
-},{}],72:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
+module.exports=require(57)
+},{}],67:[function(require,module,exports){
 module.exports = function(game) {
   var THREE = game.THREE;
   var colorCache = Object.create(null);
@@ -51237,7 +50686,7 @@ module.exports = function(game) {
   return ao;
 };
 
-},{}],73:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -51326,19 +50775,19 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":123}],74:[function(require,module,exports){
+},{"__browserify_process":134}],69:[function(require,module,exports){
+module.exports=require(24)
+},{"events":125,"inherits":37}],70:[function(require,module,exports){
+arguments[4][25][0].apply(exports,arguments)
+},{"./chunker":69,"./meshers/culled":71,"./meshers/greedy":72,"./meshers/monotone":73,"./meshers/stupid":74}],71:[function(require,module,exports){
+module.exports=require(26)
+},{}],72:[function(require,module,exports){
+module.exports=require(27)
+},{}],73:[function(require,module,exports){
+module.exports=require(28)
+},{}],74:[function(require,module,exports){
 module.exports=require(29)
-},{"events":114,"inherits":42}],75:[function(require,module,exports){
-arguments[4][30][0].apply(exports,arguments)
-},{"./chunker":74,"./meshers/culled":76,"./meshers/greedy":77,"./meshers/monotone":78,"./meshers/stupid":79}],76:[function(require,module,exports){
-module.exports=require(31)
-},{}],77:[function(require,module,exports){
-module.exports=require(32)
-},{}],78:[function(require,module,exports){
-module.exports=require(33)
-},{}],79:[function(require,module,exports){
-module.exports=require(34)
-},{}],80:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
@@ -51440,15 +50889,151 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":114,"ever":81,"vkey":84}],81:[function(require,module,exports){
+},{"events":125,"ever":76,"vkey":79}],76:[function(require,module,exports){
 module.exports=require(5)
-},{"./init.json":82,"./types.json":83,"events":114}],82:[function(require,module,exports){
+},{"./init.json":77,"./types.json":78,"events":125}],77:[function(require,module,exports){
 module.exports=require(6)
-},{}],83:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 module.exports=require(7)
-},{}],84:[function(require,module,exports){
-module.exports=require(22)
-},{}],85:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
+var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
+  , isOSX = /OS X/.test(ua)
+  , isOpera = /Opera/.test(ua)
+  , maybeFirefox = !/like Gecko/.test(ua) && !isOpera
+
+var i, output = module.exports = {
+  0:  isOSX ? '<menu>' : '<UNK>'
+, 1:  '<mouse 1>'
+, 2:  '<mouse 2>'
+, 3:  '<break>'
+, 4:  '<mouse 3>'
+, 5:  '<mouse 4>'
+, 6:  '<mouse 5>'
+, 8:  '<backspace>'
+, 9:  '<tab>'
+, 12: '<clear>'
+, 13: '<enter>'
+, 16: '<shift>'
+, 17: '<control>'
+, 18: '<alt>'
+, 19: '<pause>'
+, 20: '<caps-lock>'
+, 21: '<ime-hangul>'
+, 23: '<ime-junja>'
+, 24: '<ime-final>'
+, 25: '<ime-kanji>'
+, 27: '<escape>'
+, 28: '<ime-convert>'
+, 29: '<ime-nonconvert>'
+, 30: '<ime-accept>'
+, 31: '<ime-mode-change>'
+, 27: '<escape>'
+, 32: '<space>'
+, 33: '<page-up>'
+, 34: '<page-down>'
+, 35: '<end>'
+, 36: '<home>'
+, 37: '<left>'
+, 38: '<up>'
+, 39: '<right>'
+, 40: '<down>'
+, 41: '<select>'
+, 42: '<print>'
+, 43: '<execute>'
+, 44: '<snapshot>'
+, 45: '<insert>'
+, 46: '<delete>'
+, 47: '<help>'
+, 91: '<meta>'  // meta-left -- no one handles left and right properly, so we coerce into one.
+, 92: '<meta>'  // meta-right
+, 93: isOSX ? '<meta>' : '<menu>'      // chrome,opera,safari all report this for meta-right (osx mbp).
+, 95: '<sleep>'
+, 106: '<num-*>'
+, 107: '<num-+>'
+, 108: '<num-enter>'
+, 109: '<num-->'
+, 110: '<num-.>'
+, 111: '<num-/>'
+, 144: '<num-lock>'
+, 145: '<scroll-lock>'
+, 160: '<shift-left>'
+, 161: '<shift-right>'
+, 162: '<control-left>'
+, 163: '<control-right>'
+, 164: '<alt-left>'
+, 165: '<alt-right>'
+, 166: '<browser-back>'
+, 167: '<browser-forward>'
+, 168: '<browser-refresh>'
+, 169: '<browser-stop>'
+, 170: '<browser-search>'
+, 171: '<browser-favorites>'
+, 172: '<browser-home>'
+
+  // ff/osx reports '<volume-mute>' for '-'
+, 173: isOSX && maybeFirefox ? '-' : '<volume-mute>'
+, 174: '<volume-down>'
+, 175: '<volume-up>'
+, 176: '<next-track>'
+, 177: '<prev-track>'
+, 178: '<stop>'
+, 179: '<play-pause>'
+, 180: '<launch-mail>'
+, 181: '<launch-media-select>'
+, 182: '<launch-app 1>'
+, 183: '<launch-app 2>'
+, 186: ';'
+, 187: '='
+, 188: ','
+, 189: '-'
+, 190: '.'
+, 191: '/'
+, 192: '`'
+, 219: '['
+, 220: '\\'
+, 221: ']'
+, 222: "'"
+, 223: '<meta>'
+, 224: '<meta>'       // firefox reports meta here.
+, 226: '<alt-gr>'
+, 229: '<ime-process>'
+, 231: isOpera ? '`' : '<unicode>'
+, 246: '<attention>'
+, 247: '<crsel>'
+, 248: '<exsel>'
+, 249: '<erase-eof>'
+, 250: '<play>'
+, 251: '<zoom>'
+, 252: '<no-name>'
+, 253: '<pa-1>'
+, 254: '<clear>'
+}
+
+for(i = 58; i < 65; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// 0-9
+for(i = 48; i < 58; ++i) {
+  output[i] = (i - 48)+''
+}
+
+// A-Z
+for(i = 65; i < 91; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// num0-9
+for(i = 96; i < 106; ++i) {
+  output[i] = '<num-'+(i - 96)+'>'
+}
+
+// F1-F24
+for(i = 112; i < 136; ++i) {
+  output[i] = 'F'+(i-111)
+}
+
+},{}],80:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -51615,9 +51200,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":114,"inherits":86,"underscore":87}],86:[function(require,module,exports){
-module.exports=require(21)
-},{}],87:[function(require,module,exports){
+},{"events":125,"inherits":81,"underscore":82}],81:[function(require,module,exports){
+module.exports=require(30)
+},{}],82:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -52845,126 +52430,250 @@ module.exports=require(21)
 
 }).call(this);
 
-},{}],88:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var EventEmitter, InventoryToolbar,
+  var Inventory, InventoryDialog, InventoryWindow;
+
+  Inventory = require('inventory');
+
+  InventoryWindow = require('inventory-window');
+
+  module.exports = function(game, opts) {
+    return new InventoryDialog(game, opts);
+  };
+
+  InventoryDialog = (function() {
+    function InventoryDialog(game, opts) {
+      var container, _ref, _ref1, _ref2,
+        _this = this;
+      this.game = game;
+      this.playerInventory = (function() {
+        if ((_ref = opts.playerInventory) != null) {
+          return _ref;
+        } else {
+          throw 'voxel-inventory-dialog requires "playerInventory" set to inventory instance';
+        }
+      })();
+      this.registry = (function() {
+        if ((_ref1 = opts.registry) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-inventory-dialog requires "registry" set to voxel-registry instance';
+        }
+      })();
+      this.getTexture = (_ref2 = opts.getTexture) != null ? _ref2 : function(itemPile) {
+        return _this.game.materials.texturePath + _this.registry.getItemProps(itemPile.item).itemTexture + '.png';
+      };
+      this.playerIW = new InventoryWindow({
+        width: 10,
+        inventory: this.playerInventory,
+        getTexture: this.getTexture
+      });
+      this.craftInventory = new Inventory(4);
+      this.craftIW = new InventoryWindow({
+        width: 2,
+        inventory: this.craftInventory,
+        getTexture: this.getTexture
+      });
+      this.dialog = document.createElement('div');
+      this.dialog.style.border = '6px outset gray';
+      this.dialog.style.visibility = 'hidden';
+      this.dialog.style.position = 'absolute';
+      this.dialog.style.top = '20%';
+      this.dialog.style.left = '30%';
+      this.dialog.style.zIndex = 1;
+      this.dialog.style.backgroundImage = 'linear-gradient(rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 100%)';
+      document.body.appendChild(this.dialog);
+      container = this.craftIW.createContainer();
+      container.style.float = 'right';
+      container.style.marginBottom = '10px';
+      this.dialog.appendChild(container);
+      this.dialog.appendChild(document.createElement('br'));
+      this.dialog.appendChild(this.playerIW.createContainer());
+    }
+
+    InventoryDialog.prototype.enable = function() {};
+
+    InventoryDialog.prototype.disable = function() {};
+
+    InventoryDialog.prototype.show = function() {
+      return this.dialog.style.visibility = '';
+    };
+
+    InventoryDialog.prototype.hide = function() {
+      return this.dialog.style.visibility = 'hidden';
+    };
+
+    InventoryDialog.prototype.isVisible = function() {
+      return this.dialog.style.visibility === '';
+    };
+
+    InventoryDialog.prototype.toggle = function() {
+      if (this.isVisible()) {
+        return this.hide();
+      } else {
+        return this.show();
+      }
+    };
+
+    return InventoryDialog;
+
+  })();
+
+}).call(this);
+
+},{"inventory":88,"inventory-window":84}],84:[function(require,module,exports){
+arguments[4][8][0].apply(exports,arguments)
+},{"events":125,"ever":85}],85:[function(require,module,exports){
+module.exports=require(5)
+},{"./init.json":86,"./types.json":87,"events":125}],86:[function(require,module,exports){
+module.exports=require(6)
+},{}],87:[function(require,module,exports){
+module.exports=require(7)
+},{}],88:[function(require,module,exports){
+arguments[4][12][0].apply(exports,arguments)
+},{"deep-equal":89,"events":125,"itempile":90}],89:[function(require,module,exports){
+module.exports=require(13)
+},{}],90:[function(require,module,exports){
+module.exports=require(14)
+},{"deep-equal":91}],91:[function(require,module,exports){
+module.exports=require(13)
+},{}],92:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, InventoryHotbar, InventoryWindow, ever,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   EventEmitter = (require('events')).EventEmitter;
 
+  InventoryWindow = require('inventory-window');
+
+  ever = require('ever');
+
   module.exports = function(game, opts) {
-    return new InventoryToolbar(game, opts);
+    return new InventoryHotbar(game, opts);
   };
 
-  InventoryToolbar = (function(_super) {
-    __extends(InventoryToolbar, _super);
+  InventoryHotbar = (function(_super) {
+    __extends(InventoryHotbar, _super);
 
-    function InventoryToolbar(game, opts) {
-      var _ref, _ref1, _ref2, _ref3,
+    function InventoryHotbar(game, opts) {
+      var container, windowOpts, _ref, _ref1, _ref2, _ref3, _ref4, _ref5,
         _this = this;
       this.game = game;
       if (opts == null) {
         opts = {};
       }
-      this.toolbar = (function() {
-        if ((_ref = opts.toolbar) != null) {
+      this.inventory = (function() {
+        if ((_ref = opts.inventory) != null) {
           return _ref;
         } else {
-          throw 'voxel-inventory-toolbar requires "toolbar" option set to toolbar instance';
-        }
-      })();
-      this.inventory = (function() {
-        if ((_ref1 = opts.inventory) != null) {
-          return _ref1;
-        } else {
-          throw 'voxel-inventory-toolbar requires "inventory" option set to inventory instance';
+          throw 'voxel-inventory-hotbar requires "inventory" option set to inventory instance';
         }
       })();
       this.registry = (function() {
-        if ((_ref2 = opts.registry) != null) {
-          return _ref2;
+        if ((_ref1 = opts.registry) != null) {
+          return _ref1;
         } else {
-          throw 'voxel-inventory-toolbar requires "registry" option set to voxel-registry instance';
+          throw 'voxel-inventory-hotbar requires "registry" option set to voxel-registry instance';
         }
       })();
-      this.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
-      this.inventory.on('changed', function() {
-        return _this.refresh();
-      });
-      this.currentSlot = 0;
+      windowOpts = (_ref2 = opts.windowOpts) != null ? _ref2 : {};
+      if (windowOpts.inventory == null) {
+        windowOpts.inventory = this.inventory;
+      }
+      if (windowOpts.inventorySize == null) {
+        windowOpts.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
+      }
+      if (windowOpts.width == null) {
+        windowOpts.width = (_ref4 = opts.width) != null ? _ref4 : windowOpts.inventorySize;
+      }
+      if (windowOpts.getTexture == null) {
+        windowOpts.getTexture = (_ref5 = opts.getTexture) != null ? _ref5 : function(itemPile) {
+          return game.materials.texturePath + _this.registry.getItemProps(itemPile.item).itemTexture + '.png';
+        };
+      }
+      this.inventoryWindow = new InventoryWindow(windowOpts);
+      this.inventoryWindow.selectedIndex = 0;
+      container = this.inventoryWindow.createContainer();
+      container.style.position = 'fixed';
+      container.style.bottom = '0px';
+      container.style.zIndex = 5;
+      container.style.right = '33%';
+      container.style.left = '33%';
+      document.body.appendChild(container);
       this.enable();
     }
 
-    InventoryToolbar.prototype.enable = function() {
+    InventoryHotbar.prototype.enable = function() {
       var _this = this;
-      this.toolbar.on('select', this.select = function(slot) {
-        return _this.currentSlot = slot;
-      });
-      this.refresh();
-      return this.toolbar.el.style.visibility = '';
+      this.inventoryWindow.container.style.visibility = '';
+      this.keydown = function(ev) {
+        var slot, _ref;
+        if (('0'.charCodeAt(0) <= (_ref = ev.keyCode) && _ref <= '9'.charCodeAt(0))) {
+          slot = ev.keyCode - '0'.charCodeAt(0);
+          if (slot === 0) {
+            slot = 10;
+          } else {
+            slot -= 1;
+          }
+          return _this.inventoryWindow.setSelected(slot);
+        }
+      };
+      return ever(document.body).on('keydown', this.keydown);
     };
 
-    InventoryToolbar.prototype.disable = function() {
-      this.toolbar.removeListener('select', this.select);
-      return this.toolbar.el.style.visibility = 'hidden';
+    InventoryHotbar.prototype.disable = function() {
+      this.inventoryWindow.container.style.visibility = 'hidden';
+      return ever(document.body).removeListener('keydown', this.keydown);
     };
 
-    InventoryToolbar.prototype.give = function(itemPile) {
+    InventoryHotbar.prototype.give = function(itemPile) {
       return this.inventory.give(itemPile);
     };
 
-    InventoryToolbar.prototype.take = function(itemPile) {
+    InventoryHotbar.prototype.take = function(itemPile) {
       return this.inventory.take(itemPile);
     };
 
-    InventoryToolbar.prototype.takeHeld = function(count) {
+    InventoryHotbar.prototype.takeHeld = function(count) {
       if (count == null) {
         count = 1;
       }
-      return this.inventory.takeAt(this.currentSlot, count);
+      return this.inventory.takeAt(this.inventoryWindow.selectedIndex, count);
     };
 
-    InventoryToolbar.prototype.held = function() {
-      return this.inventory.get(this.currentSlot);
+    InventoryHotbar.prototype.held = function() {
+      return this.inventory.get(this.inventoryWindow.selectedIndex);
     };
 
-    InventoryToolbar.prototype.refresh = function() {
-      var content, i, itemPile, itemTexture, label, _i, _ref;
-      content = [];
-      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        itemPile = this.inventory.get(i);
-        if (itemPile != null) {
-          itemTexture = this.registry.getItemProps(itemPile.item).itemTexture;
-          if (itemPile.count === Infinity) {
-            label = itemPile.item;
-          } else if (itemPile.count === 1) {
-            label = '';
-          } else {
-            label = '' + itemPile.count;
-          }
-          content.push({
-            icon: this.game.materials.texturePath + itemTexture + '.png',
-            label: label,
-            id: i
-          });
-        } else {
-          content.push({
-            id: i
-          });
-        }
-      }
-      return this.toolbar.updateContent(content);
+    InventoryHotbar.prototype.refresh = function() {
+      return this.inventoryWindow.refresh();
     };
 
-    return InventoryToolbar;
+    return InventoryHotbar;
 
   })(EventEmitter);
 
 }).call(this);
 
-},{"events":114}],89:[function(require,module,exports){
+},{"events":125,"ever":93,"inventory-window":96}],93:[function(require,module,exports){
+module.exports=require(5)
+},{"./init.json":94,"./types.json":95,"events":125}],94:[function(require,module,exports){
+module.exports=require(6)
+},{}],95:[function(require,module,exports){
+module.exports=require(7)
+},{}],96:[function(require,module,exports){
+arguments[4][8][0].apply(exports,arguments)
+},{"events":125,"ever":97}],97:[function(require,module,exports){
+module.exports=require(5)
+},{"./init.json":98,"./types.json":99,"events":125}],98:[function(require,module,exports){
+module.exports=require(6)
+},{}],99:[function(require,module,exports){
+module.exports=require(7)
+},{}],100:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var createTree = require('voxel-forest');
@@ -53087,7 +52796,7 @@ Land.prototype.unbindEvents = function() {
   this.game.voxels.removeListener('missingChunk', this.missingChunk);
 };
 
-},{"perlin":90,"voxel-forest":91}],90:[function(require,module,exports){
+},{"perlin":101,"voxel-forest":102}],101:[function(require,module,exports){
 /*
  * A speed-improved perlin and simplex noise algorithms for 2D.
  *
@@ -53398,7 +53107,7 @@ Land.prototype.unbindEvents = function() {
   };
 
 })(typeof module === "undefined" ? this : module.exports);
-},{}],91:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports = function (game, opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -53690,7 +53399,7 @@ function boundingChunks (chunks) {
     });
 }
 
-},{}],92:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine,
@@ -53937,7 +53646,7 @@ function boundingChunks (chunks) {
 
 }).call(this);
 
-},{"events":114}],93:[function(require,module,exports){
+},{"events":125}],104:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -54072,7 +53781,7 @@ function Oculus(game, opts) {
     this.enable();
 };
 
-},{}],94:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -54168,7 +53877,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":95}],95:[function(require,module,exports){
+},{"minecraft-skin":106}],106:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -54540,7 +54249,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],96:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
   
 var datgui = require('dat-gui');
@@ -54602,13 +54311,13 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":97}],97:[function(require,module,exports){
+},{"dat-gui":108}],108:[function(require,module,exports){
 module.exports=require(2)
-},{"./vendor/dat.color":98,"./vendor/dat.gui":99}],98:[function(require,module,exports){
+},{"./vendor/dat.color":109,"./vendor/dat.gui":110}],109:[function(require,module,exports){
 module.exports=require(3)
-},{}],99:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports=require(4)
-},{}],100:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var EventEmitter = require('events').EventEmitter;
@@ -54806,9 +54515,9 @@ Plugins.prototype.unload = function(name) {
 
 inherits(Plugins, EventEmitter);
 
-},{"events":114,"inherits":101}],101:[function(require,module,exports){
-module.exports=require(21)
-},{}],102:[function(require,module,exports){
+},{"events":125,"inherits":112}],112:[function(require,module,exports){
+module.exports=require(30)
+},{}],113:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var ever = require('ever');
@@ -54970,9 +54679,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":114,"ever":5,"inherits":103}],103:[function(require,module,exports){
-module.exports=require(21)
-},{}],104:[function(require,module,exports){
+},{"events":125,"ever":5,"inherits":114}],114:[function(require,module,exports){
+module.exports=require(30)
+},{}],115:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = function(game, opts) {
@@ -55041,7 +54750,7 @@ Registry.prototype.getItemProps = function(name) {
 
 
 
-},{}],105:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 
 module.exports = function(game, opts) {
     return new Walk(game, opts)
@@ -55137,11 +54846,11 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],106:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],107:[function(require,module,exports){
+},{"./index.coffee":1}],118:[function(require,module,exports){
 
 
 //
@@ -55359,7 +55068,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],108:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -55432,7 +55141,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":107,"_stream_readable":110,"_stream_writable":112,"timers":118,"util":119}],109:[function(require,module,exports){
+},{"_shims":118,"_stream_readable":121,"_stream_writable":123,"timers":129,"util":130}],120:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -55475,7 +55184,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":111,"util":119}],110:[function(require,module,exports){
+},{"_stream_transform":122,"util":130}],121:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56396,7 +56105,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":123,"_shims":107,"buffer":121,"events":114,"stream":116,"string_decoder":117,"timers":118,"util":119}],111:[function(require,module,exports){
+},{"__browserify_process":134,"_shims":118,"buffer":132,"events":125,"stream":127,"string_decoder":128,"timers":129,"util":130}],122:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56602,7 +56311,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":108,"util":119}],112:[function(require,module,exports){
+},{"_stream_duplex":119,"util":130}],123:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56972,7 +56681,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":121,"stream":116,"timers":118,"util":119}],113:[function(require,module,exports){
+},{"buffer":132,"stream":127,"timers":129,"util":130}],124:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57289,7 +56998,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":107,"util":119}],114:[function(require,module,exports){
+},{"_shims":118,"util":130}],125:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57570,7 +57279,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":119}],115:[function(require,module,exports){
+},{"util":130}],126:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57781,7 +57490,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":123,"_shims":107,"util":119}],116:[function(require,module,exports){
+},{"__browserify_process":134,"_shims":118,"util":130}],127:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57910,7 +57619,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":108,"_stream_passthrough":109,"_stream_readable":110,"_stream_transform":111,"_stream_writable":112,"events":114,"util":119}],117:[function(require,module,exports){
+},{"_stream_duplex":119,"_stream_passthrough":120,"_stream_readable":121,"_stream_transform":122,"_stream_writable":123,"events":125,"util":130}],128:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58103,7 +57812,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":121}],118:[function(require,module,exports){
+},{"buffer":132}],129:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -58222,7 +57931,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],119:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58767,7 +58476,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":107}],120:[function(require,module,exports){
+},{"_shims":118}],131:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -58853,7 +58562,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],121:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -59979,7 +59688,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":120,"assert":113,"base64-js":122}],122:[function(require,module,exports){
+},{"./buffer_ieee754":131,"assert":124,"base64-js":133}],133:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -60065,7 +59774,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],123:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -60119,5 +59828,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[106])
+},{}]},{},[117])
 ;
