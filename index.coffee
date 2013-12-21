@@ -43,7 +43,7 @@ module.exports = () ->
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
-      jumpSpeed: 0.001
+      jumpTimer: 25
     }
 
 
