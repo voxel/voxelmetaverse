@@ -22,6 +22,7 @@
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git",
     "voxel-inventory-hotbar": "git://github.com/deathcap/voxel-inventory-hotbar.git",
     "voxel-inventory-dialog": "git://github.com/deathcap/voxel-inventory-dialog.git",
+    "craftingrecipes": "git://github.com/deathcap/craftingrecipes.git",
     "dat-gui": "~0.5.0",
     "itempile": "git://github.com/deathcap/itempile.git",
     "inventory": "git://github.com/deathcap/inventory.git",
