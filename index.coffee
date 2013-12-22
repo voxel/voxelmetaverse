@@ -6,6 +6,7 @@ datgui = require 'dat-gui'
 ItemPile = require 'itempile'
 Inventory = require 'inventory'
 InventoryWindow = require 'inventory-window'
+{Recipe, AmorphousRecipe, PositionalRecipe, CraftingThesaurus, RecipeLocator} = require 'craftingrecipes'
 
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
@@ -67,8 +68,15 @@ module.exports = () ->
   registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
   registry.registerBlock 'glass', {texture: 'glass'}
 
+  registry.registerBlock 'plankOak', {texture: 'planks_oak'}
+
   registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
   registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
+  registry.registerItem 'stick', {itemTexture: '../items/stick'}
+
+  # recipes TODO: move to registry?
+  RecipeLocator.register new AmorphousRecipe(['logOak'], new ItemPile('plankOak', 2))
+  RecipeLocator.register new AmorphousRecipe(['plankOak', 'plankOak'], new ItemPile('stick', 4))
 
   game.materials.load registry.getBlockPropsAll 'texture'
 
@@ -119,6 +127,7 @@ module.exports = () ->
   game.mode = 'survival'
 
   playerInventory = new Inventory(50)
+  playerInventory.give new ItemPile('logOak', 10)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
   inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
