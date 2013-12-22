@@ -69,14 +69,18 @@ module.exports = () ->
   registry.registerBlock 'glass', {texture: 'glass'}
 
   registry.registerBlock 'plankOak', {texture: 'planks_oak'}
+  registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
 
   registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
   registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
   registry.registerItem 'stick', {itemTexture: '../items/stick'}
 
   # recipes TODO: move to registry?
-  RecipeLocator.register new AmorphousRecipe(['logOak'], new ItemPile('plankOak', 2))
-  RecipeLocator.register new AmorphousRecipe(['plankOak', 'plankOak'], new ItemPile('stick', 4))
+  CraftingThesaurus.registerName 'log', new ItemPile('logOak')
+  CraftingThesaurus.registerName 'log', new ItemPile('logBirch')
+  CraftingThesaurus.registerName 'plank', new ItemPile('plankOak')
+  RecipeLocator.register new AmorphousRecipe(['log'], new ItemPile('plankOak', 2))
+  RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
 
   game.materials.load registry.getBlockPropsAll 'texture'
 
@@ -127,7 +131,8 @@ module.exports = () ->
   game.mode = 'survival'
 
   playerInventory = new Inventory(50)
-  playerInventory.give new ItemPile('logOak', 10)
+  #playerInventory.give new ItemPile('logOak', 10)
+  #playerInventory.give new ItemPile('logBirch', 5)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
   inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
