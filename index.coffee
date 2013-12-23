@@ -38,6 +38,7 @@ module.exports = () ->
   # setup the game 
   console.log 'creating game'
   game = createGame {
+    lightsDisabled: true
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     useAtlas: false
@@ -51,6 +52,13 @@ module.exports = () ->
       fireRate: 100 # ms between firing
       jumpTimer: 25
     }
+
+  # add lighting - based on voxel-engine addLights()
+  ambientLight = new game.THREE.AmbientLight(0x888888)
+  game.scene.add(ambientLight)
+  directionalLight = new game.THREE.DirectionalLight(0xffffff, 1)
+  directionalLight.position.set(1, 1, 0.5).normalize()
+  game.scene.add(directionalLight)
 
 
   console.log 'initializing plugins'
