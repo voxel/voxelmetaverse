@@ -94,8 +94,18 @@ module.exports = () ->
   RecipeLocator.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
   RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
   RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1))
-  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('pickaxeWood', 1)) # TODO: changed to positional recipe once available
-  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'tree.leaves', 'tree.leaves', 'tree.leaves'], new ItemPile('pickaxeDiamond', 1)) # temporary recipe
+
+  RecipeLocator.register new PositionalRecipe([
+    ['wood.plank', 'wood.plank', 'wood.plank'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeWood', 1))
+
+  # temporary recipe
+  RecipeLocator.register new PositionalRecipe([
+    ['tree.leaves', 'tree.leaves', 'tree.leaves'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
+
 
   game.materials.load registry.getBlockPropsAll 'texture'
 
@@ -146,7 +156,9 @@ module.exports = () ->
   game.mode = 'survival'
 
   playerInventory = new Inventory(10, 5)
+  #playerInventory.give new ItemPile('stick', 32)
   #playerInventory.give new ItemPile('logOak', 10)
+  #playerInventory.give new ItemPile('plankOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
