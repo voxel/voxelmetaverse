@@ -254,26 +254,26 @@ module.exports = () ->
         workbenchDialog.open()
         return
 
+    if registry.isBlock(inventoryHotbar.held()?.item)
+      # 2. place blocks
 
-    # 2. TODO: use items (if !isBlock)
+      # test if can place block here (not blocked by self), before consuming inventory
+      # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
+      if not game.canCreateBlock target.adjacent
+        console.log 'blocked'
+        return
 
-    # 3. place blocks
+      taken = inventoryHotbar.takeHeld(1)
+      if not taken?
+        console.log 'nothing in this inventory slot to use'
+        return
 
-    # test if can place block here (not blocked by self), before consuming inventory
-    # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
-    if not game.canCreateBlock target.adjacent
-      console.log 'blocked'
-      return
-
-    taken = inventoryHotbar.takeHeld(1)
-    if not taken?
-      console.log 'nothing in this inventory slot to use'
-      return
-
-    currentBlockID = registry.getBlockID(taken.item)
-    game.setBlock target.adjacent, currentBlockID
-
-    # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
+      currentBlockID = registry.getBlockID(taken.item)
+      game.setBlock target.adjacent, currentBlockID
+    else
+      # 3. TODO: use items (if !isBlock)
+      # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
+      console.log 'use item',inventoryHotbar.held()
 
   debris = plugins.load 'debris', {power: 1.5}
   plugins.disable 'debris' # lag :(
