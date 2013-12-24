@@ -92,10 +92,10 @@ module.exports = () ->
   CraftingThesaurus.registerName 'plank', new ItemPile('plankOak')
   CraftingThesaurus.registerName 'leaves', new ItemPile('leavesOak')
   RecipeLocator.register new AmorphousRecipe(['log'], new ItemPile('plankOak', 2))
+  RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
+  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1))
   RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'plank', 'plank', 'plank'], new ItemPile('pickaxeWood', 1)) # TODO: changed to positional recipe once available
   RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'leaves', 'leaves', 'leaves'], new ItemPile('pickaxeDiamond', 1)) # temporary recipe
-  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)) # TODO: move to voxel-workbench? also TODO: move down after https://github.com/deathcap/craftingrecipes/issues/1
-  RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
 
   game.materials.load registry.getBlockPropsAll 'texture'
 
