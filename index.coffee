@@ -87,15 +87,25 @@ module.exports = () ->
   registry.registerItem 'stick', {itemTexture: '../items/stick'}
 
   # recipes TODO: move to registry?
-  CraftingThesaurus.registerName 'log', new ItemPile('logOak')
-  CraftingThesaurus.registerName 'log', new ItemPile('logBirch')
-  CraftingThesaurus.registerName 'plank', new ItemPile('plankOak')
-  CraftingThesaurus.registerName 'leaves', new ItemPile('leavesOak')
-  RecipeLocator.register new AmorphousRecipe(['log'], new ItemPile('plankOak', 2))
-  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'plank', 'plank', 'plank'], new ItemPile('pickaxeWood', 1)) # TODO: changed to positional recipe once available
-  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'leaves', 'leaves', 'leaves'], new ItemPile('pickaxeDiamond', 1)) # temporary recipe
-  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)) # TODO: move to voxel-workbench? also TODO: move down after https://github.com/deathcap/craftingrecipes/issues/1
-  RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
+  CraftingThesaurus.registerName 'wood.log', new ItemPile('logOak')
+  CraftingThesaurus.registerName 'wood.log', new ItemPile('logBirch')
+  CraftingThesaurus.registerName 'wood.plank', new ItemPile('plankOak')
+  CraftingThesaurus.registerName 'tree.leaves', new ItemPile('leavesOak')
+  RecipeLocator.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
+  RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
+  RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1))
+
+  RecipeLocator.register new PositionalRecipe([
+    ['wood.plank', 'wood.plank', 'wood.plank'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeWood', 1))
+
+  # temporary recipe
+  RecipeLocator.register new PositionalRecipe([
+    ['tree.leaves', 'tree.leaves', 'tree.leaves'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
+
 
   game.materials.load registry.getBlockPropsAll 'texture'
 
@@ -145,8 +155,10 @@ module.exports = () ->
 
   game.mode = 'survival'
 
-  playerInventory = new Inventory(50)
+  playerInventory = new Inventory(10, 5)
+  #playerInventory.give new ItemPile('stick', 32)
   #playerInventory.give new ItemPile('logOak', 10)
+  #playerInventory.give new ItemPile('plankOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
@@ -246,7 +258,7 @@ module.exports = () ->
     # TODO: major refactor
 
     # 1. block interaction TODO: have blocks handle this
-    if target.voxel?
+    if target.voxel? and !game.buttons.crouch
       clickedBlockID = game.getBlock(target.voxel)
       clickedBlock = registry.getBlockName(clickedBlockID)
       if clickedBlock == 'workbench'
@@ -254,26 +266,26 @@ module.exports = () ->
         workbenchDialog.open()
         return
 
+    if registry.isBlock(inventoryHotbar.held()?.item)
+      # 2. place blocks
 
-    # 2. TODO: use items (if !isBlock)
+      # test if can place block here (not blocked by self), before consuming inventory
+      # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
+      if not game.canCreateBlock target.adjacent
+        console.log 'blocked'
+        return
 
-    # 3. place blocks
+      taken = inventoryHotbar.takeHeld(1)
+      if not taken?
+        console.log 'nothing in this inventory slot to use'
+        return
 
-    # test if can place block here (not blocked by self), before consuming inventory
-    # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
-    if not game.canCreateBlock target.adjacent
-      console.log 'blocked'
-      return
-
-    taken = inventoryHotbar.takeHeld(1)
-    if not taken?
-      console.log 'nothing in this inventory slot to use'
-      return
-
-    currentBlockID = registry.getBlockID(taken.item)
-    game.setBlock target.adjacent, currentBlockID
-
-    # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
+      currentBlockID = registry.getBlockID(taken.item)
+      game.setBlock target.adjacent, currentBlockID
+    else
+      # 3. TODO: use items (if !isBlock)
+      # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
+      console.log 'use item',inventoryHotbar.held()
 
   debris = plugins.load 'debris', {power: 1.5}
   plugins.disable 'debris' # lag :(
