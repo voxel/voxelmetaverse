@@ -246,7 +246,7 @@ module.exports = () ->
     # TODO: major refactor
 
     # 1. block interaction TODO: have blocks handle this
-    if target.voxel?
+    if target.voxel? and !game.buttons.crouch
       clickedBlockID = game.getBlock(target.voxel)
       clickedBlock = registry.getBlockName(clickedBlockID)
       if clickedBlock == 'workbench'
