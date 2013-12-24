@@ -90,8 +90,11 @@ module.exports = () ->
   CraftingThesaurus.registerName 'log', new ItemPile('logOak')
   CraftingThesaurus.registerName 'log', new ItemPile('logBirch')
   CraftingThesaurus.registerName 'plank', new ItemPile('plankOak')
+  CraftingThesaurus.registerName 'leaves', new ItemPile('leavesOak')
   RecipeLocator.register new AmorphousRecipe(['log'], new ItemPile('plankOak', 2))
-  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)) # TODO: move to voxel-workbench?
+  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'plank', 'plank', 'plank'], new ItemPile('pickaxeWood', 1)) # TODO: changed to positional recipe once available
+  RecipeLocator.register new AmorphousRecipe(['stick', 'stick', 'leaves', 'leaves', 'leaves'], new ItemPile('pickaxeDiamond', 1)) # temporary recipe
+  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)) # TODO: move to voxel-workbench? also TODO: move down after https://github.com/deathcap/craftingrecipes/issues/1
   RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
 
   game.materials.load registry.getBlockPropsAll 'texture'
@@ -211,15 +214,6 @@ module.exports = () ->
       home(avatar)
     else if ev.keyCode == 'E'.charCodeAt(0)
       inventoryDialog.toggle()
-    else if ev.keyCode == 'U'.charCodeAt(0)
-      workbenchDialog.toggle() # TODO: open on 'interact' workbench block
-    else if ev.keyCode == 'P'.charCodeAt(0)
-      inventoryHotbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
-      console.log 'gave diamond pickaxe' # until we have crafting
-    else if ev.keyCode == 'L'.charCodeAt(0)
-      inventoryHotbar.give(new ItemPile('pickaxeWood', 1, {damage:0}))
-      console.log 'gave wooden pickaxe'
-
     else if ev.keyCode == 'C'.charCodeAt(0)
       # TODO: add gamemode event? for plugins to handle instead of us
       if game.mode == 'survival'
