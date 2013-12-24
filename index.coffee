@@ -15,6 +15,7 @@ createPluginsUI = require 'voxel-plugins-ui'
 createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-workbench'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-dialog'
 require 'voxel-oculus'
@@ -79,6 +80,8 @@ module.exports = () ->
   registry.registerBlock 'plankOak', {texture: 'planks_oak'}
   registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
 
+  registry.registerBlock 'workbench', {texture: ['crafting_table_top', 'planks_oak', 'crafting_table_side']}
+
   registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
   registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
   registry.registerItem 'stick', {itemTexture: '../items/stick'}
@@ -88,6 +91,7 @@ module.exports = () ->
   CraftingThesaurus.registerName 'log', new ItemPile('logBirch')
   CraftingThesaurus.registerName 'plank', new ItemPile('plankOak')
   RecipeLocator.register new AmorphousRecipe(['log'], new ItemPile('plankOak', 2))
+  RecipeLocator.register new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)) # TODO: move to voxel-workbench?
   RecipeLocator.register new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4))
 
   game.materials.load registry.getBlockPropsAll 'texture'
@@ -141,11 +145,14 @@ module.exports = () ->
   playerInventory = new Inventory(50)
   #playerInventory.give new ItemPile('logOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
+  #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
   inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
 
   inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory, registry:registry}
+
+  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory, registry:registry}
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
@@ -204,6 +211,8 @@ module.exports = () ->
       home(avatar)
     else if ev.keyCode == 'E'.charCodeAt(0)
       inventoryDialog.toggle()
+    else if ev.keyCode == 'U'.charCodeAt(0)
+      workbenchDialog.toggle() # TODO: open on 'interact' workbench block
     else if ev.keyCode == 'P'.charCodeAt(0)
       inventoryHotbar.give(new ItemPile('pickaxeDiamond', 1, {damage:0}))
       console.log 'gave diamond pickaxe' # until we have crafting
@@ -239,6 +248,22 @@ module.exports = () ->
     if not target
       console.log 'waving'
       return
+
+    # TODO: major refactor
+
+    # 1. block interaction TODO: have blocks handle this
+    if target.voxel?
+      clickedBlockID = game.getBlock(target.voxel)
+      clickedBlock = registry.getBlockName(clickedBlockID)
+      if clickedBlock == 'workbench'
+        # open workbench
+        workbenchDialog.open()
+        return
+
+
+    # 2. TODO: use items (if !isBlock)
+
+    # 3. place blocks
 
     # test if can place block here (not blocked by self), before consuming inventory
     # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
