@@ -138,15 +138,15 @@ module.exports = function() {
   registry.registerItem('stick', {
     itemTexture: '../items/stick'
   });
-  CraftingThesaurus.registerName('log', new ItemPile('logOak'));
-  CraftingThesaurus.registerName('log', new ItemPile('logBirch'));
-  CraftingThesaurus.registerName('plank', new ItemPile('plankOak'));
-  CraftingThesaurus.registerName('leaves', new ItemPile('leavesOak'));
-  RecipeLocator.register(new AmorphousRecipe(['log'], new ItemPile('plankOak', 2)));
-  RecipeLocator.register(new AmorphousRecipe(['stick', 'stick', 'plank', 'plank', 'plank'], new ItemPile('pickaxeWood', 1)));
-  RecipeLocator.register(new AmorphousRecipe(['stick', 'stick', 'leaves', 'leaves', 'leaves'], new ItemPile('pickaxeDiamond', 1)));
-  RecipeLocator.register(new AmorphousRecipe(['plank', 'plank', 'plank', 'plank'], new ItemPile('workbench', 1)));
-  RecipeLocator.register(new AmorphousRecipe(['plank', 'plank'], new ItemPile('stick', 4)));
+  CraftingThesaurus.registerName('wood.log', new ItemPile('logOak'));
+  CraftingThesaurus.registerName('wood.log', new ItemPile('logBirch'));
+  CraftingThesaurus.registerName('wood.plank', new ItemPile('plankOak'));
+  CraftingThesaurus.registerName('tree.leaves', new ItemPile('leavesOak'));
+  RecipeLocator.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
+  RecipeLocator.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
+  RecipeLocator.register(new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1)));
+  RecipeLocator.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
+  RecipeLocator.register(new PositionalRecipe([['tree.leaves', 'tree.leaves', 'tree.leaves'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeDiamond', 1)));
   game.materials.load(registry.getBlockPropsAll('texture'));
   plugins.load('land', {
     populateTrees: true,
@@ -195,7 +195,7 @@ module.exports = function() {
     }
   });
   game.mode = 'survival';
-  playerInventory = new Inventory(50);
+  playerInventory = new Inventory(10, 5);
   inventoryHotbar = plugins.load('inventory-hotbar', {
     inventory: playerInventory,
     inventorySize: 10,
@@ -292,12 +292,12 @@ module.exports = function() {
     return false;
   });
   reach.on('interact', function(target) {
-    var clickedBlock, clickedBlockID, currentBlockID, taken;
+    var clickedBlock, clickedBlockID, currentBlockID, taken, _ref2;
     if (!target) {
       console.log('waving');
       return;
     }
-    if (target.voxel != null) {
+    if ((target.voxel != null) && !game.buttons.crouch) {
       clickedBlockID = game.getBlock(target.voxel);
       clickedBlock = registry.getBlockName(clickedBlockID);
       if (clickedBlock === 'workbench') {
@@ -305,17 +305,21 @@ module.exports = function() {
         return;
       }
     }
-    if (!game.canCreateBlock(target.adjacent)) {
-      console.log('blocked');
-      return;
+    if (registry.isBlock((_ref2 = inventoryHotbar.held()) != null ? _ref2.item : void 0)) {
+      if (!game.canCreateBlock(target.adjacent)) {
+        console.log('blocked');
+        return;
+      }
+      taken = inventoryHotbar.takeHeld(1);
+      if (taken == null) {
+        console.log('nothing in this inventory slot to use');
+        return;
+      }
+      currentBlockID = registry.getBlockID(taken.item);
+      return game.setBlock(target.adjacent, currentBlockID);
+    } else {
+      return console.log('use item', inventoryHotbar.held());
     }
-    taken = inventoryHotbar.takeHeld(1);
-    if (taken == null) {
-      console.log('nothing in this inventory slot to use');
-      return;
-    }
-    currentBlockID = registry.getBlockID(taken.item);
-    return game.setBlock(target.adjacent, currentBlockID);
   });
   debris = plugins.load('debris', {
     power: 1.5
@@ -376,6 +380,9 @@ home = function(avatar) {
 
     CraftingThesaurus.matchesName = function(lookupName, itemPile) {
       var a;
+      if (lookupName === void 0 && itemPile === void 0) {
+        return true;
+      }
       if (itemPile == null) {
         return false;
       }
@@ -408,24 +415,6 @@ home = function(avatar) {
       return void 0;
     };
 
-    Recipe.prototype.findIngredient = function(inventory, ingredient, excludedSlots) {
-      var i, itemPile, _i, _ref;
-      for (i = _i = 0, _ref = inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        if (excludedSlots.indexOf(i) !== -1) {
-          continue;
-        }
-        itemPile = inventory.get(i);
-        if (itemPile == null) {
-          continue;
-        }
-        if (CraftingThesaurus.matchesName(ingredient, itemPile)) {
-          console.log('findIngredient match:', ingredient, itemPile + '');
-          return i;
-        }
-      }
-      return void 0;
-    };
-
     return Recipe;
 
   })();
@@ -438,25 +427,40 @@ home = function(avatar) {
       this.output = output;
     }
 
-    AmorphousRecipe.prototype.findMatchingSlots = function(inventory) {
-      var foundIndex, foundIndices, ingredient, _i, _len, _ref;
-      foundIndices = [];
-      _ref = this.ingredients;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        ingredient = _ref[_i];
-        foundIndex = this.findIngredient(inventory, ingredient, foundIndices);
-        console.log('check ingredient=', ingredient, 'foundIndex=', foundIndex);
-        if (foundIndex == null) {
-          return false;
+    AmorphousRecipe.prototype.removeIngredient = function(itemPile, pendingIngredients) {
+      var i, testIngredient, _i, _len;
+      for (i = _i = 0, _len = pendingIngredients.length; _i < _len; i = ++_i) {
+        testIngredient = pendingIngredients[i];
+        if (CraftingThesaurus.matchesName(testIngredient, itemPile)) {
+          pendingIngredients.splice(i, 1);
+          return true;
         }
-        foundIndices.push(foundIndex);
       }
-      console.log('foundIndices', foundIndices);
+      return false;
+    };
+
+    AmorphousRecipe.prototype.findMatchingSlots = function(inventory) {
+      var foundIndices, i, itemPile, pendingIngredients, _i, _ref;
+      pendingIngredients = this.ingredients.slice(0);
+      foundIndices = [];
+      for (i = _i = 0, _ref = inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        itemPile = inventory.get(i);
+        if (itemPile == null) {
+          continue;
+        }
+        if (!this.removeIngredient(itemPile, pendingIngredients)) {
+          return void 0;
+        }
+        foundIndices.push(i);
+      }
+      if (pendingIngredients.length !== 0) {
+        return void 0;
+      }
       return foundIndices;
     };
 
     AmorphousRecipe.prototype.computeOutput = function(inventory) {
-      if (this.findMatchingSlots(inventory) !== false) {
+      if (this.findMatchingSlots(inventory) !== void 0) {
         return this.output.clone();
       }
       return void 0;
@@ -482,25 +486,51 @@ home = function(avatar) {
   PositionalRecipe = (function(_super) {
     __extends(PositionalRecipe, _super);
 
-    function PositionalRecipe(pattern, ingredients, output) {
-      this.pattern = pattern;
-      this.ingredients = ingredients;
+    function PositionalRecipe(ingredientMatrix, output) {
+      this.ingredientMatrix = ingredientMatrix;
       this.output = output;
-      this.recipeWidth = this.computeWidth();
     }
 
-    PositionalRecipe.prototype.computeWidth = function() {
-      var line, maxWidth, _i, _len, _ref;
-      maxWidth = 0;
-      _ref = this.pattern;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        line = _ref[_i];
-        maxWidth = Math.max(maxWidth, line.length);
+    PositionalRecipe.prototype.findMatchingSlots = function(inventory) {
+      var actualPile, expectedName, foundIndices, i, index, j, row, _i, _j, _len, _len1, _ref;
+      foundIndices = [];
+      _ref = this.ingredientMatrix;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        row = _ref[i];
+        for (j = _j = 0, _len1 = row.length; _j < _len1; j = ++_j) {
+          expectedName = row[j];
+          index = j + i * inventory.width;
+          actualPile = inventory.get(index);
+          if (!CraftingThesaurus.matchesName(expectedName, actualPile)) {
+            console.log('fail match', expectedName, actualPile);
+            return void 0;
+          }
+          foundIndices.push(index);
+        }
       }
-      return maxWidth;
+      console.log('foundIndices=', foundIndices);
+      return foundIndices;
     };
 
-    PositionalRecipe.prototype.findMatchingSlots = function(inventory, inventoryWidth) {};
+    PositionalRecipe.prototype.computeOutput = function(inventory) {
+      if (this.findMatchingSlots(inventory) !== void 0) {
+        return this.output.clone();
+      }
+      return void 0;
+    };
+
+    PositionalRecipe.prototype.craft = function(inventory) {
+      var slot, slots, _i, _len;
+      slots = this.findMatchingSlots(inventory);
+      if (!slots) {
+        return void 0;
+      }
+      for (_i = 0, _len = slots.length; _i < _len; _i++) {
+        slot = slots[_i];
+        inventory.takeAt(slot, 1);
+      }
+      return this.output.clone();
+    };
 
     return PositionalRecipe;
 
@@ -5216,7 +5246,7 @@ module.exports={
         }
       })();
       this.inventorySize = (_ref2 = opts.inventorySize) != null ? _ref2 : this.inventory.size();
-      this.width = (_ref3 = opts.width) != null ? _ref3 : Math.min(5, this.inventorySize);
+      this.width = (_ref3 = opts.width) != null ? _ref3 : this.inventory.width;
       this.textureSize = (_ref4 = opts.textureSize) != null ? _ref4 : 16 * 5;
       this.borderSize = (_ref5 = opts.borderSize) != null ? _ref5 : 4;
       this.secondaryMouseButton = (_ref6 = opts.secondaryMouseButton) != null ? _ref6 : 2;
@@ -5288,7 +5318,7 @@ module.exports={
     InventoryWindow.prototype.createSlotNode = function(itemPile) {
       var div, textNode;
       div = document.createElement('div');
-      div.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
+      div.setAttribute('style', "display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
       textNode = document.createTextNode('');
       div.appendChild(textNode);
       this.populateSlotNode(div, itemPile);
@@ -5412,6 +5442,9 @@ module.exports={
           }
           if (InventoryWindow.heldItemPile != null) {
             if (this.inventory.get(index) != null) {
+              if (!InventoryWindow.heldItemPile.canPileWith(this.inventory.get(index))) {
+                return;
+              }
               InventoryWindow.heldItemPile.mergePile(this.inventory.get(index));
             }
           } else {
@@ -5480,9 +5513,18 @@ module.exports=require(8)
   module.exports = Inventory = (function(_super) {
     __extends(Inventory, _super);
 
-    function Inventory(size, opts) {
-      size = size != null ? size : 10;
+    function Inventory(xSize, ySize, opts) {
+      var size;
+      if (xSize == null) {
+        xSize = 10;
+      }
+      if (ySize == null) {
+        ySize = 1;
+      }
+      size = xSize * ySize;
       this.array = new Array(size);
+      this.width = xSize;
+      this.height = ySize;
     }
 
     Inventory.prototype.changed = function() {
@@ -52743,16 +52785,14 @@ module.exports=require(31)
         return _this.game.materials.texturePath + _this.registry.getItemProps(itemPile.item).itemTexture + '.png';
       };
       this.playerIW = new InventoryWindow({
-        width: 10,
         inventory: this.playerInventory,
         getTexture: this.getTexture
       });
-      this.craftInventory = new Inventory(4);
+      this.craftInventory = new Inventory(2, 2);
       this.craftInventory.on('changed', function() {
         return _this.updateCraftingRecipe();
       });
       this.craftIW = new InventoryWindow({
-        width: 2,
         inventory: this.craftInventory,
         getTexture: this.getTexture
       });
@@ -52984,9 +53024,8 @@ Modal.prototype.toggle = function() {
           slot = ev.keyCode - '0'.charCodeAt(0);
           if (slot === 0) {
             slot = 10;
-          } else {
-            slot -= 1;
           }
+          slot -= 1;
           return _this.inventoryWindow.setSelected(slot);
         }
       };
@@ -55128,7 +55167,10 @@ Registry.prototype.getItemProps = function(name) {
   return this.itemProps[name] || this.getBlockProps(name); // blocks are implicitly also items
 };
 
-
+// return true if this name is a block, false otherwise (may be an item)
+Registry.prototype.isBlock = function(name) {
+  return this.blockName2ID[name] !== undefined;
+};
 
 },{}],124:[function(require,module,exports){
 
@@ -55275,7 +55317,7 @@ Walk.prototype.setAcceleration = function(newA) {
         inventory: this.playerInventory,
         getTexture: this.getTexture
       });
-      this.craftInventory = new Inventory(9);
+      this.craftInventory = new Inventory(3, 3);
       this.craftInventory.on('changed', function() {
         return _this.updateCraftingRecipe();
       });
