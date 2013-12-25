@@ -108,6 +108,7 @@ module.exports = () ->
 
 
   game.materials.load registry.getBlockPropsAll 'texture'
+  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
 
   plugins.load 'land', {
     populateTrees: true
@@ -163,11 +164,11 @@ module.exports = () ->
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
-  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
+  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
-  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory, registry:registry}
+  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory}
 
-  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory, registry:registry}
+  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
