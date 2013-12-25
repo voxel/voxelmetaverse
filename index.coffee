@@ -259,14 +259,17 @@ module.exports = () ->
 
     # TODO: major refactor
 
-    # 1. block interaction TODO: have blocks handle this
+    # 1. block interaction
     if target.voxel? and !game.buttons.crouch
       clickedBlockID = game.getBlock(target.voxel)
       clickedBlock = registry.getBlockName(clickedBlockID)
-      if clickedBlock == 'workbench'
-        # open workbench
-        workbenchDialog.open()
-        return
+
+      props = registry.getBlockProps(clickedBlock)
+      if props.onInteract?
+        # this block handles its own interaction
+        # TODO: redesign this? cancelable event?
+        preventDefault = props.onInteract()
+        return if preventDefault
 
     if registry.isBlock(inventoryHotbar.held()?.item)
       # 2. place blocks
