@@ -80,20 +80,19 @@ module.exports = () ->
   registry.registerBlock 'plankOak', {texture: 'planks_oak'}
   registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
 
-  registry.registerBlock 'workbench', {texture: ['crafting_table_top', 'planks_oak', 'crafting_table_side']}
-
   registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
   registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
   registry.registerItem 'stick', {itemTexture: '../items/stick'}
 
   # recipes TODO: move to registry?
+  registry.recipes = RecipeLocator
+  registry.thesaurus = CraftingThesaurus
   CraftingThesaurus.registerName 'wood.log', new ItemPile('logOak')
   CraftingThesaurus.registerName 'wood.log', new ItemPile('logBirch')
   CraftingThesaurus.registerName 'wood.plank', new ItemPile('plankOak')
   CraftingThesaurus.registerName 'tree.leaves', new ItemPile('leavesOak')
   RecipeLocator.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
   RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
-  RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1))
 
   RecipeLocator.register new PositionalRecipe([
     ['wood.plank', 'wood.plank', 'wood.plank'],
@@ -106,8 +105,14 @@ module.exports = () ->
     [undefined, 'stick', undefined],
     [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
 
+  playerInventory = new Inventory(10, 5)
+
+  # workbench - adds its own block (call before game.materials.load) and recipe
+  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory, registry:registry}
+
 
   game.materials.load registry.getBlockPropsAll 'texture'
+  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
 
   plugins.load 'land', {
     populateTrees: true
@@ -155,7 +160,6 @@ module.exports = () ->
 
   game.mode = 'survival'
 
-  playerInventory = new Inventory(10, 5)
   #playerInventory.give new ItemPile('stick', 32)
   #playerInventory.give new ItemPile('logOak', 10)
   #playerInventory.give new ItemPile('plankOak', 10)
@@ -163,11 +167,9 @@ module.exports = () ->
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
-  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10, registry:registry}
+  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
-  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory, registry:registry}
-
-  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory, registry:registry}
+  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
@@ -257,14 +259,17 @@ module.exports = () ->
 
     # TODO: major refactor
 
-    # 1. block interaction TODO: have blocks handle this
+    # 1. block interaction
     if target.voxel? and !game.buttons.crouch
       clickedBlockID = game.getBlock(target.voxel)
       clickedBlock = registry.getBlockName(clickedBlockID)
-      if clickedBlock == 'workbench'
-        # open workbench
-        workbenchDialog.open()
-        return
+
+      props = registry.getBlockProps(clickedBlock)
+      if props.onInteract?
+        # this block handles its own interaction
+        # TODO: redesign this? cancelable event?
+        preventDefault = props.onInteract()
+        return if preventDefault
 
     if registry.isBlock(inventoryHotbar.held()?.item)
       # 2. place blocks
