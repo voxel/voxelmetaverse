@@ -47,11 +47,34 @@ module.exports = () ->
     chunkDistance: 2
     materials: []  # added dynamically later
     texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-    worldOrigin: [0, 0, 0],
+    worldOrigin: [0, 0, 0]
     controls:
       discreteFire: false
       fireRate: 100 # ms between firing
       jumpTimer: 25
+    keybindings:
+      # voxel-engine defaults
+      'W': 'forward'
+      'A': 'left'
+      'S': 'backward'
+      'D': 'right'
+      '<up>': 'forward'
+      '<left>': 'left'
+      '<down>': 'backward'
+      '<right>': 'right'
+      '<mouse 1>': 'fire'
+      '<mouse 3>': 'firealt'
+      '<space>': 'jump'
+      '<shift>': 'crouch'
+      '<control>': 'alt'
+      '<tab>': 'sprint'
+
+      # our extras
+      'R': 'pov'
+      'T': 'vr'
+      'O': 'home'
+      'E': 'inventory'
+      'C': 'gamemode'
     }
 
   # add lighting - based on voxel-engine addLights()
@@ -203,11 +226,6 @@ module.exports = () ->
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
-
-  haveMouseInteract = false
-  game.interact.on 'attain', () => haveMouseInteract = true
-  game.interact.on 'release', () => haveMouseInteract = false
-
   # one of everything, please..
   creativeInventoryArray = []
   for props in registry.blockProps
@@ -215,42 +233,28 @@ module.exports = () ->
 
   survivalInventoryArray = []
 
-  ever(document.body).on 'keydown', (ev) =>
-    return if !haveMouseInteract    # don't care if typing into a GUI, etc. TODO: use kb-controls here too? (like voxel-engine)
+  game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
+  game.buttons.down.on 'vr', () -> game.plugins.toggle 'oculus'
+  game.buttons.down.on 'home', () -> home(avatar)
+  game.buttons.down.on 'inventory', () -> inventoryDialog.toggle()
+  game.buttons.down.on 'gamemode', () ->
+    # TODO: add gamemode event? for plugins to handle instead of us
+    if game.mode == 'survival'
+      game.mode = 'creative'
+      game.plugins.enable 'fly'
+      mine.instaMine = true
+      survivalInventoryArray = inventoryHotbar.inventory.array
+      inventoryHotbar.inventory.array = creativeInventoryArray
+      inventoryHotbar.refresh()
+      console.log 'creative mode'
+    else
+      game.mode = 'survival'
+      game.plugins.disable 'fly'
+      mine.instaMine = false
+      inventoryHotbar.inventory.array = survivalInventoryArray
+      inventoryHotbar.refresh()
+      console.log 'survival mode'
 
-    if ev.keyCode == 'R'.charCodeAt(0)
-      # toggle between first and third person 
-      avatar.toggle()
-      # TODO: disable/re-enable voxel-walk in 1st/3rd person?
-    else if ev.keyCode == 'T'.charCodeAt(0)
-      game.plugins.toggle 'oculus'
-    else if ev.keyCode == 'O'.charCodeAt(0)
-      home(avatar)
-    else if ev.keyCode == 'E'.charCodeAt(0)
-      inventoryDialog.toggle()
-    else if ev.keyCode == 'C'.charCodeAt(0)
-      # TODO: add gamemode event? for plugins to handle instead of us
-      if game.mode == 'survival'
-        game.mode = 'creative'
-        game.plugins.enable 'fly'
-        mine.instaMine = true
-        survivalInventoryArray = inventoryHotbar.inventory.array
-        inventoryHotbar.inventory.array = creativeInventoryArray
-        inventoryHotbar.refresh()
-        console.log 'creative mode'
-      else
-        game.mode = 'survival'
-        game.plugins.disable 'fly'
-        mine.instaMine = false
-        inventoryHotbar.inventory.array = survivalInventoryArray
-        inventoryHotbar.refresh()
-        console.log 'survival mode'
-
-  # cancel context-menu on right-click
-  ever(document.body).on 'contextmenu', (event) ->
-    event.preventDefault()
-    return false
-  
   # right-click to place block
   reach.on 'interact', (target) =>
     if not target
