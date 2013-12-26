@@ -24,6 +24,7 @@
     "voxel-inventory-dialog": "git://github.com/deathcap/voxel-inventory-dialog.git",
     "craftingrecipes": "git://github.com/deathcap/craftingrecipes.git",
     "dat-gui": "~0.5.0",
+    "kb-bindings-ui": "git://github.com/deathcap/kb-bindings-ui.git",
     "itempile": "git://github.com/deathcap/itempile.git",
     "inventory": "git://github.com/deathcap/inventory.git",
     "inventory-window": "git://github.com/deathcap/inventory-window.git",

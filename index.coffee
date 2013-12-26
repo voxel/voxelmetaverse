@@ -11,6 +11,7 @@ InventoryWindow = require 'inventory-window'
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 createPluginsUI = require 'voxel-plugins-ui'
+createBindingsUI = require 'kb-bindings-ui'
 
 createRegistry = require 'voxel-registry'
 
@@ -329,6 +330,7 @@ module.exports = () ->
   debug.axis [0, 0, 0], 10
 
   pluginsUI = createPluginsUI game, {gui: gui}
+  bindingsUI = createBindingsUI game, {gui: gui, kb: game.buttons}
 
   return game
 
