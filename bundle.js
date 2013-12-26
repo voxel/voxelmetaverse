@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, PositionalRecipe, Recipe, RecipeLocator, createGame, createPlugins, createPluginsUI, createRegistry, datgui, ever, home, _ref;
+var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, PositionalRecipe, Recipe, RecipeLocator, createBindingsUI, createGame, createPlugins, createPluginsUI, createRegistry, datgui, ever, home, _ref;
 
 ever = require('ever');
 
@@ -18,6 +18,8 @@ createGame = require('voxel-engine');
 createPlugins = require('voxel-plugins');
 
 createPluginsUI = require('voxel-plugins-ui');
+
+createBindingsUI = require('kb-bindings-ui');
 
 createRegistry = require('voxel-registry');
 
@@ -48,7 +50,7 @@ require('voxel-debug');
 require('voxel-land');
 
 module.exports = function() {
-  var REACH_DISTANCE, ambientLight, avatar, container, controlsTarget, creativeInventoryArray, debris, debug, directionalLight, game, gui, haveMouseInteract, highlight, inventoryDialog, inventoryHotbar, loadingTime, mine, playerInventory, plugins, pluginsUI, props, reach, registry, survivalInventoryArray, workbenchDialog, _i, _len, _ref1,
+  var REACH_DISTANCE, ambientLight, avatar, bindingsUI, container, controlsTarget, creativeInventoryArray, debris, debug, directionalLight, game, gui, highlight, inventoryDialog, inventoryHotbar, loadingTime, mine, playerInventory, plugins, pluginsUI, props, reach, registry, survivalInventoryArray, workbenchDialog, _i, _len, _ref1,
     _this = this;
   console.log('voxpopuli starting');
   if (window.performance && window.performance.timing) {
@@ -68,6 +70,27 @@ module.exports = function() {
       discreteFire: false,
       fireRate: 100,
       jumpTimer: 25
+    },
+    keybindings: {
+      'W': 'forward',
+      'A': 'left',
+      'S': 'backward',
+      'D': 'right',
+      '<up>': 'forward',
+      '<left>': 'left',
+      '<down>': 'backward',
+      '<right>': 'right',
+      '<mouse 1>': 'fire',
+      '<mouse 3>': 'firealt',
+      '<space>': 'jump',
+      '<shift>': 'crouch',
+      '<control>': 'alt',
+      '<tab>': 'sprint',
+      'R': 'pov',
+      'T': 'vr',
+      'O': 'home',
+      'E': 'inventory',
+      'C': 'gamemode'
     }
   });
   ambientLight = new game.THREE.AmbientLight(0x888888);
@@ -239,13 +262,6 @@ module.exports = function() {
       return false;
     }
   });
-  haveMouseInteract = false;
-  game.interact.on('attain', function() {
-    return haveMouseInteract = true;
-  });
-  game.interact.on('release', function() {
-    return haveMouseInteract = false;
-  });
   creativeInventoryArray = [];
   _ref1 = registry.blockProps;
   for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
@@ -255,40 +271,35 @@ module.exports = function() {
     }
   }
   survivalInventoryArray = [];
-  ever(document.body).on('keydown', function(ev) {
-    if (!haveMouseInteract) {
-      return;
-    }
-    if (ev.keyCode === 'R'.charCodeAt(0)) {
-      return avatar.toggle();
-    } else if (ev.keyCode === 'T'.charCodeAt(0)) {
-      return game.plugins.toggle('oculus');
-    } else if (ev.keyCode === 'O'.charCodeAt(0)) {
-      return home(avatar);
-    } else if (ev.keyCode === 'E'.charCodeAt(0)) {
-      return inventoryDialog.toggle();
-    } else if (ev.keyCode === 'C'.charCodeAt(0)) {
-      if (game.mode === 'survival') {
-        game.mode = 'creative';
-        game.plugins.enable('fly');
-        mine.instaMine = true;
-        survivalInventoryArray = inventoryHotbar.inventory.array;
-        inventoryHotbar.inventory.array = creativeInventoryArray;
-        inventoryHotbar.refresh();
-        return console.log('creative mode');
-      } else {
-        game.mode = 'survival';
-        game.plugins.disable('fly');
-        mine.instaMine = false;
-        inventoryHotbar.inventory.array = survivalInventoryArray;
-        inventoryHotbar.refresh();
-        return console.log('survival mode');
-      }
-    }
+  game.buttons.down.on('pov', function() {
+    return avatar.toggle();
   });
-  ever(document.body).on('contextmenu', function(event) {
-    event.preventDefault();
-    return false;
+  game.buttons.down.on('vr', function() {
+    return game.plugins.toggle('oculus');
+  });
+  game.buttons.down.on('home', function() {
+    return home(avatar);
+  });
+  game.buttons.down.on('inventory', function() {
+    return inventoryDialog.toggle();
+  });
+  game.buttons.down.on('gamemode', function() {
+    if (game.mode === 'survival') {
+      game.mode = 'creative';
+      game.plugins.enable('fly');
+      mine.instaMine = true;
+      survivalInventoryArray = inventoryHotbar.inventory.array;
+      inventoryHotbar.inventory.array = creativeInventoryArray;
+      inventoryHotbar.refresh();
+      return console.log('creative mode');
+    } else {
+      game.mode = 'survival';
+      game.plugins.disable('fly');
+      mine.instaMine = false;
+      inventoryHotbar.inventory.array = survivalInventoryArray;
+      inventoryHotbar.refresh();
+      return console.log('survival mode');
+    }
   });
   reach.on('interact', function(target) {
     var clickedBlock, clickedBlockID, currentBlockID, preventDefault, taken, _ref2;
@@ -353,6 +364,10 @@ module.exports = function() {
   pluginsUI = createPluginsUI(game, {
     gui: gui
   });
+  bindingsUI = createBindingsUI(game, {
+    gui: gui,
+    kb: game.buttons
+  });
   return game;
 };
 
@@ -361,7 +376,7 @@ home = function(avatar) {
 };
 
 
-},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"voxel-debris":19,"voxel-debug":21,"voxel-engine":32,"voxel-fly":76,"voxel-highlight":81,"voxel-inventory-dialog":84,"voxel-inventory-hotbar":100,"voxel-land":108,"voxel-mine":111,"voxel-oculus":112,"voxel-player":113,"voxel-plugins":119,"voxel-plugins-ui":115,"voxel-reach":121,"voxel-registry":123,"voxel-walk":124,"voxel-workbench":125}],2:[function(require,module,exports){
+},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-debris":24,"voxel-debug":26,"voxel-engine":37,"voxel-fly":81,"voxel-highlight":86,"voxel-inventory-dialog":89,"voxel-inventory-hotbar":105,"voxel-land":113,"voxel-mine":122,"voxel-oculus":123,"voxel-player":124,"voxel-plugins":130,"voxel-plugins-ui":126,"voxel-reach":132,"voxel-registry":134,"voxel-walk":135,"voxel-workbench":136}],2:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeLocator,
@@ -5118,7 +5133,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":7,"./types.json":8,"events":149}],7:[function(require,module,exports){
+},{"./init.json":7,"./types.json":8,"events":160}],7:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -5495,9 +5510,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 }).call(this);
 
-},{"events":149,"ever":10}],10:[function(require,module,exports){
+},{"events":160,"ever":10}],10:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":11,"./types.json":12,"events":149}],11:[function(require,module,exports){
+},{"./init.json":11,"./types.json":12,"events":160}],11:[function(require,module,exports){
 module.exports=require(7)
 },{}],12:[function(require,module,exports){
 module.exports=require(8)
@@ -5635,7 +5650,7 @@ module.exports=require(8)
 
 }).call(this);
 
-},{"deep-equal":14,"events":149,"itempile":15}],14:[function(require,module,exports){
+},{"deep-equal":14,"events":160,"itempile":15}],14:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var Object_keys = typeof Object.keys === 'function'
     ? Object.keys
@@ -5887,6 +5902,235 @@ module.exports=require(15)
 },{"deep-equal":18}],18:[function(require,module,exports){
 module.exports=require(14)
 },{}],19:[function(require,module,exports){
+// # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
+  
+var datgui = require('dat-gui');
+var vkey = require('vkey');
+
+module.exports = function(game, opts) {
+  return new BindingsUI(game, opts);
+};
+
+function BindingsUI(game, opts) {
+  this.game = game;
+
+  opts = opts || {};
+
+  this.kb = opts.kb;
+  if (!this.kb) throw 'kb-bindings-ui requires "kb" option set to kb-bindings instance';
+  this.gui = opts.gui || new datgui.GUI();
+  this.hideKeys = opts.hideKeys || ['ime-', 'launch-', 'browser-']; // too long
+
+  this.folder = this.gui.addFolder('keys');
+
+  if (!this.kb.bindings) throw 'kb-bindings-ui "kb" option could not find kb-bindings\' bindings';
+
+  this.vkey2code = {};
+  this.vkeyBracket2Bare = {};
+  this.vkeyBare2Bracket = {};
+  this.keyListing = [];
+  for (var code in vkey) {
+    var keyName = vkey[code];
+
+    this.vkey2code[keyName] = code;
+
+    var keyNameBare = keyName.replace('<', '').replace('>', '');
+    this.vkeyBracket2Bare[keyName] = keyNameBare;
+    this.vkeyBare2Bracket[keyNameBare] = keyName;
+
+    if (!this.shouldHideKey(keyNameBare))
+      this.keyListing.push(keyNameBare);
+  }
+
+  this.binding2Key = {};
+  for (var key in this.kb.bindings) {
+    var binding = this.kb.bindings[key];
+    this.binding2Key[binding] = this.vkeyBracket2Bare[key];
+    this.addBinding(binding);
+  }
+}
+
+BindingsUI.prototype.shouldHideKey = function(name) {
+  for (var i = 0; i < this.hideKeys.length; ++i) {
+    if (name.indexOf(this.hideKeys[i]) === 0) return true;
+  }
+  return false;
+};
+
+BindingsUI.prototype.addBinding = function (binding) {
+  var item = this.folder.add(this.binding2Key, binding, this.keyListing);
+
+  item.onChange(updateBinding(this, binding));
+};
+
+function updateBinding(self, binding) {
+  return function(newKeyNameBare) {
+    //if (self.vkey2code[newKeyName] === undefined) // invalid vkey
+
+    var newKeyName = self.vkeyBare2Bracket[newKeyNameBare];
+
+    self.removeBindings(binding);
+
+    self.kb.bindings[newKeyName] = binding;
+  };
+}
+
+// remove all keys bound to given binding
+BindingsUI.prototype.removeBindings = function(binding) {
+  for (var key in this.kb.bindings) {
+    var thisBinding = this.kb.bindings[key];
+    if (thisBinding === binding) {
+      delete this.kb.bindings[key];
+    }
+  }
+};
+
+
+},{"dat-gui":20,"vkey":23}],20:[function(require,module,exports){
+module.exports=require(3)
+},{"./vendor/dat.color":21,"./vendor/dat.gui":22}],21:[function(require,module,exports){
+module.exports=require(4)
+},{}],22:[function(require,module,exports){
+module.exports=require(5)
+},{}],23:[function(require,module,exports){
+var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
+  , isOSX = /OS X/.test(ua)
+  , isOpera = /Opera/.test(ua)
+  , maybeFirefox = !/like Gecko/.test(ua) && !isOpera
+
+var i, output = module.exports = {
+  0:  isOSX ? '<menu>' : '<UNK>'
+, 1:  '<mouse 1>'
+, 2:  '<mouse 2>'
+, 3:  '<break>'
+, 4:  '<mouse 3>'
+, 5:  '<mouse 4>'
+, 6:  '<mouse 5>'
+, 8:  '<backspace>'
+, 9:  '<tab>'
+, 12: '<clear>'
+, 13: '<enter>'
+, 16: '<shift>'
+, 17: '<control>'
+, 18: '<alt>'
+, 19: '<pause>'
+, 20: '<caps-lock>'
+, 21: '<ime-hangul>'
+, 23: '<ime-junja>'
+, 24: '<ime-final>'
+, 25: '<ime-kanji>'
+, 27: '<escape>'
+, 28: '<ime-convert>'
+, 29: '<ime-nonconvert>'
+, 30: '<ime-accept>'
+, 31: '<ime-mode-change>'
+, 27: '<escape>'
+, 32: '<space>'
+, 33: '<page-up>'
+, 34: '<page-down>'
+, 35: '<end>'
+, 36: '<home>'
+, 37: '<left>'
+, 38: '<up>'
+, 39: '<right>'
+, 40: '<down>'
+, 41: '<select>'
+, 42: '<print>'
+, 43: '<execute>'
+, 44: '<snapshot>'
+, 45: '<insert>'
+, 46: '<delete>'
+, 47: '<help>'
+, 91: '<meta>'  // meta-left -- no one handles left and right properly, so we coerce into one.
+, 92: '<meta>'  // meta-right
+, 93: isOSX ? '<meta>' : '<menu>'      // chrome,opera,safari all report this for meta-right (osx mbp).
+, 95: '<sleep>'
+, 106: '<num-*>'
+, 107: '<num-+>'
+, 108: '<num-enter>'
+, 109: '<num-->'
+, 110: '<num-.>'
+, 111: '<num-/>'
+, 144: '<num-lock>'
+, 145: '<scroll-lock>'
+, 160: '<shift-left>'
+, 161: '<shift-right>'
+, 162: '<control-left>'
+, 163: '<control-right>'
+, 164: '<alt-left>'
+, 165: '<alt-right>'
+, 166: '<browser-back>'
+, 167: '<browser-forward>'
+, 168: '<browser-refresh>'
+, 169: '<browser-stop>'
+, 170: '<browser-search>'
+, 171: '<browser-favorites>'
+, 172: '<browser-home>'
+
+  // ff/osx reports '<volume-mute>' for '-'
+, 173: isOSX && maybeFirefox ? '-' : '<volume-mute>'
+, 174: '<volume-down>'
+, 175: '<volume-up>'
+, 176: '<next-track>'
+, 177: '<prev-track>'
+, 178: '<stop>'
+, 179: '<play-pause>'
+, 180: '<launch-mail>'
+, 181: '<launch-media-select>'
+, 182: '<launch-app 1>'
+, 183: '<launch-app 2>'
+, 186: ';'
+, 187: '='
+, 188: ','
+, 189: '-'
+, 190: '.'
+, 191: '/'
+, 192: '`'
+, 219: '['
+, 220: '\\'
+, 221: ']'
+, 222: "'"
+, 223: '<meta>'
+, 224: '<meta>'       // firefox reports meta here.
+, 226: '<alt-gr>'
+, 229: '<ime-process>'
+, 231: isOpera ? '`' : '<unicode>'
+, 246: '<attention>'
+, 247: '<crsel>'
+, 248: '<exsel>'
+, 249: '<erase-eof>'
+, 250: '<play>'
+, 251: '<zoom>'
+, 252: '<no-name>'
+, 253: '<pa-1>'
+, 254: '<clear>'
+}
+
+for(i = 58; i < 65; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// 0-9
+for(i = 48; i < 58; ++i) {
+  output[i] = (i - 48)+''
+}
+
+// A-Z
+for(i = 65; i < 91; ++i) {
+  output[i] = String.fromCharCode(i)
+}
+
+// num0-9
+for(i = 96; i < 106; ++i) {
+  output[i] = '<num-'+(i - 96)+'>'
+}
+
+// F1-F24
+for(i = 112; i < 136; ++i) {
+  output[i] = 'F'+(i-111)
+}
+
+},{}],24:[function(require,module,exports){
 var funstance = require('funstance');
 var EventEmitter = require('events').EventEmitter;
 
@@ -5969,7 +6213,7 @@ function createDebris (game, pos, value) {
     };
 }
 
-},{"events":149,"funstance":20}],20:[function(require,module,exports){
+},{"events":160,"funstance":25}],25:[function(require,module,exports){
 module.exports = function (obj, fn) {
     var f = function () {
         if (typeof fn !== 'function') return;
@@ -5993,7 +6237,7 @@ module.exports = function (obj, fn) {
     return f;
 };
 
-},{}],21:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 function Debug(game, opts) {
   if (opts.THREE) game = opts
   this.game = game
@@ -6165,13 +6409,13 @@ Debug.prototype._render = function() {
   });
 }
 
-},{"dat-gui":22,"voxel":26}],22:[function(require,module,exports){
+},{"dat-gui":27,"voxel":31}],27:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":23,"./vendor/dat.gui":24}],23:[function(require,module,exports){
+},{"./vendor/dat.color":28,"./vendor/dat.gui":29}],28:[function(require,module,exports){
 module.exports=require(4)
-},{}],24:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 module.exports=require(5)
-},{}],25:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -6308,7 +6552,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":149,"inherits":31}],26:[function(require,module,exports){
+},{"events":160,"inherits":36}],31:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -6404,7 +6648,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":25,"./meshers/culled":27,"./meshers/greedy":28,"./meshers/monotone":29,"./meshers/stupid":30}],27:[function(require,module,exports){
+},{"./chunker":30,"./meshers/culled":32,"./meshers/greedy":33,"./meshers/monotone":34,"./meshers/stupid":35}],32:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -6456,7 +6700,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],28:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -6573,7 +6817,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],29:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -6826,7 +7070,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],30:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -6862,7 +7106,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],31:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -6893,7 +7137,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],32:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 var process=require("__browserify_process");var voxel = require('voxel')
 var voxelMesh = require('voxel-mesh')
 var ray = require('voxel-raycast')
@@ -6914,7 +7158,7 @@ var glMatrix = require('gl-matrix')
 var vector = glMatrix.vec3
 var SpatialEventEmitter = require('spatial-events')
 var regionChange = require('voxel-region-change')
-var kb = require('kb-controls')
+var kb = require('kb-bindings')
 var physical = require('voxel-physical')
 var pin = require('pin-it')
 var tic = require('tic')()
@@ -7631,7 +7875,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":33,"./lib/stats":34,"__browserify_process":158,"aabb-3d":35,"collide-3d-tilemap":36,"events":149,"gl-matrix":37,"inherits":38,"interact":39,"kb-controls":48,"path":150,"pin-it":53,"raf":54,"spatial-events":55,"three":57,"tic":58,"voxel":71,"voxel-control":59,"voxel-mesh":60,"voxel-physical":61,"voxel-raycast":62,"voxel-region-change":63,"voxel-texture":64,"voxel-view":69}],33:[function(require,module,exports){
+},{"./lib/detector":38,"./lib/stats":39,"__browserify_process":169,"aabb-3d":40,"collide-3d-tilemap":41,"events":160,"gl-matrix":42,"inherits":43,"interact":44,"kb-bindings":53,"path":161,"pin-it":58,"raf":59,"spatial-events":60,"three":62,"tic":63,"voxel":76,"voxel-control":64,"voxel-mesh":65,"voxel-physical":66,"voxel-raycast":67,"voxel-region-change":68,"voxel-texture":69,"voxel-view":74}],38:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -7692,7 +7936,7 @@ module.exports = function() {
   };
 }
 
-},{}],34:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -7838,7 +8082,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],35:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -7937,7 +8181,7 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":37}],36:[function(require,module,exports){
+},{"gl-matrix":42}],41:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -8026,7 +8270,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],37:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -11099,9 +11343,9 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],38:[function(require,module,exports){
-module.exports=require(31)
-},{}],39:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
+module.exports=require(36)
+},{}],44:[function(require,module,exports){
 var lock = require('pointer-lock')
   , drag = require('drag-stream')
   , full = require('fullscreen')
@@ -11208,7 +11452,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":40,"events":149,"fullscreen":46,"pointer-lock":47,"stream":151}],40:[function(require,module,exports){
+},{"drag-stream":45,"events":160,"fullscreen":51,"pointer-lock":52,"stream":162}],45:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -11276,10 +11520,10 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":41,"stream":151,"through":45}],41:[function(require,module,exports){
+},{"domnode-dom":46,"stream":162,"through":50}],46:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":42}],42:[function(require,module,exports){
+},{"./lib/index":47}],47:[function(require,module,exports){
 var WriteStream = require('./writable')
   , ReadStream = require('./readable')
   , DOMStream = {}
@@ -11317,7 +11561,7 @@ DOMStream.createEventStream = function(el, type, preventDefault) {
 module.exports = DOMStream
 
 
-},{"./readable":43,"./writable":44}],43:[function(require,module,exports){
+},{"./readable":48,"./writable":49}],48:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11426,7 +11670,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":151}],44:[function(require,module,exports){
+},{"stream":162}],49:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11508,7 +11752,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":151}],45:[function(require,module,exports){
+},{"stream":162}],50:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -11608,7 +11852,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":158,"stream":151}],46:[function(require,module,exports){
+},{"__browserify_process":169,"stream":162}],51:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -11699,7 +11943,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":149}],47:[function(require,module,exports){
+},{"events":160}],52:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -11863,40 +12107,60 @@ function shim(el) {
     null
 }
 
-},{"events":149,"stream":151}],48:[function(require,module,exports){
+},{"events":160,"stream":162}],53:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
+  , EventEmitter = require('events').EventEmitter
 
-module.exports = function(el, bindings, state) {
+module.exports = function(el, bindings, state, opts) {
+  var root = null
   if(bindings === undefined || !el.ownerDocument) {
     state = bindings
     bindings = el
     el = this.document.body
+    try {
+      root = window.top.document.body
+    } catch(e){}
   }
 
   var ee = ever(el)
+    , re = root ? ever(root) : ee
     , measured = {}
     , enabled = true
 
+  opts = opts || {}
+  opts.preventDefaults = (opts.preventDefaults === undefined) ? true : opts.preventDefaults
+
   state = state || {}
+  
+  state.down = new EventEmitter()
+  state.up = new EventEmitter()
+
+  state.bindings = bindings
 
   // always initialize the state.
   for(var key in bindings) {
     if(bindings[key] === 'enabled' ||
        bindings[key] === 'enable' ||
        bindings[key] === 'disable' ||
-       bindings[key] === 'destroy') {
+       bindings[key] === 'destroy' ||
+       bindings[key] === 'down' ||
+       bindings[key] === 'up' ||
+       bindings[key] === 'bindings') {
       throw new Error(bindings[key]+' is reserved')
     }
     state[bindings[key]] = 0
     measured[key] = 1
   }
 
-  ee.on('keyup', wrapped(onoff(kb, false)))
-  ee.on('keydown', wrapped(onoff(kb, true)))
+  re.on('keyup', wrapped(onoff(kb, false)))
+  re.on('keydown', wrapped(onoff(kb, true)))
   ee.on('mouseup', wrapped(onoff(mouse, false)))
   ee.on('mousedown', wrapped(onoff(mouse, true)))
+  ee.on('contextmenu', function(ev) {
+    if (opts.preventDefaults) ev.preventDefault()
+  })
 
   state.enabled = function() {
     return enabled
@@ -11905,8 +12169,9 @@ module.exports = function(el, bindings, state) {
   state.enable = enable_disable(true)
   state.disable = enable_disable(false)
   state.destroy = function() {
+    re.removeAllListeners()
     ee.removeAllListeners()
-  } 
+  }
   return state
 
   function clear() {
@@ -11928,7 +12193,7 @@ module.exports = function(el, bindings, state) {
   function wrapped(fn) {
     return function(ev) {
       if(enabled) {
-        ev.preventDefault()
+        if (opts.preventDefaults) ev.preventDefault()
         fn(ev)
       } else {
         return
@@ -11942,10 +12207,18 @@ module.exports = function(el, bindings, state) {
         , binding = bindings[key]
 
       if(binding) {
+        var previous_state = state[binding];
         state[binding] += on_or_off ? max(measured[key]--, 0) : -(measured[key] = 1)
 
         if(!on_or_off && state[binding] < 0) {
           state[binding] = 0
+        }
+   
+        if (previous_state !== state[binding]) {
+          if (on_or_off)
+            state.down.emit(binding)
+          else
+            state.up.emit(binding)
         }
       }
     }
@@ -11960,13 +12233,13 @@ module.exports = function(el, bindings, state) {
   }
 }
 
-},{"ever":49,"vkey":52}],49:[function(require,module,exports){
+},{"events":160,"ever":54,"vkey":57}],54:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":50,"./types.json":51,"events":149}],50:[function(require,module,exports){
+},{"./init.json":55,"./types.json":56,"events":160}],55:[function(require,module,exports){
 module.exports=require(7)
-},{}],51:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 module.exports=require(8)
-},{}],52:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -12104,7 +12377,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],53:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -12186,7 +12459,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],54:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -12233,7 +12506,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":149}],55:[function(require,module,exports){
+},{"events":160}],60:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -12365,7 +12638,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":56,"aabb-3d":35}],56:[function(require,module,exports){
+},{"./tree":61,"aabb-3d":40}],61:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -12491,7 +12764,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":35}],57:[function(require,module,exports){
+},{"aabb-3d":40}],62:[function(require,module,exports){
 var self = self || {};/**
  * @author mrdoob / http://mrdoob.com/
  * @author Larry Battle / http://bateru.com/news
@@ -49063,7 +49336,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{}],58:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -49110,7 +49383,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],59:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -49403,7 +49676,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":151}],60:[function(require,module,exports){
+},{"stream":162}],65:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -49554,7 +49827,7 @@ Mesh.prototype.faceVertexUv = function(i) {
 }
 ;
 
-},{"three":57}],61:[function(require,module,exports){
+},{"three":62}],66:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -49773,7 +50046,7 @@ proto.atRestZ = function() {
   return this.resting.z
 }
 
-},{"aabb-3d":35,"three":57}],62:[function(require,module,exports){
+},{"aabb-3d":40,"three":62}],67:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -49995,7 +50268,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],63:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -50023,7 +50296,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":35,"events":149}],64:[function(require,module,exports){
+},{"aabb-3d":40,"events":160}],69:[function(require,module,exports){
 var tic = require('tic')();
 var createAtlas = require('atlaspack');
 var isTransparent = require('opaque').transparent;
@@ -50650,7 +50923,7 @@ function hasSubArray(ar) {
 }
 
 
-},{"atlaspack":65,"opaque":66,"three":57,"tic":67,"voxel-fakeao":68}],65:[function(require,module,exports){
+},{"atlaspack":70,"opaque":71,"three":62,"tic":72,"voxel-fakeao":73}],70:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -50908,7 +51181,7 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],66:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -50938,9 +51211,9 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],67:[function(require,module,exports){
-module.exports=require(58)
-},{}],68:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
+module.exports=require(63)
+},{}],73:[function(require,module,exports){
 module.exports = function(game) {
   var THREE = game.THREE;
   var colorCache = Object.create(null);
@@ -50999,7 +51272,7 @@ module.exports = function(game) {
   return ao;
 };
 
-},{}],69:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -51088,19 +51361,19 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":158}],70:[function(require,module,exports){
-module.exports=require(25)
-},{"events":149,"inherits":38}],71:[function(require,module,exports){
-arguments[4][26][0].apply(exports,arguments)
-},{"./chunker":70,"./meshers/culled":72,"./meshers/greedy":73,"./meshers/monotone":74,"./meshers/stupid":75}],72:[function(require,module,exports){
-module.exports=require(27)
-},{}],73:[function(require,module,exports){
-module.exports=require(28)
-},{}],74:[function(require,module,exports){
-module.exports=require(29)
-},{}],75:[function(require,module,exports){
+},{"__browserify_process":169}],75:[function(require,module,exports){
 module.exports=require(30)
-},{}],76:[function(require,module,exports){
+},{"events":160,"inherits":43}],76:[function(require,module,exports){
+arguments[4][31][0].apply(exports,arguments)
+},{"./chunker":75,"./meshers/culled":77,"./meshers/greedy":78,"./meshers/monotone":79,"./meshers/stupid":80}],77:[function(require,module,exports){
+module.exports=require(32)
+},{}],78:[function(require,module,exports){
+module.exports=require(33)
+},{}],79:[function(require,module,exports){
+module.exports=require(34)
+},{}],80:[function(require,module,exports){
+module.exports=require(35)
+},{}],81:[function(require,module,exports){
 var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
@@ -51202,151 +51475,15 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":149,"ever":77,"vkey":80}],77:[function(require,module,exports){
+},{"events":160,"ever":82,"vkey":85}],82:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":78,"./types.json":79,"events":149}],78:[function(require,module,exports){
+},{"./init.json":83,"./types.json":84,"events":160}],83:[function(require,module,exports){
 module.exports=require(7)
-},{}],79:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 module.exports=require(8)
-},{}],80:[function(require,module,exports){
-var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
-  , isOSX = /OS X/.test(ua)
-  , isOpera = /Opera/.test(ua)
-  , maybeFirefox = !/like Gecko/.test(ua) && !isOpera
-
-var i, output = module.exports = {
-  0:  isOSX ? '<menu>' : '<UNK>'
-, 1:  '<mouse 1>'
-, 2:  '<mouse 2>'
-, 3:  '<break>'
-, 4:  '<mouse 3>'
-, 5:  '<mouse 4>'
-, 6:  '<mouse 5>'
-, 8:  '<backspace>'
-, 9:  '<tab>'
-, 12: '<clear>'
-, 13: '<enter>'
-, 16: '<shift>'
-, 17: '<control>'
-, 18: '<alt>'
-, 19: '<pause>'
-, 20: '<caps-lock>'
-, 21: '<ime-hangul>'
-, 23: '<ime-junja>'
-, 24: '<ime-final>'
-, 25: '<ime-kanji>'
-, 27: '<escape>'
-, 28: '<ime-convert>'
-, 29: '<ime-nonconvert>'
-, 30: '<ime-accept>'
-, 31: '<ime-mode-change>'
-, 27: '<escape>'
-, 32: '<space>'
-, 33: '<page-up>'
-, 34: '<page-down>'
-, 35: '<end>'
-, 36: '<home>'
-, 37: '<left>'
-, 38: '<up>'
-, 39: '<right>'
-, 40: '<down>'
-, 41: '<select>'
-, 42: '<print>'
-, 43: '<execute>'
-, 44: '<snapshot>'
-, 45: '<insert>'
-, 46: '<delete>'
-, 47: '<help>'
-, 91: '<meta>'  // meta-left -- no one handles left and right properly, so we coerce into one.
-, 92: '<meta>'  // meta-right
-, 93: isOSX ? '<meta>' : '<menu>'      // chrome,opera,safari all report this for meta-right (osx mbp).
-, 95: '<sleep>'
-, 106: '<num-*>'
-, 107: '<num-+>'
-, 108: '<num-enter>'
-, 109: '<num-->'
-, 110: '<num-.>'
-, 111: '<num-/>'
-, 144: '<num-lock>'
-, 145: '<scroll-lock>'
-, 160: '<shift-left>'
-, 161: '<shift-right>'
-, 162: '<control-left>'
-, 163: '<control-right>'
-, 164: '<alt-left>'
-, 165: '<alt-right>'
-, 166: '<browser-back>'
-, 167: '<browser-forward>'
-, 168: '<browser-refresh>'
-, 169: '<browser-stop>'
-, 170: '<browser-search>'
-, 171: '<browser-favorites>'
-, 172: '<browser-home>'
-
-  // ff/osx reports '<volume-mute>' for '-'
-, 173: isOSX && maybeFirefox ? '-' : '<volume-mute>'
-, 174: '<volume-down>'
-, 175: '<volume-up>'
-, 176: '<next-track>'
-, 177: '<prev-track>'
-, 178: '<stop>'
-, 179: '<play-pause>'
-, 180: '<launch-mail>'
-, 181: '<launch-media-select>'
-, 182: '<launch-app 1>'
-, 183: '<launch-app 2>'
-, 186: ';'
-, 187: '='
-, 188: ','
-, 189: '-'
-, 190: '.'
-, 191: '/'
-, 192: '`'
-, 219: '['
-, 220: '\\'
-, 221: ']'
-, 222: "'"
-, 223: '<meta>'
-, 224: '<meta>'       // firefox reports meta here.
-, 226: '<alt-gr>'
-, 229: '<ime-process>'
-, 231: isOpera ? '`' : '<unicode>'
-, 246: '<attention>'
-, 247: '<crsel>'
-, 248: '<exsel>'
-, 249: '<erase-eof>'
-, 250: '<play>'
-, 251: '<zoom>'
-, 252: '<no-name>'
-, 253: '<pa-1>'
-, 254: '<clear>'
-}
-
-for(i = 58; i < 65; ++i) {
-  output[i] = String.fromCharCode(i)
-}
-
-// 0-9
-for(i = 48; i < 58; ++i) {
-  output[i] = (i - 48)+''
-}
-
-// A-Z
-for(i = 65; i < 91; ++i) {
-  output[i] = String.fromCharCode(i)
-}
-
-// num0-9
-for(i = 96; i < 106; ++i) {
-  output[i] = '<num-'+(i - 96)+'>'
-}
-
-// F1-F24
-for(i = 112; i < 136; ++i) {
-  output[i] = 'F'+(i-111)
-}
-
-},{}],81:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
+module.exports=require(23)
+},{}],86:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -51513,9 +51650,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":149,"inherits":82,"underscore":83}],82:[function(require,module,exports){
-module.exports=require(31)
-},{}],83:[function(require,module,exports){
+},{"events":160,"inherits":87,"underscore":88}],87:[function(require,module,exports){
+module.exports=require(36)
+},{}],88:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -52743,7 +52880,7 @@ module.exports=require(31)
 
 }).call(this);
 
-},{}],84:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryDialog, InventoryWindow, ItemPile, Modal, PositionalRecipe, Recipe, RecipeLocator, _ref,
@@ -52850,35 +52987,35 @@ module.exports=require(31)
 
 }).call(this);
 
-},{"craftingrecipes":85,"inventory":93,"inventory-window":89,"itempile":97,"voxel-modal":99}],85:[function(require,module,exports){
+},{"craftingrecipes":90,"inventory":98,"inventory-window":94,"itempile":102,"voxel-modal":104}],90:[function(require,module,exports){
 module.exports=require(2)
-},{}],86:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":87,"./types.json":88,"events":149}],87:[function(require,module,exports){
+},{"./init.json":92,"./types.json":93,"events":160}],92:[function(require,module,exports){
 module.exports=require(7)
-},{}],88:[function(require,module,exports){
-module.exports=require(8)
-},{}],89:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":149,"ever":90}],90:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":91,"./types.json":92,"events":149}],91:[function(require,module,exports){
-module.exports=require(7)
-},{}],92:[function(require,module,exports){
-module.exports=require(8)
 },{}],93:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":94,"events":149,"itempile":95}],94:[function(require,module,exports){
-module.exports=require(14)
-},{}],95:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":96}],96:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(8)
+},{}],94:[function(require,module,exports){
+arguments[4][9][0].apply(exports,arguments)
+},{"events":160,"ever":95}],95:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":96,"./types.json":97,"events":160}],96:[function(require,module,exports){
+module.exports=require(7)
 },{}],97:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":98}],98:[function(require,module,exports){
+module.exports=require(8)
+},{}],98:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":99,"events":160,"itempile":100}],99:[function(require,module,exports){
 module.exports=require(14)
-},{}],99:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":101}],101:[function(require,module,exports){
+module.exports=require(14)
+},{}],102:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":103}],103:[function(require,module,exports){
+module.exports=require(14)
+},{}],104:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = Modal;
@@ -52938,7 +53075,7 @@ Modal.prototype.toggle = function() {
     this.open();
 };
 
-},{"ever":86}],100:[function(require,module,exports){
+},{"ever":91}],105:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, InventoryHotbar, InventoryWindow, ever,
@@ -53044,25 +53181,24 @@ Modal.prototype.toggle = function() {
 
 }).call(this);
 
-},{"events":149,"ever":101,"inventory-window":104}],101:[function(require,module,exports){
+},{"events":160,"ever":106,"inventory-window":109}],106:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":102,"./types.json":103,"events":149}],102:[function(require,module,exports){
+},{"./init.json":107,"./types.json":108,"events":160}],107:[function(require,module,exports){
 module.exports=require(7)
-},{}],103:[function(require,module,exports){
-module.exports=require(8)
-},{}],104:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":149,"ever":105}],105:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":106,"./types.json":107,"events":149}],106:[function(require,module,exports){
-module.exports=require(7)
-},{}],107:[function(require,module,exports){
-module.exports=require(8)
 },{}],108:[function(require,module,exports){
+module.exports=require(8)
+},{}],109:[function(require,module,exports){
+arguments[4][9][0].apply(exports,arguments)
+},{"events":160,"ever":110}],110:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":111,"./types.json":112,"events":160}],111:[function(require,module,exports){
+module.exports=require(7)
+},{}],112:[function(require,module,exports){
+module.exports=require(8)
+},{}],113:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
-var createTree = require('voxel-forest');
-var perlin = require('perlin');
+var webworkify = require('webworkify');
 
 module.exports = function(game, opts) {
   return new Land(game, opts);
@@ -53070,15 +53206,21 @@ module.exports = function(game, opts) {
 
 function Land(game, opts) {
   this.game = game;
-  this.seed = opts.seed || 'foo';
-  this.materials = opts.materials || {grass: 1, dirt: 2, stone: 3, bark: 4, leaves:9};
-  this.crustLower = opts.crustLower || 0;
-  this.crustUpper = opts.crustUpper || 5;
-  this.perlinDivisor = opts.perlinDivisor || 20;
-  this.populateTrees = (opts.populateTrees !== undefined) ? opts.populateTrees : true;
+  opts = opts || {};
 
-  this.noise = perlin.noise;
-  this.noise.seed(opts.seed);
+  opts.seed = opts.seed || 'foo';
+  opts.materials = opts.materials || {grass: 1, dirt: 2, stone: 3, bark: 4, leaves:9};
+  opts.crustLower = opts.crustLower === undefined ? 0 : opts.crustLower;
+  opts.crustUpper = opts.crustUpper === undefined ? 2 : opts.crustUpper;
+  opts.hillScale = opts.hillScale || 20;
+  opts.roughnessScale = opts.roughnessScale || 200;
+  opts.populateTrees = (opts.populateTrees !== undefined) ? opts.populateTrees : true;
+  opts.chunkSize = game.chunkSize || 32;
+
+  this.opts = opts;
+
+  this.worker = webworkify(require('./worker.js'));
+  
   this.enable();
 }
 
@@ -53090,90 +53232,21 @@ Land.prototype.disable = function() {
   this.unbindEvents();
 };
 
-// calculate terrain height based on perlin noise 
-// see @maxogden's voxel-perlin-terrain https://github.com/maxogden/voxel-perlin-terrain
-Land.prototype.generateHeightMap = function(position, width) {
-  var startX = position[0] * width;
-  var startY = position[1] * width;
-  var startZ = position[2] * width;
-  var heightMap = new Int8Array(width * width);
-
-  for (var x = startX; x < startX + width; x++) {
-    for (var z = startZ; z < startZ + width; z++) {
-      var n = this.noise.simplex2(x / this.perlinDivisor, z / this.perlinDivisor);
-      var y = ~~scale(n, -1, 1, this.crustLower, this.crustUpper);
-
-      if (y === this.crustLower || startY < y && y < startY + width) {
-        var xidx = Math.abs((width + x % width) % width);
-        var yidx = Math.abs((width + y % width) % width);
-        var zidx = Math.abs((width + z % width) % width);
-        var idx = xidx + yidx * width + zidx * width * width;
-        heightMap[xidx + zidx * width] = yidx;
-      }
-    }
-  }
-
-  return heightMap;
-};
-
-function scale( x, fromLow, fromHigh, toLow, toHigh ) {
-  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow;
-}
-
 Land.prototype.bindEvents = function() {
   var self = this;
 
-  this.game.voxels.on('missingChunk', this.missingChunk = function(p) {
-    var width = self.game.chunkSize;
-    var voxels = new Int8Array(width * width * width);
+  self.worker.postMessage({cmd: 'configure', opts:self.opts});
 
-    if (p[1] === 0) {
-      // ground surface level
-      var heightMap = self.generateHeightMap(p, width);
+  this.game.voxels.on('missingChunk', this.missingChunk = function(pos) {
+    self.worker.postMessage({cmd: 'generateChunk', pos:pos})
+  });
 
-      for (var x = 0; x < width; ++x) {
-        for (var z = 0; z < width; ++z) {
-          var height = heightMap[x + z * width];
-          var y = height;
+  self.worker.addEventListener('message', function(ev) {
+    if (ev.data.cmd === 'chunkGenerated') {
+      var chunk = ev.data.chunk;
 
-          // dirt with grass on top
-          voxels[x + y * width + z * width * width] = self.materials.grass;
-          while(y-- > 0)
-            voxels[x + y * width + z * width * width] = self.materials.dirt;
-
-          // populate chunk with trees
-          // TODO: populate later, so structures can cross chunks??
-          if (self.populateTrees && x === width/2 && z === width/2)  // TODO: populate randomly based on seed
-            createTree(self.game, { 
-              bark: self.materials.bark,
-              leaves: self.materials.leaves,
-              position: {x:x, y:height + 1, z:z}, // position at top of surface
-              treetype: 1,
-              setBlock: function (pos, value) {
-                idx = pos.x + pos.y * width + pos.z * width * width;
-                voxels[idx] = value;
-                return false;  // returning true stops tree
-              }
-            });
-        }
-      }
-    } else if (p[1] > 0) {
-      // empty space above ground
-    } else {
-      // below ground
-      // TODO: ores
-      for (var i = 0; i < width * width * width; ++i) {
-        voxels[i] = self.materials.stone;
-      }
+      self.game.showChunk(chunk);
     }
-
-    var chunk = {
-      position: p,
-      dims: [self.game.chunkSize, self.game.chunkSize, self.game.chunkSize],
-      voxels: voxels
-    }
-
-    self.game.showChunk(chunk);
   });
 };
 
@@ -53181,369 +53254,546 @@ Land.prototype.unbindEvents = function() {
   this.game.voxels.removeListener('missingChunk', this.missingChunk);
 };
 
-},{"perlin":109,"voxel-forest":110}],109:[function(require,module,exports){
+},{"./worker.js":121,"webworkify":120}],114:[function(require,module,exports){
+(function (root, factory) {
+  if (typeof exports === 'object') {
+      module.exports = factory();
+  } else if (typeof define === 'function' && define.amd) {
+      define(factory);
+  } else {
+      root.Alea = factory();
+  }
+}(this, function () {
+
+  'use strict';
+
+  // From http://baagoe.com/en/RandomMusings/javascript/
+
+  // importState to sync generator states
+  Alea.importState = function(i){
+    var random = new Alea();
+    random.importState(i);
+    return random;
+  };
+
+  return Alea;
+
+  function Alea() {
+    return (function(args) {
+      // Johannes Baagøe <baagoe@baagoe.com>, 2010
+      var s0 = 0;
+      var s1 = 0;
+      var s2 = 0;
+      var c = 1;
+
+      if (args.length == 0) {
+        args = [+new Date];
+      }
+      var mash = Mash();
+      s0 = mash(' ');
+      s1 = mash(' ');
+      s2 = mash(' ');
+
+      for (var i = 0; i < args.length; i++) {
+        s0 -= mash(args[i]);
+        if (s0 < 0) {
+          s0 += 1;
+        }
+        s1 -= mash(args[i]);
+        if (s1 < 0) {
+          s1 += 1;
+        }
+        s2 -= mash(args[i]);
+        if (s2 < 0) {
+          s2 += 1;
+        }
+      }
+      mash = null;
+
+      var random = function() {
+        var t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+        s0 = s1;
+        s1 = s2;
+        return s2 = t - (c = t | 0);
+      };
+      random.uint32 = function() {
+        return random() * 0x100000000; // 2^32
+      };
+      random.fract53 = function() {
+        return random() + 
+          (random() * 0x200000 | 0) * 1.1102230246251565e-16; // 2^-53
+      };
+      random.version = 'Alea 0.9';
+      random.args = args;
+
+      // my own additions to sync state between two generators
+      random.exportState = function(){
+        return [s0, s1, s2, c];
+      };
+      random.importState = function(i){
+        s0 = +i[0] || 0;
+        s1 = +i[1] || 0;
+        s2 = +i[2] || 0;
+        c = +i[3] || 0;
+      };
+ 
+      return random;
+
+    } (Array.prototype.slice.call(arguments)));
+  }
+
+  function Mash() {
+    var n = 0xefc8249d;
+
+    var mash = function(data) {
+      data = data.toString();
+      for (var i = 0; i < data.length; i++) {
+        n += data.charCodeAt(i);
+        var h = 0.02519603282416938 * n;
+        n = h >>> 0;
+        h -= n;
+        h *= n;
+        n = h >>> 0;
+        h -= n;
+        n += h * 0x100000000; // 2^32
+      }
+      return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
+    };
+
+    mash.version = 'Mash 0.9';
+    return mash;
+  }
+}));
+
+},{}],115:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":116,"./types.json":117,"events":160}],116:[function(require,module,exports){
+module.exports=require(7)
+},{}],117:[function(require,module,exports){
+module.exports=require(8)
+},{}],118:[function(require,module,exports){
 /*
- * A speed-improved perlin and simplex noise algorithms for 2D.
+ * A fast javascript implementation of simplex noise by Jonas Wagner
  *
- * Based on example code by Stefan Gustavson (stegu@itn.liu.se).
- * Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
+ * Based on a speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
+ * Which is based on example code by Stefan Gustavson (stegu@itn.liu.se).
+ * With Optimisations by Peter Eastman (peastman@drizzle.stanford.edu).
  * Better rank ordering method by Stefan Gustavson in 2012.
- * Converted to Javascript by Joseph Gentle.
  *
- * Version 2012-03-09
  *
- * This code was placed in the public domain by its original author,
- * Stefan Gustavson. You may use it as you see fit, but
- * attribution is appreciated.
+ * Copyright (C) 2012 Jonas Wagner
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * "Software"), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+ * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+ * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+ * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
+(function () {
 
-(function(global){
-  var module = global.noise = {};
+var F2 = 0.5 * (Math.sqrt(3.0) - 1.0),
+    G2 = (3.0 - Math.sqrt(3.0)) / 6.0,
+    F3 = 1.0 / 3.0,
+    G3 = 1.0 / 6.0,
+    F4 = (Math.sqrt(5.0) - 1.0) / 4.0,
+    G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
 
-  function Grad(x, y, z) {
-    this.x = x; this.y = y; this.z = z;
-  }
-  
-  Grad.prototype.dot2 = function(x, y) {
-    return this.x*x + this.y*y;
-  };
 
-  Grad.prototype.dot3 = function(x, y, z) {
-    return this.x*x + this.y*y + this.z*z;
-  };
-
-  var grad3 = [new Grad(1,1,0),new Grad(-1,1,0),new Grad(1,-1,0),new Grad(-1,-1,0),
-               new Grad(1,0,1),new Grad(-1,0,1),new Grad(1,0,-1),new Grad(-1,0,-1),
-               new Grad(0,1,1),new Grad(0,-1,1),new Grad(0,1,-1),new Grad(0,-1,-1)];
-
-  var p = [151,160,137,91,90,15,
-  131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
-  190, 6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,35,11,32,57,177,33,
-  88,237,149,56,87,174,20,125,136,171,168, 68,175,74,165,71,134,139,48,27,166,
-  77,146,158,231,83,111,229,122,60,211,133,230,220,105,92,41,55,46,245,40,244,
-  102,143,54, 65,25,63,161, 1,216,80,73,209,76,132,187,208, 89,18,169,200,196,
-  135,130,116,188,159,86,164,100,109,198,173,186, 3,64,52,217,226,250,124,123,
-  5,202,38,147,118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,
-  223,183,170,213,119,248,152, 2,44,154,163, 70,221,153,101,155,167, 43,172,9,
-  129,22,39,253, 19,98,108,110,79,113,224,232,178,185, 112,104,218,246,97,228,
-  251,34,242,193,238,210,144,12,191,179,162,241, 81,51,145,235,249,14,239,107,
-  49,192,214, 31,181,199,106,157,184, 84,204,176,115,121,50,45,127, 4,150,254,
-  138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180];
-  // To remove the need for index wrapping, double the permutation table length
-  var perm = new Array(512);
-  var gradP = new Array(512);
-
-  // This isn't a very good seeding function, but it works ok. It supports 2^16
-  // different seed values. Write something better if you need more seeds.
-  module.seed = function(seed) {
-    if(seed > 0 && seed < 1) {
-      // Scale the seed out
-      seed *= 65536;
+function SimplexNoise(random) {
+    if (!random) random = Math.random;
+    this.p = new Uint8Array(256);
+    this.perm = new Uint8Array(512);
+    this.permMod12 = new Uint8Array(512);
+    for (var i = 0; i < 256; i++) {
+        this.p[i] = random() * 256;
+    }
+    for (i = 0; i < 512; i++) {
+        this.perm[i] = this.p[i & 255];
+        this.permMod12[i] = this.perm[i] % 12;
     }
 
-    seed = Math.floor(seed);
-    if(seed < 256) {
-      seed |= seed << 8;
+}
+SimplexNoise.prototype = {
+    grad3: new Float32Array([1, 1, 0,
+                            - 1, 1, 0,
+                            1, - 1, 0,
+
+                            - 1, - 1, 0,
+                            1, 0, 1,
+                            - 1, 0, 1,
+
+                            1, 0, - 1,
+                            - 1, 0, - 1,
+                            0, 1, 1,
+
+                            0, - 1, 1,
+                            0, 1, - 1,
+                            0, - 1, - 1]),
+    grad4: new Float32Array([0, 1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1,
+                            0, - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1,
+                            1, 0, 1, 1, 1, 0, 1, - 1, 1, 0, - 1, 1, 1, 0, - 1, - 1,
+                            - 1, 0, 1, 1, - 1, 0, 1, - 1, - 1, 0, - 1, 1, - 1, 0, - 1, - 1,
+                            1, 1, 0, 1, 1, 1, 0, - 1, 1, - 1, 0, 1, 1, - 1, 0, - 1,
+                            - 1, 1, 0, 1, - 1, 1, 0, - 1, - 1, - 1, 0, 1, - 1, - 1, 0, - 1,
+                            1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1, 0,
+                            - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1, 0]),
+    noise2D: function (xin, yin) {
+        var permMod12 = this.permMod12,
+            perm = this.perm,
+            grad3 = this.grad3;
+        var n0, n1, n2; // Noise contributions from the three corners
+        // Skew the input space to determine which simplex cell we're in
+        var s = (xin + yin) * F2; // Hairy factor for 2D
+        var i = Math.floor(xin + s);
+        var j = Math.floor(yin + s);
+        var t = (i + j) * G2;
+        var X0 = i - t; // Unskew the cell origin back to (x,y) space
+        var Y0 = j - t;
+        var x0 = xin - X0; // The x,y distances from the cell origin
+        var y0 = yin - Y0;
+        // For the 2D case, the simplex shape is an equilateral triangle.
+        // Determine which simplex we are in.
+        var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+        if (x0 > y0) {
+            i1 = 1;
+            j1 = 0;
+        } // lower triangle, XY order: (0,0)->(1,0)->(1,1)
+        else {
+            i1 = 0;
+            j1 = 1;
+        } // upper triangle, YX order: (0,0)->(0,1)->(1,1)
+        // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
+        // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
+        // c = (3-sqrt(3))/6
+        var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+        var y1 = y0 - j1 + G2;
+        var x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
+        var y2 = y0 - 1.0 + 2.0 * G2;
+        // Work out the hashed gradient indices of the three simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        // Calculate the contribution from the three corners
+        var t0 = 0.5 - x0 * x0 - y0 * y0;
+        if (t0 < 0) n0 = 0.0;
+        else {
+            var gi0 = permMod12[ii + perm[jj]] * 3;
+            t0 *= t0;
+            n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0); // (x,y) of grad3 used for 2D gradient
+        }
+        var t1 = 0.5 - x1 * x1 - y1 * y1;
+        if (t1 < 0) n1 = 0.0;
+        else {
+            var gi1 = permMod12[ii + i1 + perm[jj + j1]] * 3;
+            t1 *= t1;
+            n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1);
+        }
+        var t2 = 0.5 - x2 * x2 - y2 * y2;
+        if (t2 < 0) n2 = 0.0;
+        else {
+            var gi2 = permMod12[ii + 1 + perm[jj + 1]] * 3;
+            t2 *= t2;
+            n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2);
+        }
+        // Add contributions from each corner to get the final noise value.
+        // The result is scaled to return values in the interval [-1,1].
+        return 70.0 * (n0 + n1 + n2);
+    },
+    // 3D simplex noise
+    noise3D: function (xin, yin, zin) {
+        var permMod12 = this.permMod12,
+            perm = this.perm,
+            grad3 = this.grad3;
+        var n0, n1, n2, n3; // Noise contributions from the four corners
+        // Skew the input space to determine which simplex cell we're in
+        var s = (xin + yin + zin) * F3; // Very nice and simple skew factor for 3D
+        var i = Math.floor(xin + s);
+        var j = Math.floor(yin + s);
+        var k = Math.floor(zin + s);
+        var t = (i + j + k) * G3;
+        var X0 = i - t; // Unskew the cell origin back to (x,y,z) space
+        var Y0 = j - t;
+        var Z0 = k - t;
+        var x0 = xin - X0; // The x,y,z distances from the cell origin
+        var y0 = yin - Y0;
+        var z0 = zin - Z0;
+        // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
+        // Determine which simplex we are in.
+        var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
+        var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
+        if (x0 >= y0) {
+            if (y0 >= z0) {
+                i1 = 1;
+                j1 = 0;
+                k1 = 0;
+                i2 = 1;
+                j2 = 1;
+                k2 = 0;
+            } // X Y Z order
+            else if (x0 >= z0) {
+                i1 = 1;
+                j1 = 0;
+                k1 = 0;
+                i2 = 1;
+                j2 = 0;
+                k2 = 1;
+            } // X Z Y order
+            else {
+                i1 = 0;
+                j1 = 0;
+                k1 = 1;
+                i2 = 1;
+                j2 = 0;
+                k2 = 1;
+            } // Z X Y order
+        }
+        else { // x0<y0
+            if (y0 < z0) {
+                i1 = 0;
+                j1 = 0;
+                k1 = 1;
+                i2 = 0;
+                j2 = 1;
+                k2 = 1;
+            } // Z Y X order
+            else if (x0 < z0) {
+                i1 = 0;
+                j1 = 1;
+                k1 = 0;
+                i2 = 0;
+                j2 = 1;
+                k2 = 1;
+            } // Y Z X order
+            else {
+                i1 = 0;
+                j1 = 1;
+                k1 = 0;
+                i2 = 1;
+                j2 = 1;
+                k2 = 0;
+            } // Y X Z order
+        }
+        // A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
+        // a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
+        // a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
+        // c = 1/6.
+        var x1 = x0 - i1 + G3; // Offsets for second corner in (x,y,z) coords
+        var y1 = y0 - j1 + G3;
+        var z1 = z0 - k1 + G3;
+        var x2 = x0 - i2 + 2.0 * G3; // Offsets for third corner in (x,y,z) coords
+        var y2 = y0 - j2 + 2.0 * G3;
+        var z2 = z0 - k2 + 2.0 * G3;
+        var x3 = x0 - 1.0 + 3.0 * G3; // Offsets for last corner in (x,y,z) coords
+        var y3 = y0 - 1.0 + 3.0 * G3;
+        var z3 = z0 - 1.0 + 3.0 * G3;
+        // Work out the hashed gradient indices of the four simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        var kk = k & 255;
+        // Calculate the contribution from the four corners
+        var t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0;
+        if (t0 < 0) n0 = 0.0;
+        else {
+            var gi0 = permMod12[ii + perm[jj + perm[kk]]] * 3;
+            t0 *= t0;
+            n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0 + grad3[gi0 + 2] * z0);
+        }
+        var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1;
+        if (t1 < 0) n1 = 0.0;
+        else {
+            var gi1 = permMod12[ii + i1 + perm[jj + j1 + perm[kk + k1]]] * 3;
+            t1 *= t1;
+            n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1 + grad3[gi1 + 2] * z1);
+        }
+        var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2;
+        if (t2 < 0) n2 = 0.0;
+        else {
+            var gi2 = permMod12[ii + i2 + perm[jj + j2 + perm[kk + k2]]] * 3;
+            t2 *= t2;
+            n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2 + grad3[gi2 + 2] * z2);
+        }
+        var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3;
+        if (t3 < 0) n3 = 0.0;
+        else {
+            var gi3 = permMod12[ii + 1 + perm[jj + 1 + perm[kk + 1]]] * 3;
+            t3 *= t3;
+            n3 = t3 * t3 * (grad3[gi3] * x3 + grad3[gi3 + 1] * y3 + grad3[gi3 + 2] * z3);
+        }
+        // Add contributions from each corner to get the final noise value.
+        // The result is scaled to stay just inside [-1,1]
+        return 32.0 * (n0 + n1 + n2 + n3);
+    },
+    // 4D simplex noise, better simplex rank ordering method 2012-03-09
+    noise4D: function (x, y, z, w) {
+        var permMod12 = this.permMod12,
+            perm = this.perm,
+            grad4 = this.grad4;
+
+        var n0, n1, n2, n3, n4; // Noise contributions from the five corners
+        // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
+        var s = (x + y + z + w) * F4; // Factor for 4D skewing
+        var i = Math.floor(x + s);
+        var j = Math.floor(y + s);
+        var k = Math.floor(z + s);
+        var l = Math.floor(w + s);
+        var t = (i + j + k + l) * G4; // Factor for 4D unskewing
+        var X0 = i - t; // Unskew the cell origin back to (x,y,z,w) space
+        var Y0 = j - t;
+        var Z0 = k - t;
+        var W0 = l - t;
+        var x0 = x - X0; // The x,y,z,w distances from the cell origin
+        var y0 = y - Y0;
+        var z0 = z - Z0;
+        var w0 = w - W0;
+        // For the 4D case, the simplex is a 4D shape I won't even try to describe.
+        // To find out which of the 24 possible simplices we're in, we need to
+        // determine the magnitude ordering of x0, y0, z0 and w0.
+        // Six pair-wise comparisons are performed between each possible pair
+        // of the four coordinates, and the results are used to rank the numbers.
+        var rankx = 0;
+        var ranky = 0;
+        var rankz = 0;
+        var rankw = 0;
+        if (x0 > y0) rankx++;
+        else ranky++;
+        if (x0 > z0) rankx++;
+        else rankz++;
+        if (x0 > w0) rankx++;
+        else rankw++;
+        if (y0 > z0) ranky++;
+        else rankz++;
+        if (y0 > w0) ranky++;
+        else rankw++;
+        if (z0 > w0) rankz++;
+        else rankw++;
+        var i1, j1, k1, l1; // The integer offsets for the second simplex corner
+        var i2, j2, k2, l2; // The integer offsets for the third simplex corner
+        var i3, j3, k3, l3; // The integer offsets for the fourth simplex corner
+        // simplex[c] is a 4-vector with the numbers 0, 1, 2 and 3 in some order.
+        // Many values of c will never occur, since e.g. x>y>z>w makes x<z, y<w and x<w
+        // impossible. Only the 24 indices which have non-zero entries make any sense.
+        // We use a thresholding to set the coordinates in turn from the largest magnitude.
+        // Rank 3 denotes the largest coordinate.
+        i1 = rankx >= 3 ? 1 : 0;
+        j1 = ranky >= 3 ? 1 : 0;
+        k1 = rankz >= 3 ? 1 : 0;
+        l1 = rankw >= 3 ? 1 : 0;
+        // Rank 2 denotes the second largest coordinate.
+        i2 = rankx >= 2 ? 1 : 0;
+        j2 = ranky >= 2 ? 1 : 0;
+        k2 = rankz >= 2 ? 1 : 0;
+        l2 = rankw >= 2 ? 1 : 0;
+        // Rank 1 denotes the second smallest coordinate.
+        i3 = rankx >= 1 ? 1 : 0;
+        j3 = ranky >= 1 ? 1 : 0;
+        k3 = rankz >= 1 ? 1 : 0;
+        l3 = rankw >= 1 ? 1 : 0;
+        // The fifth corner has all coordinate offsets = 1, so no need to compute that.
+        var x1 = x0 - i1 + G4; // Offsets for second corner in (x,y,z,w) coords
+        var y1 = y0 - j1 + G4;
+        var z1 = z0 - k1 + G4;
+        var w1 = w0 - l1 + G4;
+        var x2 = x0 - i2 + 2.0 * G4; // Offsets for third corner in (x,y,z,w) coords
+        var y2 = y0 - j2 + 2.0 * G4;
+        var z2 = z0 - k2 + 2.0 * G4;
+        var w2 = w0 - l2 + 2.0 * G4;
+        var x3 = x0 - i3 + 3.0 * G4; // Offsets for fourth corner in (x,y,z,w) coords
+        var y3 = y0 - j3 + 3.0 * G4;
+        var z3 = z0 - k3 + 3.0 * G4;
+        var w3 = w0 - l3 + 3.0 * G4;
+        var x4 = x0 - 1.0 + 4.0 * G4; // Offsets for last corner in (x,y,z,w) coords
+        var y4 = y0 - 1.0 + 4.0 * G4;
+        var z4 = z0 - 1.0 + 4.0 * G4;
+        var w4 = w0 - 1.0 + 4.0 * G4;
+        // Work out the hashed gradient indices of the five simplex corners
+        var ii = i & 255;
+        var jj = j & 255;
+        var kk = k & 255;
+        var ll = l & 255;
+        // Calculate the contribution from the five corners
+        var t0 = 0.6 - x0 * x0 - y0 * y0 - z0 * z0 - w0 * w0;
+        if (t0 < 0) n0 = 0.0;
+        else {
+            var gi0 = (perm[ii + perm[jj + perm[kk + perm[ll]]]] % 32) * 4;
+            t0 *= t0;
+            n0 = t0 * t0 * (grad4[gi0] * x0 + grad4[gi0 + 1] * y0 + grad4[gi0 + 2] * z0 + grad4[gi0 + 3] * w0);
+        }
+        var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1 - w1 * w1;
+        if (t1 < 0) n1 = 0.0;
+        else {
+            var gi1 = (perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32) * 4;
+            t1 *= t1;
+            n1 = t1 * t1 * (grad4[gi1] * x1 + grad4[gi1 + 1] * y1 + grad4[gi1 + 2] * z1 + grad4[gi1 + 3] * w1);
+        }
+        var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2 - w2 * w2;
+        if (t2 < 0) n2 = 0.0;
+        else {
+            var gi2 = (perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32) * 4;
+            t2 *= t2;
+            n2 = t2 * t2 * (grad4[gi2] * x2 + grad4[gi2 + 1] * y2 + grad4[gi2 + 2] * z2 + grad4[gi2 + 3] * w2);
+        }
+        var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3 - w3 * w3;
+        if (t3 < 0) n3 = 0.0;
+        else {
+            var gi3 = (perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32) * 4;
+            t3 *= t3;
+            n3 = t3 * t3 * (grad4[gi3] * x3 + grad4[gi3 + 1] * y3 + grad4[gi3 + 2] * z3 + grad4[gi3 + 3] * w3);
+        }
+        var t4 = 0.6 - x4 * x4 - y4 * y4 - z4 * z4 - w4 * w4;
+        if (t4 < 0) n4 = 0.0;
+        else {
+            var gi4 = (perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32) * 4;
+            t4 *= t4;
+            n4 = t4 * t4 * (grad4[gi4] * x4 + grad4[gi4 + 1] * y4 + grad4[gi4 + 2] * z4 + grad4[gi4 + 3] * w4);
+        }
+        // Sum up and scale the result to cover the range [-1,1]
+        return 27.0 * (n0 + n1 + n2 + n3 + n4);
     }
 
-    for(var i = 0; i < 256; i++) {
-      var v;
-      if (i & 1) {
-        v = p[i] ^ (seed & 255);
-      } else {
-        v = p[i] ^ ((seed>>8) & 255);
-      }
 
-      perm[i] = perm[i + 256] = v;
-      gradP[i] = gradP[i + 256] = grad3[v % 12];
-    }
-  };
+};
 
-  module.seed(0);
+// amd
+if (typeof define !== 'undefined' && define.amd) define(function(){return SimplexNoise;});
+// browser
+else if (typeof window !== 'undefined') window.SimplexNoise = SimplexNoise;
+//common js
+if (typeof exports !== 'undefined') exports.SimplexNoise = SimplexNoise;
+// nodejs
+if (typeof module !== 'undefined') {
+    module.exports = SimplexNoise;
+}
 
-  /*
-  for(var i=0; i<256; i++) {
-    perm[i] = perm[i + 256] = p[i];
-    gradP[i] = gradP[i + 256] = grad3[perm[i] % 12];
-  }*/
+})();
 
-  // Skewing and unskewing factors for 2, 3, and 4 dimensions
-  var F2 = 0.5*(Math.sqrt(3)-1);
-  var G2 = (3-Math.sqrt(3))/6;
-
-  var F3 = 1/3;
-  var G3 = 1/6;
-
-  // 2D simplex noise
-  module.simplex2 = function(xin, yin) {
-    var n0, n1, n2; // Noise contributions from the three corners
-    // Skew the input space to determine which simplex cell we're in
-    var s = (xin+yin)*F2; // Hairy factor for 2D
-    var i = Math.floor(xin+s);
-    var j = Math.floor(yin+s);
-    var t = (i+j)*G2;
-    var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
-    var y0 = yin-j+t;
-    // For the 2D case, the simplex shape is an equilateral triangle.
-    // Determine which simplex we are in.
-    var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
-    if(x0>y0) { // lower triangle, XY order: (0,0)->(1,0)->(1,1)
-      i1=1; j1=0;
-    } else {    // upper triangle, YX order: (0,0)->(0,1)->(1,1)
-      i1=0; j1=1;
-    }
-    // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
-    // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
-    // c = (3-sqrt(3))/6
-    var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
-    var y1 = y0 - j1 + G2;
-    var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
-    var y2 = y0 - 1 + 2 * G2;
-    // Work out the hashed gradient indices of the three simplex corners
-    i &= 255;
-    j &= 255;
-    var gi0 = gradP[i+perm[j]];
-    var gi1 = gradP[i+i1+perm[j+j1]];
-    var gi2 = gradP[i+1+perm[j+1]];
-    // Calculate the contribution from the three corners
-    var t0 = 0.5 - x0*x0-y0*y0;
-    if(t0<0) {
-      n0 = 0;
-    } else {
-      t0 *= t0;
-      n0 = t0 * t0 * gi0.dot2(x0, y0);  // (x,y) of grad3 used for 2D gradient
-    }
-    var t1 = 0.5 - x1*x1-y1*y1;
-    if(t1<0) {
-      n1 = 0;
-    } else {
-      t1 *= t1;
-      n1 = t1 * t1 * gi1.dot2(x1, y1);
-    }
-    var t2 = 0.5 - x2*x2-y2*y2;
-    if(t2<0) {
-      n2 = 0;
-    } else {
-      t2 *= t2;
-      n2 = t2 * t2 * gi2.dot2(x2, y2);
-    }
-    // Add contributions from each corner to get the final noise value.
-    // The result is scaled to return values in the interval [-1,1].
-    return 70 * (n0 + n1 + n2);
-  };
-
-  // 3D simplex noise
-  module.simplex3 = function(xin, yin, zin) {
-    var n0, n1, n2, n3; // Noise contributions from the four corners
-
-    // Skew the input space to determine which simplex cell we're in
-    var s = (xin+yin+zin)*F3; // Hairy factor for 2D
-    var i = Math.floor(xin+s);
-    var j = Math.floor(yin+s);
-    var k = Math.floor(zin+s);
-
-    var t = (i+j+k)*G3;
-    var x0 = xin-i+t; // The x,y distances from the cell origin, unskewed.
-    var y0 = yin-j+t;
-    var z0 = zin-k+t;
-
-    // For the 3D case, the simplex shape is a slightly irregular tetrahedron.
-    // Determine which simplex we are in.
-    var i1, j1, k1; // Offsets for second corner of simplex in (i,j,k) coords
-    var i2, j2, k2; // Offsets for third corner of simplex in (i,j,k) coords
-    if(x0 >= y0) {
-      if(y0 >= z0)      { i1=1; j1=0; k1=0; i2=1; j2=1; k2=0; }
-      else if(x0 >= z0) { i1=1; j1=0; k1=0; i2=1; j2=0; k2=1; }
-      else              { i1=0; j1=0; k1=1; i2=1; j2=0; k2=1; }
-    } else {
-      if(y0 < z0)      { i1=0; j1=0; k1=1; i2=0; j2=1; k2=1; }
-      else if(x0 < z0) { i1=0; j1=1; k1=0; i2=0; j2=1; k2=1; }
-      else             { i1=0; j1=1; k1=0; i2=1; j2=1; k2=0; }
-    }
-    // A step of (1,0,0) in (i,j,k) means a step of (1-c,-c,-c) in (x,y,z),
-    // a step of (0,1,0) in (i,j,k) means a step of (-c,1-c,-c) in (x,y,z), and
-    // a step of (0,0,1) in (i,j,k) means a step of (-c,-c,1-c) in (x,y,z), where
-    // c = 1/6.
-    var x1 = x0 - i1 + G3; // Offsets for second corner
-    var y1 = y0 - j1 + G3;
-    var z1 = z0 - k1 + G3;
-
-    var x2 = x0 - i2 + 2 * G3; // Offsets for third corner
-    var y2 = y0 - j2 + 2 * G3;
-    var z2 = z0 - k2 + 2 * G3;
-
-    var x3 = x0 - 1 + 3 * G3; // Offsets for fourth corner
-    var y3 = y0 - 1 + 3 * G3;
-    var z3 = z0 - 1 + 3 * G3;
-
-    // Work out the hashed gradient indices of the four simplex corners
-    i &= 255;
-    j &= 255;
-    k &= 255;
-    var gi0 = gradP[i+   perm[j+   perm[k   ]]];
-    var gi1 = gradP[i+i1+perm[j+j1+perm[k+k1]]];
-    var gi2 = gradP[i+i2+perm[j+j2+perm[k+k2]]];
-    var gi3 = gradP[i+ 1+perm[j+ 1+perm[k+ 1]]];
-
-    // Calculate the contribution from the four corners
-    var t0 = 0.5 - x0*x0-y0*y0-z0*z0;
-    if(t0<0) {
-      n0 = 0;
-    } else {
-      t0 *= t0;
-      n0 = t0 * t0 * gi0.dot3(x0, y0, z0);  // (x,y) of grad3 used for 2D gradient
-    }
-    var t1 = 0.5 - x1*x1-y1*y1-z1*z1;
-    if(t1<0) {
-      n1 = 0;
-    } else {
-      t1 *= t1;
-      n1 = t1 * t1 * gi1.dot3(x1, y1, z1);
-    }
-    var t2 = 0.5 - x2*x2-y2*y2-z2*z2;
-    if(t2<0) {
-      n2 = 0;
-    } else {
-      t2 *= t2;
-      n2 = t2 * t2 * gi2.dot3(x2, y2, z2);
-    }
-    var t3 = 0.5 - x3*x3-y3*y3-z3*z3;
-    if(t3<0) {
-      n3 = 0;
-    } else {
-      t3 *= t3;
-      n3 = t3 * t3 * gi3.dot3(x3, y3, z3);
-    }
-    // Add contributions from each corner to get the final noise value.
-    // The result is scaled to return values in the interval [-1,1].
-    return 32 * (n0 + n1 + n2 + n3);
-
-  };
-
-  // ##### Perlin noise stuff
-
-  function fade(t) {
-    return t*t*t*(t*(t*6-15)+10);
-  }
-
-  function lerp(a, b, t) {
-    return (1-t)*a + t*b;
-  }
-
-  // 2D Perlin Noise
-  module.perlin2 = function(x, y) {
-    // Find unit grid cell containing point
-    var X = Math.floor(x), Y = Math.floor(y);
-    // Get relative xy coordinates of point within that cell
-    x = x - X; y = y - Y;
-    // Wrap the integer cells at 255 (smaller integer period can be introduced here)
-    X = X & 255; Y = Y & 255;
-
-    // Calculate noise contributions from each of the four corners
-    var n00 = gradP[X+perm[Y]].dot2(x, y);
-    var n01 = gradP[X+perm[Y+1]].dot2(x, y-1);
-    var n10 = gradP[X+1+perm[Y]].dot2(x-1, y);
-    var n11 = gradP[X+1+perm[Y+1]].dot2(x-1, y-1);
-
-    // Compute the fade curve value for x
-    var u = fade(x);
-
-    // Interpolate the four results
-    return lerp(
-        lerp(n00, n10, u),
-        lerp(n01, n11, u),
-       fade(y));
-  };
-
-  // 3D Perlin Noise
-  module.perlin3 = function(x, y, z) {
-    // Find unit grid cell containing point
-    var X = Math.floor(x), Y = Math.floor(y), Z = Math.floor(z);
-    // Get relative xyz coordinates of point within that cell
-    x = x - X; y = y - Y; z = z - Z;
-    // Wrap the integer cells at 255 (smaller integer period can be introduced here)
-    X = X & 255; Y = Y & 255; Z = Z & 255;
-
-    // Calculate noise contributions from each of the eight corners
-    var n000 = gradP[X+  perm[Y+  perm[Z  ]]].dot3(x,   y,     z);
-    var n001 = gradP[X+  perm[Y+  perm[Z+1]]].dot3(x,   y,   z-1);
-    var n010 = gradP[X+  perm[Y+1+perm[Z  ]]].dot3(x,   y-1,   z);
-    var n011 = gradP[X+  perm[Y+1+perm[Z+1]]].dot3(x,   y-1, z-1);
-    var n100 = gradP[X+1+perm[Y+  perm[Z  ]]].dot3(x-1,   y,   z);
-    var n101 = gradP[X+1+perm[Y+  perm[Z+1]]].dot3(x-1,   y, z-1);
-    var n110 = gradP[X+1+perm[Y+1+perm[Z  ]]].dot3(x-1, y-1,   z);
-    var n111 = gradP[X+1+perm[Y+1+perm[Z+1]]].dot3(x-1, y-1, z-1);
-
-    // Compute the fade curve value for x, y, z
-    var u = fade(x);
-    var v = fade(y);
-    var w = fade(z);
-
-    // Interpolate
-    return lerp(
-        lerp(
-          lerp(n000, n100, u),
-          lerp(n001, n101, u), w),
-        lerp(
-          lerp(n010, n110, u),
-          lerp(n011, n111, u), w),
-       v);
-  };
-
-})(typeof module === "undefined" ? this : module.exports);
-},{}],110:[function(require,module,exports){
-module.exports = function (game, opts) {
+},{}],119:[function(require,module,exports){
+module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
     if (opts.leaves === undefined) opts.leaves = 2;
-    if (!opts.height) opts.height = Math.random() * 16 + 4;
+    if (opts.random == undefined) opts.random = function() { return Math.random(); };
+    if (!opts.height) opts.height = opts.random() * 16 + 4;
     if (opts.base === undefined) opts.base = opts.height / 3;
     if (opts.radius === undefined) opts.radius = opts.base;
     if (opts.treetype === undefined) opts.treetype = 1;
-    if (opts.position === undefined) throw "voxel-forest requires position option";
-    if (opts.setBlock === undefined) throw "voxel-forest requires setBlock option";
+    if (opts.position === undefined) throw "voxel-trees requires position option";
+    if (opts.setBlock === undefined) throw "voxel-trees requires setBlock option";
 
     var set = opts.setBlock;
 
-    var pos_ = {
-        x: opts.position.x, 
-        y: opts.position.y, 
-        z: opts.position.z
-    };
-    // clone position so it can be mutated
-    function position () {
-        return {
-            x: pos_.x, 
-            y: pos_.y, 
-            z: pos_.z
-        };
-    }
-   
-    /* TODO: factor out this 'can sustain'/'find solid ground, height map' check
-    var ymax = bounds.y.max * step;
-    var ymin = bounds.y.min * step;
-    if (opts.checkOccupied) {
-        if (occupied(pos_.y)) {
-            for (var y = pos_.y; occupied(y); y += 1);
-            if (y >= ymax) return false;
-            pos_.y = y;
-        }
-        else {
-            for (var y = pos_.y; !occupied(y); y -= 1);
-            if (y <= ymin) return false;
-            pos_.y = y + 1
-        }
-        function occupied (y) {
-            var pos = position();
-            pos.y = y;
-            return y <= ymax && y >= ymin && voxels.voxelAtPosition([pos.x,pos.y,pos.z]);
-        }
-    }
-    */
-    
-    var updated = {};
-    
     function subspacetree() {
         var around = [
         [ 0, 1 ], [ 0, -1 ],
@@ -53551,12 +53801,12 @@ module.exports = function (game, opts) {
         [ -1, 1 ], [ -1, 0 ], [ -1, -1 ]
         ];
         for (var y = 0; y < opts.height - 1; y++) {
-            var pos = position();
+            var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.z};
             pos.y += y
             if (set(pos, opts.bark)) break;
             if (y < opts.base) continue;
             around.forEach(function (offset) {
-                if (Math.random() > 0.5) return;
+                if (opts.random() > 0.5) return;
                 var x = offset[0]
                 var z = offset[1]
                 pos.x += x;
@@ -53573,7 +53823,7 @@ module.exports = function (game, opts) {
             return x*x + y*y + z*z <= r*r;
         }
         for (var y = 0; y < opts.height - 1; y++) {
-            var pos = position();
+            var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.z};
             pos.y += y;
             if (set(pos, opts.bark)) break;
         }
@@ -53598,7 +53848,7 @@ module.exports = function (game, opts) {
         var posstack = [];
         
         var penangle = 0;
-        var pos = position();
+        var pos = {x:opts.position.x, y:opts.position.y, z:opts.position.z};
         pos.y += unitsize * 30;
         function moveForward() {
             var ryaw = penangle * Math.PI/180;
@@ -53722,69 +53972,254 @@ module.exports = function (game, opts) {
         default:
             subspacetree();
     }
-    
-    
-    var pos = position();
-    //pos.y += y;
-    set(pos, opts.leaves);
 };
 
 function regexRules(rules) {
-        var regexrule = '';
-        rules.forEach(function (rule) {
-            if (regexrule != '') {
-                regexrule = regexrule+ '|' ;
-            }
-            regexrule = regexrule+rule[0];
-        });
-        return new RegExp(regexrule, "g");
-    }
+    var regexrule = '';
+    rules.forEach(function (rule) {
+        if (regexrule != '') {
+            regexrule = regexrule+ '|' ;
+        }
+        regexrule = regexrule+rule[0];
+    });
+    return new RegExp(regexrule, "g");
+}
 
 function applyRules(axiom, rules) {
-        function matchRule(match)
-        {
-            for (var i=0;i<rules.length;i++)
-            { 
-                if (rules[i][0] == match) return rules[i][1];
-            }
-            return '';
+    function matchRule(match)
+    {
+        for (var i=0;i<rules.length;i++)
+        { 
+            if (rules[i][0] == match) return rules[i][1];
         }
-        return axiom.replace(regexRules(rules), matchRule);
+        return '';
     }
-        
-function randomChunk (bounds) {
-    var x = Math.random() * (bounds.x.max - bounds.x.min) + bounds.x.min;
-    var y = Math.random() * (bounds.y.max - bounds.y.min) + bounds.y.min;
-    var z = Math.random() * (bounds.z.max - bounds.z.min) + bounds.z.min;
-    return [ x, y, z ].map(Math.floor).join('|');
+    return axiom.replace(regexRules(rules), matchRule);
 }
 
-function boundingChunks (chunks) {
-    return Object.keys(chunks).reduce(function (acc, key) {
-        var s = key.split('|');
-        if (acc.x.min === undefined) acc.x.min = s[0]
-        if (acc.x.max === undefined) acc.x.max = s[0]
-        if (acc.y.min === undefined) acc.y.min = s[1]
-        if (acc.y.max === undefined) acc.y.max = s[1]
-        if (acc.z.min === undefined) acc.z.min = s[2]
-        if (acc.z.max === undefined) acc.z.max = s[2]
-        
-        acc.x.min = Math.min(acc.x.min, s[0]);
-        acc.x.max = Math.max(acc.x.max, s[0]);
-        acc.y.min = Math.min(acc.y.min, s[1]);
-        acc.y.max = Math.max(acc.y.max, s[1]);
-        acc.z.min = Math.min(acc.z.min, s[2]);
-        acc.z.max = Math.max(acc.z.max, s[2]);
-        
-        return acc;
-    }, {
-        x: {}, 
-        y: {}, 
-        z: {}
-    });
+},{}],120:[function(require,module,exports){
+var bundleFn = arguments[3];
+var sources = arguments[4];
+var cache = arguments[5];
+
+var stringify = JSON.stringify;
+
+module.exports = function (fn) {
+    var keys = [];
+    var wkey;
+    var cacheKeys = Object.keys(cache);
+    
+    for (var i = 0, l = cacheKeys.length; i < l; i++) {
+        var key = cacheKeys[i];
+        if (cache[key].exports === fn) {
+            wkey = key;
+            break;
+        }
+    }
+    
+    if (!wkey) {
+        wkey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+        var wcache = {};
+        for (var i = 0, l = cacheKeys.length; i < l; i++) {
+            var key = cacheKeys[i];
+            wcache[key] = key;
+        }
+        sources[wkey] = [
+            Function(['require','module','exports'], '(' + fn + ')(self)'),
+            wcache
+        ];
+    }
+    var skey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+    
+    var scache = {}; scache[wkey] = wkey;
+    sources[skey] = [
+        Function(['require'],'require(' + stringify(wkey) + ')(self)'),
+        scache
+    ];
+    
+    var src = '(' + bundleFn + ')({'
+        + Object.keys(sources).map(function (key) {
+            return stringify(key) + ':['
+                + sources[key][0]
+                + ',' + stringify(sources[key][1]) + ']'
+            ;
+        }).join(',')
+        + '},{},[' + stringify(skey) + '])'
+    ;
+    return new Worker(window.URL.createObjectURL(
+        new Blob([src], { type: 'text/javascript' })
+    ));
+};
+
+},{}],121:[function(require,module,exports){
+var ever = require('ever');
+var createTree = require('voxel-trees');
+var SimplexNoise = require('simplex-noise');
+var Alea = require('alea');
+
+function ChunkGenerator(worker, opts) {
+  this.worker = worker;
+  this.opts = opts;
+
+  var random = this.random = new Alea(this.opts.seed);
+
+  var randomHills = new Alea(random());
+  var randomRoughness = new Alea(random());
+  var randomTrees = new Alea(random());
+
+  this.noiseHills = new SimplexNoise(function() { return randomHills(); });
+  this.noiseRoughness = new SimplexNoise(function() { return randomRoughness(); });
+  this.noiseTrees = new SimplexNoise(function() { return randomTrees(); });
+
+  return this;
+};
+
+// calculate terrain height based on perlin noise 
+// see @maxogden's voxel-perlin-terrain https://github.com/maxogden/voxel-perlin-terrain
+ChunkGenerator.prototype.generateHeightMap = function(position, width) {
+  var startX = position[0] * width;
+  var startY = position[1] * width;
+  var startZ = position[2] * width;
+  var heightMap = new Int8Array(width * width);
+
+  for (var x = startX; x < startX + width; x++) {
+    for (var z = startZ; z < startZ + width; z++) {
+
+      // large scale ruggedness of terrain
+      var roughness = this.noiseRoughness.noise2D(x / this.opts.roughnessScale, z / this.opts.roughnessScale);
+      roughnessTerm = Math.floor(Math.pow(scale(roughness, -1, 1, 0, 2), 5));
+
+      // smaller scale local hills
+      var n = this.noiseHills.noise2D(x / this.opts.hillScale, z / this.opts.hillScale);
+      var y = ~~scale(n, -1, 1, this.opts.crustLower, this.opts.crustUpper + roughnessTerm);
+      if (roughnessTerm < 1) y = this.opts.crustLower; // completely flat ("plains")
+      //y = roughnessFactor; // to debug roughness map
+
+      if (y === this.crustLower || startY < y && y < startY + width) {
+        var xidx = Math.abs((width + x % width) % width);
+        var yidx = Math.abs((width + y % width) % width);
+        var zidx = Math.abs((width + z % width) % width);
+        var idx = xidx + yidx * width + zidx * width * width;
+        heightMap[xidx + zidx * width] = yidx;
+      }
+    }
+  }
+
+  return heightMap;
+};
+
+function scale( x, fromLow, fromHigh, toLow, toHigh ) {
+  return ( x - fromLow ) * ( toHigh - toLow ) / ( fromHigh - fromLow ) + toLow;
 }
 
-},{}],111:[function(require,module,exports){
+ChunkGenerator.prototype.populateChunk = function(x, heightMap, z, voxels) {
+  var width = this.opts.chunkSize;
+
+  // populate chunk with trees TODO: customizable
+
+  // TODO: populate later, so structures can cross chunks??
+  if (this.opts.populateTrees) {
+    var n = this.noiseTrees.noise2D(x, z); // [-1,1]
+
+    if (n < 0) { // not all chunks have trees
+
+      // in middle of chunk for now (until can cross chunks)
+      var dx = width / 2;
+      var dz = width / 2;
+
+      // position at top of surface
+      var y = heightMap[dx + dz * width] + 1;
+
+      var random = new Alea(x*z);
+
+      createTree({ 
+        random: random,
+        bark: this.opts.materials.bark,
+        leaves: this.opts.materials.leaves,
+        position: {x:dx, y:y, z:dz},
+        treetype: 1,
+        setBlock: function (pos, value) {
+          var idx = pos.x + pos.y * width + pos.z * width * width;
+          voxels[idx] = value;
+          return false;  // returning true stops tree
+        }
+      });
+    }
+  }
+};
+
+ChunkGenerator.prototype.generateChunk = function(pos) {
+  var width = this.opts.chunkSize;
+  var voxels = new Int8Array(width * width * width);
+
+  /* to prove this code truly is running asynchronously
+  var i=0;
+  console.log('lag');
+  while(i<1000000000)
+    i++;
+  console.log('lag done');
+  */
+
+  /* to generate only specific chunks for testing
+  var cstr = pos[0] + ',' + pos[2];
+  var okc = [ 
+"-1,-1",
+"0,0"];
+  if (okc.indexOf(cstr) == -1) return;
+  */
+
+  if (pos[1] === 0) {
+    // ground surface level
+    var heightMap = this.generateHeightMap(pos, width);
+
+    for (var x = 0; x < width; ++x) {
+      for (var z = 0; z < width; ++z) {
+        var y = heightMap[x + z * width];
+
+        // dirt with grass on top
+        voxels[x + y * width + z * width * width] = this.opts.materials.grass;
+        while(y-- > 0)
+          voxels[x + y * width + z * width * width] = this.opts.materials.dirt;
+
+      }
+    }
+    // features
+    this.populateChunk(pos[0], heightMap, pos[2], voxels);
+  } else if (pos[1] > 0) {
+    // empty space above ground
+  } else {
+    // below ground
+    // TODO: ores
+    for (var i = 0; i < width * width * width; ++i) {
+      voxels[i] = this.opts.materials.stone;
+    }
+  }
+
+  var chunk = {
+    position: pos,
+    dims: [this.opts.chunkSize, this.opts.chunkSize, this.opts.chunkSize],
+    voxels: voxels
+  }
+
+  this.worker.postMessage({cmd: 'chunkGenerated', chunk:chunk});
+};
+
+module.exports = function() {
+  var gen;
+  ever(this).on('message', function(ev) {
+
+    if (ev.data.cmd === 'configure') {
+      gen = new ChunkGenerator(this, ev.data.opts);
+    } else if (ev.data.cmd === 'generateChunk') {
+      if (gen === undefined) throw "voxel-land web worker error: received 'generateChunk' before 'configure'";
+      gen.generateChunk(ev.data.pos);
+    }
+  });
+};
+
+
+
+},{"alea":114,"ever":115,"simplex-noise":118,"voxel-trees":119}],122:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine,
@@ -54032,7 +54467,7 @@ function boundingChunks (chunks) {
 
 }).call(this);
 
-},{"events":149}],112:[function(require,module,exports){
+},{"events":160}],123:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -54167,7 +54602,7 @@ function Oculus(game, opts) {
     this.enable();
 };
 
-},{}],113:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -54263,7 +54698,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":114}],114:[function(require,module,exports){
+},{"minecraft-skin":125}],125:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -54635,7 +55070,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],115:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
   
 var datgui = require('dat-gui');
@@ -54697,13 +55132,13 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":116}],116:[function(require,module,exports){
+},{"dat-gui":127}],127:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":117,"./vendor/dat.gui":118}],117:[function(require,module,exports){
+},{"./vendor/dat.color":128,"./vendor/dat.gui":129}],128:[function(require,module,exports){
 module.exports=require(4)
-},{}],118:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports=require(5)
-},{}],119:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var EventEmitter = require('events').EventEmitter;
@@ -54722,7 +55157,7 @@ function Plugins(game, opts) {
   this.namePrefix = opts.namePrefix || "voxel-";
 
   // map plugin name to instances
-  this.pluginMap = {};
+  this.all = {};
 
   this.preconfigureOpts = {};
 }
@@ -54759,7 +55194,7 @@ Plugins.prototype.load = function(name, opts) {
   plugin.pluginEnabled = true;
   this.emit('plugin enabled', name);
 
-  this.pluginMap[name] = plugin;
+  this.all[name] = plugin;
 
   console.log("Loaded plugin:",name,plugin);
 
@@ -54778,7 +55213,7 @@ Plugins.prototype.preconfigure = function(name, opts) {
 // Get a loaded plugin instance by name or instance
 Plugins.prototype.get = function(name) {
   if (typeof name === "string")
-    return this.pluginMap[name];
+    return this.all[name];
   else
     // assume it is a plugin instance already, return as-is
     return name;
@@ -54793,7 +55228,7 @@ Plugins.prototype.isEnabled = function(name) {
 Plugins.prototype.isLoaded = function(name) {
   var plugin = this.get(name);
 
-  return !!(plugin && plugin.pluginName && this.pluginMap[plugin.pluginName]);
+  return !!(plugin && plugin.pluginName && this.all[plugin.pluginName]);
 };
 
 // Get list of enabled plugins
@@ -54804,7 +55239,7 @@ Plugins.prototype.list = function() {
 
 // Get list of all plugins
 Plugins.prototype.listAll = function() {
-  return Object.keys(this.pluginMap);
+  return Object.keys(this.all);
 };
 
 
@@ -54827,12 +55262,12 @@ Plugins.prototype.enable = function(name) {
     }
 
     if (plugin.enable) {
-      try {
+      //try {
         plugin.enable();
-      } catch(e) {
+      /*} catch(e) {
         console.log("failed to enable:",plugin,name,e);
         return false;
-      }
+      }*/
     }
     plugin.pluginEnabled = true;
     this.emit('plugin enabled', name);
@@ -54854,12 +55289,12 @@ Plugins.prototype.disable = function(name) {
   }
 
   if (plugin.disable) {
-    try {
+    //try {
       plugin.disable(); 
-    } catch (e) {
+    /*} catch (e) {
       console.log("failed to disable:",plugin,name,e);
       return false;
-    }
+    }*/
   }
 
   plugin.pluginEnabled = false;
@@ -54885,7 +55320,7 @@ Plugins.prototype.unload = function(name) {
     return false;
   }
 
-  if (!this.pluginMap[plugin.pluginName]) {
+  if (!this.all[plugin.pluginName]) {
     console.log("no such plugin to unload: ",plugin);
     return false;
   }
@@ -54893,7 +55328,7 @@ Plugins.prototype.unload = function(name) {
   if (this.isEnabled(plugin))
     this.disable(plugin);
 
-  delete this.pluginMap[plugin.pluginName];
+  delete this.all[plugin.pluginName];
   console.log("unloaded ",plugin);
 
   return true;
@@ -54901,9 +55336,9 @@ Plugins.prototype.unload = function(name) {
 
 inherits(Plugins, EventEmitter);
 
-},{"events":149,"inherits":120}],120:[function(require,module,exports){
-module.exports=require(31)
-},{}],121:[function(require,module,exports){
+},{"events":160,"inherits":131}],131:[function(require,module,exports){
+module.exports=require(36)
+},{}],132:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var ever = require('ever');
@@ -55076,9 +55511,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":149,"ever":6,"inherits":122}],122:[function(require,module,exports){
-module.exports=require(31)
-},{}],123:[function(require,module,exports){
+},{"events":160,"ever":6,"inherits":133}],133:[function(require,module,exports){
+module.exports=require(36)
+},{}],134:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = function(game, opts) {
@@ -55087,6 +55522,7 @@ module.exports = function(game, opts) {
 
 function Registry(game, opts) {
   this.game = game;
+  this.game.registry = this;
 
   this.blockProps = [ {} ];
   this.blockName2ID = { air:0 };
@@ -55171,7 +55607,7 @@ Registry.prototype.isBlock = function(name) {
   return this.blockName2ID[name] !== undefined;
 };
 
-},{}],124:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 
 module.exports = function(game, opts) {
     return new Walk(game, opts)
@@ -55267,7 +55703,7 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],125:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, Modal, PositionalRecipe, Recipe, RecipeLocator, Workbench, WorkbenchDialog, _ref,
@@ -55435,41 +55871,41 @@ Walk.prototype.setAcceleration = function(newA) {
 
 }).call(this);
 
-},{"craftingrecipes":126,"inventory":134,"inventory-window":130,"itempile":138,"voxel-modal":140}],126:[function(require,module,exports){
+},{"craftingrecipes":137,"inventory":145,"inventory-window":141,"itempile":149,"voxel-modal":151}],137:[function(require,module,exports){
 module.exports=require(2)
-},{}],127:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":128,"./types.json":129,"events":149}],128:[function(require,module,exports){
-module.exports=require(7)
-},{}],129:[function(require,module,exports){
-module.exports=require(8)
-},{}],130:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":149,"ever":131}],131:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":132,"./types.json":133,"events":149}],132:[function(require,module,exports){
-module.exports=require(7)
-},{}],133:[function(require,module,exports){
-module.exports=require(8)
-},{}],134:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":135,"events":149,"itempile":136}],135:[function(require,module,exports){
-module.exports=require(14)
-},{}],136:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":137}],137:[function(require,module,exports){
-module.exports=require(14)
 },{}],138:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":139}],139:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(6)
+},{"./init.json":139,"./types.json":140,"events":160}],139:[function(require,module,exports){
+module.exports=require(7)
 },{}],140:[function(require,module,exports){
-arguments[4][99][0].apply(exports,arguments)
-},{"ever":127}],141:[function(require,module,exports){
+module.exports=require(8)
+},{}],141:[function(require,module,exports){
+arguments[4][9][0].apply(exports,arguments)
+},{"events":160,"ever":142}],142:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":143,"./types.json":144,"events":160}],143:[function(require,module,exports){
+module.exports=require(7)
+},{}],144:[function(require,module,exports){
+module.exports=require(8)
+},{}],145:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":146,"events":160,"itempile":147}],146:[function(require,module,exports){
+module.exports=require(14)
+},{}],147:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":148}],148:[function(require,module,exports){
+module.exports=require(14)
+},{}],149:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":150}],150:[function(require,module,exports){
+module.exports=require(14)
+},{}],151:[function(require,module,exports){
+arguments[4][104][0].apply(exports,arguments)
+},{"ever":138}],152:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],142:[function(require,module,exports){
+},{"./index.coffee":1}],153:[function(require,module,exports){
 
 
 //
@@ -55687,7 +56123,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],143:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -55760,7 +56196,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":142,"_stream_readable":145,"_stream_writable":147,"timers":153,"util":154}],144:[function(require,module,exports){
+},{"_shims":153,"_stream_readable":156,"_stream_writable":158,"timers":164,"util":165}],155:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -55803,7 +56239,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":146,"util":154}],145:[function(require,module,exports){
+},{"_stream_transform":157,"util":165}],156:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56724,7 +57160,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":158,"_shims":142,"buffer":156,"events":149,"stream":151,"string_decoder":152,"timers":153,"util":154}],146:[function(require,module,exports){
+},{"__browserify_process":169,"_shims":153,"buffer":167,"events":160,"stream":162,"string_decoder":163,"timers":164,"util":165}],157:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56930,7 +57366,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":143,"util":154}],147:[function(require,module,exports){
+},{"_stream_duplex":154,"util":165}],158:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57300,7 +57736,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":156,"stream":151,"timers":153,"util":154}],148:[function(require,module,exports){
+},{"buffer":167,"stream":162,"timers":164,"util":165}],159:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57617,7 +58053,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":142,"util":154}],149:[function(require,module,exports){
+},{"_shims":153,"util":165}],160:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57898,7 +58334,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":154}],150:[function(require,module,exports){
+},{"util":165}],161:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58109,7 +58545,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":158,"_shims":142,"util":154}],151:[function(require,module,exports){
+},{"__browserify_process":169,"_shims":153,"util":165}],162:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58238,7 +58674,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":143,"_stream_passthrough":144,"_stream_readable":145,"_stream_transform":146,"_stream_writable":147,"events":149,"util":154}],152:[function(require,module,exports){
+},{"_stream_duplex":154,"_stream_passthrough":155,"_stream_readable":156,"_stream_transform":157,"_stream_writable":158,"events":160,"util":165}],163:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58431,7 +58867,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":156}],153:[function(require,module,exports){
+},{"buffer":167}],164:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -58550,7 +58986,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],154:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59095,7 +59531,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":142}],155:[function(require,module,exports){
+},{"_shims":153}],166:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -59181,7 +59617,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],156:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -60307,7 +60743,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":155,"assert":148,"base64-js":157}],157:[function(require,module,exports){
+},{"./buffer_ieee754":166,"assert":159,"base64-js":168}],168:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -60393,7 +60829,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],158:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -60447,5 +60883,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[141])
+},{}]},{},[152])
 ;
