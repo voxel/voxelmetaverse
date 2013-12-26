@@ -18,6 +18,7 @@
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git",
     "voxel-reach": "git://github.com/deathcap/voxel-reach.git",
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git",
+    "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git",
     "voxel-use": "git://github.com/deathcap/voxel-use.git",
     "voxel-debris": "git://github.com/deathcap/voxel-debris.git",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git",

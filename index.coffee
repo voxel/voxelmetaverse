@@ -25,6 +25,7 @@ require 'voxel-player'
 require 'voxel-fly'
 require 'voxel-walk'
 require 'voxel-mine'
+require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-debris'
@@ -271,26 +272,23 @@ module.exports = () ->
   debris.on 'collect', (item) ->
     console.log 'collect', item
 
+  # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
+  plugins.load 'harvest', {
+    mine:mine
+    registry:registry
+    playerInventory:playerInventory,
+    block2ItemPile: (blockName) ->
+      # TODO: use registry? more data-driven
 
-  # block broken after completed mining (from voxel-mine) by holding left-click
-  mine.on 'break', (target) =>
-    if plugins.isEnabled('debris') # TODO: refactor into module itself (event listener)
-      debris(target.voxel, target.value)
-    else
-      game.setBlock target.voxel, 0
+      if blockName == 'grass'
+        return new ItemPile('dirt', 1)
+      if blockName == 'stone'
+        return new ItemPile('cobblestone', 1)
+      if blockName == 'leavesOak'
+        return undefined
 
-    blockName = registry.getBlockName(target.value)
-    droppedPile = new ItemPile(blockName, 1) # TODO: custom drops
-
-    # adds to inventory and refreshes toolbar
-    excess = inventoryHotbar.give droppedPile
-
-    if excess > 0
-      # if didn't fit in inventory, un-mine the block since they can't carry it
-      # TODO: handle partial fits, prevent dupes (canFit before giving?) -- needed once have custom drops
-      game.setBlock target.voxel, target.value
-      # TOOD: some kind of notification
-
+      return new ItemPile(blockName)
+  }
 
   gui = new datgui.GUI()
   console.log 'gui',gui
