@@ -25,6 +25,7 @@ require 'voxel-player'
 require 'voxel-fly'
 require 'voxel-walk'
 require 'voxel-mine'
+require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-debris'
 require 'voxel-debug'
@@ -197,6 +198,7 @@ module.exports = () ->
 
   REACH_DISTANCE = 8
   reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
+  # left-click hold to mine
   mine = game.plugins.load 'mine', {
     reach: reach
     timeToMine: (target) =>
@@ -219,6 +221,13 @@ module.exports = () ->
     progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
   }
+
+  # right-click to place block (etc.)
+  use = game.plugins.load 'use', {
+    reach: reach
+    registry: registry
+    inventoryHotbar: inventoryHotbar
+    }
 
   # highlight blocks when you look at them
   highlight = game.plugins.load 'highlight', {
@@ -255,47 +264,6 @@ module.exports = () ->
       inventoryHotbar.inventory.array = survivalInventoryArray
       inventoryHotbar.refresh()
       console.log 'survival mode'
-
-  # right-click to place block
-  reach.on 'interact', (target) =>
-    if not target
-      console.log 'waving'
-      return
-
-    # TODO: major refactor
-
-    # 1. block interaction
-    if target.voxel? and !game.buttons.crouch
-      clickedBlockID = game.getBlock(target.voxel)
-      clickedBlock = registry.getBlockName(clickedBlockID)
-
-      props = registry.getBlockProps(clickedBlock)
-      if props.onInteract?
-        # this block handles its own interaction
-        # TODO: redesign this? cancelable event?
-        preventDefault = props.onInteract()
-        return if preventDefault
-
-    if registry.isBlock(inventoryHotbar.held()?.item)
-      # 2. place blocks
-
-      # test if can place block here (not blocked by self), before consuming inventory
-      # (note: canCreateBlock + setBlock = createBlock, but we want to check in between)
-      if not game.canCreateBlock target.adjacent
-        console.log 'blocked'
-        return
-
-      taken = inventoryHotbar.takeHeld(1)
-      if not taken?
-        console.log 'nothing in this inventory slot to use'
-        return
-
-      currentBlockID = registry.getBlockID(taken.item)
-      game.setBlock target.adjacent, currentBlockID
-    else
-      # 3. TODO: use items (if !isBlock)
-      # TODO: other interactions depending on item (ex: click button, check target.sub; or other interactive blocks)
-      console.log 'use item',inventoryHotbar.held()
 
   debris = plugins.load 'debris', {power: 1.5}
   plugins.disable 'debris' # lag :(
