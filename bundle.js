@@ -1,5 +1,5 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, PositionalRecipe, Recipe, RecipeLocator, createBindingsUI, createGame, createPlugins, createPluginsUI, createRegistry, datgui, ever, home, _ref;
+var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, PositionalRecipe, Recipe, RecipeLocator, createGame, createPlugins, datgui, ever, home, _ref;
 
 ever = require('ever');
 
@@ -17,11 +17,7 @@ createGame = require('voxel-engine');
 
 createPlugins = require('voxel-plugins');
 
-createPluginsUI = require('voxel-plugins-ui');
-
-createBindingsUI = require('kb-bindings-ui');
-
-createRegistry = require('voxel-registry');
+require('voxel-registry');
 
 require('voxel-workbench');
 
@@ -41,16 +37,22 @@ require('voxel-walk');
 
 require('voxel-mine');
 
+require('voxel-harvest');
+
+require('voxel-use');
+
 require('voxel-reach');
-
-require('voxel-debris');
-
-require('voxel-debug');
 
 require('voxel-land');
 
+require('voxel-debug');
+
+require('voxel-plugins-ui');
+
+require('kb-bindings-ui');
+
 module.exports = function() {
-  var REACH_DISTANCE, ambientLight, avatar, bindingsUI, container, controlsTarget, creativeInventoryArray, debris, debug, directionalLight, game, gui, highlight, inventoryDialog, inventoryHotbar, loadingTime, mine, playerInventory, plugins, pluginsUI, props, reach, registry, survivalInventoryArray, workbenchDialog, _i, _len, _ref1,
+  var REACH_DISTANCE, ambientLight, avatar, container, creativeInventoryArray, directionalLight, game, gui, highlight, inventoryHotbar, loadingTime, playerInventory, plugins, props, recipes, registry, survivalInventoryArray, _i, _len, _ref1,
     _this = this;
   console.log('voxpopuli starting');
   if (window.performance && window.performance.timing) {
@@ -102,92 +104,74 @@ module.exports = function() {
   plugins = createPlugins(game, {
     require: require
   });
-  registry = plugins.load('registry', {});
-  registry.registerBlock('grass', {
-    texture: ['grass_top', 'dirt', 'grass_side'],
-    hardness: 5
-  });
-  registry.registerBlock('dirt', {
-    texture: 'dirt',
-    hardness: 4
-  });
-  registry.registerBlock('stone', {
-    texture: 'stone',
-    hardness: 90
-  });
-  registry.registerBlock('logOak', {
-    texture: ['log_oak_top', 'log_oak_top', 'log_oak'],
-    hardness: 8
-  });
-  registry.registerBlock('cobblestone', {
-    texture: 'cobblestone',
-    hardness: 90
-  });
-  registry.registerBlock('oreCoal', {
-    texture: 'coal_ore'
-  });
-  registry.registerBlock('brick', {
-    texture: 'brick'
-  });
-  registry.registerBlock('obsidian', {
-    texture: 'obsidian',
-    hardness: 900
-  });
-  registry.registerBlock('leavesOak', {
-    texture: 'leaves_oak_opaque',
-    hardness: 2
-  });
-  registry.registerBlock('glass', {
-    texture: 'glass'
-  });
-  registry.registerBlock('plankOak', {
-    texture: 'planks_oak'
-  });
-  registry.registerBlock('logBirch', {
-    texture: ['log_birch_top', 'log_birch_top', 'log_birch'],
-    hardness: 8
-  });
-  registry.registerItem('pickaxeWood', {
-    itemTexture: '../items/wood_pickaxe',
-    speed: 2.0
-  });
-  registry.registerItem('pickaxeDiamond', {
-    itemTexture: '../items/diamond_pickaxe',
-    speed: 10.0
-  });
-  registry.registerItem('stick', {
-    itemTexture: '../items/stick'
-  });
-  registry.recipes = RecipeLocator;
-  registry.thesaurus = CraftingThesaurus;
-  CraftingThesaurus.registerName('wood.log', new ItemPile('logOak'));
-  CraftingThesaurus.registerName('wood.log', new ItemPile('logBirch'));
-  CraftingThesaurus.registerName('wood.plank', new ItemPile('plankOak'));
-  CraftingThesaurus.registerName('tree.leaves', new ItemPile('leavesOak'));
-  RecipeLocator.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
-  RecipeLocator.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
-  RecipeLocator.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
-  RecipeLocator.register(new PositionalRecipe([['tree.leaves', 'tree.leaves', 'tree.leaves'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeDiamond', 1)));
-  playerInventory = new Inventory(10, 5);
-  workbenchDialog = plugins.load('workbench', {
-    playerInventory: playerInventory,
-    registry: registry
-  });
-  game.materials.load(registry.getBlockPropsAll('texture'));
-  global.InventoryWindow_defaultGetTexture = function(itemPile) {
-    return registry.getItemPileTexture(itemPile);
-  };
-  plugins.load('land', {
-    populateTrees: true,
-    materials: {
-      grass: registry.getBlockID('grass'),
-      dirt: registry.getBlockID('dirt'),
-      stone: registry.getBlockID('stone'),
-      bark: registry.getBlockID('logOak'),
-      leaves: registry.getBlockID('leavesOak')
+  plugins.add('voxel-registry', {
+    registerDefaults: function(registry) {
+      registry.registerBlock('grass', {
+        texture: ['grass_top', 'dirt', 'grass_side'],
+        hardness: 5
+      });
+      registry.registerBlock('dirt', {
+        texture: 'dirt',
+        hardness: 4
+      });
+      registry.registerBlock('stone', {
+        texture: 'stone',
+        hardness: 90
+      });
+      registry.registerBlock('logOak', {
+        texture: ['log_oak_top', 'log_oak_top', 'log_oak'],
+        hardness: 8
+      });
+      registry.registerBlock('cobblestone', {
+        texture: 'cobblestone',
+        hardness: 90
+      });
+      registry.registerBlock('oreCoal', {
+        texture: 'coal_ore'
+      });
+      registry.registerBlock('brick', {
+        texture: 'brick'
+      });
+      registry.registerBlock('obsidian', {
+        texture: 'obsidian',
+        hardness: 900
+      });
+      registry.registerBlock('leavesOak', {
+        texture: 'leaves_oak_opaque',
+        hardness: 2
+      });
+      registry.registerBlock('glass', {
+        texture: 'glass'
+      });
+      registry.registerBlock('plankOak', {
+        texture: 'planks_oak'
+      });
+      registry.registerBlock('logBirch', {
+        texture: ['log_birch_top', 'log_birch_top', 'log_birch'],
+        hardness: 8
+      });
+      registry.registerItem('pickaxeWood', {
+        itemTexture: '../items/wood_pickaxe',
+        speed: 2.0
+      });
+      registry.registerItem('pickaxeDiamond', {
+        itemTexture: '../items/diamond_pickaxe',
+        speed: 10.0
+      });
+      return registry.registerItem('stick', {
+        itemTexture: '../items/stick'
+      });
     }
   });
-  plugins.preconfigure('oculus', {
+  plugins.add('craftingrecipes', {});
+  playerInventory = new Inventory(10, 5);
+  plugins.add('voxel-workbench', {
+    playerInventory: playerInventory
+  });
+  plugins.add('voxel-land', {
+    populateTrees: true
+  });
+  plugins.preconfigure('voxel-oculus', {
     distortion: 0.2,
     separation: 0.5
   });
@@ -201,53 +185,37 @@ module.exports = function() {
   if (game.notCapable()) {
     return game;
   }
-  avatar = game.plugins.load('player', {
+  plugins.add('voxel-player', {
     image: 'player.png'
   });
-  avatar.pov('first');
-  avatar.possess();
-  home(avatar);
-  controlsTarget = game.controls.target();
-  game.plugins.load('fly', {
-    physical: controlsTarget,
+  plugins.add('voxel-fly', {
     flySpeed: 0.8
   });
-  game.plugins.disable('fly');
-  game.plugins.load('walk', {
-    skin: controlsTarget.playerSkin,
-    bindGameEvents: true,
-    shouldStopWalking: function() {
-      var vx, vz;
-      vx = Math.abs(controlsTarget.velocity.x);
-      vz = Math.abs(controlsTarget.velocity.z);
-      return vx > 0.001 || vz > 0.001;
-    }
-  });
+  plugins.add('voxel-walk', {});
   game.mode = 'survival';
-  inventoryHotbar = plugins.load('inventory-hotbar', {
+  plugins.add('voxel-inventory-hotbar', {
     inventory: playerInventory,
     inventorySize: 10
   });
-  inventoryDialog = plugins.load('inventory-dialog', {
+  plugins.add('voxel-inventory-dialog', {
     playerInventory: playerInventory
   });
   REACH_DISTANCE = 8;
-  reach = game.plugins.load('reach', {
+  plugins.add('voxel-reach', {
     reachDistance: REACH_DISTANCE
   });
-  mine = game.plugins.load('mine', {
-    reach: reach,
+  plugins.add('voxel-mine', {
     timeToMine: function(target) {
-      var blockID, blockName, finalTimeToMine, hardness, heldItem, speed, _ref1, _ref2, _ref3;
+      var blockID, blockName, finalTimeToMine, hardness, heldItem, speed, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
       blockID = game.getBlock(target.voxel);
-      blockName = registry.getBlockName(blockID);
-      hardness = (_ref1 = registry.getBlockProps(blockName)) != null ? _ref1.hardness : void 0;
+      blockName = (_ref1 = plugins.get('voxel-registry')) != null ? _ref1.getBlockName(blockID) : void 0;
+      hardness = (_ref2 = plugins.get('voxel-registry')) != null ? (_ref3 = _ref2.getBlockProps(blockName)) != null ? _ref3.hardness : void 0 : void 0;
       if (hardness == null) {
         hardness = 9;
       }
-      heldItem = inventoryHotbar.held();
+      heldItem = (_ref4 = plugins.get('voxel-inventory-hotbar')) != null ? _ref4.held() : void 0;
       speed = 1.0;
-      speed = (_ref2 = (_ref3 = registry.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref3.speed : void 0) != null ? _ref2 : 1.0;
+      speed = (_ref5 = (_ref6 = plugins.get('voxel-registry')) != null ? (_ref7 = _ref6.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref7.speed : void 0 : void 0) != null ? _ref5 : 1.0;
       finalTimeToMine = Math.max(hardness / speed, 0);
       return finalTimeToMine;
     },
@@ -255,13 +223,60 @@ module.exports = function() {
     progressTexturesPrefix: 'destroy_stage_',
     progressTexturesCount: 9
   });
-  highlight = game.plugins.load('highlight', {
+  plugins.add('voxel-use', {});
+  plugins.add('voxel-harvest', {
+    playerInventory: playerInventory,
+    block2ItemPile: function(blockName) {
+      if (blockName === 'grass') {
+        return new ItemPile('dirt', 1);
+      }
+      if (blockName === 'stone') {
+        return new ItemPile('cobblestone', 1);
+      }
+      if (blockName === 'leavesOak') {
+        return void 0;
+      }
+      return new ItemPile(blockName);
+    }
+  });
+  highlight = plugins.add('voxel-highlight', {
     color: 0xff0000,
     distance: REACH_DISTANCE,
     adjacentActive: function() {
       return false;
     }
   });
+  gui = new datgui.GUI();
+  plugins.add('voxel-debug', {
+    gui: gui
+  });
+  plugins.add('voxel-plugins-ui', {
+    gui: gui
+  });
+  plugins.add('kb-bindings-ui', {
+    gui: gui,
+    kb: game.buttons
+  });
+  plugins.loadAll();
+  recipes = plugins.get('craftingrecipes');
+  recipes.thesaurus.registerName('wood.log', new ItemPile('logOak'));
+  recipes.thesaurus.registerName('wood.log', new ItemPile('logBirch'));
+  recipes.thesaurus.registerName('wood.plank', new ItemPile('plankOak'));
+  recipes.thesaurus.registerName('tree.leaves', new ItemPile('leavesOak'));
+  recipes.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
+  recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
+  recipes.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
+  recipes.register(new PositionalRecipe([['tree.leaves', 'tree.leaves', 'tree.leaves'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeDiamond', 1)));
+  avatar = plugins.get('voxel-player');
+  avatar.pov('first');
+  avatar.possess();
+  home(avatar);
+  registry = plugins.get('voxel-registry');
+  game.materials.load(registry.getBlockPropsAll('texture'));
+  global.InventoryWindow_defaultGetTexture = function(itemPile) {
+    return registry.getItemPileTexture(itemPile);
+  };
+  plugins.disable('voxel-fly');
   creativeInventoryArray = [];
   _ref1 = registry.blockProps;
   for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
@@ -275,99 +290,40 @@ module.exports = function() {
     return avatar.toggle();
   });
   game.buttons.down.on('vr', function() {
-    return game.plugins.toggle('oculus');
+    return plugins.toggle('voxel-oculus');
   });
   game.buttons.down.on('home', function() {
     return home(avatar);
   });
   game.buttons.down.on('inventory', function() {
-    return inventoryDialog.toggle();
+    var _ref2;
+    return (_ref2 = plugins.get('voxel-inventory-dialog')) != null ? _ref2.toggle() : void 0;
   });
+  inventoryHotbar = plugins.get('voxel-inventory-hotbar');
   game.buttons.down.on('gamemode', function() {
+    var _ref2, _ref3;
     if (game.mode === 'survival') {
       game.mode = 'creative';
-      game.plugins.enable('fly');
-      mine.instaMine = true;
+      plugins.enable('voxel-fly');
+      if ((_ref2 = plugins.get('voxel-mine')) != null) {
+        _ref2.instaMine = true;
+      }
       survivalInventoryArray = inventoryHotbar.inventory.array;
       inventoryHotbar.inventory.array = creativeInventoryArray;
       inventoryHotbar.refresh();
       return console.log('creative mode');
     } else {
       game.mode = 'survival';
-      game.plugins.disable('fly');
-      mine.instaMine = false;
+      plugins.disable('voxel-fly');
+      if ((_ref3 = plugins.get('voxel-mine')) != null) {
+        _ref3.instaMine = false;
+      }
       inventoryHotbar.inventory.array = survivalInventoryArray;
       inventoryHotbar.refresh();
       return console.log('survival mode');
     }
   });
-  reach.on('interact', function(target) {
-    var clickedBlock, clickedBlockID, currentBlockID, preventDefault, taken, _ref2;
-    if (!target) {
-      console.log('waving');
-      return;
-    }
-    if ((target.voxel != null) && !game.buttons.crouch) {
-      clickedBlockID = game.getBlock(target.voxel);
-      clickedBlock = registry.getBlockName(clickedBlockID);
-      props = registry.getBlockProps(clickedBlock);
-      if (props.onInteract != null) {
-        preventDefault = props.onInteract();
-        if (preventDefault) {
-          return;
-        }
-      }
-    }
-    if (registry.isBlock((_ref2 = inventoryHotbar.held()) != null ? _ref2.item : void 0)) {
-      if (!game.canCreateBlock(target.adjacent)) {
-        console.log('blocked');
-        return;
-      }
-      taken = inventoryHotbar.takeHeld(1);
-      if (taken == null) {
-        console.log('nothing in this inventory slot to use');
-        return;
-      }
-      currentBlockID = registry.getBlockID(taken.item);
-      return game.setBlock(target.adjacent, currentBlockID);
-    } else {
-      return console.log('use item', inventoryHotbar.held());
-    }
-  });
-  debris = plugins.load('debris', {
-    power: 1.5
-  });
-  plugins.disable('debris');
-  debris.on('collect', function(item) {
-    return console.log('collect', item);
-  });
-  mine.on('break', function(target) {
-    var blockName, droppedPile, excess;
-    if (plugins.isEnabled('debris')) {
-      debris(target.voxel, target.value);
-    } else {
-      game.setBlock(target.voxel, 0);
-    }
-    blockName = registry.getBlockName(target.value);
-    droppedPile = new ItemPile(blockName, 1);
-    excess = inventoryHotbar.give(droppedPile);
-    if (excess > 0) {
-      return game.setBlock(target.voxel, target.value);
-    }
-  });
-  gui = new datgui.GUI();
-  console.log('gui', gui);
-  debug = plugins.load('debug', {
-    gui: gui
-  });
-  debug.axis([0, 0, 0], 10);
-  pluginsUI = createPluginsUI(game, {
-    gui: gui
-  });
-  bindingsUI = createBindingsUI(game, {
-    gui: gui,
-    kb: game.buttons
-  });
+  plugins.get('voxel-debug').axis([0, 0, 0], 10);
   return game;
 };
 
@@ -376,26 +332,29 @@ home = function(avatar) {
 };
 
 
-},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-debris":24,"voxel-debug":26,"voxel-engine":37,"voxel-fly":81,"voxel-highlight":86,"voxel-inventory-dialog":89,"voxel-inventory-hotbar":105,"voxel-land":113,"voxel-mine":122,"voxel-oculus":123,"voxel-player":124,"voxel-plugins":130,"voxel-plugins-ui":126,"voxel-reach":132,"voxel-registry":134,"voxel-walk":135,"voxel-workbench":136}],2:[function(require,module,exports){
+},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-debug":24,"voxel-engine":35,"voxel-fly":79,"voxel-harvest":84,"voxel-highlight":89,"voxel-inventory-dialog":92,"voxel-inventory-hotbar":107,"voxel-land":115,"voxel-mine":124,"voxel-oculus":125,"voxel-player":126,"voxel-plugins":132,"voxel-plugins-ui":128,"voxel-reach":135,"voxel-registry":137,"voxel-use":138,"voxel-walk":139,"voxel-workbench":140}],2:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeLocator,
+  var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   CraftingThesaurus = (function() {
-    function CraftingThesaurus() {}
+    CraftingThesaurus.instance = void 0;
 
-    CraftingThesaurus.map = {};
+    function CraftingThesaurus() {
+      this.map = {};
+      CraftingThesaurus.instance = this;
+    }
 
-    CraftingThesaurus.registerName = function(lookupName, itemPile) {
-      if (CraftingThesaurus.map[lookupName] == null) {
-        CraftingThesaurus.map[lookupName] = [];
+    CraftingThesaurus.prototype.registerName = function(lookupName, itemPile) {
+      if (this.map[lookupName] == null) {
+        this.map[lookupName] = [];
       }
-      return CraftingThesaurus.map[lookupName].push(itemPile.item);
+      return this.map[lookupName].push(itemPile.item);
     };
 
-    CraftingThesaurus.matchesName = function(lookupName, itemPile) {
+    CraftingThesaurus.prototype.matchesName = function(lookupName, itemPile) {
       var a;
       if (lookupName === void 0 && itemPile === void 0) {
         return true;
@@ -406,7 +365,7 @@ home = function(avatar) {
       if (itemPile.item === lookupName) {
         return true;
       }
-      a = CraftingThesaurus.map[lookupName];
+      a = this.map[lookupName];
       if (a == null) {
         return false;
       }
@@ -448,7 +407,7 @@ home = function(avatar) {
       var i, testIngredient, _i, _len;
       for (i = _i = 0, _len = pendingIngredients.length; _i < _len; i = ++_i) {
         testIngredient = pendingIngredients[i];
-        if (CraftingThesaurus.matchesName(testIngredient, itemPile)) {
+        if (CraftingThesaurus.instance.matchesName(testIngredient, itemPile)) {
           pendingIngredients.splice(i, 1);
           return true;
         }
@@ -518,7 +477,7 @@ home = function(avatar) {
           expectedName = row[j];
           index = j + i * inventory.width;
           actualPile = inventory.get(index);
-          if (!CraftingThesaurus.matchesName(expectedName, actualPile)) {
+          if (!CraftingThesaurus.instance.matchesName(expectedName, actualPile)) {
             console.log('fail match', expectedName, actualPile);
             return void 0;
           }
@@ -553,18 +512,19 @@ home = function(avatar) {
 
   })(Recipe);
 
-  RecipeLocator = (function() {
-    function RecipeLocator() {}
+  RecipeList = (function() {
+    function RecipeList() {
+      this.recipes = [];
+      this.thesaurus = new CraftingThesaurus();
+    }
 
-    RecipeLocator.recipes = [];
-
-    RecipeLocator.register = function(recipe) {
-      return RecipeLocator.recipes.push(recipe);
+    RecipeList.prototype.register = function(recipe) {
+      return this.recipes.push(recipe);
     };
 
-    RecipeLocator.find = function(inventory) {
+    RecipeList.prototype.find = function(inventory) {
       var recipe, _i, _len, _ref;
-      _ref = RecipeLocator.recipes;
+      _ref = this.recipes;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         recipe = _ref[_i];
         if (recipe.computeOutput(inventory) !== void 0) {
@@ -574,9 +534,9 @@ home = function(avatar) {
       return void 0;
     };
 
-    RecipeLocator.craft = function(inventory) {
+    RecipeList.prototype.craft = function(inventory) {
       var output, recipe, _i, _len, _ref;
-      _ref = RecipeLocator.recipes;
+      _ref = this.recipes;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         recipe = _ref[_i];
         output = recipe.craft(inventory);
@@ -587,17 +547,23 @@ home = function(avatar) {
       return void 0;
     };
 
-    return RecipeLocator;
+    return RecipeList;
 
   })();
 
-  module.exports = {
-    Recipe: Recipe,
-    AmorphousRecipe: AmorphousRecipe,
-    PositionalRecipe: PositionalRecipe,
-    CraftingThesaurus: CraftingThesaurus,
-    RecipeLocator: RecipeLocator
+  module.exports = function(game, opts) {
+    return new RecipeList();
   };
+
+  module.exports.Recipe = Recipe;
+
+  module.exports.AmorphousRecipe = AmorphousRecipe;
+
+  module.exports.PositionalRecipe = PositionalRecipe;
+
+  module.exports.CraftingThesaurus = CraftingThesaurus;
+
+  module.exports.RecipeList = RecipeList;
 
 }).call(this);
 
@@ -5133,7 +5099,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":7,"./types.json":8,"events":160}],7:[function(require,module,exports){
+},{"./init.json":7,"./types.json":8,"events":164}],7:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -5510,9 +5476,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 }).call(this);
 
-},{"events":160,"ever":10}],10:[function(require,module,exports){
+},{"events":164,"ever":10}],10:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":11,"./types.json":12,"events":160}],11:[function(require,module,exports){
+},{"./init.json":11,"./types.json":12,"events":164}],11:[function(require,module,exports){
 module.exports=require(7)
 },{}],12:[function(require,module,exports){
 module.exports=require(8)
@@ -5650,7 +5616,7 @@ module.exports=require(8)
 
 }).call(this);
 
-},{"deep-equal":14,"events":160,"itempile":15}],14:[function(require,module,exports){
+},{"deep-equal":14,"events":164,"itempile":15}],14:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var Object_keys = typeof Object.keys === 'function'
     ? Object.keys
@@ -6131,113 +6097,6 @@ for(i = 112; i < 136; ++i) {
 }
 
 },{}],24:[function(require,module,exports){
-var funstance = require('funstance');
-var EventEmitter = require('events').EventEmitter;
-
-module.exports = function (game, opts) {
-    if (!opts) opts = {};
-    if (!opts.limit) opts.limit = function () { return false };
-    if (opts.yield === undefined) opts.yield = 4;
-    if (typeof opts.yield !== 'function') {
-        opts.yield = (function (y) {
-            return function () { return y };
-        })(opts.yield);
-    }
-    
-    if (!opts.expire) opts.expire = {};
-    if (typeof opts.expire === 'number') {
-        opts.expire = { start : opts.expire, end : opts.expire };
-    }
-    if (!opts.expire.start) opts.expire.start = 15 * 1000;
-    if (!opts.expire.end) opts.expire.end = 30 * 1000;
-    if (!opts.power) opts.power = 1
-    
-    game.on('collision', function (item) {
-        if (!item._debris) return;
-        if (opts.limit && opts.limit(item)) return;
-        
-        game.removeItem(item);
-        item._collected = true;
-        em.emit('collect', item);
-    });
-    
-    var em = new EventEmitter;
-    return funstance(em, function (pos) {
-        var value = game.getBlock(pos);
-        if (value === 0) return;
-        game.setBlock(pos, 0);
-        
-        for (var i = 0; i < opts.yield(value); i++) {
-            var item = createDebris(game, pos, value);
-            item.velocity = {
-                x: (Math.random() * 2 - 1) * 0.05 * opts.power,
-                y: (Math.random() * 2 - 1) * 0.05 * opts.power,
-                z: (Math.random() * 2 - 1) * 0.05 * opts.power
-            };
-            game.addItem(item);
-            
-            var time = opts.expire.start + Math.random()
-                * (opts.expire.end - opts.expire.start);
-            
-            setTimeout(function (item) {
-                game.removeItem(item);
-                if (!item._collected) em.emit('expire', item);
-            }, time, item);
-        }
-    });
-}
-
-function createDebris (game, pos, value) {
-    var mesh = new game.THREE.Mesh(
-        new game.THREE.CubeGeometry(0.25, 0.25, 0.25),
-        game.materials.materials[0]
-    );
-    mesh.geometry.faces.forEach(function (face) {
-        face.materialIndex = value - 1
-    });
-    mesh.translateX(pos[0]);
-    mesh.translateY(pos[1]);
-    mesh.translateZ(pos[2]);
-    
-    return {
-        mesh: mesh,
-        size: 0.25,
-        collisionRadius: 22,
-        value: value,
-        _debris: true,
-        velocity: {
-            x: (Math.random() * 2 - 1) * 0.05,
-            y: (Math.random() * 2 - 1) * 0.05,
-            z: (Math.random() * 2 - 1) * 0.05
-        }
-    };
-}
-
-},{"events":160,"funstance":25}],25:[function(require,module,exports){
-module.exports = function (obj, fn) {
-    var f = function () {
-        if (typeof fn !== 'function') return;
-        return fn.apply(obj, arguments);
-    };
-    
-    function C () {}
-    C.prototype = Object.getPrototypeOf(obj);
-    f.__proto__ = new C;
-    
-    Object.getOwnPropertyNames(Function.prototype).forEach(function (key) {
-        if (f[key] === undefined) {
-            f.__proto__[key] = Function.prototype[key];
-        }
-    });
-    
-    Object.getOwnPropertyNames(obj).forEach(function (key) {
-        f[key] = obj[key];
-    });
-    
-    return f;
-};
-
-},{}],26:[function(require,module,exports){
 function Debug(game, opts) {
   if (opts.THREE) game = opts
   this.game = game
@@ -6409,13 +6268,13 @@ Debug.prototype._render = function() {
   });
 }
 
-},{"dat-gui":27,"voxel":31}],27:[function(require,module,exports){
+},{"dat-gui":25,"voxel":29}],25:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":28,"./vendor/dat.gui":29}],28:[function(require,module,exports){
+},{"./vendor/dat.color":26,"./vendor/dat.gui":27}],26:[function(require,module,exports){
 module.exports=require(4)
-},{}],29:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 module.exports=require(5)
-},{}],30:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -6552,7 +6411,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":160,"inherits":36}],31:[function(require,module,exports){
+},{"events":164,"inherits":34}],29:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -6648,7 +6507,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":30,"./meshers/culled":32,"./meshers/greedy":33,"./meshers/monotone":34,"./meshers/stupid":35}],32:[function(require,module,exports){
+},{"./chunker":28,"./meshers/culled":30,"./meshers/greedy":31,"./meshers/monotone":32,"./meshers/stupid":33}],30:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -6700,7 +6559,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],33:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -6817,7 +6676,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],34:[function(require,module,exports){
+},{}],32:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -7070,7 +6929,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],35:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -7106,7 +6965,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],36:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -7137,7 +6996,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],37:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 var process=require("__browserify_process");var voxel = require('voxel')
 var voxelMesh = require('voxel-mesh')
 var ray = require('voxel-raycast')
@@ -7875,7 +7734,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":38,"./lib/stats":39,"__browserify_process":169,"aabb-3d":40,"collide-3d-tilemap":41,"events":160,"gl-matrix":42,"inherits":43,"interact":44,"kb-bindings":53,"path":161,"pin-it":58,"raf":59,"spatial-events":60,"three":62,"tic":63,"voxel":76,"voxel-control":64,"voxel-mesh":65,"voxel-physical":66,"voxel-raycast":67,"voxel-region-change":68,"voxel-texture":69,"voxel-view":74}],38:[function(require,module,exports){
+},{"./lib/detector":36,"./lib/stats":37,"__browserify_process":173,"aabb-3d":38,"collide-3d-tilemap":39,"events":164,"gl-matrix":40,"inherits":41,"interact":42,"kb-bindings":51,"path":165,"pin-it":56,"raf":57,"spatial-events":58,"three":60,"tic":61,"voxel":74,"voxel-control":62,"voxel-mesh":63,"voxel-physical":64,"voxel-raycast":65,"voxel-region-change":66,"voxel-texture":67,"voxel-view":72}],36:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -7936,7 +7795,7 @@ module.exports = function() {
   };
 }
 
-},{}],39:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -8082,7 +7941,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],40:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -8181,7 +8040,7 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":42}],41:[function(require,module,exports){
+},{"gl-matrix":40}],39:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -8270,7 +8129,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],42:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -11343,9 +11202,9 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],43:[function(require,module,exports){
-module.exports=require(36)
-},{}],44:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
+module.exports=require(34)
+},{}],42:[function(require,module,exports){
 var lock = require('pointer-lock')
   , drag = require('drag-stream')
   , full = require('fullscreen')
@@ -11452,7 +11311,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":45,"events":160,"fullscreen":51,"pointer-lock":52,"stream":162}],45:[function(require,module,exports){
+},{"drag-stream":43,"events":164,"fullscreen":49,"pointer-lock":50,"stream":166}],43:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -11520,10 +11379,10 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":46,"stream":162,"through":50}],46:[function(require,module,exports){
+},{"domnode-dom":44,"stream":166,"through":48}],44:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":47}],47:[function(require,module,exports){
+},{"./lib/index":45}],45:[function(require,module,exports){
 var WriteStream = require('./writable')
   , ReadStream = require('./readable')
   , DOMStream = {}
@@ -11561,7 +11420,7 @@ DOMStream.createEventStream = function(el, type, preventDefault) {
 module.exports = DOMStream
 
 
-},{"./readable":48,"./writable":49}],48:[function(require,module,exports){
+},{"./readable":46,"./writable":47}],46:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11670,7 +11529,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":162}],49:[function(require,module,exports){
+},{"stream":166}],47:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11752,7 +11611,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":162}],50:[function(require,module,exports){
+},{"stream":166}],48:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -11852,7 +11711,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":169,"stream":162}],51:[function(require,module,exports){
+},{"__browserify_process":173,"stream":166}],49:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -11943,7 +11802,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":160}],52:[function(require,module,exports){
+},{"events":164}],50:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -12107,7 +11966,7 @@ function shim(el) {
     null
 }
 
-},{"events":160,"stream":162}],53:[function(require,module,exports){
+},{"events":164,"stream":166}],51:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -12233,13 +12092,13 @@ module.exports = function(el, bindings, state, opts) {
   }
 }
 
-},{"events":160,"ever":54,"vkey":57}],54:[function(require,module,exports){
+},{"events":164,"ever":52,"vkey":55}],52:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":55,"./types.json":56,"events":160}],55:[function(require,module,exports){
+},{"./init.json":53,"./types.json":54,"events":164}],53:[function(require,module,exports){
 module.exports=require(7)
-},{}],56:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 module.exports=require(8)
-},{}],57:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -12377,7 +12236,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],58:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -12459,7 +12318,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],59:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -12506,7 +12365,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":160}],60:[function(require,module,exports){
+},{"events":164}],58:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -12638,7 +12497,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":61,"aabb-3d":40}],61:[function(require,module,exports){
+},{"./tree":59,"aabb-3d":38}],59:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -12764,7 +12623,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":40}],62:[function(require,module,exports){
+},{"aabb-3d":38}],60:[function(require,module,exports){
 var self = self || {};/**
  * @author mrdoob / http://mrdoob.com/
  * @author Larry Battle / http://bateru.com/news
@@ -49336,7 +49195,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{}],63:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -49383,7 +49242,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],64:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -49676,7 +49535,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":162}],65:[function(require,module,exports){
+},{"stream":166}],63:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -49827,7 +49686,7 @@ Mesh.prototype.faceVertexUv = function(i) {
 }
 ;
 
-},{"three":62}],66:[function(require,module,exports){
+},{"three":60}],64:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -50046,7 +49905,7 @@ proto.atRestZ = function() {
   return this.resting.z
 }
 
-},{"aabb-3d":40,"three":62}],67:[function(require,module,exports){
+},{"aabb-3d":38,"three":60}],65:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -50268,7 +50127,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],68:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -50296,7 +50155,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":40,"events":160}],69:[function(require,module,exports){
+},{"aabb-3d":38,"events":164}],67:[function(require,module,exports){
 var tic = require('tic')();
 var createAtlas = require('atlaspack');
 var isTransparent = require('opaque').transparent;
@@ -50923,7 +50782,7 @@ function hasSubArray(ar) {
 }
 
 
-},{"atlaspack":70,"opaque":71,"three":62,"tic":72,"voxel-fakeao":73}],70:[function(require,module,exports){
+},{"atlaspack":68,"opaque":69,"three":60,"tic":70,"voxel-fakeao":71}],68:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -51181,7 +51040,7 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],71:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -51211,9 +51070,9 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],72:[function(require,module,exports){
-module.exports=require(63)
-},{}],73:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
+module.exports=require(61)
+},{}],71:[function(require,module,exports){
 module.exports = function(game) {
   var THREE = game.THREE;
   var colorCache = Object.create(null);
@@ -51272,7 +51131,7 @@ module.exports = function(game) {
   return ao;
 };
 
-},{}],74:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -51361,32 +51220,35 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":169}],75:[function(require,module,exports){
+},{"__browserify_process":173}],73:[function(require,module,exports){
+module.exports=require(28)
+},{"events":164,"inherits":41}],74:[function(require,module,exports){
+arguments[4][29][0].apply(exports,arguments)
+},{"./chunker":73,"./meshers/culled":75,"./meshers/greedy":76,"./meshers/monotone":77,"./meshers/stupid":78}],75:[function(require,module,exports){
 module.exports=require(30)
-},{"events":160,"inherits":43}],76:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"./chunker":75,"./meshers/culled":77,"./meshers/greedy":78,"./meshers/monotone":79,"./meshers/stupid":80}],77:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
+module.exports=require(31)
+},{}],77:[function(require,module,exports){
 module.exports=require(32)
 },{}],78:[function(require,module,exports){
 module.exports=require(33)
 },{}],79:[function(require,module,exports){
-module.exports=require(34)
-},{}],80:[function(require,module,exports){
-module.exports=require(35)
-},{}],81:[function(require,module,exports){
 var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
+}
 
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-player'] // for game.controls.target()
 }
 
 function Fly(game, opts) {
   this.game = game
   this.physical = opts.physical
-  if (!this.game || !this.physical) throw "voxel-fly requires game parameter and option 'physical'"
+  if (!this.game) throw 'voxel-fly requires game parameter';
   this.flySpeed = opts.flySpeed || 0.8
 
   this.enable()
@@ -51397,6 +51259,9 @@ Fly.prototype.enable = function() {
   var counter = 0
   var spaceUpAfterFirstDown = false
   var first = Date.now()
+
+  if (!this.physical) this.physical = this.game.controls.target()
+
   ever(document.body)
     .on('keydown', onKeyDown)
     .on('keyup', onKeyUp)
@@ -51475,15 +51340,208 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":160,"ever":82,"vkey":85}],82:[function(require,module,exports){
+},{"events":164,"ever":80,"vkey":83}],80:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":83,"./types.json":84,"events":160}],83:[function(require,module,exports){
+},{"./init.json":81,"./types.json":82,"events":164}],81:[function(require,module,exports){
 module.exports=require(7)
-},{}],84:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 module.exports=require(8)
-},{}],85:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 module.exports=require(23)
-},{}],86:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, Harvest, ItemPile,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  ItemPile = require('ItemPile');
+
+  module.exports = function(game, opts) {
+    return new Harvest(game, opts);
+  };
+
+  module.exports.pluginInfo = {
+    loadAfter: ['voxel-mine', 'voxel-registry']
+  };
+
+  Harvest = (function(_super) {
+    __extends(Harvest, _super);
+
+    function Harvest(game, opts) {
+      var _ref, _ref1, _ref2, _ref3;
+      this.game = game;
+      this.mine = (function() {
+        var _ref1;
+        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-mine') : void 0) != null) {
+          return _ref;
+        } else {
+          throw 'voxel-harvest requires "voxel-mine" plugin';
+        }
+      })();
+      this.registry = (function() {
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-harvest requires "voxel-mine" plugin';
+        }
+      })();
+      this.playerInventory = (function() {
+        if ((_ref2 = opts.playerInventory) != null) {
+          return _ref2;
+        } else {
+          throw 'voxel-harvest requires "playerInventory" option set to inventory instance';
+        }
+      })();
+      this.block2ItemPile = (_ref3 = opts.block2ItemPile) != null ? _ref3 : function(blockName) {
+        return new ItemPile(blockName, 1);
+      };
+      this.enable();
+    }
+
+    Harvest.prototype.enable = function() {
+      var _this = this;
+      return this.mine.on('break', this.onBreak = function(target) {
+        var blockName, droppedPile, excess;
+        game.setBlock(target.voxel, 0);
+        blockName = _this.registry.getBlockName(target.value);
+        droppedPile = _this.block2ItemPile(blockName);
+        if (droppedPile == null) {
+          return;
+        }
+        excess = _this.playerInventory.give(droppedPile);
+        if (excess > 0) {
+          return _this.game.setBlock(target.voxel, target.value);
+        }
+      });
+    };
+
+    Harvest.prototype.disable = function() {
+      return this.mine.removeListener('break', this.onBreak);
+    };
+
+    return Harvest;
+
+  })(EventEmitter);
+
+}).call(this);
+
+},{"ItemPile":85,"events":164}],85:[function(require,module,exports){
+arguments[4][15][0].apply(exports,arguments)
+},{"deep-equal":86}],86:[function(require,module,exports){
+var pSlice = Array.prototype.slice;
+var objectKeys = require('./lib/keys.js');
+var isArguments = require('./lib/is_arguments.js');
+
+var deepEqual = module.exports = function (actual, expected, opts) {
+  if (!opts) opts = {};
+  // 7.1. All identical values are equivalent, as determined by ===.
+  if (actual === expected) {
+    return true;
+
+  } else if (actual instanceof Date && expected instanceof Date) {
+    return actual.getTime() === expected.getTime();
+
+  // 7.3. Other pairs that do not both pass typeof value == 'object',
+  // equivalence is determined by ==.
+  } else if (typeof actual != 'object' && typeof expected != 'object') {
+    return opts.strict ? actual === expected : actual == expected;
+
+  // 7.4. For all other Object pairs, including Array objects, equivalence is
+  // determined by having the same number of owned properties (as verified
+  // with Object.prototype.hasOwnProperty.call), the same set of keys
+  // (although not necessarily the same order), equivalent values for every
+  // corresponding key, and an identical 'prototype' property. Note: this
+  // accounts for both named and indexed properties on Arrays.
+  } else {
+    return objEquiv(actual, expected, opts);
+  }
+}
+
+function isUndefinedOrNull(value) {
+  return value === null || value === undefined;
+}
+
+function objEquiv(a, b, opts) {
+  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
+    return false;
+  // an identical 'prototype' property.
+  if (a.prototype !== b.prototype) return false;
+  //~~~I've managed to break Object.keys through screwy arguments passing.
+  //   Converting to array solves the problem.
+  if (isArguments(a)) {
+    if (!isArguments(b)) {
+      return false;
+    }
+    a = pSlice.call(a);
+    b = pSlice.call(b);
+    return deepEqual(a, b, opts);
+  }
+  try {
+    var ka = objectKeys(a),
+        kb = objectKeys(b),
+        key, i;
+  } catch (e) {//happens when one is a string literal and the other isn't
+    return false;
+  }
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length != kb.length)
+    return false;
+  //the same set of keys (although not necessarily the same order),
+  ka.sort();
+  kb.sort();
+  //~~~cheap key test
+  for (i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] != kb[i])
+      return false;
+  }
+  //equivalent values for every corresponding key, and
+  //~~~possibly expensive deep test
+  for (i = ka.length - 1; i >= 0; i--) {
+    key = ka[i];
+    if (!deepEqual(a[key], b[key], opts)) return false;
+  }
+  return true;
+}
+
+},{"./lib/is_arguments.js":87,"./lib/keys.js":88}],87:[function(require,module,exports){
+var supportsArgumentsClass = (function(){
+  return Object.prototype.toString.call(arguments)
+})() == '[object Arguments]';
+
+exports = module.exports = supportsArgumentsClass ? supported : unsupported;
+
+exports.supported = supported;
+function supported(object) {
+  return Object.prototype.toString.call(object) == '[object Arguments]';
+};
+
+exports.unsupported = unsupported;
+function unsupported(object){
+  return object &&
+    typeof object == 'object' &&
+    typeof object.length == 'number' &&
+    Object.prototype.hasOwnProperty.call(object, 'callee') &&
+    !Object.prototype.propertyIsEnumerable.call(object, 'callee') ||
+    false;
+};
+
+},{}],88:[function(require,module,exports){
+exports = module.exports = typeof Object.keys === 'function'
+  ? Object.keys : shim;
+
+exports.shim = shim;
+function shim (obj) {
+  var keys = [];
+  for (var key in obj) keys.push(key);
+  return keys;
+}
+
+},{}],89:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -51650,9 +51708,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":160,"inherits":87,"underscore":88}],87:[function(require,module,exports){
-module.exports=require(36)
-},{}],88:[function(require,module,exports){
+},{"events":164,"inherits":90,"underscore":91}],90:[function(require,module,exports){
+module.exports=require(34)
+},{}],91:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -52880,10 +52938,10 @@ module.exports=require(36)
 
 }).call(this);
 
-},{}],89:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryDialog, InventoryWindow, ItemPile, Modal, PositionalRecipe, Recipe, RecipeLocator, _ref,
+  var Inventory, InventoryDialog, InventoryWindow, ItemPile, Modal,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -52893,26 +52951,36 @@ module.exports=require(36)
 
   ItemPile = require('itempile');
 
-  _ref = require('craftingrecipes'), Recipe = _ref.Recipe, AmorphousRecipe = _ref.AmorphousRecipe, PositionalRecipe = _ref.PositionalRecipe, CraftingThesaurus = _ref.CraftingThesaurus, RecipeLocator = _ref.RecipeLocator;
-
   Modal = require('voxel-modal');
 
   module.exports = function(game, opts) {
     return new InventoryDialog(game, opts);
   };
 
+  module.exports.pluginInfo = {
+    'loadAfter': ['craftingrecipes']
+  };
+
   InventoryDialog = (function(_super) {
     __extends(InventoryDialog, _super);
 
     function InventoryDialog(game, opts) {
-      var crDiv, craftCont, resultCont, _ref1,
+      var crDiv, craftCont, resultCont, _ref, _ref1,
         _this = this;
       this.game = game;
       this.playerInventory = (function() {
-        if ((_ref1 = opts.playerInventory) != null) {
-          return _ref1;
+        if ((_ref = opts.playerInventory) != null) {
+          return _ref;
         } else {
           throw 'voxel-inventory-dialog requires "playerInventory" set to inventory instance';
+        }
+      })();
+      this.recipes = (function() {
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('craftingrecipes') : void 0) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-inventory-dialog requires "craftingrecipes" plugin';
         }
       })();
       this.playerIW = new InventoryWindow({
@@ -52966,14 +53034,14 @@ module.exports=require(36)
 
     InventoryDialog.prototype.updateCraftingRecipe = function() {
       var recipe;
-      recipe = RecipeLocator.find(this.craftInventory);
+      recipe = this.recipes.find(this.craftInventory);
       console.log('found recipe', recipe);
       return this.resultInventory.set(0, recipe != null ? recipe.computeOutput(this.craftInventory) : void 0);
     };
 
     InventoryDialog.prototype.tookCraftingOutput = function() {
       var recipe;
-      recipe = RecipeLocator.find(this.craftInventory);
+      recipe = this.recipes.find(this.craftInventory);
       if (recipe == null) {
         return;
       }
@@ -52987,35 +53055,33 @@ module.exports=require(36)
 
 }).call(this);
 
-},{"craftingrecipes":90,"inventory":98,"inventory-window":94,"itempile":102,"voxel-modal":104}],90:[function(require,module,exports){
-module.exports=require(2)
-},{}],91:[function(require,module,exports){
+},{"inventory":100,"inventory-window":96,"itempile":104,"voxel-modal":106}],93:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":92,"./types.json":93,"events":160}],92:[function(require,module,exports){
+},{"./init.json":94,"./types.json":95,"events":164}],94:[function(require,module,exports){
 module.exports=require(7)
-},{}],93:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 module.exports=require(8)
-},{}],94:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 arguments[4][9][0].apply(exports,arguments)
-},{"events":160,"ever":95}],95:[function(require,module,exports){
+},{"events":164,"ever":97}],97:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":96,"./types.json":97,"events":160}],96:[function(require,module,exports){
+},{"./init.json":98,"./types.json":99,"events":164}],98:[function(require,module,exports){
 module.exports=require(7)
-},{}],97:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports=require(8)
-},{}],98:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":99,"events":160,"itempile":100}],99:[function(require,module,exports){
-module.exports=require(14)
 },{}],100:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":101}],101:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":101,"events":164,"itempile":102}],101:[function(require,module,exports){
 module.exports=require(14)
 },{}],102:[function(require,module,exports){
 module.exports=require(15)
 },{"deep-equal":103}],103:[function(require,module,exports){
 module.exports=require(14)
 },{}],104:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":105}],105:[function(require,module,exports){
+module.exports=require(14)
+},{}],106:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = Modal;
@@ -53075,7 +53141,7 @@ Modal.prototype.toggle = function() {
     this.open();
 };
 
-},{"ever":91}],105:[function(require,module,exports){
+},{"ever":93}],107:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, InventoryHotbar, InventoryWindow, ever,
@@ -53181,35 +53247,48 @@ Modal.prototype.toggle = function() {
 
 }).call(this);
 
-},{"events":160,"ever":106,"inventory-window":109}],106:[function(require,module,exports){
+},{"events":164,"ever":108,"inventory-window":111}],108:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":107,"./types.json":108,"events":160}],107:[function(require,module,exports){
+},{"./init.json":109,"./types.json":110,"events":164}],109:[function(require,module,exports){
 module.exports=require(7)
-},{}],108:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 module.exports=require(8)
-},{}],109:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 arguments[4][9][0].apply(exports,arguments)
-},{"events":160,"ever":110}],110:[function(require,module,exports){
+},{"events":164,"ever":112}],112:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":111,"./types.json":112,"events":160}],111:[function(require,module,exports){
+},{"./init.json":113,"./types.json":114,"events":164}],113:[function(require,module,exports){
 module.exports=require(7)
-},{}],112:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 module.exports=require(8)
-},{}],113:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var webworkify = require('webworkify');
 
 module.exports = function(game, opts) {
   return new Land(game, opts);
-}
+};
+
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-registry']
+};
 
 function Land(game, opts) {
   this.game = game;
-  opts = opts || {};
 
+  if (!game.plugins || !game.plugins.get('voxel-registry')) throw 'voxel-land requires voxel-registry';
+  var registry = game.plugins.get('voxel-registry');
+
+  opts = opts || {};
   opts.seed = opts.seed || 'foo';
-  opts.materials = opts.materials || {grass: 1, dirt: 2, stone: 3, bark: 4, leaves:9};
+  opts.materials = opts.materials || {  // TODO: how about getting directly instead of having this map here?
+    grass: registry.getBlockID('grass'),
+    dirt: registry.getBlockID('dirt'),
+    stone: registry.getBlockID('stone'),
+    bark: registry.getBlockID('logOak'),
+    leaves: registry.getBlockID('leavesOak')};
+
   opts.crustLower = opts.crustLower === undefined ? 0 : opts.crustLower;
   opts.crustUpper = opts.crustUpper === undefined ? 2 : opts.crustUpper;
   opts.hillScale = opts.hillScale || 20;
@@ -53254,7 +53333,7 @@ Land.prototype.unbindEvents = function() {
   this.game.voxels.removeListener('missingChunk', this.missingChunk);
 };
 
-},{"./worker.js":121,"webworkify":120}],114:[function(require,module,exports){
+},{"./worker.js":123,"webworkify":122}],116:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -53365,13 +53444,13 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],115:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":116,"./types.json":117,"events":160}],116:[function(require,module,exports){
-module.exports=require(7)
 },{}],117:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":118,"./types.json":119,"events":164}],118:[function(require,module,exports){
+module.exports=require(7)
+},{}],119:[function(require,module,exports){
 module.exports=require(8)
-},{}],118:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
  *
@@ -53779,7 +53858,7 @@ if (typeof module !== 'undefined') {
 
 })();
 
-},{}],119:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -53997,7 +54076,7 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],120:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -54051,7 +54130,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],121:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 var ever = require('ever');
 var createTree = require('voxel-trees');
 var SimplexNoise = require('simplex-noise');
@@ -54219,7 +54298,7 @@ module.exports = function() {
 
 
 
-},{"alea":114,"ever":115,"simplex-noise":118,"voxel-trees":119}],122:[function(require,module,exports){
+},{"alea":116,"ever":117,"simplex-noise":120,"voxel-trees":121}],124:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine,
@@ -54230,6 +54309,10 @@ module.exports = function() {
 
   module.exports = function(game, opts) {
     return new Mine(game, opts);
+  };
+
+  module.exports.pluginInfo = {
+    loadAfter: ['voxel-reach']
   };
 
   Mine = (function(_super) {
@@ -54266,10 +54349,11 @@ module.exports = function() {
         };
       }
       this.reach = (function() {
-        if ((_ref = opts.reach) != null) {
+        var _ref1;
+        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-reach') : void 0) != null) {
           return _ref;
         } else {
-          throw "voxel-mine requires 'reach' option set to voxel-reach instance";
+          throw 'voxel-mine requires "voxel-reach" plugin';
         }
       })();
       this.opts = opts;
@@ -54467,7 +54551,7 @@ module.exports = function() {
 
 }).call(this);
 
-},{"events":160}],123:[function(require,module,exports){
+},{"events":164}],125:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -54602,7 +54686,7 @@ function Oculus(game, opts) {
     this.enable();
 };
 
-},{}],124:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -54698,7 +54782,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":125}],125:[function(require,module,exports){
+},{"minecraft-skin":127}],127:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -55070,7 +55154,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],126:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
   
 var datgui = require('dat-gui');
@@ -55132,17 +55216,18 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":127}],127:[function(require,module,exports){
+},{"dat-gui":129}],129:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":128,"./vendor/dat.gui":129}],128:[function(require,module,exports){
+},{"./vendor/dat.color":130,"./vendor/dat.gui":131}],130:[function(require,module,exports){
 module.exports=require(4)
-},{}],129:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports=require(5)
-},{}],130:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var EventEmitter = require('events').EventEmitter;
 var inherits = require('inherits');
+var tsort = require('tsort');
 
 module.exports = function(game, opts) {
   return new Plugins(game, opts);
@@ -55154,24 +55239,37 @@ function Plugins(game, opts) {
 
   opts = opts || {};
   this.require = opts.require || require;
-  this.namePrefix = opts.namePrefix || "voxel-";
 
   // map plugin name to instances
   this.all = {};
 
   this.preconfigureOpts = {};
+  this.graph = tsort();
+
+  // self plugin
+  this.all.plugins = this;
+  this.pluginEnabled = true;
 }
 
-// Loads a plugin instance
-Plugins.prototype.load = function(name, opts) {
+// Require the plugin module and return its factory constructor
+// This does not construct the plugin instance, for that see instantiate()
+Plugins.prototype.scan = function(name) {
+  var createPlugin = this.require(name);   // factory for constructor
+
+  return createPlugin;
+};
+
+// Instantiate a plugin, creating its instance (starts out enabled)
+Plugins.prototype.instantiate = function(name, opts) {
   if (this.get(name)) {
-    console.log("plugin already loaded: ", name);
+    console.log("plugin already constructed: ", name);
     return false;
   }
 
   opts = opts || {};
-  
-  var createPlugin = this.require(this.namePrefix + name);   // factory for constructor
+ 
+  var createPlugin = this.scan(name);
+
   if (!createPlugin) {
     console.log("plugin not found: ",name);
     return false;
@@ -55190,27 +55288,76 @@ Plugins.prototype.load = function(name, opts) {
   plugin.pluginName = name;
   this.emit('new plugin', name);
 
-  // plugins are enabled on load -- assumed constructor calls its own enable() method (if present)
+  // plugins are enabled on instantiation -- assumed constructor calls its own enable() method (if present)
   plugin.pluginEnabled = true;
   this.emit('plugin enabled', name);
 
   this.all[name] = plugin;
 
-  console.log("Loaded plugin:",name,plugin);
+  console.log("Instantiated plugin:",name,plugin);
 
 
   return plugin;
 };
 
 // Mark a plugin for on-demand loading in enable(), with given preconfigured options
+// (The plugin does not have to exist yet)
+// The saved configuration is also used in add(), if available
 Plugins.prototype.preconfigure = function(name, opts) {
   this.preconfigureOpts[name] = opts;
+  
   if (!this.get(name)) 
     this.emit('new plugin', name);
+}
+
+// Add a plugin for loading: scan for ordered loading and preconfigure with given options
+Plugins.prototype.add = function(name, opts) {
+  if (!opts && !this.preconfiguredOpts[name]) throw 'voxel-plugins preload('+name+'): missing required options and not preconfigured';
+
+  var createPlugin = this.scan(name);
+  if (!createPlugin)
+    return false;
+
+  this.buildGraph(createPlugin, name);
+
+  // save options to load with
+  this.preconfigure(name, opts);
+};
+
+Plugins.prototype.buildGraph = function(createPlugin, name) {
+  var loadAfter = [];
+
+  if (createPlugin.pluginInfo) {
+    loadAfter = createPlugin.pluginInfo.loadAfter;
+
+    if (!loadAfter) loadAfter = [];
+  }
+
+  // special 'plugin' us, everything always loads after
+  // (mainly added so all plugins are in the graph, even with empty loadAfter)
+  loadAfter.unshift('plugins');
+
+  // add edges for each plugin required to load before us
+  for (var i = 0; i < loadAfter.length; ++i)
+    this.graph.add(loadAfter[i], name);
+};
+
+// Load add()'d plugins in order sorted by pluginInfo
+Plugins.prototype.loadAll = function() {
+  // topological sort by loadAfter dependency order
+  var sortedPluginNames = this.graph.sort();
+
+  console.log('sortedPluginNames:'+JSON.stringify(sortedPluginNames));
+  for (var i = 0; i < sortedPluginNames.length; ++i) {
+    var name = sortedPluginNames[i];
+
+    if (!this.isEnabled(name))
+      this.enable(name); // will instantiate() since preconfigured
+  }
 };
 
 
-// Get a loaded plugin instance by name or instance
+// Get an instantiated plugin instance by name or instance
 Plugins.prototype.get = function(name) {
   if (typeof name === "string")
     return this.all[name];
@@ -55248,8 +55395,8 @@ Plugins.prototype.enable = function(name) {
 
   if (!plugin) {
     if (this.preconfigureOpts[name]) {
-      // on-demand loading, with prespecified options
-      return this.load(name, this.preconfigureOpts[name]);
+      // on-demand instantiation, with prespecified options
+      return this.instantiate(name, this.preconfigureOpts[name]);
     } else {
       console.log("no such plugin loaded to enable: ",plugin,name);
     }
@@ -55312,7 +55459,7 @@ Plugins.prototype.toggle = function(name) {
   }
 };
 
-Plugins.prototype.unload = function(name) {
+Plugins.prototype.destroy = function(name) {
   var plugin = this.get(name);
 
   if (!plugin) {
@@ -55321,7 +55468,7 @@ Plugins.prototype.unload = function(name) {
   }
 
   if (!this.all[plugin.pluginName]) {
-    console.log("no such plugin to unload: ",plugin);
+    console.log("no such plugin to destroy: ",plugin);
     return false;
   }
 
@@ -55329,16 +55476,90 @@ Plugins.prototype.unload = function(name) {
     this.disable(plugin);
 
   delete this.all[plugin.pluginName];
-  console.log("unloaded ",plugin);
+  console.log("destroyed  ",plugin);
 
   return true;
 };
 
 inherits(Plugins, EventEmitter);
 
-},{"events":160,"inherits":131}],131:[function(require,module,exports){
-module.exports=require(36)
-},{}],132:[function(require,module,exports){
+},{"events":164,"inherits":133,"tsort":134}],133:[function(require,module,exports){
+module.exports=require(34)
+},{}],134:[function(require,module,exports){
+var util = require('util');
+
+module.exports = function tsort(initial) {
+  var graph = new Graph();
+
+  if (initial) {
+    initial.forEach(function(entry) {
+      Graph.prototype.add.apply(graph, entry);
+    });
+  }
+
+  return graph;
+}
+
+function Graph() {
+  this.nodes = {};
+}
+
+// Add sorted items to the graph
+Graph.prototype.add = function() {
+  var self = this;
+  var items = [].slice.call(arguments);
+
+  if (items.length == 1 && util.isArray(items[0]))
+    items = items[0];
+
+  items.forEach(function(item) {
+    if (!self.nodes[item])
+      self.nodes[item] = [];
+  });
+
+  for (var i = 1; i < items.length; i++) {
+    var from = items[i];
+    var to = items[i - 1];
+
+    self.nodes[from].push(to);
+  }
+
+  return self;
+};
+
+// Depth first search
+// As given in http://en.wikipedia.org/wiki/Topological_sorting
+Graph.prototype.sort = function() {
+  var self = this;
+  var nodes = Object.keys(this.nodes);
+
+  var sorted = [];
+  var marks = {};
+
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+
+    if (!marks[node])
+      visit(node);
+  }
+
+  return sorted;
+
+  function visit(node) {
+    if (marks[node] === 'temp')
+      throw new Error("There is a cycle in the graph. It is not possible to derive a topological sort.");
+    else if (marks[node])
+      return;
+
+    marks[node] = 'temp';
+    self.nodes[node].forEach(visit);
+    marks[node] = 'perm';
+
+    sorted.push(node);
+  }
+};
+
+},{"util":169}],135:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var ever = require('ever');
@@ -55347,13 +55568,16 @@ var EventEmitter = require('events').EventEmitter;
 
 module.exports = function(game, opts) {
   return new Reach(game, opts);
-}
+};
+
+module.exports.pluginInfo = {
+};
 
 function Reach(game, opts) {
   this.game = game;
   opts = opts || {};
   opts.reachDistance = opts.reachDistance || 8;
-  opts.mouseButton = opts.mouseButton || 0; // left
+  opts.mouseButton = opts.mouseButton !== undefined ? opts.mouseButton : 0; // left
 
   this.opts = opts;
   this.currentTarget = null;
@@ -55511,9 +55735,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":160,"ever":6,"inherits":133}],133:[function(require,module,exports){
-module.exports=require(36)
-},{}],134:[function(require,module,exports){
+},{"events":164,"ever":6,"inherits":136}],136:[function(require,module,exports){
+module.exports=require(34)
+},{}],137:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = function(game, opts) {
@@ -55528,6 +55752,8 @@ function Registry(game, opts) {
   this.blockName2ID = { air:0 };
 
   this.itemProps = {};
+
+  if (opts.registerDefaults) opts.registerDefaults(this);
 }
 
 Registry.prototype.registerBlock = function(name, props) {
@@ -55607,39 +55833,144 @@ Registry.prototype.isBlock = function(name) {
   return this.blockName2ID[name] !== undefined;
 };
 
-},{}],135:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, Use,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  module.exports = function(game, opts) {
+    return new Use(game, opts);
+  };
+
+  module.exports.pluginInfo = {
+    loadAfter: ['voxel-reach', 'voxel-registry', 'voxel-inventory-hotbar']
+  };
+
+  Use = (function(_super) {
+    __extends(Use, _super);
+
+    function Use(game, opts) {
+      var _ref, _ref1, _ref2;
+      this.game = game;
+      this.reach = (function() {
+        var _ref1;
+        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-reach') : void 0) != null) {
+          return _ref;
+        } else {
+          throw 'voxel-use requires "voxel-reach" plugin';
+        }
+      })();
+      this.registry = (function() {
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-use requires "voxel-registry" plugin';
+        }
+      })();
+      this.inventoryHotbar = (function() {
+        var _ref3;
+        if ((_ref2 = (_ref3 = game.plugins) != null ? _ref3.get('voxel-inventory-hotbar') : void 0) != null) {
+          return _ref2;
+        } else {
+          throw 'voxel-use requires "voxel-inventory-hotbar" plugin';
+        }
+      })();
+      this.enable();
+    }
+
+    Use.prototype.enable = function() {
+      var _this = this;
+      return this.reach.on('interact', this.onInteract = function(target) {
+        var clickedBlock, clickedBlockID, currentBlockID, preventDefault, props, taken, _ref;
+        if (!target) {
+          console.log('waving');
+          return;
+        }
+        if ((target.voxel != null) && !_this.game.buttons.crouch) {
+          clickedBlockID = _this.game.getBlock(target.voxel);
+          clickedBlock = _this.registry.getBlockName(clickedBlockID);
+          props = _this.registry.getBlockProps(clickedBlock);
+          if (props.onInteract != null) {
+            preventDefault = props.onInteract();
+            if (preventDefault) {
+              return;
+            }
+          }
+        }
+        if (_this.registry.isBlock((_ref = _this.inventoryHotbar.held()) != null ? _ref.item : void 0)) {
+          if (!_this.game.canCreateBlock(target.adjacent)) {
+            console.log('blocked');
+            return;
+          }
+          taken = _this.inventoryHotbar.takeHeld(1);
+          if (taken == null) {
+            console.log('nothing in this inventory slot to use');
+            return;
+          }
+          currentBlockID = _this.registry.getBlockID(taken.item);
+          return _this.game.setBlock(target.adjacent, currentBlockID);
+        } else {
+          return console.log('use item', _this.inventoryHotbar.held());
+        }
+      });
+    };
+
+    Use.prototype.disable = function() {
+      return this.reach.removeListener('interact', this.onInteract);
+    };
+
+    return Use;
+
+  })(EventEmitter);
+
+}).call(this);
+
+},{"events":164}],139:[function(require,module,exports){
 
 module.exports = function(game, opts) {
-    return new Walk(game, opts)
+  return new Walk(game, opts)
+}
+
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-player'] // for game.controls.target()
 }
 
 function Walk(game, opts) {
   opts = opts || {}
 
   this.game = game  // note: optional
+  this.controlsTarget = opts.controlsTarget
   this.skin = opts.skin
-  if (!this.skin) throw "voxel-walk requires skin opt"
   this.walkSpeed = opts.walkSpeed || 1.0
   this.startedWalking = 0.0
   this.stoppedWalking = 0.0
   this.walking = false
   this.acceleration = opts.acceleration || 1.0
+  this.walkThreshold = opts.walkThreshold || 0.001
 
-  this.shouldStopWalking = opts.shouldStopWalking
   if (this.game) this.enable()
 }
 
 Walk.prototype.enable = function() {
+  if (!this.controlsTarget && this.game && this.game.controls) this.controlsTarget = this.game.controls.target()
+  if (!this.skin) this.skin = this.controlsTarget.playerSkin
+
+  if (!this.skin) throw 'voxel-walk could not find controlsTarget or skin'
+
   var self = this
 
   function tick() {
+     // TODO: rate-limit? see https://github.com/flyswatter/voxel-walk/issues/3
      self.render()
-     if (self.shouldStopWalking !== undefined) {
-       if (self.shouldStopWalking()) {
-         self.stopWalking() 
-       } else {
-         self.startWalking()
-       }
+     if (self.shouldStopWalking()) {
+       self.stopWalking() 
+     } else {
+       self.startWalking()
      }
   }
 
@@ -55649,6 +55980,12 @@ Walk.prototype.enable = function() {
 
 Walk.prototype.disable = function() {
   this.game.removeListener('tick', this.tick);
+}
+
+Walk.prototype.shouldStopWalking = function() {
+  var vx = Math.abs(this.controlsTarget.velocity.x)
+  var vz = Math.abs(this.controlsTarget.velocity.z)
+  return vx > this.walkThreshold || vz > this.walkThreshold
 }
 
 Walk.prototype.render = function() {
@@ -55703,10 +56040,10 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],136:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, Modal, PositionalRecipe, Recipe, RecipeLocator, Workbench, WorkbenchDialog, _ref,
+  var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, Modal, PositionalRecipe, Recipe, RecipeList, Workbench, WorkbenchDialog, _ref,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
@@ -55718,11 +56055,11 @@ Walk.prototype.setAcceleration = function(newA) {
 
   ItemPile = require('itempile');
 
-  _ref = require('craftingrecipes'), Recipe = _ref.Recipe, AmorphousRecipe = _ref.AmorphousRecipe, PositionalRecipe = _ref.PositionalRecipe, CraftingThesaurus = _ref.CraftingThesaurus, RecipeLocator = _ref.RecipeLocator;
+  _ref = require('craftingrecipes'), Recipe = _ref.Recipe, AmorphousRecipe = _ref.AmorphousRecipe, PositionalRecipe = _ref.PositionalRecipe, CraftingThesaurus = _ref.CraftingThesaurus, RecipeList = _ref.RecipeList;
 
   Workbench = (function() {
     function Workbench(game, opts) {
-      var _ref1, _ref2;
+      var _ref1, _ref2, _ref3;
       this.game = game;
       if (opts == null) {
         opts = {};
@@ -55735,10 +56072,19 @@ Walk.prototype.setAcceleration = function(newA) {
         }
       })();
       this.registry = (function() {
-        if ((_ref2 = opts.registry) != null) {
+        var _ref3;
+        if ((_ref2 = (_ref3 = game.plugins) != null ? _ref3.get('voxel-registry') : void 0) != null) {
           return _ref2;
         } else {
-          throw 'voxel-workbench requires "registry" set to voxel-registry instance';
+          throw 'voxel-workbench requires "voxel-registry" plugin';
+        }
+      })();
+      this.recipes = (function() {
+        var _ref4;
+        if ((_ref3 = (_ref4 = game.plugins) != null ? _ref4.get('craftingrecipes') : void 0) != null) {
+          return _ref3;
+        } else {
+          throw 'voxel-workbench requires "craftingrecipes" plugin';
         }
       })();
       if (opts.registerBlock == null) {
@@ -55747,7 +56093,7 @@ Walk.prototype.setAcceleration = function(newA) {
       if (opts.registerRecipe == null) {
         opts.registerRecipe = true;
       }
-      this.workbenchDialog = new WorkbenchDialog(game, opts);
+      this.workbenchDialog = new WorkbenchDialog(game, this.playerInventory, this.registry, this.recipes);
       this.opts = opts;
       this.enable();
     }
@@ -55764,7 +56110,7 @@ Walk.prototype.setAcceleration = function(newA) {
         });
       }
       if (this.opts.registerRecipe) {
-        return this.registry.recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1)));
+        return this.recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank', 'wood.plank', 'wood.plank'], new ItemPile('workbench', 1)));
       }
     };
 
@@ -55777,27 +56123,13 @@ Walk.prototype.setAcceleration = function(newA) {
   WorkbenchDialog = (function(_super) {
     __extends(WorkbenchDialog, _super);
 
-    function WorkbenchDialog(game, opts) {
-      var crDiv, craftCont, resultCont, _ref1, _ref2,
+    function WorkbenchDialog(game, playerInventory, registry, recipes) {
+      var crDiv, craftCont, resultCont,
         _this = this;
       this.game = game;
-      if (opts == null) {
-        opts = {};
-      }
-      this.playerInventory = (function() {
-        if ((_ref1 = opts.playerInventory) != null) {
-          return _ref1;
-        } else {
-          throw 'voxel-workbench requires "playerInventory" set to inventory instance';
-        }
-      })();
-      this.registry = (function() {
-        if ((_ref2 = opts.registry) != null) {
-          return _ref2;
-        } else {
-          throw 'voxel-workbench requires "registry" set to voxel-registry instance';
-        }
-      })();
+      this.playerInventory = playerInventory;
+      this.registry = registry;
+      this.recipes = recipes;
       this.playerIW = new InventoryWindow({
         width: 10,
         inventory: this.playerInventory
@@ -55846,14 +56178,14 @@ Walk.prototype.setAcceleration = function(newA) {
 
     WorkbenchDialog.prototype.updateCraftingRecipe = function() {
       var recipe;
-      recipe = RecipeLocator.find(this.craftInventory);
+      recipe = this.recipes.find(this.craftInventory);
       console.log('found recipe', recipe);
       return this.resultInventory.set(0, recipe != null ? recipe.computeOutput(this.craftInventory) : void 0);
     };
 
     WorkbenchDialog.prototype.tookCraftingOutput = function() {
       var recipe;
-      recipe = RecipeLocator.find(this.craftInventory);
+      recipe = this.recipes.find(this.craftInventory);
       if (recipe == null) {
         return;
       }
@@ -55869,43 +56201,47 @@ Walk.prototype.setAcceleration = function(newA) {
     return new Workbench(game, opts);
   };
 
+  module.exports.pluginInfo = {
+    loadAfter: ['voxel-registry', 'craftingrecipes']
+  };
+
 }).call(this);
 
-},{"craftingrecipes":137,"inventory":145,"inventory-window":141,"itempile":149,"voxel-modal":151}],137:[function(require,module,exports){
+},{"craftingrecipes":141,"inventory":149,"inventory-window":145,"itempile":153,"voxel-modal":155}],141:[function(require,module,exports){
 module.exports=require(2)
-},{}],138:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":139,"./types.json":140,"events":160}],139:[function(require,module,exports){
-module.exports=require(7)
-},{}],140:[function(require,module,exports){
-module.exports=require(8)
-},{}],141:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":160,"ever":142}],142:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":143,"./types.json":144,"events":160}],143:[function(require,module,exports){
+},{"./init.json":143,"./types.json":144,"events":164}],143:[function(require,module,exports){
 module.exports=require(7)
 },{}],144:[function(require,module,exports){
 module.exports=require(8)
 },{}],145:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":146,"events":160,"itempile":147}],146:[function(require,module,exports){
-module.exports=require(14)
-},{}],147:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":148}],148:[function(require,module,exports){
-module.exports=require(14)
+arguments[4][9][0].apply(exports,arguments)
+},{"events":164,"ever":146}],146:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":147,"./types.json":148,"events":164}],147:[function(require,module,exports){
+module.exports=require(7)
+},{}],148:[function(require,module,exports){
+module.exports=require(8)
 },{}],149:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":150}],150:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":150,"events":164,"itempile":151}],150:[function(require,module,exports){
 module.exports=require(14)
 },{}],151:[function(require,module,exports){
-arguments[4][104][0].apply(exports,arguments)
-},{"ever":138}],152:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":152}],152:[function(require,module,exports){
+module.exports=require(14)
+},{}],153:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":154}],154:[function(require,module,exports){
+module.exports=require(14)
+},{}],155:[function(require,module,exports){
+arguments[4][106][0].apply(exports,arguments)
+},{"ever":142}],156:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],153:[function(require,module,exports){
+},{"./index.coffee":1}],157:[function(require,module,exports){
 
 
 //
@@ -56123,7 +56459,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],154:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56196,7 +56532,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":153,"_stream_readable":156,"_stream_writable":158,"timers":164,"util":165}],155:[function(require,module,exports){
+},{"_shims":157,"_stream_readable":160,"_stream_writable":162,"timers":168,"util":169}],159:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56239,7 +56575,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":157,"util":165}],156:[function(require,module,exports){
+},{"_stream_transform":161,"util":169}],160:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57160,7 +57496,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":169,"_shims":153,"buffer":167,"events":160,"stream":162,"string_decoder":163,"timers":164,"util":165}],157:[function(require,module,exports){
+},{"__browserify_process":173,"_shims":157,"buffer":171,"events":164,"stream":166,"string_decoder":167,"timers":168,"util":169}],161:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57366,7 +57702,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":154,"util":165}],158:[function(require,module,exports){
+},{"_stream_duplex":158,"util":169}],162:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57736,7 +58072,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":167,"stream":162,"timers":164,"util":165}],159:[function(require,module,exports){
+},{"buffer":171,"stream":166,"timers":168,"util":169}],163:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58053,7 +58389,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":153,"util":165}],160:[function(require,module,exports){
+},{"_shims":157,"util":169}],164:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58334,7 +58670,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":165}],161:[function(require,module,exports){
+},{"util":169}],165:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58545,7 +58881,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":169,"_shims":153,"util":165}],162:[function(require,module,exports){
+},{"__browserify_process":173,"_shims":157,"util":169}],166:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58674,7 +59010,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":154,"_stream_passthrough":155,"_stream_readable":156,"_stream_transform":157,"_stream_writable":158,"events":160,"util":165}],163:[function(require,module,exports){
+},{"_stream_duplex":158,"_stream_passthrough":159,"_stream_readable":160,"_stream_transform":161,"_stream_writable":162,"events":164,"util":169}],167:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58867,7 +59203,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":167}],164:[function(require,module,exports){
+},{"buffer":171}],168:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -58986,7 +59322,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],165:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59531,7 +59867,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":153}],166:[function(require,module,exports){
+},{"_shims":157}],170:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -59617,7 +59953,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],167:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -60743,7 +61079,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":166,"assert":159,"base64-js":168}],168:[function(require,module,exports){
+},{"./buffer_ieee754":170,"assert":163,"base64-js":172}],172:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -60829,7 +61165,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],169:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -60883,5 +61219,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[152])
+},{}]},{},[156])
 ;
