@@ -172,14 +172,7 @@ module.exports = () ->
 
   plugins.preload 'fly', {physical: controlsTarget, flySpeed: 0.8}
 
-  plugins.preload 'walk', { 
-    skin: controlsTarget.playerSkin
-    bindGameEvents: true
-    shouldStopWalking: () =>
-      vx = Math.abs(controlsTarget.velocity.x)
-      vz = Math.abs(controlsTarget.velocity.z)
-      return vx > 0.001 || vz > 0.001
-    }
+  plugins.preload 'walk', {controlsTarget: controlsTarget}
 
   game.mode = 'survival'
 
