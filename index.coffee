@@ -90,7 +90,7 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  plugins.preload 'voxel-registry', {registerDefaults: (registry) ->
+  plugins.add 'voxel-registry', {registerDefaults: (registry) ->
     registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
     registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
     registry.registerBlock 'stone', {texture: 'stone', hardness:90}
@@ -111,15 +111,15 @@ module.exports = () ->
   }
 
 
-  plugins.preload 'craftingrecipes', {}
+  plugins.add 'craftingrecipes', {}
 
   playerInventory = new Inventory(10, 5)
 
-  plugins.preload 'voxel-workbench', {playerInventory:playerInventory}
+  plugins.add 'voxel-workbench', {playerInventory:playerInventory}
 
-  plugins.preload 'voxel-land', {populateTrees: true}
+  plugins.add 'voxel-land', {populateTrees: true}
 
-  # note: preconfigure(), not preload(), so doesn't automatically enable
+  # note: preconfigure(), not add(), so doesn't automatically enable
   plugins.preconfigure 'voxel-oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
@@ -135,10 +135,10 @@ module.exports = () ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  plugins.preload 'voxel-player', {image: 'player.png'}
+  plugins.add 'voxel-player', {image: 'player.png'}
 
-  plugins.preload 'voxel-fly', {flySpeed: 0.8}
-  plugins.preload 'voxel-walk', {}
+  plugins.add 'voxel-fly', {flySpeed: 0.8}
+  plugins.add 'voxel-walk', {}
 
   game.mode = 'survival'
 
@@ -147,14 +147,14 @@ module.exports = () ->
   #playerInventory.give new ItemPile('plankOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
   #playerInventory.give new ItemPile('workbench', 1)
-  plugins.preload 'voxel-inventory-hotbar', {inventory:playerInventory, inventorySize:10}
+  plugins.add 'voxel-inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
-  plugins.preload 'voxel-inventory-dialog', {playerInventory:playerInventory}
+  plugins.add 'voxel-inventory-dialog', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
-  plugins.preload 'voxel-reach', { reachDistance: REACH_DISTANCE }
+  plugins.add 'voxel-reach', { reachDistance: REACH_DISTANCE }
   # left-click hold to mine
-  plugins.preload 'voxel-mine', {
+  plugins.add 'voxel-mine', {
     timeToMine: (target) =>
       # the innate difficulty of mining this block
       blockID = game.getBlock(target.voxel)
@@ -177,10 +177,10 @@ module.exports = () ->
   }
 
   # right-click to place block (etc.)
-  plugins.preload 'voxel-use', {}
+  plugins.add 'voxel-use', {}
 
   # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-  plugins.preload 'voxel-harvest', {
+  plugins.add 'voxel-harvest', {
     playerInventory:playerInventory,
     block2ItemPile: (blockName) ->
       # TODO: use registry? more data-driven
@@ -196,7 +196,7 @@ module.exports = () ->
   }
 
   # highlight blocks when you look at them
-  highlight = plugins.preload 'voxel-highlight', {
+  highlight = plugins.add 'voxel-highlight', {
     color:  0xff0000
     distance: REACH_DISTANCE
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
@@ -204,12 +204,12 @@ module.exports = () ->
 
   # the GUI window (built-in toggle with 'H')
   gui = new datgui.GUI()
-  plugins.preload 'voxel-debug', {gui:gui}
-  plugins.preload 'voxel-plugins-ui', {gui:gui}
-  plugins.preload 'kb-bindings-ui', {gui:gui, kb:game.buttons}
+  plugins.add 'voxel-debug', {gui:gui}
+  plugins.add 'voxel-plugins-ui', {gui:gui}
+  plugins.add 'kb-bindings-ui', {gui:gui, kb:game.buttons}
 
 
-  plugins.loadOrderly()
+  plugins.loadAll()
   ## plugins are loaded from here on out ##
 
   # recipes
