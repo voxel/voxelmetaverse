@@ -20,7 +20,6 @@
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git",
     "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git",
     "voxel-use": "git://github.com/deathcap/voxel-use.git",
-    "voxel-debris": "git://github.com/deathcap/voxel-debris.git",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git",
     "voxel-inventory-hotbar": "git://github.com/deathcap/voxel-inventory-hotbar.git",
     "voxel-inventory-dialog": "git://github.com/deathcap/voxel-inventory-dialog.git",

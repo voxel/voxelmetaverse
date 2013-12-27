@@ -28,7 +28,6 @@ require 'voxel-mine'
 require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
-require 'voxel-debris'
 require 'voxel-debug'
 require 'voxel-land'
 
@@ -278,13 +277,6 @@ module.exports = () ->
       inventoryHotbar.inventory.array = survivalInventoryArray
       inventoryHotbar.refresh()
       console.log 'survival mode'
-
-  # TODO: remove
-  debris = plugins.load 'debris', {power: 1.5}
-  plugins.disable 'debris' # lag :(
-
-  debris.on 'collect', (item) ->
-    console.log 'collect', item
 
   gui = new datgui.GUI()
   console.log 'gui',gui
