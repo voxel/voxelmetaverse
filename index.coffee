@@ -132,14 +132,9 @@ module.exports = () ->
 
   playerInventory = new Inventory(10, 5)
 
-  # workbench - adds its own block (call before game.materials.load) and recipe
-  workbenchDialog = plugins.load 'workbench', {playerInventory:playerInventory, registry:registry}
+  plugins.preload 'workbench', {playerInventory:playerInventory}
 
-
-  game.materials.load registry.getBlockPropsAll 'texture'
-  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
-
-  plugins.load 'land', {
+  plugins.preload 'land', {
     populateTrees: true
     materials: {  # TODO: refactor
       grass: registry.getBlockID 'grass'
@@ -150,13 +145,15 @@ module.exports = () ->
     }
   }
 
-  plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 }
+  # note: preconfigure()'d, not preload()'d, so doesn't automatically enable
+  plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
     plugins.enable 'oculus'
     document.getElementById('logo').style.visibility = 'hidden'
 
+  # TODO: does this belong here?
   container = document.body
   window.game = window.g = game # for debugging
   game.appendTo container
@@ -164,17 +161,18 @@ module.exports = () ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  avatar = game.plugins.load 'player', {image: 'player.png'}
+  plugins.load 'player', {image: 'player.png'}  # TODO: preload, but problem is, possess() sets game.controls.target(), and voxel-fly and voxel-walk need it
+
+  avatar = plugins.all.player
   avatar.pov('first');
   avatar.possess()
   home(avatar)
 
   controlsTarget = game.controls.target()
 
-  game.plugins.load 'fly', {physical: controlsTarget, flySpeed: 0.8}
-  game.plugins.disable 'fly'
+  plugins.preload 'fly', {physical: controlsTarget, flySpeed: 0.8}
 
-  game.plugins.load 'walk', { 
+  plugins.preload 'walk', { 
     skin: controlsTarget.playerSkin
     bindGameEvents: true
     shouldStopWalking: () =>
@@ -192,9 +190,9 @@ module.exports = () ->
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
-  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
+  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10} # TODO: change to preload, but timeToMine below references it
 
-  inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory}
+  plugins.preload 'inventory-dialog', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
   plugins.preload 'reach', { reachDistance: REACH_DISTANCE }
@@ -222,7 +220,7 @@ module.exports = () ->
   }
 
   # right-click to place block (etc.)
-  game.plugins.preload 'use', {}
+  plugins.preload 'use', {}
 
   # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
   plugins.preload 'harvest', {
@@ -240,14 +238,21 @@ module.exports = () ->
       return new ItemPile(blockName)
   }
 
-  game.plugins.loadOrderly()
-
   # highlight blocks when you look at them
-  highlight = game.plugins.load 'highlight', {
+  highlight = plugins.preload 'highlight', {
     color:  0xff0000
     distance: REACH_DISTANCE
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
+
+  plugins.loadOrderly()
+  ## plugins are loaded from here on out ##
+
+  # load textures after all plugins loaded (since they may add their own)
+  game.materials.load registry.getBlockPropsAll 'texture'
+  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
+
+  plugins.disable 'fly'
 
   # one of everything, please..
   creativeInventoryArray = []
@@ -257,23 +262,23 @@ module.exports = () ->
   survivalInventoryArray = []
 
   game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
-  game.buttons.down.on 'vr', () -> game.plugins.toggle 'oculus'
+  game.buttons.down.on 'vr', () -> plugins.toggle 'oculus'
   game.buttons.down.on 'home', () -> home(avatar)
-  game.buttons.down.on 'inventory', () -> inventoryDialog.toggle()
+  game.buttons.down.on 'inventory', () -> plugins.all['inventory-dialog']?.toggle()
   game.buttons.down.on 'gamemode', () ->
     # TODO: add gamemode event? for plugins to handle instead of us
     if game.mode == 'survival'
       game.mode = 'creative'
-      game.plugins.enable 'fly'
-      mine.instaMine = true
+      plugins.enable 'fly'
+      plugins.all.mine?.instaMine = true
       survivalInventoryArray = inventoryHotbar.inventory.array
       inventoryHotbar.inventory.array = creativeInventoryArray
       inventoryHotbar.refresh()
       console.log 'creative mode'
     else
       game.mode = 'survival'
-      game.plugins.disable 'fly'
-      mine.instaMine = false
+      plugins.disable 'fly'
+      plugins.all.mine?.instaMine = false
       inventoryHotbar.inventory.array = survivalInventoryArray
       inventoryHotbar.refresh()
       console.log 'survival mode'
