@@ -10,13 +10,9 @@ InventoryWindow = require 'inventory-window'
 
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
-createDebugUI = require 'voxel-debug'
-createPluginsUI = require 'voxel-plugins-ui'
-createBindingsUI = require 'kb-bindings-ui'
-
-createRegistry = require 'voxel-registry'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-registry'
 require 'voxel-workbench'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-dialog'
@@ -30,6 +26,10 @@ require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-land'
+
+require 'voxel-debug'
+require 'voxel-plugins-ui'
+require 'kb-bindings-ui'
 
 module.exports = () ->
   console.log 'voxpopuli starting'
@@ -90,7 +90,7 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  registry = plugins.load 'registry', {}
+  registry = plugins.load 'registry', {} # TODO
   registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
   registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
   registry.registerBlock 'stone', {texture: 'stone', hardness:90}
@@ -245,6 +245,13 @@ module.exports = () ->
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
   }
 
+  # the GUI window (built-in toggle with 'H')
+  gui = new datgui.GUI()
+  plugins.preload 'debug', {gui:gui}
+  plugins.preload 'plugins-ui', {gui:gui}
+  plugins.preload '!kb-bindings-ui', {gui:gui, kb:game.buttons}
+
+
   plugins.loadOrderly()
   ## plugins are loaded from here on out ##
 
@@ -283,13 +290,9 @@ module.exports = () ->
       inventoryHotbar.refresh()
       console.log 'survival mode'
 
-  # the GUI window (built-in toggle with 'H')
-  # TODO: should these load as plugins? or not? who 'owns' the datgui object?
-  gui = new datgui.GUI()
-  debug = createDebugUI game, {gui:gui}
-  debug.axis [0, 0, 0], 10
-  pluginsUI = createPluginsUI game, {gui: gui}
-  bindingsUI = createBindingsUI game, {gui: gui, kb: game.buttons}
+
+  # show origin 
+  plugins.all.debug?.axis [0, 0, 0], 10
 
   return game
 
