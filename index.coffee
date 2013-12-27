@@ -10,6 +10,7 @@ InventoryWindow = require 'inventory-window'
 
 createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
+createDebugUI = require 'voxel-debug'
 createPluginsUI = require 'voxel-plugins-ui'
 createBindingsUI = require 'kb-bindings-ui'
 
@@ -28,7 +29,6 @@ require 'voxel-mine'
 require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
-require 'voxel-debug'
 require 'voxel-land'
 
 module.exports = () ->
@@ -145,7 +145,7 @@ module.exports = () ->
     }
   }
 
-  # note: preconfigure()'d, not preload()'d, so doesn't automatically enable
+  # note: preconfigure(), not preload(), so doesn't automatically enable
   plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
@@ -190,7 +190,7 @@ module.exports = () ->
   #playerInventory.give new ItemPile('workbench', 1)
   #toolbar = createToolbar {el: '#tools'}
   #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
-  inventoryHotbar = plugins.load 'inventory-hotbar', {inventory:playerInventory, inventorySize:10} # TODO: change to preload, but timeToMine below references it
+  plugins.preload 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
   plugins.preload 'inventory-dialog', {playerInventory:playerInventory}
 
@@ -206,7 +206,7 @@ module.exports = () ->
       hardness ?= 9
 
       # effectiveness of currently held tool, shortens mining time
-      heldItem = inventoryHotbar.held()
+      heldItem = plugins.all['inventory-hotbar']?.held()
       speed = 1.0
       speed = registry.getItemProps(heldItem?.item)?.speed ? 1.0
       finalTimeToMine = Math.max(hardness / speed, 0)
@@ -283,11 +283,11 @@ module.exports = () ->
       inventoryHotbar.refresh()
       console.log 'survival mode'
 
+  # the GUI window (built-in toggle with 'H')
+  # TODO: should these load as plugins? or not? who 'owns' the datgui object?
   gui = new datgui.GUI()
-  console.log 'gui',gui
-  debug = plugins.load 'debug', {gui: gui}
+  debug = createDebugUI game, {gui:gui}
   debug.axis [0, 0, 0], 10
-
   pluginsUI = createPluginsUI game, {gui: gui}
   bindingsUI = createBindingsUI game, {gui: gui, kb: game.buttons}
 
