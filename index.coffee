@@ -172,7 +172,7 @@ module.exports = () ->
 
   plugins.preload 'fly', {physical: controlsTarget, flySpeed: 0.8}
 
-  plugins.preload 'walk', {controlsTarget: controlsTarget}
+  plugins.preload 'walk', {}
 
   game.mode = 'survival'
 
