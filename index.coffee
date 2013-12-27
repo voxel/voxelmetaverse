@@ -161,12 +161,7 @@ module.exports = () ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  plugins.load 'player', {image: 'player.png'}  # TODO: preload, but problem is, possess() sets game.controls.target(), and voxel-fly and voxel-walk need it
-
-  avatar = plugins.all.player
-  avatar.pov('first');
-  avatar.possess()
-  home(avatar)
+  plugins.preload 'player', {image: 'player.png'}
 
   plugins.preload 'fly', {flySpeed: 0.8}
   plugins.preload 'walk', {}
@@ -178,8 +173,6 @@ module.exports = () ->
   #playerInventory.give new ItemPile('plankOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
   #playerInventory.give new ItemPile('workbench', 1)
-  #toolbar = createToolbar {el: '#tools'}
-  #inventoryToolbar = plugins.load 'inventory-toolbar', {toolbar:toolbar, inventory:playerInventory, inventorySize:10, registry:registry}
   plugins.preload 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
   plugins.preload 'inventory-dialog', {playerInventory:playerInventory}
@@ -244,6 +237,13 @@ module.exports = () ->
 
   plugins.loadOrderly()
   ## plugins are loaded from here on out ##
+
+
+
+  avatar = plugins.all.player
+  avatar.pov('first');
+  avatar.possess()
+  home(avatar)
 
   # load textures after all plugins loaded (since they may add their own)
   game.materials.load registry.getBlockPropsAll 'texture'
