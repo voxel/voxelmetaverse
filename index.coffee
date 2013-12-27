@@ -198,10 +198,9 @@ module.exports = () ->
   inventoryDialog = plugins.load 'inventory-dialog', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
-  reach = game.plugins.load 'reach', { reachDistance: REACH_DISTANCE }
+  plugins.preload 'reach', { reachDistance: REACH_DISTANCE }
   # left-click hold to mine
-  mine = game.plugins.load 'mine', {
-    reach: reach
+  plugins.preload 'mine', {
     timeToMine: (target) =>
       # the innate difficulty of mining this block
       blockID = game.getBlock(target.voxel)
@@ -224,11 +223,25 @@ module.exports = () ->
   }
 
   # right-click to place block (etc.)
-  use = game.plugins.load 'use', {
-    reach: reach
-    registry: registry
-    inventoryHotbar: inventoryHotbar
-    }
+  game.plugins.preload 'use', {}
+
+  # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
+  plugins.preload 'harvest', {
+    playerInventory:playerInventory,
+    block2ItemPile: (blockName) ->
+      # TODO: use registry? more data-driven
+
+      if blockName == 'grass'
+        return new ItemPile('dirt', 1)
+      if blockName == 'stone'
+        return new ItemPile('cobblestone', 1)
+      if blockName == 'leavesOak'
+        return undefined
+
+      return new ItemPile(blockName)
+  }
+
+  game.plugins.loadOrderly()
 
   # highlight blocks when you look at them
   highlight = game.plugins.load 'highlight', {
@@ -266,29 +279,12 @@ module.exports = () ->
       inventoryHotbar.refresh()
       console.log 'survival mode'
 
+  # TODO: remove
   debris = plugins.load 'debris', {power: 1.5}
   plugins.disable 'debris' # lag :(
 
   debris.on 'collect', (item) ->
     console.log 'collect', item
-
-  # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-  plugins.load 'harvest', {
-    mine:mine
-    registry:registry
-    playerInventory:playerInventory,
-    block2ItemPile: (blockName) ->
-      # TODO: use registry? more data-driven
-
-      if blockName == 'grass'
-        return new ItemPile('dirt', 1)
-      if blockName == 'stone'
-        return new ItemPile('cobblestone', 1)
-      if blockName == 'leavesOak'
-        return undefined
-
-      return new ItemPile(blockName)
-  }
 
   gui = new datgui.GUI()
   console.log 'gui',gui
