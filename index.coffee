@@ -90,7 +90,7 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  plugins.preload 'registry', {registerDefaults: (registry) ->
+  plugins.preload 'voxel-registry', {registerDefaults: (registry) ->
     registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
     registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
     registry.registerBlock 'stone', {texture: 'stone', hardness:90}
@@ -111,16 +111,16 @@ module.exports = () ->
   }
 
 
-  plugins.preload '!craftingrecipes', {}
+  plugins.preload 'craftingrecipes', {}
 
   playerInventory = new Inventory(10, 5)
 
-  plugins.preload 'workbench', {playerInventory:playerInventory}
+  plugins.preload 'voxel-workbench', {playerInventory:playerInventory}
 
-  plugins.preload 'land', {populateTrees: true}
+  plugins.preload 'voxel-land', {populateTrees: true}
 
   # note: preconfigure(), not preload(), so doesn't automatically enable
-  plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
+  plugins.preconfigure 'voxel-oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
@@ -135,10 +135,10 @@ module.exports = () ->
 
   # create the player from a minecraft skin file and tell the
   # game to use it as the main player
-  plugins.preload 'player', {image: 'player.png'}
+  plugins.preload 'voxel-player', {image: 'player.png'}
 
-  plugins.preload 'fly', {flySpeed: 0.8}
-  plugins.preload 'walk', {}
+  plugins.preload 'voxel-fly', {flySpeed: 0.8}
+  plugins.preload 'voxel-walk', {}
 
   game.mode = 'survival'
 
@@ -147,25 +147,25 @@ module.exports = () ->
   #playerInventory.give new ItemPile('plankOak', 10)
   #playerInventory.give new ItemPile('logBirch', 5)
   #playerInventory.give new ItemPile('workbench', 1)
-  plugins.preload 'inventory-hotbar', {inventory:playerInventory, inventorySize:10}
+  plugins.preload 'voxel-inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
-  plugins.preload 'inventory-dialog', {playerInventory:playerInventory}
+  plugins.preload 'voxel-inventory-dialog', {playerInventory:playerInventory}
 
   REACH_DISTANCE = 8
-  plugins.preload 'reach', { reachDistance: REACH_DISTANCE }
+  plugins.preload 'voxel-reach', { reachDistance: REACH_DISTANCE }
   # left-click hold to mine
-  plugins.preload 'mine', {
+  plugins.preload 'voxel-mine', {
     timeToMine: (target) =>
       # the innate difficulty of mining this block
       blockID = game.getBlock(target.voxel)
-      blockName = plugins.all.registry?.getBlockName(blockID)
-      hardness = plugins.all.registry?.getBlockProps(blockName)?.hardness
+      blockName = plugins.get('voxel-registry')?.getBlockName(blockID)
+      hardness = plugins.get('voxel-registry')?.getBlockProps(blockName)?.hardness
       hardness ?= 9
 
       # effectiveness of currently held tool, shortens mining time
-      heldItem = plugins.all['inventory-hotbar']?.held()
+      heldItem = plugins.get('voxel-inventory-hotbar')?.held()
       speed = 1.0
-      speed = plugins.all.registry?.getItemProps(heldItem?.item)?.speed ? 1.0
+      speed = plugins.get('voxel-registry')?.getItemProps(heldItem?.item)?.speed ? 1.0
       finalTimeToMine = Math.max(hardness / speed, 0)
       # TODO: more complex mining 'classes', e.g. shovel against dirt, axe against wood
 
@@ -177,10 +177,10 @@ module.exports = () ->
   }
 
   # right-click to place block (etc.)
-  plugins.preload 'use', {}
+  plugins.preload 'voxel-use', {}
 
   # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-  plugins.preload 'harvest', {
+  plugins.preload 'voxel-harvest', {
     playerInventory:playerInventory,
     block2ItemPile: (blockName) ->
       # TODO: use registry? more data-driven
@@ -196,7 +196,7 @@ module.exports = () ->
   }
 
   # highlight blocks when you look at them
-  highlight = plugins.preload 'highlight', {
+  highlight = plugins.preload 'voxel-highlight', {
     color:  0xff0000
     distance: REACH_DISTANCE
     adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
@@ -204,16 +204,16 @@ module.exports = () ->
 
   # the GUI window (built-in toggle with 'H')
   gui = new datgui.GUI()
-  plugins.preload 'debug', {gui:gui}
-  plugins.preload 'plugins-ui', {gui:gui}
-  plugins.preload '!kb-bindings-ui', {gui:gui, kb:game.buttons}
+  plugins.preload 'voxel-debug', {gui:gui}
+  plugins.preload 'voxel-plugins-ui', {gui:gui}
+  plugins.preload 'kb-bindings-ui', {gui:gui, kb:game.buttons}
 
 
   plugins.loadOrderly()
   ## plugins are loaded from here on out ##
 
   # recipes
-  recipes = plugins.all['!craftingrecipes']
+  recipes = plugins.get('craftingrecipes')
   recipes.thesaurus.registerName 'wood.log', new ItemPile('logOak')
   recipes.thesaurus.registerName 'wood.log', new ItemPile('logBirch')
   recipes.thesaurus.registerName 'wood.plank', new ItemPile('plankOak')
@@ -234,50 +234,51 @@ module.exports = () ->
     [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
 
 
-  avatar = plugins.all.player
+  avatar = plugins.get('voxel-player')
   avatar.pov('first');
   avatar.possess()
   home(avatar)
 
   # load textures after all plugins loaded (since they may add their own)
-  game.materials.load plugins.all.registry.getBlockPropsAll 'texture'
-  global.InventoryWindow_defaultGetTexture = (itemPile) => plugins.all.registry.getItemPileTexture(itemPile)
+  registry = plugins.get('voxel-registry')
+  game.materials.load registry.getBlockPropsAll 'texture'
+  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
 
-  plugins.disable 'fly'
+  plugins.disable 'voxel-fly'
 
   # one of everything, please..
   creativeInventoryArray = []
-  for props in plugins.all.registry.blockProps
+  for props in registry.blockProps
     creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
 
   survivalInventoryArray = []
 
   game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
-  game.buttons.down.on 'vr', () -> plugins.toggle 'oculus'
+  game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
   game.buttons.down.on 'home', () -> home(avatar)
-  game.buttons.down.on 'inventory', () -> plugins.all['inventory-dialog']?.toggle()
-  inventoryHotbar = plugins.all['inventory-hotbar']
+  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.toggle()
+  inventoryHotbar = plugins.get('voxel-inventory-hotbar')
   game.buttons.down.on 'gamemode', () ->
     # TODO: add gamemode event? for plugins to handle instead of us
     if game.mode == 'survival'
       game.mode = 'creative'
-      plugins.enable 'fly'
-      plugins.all.mine?.instaMine = true
+      plugins.enable 'voxel-fly'
+      plugins.get('voxel-mine')?.instaMine = true
       survivalInventoryArray = inventoryHotbar.inventory.array
       inventoryHotbar.inventory.array = creativeInventoryArray
       inventoryHotbar.refresh()
       console.log 'creative mode'
     else
       game.mode = 'survival'
-      plugins.disable 'fly'
-      plugins.all.mine?.instaMine = false
+      plugins.disable 'voxel-fly'
+      plugins.get('voxel-mine')?.instaMine = false
       inventoryHotbar.inventory.array = survivalInventoryArray
       inventoryHotbar.refresh()
       console.log 'survival mode'
 
 
   # show origin 
-  plugins.all.debug?.axis [0, 0, 0], 10
+  plugins.get('voxel-debug').axis [0, 0, 0], 10
 
   return game
 
