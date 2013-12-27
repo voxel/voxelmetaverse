@@ -111,30 +111,11 @@ module.exports = () ->
   }
 
 
-  # recipes TODO: move to registry?
-  #registry.recipes = RecipeLocator
-  #registry.thesaurus = CraftingThesaurus
-  CraftingThesaurus.registerName 'wood.log', new ItemPile('logOak')
-  CraftingThesaurus.registerName 'wood.log', new ItemPile('logBirch')
-  CraftingThesaurus.registerName 'wood.plank', new ItemPile('plankOak')
-  CraftingThesaurus.registerName 'tree.leaves', new ItemPile('leavesOak')
-  RecipeLocator.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
-  RecipeLocator.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
-
-  RecipeLocator.register new PositionalRecipe([
-    ['wood.plank', 'wood.plank', 'wood.plank'],
-    [undefined, 'stick', undefined],
-    [undefined, 'stick', undefined]], new ItemPile('pickaxeWood', 1))
-
-  # temporary recipe
-  RecipeLocator.register new PositionalRecipe([
-    ['tree.leaves', 'tree.leaves', 'tree.leaves'],
-    [undefined, 'stick', undefined],
-    [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
+  plugins.preload '!craftingrecipes', {}
 
   playerInventory = new Inventory(10, 5)
 
-  plugins.preload 'workbench', {playerInventory:playerInventory, registerRecipe:false}  # TODO: re-enable recipes
+  plugins.preload 'workbench', {playerInventory:playerInventory}
 
   plugins.preload 'land', {populateTrees: true}
 
@@ -230,6 +211,27 @@ module.exports = () ->
 
   plugins.loadOrderly()
   ## plugins are loaded from here on out ##
+
+  # recipes
+  recipes = plugins.all['!craftingrecipes']
+  recipes.thesaurus.registerName 'wood.log', new ItemPile('logOak')
+  recipes.thesaurus.registerName 'wood.log', new ItemPile('logBirch')
+  recipes.thesaurus.registerName 'wood.plank', new ItemPile('plankOak')
+  recipes.thesaurus.registerName 'tree.leaves', new ItemPile('leavesOak')
+
+  recipes.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
+  recipes.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
+
+  recipes.register new PositionalRecipe([
+    ['wood.plank', 'wood.plank', 'wood.plank'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeWood', 1))
+
+  # temporary recipe
+  recipes.register new PositionalRecipe([
+    ['tree.leaves', 'tree.leaves', 'tree.leaves'],
+    [undefined, 'stick', undefined],
+    [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
 
 
   avatar = plugins.all.player
