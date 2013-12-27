@@ -168,10 +168,7 @@ module.exports = () ->
   avatar.possess()
   home(avatar)
 
-  controlsTarget = game.controls.target()
-
-  plugins.preload 'fly', {physical: controlsTarget, flySpeed: 0.8}
-
+  plugins.preload 'fly', {flySpeed: 0.8}
   plugins.preload 'walk', {}
 
   game.mode = 'survival'
@@ -265,6 +262,7 @@ module.exports = () ->
   game.buttons.down.on 'vr', () -> plugins.toggle 'oculus'
   game.buttons.down.on 'home', () -> home(avatar)
   game.buttons.down.on 'inventory', () -> plugins.all['inventory-dialog']?.toggle()
+  inventoryHotbar = plugins.all['inventory-hotbar']
   game.buttons.down.on 'gamemode', () ->
     # TODO: add gamemode event? for plugins to handle instead of us
     if game.mode == 'survival'
