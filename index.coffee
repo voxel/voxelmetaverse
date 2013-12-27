@@ -90,28 +90,30 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  registry = plugins.load 'registry', {} # TODO
-  registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
-  registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
-  registry.registerBlock 'stone', {texture: 'stone', hardness:90}
-  registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
-  registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
-  registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
-  registry.registerBlock 'brick', {texture: 'brick'}
-  registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
-  registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
-  registry.registerBlock 'glass', {texture: 'glass'}
+  plugins.preload 'registry', {registerDefaults: (registry) ->
+    registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
+    registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
+    registry.registerBlock 'stone', {texture: 'stone', hardness:90}
+    registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
+    registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
+    registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
+    registry.registerBlock 'brick', {texture: 'brick'}
+    registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
+    registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
+    registry.registerBlock 'glass', {texture: 'glass'}
 
-  registry.registerBlock 'plankOak', {texture: 'planks_oak'}
-  registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
+    registry.registerBlock 'plankOak', {texture: 'planks_oak'}
+    registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
 
-  registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
-  registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
-  registry.registerItem 'stick', {itemTexture: '../items/stick'}
+    registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
+    registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
+    registry.registerItem 'stick', {itemTexture: '../items/stick'}
+  }
+
 
   # recipes TODO: move to registry?
-  registry.recipes = RecipeLocator
-  registry.thesaurus = CraftingThesaurus
+  #registry.recipes = RecipeLocator
+  #registry.thesaurus = CraftingThesaurus
   CraftingThesaurus.registerName 'wood.log', new ItemPile('logOak')
   CraftingThesaurus.registerName 'wood.log', new ItemPile('logBirch')
   CraftingThesaurus.registerName 'wood.plank', new ItemPile('plankOak')
@@ -132,18 +134,9 @@ module.exports = () ->
 
   playerInventory = new Inventory(10, 5)
 
-  plugins.preload 'workbench', {playerInventory:playerInventory}
+  plugins.preload 'workbench', {playerInventory:playerInventory, registerRecipe:false}  # TODO: re-enable recipes
 
-  plugins.preload 'land', {
-    populateTrees: true
-    materials: {  # TODO: refactor
-      grass: registry.getBlockID 'grass'
-      dirt: registry.getBlockID 'dirt'
-      stone: registry.getBlockID 'stone'
-      bark: registry.getBlockID 'logOak'
-      leaves: registry.getBlockID 'leavesOak'
-    }
-  }
+  plugins.preload 'land', {populateTrees: true}
 
   # note: preconfigure(), not preload(), so doesn't automatically enable
   plugins.preconfigure 'oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
@@ -184,14 +177,14 @@ module.exports = () ->
     timeToMine: (target) =>
       # the innate difficulty of mining this block
       blockID = game.getBlock(target.voxel)
-      blockName = registry.getBlockName(blockID)
-      hardness = registry.getBlockProps(blockName)?.hardness
+      blockName = plugins.all.registry?.getBlockName(blockID)
+      hardness = plugins.all.registry?.getBlockProps(blockName)?.hardness
       hardness ?= 9
 
       # effectiveness of currently held tool, shortens mining time
       heldItem = plugins.all['inventory-hotbar']?.held()
       speed = 1.0
-      speed = registry.getItemProps(heldItem?.item)?.speed ? 1.0
+      speed = plugins.all.registry?.getItemProps(heldItem?.item)?.speed ? 1.0
       finalTimeToMine = Math.max(hardness / speed, 0)
       # TODO: more complex mining 'classes', e.g. shovel against dirt, axe against wood
 
@@ -239,21 +232,20 @@ module.exports = () ->
   ## plugins are loaded from here on out ##
 
 
-
   avatar = plugins.all.player
   avatar.pov('first');
   avatar.possess()
   home(avatar)
 
   # load textures after all plugins loaded (since they may add their own)
-  game.materials.load registry.getBlockPropsAll 'texture'
-  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
+  game.materials.load plugins.all.registry.getBlockPropsAll 'texture'
+  global.InventoryWindow_defaultGetTexture = (itemPile) => plugins.all.registry.getItemPileTexture(itemPile)
 
   plugins.disable 'fly'
 
   # one of everything, please..
   creativeInventoryArray = []
-  for props in registry.blockProps
+  for props in plugins.all.registry.blockProps
     creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
 
   survivalInventoryArray = []
