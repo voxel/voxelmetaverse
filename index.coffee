@@ -95,15 +95,15 @@ module.exports = () ->
   plugins = createPlugins game, {require: require}
 
   plugins.add 'voxel-registry', {registerDefaults: (registry) ->
-    registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5}
+    registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5, itemDrop: 'dirt'}
     registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
-    registry.registerBlock 'stone', {texture: 'stone', hardness:90}
+    registry.registerBlock 'stone', {texture: 'stone', hardness:90, itemDrop: 'cobblestone'}
     registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
-    registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:90}
+    registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:80}
     registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
     registry.registerBlock 'brick', {texture: 'brick'}
     registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
-    registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2}
+    registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2, itemDrop: null}
     registry.registerBlock 'glass', {texture: 'glass'}
 
     registry.registerBlock 'plankOak', {texture: 'planks_oak'}
@@ -162,19 +162,7 @@ module.exports = () ->
   plugins.add 'voxel-use', {}
 
   # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-  plugins.add 'voxel-harvest', {
-    block2ItemPile: (blockName) ->
-      # TODO: use registry? more data-driven
-
-      if blockName == 'grass'
-        return new ItemPile('dirt', 1)
-      if blockName == 'stone'
-        return new ItemPile('cobblestone', 1)
-      if blockName == 'leavesOak'
-        return undefined
-
-      return new ItemPile(blockName)
-  }
+  plugins.add 'voxel-harvest', {}
 
   # highlight blocks when you look at them
   highlight = plugins.add 'voxel-highlight', {
