@@ -13,6 +13,7 @@ createPlugins = require 'voxel-plugins'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-registry'
+require 'voxel-carry'
 require 'voxel-workbench'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
@@ -114,13 +115,12 @@ module.exports = () ->
   }
 
   plugins.add 'craftingrecipes', {}
-
-  playerInventory = new Inventory(10, 5)
+  plugins.add 'voxel-carry', {inventoryWidth:10, inventoryRows:5}
 
   plugins.add 'voxel-blockdata', {}
 
-  plugins.add 'voxel-chest', {playerInventory:playerInventory}
-  plugins.add 'voxel-workbench', {playerInventory:playerInventory}
+  plugins.add 'voxel-chest', {}
+  plugins.add 'voxel-workbench', {}
 
   plugins.add 'voxel-land', {populateTrees: true}
 
@@ -145,9 +145,9 @@ module.exports = () ->
   plugins.add 'voxel-fly', {flySpeed: 0.8}
   plugins.add 'voxel-walk', {}
 
-  plugins.add 'voxel-inventory-hotbar', {inventory:playerInventory, inventorySize:10}
+  plugins.add 'voxel-inventory-hotbar', {inventorySize:10}
 
-  plugins.add 'voxel-inventory-dialog', {playerInventory:playerInventory}
+  plugins.add 'voxel-inventory-dialog', {}
 
   REACH_DISTANCE = 8
   plugins.add 'voxel-reach', { reachDistance: REACH_DISTANCE }
@@ -179,7 +179,6 @@ module.exports = () ->
 
   # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
   plugins.add 'voxel-harvest', {
-    playerInventory:playerInventory,
     block2ItemPile: (blockName) ->
       # TODO: use registry? more data-driven
 
@@ -242,6 +241,7 @@ module.exports = () ->
   game.materials.load registry.getBlockPropsAll 'texture'
   global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
 
+  #playerInventory = game.plugins.get('voxel-carry').inventory
   #playerInventory.give new ItemPile('stick', 32)
   #playerInventory.give new ItemPile('logOak', 10)
   #playerInventory.give new ItemPile('plankOak', 10)
