@@ -44,6 +44,7 @@ module.exports = () ->
   console.log 'creating game'
   game = createGame {
     lightsDisabled: true
+    arrayType: Uint16Array
     #generate: voxel.generator['Valley']
     #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
     useAtlas: false
