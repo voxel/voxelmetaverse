@@ -289,7 +289,6 @@ module.exports = () ->
   return game
 
 home = (avatar) ->
-  #avatar.yaw.position.set 2, 14, 4
-  avatar.yaw.position.set 2, 5, 4
+  avatar.yaw.position.set 2, 14, 4
 
 
