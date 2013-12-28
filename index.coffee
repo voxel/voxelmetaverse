@@ -133,10 +133,7 @@ module.exports = () ->
   }
 
   for name, opts of configuration
-    if opts.onDemand  # TODO: add to voxel-registry
-      plugins.preconfigure name, opts
-    else
-      plugins.add name, opts
+    plugins.add name, opts
 
   plugins.loadAll()
   ## plugins are loaded from here on out ##
