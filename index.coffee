@@ -153,22 +153,6 @@ module.exports = () ->
   plugins.add 'voxel-reach', { reachDistance: REACH_DISTANCE }
   # left-click hold to mine
   plugins.add 'voxel-mine', {
-    timeToMine: (target) =>
-      # the innate difficulty of mining this block
-      blockID = game.getBlock(target.voxel)
-      blockName = plugins.get('voxel-registry')?.getBlockName(blockID)
-      hardness = plugins.get('voxel-registry')?.getBlockProps(blockName)?.hardness
-      hardness ?= 9
-
-      # effectiveness of currently held tool, shortens mining time
-      heldItem = plugins.get('voxel-inventory-hotbar')?.held()
-      speed = 1.0
-      speed = plugins.get('voxel-registry')?.getItemProps(heldItem?.item)?.speed ? 1.0
-      finalTimeToMine = Math.max(hardness / speed, 0)
-      # TODO: more complex mining 'classes', e.g. shovel against dirt, axe against wood
-
-      return finalTimeToMine
-
     instaMine: false
     progressTexturesPrefix: 'destroy_stage_'
     progressTexturesCount: 9
@@ -242,6 +226,7 @@ module.exports = () ->
   global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
 
   #playerInventory = game.plugins.get('voxel-carry').inventory
+  #playerInventory.give new ItemPile('pickaxeDiamond', 1)
   #playerInventory.give new ItemPile('stick', 32)
   #playerInventory.give new ItemPile('logOak', 10)
   #playerInventory.give new ItemPile('plankOak', 10)
