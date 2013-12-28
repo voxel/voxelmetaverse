@@ -14,6 +14,7 @@ createPlugins = require 'voxel-plugins'
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-registry'
 require 'voxel-workbench'
+require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-dialog'
 require 'voxel-oculus'
@@ -26,6 +27,7 @@ require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-land'
+require 'voxel-blockdata'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -110,11 +112,13 @@ module.exports = () ->
     registry.registerItem 'stick', {itemTexture: '../items/stick'}
   }
 
-
   plugins.add 'craftingrecipes', {}
 
   playerInventory = new Inventory(10, 5)
 
+  plugins.add 'voxel-blockdata', {}
+
+  plugins.add 'voxel-chest', {playerInventory:playerInventory}
   plugins.add 'voxel-workbench', {playerInventory:playerInventory}
 
   plugins.add 'voxel-land', {populateTrees: true}
@@ -140,13 +144,6 @@ module.exports = () ->
   plugins.add 'voxel-fly', {flySpeed: 0.8}
   plugins.add 'voxel-walk', {}
 
-  game.mode = 'survival'
-
-  #playerInventory.give new ItemPile('stick', 32)
-  #playerInventory.give new ItemPile('logOak', 10)
-  #playerInventory.give new ItemPile('plankOak', 10)
-  #playerInventory.give new ItemPile('logBirch', 5)
-  #playerInventory.give new ItemPile('workbench', 1)
   plugins.add 'voxel-inventory-hotbar', {inventory:playerInventory, inventorySize:10}
 
   plugins.add 'voxel-inventory-dialog', {playerInventory:playerInventory}
@@ -242,8 +239,17 @@ module.exports = () ->
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
   game.materials.load registry.getBlockPropsAll 'texture'
-  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile)
+  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
 
+  #playerInventory.give new ItemPile('stick', 32)
+  #playerInventory.give new ItemPile('logOak', 10)
+  #playerInventory.give new ItemPile('plankOak', 10)
+  #playerInventory.give new ItemPile('logBirch', 5)
+  #playerInventory.give new ItemPile('workbench', 1)
+  #playerInventory.give new ItemPile('chest', 5)
+
+
+  game.mode = 'survival'
   plugins.disable 'voxel-fly'
 
   # one of everything, please..
