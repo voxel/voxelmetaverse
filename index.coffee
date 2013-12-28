@@ -94,73 +94,65 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  plugins.add 'voxel-registry', {}
+  configuration = {
+    'voxel-registry': {}
+    'craftingrecipes': {}
+    'voxel-carry': {inventoryWidth:10, inventoryRows:5}
+    'voxel-blockdata': {}
+    'voxel-chest': {}
+    'voxel-workbench': {}
+    'voxel-land': {populateTrees: true}
+    # note: onDemand so doesn't automatically enable
+    'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
+    'voxel-player': {image: 'player.png'}
+    'voxel-fly': {flySpeed: 0.8}
+    'voxel-walk': {}
+    'voxel-inventory-hotbar': {inventorySize:10}
+    'voxel-inventory-dialog': {}
+    'voxel-reach': { reachDistance: 8 }
+    # left-click hold to mine
+    'voxel-mine': {
+      instaMine: false
+      progressTexturesPrefix: 'destroy_stage_'
+      progressTexturesCount: 9
+    }
+    # right-click to place block (etc.)
+    'voxel-use': {}
+    # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
+    'voxel-harvest': {}
+    # highlight blocks when you look at them
+    'voxel-highlight': {
+      color:  0xff0000
+      distance: 8,
+      adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
+    }
+    # the GUI window (built-in toggle with 'H')
+    'voxel-debug': {}
+    'voxel-plugins-ui': {}
+    'kb-bindings-ui': {}
+  }
 
-  plugins.add 'craftingrecipes', {}
-  plugins.add 'voxel-carry', {inventoryWidth:10, inventoryRows:5}
+  for name, opts of configuration
+    if opts.onDemand  # TODO: add to voxel-registry
+      plugins.preconfigure name, opts
+    else
+      plugins.add name, opts
 
-  plugins.add 'voxel-blockdata', {}
+  plugins.loadAll()
+  ## plugins are loaded from here on out ##
 
-  plugins.add 'voxel-chest', {}
-  plugins.add 'voxel-workbench', {}
-
-  plugins.add 'voxel-land', {populateTrees: true}
-
-  # note: preconfigure(), not add(), so doesn't automatically enable
-  plugins.preconfigure 'voxel-oculus', { distortion: 0.2, separation: 0.5 } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
     plugins.enable 'oculus'
     document.getElementById('logo').style.visibility = 'hidden'
 
-  # TODO: does this belong here?
+  # the game view element itself
   container = document.body
   window.game = window.g = game # for debugging
   game.appendTo container
   return game if game.notCapable()
 
-  # create the player from a minecraft skin file and tell the
-  # game to use it as the main player
-  plugins.add 'voxel-player', {image: 'player.png'}
-
-  plugins.add 'voxel-fly', {flySpeed: 0.8}
-  plugins.add 'voxel-walk', {}
-
-  plugins.add 'voxel-inventory-hotbar', {inventorySize:10}
-
-  plugins.add 'voxel-inventory-dialog', {}
-
-  REACH_DISTANCE = 8
-  plugins.add 'voxel-reach', { reachDistance: REACH_DISTANCE }
-  # left-click hold to mine
-  plugins.add 'voxel-mine', {
-    instaMine: false
-    progressTexturesPrefix: 'destroy_stage_'
-    progressTexturesCount: 9
-  }
-
-  # right-click to place block (etc.)
-  plugins.add 'voxel-use', {}
-
-  # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-  plugins.add 'voxel-harvest', {}
-
-  # highlight blocks when you look at them
-  highlight = plugins.add 'voxel-highlight', {
-    color:  0xff0000
-    distance: REACH_DISTANCE
-    adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin)
-  }
-
-  # the GUI window (built-in toggle with 'H')
-  plugins.add 'voxel-debug', {}
-  plugins.add 'voxel-plugins-ui', {}
-  plugins.add 'kb-bindings-ui', {}
-
-
-  plugins.loadAll()
-  ## plugins are loaded from here on out ##
 
   # pickaxe TODO: move to new module?
   registry = plugins.get('voxel-registry')
