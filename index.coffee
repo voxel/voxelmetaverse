@@ -94,25 +94,7 @@ module.exports = () ->
   console.log 'initializing plugins'
   plugins = createPlugins game, {require: require}
 
-  plugins.add 'voxel-registry', {registerDefaults: (registry) ->
-    registry.registerBlock 'grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5, itemDrop: 'dirt'}
-    registry.registerBlock 'dirt', {texture: 'dirt', hardness:4}
-    registry.registerBlock 'stone', {texture: 'stone', hardness:90, itemDrop: 'cobblestone'}
-    registry.registerBlock 'logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8}
-    registry.registerBlock 'cobblestone', {texture: 'cobblestone', hardness:80}
-    registry.registerBlock 'oreCoal', {texture: 'coal_ore'}
-    registry.registerBlock 'brick', {texture: 'brick'}
-    registry.registerBlock 'obsidian', {texture: 'obsidian', hardness: 900}
-    registry.registerBlock 'leavesOak', {texture: 'leaves_oak_opaque', hardness: 2, itemDrop: null}
-    registry.registerBlock 'glass', {texture: 'glass'}
-
-    registry.registerBlock 'plankOak', {texture: 'planks_oak'}
-    registry.registerBlock 'logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8} # TODO: generate
-
-    registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
-    registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
-    registry.registerItem 'stick', {itemTexture: '../items/stick'}
-  }
+  plugins.add 'voxel-registry', {}
 
   plugins.add 'craftingrecipes', {}
   plugins.add 'voxel-carry', {inventoryWidth:10, inventoryRows:5}
@@ -179,6 +161,12 @@ module.exports = () ->
 
   plugins.loadAll()
   ## plugins are loaded from here on out ##
+
+  # pickaxe TODO: move to new module?
+  registry = plugins.get('voxel-registry')
+  registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
+  registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
+  registry.registerItem 'stick', {itemTexture: '../items/stick'}
 
   # recipes
   recipes = plugins.get('craftingrecipes')
