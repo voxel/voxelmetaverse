@@ -21,6 +21,7 @@
     "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git",
     "voxel-use": "git://github.com/deathcap/voxel-use.git",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git",
+    "voxel-carry": "git://github.com/deathcap/voxel-carry.git",
     "voxel-inventory-hotbar": "git://github.com/deathcap/voxel-inventory-hotbar.git",
     "voxel-inventory-dialog": "git://github.com/deathcap/voxel-inventory-dialog.git",
     "voxel-chest": "git://github.com/deathcap/voxel-chest.git",
