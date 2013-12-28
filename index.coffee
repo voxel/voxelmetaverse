@@ -172,10 +172,9 @@ module.exports = () ->
   }
 
   # the GUI window (built-in toggle with 'H')
-  gui = new datgui.GUI()
-  plugins.add 'voxel-debug', {gui:gui}
-  plugins.add 'voxel-plugins-ui', {gui:gui}
-  plugins.add 'kb-bindings-ui', {gui:gui, kb:game.buttons}
+  plugins.add 'voxel-debug', {}
+  plugins.add 'voxel-plugins-ui', {}
+  plugins.add 'kb-bindings-ui', {}
 
 
   plugins.loadAll()
