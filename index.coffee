@@ -95,7 +95,7 @@ module.exports = () ->
     'voxel-land': {populateTrees: true}
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
-    'voxel-player': {image: 'player.png'}
+    'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
@@ -133,22 +133,16 @@ module.exports = () ->
   game.appendTo document.body
   return game if game.notCapable()
 
-  avatar = plugins.get('voxel-player')
-  home(avatar)
 
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
   game.materials.load registry.getBlockPropsAll 'texture'
   global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
 
-  game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
+  game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
   game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
-  game.buttons.down.on 'home', () -> home(avatar)
+  game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
   game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.show()
 
   return game
-
-home = (avatar) ->
-  avatar.yaw.position.set 2, 14, 4
-
 
