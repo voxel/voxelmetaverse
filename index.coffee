@@ -28,10 +28,9 @@ require 'voxel-mine'
 require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
+require 'voxel-land'
 require 'voxel-pickaxe'
 require 'voxel-blockdata'
-require 'voxel-land'
-require 'voxel-sky'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -92,7 +91,6 @@ module.exports = () ->
     'voxel-workbench': {}
     'voxel-pickaxe': {}
     'voxel-land': {populateTrees: true}
-    'voxel-sky': {time: 1200}
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png'}
@@ -129,6 +127,12 @@ module.exports = () ->
 
 
   game = plugins.get('voxel-engine')
+  # add lighting - based on voxel-engine addLights() but dimmer so can see texture details TODO: replace with voxel-sky
+  ambientLight = new game.THREE.AmbientLight(0x888888)
+  game.scene.add(ambientLight)
+  directionalLight = new game.THREE.DirectionalLight(0xffffff, 1)
+  directionalLight.position.set(1, 1, 0.5).normalize()
+  game.scene.add(directionalLight)
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support

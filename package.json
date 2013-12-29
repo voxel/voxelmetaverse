@@ -36,8 +36,7 @@
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git",
-    "voxel-sky": "git://github.com/deathcap/voxel-sky.git"
+    "voxel-land": "git://github.com/deathcap/voxel-land.git"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
