@@ -42,6 +42,8 @@ module.exports = () ->
 
   configuration =
     'voxel-engine':
+      appendDocument: true
+      exposeGlobal: true  # for debugging
       lightsDisabled: true
       arrayType: Uint16Array
       useAtlas: false
@@ -120,12 +122,7 @@ module.exports = () ->
 
   plugins.loadAll()
 
-  # the game view element itself
   game = plugins.get('voxel-engine')
-  window.game = window.g = game # for debugging
-  game.appendTo document.body
-  return game if game.notCapable()
-
 
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
