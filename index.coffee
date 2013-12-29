@@ -43,60 +43,46 @@ module.exports = () ->
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
-  # setup the game 
-  console.log 'creating game'
-  game = createGame {
-    lightsDisabled: true
-    arrayType: Uint16Array
-    #generate: voxel.generator['Valley']
-    #generateVoxelChunk: terrain {chunkSize: 32, chunkDistance: 2, seed: 42}
-    useAtlas: false
-    generateChunks: false
-    chunkDistance: 2
-    materials: []  # added dynamically later
-    texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-    worldOrigin: [0, 0, 0]
-    controls:
-      discreteFire: false
-      fireRate: 100 # ms between firing
-      jumpTimer: 25
-    keybindings:
-      # voxel-engine defaults
-      'W': 'forward'
-      'A': 'left'
-      'S': 'backward'
-      'D': 'right'
-      '<up>': 'forward'
-      '<left>': 'left'
-      '<down>': 'backward'
-      '<right>': 'right'
-      '<mouse 1>': 'fire'
-      '<mouse 3>': 'firealt'
-      '<space>': 'jump'
-      '<shift>': 'crouch'
-      '<control>': 'alt'
-      '<tab>': 'sprint'
-
-      # our extras
-      'R': 'pov'
-      'T': 'vr'
-      'O': 'home'
-      'E': 'inventory'
-      'C': 'gamemode'
-    }
-
-  # add lighting - based on voxel-engine addLights()
-  ambientLight = new game.THREE.AmbientLight(0x888888)
-  game.scene.add(ambientLight)
-  directionalLight = new game.THREE.DirectionalLight(0xffffff, 1)
-  directionalLight.position.set(1, 1, 0.5).normalize()
-  game.scene.add(directionalLight)
-
-
   console.log 'initializing plugins'
-  plugins = createPlugins game, {require: require}
+  plugins = createPlugins null, {require: require}
 
-  configuration = {
+  configuration =
+    'voxel-engine':
+      lightsDisabled: true
+      arrayType: Uint16Array
+      useAtlas: false
+      generateChunks: false
+      chunkDistance: 2
+      materials: []  # added dynamically later
+      texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
+      worldOrigin: [0, 0, 0]
+      controls:
+        discreteFire: false
+        fireRate: 100 # ms between firing
+        jumpTimer: 25
+      keybindings:
+        # voxel-engine defaults
+        'W': 'forward'
+        'A': 'left'
+        'S': 'backward'
+        'D': 'right'
+        '<up>': 'forward'
+        '<left>': 'left'
+        '<down>': 'backward'
+        '<right>': 'right'
+        '<mouse 1>': 'fire'
+        '<mouse 3>': 'firealt'
+        '<space>': 'jump'
+        '<shift>': 'crouch'
+        '<control>': 'alt'
+        '<tab>': 'sprint'
+
+        # our extras
+        'R': 'pov'
+        'T': 'vr'
+        'O': 'home'
+        'E': 'inventory'
+        'C': 'gamemode'
     'voxel-registry': {}
     'craftingrecipes': {}
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
@@ -115,33 +101,38 @@ module.exports = () ->
     'voxel-inventory-dialog': {}
     'voxel-reach': { reachDistance: 8 }
     # left-click hold to mine
-    'voxel-mine': {
+    'voxel-mine':
       instaMine: false
       progressTexturesPrefix: 'destroy_stage_'
       progressTexturesCount: 9
-    }
     # right-click to place block (etc.)
     'voxel-use': {}
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
     'voxel-harvest': {}
     # highlight blocks when you look at them
-    'voxel-highlight': {
+    'voxel-highlight':
       color:  0xff0000
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
-    }
 
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
-  }
 
   for name, opts of configuration
     plugins.add name, opts
 
   plugins.loadAll()
-  ## plugins are loaded from here on out ##
+
+
+  game = plugins.get('voxel-engine')
+  # add lighting - based on voxel-engine addLights() but dimmer so can see texture details TODO: replace with voxel-sky
+  ambientLight = new game.THREE.AmbientLight(0x888888)
+  game.scene.add(ambientLight)
+  directionalLight = new game.THREE.DirectionalLight(0xffffff, 1)
+  directionalLight.position.set(1, 1, 0.5).normalize()
+  game.scene.add(directionalLight)
 
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
