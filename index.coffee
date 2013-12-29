@@ -127,11 +127,6 @@ module.exports = () ->
 
   plugins.loadAll()
 
-  if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
-    # Oculus Rift support
-    plugins.enable 'oculus'
-    document.getElementById('logo').style.visibility = 'hidden'
-
   # the game view element itself
   game = plugins.get('voxel-engine')
   container = document.body
