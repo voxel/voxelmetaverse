@@ -105,7 +105,7 @@ module.exports = () ->
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png'}
-    'voxel-fly': {flySpeed: 0.8}
+    'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-walk': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-dialog': {}
@@ -200,7 +200,6 @@ module.exports = () ->
 
 
   game.mode = 'survival'
-  plugins.disable 'voxel-fly'
 
   # one of everything, please..
   creativeInventoryArray = []
