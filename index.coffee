@@ -92,6 +92,7 @@ module.exports = () ->
     'voxel-workbench': {}
     'voxel-pickaxe': {}
     'voxel-land': {populateTrees: true}
+    'voxel-sky': {time: 1200}
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png'}
@@ -128,11 +129,6 @@ module.exports = () ->
 
 
   game = plugins.get('voxel-engine')
-  # sky lighting
-  createSky = require('voxel-sky')(game)
-  sky = createSky(1200)
-  game.on('tick', sky)
-
 
   if window.location.href.indexOf('rift') != -1 ||  window.location.hash.indexOf('rift') != -1
     # Oculus Rift support
