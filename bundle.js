@@ -37,6 +37,8 @@ require('voxel-player');
 
 require('voxel-fly');
 
+require('voxel-gamemode');
+
 require('voxel-walk');
 
 require('voxel-mine');
@@ -49,6 +51,8 @@ require('voxel-reach');
 
 require('voxel-land');
 
+require('voxel-pickaxe');
+
 require('voxel-blockdata');
 
 require('voxel-debug');
@@ -58,7 +62,7 @@ require('voxel-plugins-ui');
 require('kb-bindings-ui');
 
 module.exports = function() {
-  var REACH_DISTANCE, ambientLight, avatar, container, creativeInventoryArray, directionalLight, game, gui, highlight, inventoryHotbar, loadingTime, plugins, props, recipes, registry, survivalInventoryArray, _i, _len, _ref1,
+  var ambientLight, avatar, configuration, container, directionalLight, game, loadingTime, name, opts, plugins, registry,
     _this = this;
   console.log('voxpopuli starting');
   if (window.performance && window.performance.timing) {
@@ -111,80 +115,64 @@ module.exports = function() {
   plugins = createPlugins(game, {
     require: require
   });
-  plugins.add('voxel-registry', {
-    registerDefaults: function(registry) {
-      registry.registerBlock('grass', {
-        texture: ['grass_top', 'dirt', 'grass_side'],
-        hardness: 5
-      });
-      registry.registerBlock('dirt', {
-        texture: 'dirt',
-        hardness: 4
-      });
-      registry.registerBlock('stone', {
-        texture: 'stone',
-        hardness: 90
-      });
-      registry.registerBlock('logOak', {
-        texture: ['log_oak_top', 'log_oak_top', 'log_oak'],
-        hardness: 8
-      });
-      registry.registerBlock('cobblestone', {
-        texture: 'cobblestone',
-        hardness: 90
-      });
-      registry.registerBlock('oreCoal', {
-        texture: 'coal_ore'
-      });
-      registry.registerBlock('brick', {
-        texture: 'brick'
-      });
-      registry.registerBlock('obsidian', {
-        texture: 'obsidian',
-        hardness: 900
-      });
-      registry.registerBlock('leavesOak', {
-        texture: 'leaves_oak_opaque',
-        hardness: 2
-      });
-      registry.registerBlock('glass', {
-        texture: 'glass'
-      });
-      registry.registerBlock('plankOak', {
-        texture: 'planks_oak'
-      });
-      registry.registerBlock('logBirch', {
-        texture: ['log_birch_top', 'log_birch_top', 'log_birch'],
-        hardness: 8
-      });
-      registry.registerItem('pickaxeWood', {
-        itemTexture: '../items/wood_pickaxe',
-        speed: 2.0
-      });
-      registry.registerItem('pickaxeDiamond', {
-        itemTexture: '../items/diamond_pickaxe',
-        speed: 10.0
-      });
-      return registry.registerItem('stick', {
-        itemTexture: '../items/stick'
-      });
-    }
-  });
-  plugins.add('craftingrecipes', {});
-  plugins.add('voxel-carry', {
-    inventoryWidth: 10,
-    inventoryRows: 5
-  });
-  plugins.add('voxel-blockdata', {});
-  plugins.add('voxel-chest', {});
-  plugins.add('voxel-workbench', {});
-  plugins.add('voxel-land', {
-    populateTrees: true
-  });
-  plugins.preconfigure('voxel-oculus', {
-    distortion: 0.2,
-    separation: 0.5
-  });
+  configuration = {
+    'voxel-registry': {},
+    'craftingrecipes': {},
+    'voxel-carry': {
+      inventoryWidth: 10,
+      inventoryRows: 5
+    },
+    'voxel-blockdata': {},
+    'voxel-chest': {},
+    'voxel-workbench': {},
+    'voxel-pickaxe': {},
+    'voxel-land': {
+      populateTrees: true
+    },
+    'voxel-oculus': {
+      distortion: 0.2,
+      separation: 0.5,
+      onDemand: true
+    },
+    'voxel-player': {
+      image: 'player.png'
+    },
+    'voxel-fly': {
+      flySpeed: 0.8,
+      onDemand: true
+    },
+    'voxel-gamemode': {},
+    'voxel-walk': {},
+    'voxel-inventory-hotbar': {
+      inventorySize: 10
+    },
+    'voxel-inventory-dialog': {},
+    'voxel-reach': {
+      reachDistance: 8
+    },
+    'voxel-mine': {
+      instaMine: false,
+      progressTexturesPrefix: 'destroy_stage_',
+      progressTexturesCount: 9
+    },
+    'voxel-use': {},
+    'voxel-harvest': {},
+    'voxel-highlight': {
+      color: 0xff0000,
+      distance: 8,
+      adjacentActive: function() {
+        return false;
+      }
+    },
+    'voxel-debug': {},
+    'voxel-plugins-ui': {},
+    'kb-bindings-ui': {}
+  };
+  for (name in configuration) {
+    opts = configuration[name];
+    plugins.add(name, opts);
+  }
+  plugins.loadAll();
   if (window.location.href.indexOf('rift') !== -1 || window.location.hash.indexOf('rift') !== -1) {
     plugins.enable('oculus');
     document.getElementById('logo').style.visibility = 'hidden';
@@ -195,83 +183,6 @@ module.exports = function() {
   if (game.notCapable()) {
     return game;
   }
-  plugins.add('voxel-player', {
-    image: 'player.png'
-  });
-  plugins.add('voxel-fly', {
-    flySpeed: 0.8
-  });
-  plugins.add('voxel-walk', {});
-  plugins.add('voxel-inventory-hotbar', {
-    inventorySize: 10
-  });
-  plugins.add('voxel-inventory-dialog', {});
-  REACH_DISTANCE = 8;
-  plugins.add('voxel-reach', {
-    reachDistance: REACH_DISTANCE
-  });
-  plugins.add('voxel-mine', {
-    timeToMine: function(target) {
-      var blockID, blockName, finalTimeToMine, hardness, heldItem, speed, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
-      blockID = game.getBlock(target.voxel);
-      blockName = (_ref1 = plugins.get('voxel-registry')) != null ? _ref1.getBlockName(blockID) : void 0;
-      hardness = (_ref2 = plugins.get('voxel-registry')) != null ? (_ref3 = _ref2.getBlockProps(blockName)) != null ? _ref3.hardness : void 0 : void 0;
-      if (hardness == null) {
-        hardness = 9;
-      }
-      heldItem = (_ref4 = plugins.get('voxel-inventory-hotbar')) != null ? _ref4.held() : void 0;
-      speed = 1.0;
-      speed = (_ref5 = (_ref6 = plugins.get('voxel-registry')) != null ? (_ref7 = _ref6.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref7.speed : void 0 : void 0) != null ? _ref5 : 1.0;
-      finalTimeToMine = Math.max(hardness / speed, 0);
-      return finalTimeToMine;
-    },
-    instaMine: false,
-    progressTexturesPrefix: 'destroy_stage_',
-    progressTexturesCount: 9
-  });
-  plugins.add('voxel-use', {});
-  plugins.add('voxel-harvest', {
-    block2ItemPile: function(blockName) {
-      if (blockName === 'grass') {
-        return new ItemPile('dirt', 1);
-      }
-      if (blockName === 'stone') {
-        return new ItemPile('cobblestone', 1);
-      }
-      if (blockName === 'leavesOak') {
-        return void 0;
-      }
-      return new ItemPile(blockName);
-    }
-  });
-  highlight = plugins.add('voxel-highlight', {
-    color: 0xff0000,
-    distance: REACH_DISTANCE,
-    adjacentActive: function() {
-      return false;
-    }
-  });
-  gui = new datgui.GUI();
-  plugins.add('voxel-debug', {
-    gui: gui
-  });
-  plugins.add('voxel-plugins-ui', {
-    gui: gui
-  });
-  plugins.add('kb-bindings-ui', {
-    gui: gui,
-    kb: game.buttons
-  });
-  plugins.loadAll();
-  recipes = plugins.get('craftingrecipes');
-  recipes.thesaurus.registerName('wood.log', new ItemPile('logOak'));
-  recipes.thesaurus.registerName('wood.log', new ItemPile('logBirch'));
-  recipes.thesaurus.registerName('wood.plank', new ItemPile('plankOak'));
-  recipes.thesaurus.registerName('tree.leaves', new ItemPile('leavesOak'));
-  recipes.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
-  recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
-  recipes.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
-  recipes.register(new PositionalRecipe([['tree.leaves', 'tree.leaves', 'tree.leaves'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeDiamond', 1)));
   avatar = plugins.get('voxel-player');
   avatar.pov('first');
   avatar.possess();
@@ -281,17 +192,6 @@ module.exports = function() {
   global.InventoryWindow_defaultGetTexture = function(itemPile) {
     return registry.getItemPileTexture(itemPile);
   };
-  game.mode = 'survival';
-  plugins.disable('voxel-fly');
-  creativeInventoryArray = [];
-  _ref1 = registry.blockProps;
-  for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
-    props = _ref1[_i];
-    if (props.name != null) {
-      creativeInventoryArray.push(new ItemPile(props.name, Infinity));
-    }
-  }
-  survivalInventoryArray = [];
   game.buttons.down.on('pov', function() {
     return avatar.toggle();
   });
@@ -302,32 +202,8 @@ module.exports = function() {
     return home(avatar);
   });
   game.buttons.down.on('inventory', function() {
-    var _ref2;
-    return (_ref2 = plugins.get('voxel-inventory-dialog')) != null ? _ref2.toggle() : void 0;
-  });
-  inventoryHotbar = plugins.get('voxel-inventory-hotbar');
-  game.buttons.down.on('gamemode', function() {
-    var _ref2, _ref3;
-    if (game.mode === 'survival') {
-      game.mode = 'creative';
-      plugins.enable('voxel-fly');
-      if ((_ref2 = plugins.get('voxel-mine')) != null) {
-        _ref2.instaMine = true;
-      }
-      survivalInventoryArray = inventoryHotbar.inventory.array;
-      inventoryHotbar.inventory.array = creativeInventoryArray;
-      inventoryHotbar.refresh();
-      return console.log('creative mode');
-    } else {
-      game.mode = 'survival';
-      plugins.disable('voxel-fly');
-      if ((_ref3 = plugins.get('voxel-mine')) != null) {
-        _ref3.instaMine = false;
-      }
-      inventoryHotbar.inventory.array = survivalInventoryArray;
-      inventoryHotbar.refresh();
-      return console.log('survival mode');
-    }
+    var _ref1;
+    return (_ref1 = plugins.get('voxel-inventory-dialog')) != null ? _ref1.toggle() : void 0;
   });
   plugins.get('voxel-debug').axis([0, 0, 0], 10);
   return game;
@@ -338,7 +214,7 @@ home = function(avatar) {
 };
 
 
-},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-blockdata":24,"voxel-carry":25,"voxel-chest":30,"voxel-debug":33,"voxel-engine":44,"voxel-fly":88,"voxel-harvest":93,"voxel-highlight":98,"voxel-inventory-dialog":101,"voxel-inventory-hotbar":117,"voxel-land":125,"voxel-mine":134,"voxel-oculus":135,"voxel-player":136,"voxel-plugins":142,"voxel-plugins-ui":138,"voxel-reach":145,"voxel-registry":147,"voxel-use":148,"voxel-walk":149,"voxel-workbench":150}],2:[function(require,module,exports){
+},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-blockdata":24,"voxel-carry":25,"voxel-chest":30,"voxel-debug":33,"voxel-engine":44,"voxel-fly":88,"voxel-gamemode":93,"voxel-harvest":102,"voxel-highlight":107,"voxel-inventory-dialog":110,"voxel-inventory-hotbar":126,"voxel-land":134,"voxel-mine":143,"voxel-oculus":144,"voxel-pickaxe":145,"voxel-player":149,"voxel-plugins":155,"voxel-plugins-ui":151,"voxel-reach":158,"voxel-registry":160,"voxel-use":161,"voxel-walk":162,"voxel-workbench":163}],2:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -353,11 +229,11 @@ home = function(avatar) {
       CraftingThesaurus.instance = this;
     }
 
-    CraftingThesaurus.prototype.registerName = function(lookupName, itemPile) {
+    CraftingThesaurus.prototype.registerName = function(lookupName, item) {
       if (this.map[lookupName] == null) {
         this.map[lookupName] = [];
       }
-      return this.map[lookupName].push(itemPile.item);
+      return this.map[lookupName].push(item);
     };
 
     CraftingThesaurus.prototype.matchesName = function(lookupName, itemPile) {
@@ -5105,7 +4981,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":7,"./types.json":8,"events":175}],7:[function(require,module,exports){
+},{"./init.json":7,"./types.json":8,"events":188}],7:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -5489,9 +5365,9 @@ var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? 
 
 }).call(this);
 
-},{"events":175,"ever":10}],10:[function(require,module,exports){
+},{"events":188,"ever":10}],10:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":11,"./types.json":12,"events":175}],11:[function(require,module,exports){
+},{"./init.json":11,"./types.json":12,"events":188}],11:[function(require,module,exports){
 module.exports=require(7)
 },{}],12:[function(require,module,exports){
 module.exports=require(8)
@@ -5626,7 +5502,17 @@ module.exports=require(8)
     Inventory.prototype.clear = function() {
       var i, _i, _ref, _results;
       _results = [];
-      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i <= _ref : _i >= _ref; i = 0 <= _ref ? ++_i : --_i) {
+      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        _results.push(this.set(i, void 0));
+      }
+      return _results;
+    };
+
+    Inventory.prototype.transferTo = function(dest) {
+      var i, _i, _ref, _results;
+      _results = [];
+      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        dest.set(i, this.get(i));
         _results.push(this.set(i, void 0));
       }
       return _results;
@@ -5638,7 +5524,7 @@ module.exports=require(8)
 
 }).call(this);
 
-},{"deep-equal":14,"events":175,"itempile":15}],14:[function(require,module,exports){
+},{"deep-equal":14,"events":188,"itempile":15}],14:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var Object_keys = typeof Object.keys === 'function'
     ? Object.keys
@@ -5899,19 +5785,22 @@ module.exports = function(game, opts) {
   return new BindingsUI(game, opts);
 };
 
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-debug', 'voxel-plugins-ui'] // optional to load after and reuse same gui
+};
+
 function BindingsUI(game, opts) {
   this.game = game;
 
   opts = opts || {};
 
-  this.kb = opts.kb;
-  if (!this.kb) throw 'kb-bindings-ui requires "kb" option set to kb-bindings instance';
-  this.gui = opts.gui || new datgui.GUI();
+  this.kb = opts.kb || (game && game.buttons);
+  if (!this.kb) throw 'kb-bindings-ui requires "kb" option set to kb-bindings instance, or voxel-engine game with kb-bindings for game.buttons';
+  if (!this.kb.bindings) throw 'kb-bindings-ui "kb" option could not find kb-bindings\' bindings, not set to kb-bindings instance? (vs kb-controls)';
+  this.gui = opts.gui || (game && game.plugins && game.plugins.get('voxel-debug') ? game.plugins.get('voxel-debug').gui : new datgui.GUI());
   this.hideKeys = opts.hideKeys || ['ime-', 'launch-', 'browser-']; // too long
 
   this.folder = this.gui.addFolder('keys');
-
-  if (!this.kb.bindings) throw 'kb-bindings-ui "kb" option could not find kb-bindings\' bindings';
 
   this.vkey2code = {};
   this.vkeyBracket2Bare = {};
@@ -6184,7 +6073,7 @@ function Carry(game, opts) {
 
 },{"inventory":26}],26:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":27,"events":175,"itempile":28}],27:[function(require,module,exports){
+},{"deep-equal":27,"events":188,"itempile":28}],27:[function(require,module,exports){
 module.exports=require(14)
 },{}],28:[function(require,module,exports){
 module.exports=require(15)
@@ -6463,6 +6352,7 @@ Modal.prototype.toggle = function() {
 
 },{"ever":6}],33:[function(require,module,exports){
 function Debug(game, opts) {
+  opts = opts || {}
   if (opts.THREE) game = opts
   this.game = game
   this.gui = opts.gui || new (require('dat-gui')).GUI()
@@ -6776,7 +6666,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":175,"inherits":43}],38:[function(require,module,exports){
+},{"events":188,"inherits":43}],38:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -7415,6 +7305,7 @@ function Game(opts) {
   this.chunkDistance = opts.chunkDistance || 2
   this.removeDistance = opts.removeDistance || this.chunkDistance + 1
   
+  this.skyColor = opts.skyColor || 0xBFD1E5
   this.playerHeight = opts.playerHeight || 1.62
   this.meshType = opts.meshType || 'surfaceMesh'
   this.mesher = opts.mesher || voxel.meshers.greedy
@@ -7423,12 +7314,11 @@ function Game(opts) {
   this.items = []
   this.voxels = voxel(this)
   this.scene = new THREE.Scene()
-  this.view = opts.view || new voxelView(THREE, { width: this.width, height: this.height })
+  this.view = opts.view || new voxelView(THREE, { width: this.width, height: this.height, skyColor: this.skyColor })
   this.view.bindToScene(this.scene)
   this.camera = this.view.getCamera()
   if (!opts.lightsDisabled) this.addLights(this.scene)
   
-  this.skyColor = opts.skyColor || 0xBFD1E5
   this.fogScale = opts.fogScale || 32
   if (!opts.fogDisabled) this.scene.fog = new THREE.Fog( this.skyColor, 0.00025, this.worldWidth() * this.fogScale )
   
@@ -8099,7 +7989,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":45,"./lib/stats":46,"__browserify_process":184,"aabb-3d":47,"collide-3d-tilemap":48,"events":175,"gl-matrix":49,"inherits":50,"interact":51,"kb-bindings":60,"path":176,"pin-it":65,"raf":66,"spatial-events":67,"three":69,"tic":70,"voxel":83,"voxel-control":71,"voxel-mesh":72,"voxel-physical":73,"voxel-raycast":74,"voxel-region-change":75,"voxel-texture":76,"voxel-view":81}],45:[function(require,module,exports){
+},{"./lib/detector":45,"./lib/stats":46,"__browserify_process":197,"aabb-3d":47,"collide-3d-tilemap":48,"events":188,"gl-matrix":49,"inherits":50,"interact":51,"kb-bindings":60,"path":189,"pin-it":65,"raf":66,"spatial-events":67,"three":69,"tic":70,"voxel":83,"voxel-control":71,"voxel-mesh":72,"voxel-physical":73,"voxel-raycast":74,"voxel-region-change":75,"voxel-texture":76,"voxel-view":81}],45:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -11676,7 +11566,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":52,"events":175,"fullscreen":58,"pointer-lock":59,"stream":177}],52:[function(require,module,exports){
+},{"drag-stream":52,"events":188,"fullscreen":58,"pointer-lock":59,"stream":190}],52:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -11744,7 +11634,7 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":53,"stream":177,"through":57}],53:[function(require,module,exports){
+},{"domnode-dom":53,"stream":190,"through":57}],53:[function(require,module,exports){
 module.exports = require('./lib/index')
 
 },{"./lib/index":54}],54:[function(require,module,exports){
@@ -11894,7 +11784,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":177}],56:[function(require,module,exports){
+},{"stream":190}],56:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11976,7 +11866,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":177}],57:[function(require,module,exports){
+},{"stream":190}],57:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -12076,7 +11966,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":184,"stream":177}],58:[function(require,module,exports){
+},{"__browserify_process":197,"stream":190}],58:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -12167,7 +12057,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":175}],59:[function(require,module,exports){
+},{"events":188}],59:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -12331,7 +12221,7 @@ function shim(el) {
     null
 }
 
-},{"events":175,"stream":177}],60:[function(require,module,exports){
+},{"events":188,"stream":190}],60:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -12457,9 +12347,9 @@ module.exports = function(el, bindings, state, opts) {
   }
 }
 
-},{"events":175,"ever":61,"vkey":64}],61:[function(require,module,exports){
+},{"events":188,"ever":61,"vkey":64}],61:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":62,"./types.json":63,"events":175}],62:[function(require,module,exports){
+},{"./init.json":62,"./types.json":63,"events":188}],62:[function(require,module,exports){
 module.exports=require(7)
 },{}],63:[function(require,module,exports){
 module.exports=require(8)
@@ -12730,7 +12620,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":175}],67:[function(require,module,exports){
+},{"events":188}],67:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -49900,7 +49790,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":177}],72:[function(require,module,exports){
+},{"stream":190}],72:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -50520,7 +50410,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":47,"events":175}],76:[function(require,module,exports){
+},{"aabb-3d":47,"events":188}],76:[function(require,module,exports){
 var tic = require('tic')();
 var createAtlas = require('atlaspack');
 var isTransparent = require('opaque').transparent;
@@ -51585,9 +51475,9 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":184}],82:[function(require,module,exports){
+},{"__browserify_process":197}],82:[function(require,module,exports){
 module.exports=require(37)
-},{"events":175,"inherits":50}],83:[function(require,module,exports){
+},{"events":188,"inherits":50}],83:[function(require,module,exports){
 arguments[4][38][0].apply(exports,arguments)
 },{"./chunker":82,"./meshers/culled":84,"./meshers/greedy":85,"./meshers/monotone":86,"./meshers/stupid":87}],84:[function(require,module,exports){
 module.exports=require(39)
@@ -51705,9 +51595,9 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":175,"ever":89,"vkey":92}],89:[function(require,module,exports){
+},{"events":188,"ever":89,"vkey":92}],89:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":90,"./types.json":91,"events":175}],90:[function(require,module,exports){
+},{"./init.json":90,"./types.json":91,"events":188}],90:[function(require,module,exports){
 module.exports=require(7)
 },{}],91:[function(require,module,exports){
 module.exports=require(8)
@@ -51716,88 +51606,138 @@ module.exports=require(23)
 },{}],93:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
-  var EventEmitter, Harvest, ItemPile,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+  var Gamemode, Inventory, ItemPile;
 
-  EventEmitter = (require('events')).EventEmitter;
+  ItemPile = require('itempile');
 
-  ItemPile = require('ItemPile');
+  Inventory = require('inventory');
 
   module.exports = function(game, opts) {
-    return new Harvest(game, opts);
+    return new Gamemode(game, opts);
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-mine', 'voxel-registry', 'voxel-carry']
+    loadAfter: ['voxel-mine', 'voxel-carry', 'voxel-fly', 'voxel-registry']
   };
 
-  Harvest = (function(_super) {
-    __extends(Harvest, _super);
-
-    function Harvest(game, opts) {
-      var _ref, _ref1, _ref2, _ref3;
+  Gamemode = (function() {
+    function Gamemode(game, opts) {
+      var _ref, _ref1;
       this.game = game;
-      this.mine = (function() {
-        var _ref1;
-        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-mine') : void 0) != null) {
-          return _ref;
-        } else {
-          throw 'voxel-harvest requires "voxel-mine" plugin';
-        }
-      })();
+      if (this.game.buttons.down == null) {
+        throw 'voxel-gamemode requires game.buttons as kb-bindings (vs kb-controls), cannot add down event listener';
+      }
+      this.mode = (_ref = opts.startMode) != null ? _ref : 'survival';
       this.registry = (function() {
         var _ref2;
-        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
+        if ((_ref1 = (_ref2 = this.game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
           return _ref1;
         } else {
-          throw 'voxel-harvest requires "voxel-mine" plugin';
+          throw 'voxel-gamemode requires "voxel-registry" plugin';
         }
-      })();
-      this.playerInventory = (function() {
-        var _ref3, _ref4, _ref5;
-        if ((_ref2 = (_ref3 = (_ref4 = game.plugins) != null ? (_ref5 = _ref4.get('voxel-carry')) != null ? _ref5.inventory : void 0 : void 0) != null ? _ref3 : opts.playerInventory) != null) {
-          return _ref2;
-        } else {
-          throw 'voxel-harvest requires "voxel-carry" plugin or "playerInventory" option set to inventory instance';
-        }
-      })();
-      this.block2ItemPile = (_ref3 = opts.block2ItemPile) != null ? _ref3 : function(blockName) {
-        return new ItemPile(blockName, 1);
-      };
+      }).call(this);
       this.enable();
     }
 
-    Harvest.prototype.enable = function() {
-      var _this = this;
-      return this.mine.on('break', this.onBreak = function(target) {
-        var blockName, droppedPile, excess;
-        game.setBlock(target.voxel, 0);
-        blockName = _this.registry.getBlockName(target.value);
-        droppedPile = _this.block2ItemPile(blockName);
-        if (droppedPile == null) {
-          return;
-        }
-        excess = _this.playerInventory.give(droppedPile);
-        if (excess > 0) {
-          return _this.game.setBlock(target.voxel, target.value);
+    Gamemode.prototype.enable = function() {
+      var carry, _ref,
+        _this = this;
+      carry = (_ref = this.game.plugins) != null ? _ref.get('voxel-carry') : void 0;
+      if (carry) {
+        this.survivalInventory = new Inventory(carry.inventory.width, carry.inventory.height);
+        this.creativeInventory = new Inventory(carry.inventory.width, carry.inventory.height);
+      }
+      return this.game.buttons.down.on('gamemode', this.onDown = function() {
+        var playerInventory, _ref1, _ref2, _ref3, _ref4, _ref5;
+        playerInventory = (_ref1 = _this.game.plugins.get('voxel-carry')) != null ? _ref1.inventory : void 0;
+        if (_this.mode === 'survival') {
+          _this.mode = 'creative';
+          _this.game.plugins.enable('voxel-fly');
+          if ((_ref2 = _this.game.plugins.get('voxel-mine')) != null) {
+            _ref2.instaMine = true;
+          }
+          _this.populateCreative();
+          if (_this.survivalInventory != null) {
+            if (playerInventory != null) {
+              playerInventory.transferTo(_this.survivalInventory);
+            }
+          }
+          if (playerInventory != null) {
+            if ((_ref3 = _this.creativeInventory) != null) {
+              _ref3.transferTo(playerInventory);
+            }
+          }
+          return console.log('creative mode');
+        } else {
+          _this.mode = 'survival';
+          _this.game.plugins.disable('voxel-fly');
+          if ((_ref4 = _this.game.plugins.get('voxel-mine')) != null) {
+            _ref4.instaMine = false;
+          }
+          if (_this.creativeInventory != null) {
+            if (playerInventory != null) {
+              playerInventory.transferTo(_this.creativeInventory);
+            }
+          }
+          if (playerInventory != null) {
+            if ((_ref5 = _this.survivalInventory) != null) {
+              _ref5.transferTo(playerInventory);
+            }
+          }
+          return console.log('survival mode');
         }
       });
     };
 
-    Harvest.prototype.disable = function() {
-      return this.mine.removeListener('break', this.onBreak);
+    Gamemode.prototype.disable = function() {
+      return this.game.buttons.down.removeListener('gamemode', this.onDown);
     };
 
-    return Harvest;
+    Gamemode.prototype.populateCreative = function() {
+      var i, name, props, registry, _i, _len, _ref, _ref1, _ref2, _results;
+      registry = (_ref = this.game.plugins) != null ? _ref.get('voxel-registry') : void 0;
+      if (registry != null) {
+        i = 0;
+        console.log('itemProps=', registry.itemProps);
+        _ref1 = registry.itemProps;
+        for (name in _ref1) {
+          props = _ref1[name];
+          console.log(i, name);
+          this.creativeInventory.set(i, new ItemPile(name, Infinity));
+          i += 1;
+        }
+        _ref2 = registry.blockProps;
+        _results = [];
+        for (_i = 0, _len = _ref2.length; _i < _len; _i++) {
+          props = _ref2[_i];
+          if (props.name != null) {
+            this.creativeInventory.set(i, new ItemPile(props.name, Infinity));
+            _results.push(i += 1);
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      }
+    };
 
-  })(EventEmitter);
+    return Gamemode;
+
+  })();
 
 }).call(this);
 
-},{"ItemPile":94,"events":175}],94:[function(require,module,exports){
+},{"inventory":94,"itempile":98}],94:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":95,"events":188,"itempile":96}],95:[function(require,module,exports){
+module.exports=require(14)
+},{}],96:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":97}],97:[function(require,module,exports){
+module.exports=require(14)
+},{}],98:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"deep-equal":95}],95:[function(require,module,exports){
+},{"deep-equal":99}],99:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -51874,7 +51814,7 @@ function objEquiv(a, b, opts) {
   return true;
 }
 
-},{"./lib/is_arguments.js":96,"./lib/keys.js":97}],96:[function(require,module,exports){
+},{"./lib/is_arguments.js":100,"./lib/keys.js":101}],100:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -51896,7 +51836,7 @@ function unsupported(object){
     false;
 };
 
-},{}],97:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -51907,7 +51847,107 @@ function shim (obj) {
   return keys;
 }
 
-},{}],98:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, Harvest, ItemPile,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  ItemPile = require('ItemPile');
+
+  module.exports = function(game, opts) {
+    return new Harvest(game, opts);
+  };
+
+  module.exports.pluginInfo = {
+    loadAfter: ['voxel-mine', 'voxel-registry', 'voxel-carry']
+  };
+
+  Harvest = (function(_super) {
+    __extends(Harvest, _super);
+
+    function Harvest(game, opts) {
+      var _ref, _ref1, _ref2;
+      this.game = game;
+      this.mine = (function() {
+        var _ref1;
+        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-mine') : void 0) != null) {
+          return _ref;
+        } else {
+          throw 'voxel-harvest requires "voxel-mine" plugin';
+        }
+      })();
+      this.registry = (function() {
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-harvest requires "voxel-mine" plugin';
+        }
+      })();
+      this.playerInventory = (function() {
+        var _ref3, _ref4, _ref5;
+        if ((_ref2 = (_ref3 = (_ref4 = game.plugins) != null ? (_ref5 = _ref4.get('voxel-carry')) != null ? _ref5.inventory : void 0 : void 0) != null ? _ref3 : opts.playerInventory) != null) {
+          return _ref2;
+        } else {
+          throw 'voxel-harvest requires "voxel-carry" plugin or "playerInventory" option set to inventory instance';
+        }
+      })();
+      this.enable();
+    }
+
+    Harvest.prototype.enable = function() {
+      var _this = this;
+      return this.mine.on('break', this.onBreak = function(target) {
+        var blockName, droppedPile, excess;
+        game.setBlock(target.voxel, 0);
+        blockName = _this.registry.getBlockName(target.value);
+        droppedPile = _this.block2ItemPile(blockName);
+        if (droppedPile == null) {
+          return;
+        }
+        excess = _this.playerInventory.give(droppedPile);
+        if (excess > 0) {
+          return _this.game.setBlock(target.voxel, target.value);
+        }
+      });
+    };
+
+    Harvest.prototype.disable = function() {
+      return this.mine.removeListener('break', this.onBreak);
+    };
+
+    Harvest.prototype.block2ItemPile = function(blockName) {
+      var item, itemPile, _ref;
+      item = (_ref = this.registry.getItemProps(blockName)) != null ? _ref.itemDrop : void 0;
+      if (item === null) {
+        return void 0;
+      }
+      if (item === void 0) {
+        item = blockName;
+      }
+      itemPile = new ItemPile(item, 1);
+      return itemPile;
+    };
+
+    return Harvest;
+
+  })(EventEmitter);
+
+}).call(this);
+
+},{"ItemPile":103,"events":188}],103:[function(require,module,exports){
+arguments[4][15][0].apply(exports,arguments)
+},{"deep-equal":104}],104:[function(require,module,exports){
+module.exports=require(99)
+},{"./lib/is_arguments.js":105,"./lib/keys.js":106}],105:[function(require,module,exports){
+module.exports=require(100)
+},{}],106:[function(require,module,exports){
+module.exports=require(101)
+},{}],107:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -52074,9 +52114,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":175,"inherits":99,"underscore":100}],99:[function(require,module,exports){
+},{"events":188,"inherits":108,"underscore":109}],108:[function(require,module,exports){
 module.exports=require(43)
-},{}],100:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -53304,7 +53344,7 @@ module.exports=require(43)
 
 }).call(this);
 
-},{}],101:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
@@ -53415,37 +53455,37 @@ module.exports=require(43)
 
 }).call(this);
 
-},{"inventory":109,"inventory-window":105,"itempile":113,"voxel-modal-dialog":115}],102:[function(require,module,exports){
+},{"inventory":118,"inventory-window":114,"itempile":122,"voxel-modal-dialog":124}],111:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":103,"./types.json":104,"events":175}],103:[function(require,module,exports){
+},{"./init.json":112,"./types.json":113,"events":188}],112:[function(require,module,exports){
 module.exports=require(7)
-},{}],104:[function(require,module,exports){
-module.exports=require(8)
-},{}],105:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":175,"ever":106}],106:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":107,"./types.json":108,"events":175}],107:[function(require,module,exports){
-module.exports=require(7)
-},{}],108:[function(require,module,exports){
-module.exports=require(8)
-},{}],109:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":110,"events":175,"itempile":111}],110:[function(require,module,exports){
-module.exports=require(14)
-},{}],111:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":112}],112:[function(require,module,exports){
-module.exports=require(14)
 },{}],113:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":114}],114:[function(require,module,exports){
+module.exports=require(8)
+},{}],114:[function(require,module,exports){
+arguments[4][9][0].apply(exports,arguments)
+},{"events":188,"ever":115}],115:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":116,"./types.json":117,"events":188}],116:[function(require,module,exports){
+module.exports=require(7)
+},{}],117:[function(require,module,exports){
+module.exports=require(8)
+},{}],118:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":119,"events":188,"itempile":120}],119:[function(require,module,exports){
 module.exports=require(14)
-},{}],115:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":121}],121:[function(require,module,exports){
+module.exports=require(14)
+},{}],122:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":123}],123:[function(require,module,exports){
+module.exports=require(14)
+},{}],124:[function(require,module,exports){
 arguments[4][31][0].apply(exports,arguments)
-},{"voxel-modal":116}],116:[function(require,module,exports){
+},{"voxel-modal":125}],125:[function(require,module,exports){
 arguments[4][32][0].apply(exports,arguments)
-},{"ever":102}],117:[function(require,module,exports){
+},{"ever":111}],126:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, InventoryHotbar, InventoryWindow, ever,
@@ -53556,21 +53596,21 @@ arguments[4][32][0].apply(exports,arguments)
 
 }).call(this);
 
-},{"events":175,"ever":118,"inventory-window":121}],118:[function(require,module,exports){
+},{"events":188,"ever":127,"inventory-window":130}],127:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":119,"./types.json":120,"events":175}],119:[function(require,module,exports){
+},{"./init.json":128,"./types.json":129,"events":188}],128:[function(require,module,exports){
 module.exports=require(7)
-},{}],120:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports=require(8)
-},{}],121:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 arguments[4][9][0].apply(exports,arguments)
-},{"events":175,"ever":122}],122:[function(require,module,exports){
+},{"events":188,"ever":131}],131:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":123,"./types.json":124,"events":175}],123:[function(require,module,exports){
+},{"./init.json":132,"./types.json":133,"events":188}],132:[function(require,module,exports){
 module.exports=require(7)
-},{}],124:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports=require(8)
-},{}],125:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var webworkify = require('webworkify');
@@ -53580,23 +53620,18 @@ module.exports = function(game, opts) {
 };
 
 module.exports.pluginInfo = {
-  loadAfter: ['voxel-registry']
+  loadAfter: ['voxel-registry', 'craftingrecipes']
 };
 
 function Land(game, opts) {
   this.game = game;
 
   if (!game.plugins || !game.plugins.get('voxel-registry')) throw 'voxel-land requires voxel-registry';
-  var registry = game.plugins.get('voxel-registry');
+  this.registry = game.plugins.get('voxel-registry');
 
   opts = opts || {};
   opts.seed = opts.seed || 'foo';
-  opts.materials = opts.materials || {  // TODO: how about getting directly instead of having this map here?
-    grass: registry.getBlockID('grass'),
-    dirt: registry.getBlockID('dirt'),
-    stone: registry.getBlockID('stone'),
-    bark: registry.getBlockID('logOak'),
-    leaves: registry.getBlockID('leavesOak')};
+  opts.materials = opts.materials || undefined;
 
   opts.crustLower = opts.crustLower === undefined ? 0 : opts.crustLower;
   opts.crustUpper = opts.crustUpper === undefined ? 2 : opts.crustUpper;
@@ -53619,17 +53654,50 @@ function Land(game, opts) {
 
   this.opts = opts;
 
-  this.worker = webworkify(require('./worker.js'));
-  
   this.enable();
 }
 
 Land.prototype.enable = function() {
+  this.registerBlocks();
+  this.worker = webworkify(require('./worker.js'));
   this.bindEvents();
 };
 
 Land.prototype.disable = function() {
   this.unbindEvents();
+  // TODO: unregister blocks?
+};
+
+Land.prototype.registerBlocks = function()  {
+  if (this.opts.materials) return; // only register blocks once TODO: remove after adding unregister
+
+  this.registry.registerBlock('grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5, itemDrop: 'dirt'});
+  this.registry.registerBlock('dirt', {texture: 'dirt', hardness:4});
+  this.registry.registerBlock('stone', {texture: 'stone', hardness:90, itemDrop: 'cobblestone'});
+  this.registry.registerBlock('logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8});
+  this.registry.registerBlock('cobblestone', {texture: 'cobblestone', hardness:80});
+  this.registry.registerBlock('oreCoal', {texture: 'coal_ore'});
+  this.registry.registerBlock('brick', {texture: 'brick'}); // some of the these blocks don't really belong here..do they?
+  this.registry.registerBlock('obsidian', {texture: 'obsidian', hardness: 900});
+  this.registry.registerBlock('leavesOak', {texture: 'leaves_oak_opaque', hardness: 2, itemDrop: null});
+  this.registry.registerBlock('glass', {texture: 'glass'});
+
+  this.registry.registerBlock('logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8}); // TODO: generate
+
+  var recipes = this.game.plugins.get('craftingrecipes');
+  if (recipes) { // TODO: should these be properties on voxel-registry, instead?
+    recipes.thesaurus.registerName('wood.log', 'logOak');
+    recipes.thesaurus.registerName('wood.log', 'logBirch');
+    recipes.thesaurus.registerName('tree.leaves', 'leavesOak');
+  }
+
+  // for passing to worker
+  this.opts.materials = this.opts.materials || {
+    grass: this.registry.getBlockID('grass'),
+    dirt: this.registry.getBlockID('dirt'),
+    stone: this.registry.getBlockID('stone'),
+    bark: this.registry.getBlockID('logOak'),
+    leaves: this.registry.getBlockID('leavesOak')};
 };
 
 Land.prototype.bindEvents = function() {
@@ -53668,7 +53736,7 @@ Land.prototype.unbindEvents = function() {
   this.game.voxels.removeListener('missingChunk', this.missingChunk);
 };
 
-},{"./worker.js":133,"webworkify":132}],126:[function(require,module,exports){
+},{"./worker.js":142,"webworkify":141}],135:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -53779,13 +53847,13 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],127:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports=require(6)
-},{"./init.json":128,"./types.json":129,"events":175}],128:[function(require,module,exports){
+},{"./init.json":137,"./types.json":138,"events":188}],137:[function(require,module,exports){
 module.exports=require(7)
-},{}],129:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports=require(8)
-},{}],130:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
  *
@@ -54193,7 +54261,7 @@ if (typeof module !== 'undefined') {
 
 })();
 
-},{}],131:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -54402,7 +54470,7 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],132:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -54456,7 +54524,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],133:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 var ever = require('ever');
 var createTree = require('voxel-trees');
 var SimplexNoise = require('simplex-noise');
@@ -54662,7 +54730,7 @@ module.exports = function() {
 
 
 
-},{"alea":126,"ever":127,"simplex-noise":130,"voxel-trees":131}],134:[function(require,module,exports){
+},{"alea":135,"ever":136,"simplex-noise":139,"voxel-trees":140}],143:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine,
@@ -54676,24 +54744,32 @@ module.exports = function() {
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-reach']
+    loadAfter: ['voxel-reach', 'voxel-registry', 'voxel-inventory-hotbar']
   };
 
   Mine = (function(_super) {
     __extends(Mine, _super);
 
     function Mine(game, opts) {
-      var _ref,
+      var _ref, _ref1, _ref2,
         _this = this;
       this.game = game;
+      this.registry = (_ref = game.plugins) != null ? _ref.get('voxel-registry') : void 0;
+      this.hotbar = (_ref1 = game.plugins) != null ? _ref1.get('voxel-inventory-hotbar') : void 0;
+      this.reach = (function() {
+        var _ref3;
+        if ((_ref2 = (_ref3 = game.plugins) != null ? _ref3.get('voxel-reach') : void 0) != null) {
+          return _ref2;
+        } else {
+          throw 'voxel-mine requires "voxel-reach" plugin';
+        }
+      })();
       opts = opts != null ? opts : {};
-      if (opts.timeToMine == null) {
-        opts.timeToMine = function(voxel) {
-          return 9;
-        };
-      }
       if (opts.instaMine == null) {
         opts.instaMine = false;
+      }
+      if (opts.timeToMine == null) {
+        opts.timeToMine = void 0;
       }
       if (opts.progressTexturesPrefix == null) {
         opts.progressTexturesPrefix = void 0;
@@ -54712,14 +54788,6 @@ module.exports = function() {
           return texture.wrapS = _this.game.THREE.RepeatWrapping;
         };
       }
-      this.reach = (function() {
-        var _ref1;
-        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-reach') : void 0) != null) {
-          return _ref;
-        } else {
-          throw 'voxel-mine requires "voxel-reach" plugin';
-        }
-      })();
       this.opts = opts;
       this.instaMine = opts.instaMine;
       this.progress = 0;
@@ -54733,6 +54801,30 @@ module.exports = function() {
 
   })(EventEmitter);
 
+  Mine.prototype.timeToMine = function(target) {
+    var blockID, blockName, finalTimeToMine, hardness, heldItem, speed, _ref, _ref1, _ref2;
+    if (this.opts.timeToMine != null) {
+      return this.opts.timeToMine(target);
+    }
+    if (!this.registry) {
+      return 9;
+    }
+    blockID = game.getBlock(target.voxel);
+    blockName = this.registry.getBlockName(blockID);
+    hardness = (_ref = this.registry.getBlockProps(blockName)) != null ? _ref.hardness : void 0;
+    if (hardness == null) {
+      hardness = 9;
+    }
+    if (!this.hotbar) {
+      return hardness;
+    }
+    heldItem = this.hotbar.held();
+    speed = 1.0;
+    speed = (_ref1 = (_ref2 = this.registry.getItemProps(heldItem != null ? heldItem.item : void 0)) != null ? _ref2.speed : void 0) != null ? _ref1 : 1.0;
+    finalTimeToMine = Math.max(hardness / speed, 0);
+    return finalTimeToMine;
+  };
+
   Mine.prototype.enable = function() {
     var _this = this;
     this.reach.on('mining', this.onMining = function(target) {
@@ -54742,7 +54834,7 @@ module.exports = function() {
         return;
       }
       _this.progress += 1;
-      hardness = _this.opts.timeToMine(target);
+      hardness = _this.timeToMine(target);
       if (_this.instaMine || _this.progress > hardness) {
         _this.progress = 0;
         _this.reach.emit('stop mining', target);
@@ -54915,7 +55007,7 @@ module.exports = function() {
 
 }).call(this);
 
-},{"events":175}],135:[function(require,module,exports){
+},{"events":188}],144:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -55050,7 +55142,79 @@ function Oculus(game, opts) {
     this.enable();
 };
 
-},{}],136:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, ToolsPlugin, _ref;
+
+  ItemPile = require('itempile');
+
+  _ref = require('craftingrecipes'), Recipe = _ref.Recipe, AmorphousRecipe = _ref.AmorphousRecipe, PositionalRecipe = _ref.PositionalRecipe, CraftingThesaurus = _ref.CraftingThesaurus, RecipeLocator = _ref.RecipeLocator;
+
+  module.exports = function(game, opts) {
+    return new ToolsPlugin(game, opts);
+  };
+
+  module.exports.pluginInfo = {
+    loadAfter: ['craftingrecipes', 'voxel-registry']
+  };
+
+  ToolsPlugin = (function() {
+    function ToolsPlugin(game, opts) {
+      var _ref1;
+      this.game = game;
+      this.registry = (function() {
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
+          return _ref1;
+        } else {
+          throw 'voxel-pickaxe requires "voxel-registry" plugin';
+        }
+      })();
+      this.enable();
+    }
+
+    ToolsPlugin.prototype.enable = function() {
+      var recipes, _ref1;
+      this.registry.registerBlock('plankOak', {
+        texture: 'planks_oak'
+      });
+      this.registry.registerItem('pickaxeWood', {
+        itemTexture: '../items/wood_pickaxe',
+        speed: 2.0
+      });
+      this.registry.registerItem('pickaxeStone', {
+        itemTexture: '../items/stone_pickaxe',
+        speed: 10.0
+      });
+      this.registry.registerItem('stick', {
+        itemTexture: '../items/stick'
+      });
+      recipes = (_ref1 = this.game.plugins) != null ? _ref1.get('craftingrecipes') : void 0;
+      if (recipes != null) {
+        recipes.thesaurus.registerName('wood.plank', 'plankOak');
+        recipes.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
+        recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
+        recipes.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
+        return recipes.register(new PositionalRecipe([['cobblestone', 'cobblestone', 'cobblestone'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeStone', 1)));
+      }
+    };
+
+    ToolsPlugin.prototype.disable = function() {};
+
+    return ToolsPlugin;
+
+  })();
+
+}).call(this);
+
+},{"craftingrecipes":146,"itempile":147}],146:[function(require,module,exports){
+module.exports=require(2)
+},{}],147:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":148}],148:[function(require,module,exports){
+module.exports=require(14)
+},{}],149:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -55146,7 +55310,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":137}],137:[function(require,module,exports){
+},{"minecraft-skin":150}],150:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -55518,7 +55682,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],138:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
   
 var datgui = require('dat-gui');
@@ -55527,13 +55691,17 @@ module.exports = function(game, opts) {
   return new PluginsUI(game, opts);
 };
 
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-debug']    // for appending to its gui, if available
+};
+
 function PluginsUI(game, opts) {
   this.game = game;
   this.plugins = this.game.plugins;
 
   opts = opts || {};
 
-  this.gui = opts.gui || new datgui.GUI();
+  this.gui = opts.gui || (game.plugins && game.plugins.get('voxel-debug') ? game.plugins.get('voxel-debug').gui : new datgui.GUI());
   this.folder = this.gui.addFolder('plugins');
 
   this.pluginState = {};
@@ -55580,13 +55748,13 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":139}],139:[function(require,module,exports){
+},{"dat-gui":152}],152:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":140,"./vendor/dat.gui":141}],140:[function(require,module,exports){
+},{"./vendor/dat.color":153,"./vendor/dat.gui":154}],153:[function(require,module,exports){
 module.exports=require(4)
-},{}],141:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports=require(5)
-},{}],142:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var EventEmitter = require('events').EventEmitter;
@@ -55675,8 +55843,10 @@ Plugins.prototype.preconfigure = function(name, opts) {
 }
 
 // Add a plugin for loading: scan for ordered loading and preconfigure with given options
+// Special case: if the 'onDemand' option is set, the plugin won't be scanned at all, instead the pass configuration will be saved
 Plugins.prototype.add = function(name, opts) {
   if (!opts && !this.preconfiguredOpts[name]) throw 'voxel-plugins preload('+name+'): missing required options and not preconfigured';
+  if (opts.onDemand) return this.preconfigure(name, opts);
 
   var createPlugin = this.scan(name);
   if (!createPlugin)
@@ -55847,9 +56017,9 @@ Plugins.prototype.destroy = function(name) {
 
 inherits(Plugins, EventEmitter);
 
-},{"events":175,"inherits":143,"tsort":144}],143:[function(require,module,exports){
+},{"events":188,"inherits":156,"tsort":157}],156:[function(require,module,exports){
 module.exports=require(43)
-},{}],144:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -55923,7 +56093,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":180}],145:[function(require,module,exports){
+},{"util":193}],158:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var ever = require('ever');
@@ -56099,9 +56269,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":175,"ever":6,"inherits":146}],146:[function(require,module,exports){
+},{"events":188,"ever":6,"inherits":159}],159:[function(require,module,exports){
 module.exports=require(43)
-},{}],147:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = function(game, opts) {
@@ -56197,7 +56367,7 @@ Registry.prototype.isBlock = function(name) {
   return this.blockName2ID[name] !== undefined;
 };
 
-},{}],148:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Use,
@@ -56294,7 +56464,7 @@ Registry.prototype.isBlock = function(name) {
 
 }).call(this);
 
-},{"events":175}],149:[function(require,module,exports){
+},{"events":188}],162:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Walk(game, opts)
@@ -56404,7 +56574,7 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],150:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, ModalDialog, PositionalRecipe, Recipe, RecipeList, Workbench, WorkbenchDialog, _ref,
@@ -56513,12 +56683,14 @@ Walk.prototype.setAcceleration = function(newA) {
       });
       this.craftIW = new InventoryWindow({
         width: 3,
-        inventory: this.craftInventory
+        inventory: this.craftInventory,
+        linkedInventory: this.playerInventory
       });
       this.resultInventory = new Inventory(1);
       this.resultIW = new InventoryWindow({
         inventory: this.resultInventory,
-        allowDrop: false
+        allowDrop: false,
+        linkedInventory: this.playerInventory
       });
       this.resultIW.on('pickup', function() {
         return _this.tookCraftingOutput();
@@ -56575,43 +56747,43 @@ Walk.prototype.setAcceleration = function(newA) {
 
 }).call(this);
 
-},{"craftingrecipes":151,"inventory":159,"inventory-window":155,"itempile":163,"voxel-modal-dialog":165}],151:[function(require,module,exports){
+},{"craftingrecipes":164,"inventory":172,"inventory-window":168,"itempile":176,"voxel-modal-dialog":178}],164:[function(require,module,exports){
 module.exports=require(2)
-},{}],152:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":153,"./types.json":154,"events":175}],153:[function(require,module,exports){
-module.exports=require(7)
-},{}],154:[function(require,module,exports){
-module.exports=require(8)
-},{}],155:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":175,"ever":156}],156:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":157,"./types.json":158,"events":175}],157:[function(require,module,exports){
-module.exports=require(7)
-},{}],158:[function(require,module,exports){
-module.exports=require(8)
-},{}],159:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":160,"events":175,"itempile":161}],160:[function(require,module,exports){
-module.exports=require(14)
-},{}],161:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":162}],162:[function(require,module,exports){
-module.exports=require(14)
-},{}],163:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":164}],164:[function(require,module,exports){
-module.exports=require(14)
 },{}],165:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":166,"./types.json":167,"events":188}],166:[function(require,module,exports){
+module.exports=require(7)
+},{}],167:[function(require,module,exports){
+module.exports=require(8)
+},{}],168:[function(require,module,exports){
+arguments[4][9][0].apply(exports,arguments)
+},{"events":188,"ever":169}],169:[function(require,module,exports){
+module.exports=require(6)
+},{"./init.json":170,"./types.json":171,"events":188}],170:[function(require,module,exports){
+module.exports=require(7)
+},{}],171:[function(require,module,exports){
+module.exports=require(8)
+},{}],172:[function(require,module,exports){
+arguments[4][13][0].apply(exports,arguments)
+},{"deep-equal":173,"events":188,"itempile":174}],173:[function(require,module,exports){
+module.exports=require(14)
+},{}],174:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":175}],175:[function(require,module,exports){
+module.exports=require(14)
+},{}],176:[function(require,module,exports){
+module.exports=require(15)
+},{"deep-equal":177}],177:[function(require,module,exports){
+module.exports=require(14)
+},{}],178:[function(require,module,exports){
 arguments[4][31][0].apply(exports,arguments)
-},{"voxel-modal":166}],166:[function(require,module,exports){
+},{"voxel-modal":179}],179:[function(require,module,exports){
 arguments[4][32][0].apply(exports,arguments)
-},{"ever":152}],167:[function(require,module,exports){
+},{"ever":165}],180:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],168:[function(require,module,exports){
+},{"./index.coffee":1}],181:[function(require,module,exports){
 
 
 //
@@ -56829,7 +57001,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],169:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56902,7 +57074,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":168,"_stream_readable":171,"_stream_writable":173,"timers":179,"util":180}],170:[function(require,module,exports){
+},{"_shims":181,"_stream_readable":184,"_stream_writable":186,"timers":192,"util":193}],183:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -56945,7 +57117,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":172,"util":180}],171:[function(require,module,exports){
+},{"_stream_transform":185,"util":193}],184:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57866,7 +58038,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":184,"_shims":168,"buffer":182,"events":175,"stream":177,"string_decoder":178,"timers":179,"util":180}],172:[function(require,module,exports){
+},{"__browserify_process":197,"_shims":181,"buffer":195,"events":188,"stream":190,"string_decoder":191,"timers":192,"util":193}],185:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58072,7 +58244,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":169,"util":180}],173:[function(require,module,exports){
+},{"_stream_duplex":182,"util":193}],186:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58442,7 +58614,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":182,"stream":177,"timers":179,"util":180}],174:[function(require,module,exports){
+},{"buffer":195,"stream":190,"timers":192,"util":193}],187:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58759,7 +58931,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":168,"util":180}],175:[function(require,module,exports){
+},{"_shims":181,"util":193}],188:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59040,7 +59212,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":180}],176:[function(require,module,exports){
+},{"util":193}],189:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59251,7 +59423,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":184,"_shims":168,"util":180}],177:[function(require,module,exports){
+},{"__browserify_process":197,"_shims":181,"util":193}],190:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59380,7 +59552,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":169,"_stream_passthrough":170,"_stream_readable":171,"_stream_transform":172,"_stream_writable":173,"events":175,"util":180}],178:[function(require,module,exports){
+},{"_stream_duplex":182,"_stream_passthrough":183,"_stream_readable":184,"_stream_transform":185,"_stream_writable":186,"events":188,"util":193}],191:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59573,7 +59745,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":182}],179:[function(require,module,exports){
+},{"buffer":195}],192:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -59692,7 +59864,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],180:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -60237,7 +60409,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":168}],181:[function(require,module,exports){
+},{"_shims":181}],194:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -60323,7 +60495,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],182:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -61449,7 +61621,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":181,"assert":174,"base64-js":183}],183:[function(require,module,exports){
+},{"./buffer_ieee754":194,"assert":187,"base64-js":196}],196:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -61535,7 +61707,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],184:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -61589,5 +61761,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[167])
+},{}]},{},[180])
 ;
