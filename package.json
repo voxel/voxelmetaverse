@@ -34,6 +34,7 @@
     "inventory-window": "git://github.com/deathcap/inventory-window.git",
     "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git",
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git",
+    "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git",
     "voxel-land": "git://github.com/deathcap/voxel-land.git"
   },

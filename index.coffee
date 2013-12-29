@@ -29,6 +29,7 @@ require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-land'
+require 'voxel-pickaxe'
 require 'voxel-blockdata'
 
 require 'voxel-debug'
@@ -102,6 +103,7 @@ module.exports = () ->
     'voxel-blockdata': {}
     'voxel-chest': {}
     'voxel-workbench': {}
+    'voxel-pickaxe': {}
     'voxel-land': {populateTrees: true}
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
@@ -152,29 +154,6 @@ module.exports = () ->
   window.game = window.g = game # for debugging
   game.appendTo container
   return game if game.notCapable()
-
-
-  # pickaxe TODO: move to new module?
-  registry = plugins.get('voxel-registry')
-  registry.registerItem 'pickaxeWood', {itemTexture: '../items/wood_pickaxe', speed: 2.0} # TODO: fix path
-  registry.registerItem 'pickaxeDiamond', {itemTexture: '../items/diamond_pickaxe', speed: 10.0}
-  registry.registerItem 'stick', {itemTexture: '../items/stick'}
-
-  # recipes
-  recipes = plugins.get('craftingrecipes')
-  recipes.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
-  recipes.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
-
-  recipes.register new PositionalRecipe([
-    ['wood.plank', 'wood.plank', 'wood.plank'],
-    [undefined, 'stick', undefined],
-    [undefined, 'stick', undefined]], new ItemPile('pickaxeWood', 1))
-
-  # temporary recipe
-  recipes.register new PositionalRecipe([
-    ['tree.leaves', 'tree.leaves', 'tree.leaves'],
-    [undefined, 'stick', undefined],
-    [undefined, 'stick', undefined]], new ItemPile('pickaxeDiamond', 1))
 
 
   avatar = plugins.get('voxel-player')
