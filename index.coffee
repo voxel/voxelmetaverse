@@ -129,14 +129,11 @@ module.exports = () ->
 
   # the game view element itself
   game = plugins.get('voxel-engine')
-  container = document.body
   window.game = window.g = game # for debugging
-  game.appendTo container
+  game.appendTo document.body
   return game if game.notCapable()
 
-
   avatar = plugins.get('voxel-player')
-  avatar.pov('first');
   avatar.possess()
   home(avatar)
 
@@ -145,22 +142,10 @@ module.exports = () ->
   game.materials.load registry.getBlockPropsAll 'texture'
   global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
 
-  #playerInventory = game.plugins.get('voxel-carry').inventory
-  #playerInventory.give new ItemPile('pickaxeDiamond', 1)
-  #playerInventory.give new ItemPile('stick', 32)
-  #playerInventory.give new ItemPile('logOak', 10)
-  #playerInventory.give new ItemPile('plankOak', 10)
-  #playerInventory.give new ItemPile('logBirch', 5)
-  #playerInventory.give new ItemPile('workbench', 1)
-  #playerInventory.give new ItemPile('chest', 5)
-
   game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
   game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
   game.buttons.down.on 'home', () -> home(avatar)
-  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.toggle()
-
-  # show origin 
-  plugins.get('voxel-debug').axis [0, 0, 0], 10
+  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.show()
 
   return game
 
