@@ -162,11 +162,6 @@ module.exports = () ->
 
   # recipes
   recipes = plugins.get('craftingrecipes')
-  recipes.thesaurus.registerName 'wood.log', new ItemPile('logOak')
-  recipes.thesaurus.registerName 'wood.log', new ItemPile('logBirch')
-  recipes.thesaurus.registerName 'wood.plank', new ItemPile('plankOak')
-  recipes.thesaurus.registerName 'tree.leaves', new ItemPile('leavesOak')
-
   recipes.register new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2))
   recipes.register new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4))
 
