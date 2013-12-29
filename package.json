@@ -36,6 +36,7 @@
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git",
+    "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git",
     "voxel-land": "git://github.com/deathcap/voxel-land.git"
   },
   "devDependencies": {
