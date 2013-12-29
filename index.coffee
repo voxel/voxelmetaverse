@@ -134,7 +134,6 @@ module.exports = () ->
   return game if game.notCapable()
 
   avatar = plugins.get('voxel-player')
-  avatar.possess()
   home(avatar)
 
   # load textures after all plugins loaded (since they may add their own)
