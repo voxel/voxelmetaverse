@@ -22,6 +22,7 @@ require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-player'
 require 'voxel-fly'
+require 'voxel-gamemode'
 require 'voxel-walk'
 require 'voxel-mine'
 require 'voxel-harvest'
@@ -106,6 +107,7 @@ module.exports = () ->
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png'}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
+    'voxel-gamemode': {}
     'voxel-walk': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-dialog': {}
@@ -126,6 +128,7 @@ module.exports = () ->
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
     }
+
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
     'voxel-plugins-ui': {}
@@ -198,39 +201,10 @@ module.exports = () ->
   #playerInventory.give new ItemPile('workbench', 1)
   #playerInventory.give new ItemPile('chest', 5)
 
-
-  game.mode = 'survival'
-
-  # one of everything, please..
-  creativeInventoryArray = []
-  for props in registry.blockProps
-    creativeInventoryArray.push(new ItemPile(props.name, Infinity)) if props.name?
-
-  survivalInventoryArray = []
-
   game.buttons.down.on 'pov', () -> avatar.toggle() # TODO: disable/re-enable voxel-walk in 1st/3rd person?
   game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
   game.buttons.down.on 'home', () -> home(avatar)
   game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.toggle()
-  inventoryHotbar = plugins.get('voxel-inventory-hotbar')
-  game.buttons.down.on 'gamemode', () ->
-    # TODO: add gamemode event? for plugins to handle instead of us
-    if game.mode == 'survival'
-      game.mode = 'creative'
-      plugins.enable 'voxel-fly'
-      plugins.get('voxel-mine')?.instaMine = true
-      survivalInventoryArray = inventoryHotbar.inventory.array
-      inventoryHotbar.inventory.array = creativeInventoryArray
-      inventoryHotbar.refresh()
-      console.log 'creative mode'
-    else
-      game.mode = 'survival'
-      plugins.disable 'voxel-fly'
-      plugins.get('voxel-mine')?.instaMine = false
-      inventoryHotbar.inventory.array = survivalInventoryArray
-      inventoryHotbar.refresh()
-      console.log 'survival mode'
-
 
   # show origin 
   plugins.get('voxel-debug').axis [0, 0, 0], 10
