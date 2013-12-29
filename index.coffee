@@ -1,19 +1,12 @@
 # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
-ever = require 'ever'
-datgui = require 'dat-gui'
-
-ItemPile = require 'itempile'
-Inventory = require 'inventory'
-InventoryWindow = require 'inventory-window'
-{Recipe, AmorphousRecipe, PositionalRecipe, CraftingThesaurus, RecipeLocator} = require 'craftingrecipes'
-
-createGame = require 'voxel-engine'
 createPlugins = require 'voxel-plugins'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
+require 'voxel-engine'
 require 'voxel-registry'
 require 'voxel-carry'
+require 'craftingrecipes'
 require 'voxel-workbench'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
