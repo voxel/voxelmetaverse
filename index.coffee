@@ -126,8 +126,7 @@ module.exports = () ->
 
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
-  game.materials.load registry.getBlockPropsAll 'texture'
-  global.InventoryWindow_defaultGetTexture = (itemPile) => registry.getItemPileTexture(itemPile) # TODO: cleanup
+  game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
 
   game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
   game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
