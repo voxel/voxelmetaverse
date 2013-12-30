@@ -1,25 +1,15 @@
 ;(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, PositionalRecipe, Recipe, RecipeLocator, createGame, createPlugins, datgui, ever, home, _ref;
-
-ever = require('ever');
-
-datgui = require('dat-gui');
-
-ItemPile = require('itempile');
-
-Inventory = require('inventory');
-
-InventoryWindow = require('inventory-window');
-
-_ref = require('craftingrecipes'), Recipe = _ref.Recipe, AmorphousRecipe = _ref.AmorphousRecipe, PositionalRecipe = _ref.PositionalRecipe, CraftingThesaurus = _ref.CraftingThesaurus, RecipeLocator = _ref.RecipeLocator;
-
-createGame = require('voxel-engine');
+var createPlugins;
 
 createPlugins = require('voxel-plugins');
+
+require('voxel-engine');
 
 require('voxel-registry');
 
 require('voxel-carry');
+
+require('craftingrecipes');
 
 require('voxel-workbench');
 
@@ -49,11 +39,13 @@ require('voxel-use');
 
 require('voxel-reach');
 
-require('voxel-land');
-
 require('voxel-pickaxe');
 
 require('voxel-blockdata');
+
+require('voxel-daylight');
+
+require('voxel-land');
 
 require('voxel-debug');
 
@@ -62,60 +54,55 @@ require('voxel-plugins-ui');
 require('kb-bindings-ui');
 
 module.exports = function() {
-  var ambientLight, avatar, configuration, container, directionalLight, game, loadingTime, name, opts, plugins, registry,
-    _this = this;
+  var configuration, game, loadingTime, name, opts, plugins, registry;
   console.log('voxpopuli starting');
   if (window.performance && window.performance.timing) {
     loadingTime = Date.now() - window.performance.timing.navigationStart;
     console.log("User-perceived page loading time: " + (loadingTime / 1000) + "s");
   }
-  console.log('creating game');
-  game = createGame({
-    lightsDisabled: true,
-    arrayType: Uint16Array,
-    useAtlas: false,
-    generateChunks: false,
-    chunkDistance: 2,
-    materials: [],
-    texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/',
-    worldOrigin: [0, 0, 0],
-    controls: {
-      discreteFire: false,
-      fireRate: 100,
-      jumpTimer: 25
-    },
-    keybindings: {
-      'W': 'forward',
-      'A': 'left',
-      'S': 'backward',
-      'D': 'right',
-      '<up>': 'forward',
-      '<left>': 'left',
-      '<down>': 'backward',
-      '<right>': 'right',
-      '<mouse 1>': 'fire',
-      '<mouse 3>': 'firealt',
-      '<space>': 'jump',
-      '<shift>': 'crouch',
-      '<control>': 'alt',
-      '<tab>': 'sprint',
-      'R': 'pov',
-      'T': 'vr',
-      'O': 'home',
-      'E': 'inventory',
-      'C': 'gamemode'
-    }
-  });
-  ambientLight = new game.THREE.AmbientLight(0x888888);
-  game.scene.add(ambientLight);
-  directionalLight = new game.THREE.DirectionalLight(0xffffff, 1);
-  directionalLight.position.set(1, 1, 0.5).normalize();
-  game.scene.add(directionalLight);
   console.log('initializing plugins');
-  plugins = createPlugins(game, {
+  plugins = createPlugins(null, {
     require: require
   });
   configuration = {
+    'voxel-engine': {
+      appendDocument: true,
+      exposeGlobal: true,
+      lightsDisabled: true,
+      arrayType: Uint16Array,
+      useAtlas: false,
+      generateChunks: false,
+      chunkDistance: 2,
+      materials: [],
+      texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/',
+      worldOrigin: [0, 0, 0],
+      controls: {
+        discreteFire: false,
+        fireRate: 100,
+        jumpTimer: 25
+      },
+      keybindings: {
+        'W': 'forward',
+        'A': 'left',
+        'S': 'backward',
+        'D': 'right',
+        '<up>': 'forward',
+        '<left>': 'left',
+        '<down>': 'backward',
+        '<right>': 'right',
+        '<mouse 1>': 'fire',
+        '<mouse 3>': 'firealt',
+        '<space>': 'jump',
+        '<shift>': 'crouch',
+        '<control>': 'alt',
+        '<tab>': 'sprint',
+        'R': 'pov',
+        'T': 'vr',
+        'O': 'home',
+        'E': 'inventory',
+        'C': 'gamemode'
+      }
+    },
     'voxel-registry': {},
     'craftingrecipes': {},
     'voxel-carry': {
@@ -126,6 +113,10 @@ module.exports = function() {
     'voxel-chest': {},
     'voxel-workbench': {},
     'voxel-pickaxe': {},
+    'voxel-daylight': {
+      ambientColor: 0x888888,
+      directionalColor: 0xffffff
+    },
     'voxel-land': {
       populateTrees: true
     },
@@ -135,7 +126,9 @@ module.exports = function() {
       onDemand: true
     },
     'voxel-player': {
-      image: 'player.png'
+      image: 'player.png',
+      homePosition: [2, 14, 4],
+      homeRotation: [0, 0, 0]
     },
     'voxel-fly': {
       flySpeed: 0.8,
@@ -173,48 +166,29 @@ module.exports = function() {
     plugins.add(name, opts);
   }
   plugins.loadAll();
-  if (window.location.href.indexOf('rift') !== -1 || window.location.hash.indexOf('rift') !== -1) {
-    plugins.enable('oculus');
-    document.getElementById('logo').style.visibility = 'hidden';
-  }
-  container = document.body;
-  window.game = window.g = game;
-  game.appendTo(container);
-  if (game.notCapable()) {
-    return game;
-  }
-  avatar = plugins.get('voxel-player');
-  avatar.pov('first');
-  avatar.possess();
-  home(avatar);
+  game = plugins.get('voxel-engine');
   registry = plugins.get('voxel-registry');
   game.materials.load(registry.getBlockPropsAll('texture'));
-  global.InventoryWindow_defaultGetTexture = function(itemPile) {
-    return registry.getItemPileTexture(itemPile);
-  };
   game.buttons.down.on('pov', function() {
-    return avatar.toggle();
+    var _ref;
+    return (_ref = plugins.get('voxel-player')) != null ? _ref.toggle() : void 0;
   });
   game.buttons.down.on('vr', function() {
     return plugins.toggle('voxel-oculus');
   });
   game.buttons.down.on('home', function() {
-    return home(avatar);
+    var _ref;
+    return (_ref = plugins.get('voxel-player')) != null ? _ref.home() : void 0;
   });
   game.buttons.down.on('inventory', function() {
-    var _ref1;
-    return (_ref1 = plugins.get('voxel-inventory-dialog')) != null ? _ref1.toggle() : void 0;
+    var _ref;
+    return (_ref = plugins.get('voxel-inventory-dialog')) != null ? _ref.open() : void 0;
   });
-  plugins.get('voxel-debug').axis([0, 0, 0], 10);
   return game;
 };
 
-home = function(avatar) {
-  return avatar.yaw.position.set(2, 14, 4);
-};
 
-
-},{"craftingrecipes":2,"dat-gui":3,"ever":6,"inventory":13,"inventory-window":9,"itempile":17,"kb-bindings-ui":19,"voxel-blockdata":24,"voxel-carry":25,"voxel-chest":30,"voxel-debug":33,"voxel-engine":44,"voxel-fly":88,"voxel-gamemode":93,"voxel-harvest":102,"voxel-highlight":107,"voxel-inventory-dialog":110,"voxel-inventory-hotbar":126,"voxel-land":134,"voxel-mine":143,"voxel-oculus":144,"voxel-pickaxe":145,"voxel-player":149,"voxel-plugins":155,"voxel-plugins-ui":151,"voxel-reach":158,"voxel-registry":160,"voxel-use":161,"voxel-walk":162,"voxel-workbench":163}],2:[function(require,module,exports){
+},{"craftingrecipes":2,"kb-bindings-ui":16,"voxel-blockdata":21,"voxel-carry":22,"voxel-chest":27,"voxel-daylight":30,"voxel-debug":31,"voxel-engine":42,"voxel-fly":86,"voxel-gamemode":91,"voxel-harvest":100,"voxel-highlight":105,"voxel-inventory-dialog":108,"voxel-inventory-hotbar":124,"voxel-land":132,"voxel-mine":141,"voxel-oculus":142,"voxel-pickaxe":143,"voxel-player":147,"voxel-plugins":153,"voxel-plugins-ui":149,"voxel-reach":156,"voxel-registry":158,"voxel-use":159,"voxel-walk":160,"voxel-workbench":161}],2:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -450,9 +424,1035 @@ home = function(avatar) {
 }).call(this);
 
 },{}],3:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter;
+
+module.exports = function (elem) {
+    return new Ever(elem);
+};
+
+function Ever (elem) {
+    this.element = elem;
+}
+
+Ever.prototype = new EventEmitter;
+
+Ever.prototype.on = function (name, cb, useCapture) {
+    if (!this._events) this._events = {};
+    if (!this._events[name]) this._events[name] = [];
+    this._events[name].push(cb);
+    this.element.addEventListener(name, cb, useCapture || false);
+
+    return this;
+};
+Ever.prototype.addListener = Ever.prototype.on;
+
+Ever.prototype.removeListener = function (type, listener, useCapture) {
+    if (!this._events) this._events = {};
+    this.element.removeEventListener(type, listener, useCapture || false);
+    
+    var xs = this.listeners(type);
+    var ix = xs.indexOf(listener);
+    if (ix >= 0) xs.splice(ix, 1);
+
+    return this;
+};
+
+Ever.prototype.removeAllListeners = function (type) {
+    var self = this;
+    function removeAll (t) {
+        var xs = self.listeners(t);
+        for (var i = 0; i < xs.length; i++) {
+            self.removeListener(t, xs[i]);
+        }
+    }
+    
+    if (type) {
+        removeAll(type)
+    }
+    else if (self._events) {
+        for (var key in self._events) {
+            if (key) removeAll(key);
+        }
+    }
+    return EventEmitter.prototype.removeAllListeners.apply(self, arguments);
+}
+
+var initSignatures = require('./init.json');
+
+Ever.prototype.emit = function (name, ev) {
+    if (typeof name === 'object') {
+        ev = name;
+        name = ev.type;
+    }
+    
+    if (!isEvent(ev)) {
+        var type = Ever.typeOf(name);
+        
+        var opts = ev || {};
+        if (opts.type === undefined) opts.type = name;
+        
+        ev = document.createEvent(type + 's');
+        var init = typeof ev['init' + type] === 'function'
+            ? 'init' + type : 'initEvent'
+        ;
+        
+        var sig = initSignatures[init];
+        var used = {};
+        var args = [];
+        
+        for (var i = 0; i < sig.length; i++) {
+            var key = sig[i];
+            args.push(opts[key]);
+            used[key] = true;
+        }
+        ev[init].apply(ev, args);
+        
+        // attach remaining unused options to the object
+        for (var key in opts) {
+            if (!used[key]) ev[key] = opts[key];
+        }
+    }
+    return this.element.dispatchEvent(ev);
+};
+
+function isEvent (ev) {
+    var s = Object.prototype.toString.call(ev);
+    return /\[object \S+Event\]/.test(s);
+}
+
+Ever.types = require('./types.json');
+Ever.typeOf = (function () {
+    var types = {};
+    for (var key in Ever.types) {
+        var ts = Ever.types[key];
+        for (var i = 0; i < ts.length; i++) {
+            types[ts[i]] = key;
+        }
+    }
+    
+    return function (name) {
+        return types[name] || 'Event';
+    };
+})();;
+
+},{"./init.json":4,"./types.json":5,"events":186}],4:[function(require,module,exports){
+module.exports={
+  "initEvent" : [
+    "type",
+    "canBubble", 
+    "cancelable"
+  ],
+  "initUIEvent" : [
+    "type",
+    "canBubble", 
+    "cancelable", 
+    "view", 
+    "detail"
+  ],
+  "initMouseEvent" : [
+    "type",
+    "canBubble", 
+    "cancelable", 
+    "view", 
+    "detail", 
+    "screenX", 
+    "screenY", 
+    "clientX", 
+    "clientY", 
+    "ctrlKey", 
+    "altKey", 
+    "shiftKey", 
+    "metaKey", 
+    "button",
+    "relatedTarget"
+  ],
+  "initMutationEvent" : [
+    "type",
+    "canBubble", 
+    "cancelable", 
+    "relatedNode", 
+    "prevValue", 
+    "newValue", 
+    "attrName", 
+    "attrChange"
+  ]
+}
+
+},{}],5:[function(require,module,exports){
+module.exports={
+  "MouseEvent" : [
+    "click",
+    "mousedown",
+    "mouseup",
+    "mouseover",
+    "mousemove",
+    "mouseout"
+  ],
+  "KeyBoardEvent" : [
+    "keydown",
+    "keyup",
+    "keypress"
+  ],
+  "MutationEvent" : [
+    "DOMSubtreeModified",
+    "DOMNodeInserted",
+    "DOMNodeRemoved",
+    "DOMNodeRemovedFromDocument",
+    "DOMNodeInsertedIntoDocument",
+    "DOMAttrModified",
+    "DOMCharacterDataModified"
+  ],
+  "HTMLEvent" : [
+    "load",
+    "unload",
+    "abort",
+    "error",
+    "select",
+    "change",
+    "submit",
+    "reset",
+    "focus",
+    "blur",
+    "resize",
+    "scroll"
+  ],
+  "UIEvent" : [
+    "DOMFocusIn",
+    "DOMFocusOut",
+    "DOMActivate"
+  ]
+}
+
+},{}],6:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, InventoryWindow, ever,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  ever = require('ever');
+
+  module.exports = InventoryWindow = (function(_super) {
+    __extends(InventoryWindow, _super);
+
+    InventoryWindow.heldItemPile = void 0;
+
+    InventoryWindow.heldNode = void 0;
+
+    InventoryWindow.mouseButtonDown = void 0;
+
+    InventoryWindow.resolvedImageURLs = {};
+
+    function InventoryWindow(opts) {
+      var _ref, _ref1, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+      if (opts == null) {
+        opts = {};
+      }
+      this.inventory = (function() {
+        if ((_ref = opts.inventory) != null) {
+          return _ref;
+        } else {
+          throw 'inventory-window requires "inventory" option set to Inventory instance';
+        }
+      })();
+      this.linkedInventory = opts.linkedInventory;
+      this.getTexture = (_ref1 = opts.getTexture) != null ? _ref1 : InventoryWindow.defaultGetTexture;
+      this.registry = opts.registry;
+      if ((this.getTexture == null) && (this.registry == null)) {
+        throw 'inventory-window: required "getTexture" or "registry" option missing';
+      }
+      this.getMaxDamage = (_ref2 = opts.getMaxDamage) != null ? _ref2 : InventoryWindow.defaultGetMaxDamage;
+      this.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
+      this.width = (_ref4 = opts.width) != null ? _ref4 : this.inventory.width;
+      this.textureSize = (_ref5 = opts.textureSize) != null ? _ref5 : 16 * 5;
+      this.borderSize = (_ref6 = opts.borderSize) != null ? _ref6 : 4;
+      this.progressThickness = (_ref7 = opts.progressThickness) != null ? _ref7 : 10;
+      this.secondaryMouseButton = (_ref8 = opts.secondaryMouseButton) != null ? _ref8 : 2;
+      this.allowDrop = (_ref9 = opts.allowDrop) != null ? _ref9 : true;
+      this.allowPickup = (_ref10 = opts.allowPickup) != null ? _ref10 : true;
+      this.allowDragPaint = (_ref11 = opts.allowDragPaint) != null ? _ref11 : true;
+      this.slotNodes = [];
+      this.container = void 0;
+      this.selectedIndex = void 0;
+      this.enable();
+    }
+
+    InventoryWindow.prototype.enable = function() {
+      var _this = this;
+      ever(document).on('mousemove', function(ev) {
+        if (!InventoryWindow.heldNode) {
+          return;
+        }
+        return _this.positionAtMouse(InventoryWindow.heldNode, ev);
+      });
+      ever(document).on('mouseup', function(ev) {
+        return InventoryWindow.mouseButtonDown = void 0;
+      });
+      return this.inventory.on('changed', function() {
+        return _this.refresh();
+      });
+    };
+
+    InventoryWindow.prototype.createContainer = function() {
+      var container, i, node, slotItem, widthpx, _i, _ref;
+      container = document.createElement('div');
+      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        slotItem = this.inventory.get(i);
+        node = this.createSlotNode(slotItem);
+        this.setBorderStyle(node, i);
+        this.bindSlotNodeEvent(node, i);
+        this.slotNodes.push(node);
+        container.appendChild(node);
+      }
+      widthpx = this.width * (this.textureSize + this.borderSize * 2);
+      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
+      return this.container = container;
+    };
+
+    InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+      var _this = this;
+      ever(node).on('mousedown', function(ev) {
+        return _this.clickSlot(index, ev);
+      });
+      return ever(node).on('mouseover', function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (InventoryWindow.heldItemPile == null) {
+          return;
+        }
+        if (InventoryWindow.mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(InventoryWindow.heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      });
+    };
+
+    InventoryWindow.prototype.createSlotNode = function(itemPile) {
+      var div, textNode;
+      div = document.createElement('div');
+      div.setAttribute('style', "display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
+      textNode = document.createTextNode('');
+      div.appendChild(textNode);
+      this.populateSlotNode(div, itemPile);
+      return div;
+    };
+
+    InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+      var maxDamage, newImage, progress, progressColor, progressNode, src, text, _ref;
+      src = void 0;
+      text = '';
+      progress = void 0;
+      progressColor = 'green';
+      if ((itemPile != null) && itemPile.count > 0) {
+        if (this.registry != null) {
+          src = this.registry.getItemPileTexture(itemPile);
+        } else if (this.getTexture != null) {
+          src = this.getTexture(itemPile);
+        } else {
+          throw 'inventory-window textures not specified, set InventoryWindow.defaultGetTexture or pass "getTexture" or "registry" option';
+        }
+        text = itemPile.count;
+        if (text === 1) {
+          text = '';
+        }
+        if (text === Infinity) {
+          text = '\u221e';
+        }
+        if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+          if (this.registry != null) {
+            maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+          } else if (this.getMaxDamage != null) {
+            maxDamage = this.getMaxDamage(itemPile);
+          } else {
+            maxDamage = 100;
+          }
+          progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+          if (progress <= 0.20) {
+            progressColor = 'red';
+          } else if (progress <= 0.40) {
+            progressColor = 'orange';
+          } else {
+            progressColor = 'green';
+          }
+        }
+      }
+      newImage = src != null ? 'url(' + src + ')' : '';
+      if (InventoryWindow.resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        InventoryWindow.resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+      if (div.textContent !== text) {
+        div.textContent = text;
+      }
+      progressNode = div.children[0];
+      if (progressNode == null) {
+        progressNode = document.createElement('div');
+        progressNode.setAttribute('style', "width: 0%;border-top: " + this.progressThickness + "px solid " + progressColor + ";top: " + (this.textureSize - this.borderSize * 2) + "px;position: relative;visibility: hidden;");
+        div.appendChild(progressNode);
+      }
+      progressNode.style.visibility = progress != null ? '' : 'hidden';
+      if (progress != null) {
+        return progressNode.style.width = (progress * 100) + '%';
+      }
+    };
+
+    InventoryWindow.prototype.setBorderStyle = function(node, index) {
+      if (index === this.selectedIndex) {
+        return node.style.border = "" + this.borderSize + "px dotted black";
+      } else {
+        return node.style.border = "" + this.borderSize + "px solid black";
+      }
+    };
+
+    InventoryWindow.prototype.setSelected = function(index) {
+      this.selectedIndex = index;
+      return this.refresh();
+    };
+
+    InventoryWindow.prototype.getSelected = function(index) {
+      return this.selectedIndex;
+    };
+
+    InventoryWindow.prototype.refreshSlotNode = function(index) {
+      this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+      return this.setBorderStyle(this.slotNodes[index], index);
+    };
+
+    InventoryWindow.prototype.refresh = function() {
+      var i, _i, _ref, _results;
+      _results = [];
+      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        _results.push(this.refreshSlotNode(i));
+      }
+      return _results;
+    };
+
+    InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+      var x, y, _ref, _ref1;
+      x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+      y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+      x -= this.textureSize / 2;
+      y -= this.textureSize / 2;
+      node.style.left = x + 'px';
+      return node.style.top = y + 'px';
+    };
+
+    InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+      var style;
+      if (InventoryWindow.heldNode) {
+        this.removeHeldNode();
+      }
+      if (!itemPile || itemPile.count === 0) {
+        InventoryWindow.heldItemPile = void 0;
+        return;
+      }
+      InventoryWindow.heldItemPile = itemPile;
+      InventoryWindow.heldNode = this.createSlotNode(InventoryWindow.heldItemPile);
+      InventoryWindow.heldNode.setAttribute('style', style = InventoryWindow.heldNode.getAttribute('style') + "position: absolute;user-select: none;-moz-user-select: none;-webkit-user-select: none;pointer-events: none;z-index: 10;");
+      this.positionAtMouse(InventoryWindow.heldNode, ev);
+      return document.body.appendChild(InventoryWindow.heldNode);
+    };
+
+    InventoryWindow.prototype.removeHeldNode = function() {
+      InventoryWindow.heldNode.parentNode.removeChild(InventoryWindow.heldNode);
+      InventoryWindow.heldNode = void 0;
+      return InventoryWindow.heldItemPile = void 0;
+    };
+
+    InventoryWindow.prototype.dropOneHeld = function(index) {
+      var oneHeld, tmp;
+      if (this.inventory.get(index)) {
+        oneHeld = InventoryWindow.heldItemPile.splitPile(1);
+        if (this.inventory.get(index).mergePile(oneHeld) === false) {
+          InventoryWindow.heldItemPile.increase(1);
+          tmp = InventoryWindow.heldItemPile;
+          InventoryWindow.heldItemPile = this.inventory.get(index);
+          return this.inventory.set(index, tmp);
+        } else {
+          return this.inventory.changed();
+        }
+      } else {
+        return this.inventory.set(index, InventoryWindow.heldItemPile.splitPile(1));
+      }
+    };
+
+    InventoryWindow.prototype.clickSlot = function(index, ev) {
+      var itemPile, shiftDown, tmp, _ref;
+      itemPile = this.inventory.get(index);
+      console.log('clickSlot', index, itemPile);
+      InventoryWindow.mouseButtonDown = ev.button;
+      shiftDown = ev.shiftKey;
+      if (ev.button !== this.secondaryMouseButton) {
+        if (!InventoryWindow.heldItemPile || !this.allowDrop) {
+          if (!this.allowPickup) {
+            return;
+          }
+          if (InventoryWindow.heldItemPile != null) {
+            if (this.inventory.get(index) != null) {
+              if (!InventoryWindow.heldItemPile.canPileWith(this.inventory.get(index))) {
+                return;
+              }
+              InventoryWindow.heldItemPile.mergePile(this.inventory.get(index));
+            }
+          } else {
+            if (!shiftDown) {
+              InventoryWindow.heldItemPile = this.inventory.get(index);
+              this.inventory.set(index, void 0);
+            } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+              this.linkedInventory.give(this.inventory.get(index));
+              this.inventory.changed();
+            }
+          }
+          this.emit('pickup');
+        } else {
+          if (this.inventory.get(index)) {
+            if (this.inventory.get(index).mergePile(InventoryWindow.heldItemPile) === false) {
+              tmp = InventoryWindow.heldItemPile;
+              InventoryWindow.heldItemPile = this.inventory.get(index);
+              this.inventory.set(index, tmp);
+            } else {
+              this.inventory.changed();
+            }
+          } else {
+            this.inventory.set(index, InventoryWindow.heldItemPile);
+            InventoryWindow.heldItemPile = void 0;
+          }
+        }
+      } else {
+        if (!InventoryWindow.heldItemPile) {
+          if (!this.allowPickup) {
+            return;
+          }
+          InventoryWindow.heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+          this.inventory.changed();
+          this.emit('pickup');
+        } else {
+          if (!this.allowDrop) {
+            return;
+          }
+          this.dropOneHeld(index);
+        }
+      }
+      this.createHeldNode(InventoryWindow.heldItemPile, ev);
+      return this.refreshSlotNode(index);
+    };
+
+    return InventoryWindow;
+
+  })(EventEmitter);
+
+}).call(this);
+
+},{"events":186,"ever":7}],7:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":8,"./types.json":9,"events":186}],8:[function(require,module,exports){
+module.exports=require(4)
+},{}],9:[function(require,module,exports){
+module.exports=require(5)
+},{}],10:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var EventEmitter, Inventory, ItemPile, deepEqual,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  deepEqual = require('deep-equal');
+
+  ItemPile = require('itempile');
+
+  EventEmitter = (require('events')).EventEmitter;
+
+  module.exports = Inventory = (function(_super) {
+    __extends(Inventory, _super);
+
+    function Inventory(xSize, ySize, opts) {
+      var size;
+      if (xSize == null) {
+        xSize = 10;
+      }
+      if (ySize == null) {
+        ySize = 1;
+      }
+      size = xSize * ySize;
+      this.array = new Array(size);
+      this.width = xSize;
+      this.height = ySize;
+    }
+
+    Inventory.prototype.changed = function() {
+      return this.emit('changed');
+    };
+
+    Inventory.prototype.give = function(itemPile) {
+      var excess, i, _i, _j, _ref, _ref1;
+      excess = itemPile.count;
+      for (i = _i = 0, _ref = this.array.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        if ((this.array[i] != null) && this.array[i].canPileWith(itemPile)) {
+          excess = this.array[i].mergePile(itemPile);
+        }
+        if (itemPile.count === 0) {
+          break;
+        }
+      }
+      for (i = _j = 0, _ref1 = this.array.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
+        if (this.array[i] == null) {
+          this.array[i] = new ItemPile(itemPile.item, 0);
+          excess = this.array[i].mergePile(itemPile);
+        }
+        if (itemPile.count === 0) {
+          break;
+        }
+      }
+      this.changed();
+      return excess;
+    };
+
+    Inventory.prototype.take = function(itemPile) {
+      var given, i, n, _i, _ref;
+      for (i = _i = 0, _ref = this.array.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        if ((this.array[i] != null) && this.array[i].matchesTypeAndTags(itemPile)) {
+          n = Math.min(itemPile.count, this.array[i].count);
+          itemPile.count -= n;
+          given = this.takeAt(i, n);
+        }
+      }
+      return this.changed();
+    };
+
+    Inventory.prototype.takeAt = function(position, count) {
+      var ret;
+      if (!this.array[position]) {
+        return false;
+      }
+      ret = this.array[position].splitPile(count);
+      if (this.array[position].count === 0) {
+        this.array[position] = void 0;
+      }
+      this.changed();
+      return ret;
+    };
+
+    Inventory.prototype.toString = function() {
+      var a, i, itemPile, _i, _len, _ref;
+      a = [];
+      _ref = this.array;
+      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+        itemPile = _ref[i];
+        if (itemPile == null) {
+          a.push('');
+        } else {
+          a.push("" + itemPile);
+        }
+      }
+      return a.join('\t');
+    };
+
+    Inventory.fromString = function(s) {
+      var items, ret, strings;
+      strings = s.split('\t');
+      items = (function() {
+        var _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = strings.length; _i < _len; _i++) {
+          s = strings[_i];
+          _results.push(ItemPile.fromString(s));
+        }
+        return _results;
+      })();
+      ret = new Inventory(items.length);
+      ret.array = items;
+      return ret;
+    };
+
+    Inventory.prototype.size = function() {
+      return this.array.length;
+    };
+
+    Inventory.prototype.get = function(i) {
+      return this.array[i];
+    };
+
+    Inventory.prototype.set = function(i, itemPile) {
+      this.array[i] = itemPile;
+      return this.changed();
+    };
+
+    Inventory.prototype.clear = function() {
+      var i, _i, _ref, _results;
+      _results = [];
+      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        _results.push(this.set(i, void 0));
+      }
+      return _results;
+    };
+
+    Inventory.prototype.transferTo = function(dest) {
+      var i, _i, _ref, _results;
+      _results = [];
+      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+        dest.set(i, this.get(i));
+        _results.push(this.set(i, void 0));
+      }
+      return _results;
+    };
+
+    return Inventory;
+
+  })(EventEmitter);
+
+}).call(this);
+
+},{"deep-equal":11,"events":186,"itempile":12}],11:[function(require,module,exports){
+var pSlice = Array.prototype.slice;
+var Object_keys = typeof Object.keys === 'function'
+    ? Object.keys
+    : function (obj) {
+        var keys = [];
+        for (var key in obj) keys.push(key);
+        return keys;
+    }
+;
+
+var deepEqual = module.exports = function (actual, expected, opts) {
+  if (!opts) opts = {};
+  // 7.1. All identical values are equivalent, as determined by ===.
+  if (actual === expected) {
+    return true;
+
+  } else if (actual instanceof Date && expected instanceof Date) {
+    return actual.getTime() === expected.getTime();
+
+  // 7.3. Other pairs that do not both pass typeof value == 'object',
+  // equivalence is determined by ==.
+  } else if (typeof actual != 'object' && typeof expected != 'object') {
+    return opts.strict ? actual === expected : actual == expected;
+
+  // 7.4. For all other Object pairs, including Array objects, equivalence is
+  // determined by having the same number of owned properties (as verified
+  // with Object.prototype.hasOwnProperty.call), the same set of keys
+  // (although not necessarily the same order), equivalent values for every
+  // corresponding key, and an identical 'prototype' property. Note: this
+  // accounts for both named and indexed properties on Arrays.
+  } else {
+    return objEquiv(actual, expected, opts);
+  }
+}
+
+function isUndefinedOrNull(value) {
+  return value === null || value === undefined;
+}
+
+function isArguments(object) {
+  return Object.prototype.toString.call(object) == '[object Arguments]';
+}
+
+function objEquiv(a, b, opts) {
+  if (!opts) opts = {};
+  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
+    return false;
+  // an identical 'prototype' property.
+  if (a.prototype !== b.prototype) return false;
+  //~~~I've managed to break Object.keys through screwy arguments passing.
+  //   Converting to array solves the problem.
+  if (isArguments(a)) {
+    if (!isArguments(b)) {
+      return false;
+    }
+    a = pSlice.call(a);
+    b = pSlice.call(b);
+    return deepEqual(a, b, opts);
+  }
+  try {
+    var ka = Object_keys(a),
+        kb = Object_keys(b),
+        key, i;
+  } catch (e) {//happens when one is a string literal and the other isn't
+    return false;
+  }
+  // having the same number of owned properties (keys incorporates
+  // hasOwnProperty)
+  if (ka.length != kb.length)
+    return false;
+  //the same set of keys (although not necessarily the same order),
+  ka.sort();
+  kb.sort();
+  //~~~cheap key test
+  for (i = ka.length - 1; i >= 0; i--) {
+    if (ka[i] != kb[i])
+      return false;
+  }
+  //equivalent values for every corresponding key, and
+  //~~~possibly expensive deep test
+  for (i = ka.length - 1; i >= 0; i--) {
+    key = ka[i];
+    if (!deepEqual(a[key], b[key], opts)) return false;
+  }
+  return true;
+}
+
+},{}],12:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var ItemPile, deepEqual;
+
+  deepEqual = require('deep-equal');
+
+  module.exports = ItemPile = (function() {
+    function ItemPile(item, count, tags) {
+      this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+      this.count = count != null ? count : 1;
+      this.tags = tags != null ? tags : {};
+    }
+
+    ItemPile.prototype.clone = function() {
+      return new ItemPile(this.item, this.count, this.tags);
+    };
+
+    ItemPile.maxPileSize = 64;
+
+    ItemPile.itemFromString = function(s) {
+      if (s instanceof ItemPile) {
+        return s;
+      }
+      if (!s) {
+        return '';
+      } else {
+        return s;
+      }
+    };
+
+    ItemPile.itemToString = function(item) {
+      return '' + item;
+    };
+
+    ItemPile.prototype.hasTags = function() {
+      return Object.keys(this.tags).length !== 0;
+    };
+
+    ItemPile.prototype.matchesType = function(itemPile) {
+      return this.item === itemPile.item;
+    };
+
+    ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+      return this.item === itemPile.item && this.count === itemPile.count;
+    };
+
+    ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+      return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+        strict: true
+      });
+    };
+
+    ItemPile.prototype.matchesAll = function(itemPile) {
+      return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+        strict: true
+      });
+    };
+
+    ItemPile.prototype.canPileWith = function(itemPile) {
+      if (itemPile.item !== this.item) {
+        return false;
+      }
+      if (itemPile.count === 0 || this.count === 0) {
+        return true;
+      }
+      if (itemPile.hasTags() || this.hasTags()) {
+        return false;
+      }
+      return true;
+    };
+
+    ItemPile.prototype.mergePile = function(itemPile) {
+      if (!this.canPileWith(itemPile)) {
+        return false;
+      }
+      return itemPile.count = this.increase(itemPile.count);
+    };
+
+    ItemPile.prototype.increase = function(n) {
+      var excessCount, newCount, _ref;
+      _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+      this.count = newCount;
+      return excessCount;
+    };
+
+    ItemPile.prototype.decrease = function(n) {
+      var remainingCount, removedCount, _ref;
+      _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+      this.count = remainingCount;
+      return removedCount;
+    };
+
+    ItemPile.prototype.tryAdding = function(n) {
+      var sum;
+      sum = this.count + n;
+      if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+        return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+      } else {
+        return [sum, 0];
+      }
+    };
+
+    ItemPile.prototype.trySubtracting = function(n) {
+      var difference;
+      difference = this.count - n;
+      if (difference < 0) {
+        return [this.count, n - this.count];
+      } else {
+        return [n, this.count - n];
+      }
+    };
+
+    ItemPile.prototype.splitPile = function(n) {
+      if (n < 0) {
+        n = this.count + n;
+      } else if (n < 1) {
+        n = Math.ceil(this.count * n);
+      }
+      if (n > this.count) {
+        return false;
+      }
+      this.count -= n;
+      return new ItemPile(this.item, n, this.tags);
+    };
+
+    ItemPile.prototype.toString = function() {
+      if (this.hasTags()) {
+        return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+      } else {
+        return "" + this.count + ":" + this.item;
+      }
+    };
+
+    ItemPile.fromString = function(s) {
+      var a, count, countStr, item, itemStr, tags, tagsStr, _;
+      a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+      if (!a) {
+        return void 0;
+      }
+      _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+      count = parseInt(countStr, 10);
+      item = ItemPile.itemFromString(itemStr);
+      if (tagsStr && tagsStr.length) {
+        tags = JSON.parse(tagsStr);
+      } else {
+        tags = {};
+      }
+      return new ItemPile(item, count, tags);
+    };
+
+    return ItemPile;
+
+  })();
+
+}).call(this);
+
+},{"deep-equal":13}],13:[function(require,module,exports){
+module.exports=require(11)
+},{}],14:[function(require,module,exports){
+module.exports=require(12)
+},{"deep-equal":15}],15:[function(require,module,exports){
+module.exports=require(11)
+},{}],16:[function(require,module,exports){
+// # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
+  
+var datgui = require('dat-gui');
+var vkey = require('vkey');
+
+module.exports = function(game, opts) {
+  return new BindingsUI(game, opts);
+};
+
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-debug', 'voxel-plugins-ui'] // optional to load after and reuse same gui
+};
+
+function BindingsUI(game, opts) {
+  this.game = game;
+
+  opts = opts || {};
+
+  this.kb = opts.kb || (game && game.buttons);
+  if (!this.kb) throw 'kb-bindings-ui requires "kb" option set to kb-bindings instance, or voxel-engine game with kb-bindings for game.buttons';
+  if (!this.kb.bindings) throw 'kb-bindings-ui "kb" option could not find kb-bindings\' bindings, not set to kb-bindings instance? (vs kb-controls)';
+  this.gui = opts.gui || (game && game.plugins && game.plugins.get('voxel-debug') ? game.plugins.get('voxel-debug').gui : new datgui.GUI());
+  this.hideKeys = opts.hideKeys || ['ime-', 'launch-', 'browser-']; // too long
+
+  this.folder = this.gui.addFolder('keys');
+
+  this.vkey2code = {};
+  this.vkeyBracket2Bare = {};
+  this.vkeyBare2Bracket = {};
+  this.keyListing = [];
+  for (var code in vkey) {
+    var keyName = vkey[code];
+
+    this.vkey2code[keyName] = code;
+
+    var keyNameBare = keyName.replace('<', '').replace('>', '');
+    this.vkeyBracket2Bare[keyName] = keyNameBare;
+    this.vkeyBare2Bracket[keyNameBare] = keyName;
+
+    if (!this.shouldHideKey(keyNameBare))
+      this.keyListing.push(keyNameBare);
+  }
+
+  this.binding2Key = {};
+  for (var key in this.kb.bindings) {
+    var binding = this.kb.bindings[key];
+    this.binding2Key[binding] = this.vkeyBracket2Bare[key];
+    this.addBinding(binding);
+  }
+}
+
+BindingsUI.prototype.shouldHideKey = function(name) {
+  for (var i = 0; i < this.hideKeys.length; ++i) {
+    if (name.indexOf(this.hideKeys[i]) === 0) return true;
+  }
+  return false;
+};
+
+BindingsUI.prototype.addBinding = function (binding) {
+  var item = this.folder.add(this.binding2Key, binding, this.keyListing);
+
+  item.onChange(updateBinding(this, binding));
+};
+
+function updateBinding(self, binding) {
+  return function(newKeyNameBare) {
+    //if (self.vkey2code[newKeyName] === undefined) // invalid vkey
+
+    var newKeyName = self.vkeyBare2Bracket[newKeyNameBare];
+
+    self.removeBindings(binding);
+
+    self.kb.bindings[newKeyName] = binding;
+  };
+}
+
+// remove all keys bound to given binding
+BindingsUI.prototype.removeBindings = function(binding) {
+  for (var key in this.kb.bindings) {
+    var thisBinding = this.kb.bindings[key];
+    if (thisBinding === binding) {
+      delete this.kb.bindings[key];
+    }
+  }
+};
+
+
+},{"dat-gui":17,"vkey":20}],17:[function(require,module,exports){
 module.exports = require('./vendor/dat.gui')
 module.exports.color = require('./vendor/dat.color')
-},{"./vendor/dat.color":4,"./vendor/dat.gui":5}],4:[function(require,module,exports){
+},{"./vendor/dat.color":18,"./vendor/dat.gui":19}],18:[function(require,module,exports){
 /**
  * dat-gui JavaScript Controller Library
  * http://code.google.com/p/dat-gui
@@ -1208,7 +2208,7 @@ dat.color.math = (function () {
 })(),
 dat.color.toString,
 dat.utils.common);
-},{}],5:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 /**
  * dat-gui JavaScript Controller Library
  * http://code.google.com/p/dat-gui
@@ -4869,1007 +5869,7 @@ dat.dom.CenteredDiv = (function (dom, common) {
 dat.utils.common),
 dat.dom.dom,
 dat.utils.common);
-},{}],6:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter;
-
-module.exports = function (elem) {
-    return new Ever(elem);
-};
-
-function Ever (elem) {
-    this.element = elem;
-}
-
-Ever.prototype = new EventEmitter;
-
-Ever.prototype.on = function (name, cb, useCapture) {
-    if (!this._events) this._events = {};
-    if (!this._events[name]) this._events[name] = [];
-    this._events[name].push(cb);
-    this.element.addEventListener(name, cb, useCapture || false);
-
-    return this;
-};
-Ever.prototype.addListener = Ever.prototype.on;
-
-Ever.prototype.removeListener = function (type, listener, useCapture) {
-    if (!this._events) this._events = {};
-    this.element.removeEventListener(type, listener, useCapture || false);
-    
-    var xs = this.listeners(type);
-    var ix = xs.indexOf(listener);
-    if (ix >= 0) xs.splice(ix, 1);
-
-    return this;
-};
-
-Ever.prototype.removeAllListeners = function (type) {
-    var self = this;
-    function removeAll (t) {
-        var xs = self.listeners(t);
-        for (var i = 0; i < xs.length; i++) {
-            self.removeListener(t, xs[i]);
-        }
-    }
-    
-    if (type) {
-        removeAll(type)
-    }
-    else if (self._events) {
-        for (var key in self._events) {
-            if (key) removeAll(key);
-        }
-    }
-    return EventEmitter.prototype.removeAllListeners.apply(self, arguments);
-}
-
-var initSignatures = require('./init.json');
-
-Ever.prototype.emit = function (name, ev) {
-    if (typeof name === 'object') {
-        ev = name;
-        name = ev.type;
-    }
-    
-    if (!isEvent(ev)) {
-        var type = Ever.typeOf(name);
-        
-        var opts = ev || {};
-        if (opts.type === undefined) opts.type = name;
-        
-        ev = document.createEvent(type + 's');
-        var init = typeof ev['init' + type] === 'function'
-            ? 'init' + type : 'initEvent'
-        ;
-        
-        var sig = initSignatures[init];
-        var used = {};
-        var args = [];
-        
-        for (var i = 0; i < sig.length; i++) {
-            var key = sig[i];
-            args.push(opts[key]);
-            used[key] = true;
-        }
-        ev[init].apply(ev, args);
-        
-        // attach remaining unused options to the object
-        for (var key in opts) {
-            if (!used[key]) ev[key] = opts[key];
-        }
-    }
-    return this.element.dispatchEvent(ev);
-};
-
-function isEvent (ev) {
-    var s = Object.prototype.toString.call(ev);
-    return /\[object \S+Event\]/.test(s);
-}
-
-Ever.types = require('./types.json');
-Ever.typeOf = (function () {
-    var types = {};
-    for (var key in Ever.types) {
-        var ts = Ever.types[key];
-        for (var i = 0; i < ts.length; i++) {
-            types[ts[i]] = key;
-        }
-    }
-    
-    return function (name) {
-        return types[name] || 'Event';
-    };
-})();;
-
-},{"./init.json":7,"./types.json":8,"events":188}],7:[function(require,module,exports){
-module.exports={
-  "initEvent" : [
-    "type",
-    "canBubble", 
-    "cancelable"
-  ],
-  "initUIEvent" : [
-    "type",
-    "canBubble", 
-    "cancelable", 
-    "view", 
-    "detail"
-  ],
-  "initMouseEvent" : [
-    "type",
-    "canBubble", 
-    "cancelable", 
-    "view", 
-    "detail", 
-    "screenX", 
-    "screenY", 
-    "clientX", 
-    "clientY", 
-    "ctrlKey", 
-    "altKey", 
-    "shiftKey", 
-    "metaKey", 
-    "button",
-    "relatedTarget"
-  ],
-  "initMutationEvent" : [
-    "type",
-    "canBubble", 
-    "cancelable", 
-    "relatedNode", 
-    "prevValue", 
-    "newValue", 
-    "attrName", 
-    "attrChange"
-  ]
-}
-
-},{}],8:[function(require,module,exports){
-module.exports={
-  "MouseEvent" : [
-    "click",
-    "mousedown",
-    "mouseup",
-    "mouseover",
-    "mousemove",
-    "mouseout"
-  ],
-  "KeyBoardEvent" : [
-    "keydown",
-    "keyup",
-    "keypress"
-  ],
-  "MutationEvent" : [
-    "DOMSubtreeModified",
-    "DOMNodeInserted",
-    "DOMNodeRemoved",
-    "DOMNodeRemovedFromDocument",
-    "DOMNodeInsertedIntoDocument",
-    "DOMAttrModified",
-    "DOMCharacterDataModified"
-  ],
-  "HTMLEvent" : [
-    "load",
-    "unload",
-    "abort",
-    "error",
-    "select",
-    "change",
-    "submit",
-    "reset",
-    "focus",
-    "blur",
-    "resize",
-    "scroll"
-  ],
-  "UIEvent" : [
-    "DOMFocusIn",
-    "DOMFocusOut",
-    "DOMActivate"
-  ]
-}
-
-},{}],9:[function(require,module,exports){
-var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};// Generated by CoffeeScript 1.6.3
-(function() {
-  var EventEmitter, InventoryWindow, ever,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  EventEmitter = (require('events')).EventEmitter;
-
-  ever = require('ever');
-
-  module.exports = InventoryWindow = (function(_super) {
-    __extends(InventoryWindow, _super);
-
-    InventoryWindow.heldItemPile = void 0;
-
-    InventoryWindow.heldNode = void 0;
-
-    InventoryWindow.mouseButtonDown = void 0;
-
-    InventoryWindow.resolvedImageURLs = {};
-
-    function InventoryWindow(opts) {
-      var _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8;
-      if (opts == null) {
-        opts = {};
-      }
-      this.inventory = (function() {
-        if ((_ref = opts.inventory) != null) {
-          return _ref;
-        } else {
-          throw 'inventory-window requires "inventory" option set to Inventory instance';
-        }
-      })();
-      this.linkedInventory = opts.linkedInventory;
-      this.getTexture = opts.getTexture;
-      this.inventorySize = (_ref1 = opts.inventorySize) != null ? _ref1 : this.inventory.size();
-      this.width = (_ref2 = opts.width) != null ? _ref2 : this.inventory.width;
-      this.textureSize = (_ref3 = opts.textureSize) != null ? _ref3 : 16 * 5;
-      this.borderSize = (_ref4 = opts.borderSize) != null ? _ref4 : 4;
-      this.secondaryMouseButton = (_ref5 = opts.secondaryMouseButton) != null ? _ref5 : 2;
-      this.allowDrop = (_ref6 = opts.allowDrop) != null ? _ref6 : true;
-      this.allowPickup = (_ref7 = opts.allowPickup) != null ? _ref7 : true;
-      this.allowDragPaint = (_ref8 = opts.allowDragPaint) != null ? _ref8 : true;
-      this.slotNodes = [];
-      this.container = void 0;
-      this.selectedIndex = void 0;
-      this.enable();
-    }
-
-    InventoryWindow.prototype.enable = function() {
-      var _this = this;
-      ever(document).on('mousemove', function(ev) {
-        if (!InventoryWindow.heldNode) {
-          return;
-        }
-        return _this.positionAtMouse(InventoryWindow.heldNode, ev);
-      });
-      ever(document).on('mouseup', function(ev) {
-        return InventoryWindow.mouseButtonDown = void 0;
-      });
-      return this.inventory.on('changed', function() {
-        return _this.refresh();
-      });
-    };
-
-    InventoryWindow.prototype.createContainer = function() {
-      var container, i, node, slotItem, widthpx, _i, _ref;
-      container = document.createElement('div');
-      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        slotItem = this.inventory.get(i);
-        node = this.createSlotNode(slotItem);
-        this.setBorderStyle(node, i);
-        this.bindSlotNodeEvent(node, i);
-        this.slotNodes.push(node);
-        container.appendChild(node);
-      }
-      widthpx = this.width * (this.textureSize + this.borderSize * 2);
-      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
-      return this.container = container;
-    };
-
-    InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
-      var _this = this;
-      ever(node).on('mousedown', function(ev) {
-        return _this.clickSlot(index, ev);
-      });
-      return ever(node).on('mouseover', function(ev) {
-        if (!_this.allowDragPaint) {
-          return;
-        }
-        if (!_this.allowDrop) {
-          return;
-        }
-        if (InventoryWindow.heldItemPile == null) {
-          return;
-        }
-        if (InventoryWindow.mouseButtonDown !== _this.secondaryMouseButton) {
-          return;
-        }
-        _this.dropOneHeld(index);
-        _this.createHeldNode(InventoryWindow.heldItemPile, ev);
-        return _this.refreshSlotNode(index);
-      });
-    };
-
-    InventoryWindow.prototype.createSlotNode = function(itemPile) {
-      var div, textNode;
-      div = document.createElement('div');
-      div.setAttribute('style', "display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
-      textNode = document.createTextNode('');
-      div.appendChild(textNode);
-      this.populateSlotNode(div, itemPile);
-      return div;
-    };
-
-    InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
-      var newImage, src, text;
-      if ((itemPile != null) && itemPile.count > 0) {
-        if (this.getTexture != null) {
-          src = this.getTexture(itemPile);
-        } else if (InventoryWindow.defaultGetTexture != null) {
-          src = InventoryWindow.defaultGetTexture(itemPile);
-        } else if (global.InventoryWindow_defaultGetTexture != null) {
-          src = global.InventoryWindow_defaultGetTexture(itemPile);
-        } else {
-          throw 'inventory-window textures not specified, set InventoryWindow.defaultGetTexture or pass "getTexture" option';
-        }
-        text = itemPile.count;
-        if (text === 1) {
-          text = '';
-        }
-        if (text === Infinity) {
-          text = '\u221e';
-        }
-      } else {
-        src = void 0;
-        text = '';
-      }
-      newImage = src != null ? 'url(' + src + ')' : '';
-      if (InventoryWindow.resolvedImageURLs[newImage] !== div.style.backgroundImage) {
-        div.style.backgroundImage = newImage;
-        InventoryWindow.resolvedImageURLs[newImage] = div.style.backgroundImage;
-      }
-      if (div.textContent !== text) {
-        return div.textContent = text;
-      }
-    };
-
-    InventoryWindow.prototype.setBorderStyle = function(node, index) {
-      if (index === this.selectedIndex) {
-        return node.style.border = "" + this.borderSize + "px dotted black";
-      } else {
-        return node.style.border = "" + this.borderSize + "px solid black";
-      }
-    };
-
-    InventoryWindow.prototype.setSelected = function(index) {
-      this.selectedIndex = index;
-      return this.refresh();
-    };
-
-    InventoryWindow.prototype.getSelected = function(index) {
-      return this.selectedIndex;
-    };
-
-    InventoryWindow.prototype.refreshSlotNode = function(index) {
-      this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
-      return this.setBorderStyle(this.slotNodes[index], index);
-    };
-
-    InventoryWindow.prototype.refresh = function() {
-      var i, _i, _ref, _results;
-      _results = [];
-      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        _results.push(this.refreshSlotNode(i));
-      }
-      return _results;
-    };
-
-    InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
-      var x, y, _ref, _ref1;
-      x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
-      y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
-      x -= this.textureSize / 2;
-      y -= this.textureSize / 2;
-      node.style.left = x + 'px';
-      return node.style.top = y + 'px';
-    };
-
-    InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
-      var style;
-      if (InventoryWindow.heldNode) {
-        this.removeHeldNode();
-      }
-      if (!itemPile || itemPile.count === 0) {
-        InventoryWindow.heldItemPile = void 0;
-        return;
-      }
-      InventoryWindow.heldItemPile = itemPile;
-      InventoryWindow.heldNode = this.createSlotNode(InventoryWindow.heldItemPile);
-      InventoryWindow.heldNode.setAttribute('style', style = InventoryWindow.heldNode.getAttribute('style') + "position: absolute;user-select: none;-moz-user-select: none;-webkit-user-select: none;pointer-events: none;z-index: 10;");
-      this.positionAtMouse(InventoryWindow.heldNode, ev);
-      return document.body.appendChild(InventoryWindow.heldNode);
-    };
-
-    InventoryWindow.prototype.removeHeldNode = function() {
-      InventoryWindow.heldNode.parentNode.removeChild(InventoryWindow.heldNode);
-      InventoryWindow.heldNode = void 0;
-      return InventoryWindow.heldItemPile = void 0;
-    };
-
-    InventoryWindow.prototype.dropOneHeld = function(index) {
-      var oneHeld, tmp;
-      if (this.inventory.get(index)) {
-        oneHeld = InventoryWindow.heldItemPile.splitPile(1);
-        if (this.inventory.get(index).mergePile(oneHeld) === false) {
-          InventoryWindow.heldItemPile.increase(1);
-          tmp = InventoryWindow.heldItemPile;
-          InventoryWindow.heldItemPile = this.inventory.get(index);
-          return this.inventory.set(index, tmp);
-        } else {
-          return this.inventory.changed();
-        }
-      } else {
-        return this.inventory.set(index, InventoryWindow.heldItemPile.splitPile(1));
-      }
-    };
-
-    InventoryWindow.prototype.clickSlot = function(index, ev) {
-      var itemPile, shiftDown, tmp, _ref;
-      itemPile = this.inventory.get(index);
-      console.log('clickSlot', index, itemPile);
-      InventoryWindow.mouseButtonDown = ev.button;
-      shiftDown = ev.shiftKey;
-      if (ev.button !== this.secondaryMouseButton) {
-        if (!InventoryWindow.heldItemPile || !this.allowDrop) {
-          if (!this.allowPickup) {
-            return;
-          }
-          if (InventoryWindow.heldItemPile != null) {
-            if (this.inventory.get(index) != null) {
-              if (!InventoryWindow.heldItemPile.canPileWith(this.inventory.get(index))) {
-                return;
-              }
-              InventoryWindow.heldItemPile.mergePile(this.inventory.get(index));
-            }
-          } else {
-            if (!shiftDown) {
-              InventoryWindow.heldItemPile = this.inventory.get(index);
-              this.inventory.set(index, void 0);
-            } else if (this.linkedInventory) {
-              this.linkedInventory.give(this.inventory.get(index));
-              this.inventory.changed();
-            }
-          }
-          this.emit('pickup');
-        } else {
-          if (this.inventory.get(index)) {
-            if (this.inventory.get(index).mergePile(InventoryWindow.heldItemPile) === false) {
-              tmp = InventoryWindow.heldItemPile;
-              InventoryWindow.heldItemPile = this.inventory.get(index);
-              this.inventory.set(index, tmp);
-            } else {
-              this.inventory.changed();
-            }
-          } else {
-            this.inventory.set(index, InventoryWindow.heldItemPile);
-            InventoryWindow.heldItemPile = void 0;
-          }
-        }
-      } else {
-        if (!InventoryWindow.heldItemPile) {
-          if (!this.allowPickup) {
-            return;
-          }
-          InventoryWindow.heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
-          this.inventory.changed();
-          this.emit('pickup');
-        } else {
-          if (!this.allowDrop) {
-            return;
-          }
-          this.dropOneHeld(index);
-        }
-      }
-      this.createHeldNode(InventoryWindow.heldItemPile, ev);
-      return this.refreshSlotNode(index);
-    };
-
-    return InventoryWindow;
-
-  })(EventEmitter);
-
-}).call(this);
-
-},{"events":188,"ever":10}],10:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":11,"./types.json":12,"events":188}],11:[function(require,module,exports){
-module.exports=require(7)
-},{}],12:[function(require,module,exports){
-module.exports=require(8)
-},{}],13:[function(require,module,exports){
-// Generated by CoffeeScript 1.6.3
-(function() {
-  var EventEmitter, Inventory, ItemPile, deepEqual,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
-
-  deepEqual = require('deep-equal');
-
-  ItemPile = require('itempile');
-
-  EventEmitter = (require('events')).EventEmitter;
-
-  module.exports = Inventory = (function(_super) {
-    __extends(Inventory, _super);
-
-    function Inventory(xSize, ySize, opts) {
-      var size;
-      if (xSize == null) {
-        xSize = 10;
-      }
-      if (ySize == null) {
-        ySize = 1;
-      }
-      size = xSize * ySize;
-      this.array = new Array(size);
-      this.width = xSize;
-      this.height = ySize;
-    }
-
-    Inventory.prototype.changed = function() {
-      return this.emit('changed');
-    };
-
-    Inventory.prototype.give = function(itemPile) {
-      var excess, i, _i, _j, _ref, _ref1;
-      excess = itemPile.count;
-      for (i = _i = 0, _ref = this.array.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        if ((this.array[i] != null) && this.array[i].canPileWith(itemPile)) {
-          excess = this.array[i].mergePile(itemPile);
-        }
-        if (itemPile.count === 0) {
-          break;
-        }
-      }
-      for (i = _j = 0, _ref1 = this.array.length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; i = 0 <= _ref1 ? ++_j : --_j) {
-        if (this.array[i] == null) {
-          this.array[i] = new ItemPile(itemPile.item, 0);
-          excess = this.array[i].mergePile(itemPile);
-        }
-        if (itemPile.count === 0) {
-          break;
-        }
-      }
-      this.changed();
-      return excess;
-    };
-
-    Inventory.prototype.take = function(itemPile) {
-      var given, i, n, _i, _ref;
-      for (i = _i = 0, _ref = this.array.length; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        if ((this.array[i] != null) && this.array[i].matchesTypeAndTags(itemPile)) {
-          n = Math.min(itemPile.count, this.array[i].count);
-          itemPile.count -= n;
-          given = this.takeAt(i, n);
-        }
-      }
-      return this.changed();
-    };
-
-    Inventory.prototype.takeAt = function(position, count) {
-      var ret;
-      if (!this.array[position]) {
-        return false;
-      }
-      ret = this.array[position].splitPile(count);
-      if (this.array[position].count === 0) {
-        this.array[position] = void 0;
-      }
-      this.changed();
-      return ret;
-    };
-
-    Inventory.prototype.toString = function() {
-      var a, i, itemPile, _i, _len, _ref;
-      a = [];
-      _ref = this.array;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        itemPile = _ref[i];
-        if (itemPile == null) {
-          a.push('');
-        } else {
-          a.push("" + itemPile);
-        }
-      }
-      return a.join('\t');
-    };
-
-    Inventory.fromString = function(s) {
-      var items, ret, strings;
-      strings = s.split('\t');
-      items = (function() {
-        var _i, _len, _results;
-        _results = [];
-        for (_i = 0, _len = strings.length; _i < _len; _i++) {
-          s = strings[_i];
-          _results.push(ItemPile.fromString(s));
-        }
-        return _results;
-      })();
-      ret = new Inventory(items.length);
-      ret.array = items;
-      return ret;
-    };
-
-    Inventory.prototype.size = function() {
-      return this.array.length;
-    };
-
-    Inventory.prototype.get = function(i) {
-      return this.array[i];
-    };
-
-    Inventory.prototype.set = function(i, itemPile) {
-      this.array[i] = itemPile;
-      return this.changed();
-    };
-
-    Inventory.prototype.clear = function() {
-      var i, _i, _ref, _results;
-      _results = [];
-      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        _results.push(this.set(i, void 0));
-      }
-      return _results;
-    };
-
-    Inventory.prototype.transferTo = function(dest) {
-      var i, _i, _ref, _results;
-      _results = [];
-      for (i = _i = 0, _ref = this.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        dest.set(i, this.get(i));
-        _results.push(this.set(i, void 0));
-      }
-      return _results;
-    };
-
-    return Inventory;
-
-  })(EventEmitter);
-
-}).call(this);
-
-},{"deep-equal":14,"events":188,"itempile":15}],14:[function(require,module,exports){
-var pSlice = Array.prototype.slice;
-var Object_keys = typeof Object.keys === 'function'
-    ? Object.keys
-    : function (obj) {
-        var keys = [];
-        for (var key in obj) keys.push(key);
-        return keys;
-    }
-;
-
-var deepEqual = module.exports = function (actual, expected, opts) {
-  if (!opts) opts = {};
-  // 7.1. All identical values are equivalent, as determined by ===.
-  if (actual === expected) {
-    return true;
-
-  } else if (actual instanceof Date && expected instanceof Date) {
-    return actual.getTime() === expected.getTime();
-
-  // 7.3. Other pairs that do not both pass typeof value == 'object',
-  // equivalence is determined by ==.
-  } else if (typeof actual != 'object' && typeof expected != 'object') {
-    return opts.strict ? actual === expected : actual == expected;
-
-  // 7.4. For all other Object pairs, including Array objects, equivalence is
-  // determined by having the same number of owned properties (as verified
-  // with Object.prototype.hasOwnProperty.call), the same set of keys
-  // (although not necessarily the same order), equivalent values for every
-  // corresponding key, and an identical 'prototype' property. Note: this
-  // accounts for both named and indexed properties on Arrays.
-  } else {
-    return objEquiv(actual, expected, opts);
-  }
-}
-
-function isUndefinedOrNull(value) {
-  return value === null || value === undefined;
-}
-
-function isArguments(object) {
-  return Object.prototype.toString.call(object) == '[object Arguments]';
-}
-
-function objEquiv(a, b, opts) {
-  if (!opts) opts = {};
-  if (isUndefinedOrNull(a) || isUndefinedOrNull(b))
-    return false;
-  // an identical 'prototype' property.
-  if (a.prototype !== b.prototype) return false;
-  //~~~I've managed to break Object.keys through screwy arguments passing.
-  //   Converting to array solves the problem.
-  if (isArguments(a)) {
-    if (!isArguments(b)) {
-      return false;
-    }
-    a = pSlice.call(a);
-    b = pSlice.call(b);
-    return deepEqual(a, b, opts);
-  }
-  try {
-    var ka = Object_keys(a),
-        kb = Object_keys(b),
-        key, i;
-  } catch (e) {//happens when one is a string literal and the other isn't
-    return false;
-  }
-  // having the same number of owned properties (keys incorporates
-  // hasOwnProperty)
-  if (ka.length != kb.length)
-    return false;
-  //the same set of keys (although not necessarily the same order),
-  ka.sort();
-  kb.sort();
-  //~~~cheap key test
-  for (i = ka.length - 1; i >= 0; i--) {
-    if (ka[i] != kb[i])
-      return false;
-  }
-  //equivalent values for every corresponding key, and
-  //~~~possibly expensive deep test
-  for (i = ka.length - 1; i >= 0; i--) {
-    key = ka[i];
-    if (!deepEqual(a[key], b[key], opts)) return false;
-  }
-  return true;
-}
-
-},{}],15:[function(require,module,exports){
-// Generated by CoffeeScript 1.6.3
-(function() {
-  var ItemPile, deepEqual;
-
-  deepEqual = require('deep-equal');
-
-  module.exports = ItemPile = (function() {
-    function ItemPile(item, count, tags) {
-      this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-      this.count = count != null ? count : 1;
-      this.tags = tags != null ? tags : {};
-    }
-
-    ItemPile.prototype.clone = function() {
-      return new ItemPile(this.item, this.count, this.tags);
-    };
-
-    ItemPile.maxPileSize = 64;
-
-    ItemPile.itemFromString = function(s) {
-      if (s instanceof ItemPile) {
-        return s;
-      }
-      if (!s) {
-        return '';
-      } else {
-        return s;
-      }
-    };
-
-    ItemPile.itemToString = function(item) {
-      return '' + item;
-    };
-
-    ItemPile.prototype.hasTags = function() {
-      return Object.keys(this.tags).length !== 0;
-    };
-
-    ItemPile.prototype.matchesType = function(itemPile) {
-      return this.item === itemPile.item;
-    };
-
-    ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-      return this.item === itemPile.item && this.count === itemPile.count;
-    };
-
-    ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-      return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-        strict: true
-      });
-    };
-
-    ItemPile.prototype.matchesAll = function(itemPile) {
-      return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-        strict: true
-      });
-    };
-
-    ItemPile.prototype.canPileWith = function(itemPile) {
-      if (itemPile.item !== this.item) {
-        return false;
-      }
-      if (itemPile.count === 0 || this.count === 0) {
-        return true;
-      }
-      if (itemPile.hasTags() || this.hasTags()) {
-        return false;
-      }
-      return true;
-    };
-
-    ItemPile.prototype.mergePile = function(itemPile) {
-      if (!this.canPileWith(itemPile)) {
-        return false;
-      }
-      return itemPile.count = this.increase(itemPile.count);
-    };
-
-    ItemPile.prototype.increase = function(n) {
-      var excessCount, newCount, _ref;
-      _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-      this.count = newCount;
-      return excessCount;
-    };
-
-    ItemPile.prototype.decrease = function(n) {
-      var remainingCount, removedCount, _ref;
-      _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-      this.count = remainingCount;
-      return removedCount;
-    };
-
-    ItemPile.prototype.tryAdding = function(n) {
-      var sum;
-      sum = this.count + n;
-      if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-        return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-      } else {
-        return [sum, 0];
-      }
-    };
-
-    ItemPile.prototype.trySubtracting = function(n) {
-      var difference;
-      difference = this.count - n;
-      if (difference < 0) {
-        return [this.count, n - this.count];
-      } else {
-        return [n, this.count - n];
-      }
-    };
-
-    ItemPile.prototype.splitPile = function(n) {
-      if (n < 0) {
-        n = this.count + n;
-      } else if (n < 1) {
-        n = Math.ceil(this.count * n);
-      }
-      if (n > this.count) {
-        return false;
-      }
-      this.count -= n;
-      return new ItemPile(this.item, n, this.tags);
-    };
-
-    ItemPile.prototype.toString = function() {
-      if (this.hasTags()) {
-        return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-      } else {
-        return "" + this.count + ":" + this.item;
-      }
-    };
-
-    ItemPile.fromString = function(s) {
-      var a, count, countStr, item, itemStr, tags, tagsStr, _;
-      a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-      if (!a) {
-        return void 0;
-      }
-      _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-      count = parseInt(countStr, 10);
-      item = ItemPile.itemFromString(itemStr);
-      if (tagsStr && tagsStr.length) {
-        tags = JSON.parse(tagsStr);
-      } else {
-        tags = {};
-      }
-      return new ItemPile(item, count, tags);
-    };
-
-    return ItemPile;
-
-  })();
-
-}).call(this);
-
-},{"deep-equal":16}],16:[function(require,module,exports){
-module.exports=require(14)
-},{}],17:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":18}],18:[function(require,module,exports){
-module.exports=require(14)
-},{}],19:[function(require,module,exports){
-// # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
-  
-var datgui = require('dat-gui');
-var vkey = require('vkey');
-
-module.exports = function(game, opts) {
-  return new BindingsUI(game, opts);
-};
-
-module.exports.pluginInfo = {
-  loadAfter: ['voxel-debug', 'voxel-plugins-ui'] // optional to load after and reuse same gui
-};
-
-function BindingsUI(game, opts) {
-  this.game = game;
-
-  opts = opts || {};
-
-  this.kb = opts.kb || (game && game.buttons);
-  if (!this.kb) throw 'kb-bindings-ui requires "kb" option set to kb-bindings instance, or voxel-engine game with kb-bindings for game.buttons';
-  if (!this.kb.bindings) throw 'kb-bindings-ui "kb" option could not find kb-bindings\' bindings, not set to kb-bindings instance? (vs kb-controls)';
-  this.gui = opts.gui || (game && game.plugins && game.plugins.get('voxel-debug') ? game.plugins.get('voxel-debug').gui : new datgui.GUI());
-  this.hideKeys = opts.hideKeys || ['ime-', 'launch-', 'browser-']; // too long
-
-  this.folder = this.gui.addFolder('keys');
-
-  this.vkey2code = {};
-  this.vkeyBracket2Bare = {};
-  this.vkeyBare2Bracket = {};
-  this.keyListing = [];
-  for (var code in vkey) {
-    var keyName = vkey[code];
-
-    this.vkey2code[keyName] = code;
-
-    var keyNameBare = keyName.replace('<', '').replace('>', '');
-    this.vkeyBracket2Bare[keyName] = keyNameBare;
-    this.vkeyBare2Bracket[keyNameBare] = keyName;
-
-    if (!this.shouldHideKey(keyNameBare))
-      this.keyListing.push(keyNameBare);
-  }
-
-  this.binding2Key = {};
-  for (var key in this.kb.bindings) {
-    var binding = this.kb.bindings[key];
-    this.binding2Key[binding] = this.vkeyBracket2Bare[key];
-    this.addBinding(binding);
-  }
-}
-
-BindingsUI.prototype.shouldHideKey = function(name) {
-  for (var i = 0; i < this.hideKeys.length; ++i) {
-    if (name.indexOf(this.hideKeys[i]) === 0) return true;
-  }
-  return false;
-};
-
-BindingsUI.prototype.addBinding = function (binding) {
-  var item = this.folder.add(this.binding2Key, binding, this.keyListing);
-
-  item.onChange(updateBinding(this, binding));
-};
-
-function updateBinding(self, binding) {
-  return function(newKeyNameBare) {
-    //if (self.vkey2code[newKeyName] === undefined) // invalid vkey
-
-    var newKeyName = self.vkeyBare2Bracket[newKeyNameBare];
-
-    self.removeBindings(binding);
-
-    self.kb.bindings[newKeyName] = binding;
-  };
-}
-
-// remove all keys bound to given binding
-BindingsUI.prototype.removeBindings = function(binding) {
-  for (var key in this.kb.bindings) {
-    var thisBinding = this.kb.bindings[key];
-    if (thisBinding === binding) {
-      delete this.kb.bindings[key];
-    }
-  }
-};
-
-
-},{"dat-gui":20,"vkey":23}],20:[function(require,module,exports){
-module.exports=require(3)
-},{"./vendor/dat.color":21,"./vendor/dat.gui":22}],21:[function(require,module,exports){
-module.exports=require(4)
-},{}],22:[function(require,module,exports){
-module.exports=require(5)
-},{}],23:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -6007,7 +6007,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],24:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new BlockData(game, opts);
 };
@@ -6055,7 +6055,7 @@ BlockData.prototype.set = function(x, y, z, data) {
   blockdataMap[this.coordsToKey(x, y, z)] = data;
 };
 
-},{}],25:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 
 var Inventory = require('inventory');
 
@@ -6071,15 +6071,15 @@ function Carry(game, opts) {
   this.inventory = new Inventory(opts.inventoryWidth, opts.inventoryRows);
 }
 
-},{"inventory":26}],26:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":27,"events":188,"itempile":28}],27:[function(require,module,exports){
-module.exports=require(14)
-},{}],28:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":29}],29:[function(require,module,exports){
-module.exports=require(14)
-},{}],30:[function(require,module,exports){
+},{"inventory":23}],23:[function(require,module,exports){
+arguments[4][10][0].apply(exports,arguments)
+},{"deep-equal":24,"events":186,"itempile":25}],24:[function(require,module,exports){
+module.exports=require(11)
+},{}],25:[function(require,module,exports){
+module.exports=require(12)
+},{"deep-equal":26}],26:[function(require,module,exports){
+module.exports=require(11)
+},{}],27:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, Chest, ChestDialog, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, ModalDialog, PositionalRecipe, Recipe, RecipeList, _ref,
@@ -6164,6 +6164,7 @@ module.exports=require(14)
       this.blockdata = blockdata;
       this.playerIW = new InventoryWindow({
         width: 10,
+        registry: this.registry,
         inventory: this.playerInventory
       });
       this.chestInventory = new Inventory(10, 3);
@@ -6171,7 +6172,8 @@ module.exports=require(14)
         return _this.updateBlockdata();
       });
       this.chestIW = new InventoryWindow({
-        inventory: this.chestInventory
+        inventory: this.chestInventory,
+        registry: this.registry
       });
       this.chestIW.linkedInventory = this.playerInventory;
       this.playerIW.linkedInventory = this.chestInventory;
@@ -6243,7 +6245,7 @@ module.exports=require(14)
 
 }).call(this);
 
-},{"craftingrecipes":2,"inventory":13,"inventory-window":9,"itempile":17,"voxel-modal-dialog":31}],31:[function(require,module,exports){
+},{"craftingrecipes":2,"inventory":10,"inventory-window":6,"itempile":14,"voxel-modal-dialog":28}],28:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var Modal, ModalDialog,
@@ -6290,7 +6292,7 @@ module.exports=require(14)
 
 }).call(this);
 
-},{"voxel-modal":32}],32:[function(require,module,exports){
+},{"voxel-modal":29}],29:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = Modal;
@@ -6350,7 +6352,50 @@ Modal.prototype.toggle = function() {
     this.open();
 };
 
-},{"ever":6}],33:[function(require,module,exports){
+},{"ever":3}],30:[function(require,module,exports){
+// Generated by CoffeeScript 1.6.3
+(function() {
+  var DaylightPlugin;
+
+  module.exports = function(game, opts) {
+    return new DaylightPlugin(game, opts);
+  };
+
+  DaylightPlugin = (function() {
+    function DaylightPlugin(game, opts) {
+      this.game = game;
+      if (opts == null) {
+        opts = {};
+      }
+      if (opts.ambientColor == null) {
+        opts.ambientColor = 0x888888;
+      }
+      if (opts.directionalColor == null) {
+        opts.directionalColor = 0xffffff;
+      }
+      this.ambientLight = new game.THREE.AmbientLight(opts.ambientColor);
+      this.directionalLight = new game.THREE.DirectionalLight(opts.directionalColor, 1);
+      this.directionalLight.position.set(1, 1, 0.5).normalize();
+      this.enable();
+    }
+
+    DaylightPlugin.prototype.enable = function() {
+      this.game.scene.add(this.ambientLight);
+      return this.game.scene.add(this.directionalLight);
+    };
+
+    DaylightPlugin.prototype.disable = function() {
+      this.game.scene.remove(this.ambientLight);
+      return this.game.scene.remove(this.directionalLight);
+    };
+
+    return DaylightPlugin;
+
+  })();
+
+}).call(this);
+
+},{}],31:[function(require,module,exports){
 function Debug(game, opts) {
   opts = opts || {}
   if (opts.THREE) game = opts
@@ -6523,13 +6568,13 @@ Debug.prototype._render = function() {
   });
 }
 
-},{"dat-gui":34,"voxel":38}],34:[function(require,module,exports){
-module.exports=require(3)
-},{"./vendor/dat.color":35,"./vendor/dat.gui":36}],35:[function(require,module,exports){
-module.exports=require(4)
-},{}],36:[function(require,module,exports){
-module.exports=require(5)
-},{}],37:[function(require,module,exports){
+},{"dat-gui":32,"voxel":36}],32:[function(require,module,exports){
+module.exports=require(17)
+},{"./vendor/dat.color":33,"./vendor/dat.gui":34}],33:[function(require,module,exports){
+module.exports=require(18)
+},{}],34:[function(require,module,exports){
+module.exports=require(19)
+},{}],35:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -6666,7 +6711,7 @@ Chunker.prototype.voxelVector = function(pos) {
   return [vx, vy, vz]
 };
 
-},{"events":188,"inherits":43}],38:[function(require,module,exports){
+},{"events":186,"inherits":41}],36:[function(require,module,exports){
 var chunker = require('./chunker')
 
 module.exports = function(opts) {
@@ -6762,7 +6807,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":37,"./meshers/culled":39,"./meshers/greedy":40,"./meshers/monotone":41,"./meshers/stupid":42}],39:[function(require,module,exports){
+},{"./chunker":35,"./meshers/culled":37,"./meshers/greedy":38,"./meshers/monotone":39,"./meshers/stupid":40}],37:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -6814,7 +6859,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],40:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -6931,7 +6976,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],41:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -7184,7 +7229,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],42:[function(require,module,exports){
+},{}],40:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -7220,7 +7265,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],43:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -7251,7 +7296,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],44:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 var process=require("__browserify_process");var voxel = require('voxel')
 var voxelMesh = require('voxel-mesh')
 var ray = require('voxel-raycast')
@@ -7351,6 +7396,8 @@ function Game(opts) {
       materialParams: opts.materialParams || {},
       materialFlatColor: opts.materialFlatColor === true
     })
+    if (opts.appendDocument) this.appendTo(document.body)
+    if (opts.exposeGlobal) window.game = window.g = this
   }
 
   this.materialNames = opts.materials || [['grass', 'dirt', 'grass_dirt'], 'brick', 'dirt']
@@ -7989,7 +8036,7 @@ Game.prototype.destroy = function() {
   clearInterval(this.timer)
 }
 
-},{"./lib/detector":45,"./lib/stats":46,"__browserify_process":197,"aabb-3d":47,"collide-3d-tilemap":48,"events":188,"gl-matrix":49,"inherits":50,"interact":51,"kb-bindings":60,"path":189,"pin-it":65,"raf":66,"spatial-events":67,"three":69,"tic":70,"voxel":83,"voxel-control":71,"voxel-mesh":72,"voxel-physical":73,"voxel-raycast":74,"voxel-region-change":75,"voxel-texture":76,"voxel-view":81}],45:[function(require,module,exports){
+},{"./lib/detector":43,"./lib/stats":44,"__browserify_process":195,"aabb-3d":45,"collide-3d-tilemap":46,"events":186,"gl-matrix":47,"inherits":48,"interact":49,"kb-bindings":58,"path":187,"pin-it":63,"raf":64,"spatial-events":65,"three":67,"tic":68,"voxel":81,"voxel-control":69,"voxel-mesh":70,"voxel-physical":71,"voxel-raycast":72,"voxel-region-change":73,"voxel-texture":74,"voxel-view":79}],43:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -8050,7 +8097,7 @@ module.exports = function() {
   };
 }
 
-},{}],46:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -8196,7 +8243,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],47:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -8295,7 +8342,7 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":49}],48:[function(require,module,exports){
+},{"gl-matrix":47}],46:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -8384,7 +8431,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],49:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -11457,9 +11504,9 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],50:[function(require,module,exports){
-module.exports=require(43)
-},{}],51:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
+module.exports=require(41)
+},{}],49:[function(require,module,exports){
 var lock = require('pointer-lock')
   , drag = require('drag-stream')
   , full = require('fullscreen')
@@ -11566,7 +11613,7 @@ function usedrag(el) {
   return ee
 }
 
-},{"drag-stream":52,"events":188,"fullscreen":58,"pointer-lock":59,"stream":190}],52:[function(require,module,exports){
+},{"drag-stream":50,"events":186,"fullscreen":56,"pointer-lock":57,"stream":188}],50:[function(require,module,exports){
 module.exports = dragstream
 
 var Stream = require('stream')
@@ -11634,10 +11681,10 @@ function dragstream(el) {
   }
 }
 
-},{"domnode-dom":53,"stream":190,"through":57}],53:[function(require,module,exports){
+},{"domnode-dom":51,"stream":188,"through":55}],51:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":54}],54:[function(require,module,exports){
+},{"./lib/index":52}],52:[function(require,module,exports){
 var WriteStream = require('./writable')
   , ReadStream = require('./readable')
   , DOMStream = {}
@@ -11675,7 +11722,7 @@ DOMStream.createEventStream = function(el, type, preventDefault) {
 module.exports = DOMStream
 
 
-},{"./readable":55,"./writable":56}],55:[function(require,module,exports){
+},{"./readable":53,"./writable":54}],53:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11784,7 +11831,7 @@ function valueFromElement(el) {
   return el.value
 }
 
-},{"stream":190}],56:[function(require,module,exports){
+},{"stream":188}],54:[function(require,module,exports){
 module.exports = DOMStream
 
 var Stream = require('stream').Stream
@@ -11866,7 +11913,7 @@ proto.constructTextPlain = function(data) {
   return [textNode]
 }
 
-},{"stream":190}],57:[function(require,module,exports){
+},{"stream":188}],55:[function(require,module,exports){
 var process=require("__browserify_process");var Stream = require('stream')
 
 // through
@@ -11966,7 +12013,7 @@ function through (write, end) {
 }
 
 
-},{"__browserify_process":197,"stream":190}],58:[function(require,module,exports){
+},{"__browserify_process":195,"stream":188}],56:[function(require,module,exports){
 module.exports = fullscreen
 fullscreen.available = available
 
@@ -12057,7 +12104,7 @@ function shim(el) {
     el.oRequestFullScreen)
 }
 
-},{"events":188}],59:[function(require,module,exports){
+},{"events":186}],57:[function(require,module,exports){
 module.exports = pointer
 
 pointer.available = available
@@ -12221,7 +12268,7 @@ function shim(el) {
     null
 }
 
-},{"events":188,"stream":190}],60:[function(require,module,exports){
+},{"events":186,"stream":188}],58:[function(require,module,exports){
 var ever = require('ever')
   , vkey = require('vkey')
   , max = Math.max
@@ -12347,13 +12394,13 @@ module.exports = function(el, bindings, state, opts) {
   }
 }
 
-},{"events":188,"ever":61,"vkey":64}],61:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":62,"./types.json":63,"events":188}],62:[function(require,module,exports){
-module.exports=require(7)
-},{}],63:[function(require,module,exports){
-module.exports=require(8)
-},{}],64:[function(require,module,exports){
+},{"events":186,"ever":59,"vkey":62}],59:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":60,"./types.json":61,"events":186}],60:[function(require,module,exports){
+module.exports=require(4)
+},{}],61:[function(require,module,exports){
+module.exports=require(5)
+},{}],62:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -12491,7 +12538,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],65:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -12573,7 +12620,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],66:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -12620,7 +12667,7 @@ function raf(el) {
 raf.polyfill = _raf
 raf.now = function() { return Date.now() }
 
-},{"events":188}],67:[function(require,module,exports){
+},{"events":186}],65:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -12752,7 +12799,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":68,"aabb-3d":47}],68:[function(require,module,exports){
+},{"./tree":66,"aabb-3d":45}],66:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -12878,7 +12925,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":47}],69:[function(require,module,exports){
+},{"aabb-3d":45}],67:[function(require,module,exports){
 var self = self || {};/**
  * @author mrdoob / http://mrdoob.com/
  * @author Larry Battle / http://bateru.com/news
@@ -49450,7 +49497,7 @@ if (typeof exports !== 'undefined') {
   this['THREE'] = THREE;
 }
 
-},{}],70:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -49497,7 +49544,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],71:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -49790,7 +49837,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":190}],72:[function(require,module,exports){
+},{"stream":188}],70:[function(require,module,exports){
 var THREE = require('three')
 
 module.exports = function(data, mesher, scaleFactor, three) {
@@ -49941,7 +49988,7 @@ Mesh.prototype.faceVertexUv = function(i) {
 }
 ;
 
-},{"three":69}],73:[function(require,module,exports){
+},{"three":67}],71:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -50160,7 +50207,7 @@ proto.atRestZ = function() {
   return this.resting.z
 }
 
-},{"aabb-3d":47,"three":69}],74:[function(require,module,exports){
+},{"aabb-3d":45,"three":67}],72:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -50382,7 +50429,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],75:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -50410,7 +50457,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":47,"events":188}],76:[function(require,module,exports){
+},{"aabb-3d":45,"events":186}],74:[function(require,module,exports){
 var tic = require('tic')();
 var createAtlas = require('atlaspack');
 var isTransparent = require('opaque').transparent;
@@ -51037,7 +51084,7 @@ function hasSubArray(ar) {
 }
 
 
-},{"atlaspack":77,"opaque":78,"three":69,"tic":79,"voxel-fakeao":80}],77:[function(require,module,exports){
+},{"atlaspack":75,"opaque":76,"three":67,"tic":77,"voxel-fakeao":78}],75:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -51295,7 +51342,7 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],78:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 function opaque(image) {
   var canvas, ctx
 
@@ -51325,9 +51372,9 @@ module.exports.opaque = opaque
 module.exports.transparent = function(image) {
   return !opaque(image)
 };
-},{}],79:[function(require,module,exports){
-module.exports=require(70)
-},{}],80:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
+module.exports=require(68)
+},{}],78:[function(require,module,exports){
 module.exports = function(game) {
   var THREE = game.THREE;
   var colorCache = Object.create(null);
@@ -51386,7 +51433,7 @@ module.exports = function(game) {
   return ao;
 };
 
-},{}],81:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 var process=require("__browserify_process");var THREE, temporaryPosition, temporaryVector
 
 module.exports = function(three, opts) {
@@ -51475,19 +51522,19 @@ View.prototype.appendTo = function(element) {
   this.resizeWindow(this.width,this.height)
 }
 
-},{"__browserify_process":197}],82:[function(require,module,exports){
+},{"__browserify_process":195}],80:[function(require,module,exports){
+module.exports=require(35)
+},{"events":186,"inherits":48}],81:[function(require,module,exports){
+arguments[4][36][0].apply(exports,arguments)
+},{"./chunker":80,"./meshers/culled":82,"./meshers/greedy":83,"./meshers/monotone":84,"./meshers/stupid":85}],82:[function(require,module,exports){
 module.exports=require(37)
-},{"events":188,"inherits":50}],83:[function(require,module,exports){
-arguments[4][38][0].apply(exports,arguments)
-},{"./chunker":82,"./meshers/culled":84,"./meshers/greedy":85,"./meshers/monotone":86,"./meshers/stupid":87}],84:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
+module.exports=require(38)
+},{}],84:[function(require,module,exports){
 module.exports=require(39)
 },{}],85:[function(require,module,exports){
 module.exports=require(40)
 },{}],86:[function(require,module,exports){
-module.exports=require(41)
-},{}],87:[function(require,module,exports){
-module.exports=require(42)
-},{}],88:[function(require,module,exports){
 var ever = require('ever')
 var vkey = require('vkey')
 var events = require('events')
@@ -51595,15 +51642,15 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{"events":188,"ever":89,"vkey":92}],89:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":90,"./types.json":91,"events":188}],90:[function(require,module,exports){
-module.exports=require(7)
+},{"events":186,"ever":87,"vkey":90}],87:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":88,"./types.json":89,"events":186}],88:[function(require,module,exports){
+module.exports=require(4)
+},{}],89:[function(require,module,exports){
+module.exports=require(5)
+},{}],90:[function(require,module,exports){
+module.exports=require(20)
 },{}],91:[function(require,module,exports){
-module.exports=require(8)
-},{}],92:[function(require,module,exports){
-module.exports=require(23)
-},{}],93:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var Gamemode, Inventory, ItemPile;
@@ -51640,21 +51687,24 @@ module.exports=require(23)
     }
 
     Gamemode.prototype.enable = function() {
-      var carry, _ref,
+      var carry, _ref, _ref1,
         _this = this;
       carry = (_ref = this.game.plugins) != null ? _ref.get('voxel-carry') : void 0;
       if (carry) {
         this.survivalInventory = new Inventory(carry.inventory.width, carry.inventory.height);
         this.creativeInventory = new Inventory(carry.inventory.width, carry.inventory.height);
       }
+      if (((_ref1 = this.game.plugins) != null ? _ref1.isEnabled('voxel-fly') : void 0) && this.mode === 'survival') {
+        this.game.plugins.disable('voxel-fly');
+      }
       return this.game.buttons.down.on('gamemode', this.onDown = function() {
-        var playerInventory, _ref1, _ref2, _ref3, _ref4, _ref5;
-        playerInventory = (_ref1 = _this.game.plugins.get('voxel-carry')) != null ? _ref1.inventory : void 0;
+        var playerInventory, _ref2, _ref3, _ref4, _ref5, _ref6;
+        playerInventory = (_ref2 = _this.game.plugins.get('voxel-carry')) != null ? _ref2.inventory : void 0;
         if (_this.mode === 'survival') {
           _this.mode = 'creative';
           _this.game.plugins.enable('voxel-fly');
-          if ((_ref2 = _this.game.plugins.get('voxel-mine')) != null) {
-            _ref2.instaMine = true;
+          if ((_ref3 = _this.game.plugins.get('voxel-mine')) != null) {
+            _ref3.instaMine = true;
           }
           _this.populateCreative();
           if (_this.survivalInventory != null) {
@@ -51663,16 +51713,16 @@ module.exports=require(23)
             }
           }
           if (playerInventory != null) {
-            if ((_ref3 = _this.creativeInventory) != null) {
-              _ref3.transferTo(playerInventory);
+            if ((_ref4 = _this.creativeInventory) != null) {
+              _ref4.transferTo(playerInventory);
             }
           }
           return console.log('creative mode');
         } else {
           _this.mode = 'survival';
           _this.game.plugins.disable('voxel-fly');
-          if ((_ref4 = _this.game.plugins.get('voxel-mine')) != null) {
-            _ref4.instaMine = false;
+          if ((_ref5 = _this.game.plugins.get('voxel-mine')) != null) {
+            _ref5.instaMine = false;
           }
           if (_this.creativeInventory != null) {
             if (playerInventory != null) {
@@ -51680,8 +51730,8 @@ module.exports=require(23)
             }
           }
           if (playerInventory != null) {
-            if ((_ref5 = _this.survivalInventory) != null) {
-              _ref5.transferTo(playerInventory);
+            if ((_ref6 = _this.survivalInventory) != null) {
+              _ref6.transferTo(playerInventory);
             }
           }
           return console.log('survival mode');
@@ -51727,17 +51777,17 @@ module.exports=require(23)
 
 }).call(this);
 
-},{"inventory":94,"itempile":98}],94:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":95,"events":188,"itempile":96}],95:[function(require,module,exports){
-module.exports=require(14)
+},{"inventory":92,"itempile":96}],92:[function(require,module,exports){
+arguments[4][10][0].apply(exports,arguments)
+},{"deep-equal":93,"events":186,"itempile":94}],93:[function(require,module,exports){
+module.exports=require(11)
+},{}],94:[function(require,module,exports){
+module.exports=require(12)
+},{"deep-equal":95}],95:[function(require,module,exports){
+module.exports=require(11)
 },{}],96:[function(require,module,exports){
-module.exports=require(15)
+arguments[4][12][0].apply(exports,arguments)
 },{"deep-equal":97}],97:[function(require,module,exports){
-module.exports=require(14)
-},{}],98:[function(require,module,exports){
-arguments[4][15][0].apply(exports,arguments)
-},{"deep-equal":99}],99:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -51814,7 +51864,7 @@ function objEquiv(a, b, opts) {
   return true;
 }
 
-},{"./lib/is_arguments.js":100,"./lib/keys.js":101}],100:[function(require,module,exports){
+},{"./lib/is_arguments.js":98,"./lib/keys.js":99}],98:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -51836,7 +51886,7 @@ function unsupported(object){
     false;
 };
 
-},{}],101:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -51847,7 +51897,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],102:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Harvest, ItemPile,
@@ -51863,14 +51913,14 @@ function shim (obj) {
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-mine', 'voxel-registry', 'voxel-carry']
+    loadAfter: ['voxel-mine', 'voxel-registry', 'voxel-carry', 'voxel-inventory-hotbar']
   };
 
   Harvest = (function(_super) {
     __extends(Harvest, _super);
 
     function Harvest(game, opts) {
-      var _ref, _ref1, _ref2;
+      var _ref, _ref1, _ref2, _ref3;
       this.game = game;
       this.mine = (function() {
         var _ref1;
@@ -51896,14 +51946,34 @@ function shim (obj) {
           throw 'voxel-harvest requires "voxel-carry" plugin or "playerInventory" option set to inventory instance';
         }
       })();
+      this.hotbar = (_ref3 = game.plugins) != null ? _ref3.get('voxel-inventory-hotbar') : void 0;
       this.enable();
     }
 
     Harvest.prototype.enable = function() {
       var _this = this;
       return this.mine.on('break', this.onBreak = function(target) {
-        var blockName, droppedPile, excess;
+        var blockName, droppedPile, excess, maxDamage, props, tool, _base;
         game.setBlock(target.voxel, 0);
+        if (_this.hotbar != null) {
+          tool = _this.hotbar.held();
+          if (tool != null) {
+            props = _this.registry.getItemProps(tool.item);
+            maxDamage = props.maxDamage;
+            if (maxDamage != null) {
+              if ((_base = tool.tags).damage == null) {
+                _base.damage = 0;
+              }
+              tool.tags.damage += 1;
+              if (tool.tags.damage >= maxDamage) {
+                tool = void 0;
+              }
+              _this.hotbar.inventory.set(_this.hotbar.inventoryWindow.selectedIndex, tool);
+              _this.hotbar.refresh();
+              console.log('tool=', tool);
+            }
+          }
+        }
         blockName = _this.registry.getBlockName(target.value);
         droppedPile = _this.block2ItemPile(blockName);
         if (droppedPile == null) {
@@ -51939,15 +52009,15 @@ function shim (obj) {
 
 }).call(this);
 
-},{"ItemPile":103,"events":188}],103:[function(require,module,exports){
-arguments[4][15][0].apply(exports,arguments)
-},{"deep-equal":104}],104:[function(require,module,exports){
+},{"ItemPile":101,"events":186}],101:[function(require,module,exports){
+arguments[4][12][0].apply(exports,arguments)
+},{"deep-equal":102}],102:[function(require,module,exports){
+module.exports=require(97)
+},{"./lib/is_arguments.js":103,"./lib/keys.js":104}],103:[function(require,module,exports){
+module.exports=require(98)
+},{}],104:[function(require,module,exports){
 module.exports=require(99)
-},{"./lib/is_arguments.js":105,"./lib/keys.js":106}],105:[function(require,module,exports){
-module.exports=require(100)
-},{}],106:[function(require,module,exports){
-module.exports=require(101)
-},{}],107:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 var inherits = require('inherits')
 var events = require('events')
 var _ = require('underscore')
@@ -52114,9 +52184,9 @@ Highlighter.prototype.highlight = function () {
   if (!this.animate) this.mesh.position.set(this.targetPosition[0], this.targetPosition[1], this.targetPosition[2])
 }
 
-},{"events":188,"inherits":108,"underscore":109}],108:[function(require,module,exports){
-module.exports=require(43)
-},{}],109:[function(require,module,exports){
+},{"events":186,"inherits":106,"underscore":107}],106:[function(require,module,exports){
+module.exports=require(41)
+},{}],107:[function(require,module,exports){
 //     Underscore.js 1.4.4
 //     http://underscorejs.org
 //     (c) 2009-2013 Jeremy Ashkenas, DocumentCloud Inc.
@@ -53344,7 +53414,7 @@ module.exports=require(43)
 
 }).call(this);
 
-},{}],110:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
@@ -53364,14 +53434,14 @@ module.exports=require(43)
   };
 
   module.exports.pluginInfo = {
-    'loadAfter': ['craftingrecipes', 'voxel-carry']
+    'loadAfter': ['craftingrecipes', 'voxel-carry', 'voxel-registry']
   };
 
   InventoryDialog = (function(_super) {
     __extends(InventoryDialog, _super);
 
     function InventoryDialog(game, opts) {
-      var contents, crDiv, craftCont, resultCont, _ref, _ref1,
+      var contents, crDiv, craftCont, resultCont, _ref, _ref1, _ref2,
         _this = this;
       this.game = game;
       this.playerInventory = (function() {
@@ -53390,19 +53460,31 @@ module.exports=require(43)
           throw 'voxel-inventory-dialog requires "craftingrecipes" plugin';
         }
       })();
+      this.registry = (function() {
+        var _ref3;
+        if ((_ref2 = (_ref3 = game.plugins) != null ? _ref3.get('voxel-registry') : void 0) != null) {
+          return _ref2;
+        } else {
+          throw 'voxel-inventory-dialog requires "voxel-registry" plugin';
+        }
+      })();
       this.playerIW = new InventoryWindow({
-        inventory: this.playerInventory
+        inventory: this.playerInventory,
+        registry: this.registry
       });
       this.craftInventory = new Inventory(2, 2);
       this.craftInventory.on('changed', function() {
         return _this.updateCraftingRecipe();
       });
       this.craftIW = new InventoryWindow({
-        inventory: this.craftInventory
+        inventory: this.craftInventory,
+        registry: this.registry,
+        linkedInventory: this.playerInventory
       });
       this.resultInventory = new Inventory(1);
       this.resultIW = new InventoryWindow({
         inventory: this.resultInventory,
+        registry: this.registry,
         allowDrop: false,
         linkedInventory: this.playerInventory
       });
@@ -53455,37 +53537,37 @@ module.exports=require(43)
 
 }).call(this);
 
-},{"inventory":118,"inventory-window":114,"itempile":122,"voxel-modal-dialog":124}],111:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":112,"./types.json":113,"events":188}],112:[function(require,module,exports){
-module.exports=require(7)
-},{}],113:[function(require,module,exports){
-module.exports=require(8)
-},{}],114:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":188,"ever":115}],115:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":116,"./types.json":117,"events":188}],116:[function(require,module,exports){
-module.exports=require(7)
-},{}],117:[function(require,module,exports){
-module.exports=require(8)
+},{"inventory":116,"inventory-window":112,"itempile":120,"voxel-modal-dialog":122}],109:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":110,"./types.json":111,"events":186}],110:[function(require,module,exports){
+module.exports=require(4)
+},{}],111:[function(require,module,exports){
+module.exports=require(5)
+},{}],112:[function(require,module,exports){
+arguments[4][6][0].apply(exports,arguments)
+},{"events":186,"ever":113}],113:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":114,"./types.json":115,"events":186}],114:[function(require,module,exports){
+module.exports=require(4)
+},{}],115:[function(require,module,exports){
+module.exports=require(5)
+},{}],116:[function(require,module,exports){
+arguments[4][10][0].apply(exports,arguments)
+},{"deep-equal":117,"events":186,"itempile":118}],117:[function(require,module,exports){
+module.exports=require(11)
 },{}],118:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":119,"events":188,"itempile":120}],119:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(12)
+},{"deep-equal":119}],119:[function(require,module,exports){
+module.exports=require(11)
 },{}],120:[function(require,module,exports){
-module.exports=require(15)
+module.exports=require(12)
 },{"deep-equal":121}],121:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(11)
 },{}],122:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":123}],123:[function(require,module,exports){
-module.exports=require(14)
-},{}],124:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"voxel-modal":125}],125:[function(require,module,exports){
-arguments[4][32][0].apply(exports,arguments)
-},{"ever":111}],126:[function(require,module,exports){
+arguments[4][28][0].apply(exports,arguments)
+},{"voxel-modal":123}],123:[function(require,module,exports){
+arguments[4][29][0].apply(exports,arguments)
+},{"ever":109}],124:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, InventoryHotbar, InventoryWindow, ever,
@@ -53503,14 +53585,14 @@ arguments[4][32][0].apply(exports,arguments)
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-carry']
+    loadAfter: ['voxel-carry', 'voxel-registry']
   };
 
   InventoryHotbar = (function(_super) {
     __extends(InventoryHotbar, _super);
 
     function InventoryHotbar(game, opts) {
-      var container, windowOpts, _ref, _ref1, _ref2, _ref3;
+      var container, registry, windowOpts, _ref, _ref1, _ref2, _ref3, _ref4;
       this.game = game;
       if (opts == null) {
         opts = {};
@@ -53523,15 +53605,21 @@ arguments[4][32][0].apply(exports,arguments)
           throw 'voxel-inventory-hotbar requires "voxel-carry" plugin or "inventory" option set to inventory instance';
         }
       })();
-      windowOpts = (_ref1 = opts.windowOpts) != null ? _ref1 : {};
+      registry = (_ref1 = game.plugins) != null ? _ref1.get('voxel-registry') : void 0;
+      windowOpts = (_ref2 = opts.windowOpts) != null ? _ref2 : {};
+      if (registry) {
+        if (windowOpts.registry == null) {
+          windowOpts.registry = registry;
+        }
+      }
       if (windowOpts.inventory == null) {
         windowOpts.inventory = this.inventory;
       }
       if (windowOpts.inventorySize == null) {
-        windowOpts.inventorySize = (_ref2 = opts.inventorySize) != null ? _ref2 : this.inventory.size();
+        windowOpts.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
       }
       if (windowOpts.width == null) {
-        windowOpts.width = (_ref3 = opts.width) != null ? _ref3 : windowOpts.inventorySize;
+        windowOpts.width = (_ref4 = opts.width) != null ? _ref4 : windowOpts.inventorySize;
       }
       this.inventoryWindow = new InventoryWindow(windowOpts);
       this.inventoryWindow.selectedIndex = 0;
@@ -53596,21 +53684,21 @@ arguments[4][32][0].apply(exports,arguments)
 
 }).call(this);
 
-},{"events":188,"ever":127,"inventory-window":130}],127:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":128,"./types.json":129,"events":188}],128:[function(require,module,exports){
-module.exports=require(7)
-},{}],129:[function(require,module,exports){
-module.exports=require(8)
-},{}],130:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":188,"ever":131}],131:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":132,"./types.json":133,"events":188}],132:[function(require,module,exports){
-module.exports=require(7)
-},{}],133:[function(require,module,exports){
-module.exports=require(8)
-},{}],134:[function(require,module,exports){
+},{"events":186,"ever":125,"inventory-window":128}],125:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":126,"./types.json":127,"events":186}],126:[function(require,module,exports){
+module.exports=require(4)
+},{}],127:[function(require,module,exports){
+module.exports=require(5)
+},{}],128:[function(require,module,exports){
+arguments[4][6][0].apply(exports,arguments)
+},{"events":186,"ever":129}],129:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":130,"./types.json":131,"events":186}],130:[function(require,module,exports){
+module.exports=require(4)
+},{}],131:[function(require,module,exports){
+module.exports=require(5)
+},{}],132:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var webworkify = require('webworkify');
@@ -53736,7 +53824,7 @@ Land.prototype.unbindEvents = function() {
   this.game.voxels.removeListener('missingChunk', this.missingChunk);
 };
 
-},{"./worker.js":142,"webworkify":141}],135:[function(require,module,exports){
+},{"./worker.js":140,"webworkify":139}],133:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -53847,13 +53935,13 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
+},{}],134:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":135,"./types.json":136,"events":186}],135:[function(require,module,exports){
+module.exports=require(4)
 },{}],136:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":137,"./types.json":138,"events":188}],137:[function(require,module,exports){
-module.exports=require(7)
-},{}],138:[function(require,module,exports){
-module.exports=require(8)
-},{}],139:[function(require,module,exports){
+module.exports=require(5)
+},{}],137:[function(require,module,exports){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
  *
@@ -54261,7 +54349,7 @@ if (typeof module !== 'undefined') {
 
 })();
 
-},{}],140:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -54470,7 +54558,7 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],141:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -54524,7 +54612,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],142:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 var ever = require('ever');
 var createTree = require('voxel-trees');
 var SimplexNoise = require('simplex-noise');
@@ -54730,7 +54818,7 @@ module.exports = function() {
 
 
 
-},{"alea":135,"ever":136,"simplex-noise":139,"voxel-trees":140}],143:[function(require,module,exports){
+},{"alea":133,"ever":134,"simplex-noise":137,"voxel-trees":138}],141:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Mine,
@@ -55007,7 +55095,7 @@ module.exports = function() {
 
 }).call(this);
 
-},{"events":188}],144:[function(require,module,exports){
+},{"events":186}],142:[function(require,module,exports){
 module.exports = function (game, opts) {
     return new Oculus(game, opts);
 }
@@ -55131,18 +55219,29 @@ function Oculus(game, opts) {
 		this.originalRenderer = game.view.renderer;
 		this.setSize(game.width, game.height);
 		game.view.renderer = this;
+
+		this.hideLogo(true);
 	};
 
 	this.disable = function () {
 		// TODO: anything else important we need to restore?
+        // sky color?
 		this.setSize(_width * 2, _height);
 		game.view.renderer = this.originalRenderer;
+
+		this.hideLogo(false);
+	};
+
+	// hide the voxel js beta logo element on the page, if present
+	this.hideLogo = function(hide) {
+		if (document && document.getElementById('logo'))
+			document.getElementById('logo').style.visibility = hide ? 'hidden' : '';
 	};
 
     this.enable();
 };
 
-},{}],145:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, ToolsPlugin, _ref;
@@ -55181,11 +55280,13 @@ function Oculus(game, opts) {
       });
       this.registry.registerItem('pickaxeWood', {
         itemTexture: '../items/wood_pickaxe',
-        speed: 2.0
+        speed: 2.0,
+        maxDamage: 10
       });
       this.registry.registerItem('pickaxeStone', {
         itemTexture: '../items/stone_pickaxe',
-        speed: 10.0
+        speed: 10.0,
+        maxDamage: 100
       });
       this.registry.registerItem('stick', {
         itemTexture: '../items/stick'
@@ -55195,8 +55296,12 @@ function Oculus(game, opts) {
         recipes.thesaurus.registerName('wood.plank', 'plankOak');
         recipes.register(new AmorphousRecipe(['wood.log'], new ItemPile('plankOak', 2)));
         recipes.register(new AmorphousRecipe(['wood.plank', 'wood.plank'], new ItemPile('stick', 4)));
-        recipes.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1)));
-        return recipes.register(new PositionalRecipe([['cobblestone', 'cobblestone', 'cobblestone'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeStone', 1)));
+        recipes.register(new PositionalRecipe([['wood.plank', 'wood.plank', 'wood.plank'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeWood', 1, {
+          damage: 0
+        })));
+        return recipes.register(new PositionalRecipe([['cobblestone', 'cobblestone', 'cobblestone'], [void 0, 'stick', void 0], [void 0, 'stick', void 0]], new ItemPile('pickaxeStone', 1, {
+          damage: 0
+        })));
       }
     };
 
@@ -55208,13 +55313,13 @@ function Oculus(game, opts) {
 
 }).call(this);
 
-},{"craftingrecipes":146,"itempile":147}],146:[function(require,module,exports){
+},{"craftingrecipes":144,"itempile":145}],144:[function(require,module,exports){
 module.exports=require(2)
+},{}],145:[function(require,module,exports){
+module.exports=require(12)
+},{"deep-equal":146}],146:[function(require,module,exports){
+module.exports=require(11)
 },{}],147:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":148}],148:[function(require,module,exports){
-module.exports=require(14)
-},{}],149:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -55226,12 +55331,14 @@ function Player(game, opts) {
         var possessed;
        
         opts = opts || {};
+        opts.homePosition = opts.homePosition || [0, 0, 0];
+        opts.homeRotation = opts.homeRotation || [0, 0, 0];
         opts.skinOpts = opts.skinOpts || {};
         opts.skinOpts.scale = opts.skinOpts.scale || new game.THREE.Vector3(0.04, 0.04, 0.04);
 
         var playerSkin = skin(game.THREE, opts.image, opts.skinOpts);
         var player = playerSkin.mesh;
-        var physics = game.makePhysical(player);
+        var physics = this.physics = game.makePhysical(player);
         physics.playerSkin = playerSkin;
         
         player.position.set(0, 562, -20);
@@ -55268,9 +55375,6 @@ function Player(game, opts) {
                 pov = 3;
             }
 
-            // don't show player in first person mode, gets in the way when you look down
-            this.show(pov !== 1);
-
             physics.possess();
         };
 
@@ -55293,11 +55397,38 @@ function Player(game, opts) {
             var key = pov === 1 ? 'cameraInside' : 'cameraOutside';
             player[key].add(game.camera);
             possessed = player[key];
+
+            // don't show player in first person mode, gets in the way when you look down
+            this.show(pov !== 1);
+            this.home();
+        };
+       
+        physics.home = function () {
+            this.position.set(opts.homePosition[0], opts.homePosition[1], opts.homePosition[2]); // TODO: figure out .apply()
+            this.rotation.set(opts.homeRotation[0], opts.homeRotation[1], opts.homeRotation[2]);
+        };
+
+        physics.enable = function () {
+            physics.possess();
+        };
+
+        physics.disable = function () {
+            if (possessed) possessed.remove(game.camera); // TODO: fix
         };
         
         physics.position = physics.yaw.position;
-        
+
+        this.enable();
+
         return physics;
+};
+
+Player.prototype.enable = function () {
+    this.physics.enable();
+};
+
+Player.prototype.disable = function () {
+    this.physics.disable();
 };
 
 function parseXYZ (x, y, z) {
@@ -55310,7 +55441,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":150}],150:[function(require,module,exports){
+},{"minecraft-skin":148}],148:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -55682,7 +55813,7 @@ Skin.prototype.createPlayerObject = function(scene) {
   playerGroup.scale = this.scale
   return playerGroup
 }
-},{}],151:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
   
 var datgui = require('dat-gui');
@@ -55748,13 +55879,13 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":152}],152:[function(require,module,exports){
-module.exports=require(3)
-},{"./vendor/dat.color":153,"./vendor/dat.gui":154}],153:[function(require,module,exports){
-module.exports=require(4)
-},{}],154:[function(require,module,exports){
-module.exports=require(5)
-},{}],155:[function(require,module,exports){
+},{"dat-gui":150}],150:[function(require,module,exports){
+module.exports=require(17)
+},{"./vendor/dat.color":151,"./vendor/dat.gui":152}],151:[function(require,module,exports){
+module.exports=require(18)
+},{}],152:[function(require,module,exports){
+module.exports=require(19)
+},{}],153:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var EventEmitter = require('events').EventEmitter;
@@ -55767,20 +55898,17 @@ module.exports = function(game, opts) {
 
 function Plugins(game, opts) {
   this.game = game;
-  this.game.plugins = this;
+  if (this.game) this.game.plugins = this;
 
   opts = opts || {};
   this.require = opts.require || require;
+  this.masterPluginName = opts.masterPluginName || 'voxel-engine'; // synthetic 'plugin' created as parent of all
 
   // map plugin name to instances
   this.all = {};
 
   this.preconfigureOpts = {};
   this.graph = tsort();
-
-  // self plugin
-  this.all.plugins = this;
-  this.pluginEnabled = true;
 }
 
 // Require the plugin module and return its factory constructor
@@ -55794,7 +55922,7 @@ Plugins.prototype.scan = function(name) {
 // Instantiate a plugin, creating its instance (starts out enabled)
 Plugins.prototype.instantiate = function(name, opts) {
   if (this.get(name)) {
-    console.log("plugin already constructed: ", name);
+    console.log("plugin already instantiated: ", name);
     return false;
   }
 
@@ -55807,16 +55935,23 @@ Plugins.prototype.instantiate = function(name, opts) {
     return false;
   }
 
-  //try {
-    var plugin = createPlugin(this.game, opts); // requires (game, opts) convention
+  var plugin;
+  if (!this.game && name === this.masterPluginName) {
+    // the 'master' plugin is the game object itself
+    this.game = plugin = createPlugin(opts);
+    this.game.plugins = this;
+    if (this.game.notCapable()) {
+      if (window.document) window.document.body.appendChild(this.game.notCapableMessage()); // TODO: find out why notCapable() isn't showing up
+      throw new Error('[voxel-plugins] fatal error: your system is not capable of running voxel-engine (game.notCapable)');
+    }
+  } else {
+    plugin = createPlugin(this.game, opts); // requires (game, opts) convention
     if (!plugin) {
       console.log("create plugin failed:",name,createPlugin,plugin);
       return false;
     }
-  /*} catch (e) {
-    console.log("create plugin failed with exception:",name,createPlugin,plugin,e);
-    return false;
-  }*/
+  }
+
   plugin.pluginName = name;
   this.emit('new plugin', name);
 
@@ -55867,9 +56002,9 @@ Plugins.prototype.buildGraph = function(createPlugin, name) {
     if (!loadAfter) loadAfter = [];
   }
 
-  // special 'plugin' us, everything always loads after
+  // special master plugin, everything always loads after
   // (mainly added so all plugins are in the graph, even with empty loadAfter)
-  loadAfter.unshift('plugins');
+  if (name !== this.masterPluginName) loadAfter.unshift(this.masterPluginName);
 
   // add edges for each plugin required to load before us
   for (var i = 0; i < loadAfter.length; ++i)
@@ -56017,9 +56152,9 @@ Plugins.prototype.destroy = function(name) {
 
 inherits(Plugins, EventEmitter);
 
-},{"events":188,"inherits":156,"tsort":157}],156:[function(require,module,exports){
-module.exports=require(43)
-},{}],157:[function(require,module,exports){
+},{"events":186,"inherits":154,"tsort":155}],154:[function(require,module,exports){
+module.exports=require(41)
+},{}],155:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -56093,7 +56228,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":193}],158:[function(require,module,exports){
+},{"util":191}],156:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 var ever = require('ever');
@@ -56269,9 +56404,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":188,"ever":6,"inherits":159}],159:[function(require,module,exports){
-module.exports=require(43)
-},{}],160:[function(require,module,exports){
+},{"events":186,"ever":3,"inherits":157}],157:[function(require,module,exports){
+module.exports=require(41)
+},{}],158:[function(require,module,exports){
 // # vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
 module.exports = function(game, opts) {
@@ -56367,7 +56502,7 @@ Registry.prototype.isBlock = function(name) {
   return this.blockName2ID[name] !== undefined;
 };
 
-},{}],161:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var EventEmitter, Use,
@@ -56464,7 +56599,7 @@ Registry.prototype.isBlock = function(name) {
 
 }).call(this);
 
-},{"events":188}],162:[function(require,module,exports){
+},{"events":186}],160:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Walk(game, opts)
@@ -56574,7 +56709,7 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],163:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var AmorphousRecipe, CraftingThesaurus, Inventory, InventoryWindow, ItemPile, ModalDialog, PositionalRecipe, Recipe, RecipeList, Workbench, WorkbenchDialog, _ref,
@@ -56675,6 +56810,7 @@ Walk.prototype.setAcceleration = function(newA) {
       this.recipes = recipes;
       this.playerIW = new InventoryWindow({
         width: 10,
+        registry: this.registry,
         inventory: this.playerInventory
       });
       this.craftInventory = new Inventory(3, 3);
@@ -56683,12 +56819,14 @@ Walk.prototype.setAcceleration = function(newA) {
       });
       this.craftIW = new InventoryWindow({
         width: 3,
+        registry: this.registry,
         inventory: this.craftInventory,
         linkedInventory: this.playerInventory
       });
       this.resultInventory = new Inventory(1);
       this.resultIW = new InventoryWindow({
         inventory: this.resultInventory,
+        registry: this.registry,
         allowDrop: false,
         linkedInventory: this.playerInventory
       });
@@ -56747,43 +56885,43 @@ Walk.prototype.setAcceleration = function(newA) {
 
 }).call(this);
 
-},{"craftingrecipes":164,"inventory":172,"inventory-window":168,"itempile":176,"voxel-modal-dialog":178}],164:[function(require,module,exports){
+},{"craftingrecipes":162,"inventory":170,"inventory-window":166,"itempile":174,"voxel-modal-dialog":176}],162:[function(require,module,exports){
 module.exports=require(2)
+},{}],163:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":164,"./types.json":165,"events":186}],164:[function(require,module,exports){
+module.exports=require(4)
 },{}],165:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":166,"./types.json":167,"events":188}],166:[function(require,module,exports){
-module.exports=require(7)
-},{}],167:[function(require,module,exports){
-module.exports=require(8)
-},{}],168:[function(require,module,exports){
-arguments[4][9][0].apply(exports,arguments)
-},{"events":188,"ever":169}],169:[function(require,module,exports){
-module.exports=require(6)
-},{"./init.json":170,"./types.json":171,"events":188}],170:[function(require,module,exports){
-module.exports=require(7)
-},{}],171:[function(require,module,exports){
-module.exports=require(8)
+module.exports=require(5)
+},{}],166:[function(require,module,exports){
+arguments[4][6][0].apply(exports,arguments)
+},{"events":186,"ever":167}],167:[function(require,module,exports){
+module.exports=require(3)
+},{"./init.json":168,"./types.json":169,"events":186}],168:[function(require,module,exports){
+module.exports=require(4)
+},{}],169:[function(require,module,exports){
+module.exports=require(5)
+},{}],170:[function(require,module,exports){
+arguments[4][10][0].apply(exports,arguments)
+},{"deep-equal":171,"events":186,"itempile":172}],171:[function(require,module,exports){
+module.exports=require(11)
 },{}],172:[function(require,module,exports){
-arguments[4][13][0].apply(exports,arguments)
-},{"deep-equal":173,"events":188,"itempile":174}],173:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(12)
+},{"deep-equal":173}],173:[function(require,module,exports){
+module.exports=require(11)
 },{}],174:[function(require,module,exports){
-module.exports=require(15)
+module.exports=require(12)
 },{"deep-equal":175}],175:[function(require,module,exports){
-module.exports=require(14)
+module.exports=require(11)
 },{}],176:[function(require,module,exports){
-module.exports=require(15)
-},{"deep-equal":177}],177:[function(require,module,exports){
-module.exports=require(14)
-},{}],178:[function(require,module,exports){
-arguments[4][31][0].apply(exports,arguments)
-},{"voxel-modal":179}],179:[function(require,module,exports){
-arguments[4][32][0].apply(exports,arguments)
-},{"ever":165}],180:[function(require,module,exports){
+arguments[4][28][0].apply(exports,arguments)
+},{"voxel-modal":177}],177:[function(require,module,exports){
+arguments[4][29][0].apply(exports,arguments)
+},{"ever":163}],178:[function(require,module,exports){
 require('./index.coffee')();
 
 
-},{"./index.coffee":1}],181:[function(require,module,exports){
+},{"./index.coffee":1}],179:[function(require,module,exports){
 
 
 //
@@ -57001,7 +57139,7 @@ if (typeof Object.getOwnPropertyDescriptor === 'function') {
   exports.getOwnPropertyDescriptor = valueObject;
 }
 
-},{}],182:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57074,7 +57212,7 @@ function onend() {
   timers.setImmediate(shims.bind(this.end, this));
 }
 
-},{"_shims":181,"_stream_readable":184,"_stream_writable":186,"timers":192,"util":193}],183:[function(require,module,exports){
+},{"_shims":179,"_stream_readable":182,"_stream_writable":184,"timers":190,"util":191}],181:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -57117,7 +57255,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"_stream_transform":185,"util":193}],184:[function(require,module,exports){
+},{"_stream_transform":183,"util":191}],182:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58038,7 +58176,7 @@ function endReadable(stream) {
   }
 }
 
-},{"__browserify_process":197,"_shims":181,"buffer":195,"events":188,"stream":190,"string_decoder":191,"timers":192,"util":193}],185:[function(require,module,exports){
+},{"__browserify_process":195,"_shims":179,"buffer":193,"events":186,"stream":188,"string_decoder":189,"timers":190,"util":191}],183:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58244,7 +58382,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"_stream_duplex":182,"util":193}],186:[function(require,module,exports){
+},{"_stream_duplex":180,"util":191}],184:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58614,7 +58752,7 @@ function endWritable(stream, state, cb) {
   state.ended = true;
 }
 
-},{"buffer":195,"stream":190,"timers":192,"util":193}],187:[function(require,module,exports){
+},{"buffer":193,"stream":188,"timers":190,"util":191}],185:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -58931,7 +59069,7 @@ assert.doesNotThrow = function(block, /*optional*/message) {
 };
 
 assert.ifError = function(err) { if (err) {throw err;}};
-},{"_shims":181,"util":193}],188:[function(require,module,exports){
+},{"_shims":179,"util":191}],186:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59212,7 +59350,7 @@ EventEmitter.listenerCount = function(emitter, type) {
     ret = emitter._events[type].length;
   return ret;
 };
-},{"util":193}],189:[function(require,module,exports){
+},{"util":191}],187:[function(require,module,exports){
 var process=require("__browserify_process");// Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59423,7 +59561,7 @@ exports.extname = function(path) {
   return splitPath(path)[3];
 };
 
-},{"__browserify_process":197,"_shims":181,"util":193}],190:[function(require,module,exports){
+},{"__browserify_process":195,"_shims":179,"util":191}],188:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59552,7 +59690,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"_stream_duplex":182,"_stream_passthrough":183,"_stream_readable":184,"_stream_transform":185,"_stream_writable":186,"events":188,"util":193}],191:[function(require,module,exports){
+},{"_stream_duplex":180,"_stream_passthrough":181,"_stream_readable":182,"_stream_transform":183,"_stream_writable":184,"events":186,"util":191}],189:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -59745,7 +59883,7 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":195}],192:[function(require,module,exports){
+},{"buffer":193}],190:[function(require,module,exports){
 try {
     // Old IE browsers that do not curry arguments
     if (!setTimeout.call) {
@@ -59864,7 +60002,7 @@ if (!exports.setImmediate) {
   };
 }
 
-},{}],193:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -60409,7 +60547,7 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-},{"_shims":181}],194:[function(require,module,exports){
+},{"_shims":179}],192:[function(require,module,exports){
 exports.readIEEE754 = function(buffer, offset, isBE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -60495,7 +60633,7 @@ exports.writeIEEE754 = function(buffer, value, offset, isBE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],195:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 var assert;
 exports.Buffer = Buffer;
 exports.SlowBuffer = Buffer;
@@ -61621,7 +61759,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
   writeDouble(this, value, offset, true, noAssert);
 };
 
-},{"./buffer_ieee754":194,"assert":187,"base64-js":196}],196:[function(require,module,exports){
+},{"./buffer_ieee754":192,"assert":185,"base64-js":194}],194:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -61707,7 +61845,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],197:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -61761,5 +61899,5 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}]},{},[180])
+},{}]},{},[178])
 ;
