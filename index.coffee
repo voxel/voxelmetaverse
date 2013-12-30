@@ -131,7 +131,7 @@ module.exports = () ->
   game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
   game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
   game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
-  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.show()
+  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
 
   return game
 
