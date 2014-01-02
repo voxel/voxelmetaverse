@@ -9,7 +9,7 @@
   "dependencies": {
     "ever": "0.0.3",
     "voxel-engine": "git://github.com/deathcap/voxel-engine.git#19d99da776d853bcdc8f4f7aff576dee7d6afa73",
-    "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#2a1a1f0a2a28a49368350d79650669fb6ddc3a12",
+    "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#b978aad4ceace902e6640f24ccf8dcc9b8b7b62f",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
     "voxel-highlight": "0.0.9",
@@ -35,9 +35,9 @@
     "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git#abf906cb2b90b149624e149475d159cad90f41dd",
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git#f4bacf0b96f05c2b5f935da0db52f5e506c163e5",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#0c78090616da572292e9b88bf4ff23ae9b1d0e6b",
-    "voxel-registry": "git://github.com/deathcap/voxel-registry.git#bd0fa46d01e1b44fbfd9f2be7abf3143a60eda16",
+    "voxel-registry": "git://github.com/deathcap/voxel-registry.git#90a76963a6d35e32fbc2b99d393b82e6030d374c",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#f238a8b0dc1fb3be4519831eb0c3736e39ff0816",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git#52c66ab2aaea2d0f547230c2aad23e7167dd634a"
+    "voxel-land": "git://github.com/deathcap/voxel-land.git#007104e2135e5602134a9401f624c1b9f92bdc39"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
