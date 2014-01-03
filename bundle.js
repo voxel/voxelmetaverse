@@ -739,17 +739,15 @@ module.exports={
     };
 
     InventoryWindow.prototype.createSlotNode = function(itemPile) {
-      var div, textNode;
+      var div;
       div = document.createElement('div');
       div.setAttribute('style', "display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
-      textNode = document.createTextNode('');
-      div.appendChild(textNode);
       this.populateSlotNode(div, itemPile);
       return div;
     };
 
     InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
-      var maxDamage, newImage, progress, progressColor, progressNode, src, text, _ref;
+      var maxDamage, newImage, progress, progressColor, progressNode, src, text, textBox, _ref;
       src = void 0;
       text = '';
       progress = void 0;
@@ -786,10 +784,16 @@ module.exports={
         div.style.backgroundImage = newImage;
         InventoryWindow.resolvedImageURLs[newImage] = div.style.backgroundImage;
       }
-      if (div.textContent !== text) {
-        div.textContent = text;
+      textBox = div.children[0];
+      if (textBox == null) {
+        textBox = document.createElement('div');
+        textBox.setAttribute('style', 'position: absolute');
+        div.appendChild(textBox);
       }
-      progressNode = div.children[0];
+      if (textBox.textContent !== text) {
+        textBox.textContent = text;
+      }
+      progressNode = div.children[1];
       if (progressNode == null) {
         progressNode = document.createElement('div');
         progressNode.setAttribute('style', "width: 0%;top: " + (this.textureSize - this.borderSize * 2) + "px;position: relative;visibility: hidden;");
@@ -51866,7 +51870,7 @@ module.exports=require(22)
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-mine', 'voxel-carry', 'voxel-fly', 'voxel-registry']
+    loadAfter: ['voxel-mine', 'voxel-carry', 'voxel-fly', 'voxel-registry', 'voxel-harvest']
   };
 
   Gamemode = (function() {
@@ -51900,13 +51904,16 @@ module.exports=require(22)
         this.game.plugins.disable('voxel-fly');
       }
       return this.game.buttons.down.on('gamemode', this.onDown = function() {
-        var playerInventory, _ref2, _ref3, _ref4, _ref5, _ref6;
+        var playerInventory, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8;
         playerInventory = (_ref2 = _this.game.plugins.get('voxel-carry')) != null ? _ref2.inventory : void 0;
         if (_this.mode === 'survival') {
           _this.mode = 'creative';
           _this.game.plugins.enable('voxel-fly');
           if ((_ref3 = _this.game.plugins.get('voxel-mine')) != null) {
             _ref3.instaMine = true;
+          }
+          if ((_ref4 = _this.game.plugins.get('voxel-harvest')) != null) {
+            _ref4.enableToolDamage = false;
           }
           _this.populateCreative();
           if (_this.survivalInventory != null) {
@@ -51915,16 +51922,19 @@ module.exports=require(22)
             }
           }
           if (playerInventory != null) {
-            if ((_ref4 = _this.creativeInventory) != null) {
-              _ref4.transferTo(playerInventory);
+            if ((_ref5 = _this.creativeInventory) != null) {
+              _ref5.transferTo(playerInventory);
             }
           }
           return console.log('creative mode');
         } else {
           _this.mode = 'survival';
           _this.game.plugins.disable('voxel-fly');
-          if ((_ref5 = _this.game.plugins.get('voxel-mine')) != null) {
-            _ref5.instaMine = false;
+          if ((_ref6 = _this.game.plugins.get('voxel-mine')) != null) {
+            _ref6.instaMine = false;
+          }
+          if ((_ref7 = _this.game.plugins.get('voxel-harvest')) != null) {
+            _ref7.enableToolDamage = true;
           }
           if (_this.creativeInventory != null) {
             if (playerInventory != null) {
@@ -51932,8 +51942,8 @@ module.exports=require(22)
             }
           }
           if (playerInventory != null) {
-            if ((_ref6 = _this.survivalInventory) != null) {
-              _ref6.transferTo(playerInventory);
+            if ((_ref8 = _this.survivalInventory) != null) {
+              _ref8.transferTo(playerInventory);
             }
           }
           return console.log('survival mode');
@@ -52016,33 +52026,34 @@ module.exports=require(11)
     __extends(Harvest, _super);
 
     function Harvest(game, opts) {
-      var _ref, _ref1, _ref2, _ref3;
+      var _ref, _ref1, _ref2, _ref3, _ref4;
       this.game = game;
+      this.enableToolDamage = (_ref = opts.enableToolDamage) != null ? _ref : true;
       this.mine = (function() {
-        var _ref1;
-        if ((_ref = (_ref1 = game.plugins) != null ? _ref1.get('voxel-mine') : void 0) != null) {
-          return _ref;
+        var _ref2;
+        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-mine') : void 0) != null) {
+          return _ref1;
         } else {
           throw 'voxel-harvest requires "voxel-mine" plugin';
         }
       })();
       this.registry = (function() {
-        var _ref2;
-        if ((_ref1 = (_ref2 = game.plugins) != null ? _ref2.get('voxel-registry') : void 0) != null) {
-          return _ref1;
+        var _ref3;
+        if ((_ref2 = (_ref3 = game.plugins) != null ? _ref3.get('voxel-registry') : void 0) != null) {
+          return _ref2;
         } else {
           throw 'voxel-harvest requires "voxel-registry" plugin';
         }
       })();
       this.playerInventory = (function() {
-        var _ref3, _ref4, _ref5;
-        if ((_ref2 = (_ref3 = (_ref4 = game.plugins) != null ? (_ref5 = _ref4.get('voxel-carry')) != null ? _ref5.inventory : void 0 : void 0) != null ? _ref3 : opts.playerInventory) != null) {
-          return _ref2;
+        var _ref4, _ref5, _ref6;
+        if ((_ref3 = (_ref4 = (_ref5 = game.plugins) != null ? (_ref6 = _ref5.get('voxel-carry')) != null ? _ref6.inventory : void 0 : void 0) != null ? _ref4 : opts.playerInventory) != null) {
+          return _ref3;
         } else {
           throw 'voxel-harvest requires "voxel-carry" plugin or "playerInventory" option set to inventory instance';
         }
       })();
-      this.hotbar = (_ref3 = game.plugins) != null ? _ref3.get('voxel-inventory-hotbar') : void 0;
+      this.hotbar = (_ref4 = game.plugins) != null ? _ref4.get('voxel-inventory-hotbar') : void 0;
       this.enable();
     }
 
@@ -52074,6 +52085,9 @@ module.exports=require(11)
         n = 1;
       }
       if (this.hotbar == null) {
+        return;
+      }
+      if (!this.enableToolDamage) {
         return;
       }
       tool = this.hotbar.held();
@@ -54050,7 +54064,7 @@ module.exports=require(4)
 },{}],143:[function(require,module,exports){
 module.exports=require(5)
 },{}],144:[function(require,module,exports){
-/*
+var global=typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {};/*
  * A fast javascript implementation of simplex noise by Jonas Wagner
  *
  * Based on a speed-improved simplex noise algorithm for 2D, 3D and 4D in Java.
@@ -54083,69 +54097,51 @@ module.exports=require(5)
  */
 (function () {
 
-var F2 = 0.5 * (Math.sqrt(3.0) - 1.0),
-    G2 = (3.0 - Math.sqrt(3.0)) / 6.0,
-    F3 = 1.0 / 3.0,
-    G3 = 1.0 / 6.0,
-    F4 = (Math.sqrt(5.0) - 1.0) / 4.0,
-    G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
+function SimplexAsm(stdlib, foreign, heap) {
+    'use asm';
 
+    /* fails: TypeError: asm.js type error: array view constructor takes exactly one argument
+    var p = new stdlib.Uint8Array(heap, 0, 256);
+    var perm = new stdlib.Uint8Array(heap, 256, 512);
+    var permMod12 = new stdlib.Uint8Array(heap, 256 + 512, 512);
+    var grad3 = new stdlib.Float32Array(heap, 256 + 512 + 512, 36);
+    var grad4 = new stdlib.Float32Array(heap, 256 + 512 + 512 + (36 * 4), 128);
+    */
 
-function SimplexNoise(random) {
-    if (!random) random = Math.random;
-    this.p = new Uint8Array(256);
-    this.perm = new Uint8Array(512);
-    this.permMod12 = new Uint8Array(512);
-    for (var i = 0; i < 256; i++) {
-        this.p[i] = random() * 256;
-    }
-    for (i = 0; i < 512; i++) {
-        this.perm[i] = this.p[i & 255];
-        this.permMod12[i] = this.perm[i] % 12;
-    }
+    var bytes = new stdlib.Uint8Array(heap);
+    var _perm = 256;
+    var _permMod12 = 768; // 256 + 512;
 
-}
-SimplexNoise.prototype = {
-    grad3: new Float32Array([1, 1, 0,
-                            - 1, 1, 0,
-                            1, - 1, 0,
+    var floats = new stdlib.Float32Array(heap);
+    var _grad3 = 320; // (256 + 512 + 512) / Float32Array.BYTES_PER_ELEMENT
+    var _grad4 = 356; // 320 + 36
 
-                            - 1, - 1, 0,
-                            1, 0, 1,
-                            - 1, 0, 1,
+    var sqrt = stdlib.Math.sqrt;
+    var floor = stdlib.Math.floor;
+    var imul = stdlib.Math.imul; // Chrome has this, but not Node (v0.10.21)
 
-                            1, 0, - 1,
-                            - 1, 0, - 1,
-                            0, 1, 1,
+    function noise2D(xin, yin) {
+        xin = +xin;
+        yin = +yin;
 
-                            0, - 1, 1,
-                            0, 1, - 1,
-                            0, - 1, - 1]),
-    grad4: new Float32Array([0, 1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1,
-                            0, - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1,
-                            1, 0, 1, 1, 1, 0, 1, - 1, 1, 0, - 1, 1, 1, 0, - 1, - 1,
-                            - 1, 0, 1, 1, - 1, 0, 1, - 1, - 1, 0, - 1, 1, - 1, 0, - 1, - 1,
-                            1, 1, 0, 1, 1, 1, 0, - 1, 1, - 1, 0, 1, 1, - 1, 0, - 1,
-                            - 1, 1, 0, 1, - 1, 1, 0, - 1, - 1, - 1, 0, 1, - 1, - 1, 0, - 1,
-                            1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1, 0,
-                            - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1, 0]),
-    noise2D: function (xin, yin) {
-        var permMod12 = this.permMod12,
-            perm = this.perm,
-            grad3 = this.grad3;
-        var n0, n1, n2; // Noise contributions from the three corners
+        var n0=0.0, n1=0.0, n2=0.0; // Noise contributions from the three corners
+        var F2 = 0.0, G2 = 0.0, s = 0.0, x0 = 0.0, y0 = 0.0, x1 = 0.0, y1 = 0.0, x2 = 0.0, y2 = 0.0, t = 0.0, t0 = 0.0, t1 = 0.0, t2 = 0.0, X0 = 0.0, Y0 = 0.0;
+        var i = 0, j = 0, i1 = 0, j1 = 0, ii = 0, jj = 0, gi0 = 0, gi1 = 0, gi2 = 0;
+
         // Skew the input space to determine which simplex cell we're in
-        var s = (xin + yin) * F2; // Hairy factor for 2D
-        var i = Math.floor(xin + s);
-        var j = Math.floor(yin + s);
-        var t = (i + j) * G2;
-        var X0 = i - t; // Unskew the cell origin back to (x,y) space
-        var Y0 = j - t;
-        var x0 = xin - X0; // The x,y distances from the cell origin
-        var y0 = yin - Y0;
+        F2 = 0.5 * (+sqrt(3.0) - 1.0);
+        G2 = (3.0 - +sqrt(3.0)) / 6.0;
+        s = 0.0; s = (xin + yin) * F2; // Hairy factor for 2D
+        i = ~~+floor(xin + s);
+        j = ~~+floor(yin + s);
+        t = +~~(i + j) * G2;
+        X0 = +~~i - t; // Unskew the cell origin back to (x,y) space
+        Y0 = +~~j - t;
+        x0 = xin - X0; // The x,y distances from the cell origin
+        y0 = yin - Y0;
         // For the 2D case, the simplex shape is an equilateral triangle.
         // Determine which simplex we are in.
-        var i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
+        //i1, j1; // Offsets for second (middle) corner of simplex in (i,j) coords
         if (x0 > y0) {
             i1 = 1;
             j1 = 0;
@@ -54157,50 +54153,105 @@ SimplexNoise.prototype = {
         // A step of (1,0) in (i,j) means a step of (1-c,-c) in (x,y), and
         // a step of (0,1) in (i,j) means a step of (-c,1-c) in (x,y), where
         // c = (3-sqrt(3))/6
-        var x1 = x0 - i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
-        var y1 = y0 - j1 + G2;
-        var x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
-        var y2 = y0 - 1.0 + 2.0 * G2;
+        x1 = x0 - +~~i1 + G2; // Offsets for middle corner in (x,y) unskewed coords
+        y1 = y0 - +~~j1 + G2;
+        x2 = x0 - 1.0 + 2.0 * G2; // Offsets for last corner in (x,y) unskewed coords
+        y2 = y0 - 1.0 + 2.0 * G2;
         // Work out the hashed gradient indices of the three simplex corners
-        var ii = i & 255;
-        var jj = j & 255;
+        ii = (i & 255)|0;
+        jj = (j & 255)|0;
         // Calculate the contribution from the three corners
-        var t0 = 0.5 - x0 * x0 - y0 * y0;
-        if (t0 < 0) n0 = 0.0;
-        else {
-            var gi0 = permMod12[ii + perm[jj]] * 3;
-            t0 *= t0;
-            n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0); // (x,y) of grad3 used for 2D gradient
+        t0 = 0.5 - x0 * x0 - y0 * y0;
+        if (t0 >= 0.0) {
+            gi0 = (bytes[(_permMod12 + ii + ((bytes[(_perm + jj)|0])|0)|0)|0]|0);
+            gi0 = (gi0 + gi0 + gi0) | 0;
+            t0 = t0 * t0;
+            n0 = t0 * t0 * (+floats[(_grad3 + gi0) << 2 >> 2] * x0 + +floats[(_grad3 + gi0 + 1) << 2 >> 2] * y0); // (x,y) of grad3 used for 2D gradient
         }
-        var t1 = 0.5 - x1 * x1 - y1 * y1;
-        if (t1 < 0) n1 = 0.0;
-        else {
-            var gi1 = permMod12[ii + i1 + perm[jj + j1]] * 3;
-            t1 *= t1;
-            n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1);
+        t1 = 0.5 - x1 * x1 - y1 * y1;
+        if (t1 >= 0.0) {
+            gi1 = (bytes[(_permMod12 + ii + i1 + ((bytes[(_perm + jj + j1)|0])|0)|0)|0]|0);
+            gi1 = (gi1 + gi1 + gi1) | 0;
+            t1 = t1 * t1;
+            n1 = t1 * t1 * (+floats[(_grad3 + gi1) << 2 >> 2] * x1 + +floats[(_grad3 + gi1 + 1) << 2 >> 2] * y1);
         }
-        var t2 = 0.5 - x2 * x2 - y2 * y2;
-        if (t2 < 0) n2 = 0.0;
-        else {
-            var gi2 = permMod12[ii + 1 + perm[jj + 1]] * 3;
-            t2 *= t2;
-            n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2);
+        t2 = 0.5 - x2 * x2 - y2 * y2;
+        if (t2 >= 0.0) {
+            gi2 = bytes[(_permMod12 + ii + 1 + ((bytes[(_perm + jj + 1)|0])|0)|0)|0]|0;
+            gi2 = (gi2 + gi2 + gi2) | 0;
+            t2 = t2 * t2;
+            n2 = t2 * t2 * (+floats[(_grad3 + gi2) << 2 >> 2] * x2 + +floats[(_grad3 + gi2 + 1) << 2 >> 2] * y2);
         }
         // Add contributions from each corner to get the final noise value.
         // The result is scaled to return values in the interval [-1,1].
-        return 70.0 * (n0 + n1 + n2);
-    },
+        return +(70.0 * (n0 + n1 + n2));
+    };
+
+    return {
+        noise2D: noise2D
+    };
+}
+
+
+function SimplexNoise(random) {
+    if (!random) random = Math.random;
+    this.heap = new ArrayBuffer(0x1000); //> 256 + 512 + 512 + (36 * 4) + (128 * 4));
+    this.p = new Uint8Array(this.heap, 0, 256);
+    this.perm = new Uint8Array(this.heap, 256, 512);
+    this.permMod12 = new Uint8Array(this.heap, 256 + 512, 512);
+    for (var i = 0; i < 256; i++) {
+        this.p[i] = random() * 256;
+    }
+    for (i = 0; i < 512; i++) {
+        this.perm[i] = this.p[i & 255];
+        this.permMod12[i] = this.perm[i] % 12;
+    }
+    this.grad3 = new Float32Array(this.heap, 256 + 512 + 512, 36);
+    this.grad3.set([1, 1, 0,
+                    - 1, 1, 0,
+                    1, - 1, 0,
+
+                    - 1, - 1, 0,
+                    1, 0, 1,
+                    - 1, 0, 1,
+
+                    1, 0, - 1,
+                    - 1, 0, - 1,
+                    0, 1, 1,
+
+                    0, - 1, 1,
+                    0, 1, - 1,
+                    0, - 1, - 1]);
+    this.grad4 = new Float32Array(this.heap, 256 + 512 + 512 + (36 * 4), 128);
+    this.grad4.set([0, 1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1,
+                    0, - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1,
+                    1, 0, 1, 1, 1, 0, 1, - 1, 1, 0, - 1, 1, 1, 0, - 1, - 1,
+                    - 1, 0, 1, 1, - 1, 0, 1, - 1, - 1, 0, - 1, 1, - 1, 0, - 1, - 1,
+                    1, 1, 0, 1, 1, 1, 0, - 1, 1, - 1, 0, 1, 1, - 1, 0, - 1,
+                    - 1, 1, 0, 1, - 1, 1, 0, - 1, - 1, - 1, 0, 1, - 1, - 1, 0, - 1,
+                    1, 1, 1, 0, 1, 1, - 1, 0, 1, - 1, 1, 0, 1, - 1, - 1, 0,
+                    - 1, 1, 1, 0, - 1, 1, - 1, 0, - 1, - 1, 1, 0, - 1, - 1, - 1, 0]);
+
+    var stdlib = (typeof window !== 'undefined') ? window : global;
+    this._asmLinked = SimplexAsm(stdlib, stdlib, this.heap);
+
+    this.noise2D = this._asmLinked.noise2D;
+}
+
+SimplexNoise.prototype = {
     // 3D simplex noise
     noise3D: function (xin, yin, zin) {
         var permMod12 = this.permMod12,
             perm = this.perm,
             grad3 = this.grad3;
-        var n0, n1, n2, n3; // Noise contributions from the four corners
+        var n0 = 0.0, n1 = 0.0, n2 = 0.0, n3 = 0.0; // Noise contributions from the four corners
         // Skew the input space to determine which simplex cell we're in
+        var F3 = 0.0; F3 = 1.0 / 3.0;
         var s = (xin + yin + zin) * F3; // Very nice and simple skew factor for 3D
         var i = Math.floor(xin + s);
         var j = Math.floor(yin + s);
         var k = Math.floor(zin + s);
+        var G3 = 0.0; G3 = 1.0 / 6.0;
         var t = (i + j + k) * G3;
         var X0 = i - t; // Unskew the cell origin back to (x,y,z) space
         var Y0 = j - t;
@@ -54286,28 +54337,28 @@ SimplexNoise.prototype = {
         if (t0 < 0) n0 = 0.0;
         else {
             var gi0 = permMod12[ii + perm[jj + perm[kk]]] * 3;
-            t0 *= t0;
+            t0 = t0 * t0;
             n0 = t0 * t0 * (grad3[gi0] * x0 + grad3[gi0 + 1] * y0 + grad3[gi0 + 2] * z0);
         }
         var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1;
         if (t1 < 0) n1 = 0.0;
         else {
             var gi1 = permMod12[ii + i1 + perm[jj + j1 + perm[kk + k1]]] * 3;
-            t1 *= t1;
+            t1 = t1 * t1;
             n1 = t1 * t1 * (grad3[gi1] * x1 + grad3[gi1 + 1] * y1 + grad3[gi1 + 2] * z1);
         }
         var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2;
         if (t2 < 0) n2 = 0.0;
         else {
             var gi2 = permMod12[ii + i2 + perm[jj + j2 + perm[kk + k2]]] * 3;
-            t2 *= t2;
+            t2 = t2 * t2;
             n2 = t2 * t2 * (grad3[gi2] * x2 + grad3[gi2 + 1] * y2 + grad3[gi2 + 2] * z2);
         }
         var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3;
         if (t3 < 0) n3 = 0.0;
         else {
             var gi3 = permMod12[ii + 1 + perm[jj + 1 + perm[kk + 1]]] * 3;
-            t3 *= t3;
+            t3 = t3 * t3;
             n3 = t3 * t3 * (grad3[gi3] * x3 + grad3[gi3 + 1] * y3 + grad3[gi3 + 2] * z3);
         }
         // Add contributions from each corner to get the final noise value.
@@ -54320,13 +54371,15 @@ SimplexNoise.prototype = {
             perm = this.perm,
             grad4 = this.grad4;
 
-        var n0, n1, n2, n3, n4; // Noise contributions from the five corners
+        var n0 = 0.0, n1 = 0.0, n2 = 0.0, n3 = 0.0, n4 = 0.0; // Noise contributions from the five corners
         // Skew the (x,y,z,w) space to determine which cell of 24 simplices we're in
+        var F4 = 0.0; F4 = (Math.sqrt(5.0) - 1.0) / 4.0;
         var s = (x + y + z + w) * F4; // Factor for 4D skewing
         var i = Math.floor(x + s);
         var j = Math.floor(y + s);
         var k = Math.floor(z + s);
         var l = Math.floor(w + s);
+        var G4 = 0.0; G4 = (5.0 - Math.sqrt(5.0)) / 20.0;
         var t = (i + j + k + l) * G4; // Factor for 4D unskewing
         var X0 = i - t; // Unskew the cell origin back to (x,y,z,w) space
         var Y0 = j - t;
@@ -54406,35 +54459,35 @@ SimplexNoise.prototype = {
         if (t0 < 0) n0 = 0.0;
         else {
             var gi0 = (perm[ii + perm[jj + perm[kk + perm[ll]]]] % 32) * 4;
-            t0 *= t0;
+            t0 = t0 * t0;
             n0 = t0 * t0 * (grad4[gi0] * x0 + grad4[gi0 + 1] * y0 + grad4[gi0 + 2] * z0 + grad4[gi0 + 3] * w0);
         }
         var t1 = 0.6 - x1 * x1 - y1 * y1 - z1 * z1 - w1 * w1;
         if (t1 < 0) n1 = 0.0;
         else {
             var gi1 = (perm[ii + i1 + perm[jj + j1 + perm[kk + k1 + perm[ll + l1]]]] % 32) * 4;
-            t1 *= t1;
+            t1 = t1 * t1;
             n1 = t1 * t1 * (grad4[gi1] * x1 + grad4[gi1 + 1] * y1 + grad4[gi1 + 2] * z1 + grad4[gi1 + 3] * w1);
         }
         var t2 = 0.6 - x2 * x2 - y2 * y2 - z2 * z2 - w2 * w2;
         if (t2 < 0) n2 = 0.0;
         else {
             var gi2 = (perm[ii + i2 + perm[jj + j2 + perm[kk + k2 + perm[ll + l2]]]] % 32) * 4;
-            t2 *= t2;
+            t2 = t2 * t2;
             n2 = t2 * t2 * (grad4[gi2] * x2 + grad4[gi2 + 1] * y2 + grad4[gi2 + 2] * z2 + grad4[gi2 + 3] * w2);
         }
         var t3 = 0.6 - x3 * x3 - y3 * y3 - z3 * z3 - w3 * w3;
         if (t3 < 0) n3 = 0.0;
         else {
             var gi3 = (perm[ii + i3 + perm[jj + j3 + perm[kk + k3 + perm[ll + l3]]]] % 32) * 4;
-            t3 *= t3;
+            t3 = t3 * t3;
             n3 = t3 * t3 * (grad4[gi3] * x3 + grad4[gi3 + 1] * y3 + grad4[gi3 + 2] * z3 + grad4[gi3 + 3] * w3);
         }
         var t4 = 0.6 - x4 * x4 - y4 * y4 - z4 * z4 - w4 * w4;
         if (t4 < 0) n4 = 0.0;
         else {
             var gi4 = (perm[ii + 1 + perm[jj + 1 + perm[kk + 1 + perm[ll + 1]]]] % 32) * 4;
-            t4 *= t4;
+            t4 = t4 * t4;
             n4 = t4 * t4 * (grad4[gi4] * x4 + grad4[gi4 + 1] * y4 + grad4[gi4 + 2] * z4 + grad4[gi4 + 3] * w4);
         }
         // Sum up and scale the result to cover the range [-1,1]
@@ -54446,10 +54499,10 @@ SimplexNoise.prototype = {
 
 // amd
 if (typeof define !== 'undefined' && define.amd) define(function(){return SimplexNoise;});
-// browser
-else if (typeof window !== 'undefined') window.SimplexNoise = SimplexNoise;
 //common js
 if (typeof exports !== 'undefined') exports.SimplexNoise = SimplexNoise;
+// browser
+else if (typeof navigator !== 'undefined') this.SimplexNoise = SimplexNoise;
 // nodejs
 if (typeof module !== 'undefined') {
     module.exports = SimplexNoise;
