@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#19d99da776d853bcdc8f4f7aff576dee7d6afa73",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#80e625fedc75191b2ed42a85f20e429ffde2b883",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#b978aad4ceace902e6640f24ccf8dcc9b8b7b62f",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
@@ -20,7 +20,7 @@
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git#a064fb77f548e8335657b051c2c8b9ea3a636ab6",
     "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git#e5276d33ebb327ceb3d47f20a5d6da51e1413181",
     "voxel-use": "git://github.com/deathcap/voxel-use.git#a41a499ea1a95e7cb1c5e90eb479289da221df28",
-    "voxel-debug": "git://github.com/deathcap/voxel-debug.git#fed3959ddc7a65624a701ffcad1d88102bcd2a49",
+    "voxel-debug": "git://github.com/deathcap/voxel-debug.git#b2d50eb5ef82862c2de8dea58aa239452c86139a",
     "voxel-carry": "git://github.com/deathcap/voxel-carry.git#eccb1edefba80d403bf2e86d833c636898d6ca8b",
     "voxel-inventory-hotbar": "git://github.com/deathcap/voxel-inventory-hotbar.git#7108712b622f43a14b796a572beb5e0c5dbb6d7e",
     "voxel-inventory-dialog": "git://github.com/deathcap/voxel-inventory-dialog.git#a41e0981e067f6e9ecb5889f32b9d9cfee6f61ed",
