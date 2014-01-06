@@ -25,6 +25,7 @@ require 'voxel-pickaxe'
 require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
+require 'voxel-clientmc'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -87,7 +88,11 @@ module.exports = () ->
     'voxel-workbench': {}
     'voxel-pickaxe': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
+
     'voxel-land': {populateTrees: true}
+    'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
+
+
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
