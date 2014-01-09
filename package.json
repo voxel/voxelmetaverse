@@ -9,7 +9,7 @@
   "dependencies": {
     "ever": "0.0.3",
     "voxel-engine": "git://github.com/deathcap/voxel-engine.git#80e625fedc75191b2ed42a85f20e429ffde2b883",
-    "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#b978aad4ceace902e6640f24ccf8dcc9b8b7b62f",
+    "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#5aa955b5476d7e2a8901f5fbe40c4c3b38920f88",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
     "voxel-highlight": "0.0.9",
@@ -38,7 +38,7 @@
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#90a76963a6d35e32fbc2b99d393b82e6030d374c",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#f238a8b0dc1fb3be4519831eb0c3736e39ff0816",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#007104e2135e5602134a9401f624c1b9f92bdc39",
-    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#e0102e9069e3f66a2bccca850696a2f1f9916942"
+    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#246d8d9d83beb281931803ff1b34db403eb5b2e9"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
