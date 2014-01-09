@@ -43,8 +43,8 @@
   "devDependencies": {
     "coffee-script": "1.6.3",
     "coffeeify": "0.5.2",
-    "browserify": "2.35.1",
-    "beefy": "0.4.5"
+    "browserify": "3.19.0",
+    "beefy": "0.7.1"
   },
   "scripts": {
     "start": "beefy test.coffee:bundle.js 8080 -- -t coffeeify"
