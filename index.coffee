@@ -26,6 +26,7 @@ require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-clientmc'
+require 'voxel-console'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -76,10 +77,16 @@ module.exports = () ->
 
         # our extras
         'R': 'pov'
-        'T': 'vr'
+        'Y': 'vr'
         'O': 'home'
         'E': 'inventory'
         'C': 'gamemode'
+
+        'T': 'console'
+        '/': 'console2'
+        '.': 'console3'
+
+
     'voxel-registry': {}
     'craftingrecipes': {}
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
@@ -91,6 +98,8 @@ module.exports = () ->
 
     'voxel-land': {populateTrees: true}
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
+
+    'voxel-console': {}
 
 
     # note: onDemand so doesn't automatically enable
