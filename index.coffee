@@ -13,6 +13,7 @@ require 'voxel-inventory-hotbar'
 require 'voxel-inventory-dialog'
 require 'voxel-oculus'
 require 'voxel-highlight'
+require 'voxel-voila'
 require 'voxel-player'
 require 'voxel-fly'
 require 'voxel-gamemode'
@@ -125,6 +126,7 @@ module.exports = () ->
       color:  0xff0000
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
+    'voxel-voila': {}
 
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
