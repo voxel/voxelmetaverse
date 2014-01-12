@@ -76,7 +76,7 @@ module.exports = function() {
       exposeGlobal: true,
       lightsDisabled: true,
       arrayType: Uint16Array,
-      useAtlas: true,
+      useAtlas: false,
       generateChunks: false,
       chunkDistance: 2,
       materials: [],
