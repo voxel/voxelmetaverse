@@ -76,7 +76,7 @@ module.exports = function() {
       exposeGlobal: true,
       lightsDisabled: true,
       arrayType: Uint16Array,
-      useAtlas: false,
+      useAtlas: true,
       generateChunks: false,
       chunkDistance: 2,
       materials: [],
@@ -9919,7 +9919,7 @@ Debug.prototype._render = function() {
     self.game.showAllChunks() 
   })
 
-  this.useAtlas = false;
+  this.useAtlas = true;
   folder.add(this, 'useAtlas').onChange(function(value) {
     self.game.materials.opts.useAtlas = value;
     self.game.materials = self.game.materials.reconfigure();
@@ -54085,30 +54085,10 @@ function Texture(game, opts) {
 
   // create core atlas and texture
   this.atlas = createAtlas(this.canvas);
-  this.atlas.tilepad = false; //true; // TODO: re-enable
+  this.atlas.tilepad = true;
   this._atlasuv = false;
   this._atlaskey = false;
   this.texture = new this.THREE.Texture(this.canvas);
-
-  this.uniforms = {
-    tileMap: {type: 't', value: this.texture},
-    tileSize: {type: 'f', value: 16.0},  // size of one individual texture tile
-    tileSizeUV: {type: 'f', value: 16.0 / this.canvas.width}, // size of tile in UV units (0.0-1.0)
-    tileOffsets: {type: 'v2v', value: 
-      // test stone/wood TODO: get from material
-      [
-      new this.game.THREE.Vector2(0.28125*2, 0.96875),  // top
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // front
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // left
-
-      new this.game.THREE.Vector2(0, 0),              // unused (center)
-
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // right
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // back
-      new this.game.THREE.Vector2(0.28125, 0.96875)   // bottom
-      ],
-    }, 
-  };
 
   this.options = {
     crossOrigin: 'Anonymous',
@@ -54117,21 +54097,24 @@ function Texture(game, opts) {
       transparent: false,
       side: this.THREE.DoubleSide,
 
-      uniforms: this.uniforms,
-// based on https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.vsh
-// and http://0fps.wordpress.com/2013/07/09/texture-atlases-wrapping-and-mip-mapping/
+      uniforms: {
+        tileMap: {type: 't', value: this.texture},
+        tileSize: {type: 'f', value: 16.0},  // size of one individual texture tile
+        tileSizeUV: {type: 'f', value: 16.0 / this.canvas.width} // size of tile in UV units (0.0-1.0)
+      },
       vertexShader: [
 'varying vec3 vNormal;',
 'varying vec3 vPosition;',
+'varying vec2 vUv;', // to set from three.js's "uv" attribute passed in
 '',
 'void main() {',
 '   vNormal = normal;',
 '   vPosition = position;',
+'   vUv = uv;',
 '',
 '   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
 '}'
         ].join('\n'),
-// and https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.fsh
       fragmentShader: [
 'uniform float tileSize;',
 'uniform sampler2D tileMap;',
@@ -54140,28 +54123,42 @@ function Texture(game, opts) {
 '',
 'varying vec3 vNormal;',
 'varying vec3 vPosition;',
+'varying vec2 vUv;',
 '',
 'void main() {',
-'   vec2 tileUV = vec2(dot(vNormal.zxy, vPosition),', // [0..1] offset within tile face
+// use world coordinates to repeat [0..1] offsets, within _each_ tile face
+'   vec2 tileUV = vec2(dot(vNormal.zxy, vPosition),',
 '                      dot(vNormal.yzx, vPosition));',
-//    0     1     2     3     4     5     6       faceIndex
-//  top   front  left   -   right  back  bottom   side name
-//  0+0   +00    00+   000   00-   -00   0-0      normal vector
-'   int faceIndex = 3 - int(sign(vNormal.z)) - int(sign(vNormal.x)) * 2 - int(sign(vNormal.y)) * 3;',
 
-'   vec2 tileOffset;',
+'   tileUV = fract(tileUV);',
+'',
+'    // back: flip 180',
+'    if (vNormal.z < 0.0) tileUV.t = 1.0 - tileUV.t;',
+'',
+'    // left: rotate 90 ccw',
+'    if (vNormal.x < 0.0) {',
+'        float r = tileUV.s;',
+'        tileUV.s = tileUV.t;',
+'        tileUV.t = 1.0 - r;',
+'    }',
+'',
+'    // right: rotate 90 cw',
+'    if (vNormal.x > 0.0) {',
+'        float r = tileUV.s;',
+'        tileUV.s = tileUV.t;',
+'        tileUV.t = r;',
+'    }', // TODO: might technically need to mirror-image other sides? (can't really tell)
+'',
 
-// because ERROR: 0:45: '[]' : Index expression must be constant (and also, WebGL OpenGL ES 2.0 doesn't support switch/case)
-'   if (faceIndex == 0) tileOffset = tileOffsets[0];',
-'   else if (faceIndex == 1) tileOffset = tileOffsets[1];',
-'   else if (faceIndex == 2) tileOffset = tileOffsets[2];',
-'   else if (faceIndex == 3) tileOffset = tileOffsets[3];',
-'   else if (faceIndex == 4) tileOffset = tileOffsets[4];',
-'   else if (faceIndex == 5) tileOffset = tileOffsets[5];',
-'   else if (faceIndex == 6) tileOffset = tileOffsets[6];',
-'   else tileOffset = tileOffsets[3];',
+// three.js' UV coordinate is passed as tileOffset, starting point determining the texture
+// material type (_not_ interpolated; same for all vertices).
+'   vec2 tileOffset = vUv;',
 
-'   vec2 texCoord = tileOffset + tileSizeUV * fract(tileUV);',
+// index tile at offset into texture atlas, see references:
+// http://0fps.wordpress.com/2013/07/09/texture-atlases-wrapping-and-mip-mapping/
+// https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.fsh
+// https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.vsh
+'   vec2 texCoord = tileOffset + tileSizeUV * tileUV;',
 '',
 '   gl_FragColor = texture2D(tileMap, texCoord);',
 '}'
@@ -54366,31 +54363,8 @@ Texture.prototype.paint = function(mesh, materials) {
   var isVoxelMesh = (materials) ? false : true;
   if (!isVoxelMesh) materials = self._expandName(materials);
 
-  /* if create here, never seems to update?
-  mesh.surfaceMesh.material.materials[0].uniforms = 
-  {
-    tileMap: {type: 't', value: this.texture},
-    tileSize: {type: 'f', value: 16.0},  // size of one individual texture tile
-    tileSizeUV: {type: 'f', value: 16.0 / this.canvas.width}, // size of tile in UV units (0.0-1.0)
-    tileOffsets: {type: 'v2v', value: 
-      // test stone/wood TODO: get from material
-      [
-      new this.game.THREE.Vector2(0.28125*2, 0.96875),  // top
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // front
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // left
-
-      new this.game.THREE.Vector2(0, 0),              // unused (center)
-
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // right
-      new this.game.THREE.Vector2(0.28125, 0.96875),  // back
-      new this.game.THREE.Vector2(0.28125, 0.96875)   // bottom
-      ],
-    }, 
-  };
-  */
-
   mesh.geometry.faces.forEach(function(face, i) {
-    //if (mesh.geometry.faceVertexUvs[0].length < 1) return; 
+    if (mesh.geometry.faceVertexUvs[0].length < 1) return;
 
     if (isVoxelMesh) {
       var index = Math.floor(face.color.b*255 + face.color.g*255*255 + face.color.r*255*255*255);
@@ -54422,31 +54396,23 @@ Texture.prototype.paint = function(mesh, materials) {
     // |    |
     // 3 -- 2
     // faces on these meshes are flipped vertically, so we map in reverse
-    // TODO: tops need rotate
     if (isVoxelMesh) {
-      if (face.normal.z === -1 || face.normal.x === 1) {
-        atlasuv = uvrot(atlasuv, 90);
-      }
       atlasuv = uvinvert(atlasuv);
     } else {
       atlasuv = uvrot(atlasuv, -90);
     }
-    /*
-    for (var j = 0; j < mesh.geometry.faceVertexUvs[0][i].length; j++) {
-      mesh.geometry.faceVertexUvs[0][i][j].set(atlasuv[j][0], 1 - atlasuv[j][1]);
-    }
-    */
 
+    // range of UV coordinates for this texture (see above diagram)
     var topUV = atlasuv[0], rightUV = atlasuv[1], bottomUV = atlasuv[2], leftUV = atlasuv[3];
 
-    var faceIndex = 3 - face.normal.z - 2*face.normal.x - 3*face.normal.y;
-    // TODO: fix this uniform update affecting ALL meshes! need to clone?
-    mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.value[faceIndex] = new self.game.THREE.Vector2(topUV[0], 1.0 - topUV[1]); // TODO: set dimensions from other UV coords (vs tileSize)
-    //mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.value[faceIndex] = new self.game.THREE.Vector2(atlasuv[0][0], atlasuv[0][1]);
-
-    face.color = new self.game.THREE.Vector3(1.0, 0.5, 0.3);
+    // pass texture start in UV coordinates
+    for (var j = 0; j < mesh.geometry.faceVertexUvs[0][i].length; j++) {
+      //mesh.geometry.faceVertexUvs[0][i][j].set(atlasuv[j][0], 1 - atlasuv[j][1]);
+      mesh.geometry.faceVertexUvs[0][i][j].set(topUV[0], 1.0 - topUV[1]); // set all to top (fixed tileSizeUV)
+    }
   });
-  //mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.needsUpdate = true; // no apparent effect
+
+  mesh.geometry.uvsNeedUpdate = true;
 };
 
 Texture.prototype.sprite = function(name, w, h, cb) {
