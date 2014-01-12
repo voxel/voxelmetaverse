@@ -49,7 +49,7 @@ module.exports = () ->
       exposeGlobal: true  # for debugging
       lightsDisabled: true
       arrayType: Uint16Array
-      useAtlas: false
+      useAtlas: true
       generateChunks: false
       chunkDistance: 2
       materials: []  # added dynamically later
