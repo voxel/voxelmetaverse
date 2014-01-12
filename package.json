@@ -13,7 +13,7 @@
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
     "voxel-highlight": "0.0.9",
-    "voxel-voila": "git://github.com/deathcap/voxel-highlight.git#2c694772096ce749927ccc32dba0b5372d7efa40",
+    "voxel-voila": "git://github.com/deathcap/voxel-highlight.git#2590efc2c197c5985ec004d866035fc0bee89c24",
     "voxel-player": "git://github.com/deathcap/voxel-player.git#95ed1faed3ba3c44b7e8d4b49dbceb1248a343b1",
     "voxel-fly": "git://github.com/deathcap/voxel-fly.git#955bb70c4606249fed2510e400a4c61c9453a293",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#8ea7107226f2171703f565ae52bd94bf32c033a2",
@@ -32,15 +32,15 @@
     "kb-bindings-ui": "git://github.com/deathcap/kb-bindings-ui.git#ed2d1ebd504e21d3f4ff5be537551de9f124ea7c",
     "itempile": "git://github.com/deathcap/itempile.git#e802fc57bbcb8901c61a5505dcb4ec560041ffe6",
     "inventory": "git://github.com/deathcap/inventory.git#be4cb41082f48cf3cdcc6665bac4757d7909397a",
-    "inventory-window": "git://github.com/deathcap/inventory-window.git#a3b93d127840b36a326fdd00eb11b02b3ce0e1e6",
+    "inventory-window": "git://github.com/deathcap/inventory-window.git#2e2942ebb963477aa48dc7fd50abfa503fa2652b",
     "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git#6d53f6fc335750429cfbb59a02cf7ebd16045887",
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git#f4bacf0b96f05c2b5f935da0db52f5e506c163e5",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#0c78090616da572292e9b88bf4ff23ae9b1d0e6b",
-    "voxel-registry": "git://github.com/deathcap/voxel-registry.git#90a76963a6d35e32fbc2b99d393b82e6030d374c",
+    "voxel-registry": "git://github.com/deathcap/voxel-registry.git#3414ef511959b23ca93cd0a4f242e02afc2cf563",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#f238a8b0dc1fb3be4519831eb0c3736e39ff0816",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git#007104e2135e5602134a9401f624c1b9f92bdc39",
+    "voxel-land": "git://github.com/deathcap/voxel-land.git#54ab50f6863428ae4d1cd96bcb995466556f3dd6",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#32b4a1e876cecc48dcbb00f86c7977f9f616cb2b",
-    "voxel-console": "git://github.com/deathcap/voxel-console.git#43474f245da4a6706093c2e6c3b57d955d7eb680"
+    "voxel-console": "git://github.com/deathcap/voxel-console.git#3268e5d4da578dc3fd711b286ed695c4e52fc114"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
