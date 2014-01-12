@@ -76,7 +76,7 @@ module.exports = function() {
       exposeGlobal: true,
       lightsDisabled: true,
       arrayType: Uint16Array,
-      useAtlas: false,
+      useAtlas: true,
       generateChunks: false,
       chunkDistance: 2,
       materials: [],
@@ -662,7 +662,7 @@ module.exports={
     InventoryWindow.resolvedImageURLs = {};
 
     function InventoryWindow(opts) {
-      var _ref, _ref1, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+      var _ref, _ref1, _ref10, _ref11, _ref12, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
       if (opts == null) {
         opts = {};
       }
@@ -682,13 +682,14 @@ module.exports={
       this.getMaxDamage = (_ref2 = opts.getMaxDamage) != null ? _ref2 : InventoryWindow.defaultGetMaxDamage;
       this.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
       this.width = (_ref4 = opts.width) != null ? _ref4 : this.inventory.width;
-      this.textureSize = (_ref5 = opts.textureSize) != null ? _ref5 : 16 * 5;
-      this.borderSize = (_ref6 = opts.borderSize) != null ? _ref6 : 4;
-      this.progressThickness = (_ref7 = opts.progressThickness) != null ? _ref7 : 10;
-      this.secondaryMouseButton = (_ref8 = opts.secondaryMouseButton) != null ? _ref8 : 2;
-      this.allowDrop = (_ref9 = opts.allowDrop) != null ? _ref9 : true;
-      this.allowPickup = (_ref10 = opts.allowPickup) != null ? _ref10 : true;
-      this.allowDragPaint = (_ref11 = opts.allowDragPaint) != null ? _ref11 : true;
+      this.height = (_ref5 = opts.height) != null ? _ref5 : this.inventory.height;
+      this.textureSize = (_ref6 = opts.textureSize) != null ? _ref6 : 16 * 5;
+      this.borderSize = (_ref7 = opts.borderSize) != null ? _ref7 : 4;
+      this.progressThickness = (_ref8 = opts.progressThickness) != null ? _ref8 : 10;
+      this.secondaryMouseButton = (_ref9 = opts.secondaryMouseButton) != null ? _ref9 : 2;
+      this.allowDrop = (_ref10 = opts.allowDrop) != null ? _ref10 : true;
+      this.allowPickup = (_ref11 = opts.allowPickup) != null ? _ref11 : true;
+      this.allowDragPaint = (_ref12 = opts.allowDragPaint) != null ? _ref12 : true;
       this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
       this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
       this.slotNodes = [];
@@ -714,7 +715,7 @@ module.exports={
     };
 
     InventoryWindow.prototype.createContainer = function() {
-      var container, i, node, slotItem, widthpx, _i, _ref;
+      var container, heightpx, i, node, slotItem, widthpx, _i, _ref;
       container = document.createElement('div');
       for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         slotItem = this.inventory.get(i);
@@ -725,7 +726,8 @@ module.exports={
         container.appendChild(node);
       }
       widthpx = this.width * (this.textureSize + this.borderSize * 2);
-      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
+      heightpx = this.height * (this.textureSize + this.borderSize);
+      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;height: " + heightpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
       return this.container = container;
     };
 
@@ -756,7 +758,7 @@ module.exports={
     InventoryWindow.prototype.createSlotNode = function(itemPile) {
       var div;
       div = document.createElement('div');
-      div.setAttribute('style', "display: block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
+      div.setAttribute('style', "display: inline-block;float: inherit;margin: 0;padding: 0;width: " + this.textureSize + "px;height: " + this.textureSize + "px;font-size: 20pt;background-size: 100% auto;image-rendering: -moz-crisp-edges;image-rendering: -o-crisp-edges;image-rendering: -webkit-optimize-contrast;image-rendering: crisp-edges;-ms-interpolation-mode: nearest-neighbor;");
       this.populateSlotNode(div, itemPile);
       return div;
     };
@@ -54075,27 +54077,6 @@ function Texture(game, opts) {
   var useFlatColors = opts.materialFlatColor === true;
   delete opts.materialFlatColor;
 
-  this.options = {
-    crossOrigin: 'Anonymous',
-    materialParams: {
-      ambient: 0xbbbbbb,
-      transparent: false,
-      side: this.THREE.DoubleSide
-    },
-    materialTransparentParams: {
-      ambient: 0xbbbbbb,
-      transparent: true,
-      side: this.THREE.DoubleSide,
-      //depthWrite: false,
-      //depthTest: false
-    },
-    materialType: this.THREE.MeshLambertMaterial,
-    applyTextureParams: function(map) {
-      map.magFilter = self.THREE.NearestFilter;
-      map.minFilter = self.THREE.LinearMipMapLinearFilter;
-    }
-  };
-
   // create a canvas for the texture atlas
   this.canvas = (typeof document !== 'undefined') ? document.createElement('canvas') : {};
   this.canvas.width = opts.atlasWidth || 512;
@@ -54106,10 +54087,103 @@ function Texture(game, opts) {
 
   // create core atlas and texture
   this.atlas = createAtlas(this.canvas);
-  this.atlas.tilepad = true;
+  this.atlas.tilepad = false; //true; // TODO: re-enable
   this._atlasuv = false;
   this._atlaskey = false;
   this.texture = new this.THREE.Texture(this.canvas);
+
+  this.uniforms = {
+    tileMap: {type: 't', value: this.texture},
+    tileSize: {type: 'f', value: 16.0},  // size of one individual texture tile
+    tileSizeUV: {type: 'f', value: 16.0 / this.canvas.width}, // size of tile in UV units (0.0-1.0)
+    tileOffsets: {type: 'v2v', value: 
+      // test stone/wood TODO: get from material
+      [
+      new this.game.THREE.Vector2(0.28125*2, 0.96875),  // top
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // front
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // left
+
+      new this.game.THREE.Vector2(0, 0),              // unused (center)
+
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // right
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // back
+      new this.game.THREE.Vector2(0.28125, 0.96875)   // bottom
+      ],
+    }, 
+  };
+
+  this.options = {
+    crossOrigin: 'Anonymous',
+    materialParams: {
+      ambient: 0xbbbbbb,
+      transparent: false,
+      side: this.THREE.DoubleSide,
+
+      uniforms: this.uniforms,
+// based on https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.vsh
+// and http://0fps.wordpress.com/2013/07/09/texture-atlases-wrapping-and-mip-mapping/
+      vertexShader: [
+'varying vec3 vNormal;',
+'varying vec3 vPosition;',
+'',
+'void main() {',
+'   vNormal = normal;',
+'   vPosition = position;',
+'',
+'   gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);',
+'}'
+        ].join('\n'),
+// and https://github.com/mikolalysenko/ao-shader/blob/master/lib/ao.fsh
+      fragmentShader: [
+'uniform float tileSize;',
+'uniform sampler2D tileMap;',
+'uniform float tileSizeUV;',
+'uniform vec2 tileOffsets[7];',
+'',
+'varying vec3 vNormal;',
+'varying vec3 vPosition;',
+'',
+'void main() {',
+'   vec2 tileUV = vec2(dot(vNormal.zxy, vPosition),', // [0..1] offset within tile face
+'                      dot(vNormal.yzx, vPosition));',
+//    0     1     2     3     4     5     6       faceIndex
+//  top   front  left   -   right  back  bottom   side name
+//  0+0   +00    00+   000   00-   -00   0-0      normal vector
+'   int faceIndex = 3 - int(sign(vNormal.z)) - int(sign(vNormal.x)) * 2 - int(sign(vNormal.y)) * 3;',
+
+'   vec2 tileOffset;',
+
+// because ERROR: 0:45: '[]' : Index expression must be constant (and also, WebGL OpenGL ES 2.0 doesn't support switch/case)
+'   if (faceIndex == 0) tileOffset = tileOffsets[0];',
+'   else if (faceIndex == 1) tileOffset = tileOffsets[1];',
+'   else if (faceIndex == 2) tileOffset = tileOffsets[2];',
+'   else if (faceIndex == 3) tileOffset = tileOffsets[3];',
+'   else if (faceIndex == 4) tileOffset = tileOffsets[4];',
+'   else if (faceIndex == 5) tileOffset = tileOffsets[5];',
+'   else if (faceIndex == 6) tileOffset = tileOffsets[6];',
+'   else tileOffset = tileOffsets[3];',
+
+'   vec2 texCoord = tileOffset + tileSizeUV * fract(tileUV);',
+'',
+'   gl_FragColor = texture2D(tileMap, texCoord);',
+'}'
+].join('\n')
+    },
+    materialTransparentParams: {
+      ambient: 0xbbbbbb,
+      transparent: true,
+      side: this.THREE.DoubleSide,
+      //depthWrite: false,
+      //depthTest: false
+      // TODO
+    },
+    materialType: this.THREE.ShaderMaterial,
+    applyTextureParams: function(map) {
+      map.magFilter = self.THREE.NearestFilter;
+      map.minFilter = self.THREE.LinearMipMapLinearFilter;
+    }
+  };
+
   this.options.applyTextureParams(this.texture);
 
   if (useFlatColors) {
@@ -54119,9 +54193,7 @@ function Texture(game, opts) {
     });
   } else {
     var opaque = new this.options.materialType(this.options.materialParams);
-    opaque.map = this.texture;
     var transparent = new this.options.materialType(this.options.materialTransparentParams);
-    transparent.map = this.texture;
     this.material = new this.THREE.MeshFaceMaterial([
       opaque,
       transparent
@@ -54296,8 +54368,31 @@ Texture.prototype.paint = function(mesh, materials) {
   var isVoxelMesh = (materials) ? false : true;
   if (!isVoxelMesh) materials = self._expandName(materials);
 
+  /* if create here, never seems to update?
+  mesh.surfaceMesh.material.materials[0].uniforms = 
+  {
+    tileMap: {type: 't', value: this.texture},
+    tileSize: {type: 'f', value: 16.0},  // size of one individual texture tile
+    tileSizeUV: {type: 'f', value: 16.0 / this.canvas.width}, // size of tile in UV units (0.0-1.0)
+    tileOffsets: {type: 'v2v', value: 
+      // test stone/wood TODO: get from material
+      [
+      new this.game.THREE.Vector2(0.28125*2, 0.96875),  // top
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // front
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // left
+
+      new this.game.THREE.Vector2(0, 0),              // unused (center)
+
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // right
+      new this.game.THREE.Vector2(0.28125, 0.96875),  // back
+      new this.game.THREE.Vector2(0.28125, 0.96875)   // bottom
+      ],
+    }, 
+  };
+  */
+
   mesh.geometry.faces.forEach(function(face, i) {
-    if (mesh.geometry.faceVertexUvs[0].length < 1) return;
+    //if (mesh.geometry.faceVertexUvs[0].length < 1) return; 
 
     if (isVoxelMesh) {
       var index = Math.floor(face.color.b*255 + face.color.g*255*255 + face.color.r*255*255*255);
@@ -54338,12 +54433,22 @@ Texture.prototype.paint = function(mesh, materials) {
     } else {
       atlasuv = uvrot(atlasuv, -90);
     }
+    /*
     for (var j = 0; j < mesh.geometry.faceVertexUvs[0][i].length; j++) {
       mesh.geometry.faceVertexUvs[0][i][j].set(atlasuv[j][0], 1 - atlasuv[j][1]);
     }
-  });
+    */
 
-  mesh.geometry.uvsNeedUpdate = true;
+    var topUV = atlasuv[0], rightUV = atlasuv[1], bottomUV = atlasuv[2], leftUV = atlasuv[3];
+
+    var faceIndex = 3 - face.normal.z - 2*face.normal.x - 3*face.normal.y;
+    // TODO: fix this uniform update affecting ALL meshes! need to clone?
+    mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.value[faceIndex] = new self.game.THREE.Vector2(topUV[0], 1.0 - topUV[1]); // TODO: set dimensions from other UV coords (vs tileSize)
+    //mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.value[faceIndex] = new self.game.THREE.Vector2(atlasuv[0][0], atlasuv[0][1]);
+
+    face.color = new self.game.THREE.Vector3(1.0, 0.5, 0.3);
+  });
+  //mesh.surfaceMesh.material.materials[0].uniforms.tileOffsets.needsUpdate = true; // no apparent effect
 };
 
 Texture.prototype.sprite = function(name, w, h, cb) {
@@ -57254,12 +57359,12 @@ Land.prototype.registerBlocks = function()  {
   this.registry.registerBlock('grass', {texture: ['grass_top', 'dirt', 'grass_side'], hardness:5, itemDrop: 'dirt'});
   this.registry.registerBlock('dirt', {texture: 'dirt', hardness:4});
   this.registry.registerBlock('stone', {texture: 'stone', hardness:90, itemDrop: 'cobblestone'});
-  this.registry.registerBlock('logOak', {texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8});
+  this.registry.registerBlock('logOak', {displayName: 'Oak Wood', texture: ['log_oak_top', 'log_oak_top', 'log_oak'], hardness:8});
   this.registry.registerBlock('cobblestone', {texture: 'cobblestone', hardness:80});
-  this.registry.registerBlock('oreCoal', {texture: 'coal_ore'});
+  this.registry.registerBlock('oreCoal', {displayName: 'Coal Ore', texture: 'coal_ore'});
   this.registry.registerBlock('brick', {texture: 'brick'}); // some of the these blocks don't really belong here..do they?
   this.registry.registerBlock('obsidian', {texture: 'obsidian', hardness: 900});
-  this.registry.registerBlock('leavesOak', {texture: 'leaves_oak_opaque', hardness: 2, itemDrop: null});
+  this.registry.registerBlock('leavesOak', {displayName: 'Oak Leaves', texture: 'leaves_oak_opaque', hardness: 2, itemDrop: null});
   this.registry.registerBlock('glass', {texture: 'glass'});
 
   this.registry.registerBlock('logBirch', {texture: ['log_birch_top', 'log_birch_top', 'log_birch'], hardness:8}); // TODO: generate
@@ -59963,35 +60068,40 @@ function Registry(game, opts) {
   this.game = game;
 
   this.blockProps = [ {} ];
-  this.blockName2ID = { air:0 };
+  this.blockName2Index= { air:0 };
 
   this.itemProps = {};
 }
 
 Registry.prototype.registerBlock = function(name, props) {
-  var nextID = this.blockProps.length;
-  if (this.blockName2ID[name])
-    throw "registerBlock: duplicate block name "+name+", existing ID "+this.blockName2ID[name]+" attempted overwrite by "+nextID;
+  var nextIndex = this.blockProps.length;
+  if (this.blockName2Index[name])
+    throw "registerBlock: duplicate block name "+name+", existing index "+this.blockName2Index[name]+" attempted overwrite by "+nextIndex;
 
   // default properties
   props.name = props.name || name;
   this.blockProps.push(props);
-  this.blockName2ID[name] = nextID;
+  this.blockName2Index[name] = nextIndex;
 
-  return nextID;
+  return nextIndex;
 };
 
+// @deprecated in favor of getBlockIndex
 Registry.prototype.getBlockID = function(name) {
-  return this.blockName2ID[name];
+  return this.getBlockIndex(name);
 };
 
-Registry.prototype.getBlockName = function(blockID) {
-  return this.blockProps[blockID].name;
+Registry.prototype.getBlockIndex = function(name) {
+  return this.blockName2Index[name];
+};
+
+Registry.prototype.getBlockName = function(blockIndex) {
+  return this.blockProps[blockIndex].name;
 };
 
 Registry.prototype.getBlockProps = function(name) {
-  var blockID = this.getBlockID(name);
-  return this.blockProps[blockID];
+  var blockIndex = this.getBlockIndex(name);
+  return this.blockProps[blockIndex];
 };
 
 Registry.prototype.getBlockPropsAll = function(prop) {
@@ -60006,8 +60116,8 @@ Registry.prototype.getBlockPropsAll = function(prop) {
 Registry.prototype.registerItem = function(name, props) {
   if (this.itemProps[name])
     throw "registerItem: duplicate item name "+name+", existing properties: "+this.itemProps[name];
-  if (this.blockName2ID[name])
-    throw "registerItem: item name "+name+" conflicts with existing block name of ID "+this.blockName2ID[name];
+  if (this.blockName2Index[name])
+    throw "registerItem: item name "+name+" conflicts with existing block name of index"+this.blockName2Index[name];
 
   this.itemProps[name] = props;
 };
@@ -60036,13 +60146,26 @@ Registry.prototype.getItemTexture = function(name) {
   return (this.game ? this.game.materials.texturePath : '') + textureName + '.png';
 };
 
+Registry.prototype.getItemDisplayName = function(name) {
+  var props = this.getItemProps(name);
+  
+  if (!props) return '<unknown>';
+
+  if (props.displayName) return props.displayName;
+
+  // default is initial-uppercased internal name
+  var initialCap = name.substr(0, 1).toUpperCase();
+  var rest = name.substr(1);
+  return initialCap + rest;
+};
+
 Registry.prototype.getItemPileTexture = function(itemPile) {
   return this.getItemTexture(itemPile.item);
 };
 
 // return true if this name is a block, false otherwise (may be an item)
 Registry.prototype.isBlock = function(name) {
-  return this.blockName2ID[name] !== undefined;
+  return this.blockName2Index[name] !== undefined;
 };
 
 },{}],192:[function(require,module,exports){
@@ -60152,7 +60275,7 @@ Registry.prototype.isBlock = function(name) {
   };
 
   module.exports.pluginInfo = {
-    loadAfter: ['voxel-highlight', 'voxel-registry']
+    loadAfter: ['voxel-highlight', 'voxel-registry', 'voxel-registry']
   };
 
   VoilaPlugin = (function() {
@@ -60175,6 +60298,9 @@ Registry.prototype.isBlock = function(name) {
           throw 'voxel-voila requires voxel-registry plugin';
         }
       }).call(this);
+      if (this.registry.getItemDisplayName == null) {
+        throw 'voxel-voila requires voxel-registry >=0.2.0 with getItemDisplayName';
+      }
       this.createNode();
       this.enable();
     }
@@ -60200,10 +60326,11 @@ font-size: 18pt;\
       var _this = this;
       this.node.style.visibility = '';
       this.hl.on('highlight', this.onHighlight = function(pos) {
-        var blockID, blockName;
-        blockID = _this.game.getBlock(pos);
-        blockName = _this.registry.getBlockName(blockID);
-        return _this.node.textContent = "" + blockName + " (" + blockID + ")";
+        var displayName, id, name;
+        id = _this.game.getBlock(pos);
+        name = _this.registry.getBlockName(id);
+        displayName = _this.registry.getItemDisplayName(name);
+        return _this.node.textContent = "" + displayName + " (" + name + "/" + id + ")";
       });
       return this.hl.on('remove', this.onRemove = function() {
         return _this.node.textContent = '';
