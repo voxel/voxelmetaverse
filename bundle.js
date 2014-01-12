@@ -662,7 +662,7 @@ module.exports={
     InventoryWindow.resolvedImageURLs = {};
 
     function InventoryWindow(opts) {
-      var _ref, _ref1, _ref10, _ref11, _ref12, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+      var _ref, _ref1, _ref10, _ref11, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
       if (opts == null) {
         opts = {};
       }
@@ -682,14 +682,13 @@ module.exports={
       this.getMaxDamage = (_ref2 = opts.getMaxDamage) != null ? _ref2 : InventoryWindow.defaultGetMaxDamage;
       this.inventorySize = (_ref3 = opts.inventorySize) != null ? _ref3 : this.inventory.size();
       this.width = (_ref4 = opts.width) != null ? _ref4 : this.inventory.width;
-      this.height = (_ref5 = opts.height) != null ? _ref5 : this.inventory.height;
-      this.textureSize = (_ref6 = opts.textureSize) != null ? _ref6 : 16 * 5;
-      this.borderSize = (_ref7 = opts.borderSize) != null ? _ref7 : 4;
-      this.progressThickness = (_ref8 = opts.progressThickness) != null ? _ref8 : 10;
-      this.secondaryMouseButton = (_ref9 = opts.secondaryMouseButton) != null ? _ref9 : 2;
-      this.allowDrop = (_ref10 = opts.allowDrop) != null ? _ref10 : true;
-      this.allowPickup = (_ref11 = opts.allowPickup) != null ? _ref11 : true;
-      this.allowDragPaint = (_ref12 = opts.allowDragPaint) != null ? _ref12 : true;
+      this.textureSize = (_ref5 = opts.textureSize) != null ? _ref5 : 16 * 5;
+      this.borderSize = (_ref6 = opts.borderSize) != null ? _ref6 : 4;
+      this.progressThickness = (_ref7 = opts.progressThickness) != null ? _ref7 : 10;
+      this.secondaryMouseButton = (_ref8 = opts.secondaryMouseButton) != null ? _ref8 : 2;
+      this.allowDrop = (_ref9 = opts.allowDrop) != null ? _ref9 : true;
+      this.allowPickup = (_ref10 = opts.allowPickup) != null ? _ref10 : true;
+      this.allowDragPaint = (_ref11 = opts.allowDragPaint) != null ? _ref11 : true;
       this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
       this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
       this.slotNodes = [];
@@ -715,7 +714,7 @@ module.exports={
     };
 
     InventoryWindow.prototype.createContainer = function() {
-      var container, heightpx, i, node, slotItem, widthpx, _i, _ref;
+      var container, i, node, slotItem, widthpx, _i, _ref;
       container = document.createElement('div');
       for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
         slotItem = this.inventory.get(i);
@@ -726,8 +725,7 @@ module.exports={
         container.appendChild(node);
       }
       widthpx = this.width * (this.textureSize + this.borderSize * 2);
-      heightpx = this.height * (this.textureSize + this.borderSize);
-      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;height: " + heightpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
+      container.setAttribute('style', "border: " + this.borderSize + "px solid black;display: block;float: left;width: " + widthpx + "px;user-select: none;-moz-user-select: none;-webkit-user-select: none;");
       return this.container = container;
     };
 
