@@ -13,7 +13,7 @@
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
     "voxel-highlight": "0.0.9",
-    "voxel-voila": "git://github.com/deathcap/voxel-highlight.git#2590efc2c197c5985ec004d866035fc0bee89c24",
+    "voxel-voila": "git://github.com/deathcap/voxel-voila.git#2590efc2c197c5985ec004d866035fc0bee89c24",
     "voxel-player": "git://github.com/deathcap/voxel-player.git#95ed1faed3ba3c44b7e8d4b49dbceb1248a343b1",
     "voxel-fly": "git://github.com/deathcap/voxel-fly.git#955bb70c4606249fed2510e400a4c61c9453a293",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#8ea7107226f2171703f565ae52bd94bf32c033a2",
