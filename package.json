@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#76123a25194a487857769069b4b3a29c7d16ef7b",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#61177bd73ee38f13e925115768776d42f15476e3",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#5aa955b5476d7e2a8901f5fbe40c4c3b38920f88",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#2ccea4f4edb35b7df2de733530f7de93d9dee9df",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
