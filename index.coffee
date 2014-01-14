@@ -47,6 +47,10 @@ module.exports = () ->
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
+
+      kb_module: require 'kb-bindings'
+      texture_module: require 'voxel-texture'
+
       lightsDisabled: true
       arrayType: Uint16Array
       useAtlas: true
