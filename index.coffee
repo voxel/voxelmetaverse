@@ -4,8 +4,8 @@ createPlugins = require 'voxel-plugins'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
-window.client = require 'voxel-client'
-window.server = require 'voxel-server'
+#window.client = require 'voxel-client' # TODO
+#window.server = require 'voxel-server' # TODO
 require 'voxel-registry'
 require 'voxel-carry'
 require 'craftingrecipes'
@@ -35,6 +35,8 @@ require 'voxel-debug'
 require 'voxel-plugins-ui'
 require 'kb-bindings-ui'
 
+createArtpacks = require 'artpacks'
+
 module.exports = () ->
   console.log 'voxpopuli starting'
 
@@ -60,6 +62,7 @@ module.exports = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
+      artPacks: createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
