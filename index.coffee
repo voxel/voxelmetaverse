@@ -59,7 +59,7 @@ module.exports = () ->
       generateChunks: false
       chunkDistance: 2
       materials: []  # added dynamically later
-      texturePath: 'AssetPacks/ProgrammerArt/textures/blocks/' # subproject with textures
+      texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
