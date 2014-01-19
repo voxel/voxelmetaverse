@@ -53,7 +53,10 @@ module.exports = () ->
       exposeGlobal: true  # for debugging
 
       kb_module: require 'kb-bindings'
-      texture_module: require 'voxel-texture'
+      texture_modules: [
+        require 'voxel-texture-shader'
+        require 'voxel-texture'
+      ]
 
       lightsDisabled: true
       arrayType: Uint16Array
