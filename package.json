@@ -56,6 +56,6 @@
     "beefy": "0.7.1"
   },
   "scripts": {
-    "start": "beefy test.coffee:bundle.js 8080 -- -t coffeeify"
+    "start": "beefy index.coffee:bundle.js 8080 -- -t coffeeify"
   }
 }

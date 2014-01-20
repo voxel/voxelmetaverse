@@ -39,7 +39,7 @@ require 'kb-bindings-ui'
 
 createArtpacks = require 'artpacks'
 
-module.exports = () ->
+main = () ->
   console.log 'voxpopuli starting'
 
   if window.performance && window.performance.timing
@@ -167,3 +167,4 @@ module.exports = () ->
 
   return game
 
+main()
