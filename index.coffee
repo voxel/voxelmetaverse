@@ -42,7 +42,9 @@ createArtpacks = require 'artpacks'
 main = () ->
   console.log 'voxpopuli starting'
 
-  if window? and window.performance && window.performance.timing
+  isClient = window?
+
+  if isClient and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
@@ -67,7 +69,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip']
+      artPacks: if isClient then createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip'] else []
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
