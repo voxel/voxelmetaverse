@@ -42,7 +42,7 @@ createArtpacks = require 'artpacks'
 main = () ->
   console.log 'voxpopuli starting'
 
-  if window.performance && window.performance.timing
+  if window? and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
