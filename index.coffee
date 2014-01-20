@@ -30,6 +30,8 @@ require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-clientmc'
 require 'voxel-console'
+require 'voxel-drop'
+require 'voxel-start'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -53,7 +55,10 @@ module.exports = () ->
       exposeGlobal: true  # for debugging
 
       kb_module: require 'kb-bindings'
-      texture_module: require 'voxel-texture'
+      texture_modules: [
+        require 'voxel-texture-shader'
+        require 'voxel-texture'
+      ]
 
       lightsDisabled: true
       arrayType: Uint16Array
@@ -110,6 +115,8 @@ module.exports = () ->
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
+    'voxel-drop': {}
+    'voxel-start': {}
 
 
     # note: onDemand so doesn't automatically enable
