@@ -31,6 +31,7 @@ require 'voxel-land'
 require 'voxel-clientmc'
 require 'voxel-console'
 require 'voxel-drop'
+require 'voxel-start'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -114,8 +115,8 @@ module.exports = () ->
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
-
     'voxel-drop': {}
+    'voxel-start': {}
 
 
     # note: onDemand so doesn't automatically enable
