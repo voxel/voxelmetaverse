@@ -160,12 +160,14 @@ main = () ->
 
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
-  game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
 
-  game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
-  game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
-  game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
-  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
+  if game.isClient
+    game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
+
+    game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
+    game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
+    game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
+    game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
 
   return game
 
