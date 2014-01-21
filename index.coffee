@@ -39,10 +39,12 @@ require 'kb-bindings-ui'
 
 createArtpacks = require 'artpacks'
 
-module.exports = () ->
+main = () ->
   console.log 'voxpopuli starting'
 
-  if window.performance && window.performance.timing
+  isClient = window?
+
+  if isClient and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
@@ -67,7 +69,7 @@ module.exports = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip']
+      artPacks: if isClient then createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip'] else []
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
@@ -158,12 +160,15 @@ module.exports = () ->
 
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
-  game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
 
-  game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
-  game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
-  game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
-  game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
+  if game.isClient
+    game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
+
+    game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
+    game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
+    game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
+    game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
 
   return game
 
+main()
