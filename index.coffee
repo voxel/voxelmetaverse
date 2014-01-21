@@ -113,7 +113,7 @@ main = () ->
     'voxel-pickaxe': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
-    #'voxel-land': {populateTrees: true} # TODO: server
+    'voxel-land': {populateTrees: true}
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
@@ -128,7 +128,7 @@ main = () ->
     'voxel-gamemode': {}
     'voxel-walk': {}
     'voxel-inventory-hotbar': {inventorySize:10}
-    #'voxel-inventory-dialog': {} # TODO: server
+    'voxel-inventory-dialog': {}
     'voxel-reach': { reachDistance: 8 }
     # left-click hold to mine
     'voxel-mine':
