@@ -4246,6 +4246,7 @@ module.exports = function(el, bindings, state, opts) {
   
   state.down = new EventEmitter()
   state.up = new EventEmitter()
+  state.changed = new EventEmitter()
 
   state.bindings = bindings
 
@@ -4257,6 +4258,7 @@ module.exports = function(el, bindings, state, opts) {
        bindings[key] === 'destroy' ||
        bindings[key] === 'down' ||
        bindings[key] === 'up' ||
+       bindings[key] === 'changed' ||
        bindings[key] === 'bindings') {
       throw new Error(bindings[key]+' is reserved')
     }
@@ -4329,6 +4331,7 @@ module.exports = function(el, bindings, state, opts) {
             state.down.emit(binding)
           else
             state.up.emit(binding)
+          state.changed.emit(binding, on_or_off)
         }
       }
     }
@@ -61074,25 +61077,51 @@ module.exports=require(30)
     InventoryHotbarClient.prototype.enable = function() {
       var _this = this;
       this.inventoryWindow.container.style.visibility = '';
-      this.keydown = function(ev) {
-        var slot, _ref;
-        if (('0'.charCodeAt(0) <= (_ref = ev.keyCode) && _ref <= '9'.charCodeAt(0))) {
-          slot = ev.keyCode - '0'.charCodeAt(0);
-          if (slot === 0) {
-            slot = 10;
+      if (this.game.buttons.bindings != null) {
+        [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(slot) {
+          var key, slotName;
+          if (slot === 9) {
+            key = '0';
+          } else {
+            key = '' + (slot + 1);
           }
-          slot -= 1;
-          _this.selectedIndex = slot;
-          return _this.inventoryWindow.setSelected(_this.selectedIndex);
-        }
-      };
-      ever(document.body).on('keydown', this.keydown);
+          slotName = 'slot' + (slot + 1);
+          _this.game.buttons.bindings[key] = slotName;
+          _this.onSlots = {};
+          return _this.game.buttons.down.on(slotName, _this.onSlots[key] = function() {
+            _this.selectedIndex = slot;
+            return _this.inventoryWindow.setSelected(_this.selectedIndex);
+          });
+        });
+      } else {
+        this.keydown = function(ev) {
+          var slot, _ref;
+          if (('0'.charCodeAt(0) <= (_ref = ev.keyCode) && _ref <= '9'.charCodeAt(0))) {
+            slot = ev.keyCode - '0'.charCodeAt(0);
+            if (slot === 0) {
+              slot = 10;
+            }
+            slot -= 1;
+            _this.selectedIndex = slot;
+            return _this.inventoryWindow.setSelected(_this.selectedIndex);
+          }
+        };
+        ever(document.body).on('keydown', this.keydown);
+      }
       return InventoryHotbarClient.__super__.enable.call(this);
     };
 
     InventoryHotbarClient.prototype.disable = function() {
+      var key, _i;
       this.inventoryWindow.container.style.visibility = 'hidden';
-      ever(document.body).removeListener('keydown', this.keydown);
+      if (this.game.buttons.bindings != null) {
+        for (key = _i = 1; _i <= 10; key = ++_i) {
+          delete this.game.buttons.bindings[key - 1];
+          this.game.buttons.down.removeListener('slot' + key, this.onSlots[key]);
+        }
+      } else {
+        ever(document.body).removeListener('keydown', this.keydown);
+      }
       return InventoryHotbarClient.__super__.disable.call(this);
     };
 
@@ -65087,39 +65116,58 @@ font-size: 18pt;\
       return document.body.appendChild(this.node);
     };
 
+    VoilaPlugin.prototype.update = function(pos) {
+      var bd, displayName, extra, id, name, x, y, z;
+      this.lastPos = pos;
+      id = this.game.getBlock(pos);
+      name = this.registry.getBlockName(id);
+      displayName = this.registry.getItemDisplayName(name);
+      if (this.game.buttons.crouch) {
+        if (this.blockdata != null) {
+          x = pos[0], y = pos[1], z = pos[2];
+          bd = this.blockdata.get(x, y, z);
+          if (bd != null) {
+            extra = "BD(" + x + "," + y + "," + y + "): " + (JSON.stringify(bd));
+            window.status = extra;
+            console.log(extra);
+            extra = '+';
+          } else {
+            extra = '';
+          }
+        }
+        return this.node.textContent = "" + displayName + " (" + name + "/" + id + ")" + extra;
+      } else {
+        return this.node.textContent = displayName;
+      }
+    };
+
+    VoilaPlugin.prototype.clear = function() {
+      this.lastPos = void 0;
+      return this.node.textContent = '';
+    };
+
     VoilaPlugin.prototype.enable = function() {
       var _this = this;
       this.node.style.visibility = '';
       this.hl.on('highlight', this.onHighlight = function(pos) {
-        var bd, displayName, extra, id, name;
-        id = _this.game.getBlock(pos);
-        name = _this.registry.getBlockName(id);
-        displayName = _this.registry.getItemDisplayName(name);
-        if (_this.game.buttons.crouch) {
-          if (_this.blockdata != null) {
-            bd = _this.blockdata.get(pos[0], pos[1], pos[2]);
-            if (bd != null) {
-              extra = "BD(" + pos[0] + "," + pos[1] + "," + pos[2] + "): " + (JSON.stringify(bd));
-              window.status = extra;
-              console.log(extra);
-              extra = '+';
-            } else {
-              extra = '';
-            }
-          }
-          return _this.node.textContent = "" + displayName + " (" + name + "/" + id + ")" + extra;
-        } else {
-          return _this.node.textContent = displayName;
-        }
+        return _this.update(pos);
       });
-      return this.hl.on('remove', this.onRemove = function() {
-        return _this.node.textContent = '';
+      this.hl.on('remove', this.onRemove = function() {
+        return _this.clear();
       });
+      if (this.game.buttons.changed != null) {
+        return this.game.buttons.changed.on('crouch', this.onChanged = function() {
+          return _this.update(_this.lastPos);
+        });
+      }
     };
 
     VoilaPlugin.prototype.disable = function() {
       this.hl.removeListener('highlight', this.onHighlight);
       this.hl.removeListener('remove', this.onRemove);
+      if (this.game.buttons.changed != null) {
+        this.game.buttons.changed.removeListener('crouch', this.onChanged);
+      }
       return this.node.style.visibility = 'hidden';
     };
 
