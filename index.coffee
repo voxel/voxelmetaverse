@@ -30,6 +30,7 @@ require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-clientmc'
 require 'voxel-console'
+require 'voxel-commands'
 require 'voxel-drop'
 require 'voxel-start'
 
@@ -117,6 +118,7 @@ main = () ->
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
+    'voxel-commands': {}
     'voxel-drop': {}
     'voxel-start': {}
 

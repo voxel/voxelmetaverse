@@ -47,7 +47,8 @@
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#f238a8b0dc1fb3be4519831eb0c3736e39ff0816",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#3a10636e6ac3472232e874f6a8b5d54aece22906",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#32b4a1e876cecc48dcbb00f86c7977f9f616cb2b",
-    "voxel-console": "git://github.com/deathcap/voxel-console.git#6464501b0532de9ec43703fb7d671cf5e9673425"
+    "voxel-console": "git://github.com/deathcap/voxel-console.git#c72391d02fd3d89438da1a26afb4b56c0908b8f8",
+    "voxel-commands": "git://github.com/deathcap/voxel-commands.git#1fcdf8a8b5b3542b1a278a7d51406bafaa733c6d"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
