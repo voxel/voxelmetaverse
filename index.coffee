@@ -70,7 +70,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: if isClient then createArtpacks ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-2.1-dev-ResourcePack-20140116.zip'] else []
+      artPacks: if isClient then createArtpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip'] else []
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
