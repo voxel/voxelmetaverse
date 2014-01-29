@@ -52,7 +52,7 @@ main = () ->
   plugins = createPlugins null, {require: require}
 
   configuration =
-    'voxel-cs': {commonOpts:
+    'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
 
@@ -102,7 +102,8 @@ main = () ->
         'T': 'console'
         '/': 'console2'
         '.': 'console3'
-    }
+
+    #'voxel-cs': {} # TODO
 
     'voxel-registry': {}
     'craftingrecipes': {}
