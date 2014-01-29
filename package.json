@@ -14,6 +14,7 @@
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#e50559078d15cc0fee930fb4d72493511cd6fb97",
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#8680806643f981bc80e5f2e4cf390d778a41f7fb",
     "voxel-start": "git://github.com/deathcap/voxel-start.git#dcd0b139e495d4695af4ae4046ee1cce2d38425d",
+    "voxel-zen": "git://github.com/deathcap/voxel-zen.git#c3b5a54bd9ebc9d6c4cea5f2ed4c1c74969f496b",
     "artpacks": "git://github.com/deathcap/artpacks.git#a7427cbd66c27fdb568c07b42b224ce1172dc237",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#9d17fa6038ebcf664b1d55b68ae1a6d928f296f5",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#c8e789babbec1d0aaeea4e21b7f3867a96f0eb57",

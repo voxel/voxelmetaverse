@@ -32,6 +32,7 @@ require 'voxel-console'
 require 'voxel-commands'
 require 'voxel-drop'
 require 'voxel-start'
+require 'voxel-zen'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -103,6 +104,8 @@ main = () ->
         '/': 'console2'
         '.': 'console3'
 
+        'F1': 'zen'
+
     #'voxel-cs': {} # TODO
 
     'voxel-registry': {}
@@ -121,6 +124,7 @@ main = () ->
     'voxel-commands': {}
     'voxel-drop': {}
     'voxel-start': {}
+    'voxel-zen': {}
 
 
     # note: onDemand so doesn't automatically enable
