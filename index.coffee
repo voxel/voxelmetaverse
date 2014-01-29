@@ -32,6 +32,7 @@ require 'voxel-console'
 require 'voxel-commands'
 require 'voxel-drop'
 require 'voxel-start'
+require 'voxel-zen'
 
 require 'voxel-debug'
 require 'voxel-plugins-ui'
@@ -42,7 +43,7 @@ createArtpacks = require 'artpacks'
 main = () ->
   console.log 'voxpopuli starting'
 
-  isClient = window?
+  isClient = process.browser # TODO: game
 
   if isClient and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
@@ -103,7 +104,9 @@ main = () ->
         '/': 'console2'
         '.': 'console3'
 
-    'voxel-cs': {}
+        'F1': 'zen'
+
+    #'voxel-cs': {} # TODO
 
     'voxel-registry': {}
     'craftingrecipes': {}
@@ -121,6 +124,7 @@ main = () ->
     'voxel-commands': {}
     'voxel-drop': {}
     'voxel-start': {}
+    'voxel-zen': {}
 
 
     # note: onDemand so doesn't automatically enable
@@ -163,7 +167,7 @@ main = () ->
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
 
-  if game.isClient
+  if isClient
     game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
 
     game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
