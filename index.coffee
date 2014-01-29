@@ -42,7 +42,7 @@ createArtpacks = require 'artpacks'
 main = () ->
   console.log 'voxpopuli starting'
 
-  isClient = window?
+  isClient = process.browser # TODO: game
 
   if isClient and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
@@ -162,7 +162,7 @@ main = () ->
   # load textures after all plugins loaded (since they may add their own)
   registry = plugins.get('voxel-registry')
 
-  if game.isClient
+  if isClient
     game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
 
     game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
