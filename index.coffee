@@ -4,7 +4,7 @@ createPlugins = require 'voxel-plugins'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
-require 'voxel-cs'
+require 'voxel-fuel'
 require 'voxel-registry'
 require 'voxel-carry'
 require 'craftingrecipes'
@@ -105,8 +105,6 @@ main = () ->
         '.': 'console3'
 
         'F1': 'zen'
-
-    #'voxel-cs': {} # TODO
 
     'voxel-registry': {}
     'craftingrecipes': {}
