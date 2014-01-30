@@ -64,6 +64,7 @@ main = () ->
       generateChunks: false
       chunkDistance: 2
       materials: []  # added dynamically later
+      avatarInitialPosition: [2,14,4] # TODO: refactor with homePosition
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
       artPacks: if isClient then createArtpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip'] else []
       worldOrigin: [0, 0, 0]
