@@ -1,10 +1,8 @@
-# vim: set shiftwidth=2 tabstop=2 softtabstop=2 expandtab:
 
-createPlugins = require 'voxel-plugins'
+fuel = require 'voxel-fuel'
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
-require 'voxel-fuel'
 require 'voxel-registry'
 require 'voxel-carry'
 require 'craftingrecipes'
@@ -49,10 +47,7 @@ main = () ->
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
-  console.log 'initializing plugins'
-  plugins = createPlugins null, {require: require}
-
-  configuration =
+  pluginOpts =
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
@@ -155,24 +150,8 @@ main = () ->
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
 
-  for name, opts of configuration
-    plugins.add name, opts
-
-  plugins.loadAll()
-
-  game = plugins.get('voxel-engine')
-
-  # load textures after all plugins loaded (since they may add their own)
-  registry = plugins.get('voxel-registry')
-
-  if isClient
-    game.materials.load registry.getBlockPropsAll 'texture'   # TODO: have voxel-registry do this
-
-    game.buttons.down.on 'pov', () -> plugins.get('voxel-player')?.toggle()
-    game.buttons.down.on 'vr', () -> plugins.toggle 'voxel-oculus'
-    game.buttons.down.on 'home', () -> plugins.get('voxel-player')?.home()
-    game.buttons.down.on 'inventory', () -> plugins.get('voxel-inventory-dialog')?.open()
-
-  return game
+  fuel
+    pluginOpts: pluginOpts
+    require: require
 
 main()
