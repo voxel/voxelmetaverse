@@ -5,7 +5,7 @@ fuel = require 'voxel-fuel'
 require 'voxel-engine'
 require 'voxel-registry'
 require 'voxel-carry'
-require 'craftingrecipes'
+require 'voxel-recipes'
 require 'voxel-workbench'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
@@ -102,7 +102,7 @@ main = () ->
         'F1': 'zen'
 
     'voxel-registry': {}
-    'craftingrecipes': {}
+    'voxel-recipes': {}
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-blockdata': {}
     'voxel-chest': {}
