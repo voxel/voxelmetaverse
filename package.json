@@ -22,7 +22,7 @@
     "voxel-highlight": "0.0.9",
     "voxel-voila": "git://github.com/deathcap/voxel-voila.git#2d87989ca21e95718252af03d786f50e5f613075",
     "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
-    "voxel-fly": "git://github.com/deathcap/voxel-fly.git#739d417ba50a33f3397f463d69011721af83f93e",
+    "voxel-fly": "git://github.com/deathcap/voxel-fly.git#489f2145c9ad41591215eebb05b32cdcde822106",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#9a9f80f34809efaaa4fa68aa4035e4338d2e7fff",
     "voxel-reach": "git://github.com/deathcap/voxel-reach.git#6f46c4a7f4f04a9f387635b6494f64047c85baaa",
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git#dff4356b714daca4b8279b0e14a980d81addf1cc",
