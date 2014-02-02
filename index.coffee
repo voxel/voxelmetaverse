@@ -1,6 +1,4 @@
 
-fuel = require 'voxel-fuel'
-
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
 require 'voxel-registry'
@@ -31,23 +29,21 @@ require 'voxel-commands'
 require 'voxel-drop'
 require 'voxel-start'
 require 'voxel-zen'
-
 require 'voxel-debug'
 require 'voxel-plugins-ui'
 require 'kb-bindings-ui'
 
-createArtpacks = require 'artpacks'
+artpacks = require 'artpacks'
+fuel = require 'voxel-fuel'
 
 main = () ->
   console.log 'voxpopuli starting'
 
-  isClient = process.browser # TODO: game
-
-  if isClient and window.performance && window.performance.timing
+  if window? and window.performance && window.performance.timing
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
-  pluginOpts =
+  fuel {require:require, exposeGlobal:true, pluginOpts:
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
@@ -65,7 +61,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: if isClient then createArtpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip'] else []
+      artPacks: artpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
@@ -149,9 +145,6 @@ main = () ->
     'voxel-debug': {}
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
-
-  fuel
-    pluginOpts: pluginOpts
-    require: require
+  }
 
 main()
