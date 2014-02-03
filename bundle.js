@@ -5238,7 +5238,8 @@ module.exports=require(34)
 (function() {
   var CubeIcon, EventEmitter, InventoryWindow, ever,
     __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    __modulo = function(a, b) { return (a % b + +b) % b; };
 
   EventEmitter = (require('events')).EventEmitter;
 
@@ -5330,8 +5331,8 @@ module.exports=require(34)
         this.slotNodes.push(node);
         container.appendChild(node);
       }
-      widthpx = this.width * (this.textureSize + this.borderSize * 2);
-      container.setAttribute('style', "border: " + this.borderSize + "px solid black; display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+      widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+      container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
       return this.container = container;
     };
 
@@ -5464,10 +5465,27 @@ module.exports=require(34)
     };
 
     InventoryWindow.prototype.setBorderStyle = function(node, index) {
+      var height, kind, x, y;
+      x = __modulo(index, this.width);
+      y = Math.floor(index / this.width);
+      height = this.inventorySize / this.width;
       if (index === this.selectedIndex) {
-        return node.style.border = "" + this.borderSize + "px dotted black";
+        kind = 'dotted';
       } else {
-        return node.style.border = "" + this.borderSize + "px solid black";
+        kind = 'solid';
+      }
+      node.style.border = "" + this.borderSize + "px " + kind + " black";
+      if (y === 0) {
+        node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+      }
+      if (y === height - 1) {
+        node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+      }
+      if (x === 0) {
+        node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+      }
+      if (x === this.width - 1) {
+        return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
       }
     };
 
@@ -70788,7 +70806,7 @@ module.exports=require(29)
     __extends(InventoryHotbarClient, _super);
 
     function InventoryHotbarClient(game, opts) {
-      var container, registry, windowOpts, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      var container, outerDiv, registry, windowOpts, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
       this.game = game;
       InventoryHotbarClient.__super__.constructor.call(this, this.game, opts);
       this.wheelEnable = (_ref = opts.wheelEnable) != null ? _ref : false;
@@ -70812,12 +70830,17 @@ module.exports=require(29)
       this.inventoryWindow = new InventoryWindow(windowOpts);
       this.inventoryWindow.selectedIndex = 0;
       container = this.inventoryWindow.createContainer();
-      container.style.position = 'fixed';
       container.style.bottom = '0px';
       container.style.zIndex = 5;
-      container.style.right = '33%';
-      container.style.left = '33%';
-      document.body.appendChild(container);
+      container.style.width = '100%';
+      container.style.position = 'fixed';
+      container.style.float = '';
+      container.style.border = '';
+      outerDiv = document.createElement('div');
+      outerDiv.style.width = '100%';
+      outerDiv.style.textAlign = 'center';
+      outerDiv.appendChild(container);
+      document.body.appendChild(outerDiv);
       this.enable();
     }
 
