@@ -67051,9 +67051,9 @@ Client.prototype.bindEvents = function(connection) {
 }
 
 var isInteracting = function(state) {
-  Object.keys(state).map(function(control) {
-    if (state[control] > 0) return true
-  })
+  for (var control in state) {
+    if (state[control] !== 0) return true
+  }
   return false
 }
 
