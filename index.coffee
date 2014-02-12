@@ -15,6 +15,7 @@ require 'voxel-player'
 require 'voxel-fly'
 require 'voxel-gamemode'
 require 'voxel-walk'
+require 'voxel-sprint'
 require 'voxel-mine'
 require 'voxel-harvest'
 require 'voxel-use'
@@ -122,6 +123,7 @@ main = () ->
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
+    'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-dialog': {}
     'voxel-reach': { reachDistance: 8 }
