@@ -12,6 +12,8 @@ require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-voila'
 require 'voxel-player'
+require 'voxel-health'
+require 'voxel-health-bar'
 require 'voxel-fly'
 require 'voxel-gamemode'
 require 'voxel-walk'
@@ -120,6 +122,8 @@ main = () ->
     # note: onDemand so doesn't automatically enable
     'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
+    'voxel-health': {}
+    'voxel-health-bar': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
