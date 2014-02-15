@@ -22,6 +22,8 @@
     "voxel-highlight": "0.0.9",
     "voxel-voila": "git://github.com/deathcap/voxel-voila.git#67f4794e186098b023ae72838a2379ae6df0befe",
     "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
+    "voxel-health": "git://github.com/deathcap/voxel-health.git#efe4780111bc684a98baf5c5eed34ef66d4fde7c",
+    "voxel-health-bar": "git://github.com/deathcap/voxel-health-bar.git#f11e2c759ea57d3704df09621725fe5e4594ca1b",
     "voxel-fly": "git://github.com/deathcap/voxel-fly.git#66e0fc82804f73745726eb28ee518ffa4068cda8",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#4d6b8703ae4b739348e9199b70b2acac21661230",
     "voxel-sprint": "git://github.com/deathcap/voxel-sprint.git#db388b880d7b9a95fd46ea22f9b2afd60bad8770",
