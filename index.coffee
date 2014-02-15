@@ -59,7 +59,7 @@ main = () ->
       ]
 
       lightsDisabled: true
-      arrayType: Uint16Array
+      arrayTypeSize: 2  # arrayType: Uint16Array
       useAtlas: true
       generateChunks: false
       chunkDistance: 2
