@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#dca59e5acc80638b9c99a7b75e4cd1cb200f0f6a",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#548ca12ae491ffe8f216ad65cd43dc66120a2867",
     "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#c61a383bee4ab8a12c05509a3d17b66b5ead8afe",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#59088f59cbf722b57c3027db5f599ba0c35eaa88",
@@ -24,6 +24,7 @@
     "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
     "voxel-health": "git://github.com/deathcap/voxel-health.git#efe4780111bc684a98baf5c5eed34ef66d4fde7c",
     "voxel-health-bar": "git://github.com/deathcap/voxel-health-bar.git#f11e2c759ea57d3704df09621725fe5e4594ca1b",
+    "voxel-health-fall": "git://github.com/deathcap/voxel-health-fall.git#62a981c3b18b87d7a632c99329c1ac390d017cf4",
     "voxel-fly": "git://github.com/deathcap/voxel-fly.git#66e0fc82804f73745726eb28ee518ffa4068cda8",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#4d6b8703ae4b739348e9199b70b2acac21661230",
     "voxel-sprint": "git://github.com/deathcap/voxel-sprint.git#db388b880d7b9a95fd46ea22f9b2afd60bad8770",

@@ -14,6 +14,7 @@ require 'voxel-voila'
 require 'voxel-player'
 require 'voxel-health'
 require 'voxel-health-bar'
+require 'voxel-health-fall'
 require 'voxel-fly'
 require 'voxel-gamemode'
 require 'voxel-walk'
@@ -124,6 +125,7 @@ main = () ->
     'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
     'voxel-health': {}
     'voxel-health-bar': {}
+    'voxel-health-fall': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
