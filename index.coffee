@@ -52,7 +52,6 @@ main = () ->
       appendDocument: true
       exposeGlobal: true  # for debugging
 
-      kb_module: require 'kb-bindings'
       texture_modules: [
         require 'voxel-texture-shader'
         require 'voxel-texture'
