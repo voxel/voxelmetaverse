@@ -15,6 +15,7 @@ require 'voxel-player'
 require 'voxel-health'
 require 'voxel-health-bar'
 require 'voxel-health-fall'
+require 'voxel-sfx'
 require 'voxel-fly'
 require 'voxel-gamemode'
 require 'voxel-walk'
@@ -52,20 +53,19 @@ main = () ->
       appendDocument: true
       exposeGlobal: true  # for debugging
 
-      kb_module: require 'kb-bindings'
       texture_modules: [
         require 'voxel-texture-shader'
         require 'voxel-texture'
       ]
 
       lightsDisabled: true
-      arrayType: Uint16Array
+      arrayTypeSize: 2  # arrayType: Uint16Array
       useAtlas: true
       generateChunks: false
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: artpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip']
+      artPacks: artpacks ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
@@ -126,6 +126,7 @@ main = () ->
     'voxel-health': {}
     'voxel-health-bar': {}
     'voxel-health-fall': {}
+    'voxel-sfx': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
