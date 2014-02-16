@@ -64,7 +64,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: artpacks ['ProgrammerArt-v2.1-ResourcePack-MC17.zip']
+      artPacks: artpacks ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
