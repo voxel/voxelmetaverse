@@ -55,7 +55,7 @@
     "voxel-land": "git://github.com/deathcap/voxel-land.git#b3edd1e28c3e4b2ae3a7a5149e7c41452866696c",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#e75b555d842c172edc4cde71470c6ec14b6bbd2d",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#c05de3657e788b647829909002f010855a738ff0",
-    "voxel-commands": "git://github.com/deathcap/voxel-commands.git#caf9ae391bc6350afc814a8eda2fc6d23f3f6c3a"
+    "voxel-commands": "git://github.com/deathcap/voxel-commands.git#60effbb47e1d2d1611c27fa80fb2a03208429207"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
