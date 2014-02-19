@@ -9,7 +9,7 @@ require 'voxel-workbench'
 require 'voxel-furnace'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
-require 'voxel-inventory-dialog'
+require 'voxel-inventory-crafting'
 require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-voila'
@@ -136,7 +136,7 @@ main = () ->
     'voxel-walk': {}
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
-    'voxel-inventory-dialog': {}
+    'voxel-inventory-crafting': {}
     'voxel-reach': { reachDistance: 8 }
     # left-click hold to mine
     'voxel-mine':
