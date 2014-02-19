@@ -6,6 +6,7 @@ require 'voxel-carry'
 require 'voxel-recipes'
 require 'voxel-webview'
 require 'voxel-workbench'
+require 'voxel-furnace'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-dialog'
@@ -109,6 +110,7 @@ main = () ->
     'voxel-blockdata': {}
     'voxel-chest': {}
     'voxel-workbench': {}
+    'voxel-furnace': {}
     'voxel-pickaxe': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
