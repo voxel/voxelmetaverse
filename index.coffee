@@ -17,6 +17,7 @@ require 'voxel-player'
 require 'voxel-health'
 require 'voxel-health-bar'
 require 'voxel-health-fall'
+require 'voxel-food'
 require 'voxel-sfx'
 require 'voxel-fly'
 require 'voxel-gamemode'
@@ -130,6 +131,7 @@ main = () ->
     'voxel-health': {}
     'voxel-health-bar': {}
     'voxel-health-fall': {}
+    'voxel-food': {}
     'voxel-sfx': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
