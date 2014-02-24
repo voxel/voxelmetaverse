@@ -32,7 +32,7 @@
     "voxel-sprint": "git://github.com/deathcap/voxel-sprint.git#db388b880d7b9a95fd46ea22f9b2afd60bad8770",
     "voxel-reach": "git://github.com/deathcap/voxel-reach.git#6f46c4a7f4f04a9f387635b6494f64047c85baaa",
     "voxel-mine": "git://github.com/deathcap/voxel-mine.git#e473da31a4b888fb8cf261f871931f651a91c42c",
-    "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git#beb7474ada83a27a7ba3bb73b7e8265205a57f02",
+    "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git#09f933286d4d1ae2a0518d9d6d1519b570717e6f",
     "voxel-use": "git://github.com/deathcap/voxel-use.git#1c6d1026439a8977baa7d1b77e31863f209d0655",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git#860e2c14565d6a26009cc8e6e4a9343a60ba173e",
     "voxel-carry": "git://github.com/deathcap/voxel-carry.git#eccb1edefba80d403bf2e86d833c636898d6ca8b",
@@ -54,7 +54,7 @@
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#86244a4b50ce2d462addc56afb221e54ceaf09c0",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#0072dcecfec0843bab4bc4c9fb3cc039c93a5941",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#f238a8b0dc1fb3be4519831eb0c3736e39ff0816",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git#822a966ed6859987c5a60a02453dcf04e88a3cc9",
+    "voxel-land": "git://github.com/deathcap/voxel-land.git#452466cb03b767f08945214a94a2adad9df6c673",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#e75b555d842c172edc4cde71470c6ec14b6bbd2d",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#c05de3657e788b647829909002f010855a738ff0",
     "voxel-commands": "git://github.com/deathcap/voxel-commands.git#60effbb47e1d2d1611c27fa80fb2a03208429207"
