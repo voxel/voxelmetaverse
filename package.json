@@ -43,7 +43,6 @@
     "voxel-blockdata": "git://github.com/deathcap/voxel-blockdata.git#ae76ce209ce8497c396c863ee775032e582a223e",
     "voxel-recipes": "git://github.com/deathcap/voxel-recipes.git#571e0cca0603988762946f459efb19a25c032f1d",
     "voxel-webview": "git://github.com/deathcap/voxel-webview.git#7b07305185d30fcbb697205873432e0c5984433a",
-    "dat-gui": "0.5.0",
     "kb-bindings-ui": "git://github.com/deathcap/kb-bindings-ui.git#0409ab1b02d938ff1a8ac9dfd6b00e6bcc2ca775",
     "itempile": "git://github.com/deathcap/itempile.git#c879a9524e57fcc018679bcaa35d2991fdea0b7c",
     "inventory": "git://github.com/deathcap/inventory.git#be4cb41082f48cf3cdcc6665bac4757d7909397a",
