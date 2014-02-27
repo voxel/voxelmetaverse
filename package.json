@@ -25,7 +25,7 @@
     "voxel-health": "git://github.com/deathcap/voxel-health.git#594eec60b1e1dbdffc52e88c23a49fc6d839bcbf",
     "voxel-health-bar": "git://github.com/deathcap/voxel-health-bar.git#f11e2c759ea57d3704df09621725fe5e4594ca1b",
     "voxel-health-fall": "git://github.com/deathcap/voxel-health-fall.git#62a981c3b18b87d7a632c99329c1ac390d017cf4",
-    "voxel-food": "git://github.com/deathcap/voxel-food.git#d7235c8a29a99e8ffda7ef8adc6c17aa9ceb1583",
+    "voxel-food": "git://github.com/deathcap/voxel-food.git#6260cdd49ddcfd3646cedfb79e810d2109319ba8",
     "voxel-sfx": "git://github.com/deathcap/voxel-sfx.git#0f9b299284873e728586d9434a06aa36f87f586a",
     "voxel-fly": "git://github.com/deathcap/voxel-fly.git#34b075f49d0657127f61de8fe72239ed0b630bdc",
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#4d6b8703ae4b739348e9199b70b2acac21661230",
@@ -54,7 +54,7 @@
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#2b98648457a7b601e96a6ee53e6365b14cf95aa1",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#f9225bb325b03940370ea78f16e5adac9728adb3",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#8c2929068a62e0454a01cc1c129e9fae60450b7c",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git#c36299941b693f5940f5cbe3508776f7ab31b262",
+    "voxel-land": "git://github.com/deathcap/voxel-land.git#60c5af23174936b7437b09b07435d26091407579",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#5d2fb6f5fb07b429eb3972b600f65b12013d4751",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#c05de3657e788b647829909002f010855a738ff0",
     "voxel-commands": "git://github.com/deathcap/voxel-commands.git#60effbb47e1d2d1611c27fa80fb2a03208429207"
