@@ -4,6 +4,7 @@ require 'voxel-engine'
 require 'voxel-registry'
 require 'voxel-carry'
 require 'voxel-bucket'
+require 'voxel-fluid'
 require 'voxel-recipes'
 require 'voxel-webview'
 require 'voxel-workbench'
@@ -110,6 +111,7 @@ main = () ->
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
+    'voxel-fluid': {}
     'voxel-blockdata': {}
     'voxel-chest': {}
     'voxel-workbench': {}
