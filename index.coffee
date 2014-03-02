@@ -53,7 +53,7 @@ main = () ->
     loadingTime = Date.now() - window.performance.timing.navigationStart
     console.log "User-perceived page loading time: #{loadingTime / 1000}s"
 
-  fuel {require:require, exposeGlobal:true, pluginOpts:
+  fuel {require:require, exposeGlobal:true, engine:require('voxel-engine'), pluginOpts:
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
