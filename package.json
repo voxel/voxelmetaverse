@@ -9,7 +9,7 @@
   "dependencies": {
     "ever": "0.0.3",
     "voxel-engine": "git://github.com/deathcap/voxel-engine.git#2e35ba372cdc994f9f1c60a061fe6230766d5ae3",
-    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#667c3ea3716ebe4da6826e5f61980dabd00305ed",
+    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#4346694314c871c9c0ed1ef4a6d6319b0dd0689b",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#054b0be3bc3aab663e3dcc8d3b1d8cd5e5cb5ae3",
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#78be685d0a28c88943ad1f1079faf17fcce31bf7",
@@ -47,7 +47,7 @@
     "kb-bindings-ui": "git://github.com/deathcap/kb-bindings-ui.git#0409ab1b02d938ff1a8ac9dfd6b00e6bcc2ca775",
     "itempile": "git://github.com/deathcap/itempile.git#0e90820649ec3f95a74f97007153a63a80eb8c0e",
     "inventory": "git://github.com/deathcap/inventory.git#544c8e69ae88d95cbdc35f9203848ec5dac359db",
-    "inventory-window": "git://github.com/deathcap/inventory-window.git#4b833ac2441cc993de7cc1dacd5921fd8d3cbbb4",
+    "inventory-window": "git://github.com/deathcap/inventory-window.git#d4e2a09b82dbae44d102090cc8bdfac02616a8dc",
     "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git#fb064ec4104d1e6796f1249d38a6b9058eb6dfd6",
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git#94113fbdf36c490d4a445d6cf7a4f2b413601139",
     "voxel-furnace": "git://github.com/deathcap/voxel-furnace.git#d67a6baf27b2e58c4d9634a0a67e2cb98b1030b7",

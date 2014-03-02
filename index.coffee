@@ -49,11 +49,7 @@ fuel = require 'voxel-fuel'
 main = () ->
   console.log 'voxpopuli starting'
 
-  if window? and window.performance && window.performance.timing
-    loadingTime = Date.now() - window.performance.timing.navigationStart
-    console.log "User-perceived page loading time: #{loadingTime / 1000}s"
-
-  fuel {require:require, exposeGlobal:true, engine:require('voxel-engine'), pluginOpts:
+  fuel {require:require, exposeGlobal:true, logLoadTime:true, engine:require('voxel-engine'), pluginOpts:
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
