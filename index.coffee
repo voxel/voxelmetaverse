@@ -44,7 +44,6 @@ require 'voxel-debug'
 require 'voxel-plugins-ui'
 require 'kb-bindings-ui'
 
-artpacks = require 'artpacks'
 fuel = require 'voxel-fuel'
 
 main = () ->
@@ -67,7 +66,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: artpacks ['ProgrammerArt-ResourcePack.zip']
+      artPacks: ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false

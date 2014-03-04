@@ -15,7 +15,6 @@
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#78be685d0a28c88943ad1f1079faf17fcce31bf7",
     "voxel-start": "git://github.com/deathcap/voxel-start.git#dcd0b139e495d4695af4ae4046ee1cce2d38425d",
     "voxel-zen": "git://github.com/deathcap/voxel-zen.git#70344f805fd61c6e780ef5d620e9452d4b0b4bde",
-    "artpacks": "git://github.com/deathcap/artpacks.git#f1c5b81660f2e23875b2d1473d79022703d9fa41",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#8059c499b3ce6c2efa3bd846f4970070bd17b36e",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#818665e8dd12a047e3fd05960d9b0d226a14937e",
     "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
