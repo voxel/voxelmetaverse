@@ -5,6 +5,7 @@ require 'voxel-registry'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
+require 'voxel-skyhook'
 require 'voxel-recipes'
 require 'voxel-webview'
 require 'voxel-workbench'
@@ -43,17 +44,12 @@ require 'voxel-debug'
 require 'voxel-plugins-ui'
 require 'kb-bindings-ui'
 
-artpacks = require 'artpacks'
 fuel = require 'voxel-fuel'
 
 main = () ->
   console.log 'voxpopuli starting'
 
-  if window? and window.performance && window.performance.timing
-    loadingTime = Date.now() - window.performance.timing.navigationStart
-    console.log "User-perceived page loading time: #{loadingTime / 1000}s"
-
-  fuel {require:require, exposeGlobal:true, pluginOpts:
+  fuel {require:require, exposeGlobal:true, logLoadTime:true, engine:require('voxel-engine'), pluginOpts:
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
@@ -70,7 +66,7 @@ main = () ->
       chunkDistance: 2
       materials: []  # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: artpacks ['ProgrammerArt-ResourcePack.zip']
+      artPacks: ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
@@ -112,6 +108,7 @@ main = () ->
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
+    'voxel-skyhook': {}
     'voxel-blockdata': {}
     'voxel-chest': {}
     'voxel-workbench': {}
