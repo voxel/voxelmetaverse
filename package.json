@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#fccb268d5d0d034f04f62e5eb784e5b911b96397",
-    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#5ad2284e2c5ee8ae815f574facfdffe6d699c96d",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#31b97a35599e0d96212f436bb3ceacbc38fe0c4f",
+    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#e8099e727ce2ace48b3281c17c9bf93c85d66849",
     "voxel-texture": "0.5.8",
-    "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#054b0be3bc3aab663e3dcc8d3b1d8cd5e5cb5ae3",
+    "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#ba003cba708d32f5169d78cd6bd1f3a5077c4c4e",
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#78be685d0a28c88943ad1f1079faf17fcce31bf7",
     "voxel-start": "git://github.com/deathcap/voxel-start.git#dcd0b139e495d4695af4ae4046ee1cce2d38425d",
     "voxel-zen": "git://github.com/deathcap/voxel-zen.git#70344f805fd61c6e780ef5d620e9452d4b0b4bde",
