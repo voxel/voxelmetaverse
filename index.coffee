@@ -5,6 +5,7 @@ require 'voxel-registry'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
+require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
 require 'voxel-webview'
@@ -108,6 +109,7 @@ main = () ->
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
+    'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true}
     'voxel-skyhook': {}
     'voxel-blockdata': {}
     'voxel-chest': {}

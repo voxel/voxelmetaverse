@@ -37,6 +37,7 @@
     "voxel-carry": "git://github.com/deathcap/voxel-carry.git#a5f8635d1c94e226689002cf53c52816ac2b0605",
     "voxel-bucket": "git://github.com/deathcap/voxel-bucket.git#9604b29b2db6dd057cb30a015829a3df31d4e2da",
     "voxel-fluid": "git://github.com/deathcap/voxel-fluid.git#42fd68601fa8165f84b91dc7bd3b5afaacb4713c",
+    "voxel-virus": "git://github.com/deathcap/voxel-virus.git#d133c3f3e81ba48d99c50e5bbdebb06da297a269",
     "voxel-skyhook": "git://github.com/deathcap/voxel-skyhook.git#c9b78a496bed8828269f8a8e5582ec0bf8dee942",
     "voxel-inventory-hotbar": "git://github.com/deathcap/voxel-inventory-hotbar.git#39ef1083773520fa28d3799606d22878a08f4969",
     "voxel-inventory-crafting": "git://github.com/deathcap/voxel-inventory-crafting.git#6aa1b05d6d8c0cc0f7d141ff9a59e2c866ccb83f",
