@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#d59de8e901644fbbb5a4895fa0e9f78b5de03b60",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#3a424083eff5b25255e283b4fb59c5b31ab24355",
     "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#e8099e727ce2ace48b3281c17c9bf93c85d66849",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#e5a7445e973c27d50f3ff0f39d0c0686839949ae",
