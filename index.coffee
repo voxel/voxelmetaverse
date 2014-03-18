@@ -32,6 +32,7 @@ require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-pickaxe'
+require 'voxel-wool'
 require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
@@ -116,6 +117,7 @@ main = () ->
     'voxel-workbench': {}
     'voxel-furnace': {}
     'voxel-pickaxe': {}
+    'voxel-wool': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
     'voxel-land': {populateTrees: true}

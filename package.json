@@ -53,6 +53,7 @@
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git#94113fbdf36c490d4a445d6cf7a4f2b413601139",
     "voxel-furnace": "git://github.com/deathcap/voxel-furnace.git#8dbbf92151987c6a954e99663ec8ce12bc4766f0",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#2b98648457a7b601e96a6ee53e6365b14cf95aa1",
+    "voxel-wool": "git://github.com/deathcap/voxel-wool.git#e331c29c6bd84fd2bf9e2304ac4636ab4eff195b",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#f9225bb325b03940370ea78f16e5adac9728adb3",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#8c2929068a62e0454a01cc1c129e9fae60450b7c",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#26907ee1f8b8eba2ebb8e0c604fb24fd4446d97f",
