@@ -33,6 +33,7 @@ require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-pickaxe'
 require 'voxel-wool'
+require 'voxel-pumpkin'
 require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
@@ -117,7 +118,8 @@ main = () ->
     'voxel-workbench': {}
     'voxel-furnace': {}
     'voxel-pickaxe': {}
-    'voxel-wool': {}
+    'voxel-wool': {onDemand: true} # off by default for now since takes up 16 blocks
+    'voxel-pumpkin': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
     'voxel-land': {populateTrees: true}
