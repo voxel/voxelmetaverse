@@ -49,6 +49,8 @@ require 'kb-bindings-ui'
 
 fuel = require 'voxel-fuel'
 
+ndarray = require 'ndarray'
+
 main = () ->
   console.log 'voxpopuli starting'
 
@@ -67,7 +69,7 @@ main = () ->
       useAtlas: true
       generateChunks: false
       chunkDistance: 2
-      materials: []  # added dynamically later
+      materials: ndarray([]) # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
       artPacks: ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
