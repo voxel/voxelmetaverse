@@ -113,7 +113,7 @@ main = () ->
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
-    'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true}
+    #'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true} # requires this.game.materials
     'voxel-skyhook': {}
     'voxel-blockdata': {}
     'voxel-chest': {}
