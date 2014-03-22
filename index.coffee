@@ -127,7 +127,7 @@ main = () ->
 
     'voxel-console': {}
     'voxel-commands': {}
-    'voxel-drop': {}
+    #'voxel-drop': {} # requires voxel-texture-shader
     'voxel-start': {}
     'voxel-zen': {}
 
@@ -139,7 +139,7 @@ main = () ->
     'voxel-health-bar': {}
     'voxel-health-fall': {}
     'voxel-food': {}
-    'voxel-sfx': {}
+    #'voxel-sfx': {} # requires voxel-texture-shader, game.materials artpacks
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-walk': {}
