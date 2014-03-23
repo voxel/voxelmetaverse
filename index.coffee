@@ -2,6 +2,7 @@
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
 require 'voxel-registry'
+require 'voxel-artpacks'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
@@ -103,9 +104,12 @@ main = () ->
         '/': 'console2'
         '.': 'console3'
 
+        'P': 'packs'
+
         'F1': 'zen'
 
     'voxel-registry': {}
+    'voxel-artpacks': {}
     'voxel-recipes': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
