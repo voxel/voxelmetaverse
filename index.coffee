@@ -38,6 +38,7 @@ require 'voxel-pumpkin'
 require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
+require 'voxel-decorative'
 require 'voxel-clientmc'
 require 'voxel-console'
 require 'voxel-commands'
@@ -127,6 +128,7 @@ main = () ->
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
     'voxel-land': {populateTrees: true}
+    'voxel-decorative': {}
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}

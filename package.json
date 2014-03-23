@@ -59,6 +59,7 @@
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#0f706067d04268e247da0e83ae3f42ee8e14a48a",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#8c2929068a62e0454a01cc1c129e9fae60450b7c",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#105a7351ae8c354c53064d32537dc492f07e034a",
+    "voxel-decorative": "git://github.com/deathcap/voxel-decorative.git#c667bdc191921faa0629fc5bb76d58710fa54f67",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#5d2fb6f5fb07b429eb3972b600f65b12013d4751",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#c05de3657e788b647829909002f010855a738ff0",
     "voxel-commands": "git://github.com/deathcap/voxel-commands.git#60effbb47e1d2d1611c27fa80fb2a03208429207"
