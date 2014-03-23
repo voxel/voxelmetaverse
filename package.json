@@ -12,6 +12,7 @@
     "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#e8099e727ce2ace48b3281c17c9bf93c85d66849",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#14b896931bd9b02739a0ad8a77f1851687eca75b",
+    "voxel-artpacks": "git://github.com/deathcap/voxel-artpacks.git#7da40a78eed0b28cc1fd52859522c7161d05903e",
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#c5daeb1401f2495bc373d1f6d602382296988d3a",
     "voxel-start": "git://github.com/deathcap/voxel-start.git#4c3356db85e29763cf7d46b432145fd6c454234b",
     "voxel-zen": "git://github.com/deathcap/voxel-zen.git#70344f805fd61c6e780ef5d620e9452d4b0b4bde",
