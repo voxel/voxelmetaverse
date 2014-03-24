@@ -39,6 +39,7 @@ require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-decorative'
+require 'voxel-inventory-creative'
 require 'voxel-clientmc'
 require 'voxel-console'
 require 'voxel-commands'
@@ -123,12 +124,13 @@ main = () ->
     'voxel-workbench': {}
     'voxel-furnace': {}
     'voxel-pickaxe': {}
-    'voxel-wool': {onDemand: true} # off by default for now since takes up 16 blocks
+    'voxel-wool': {}
     'voxel-pumpkin': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
+    'voxel-inventory-creative': {}
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
