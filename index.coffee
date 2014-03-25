@@ -100,7 +100,6 @@ main = () ->
         'Y': 'vr'
         'O': 'home'
         'E': 'inventory'
-        'C': 'gamemode'
 
         'T': 'console'
         '/': 'console2'

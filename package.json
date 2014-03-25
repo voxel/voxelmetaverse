@@ -50,7 +50,7 @@
     "itempile": "git://github.com/deathcap/itempile.git#0e90820649ec3f95a74f97007153a63a80eb8c0e",
     "inventory": "git://github.com/deathcap/inventory.git#544c8e69ae88d95cbdc35f9203848ec5dac359db",
     "inventory-window": "git://github.com/deathcap/inventory-window.git#e06dfe2d30ebfd00ca8f45eb443e01df21469b50",
-    "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git#7ae22ed449ceabd2c4d052e78117b39109197845",
+    "voxel-gamemode": "git://github.com/deathcap/voxel-gamemode.git#4cfd71723fdbf53b5230b1b87a4b2bb3a843aa76",
     "voxel-workbench": "git://github.com/deathcap/voxel-workbench.git#94113fbdf36c490d4a445d6cf7a4f2b413601139",
     "voxel-furnace": "git://github.com/deathcap/voxel-furnace.git#8dbbf92151987c6a954e99663ec8ce12bc4766f0",
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#94ab38c4f548361f613c4bb537ef1a8d6529c760",
@@ -63,7 +63,7 @@
     "voxel-inventory-creative": "git://github.com/deathcap/voxel-inventory-creative.git#2e3bdf87c7ca8d4cd3ca5ad11bf218207fa06616",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#5d2fb6f5fb07b429eb3972b600f65b12013d4751",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#c05de3657e788b647829909002f010855a738ff0",
-    "voxel-commands": "git://github.com/deathcap/voxel-commands.git#60effbb47e1d2d1611c27fa80fb2a03208429207"
+    "voxel-commands": "git://github.com/deathcap/voxel-commands.git#4d5f5b71deed80c9becb1b06bdacc4643e652b69"
   },
   "devDependencies": {
     "coffee-script": "1.6.3",
