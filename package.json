@@ -9,7 +9,7 @@
   "dependencies": {
     "ever": "0.0.3",
     "voxel-engine": "git://github.com/deathcap/voxel-engine.git#86a775f6bf2a291052e2ac164a3094da185f1358",
-    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#f7f329bca84c3bf50f9edd4b03d2c34a21296014",
+    "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#451b675a8d54b7a5e7bf149ba98c5e0016cdc84e",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#14b896931bd9b02739a0ad8a77f1851687eca75b",
     "voxel-artpacks": "git://github.com/deathcap/voxel-artpacks.git#db5647ca82e8faef54a7e8a45f2527396bf6b813",
@@ -18,7 +18,6 @@
     "voxel-zen": "git://github.com/deathcap/voxel-zen.git#70344f805fd61c6e780ef5d620e9452d4b0b4bde",
     "voxel-plugins": "git://github.com/deathcap/voxel-plugins.git#8059c499b3ce6c2efa3bd846f4970070bd17b36e",
     "voxel-plugins-ui": "git://github.com/deathcap/voxel-plugins-ui.git#818665e8dd12a047e3fd05960d9b0d226a14937e",
-    "voxel-oculus": "git://github.com/deathcap/voxel-oculus.git#ac4782759739f348cc553d959cf92c9bfdef0230",
     "voxel-highlight": "0.0.9",
     "voxel-voila": "git://github.com/deathcap/voxel-voila.git#f6a07738f441ff113765a7a44af87925803e8651",
     "voxel-player": "git://github.com/deathcap/voxel-player.git#53aee42993088470803bb271ce5774e1da0034ec",
