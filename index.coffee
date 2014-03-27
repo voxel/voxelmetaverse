@@ -15,7 +15,6 @@ require 'voxel-furnace'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-crafting'
-require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-voila'
 require 'voxel-player'
@@ -97,7 +96,6 @@ main = () ->
 
         # our extras
         'R': 'pov'
-        'Y': 'vr'
         'O': 'home'
         'E': 'inventory'
 
@@ -139,8 +137,6 @@ main = () ->
     'voxel-zen': {}
 
 
-    # note: onDemand so doesn't automatically enable
-    'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
     'voxel-health': {}
     'voxel-health-bar': {}
