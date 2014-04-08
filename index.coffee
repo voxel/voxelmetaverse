@@ -47,6 +47,7 @@ require 'voxel-start'
 require 'voxel-zen'
 require 'voxel-debug'
 require 'voxel-plugins-ui'
+require 'voxel-keys'
 require 'kb-bindings-ui'
 
 fuel = require 'voxel-fuel'
@@ -165,6 +166,7 @@ main = () ->
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
     'voxel-voila': {}
+    'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
