@@ -9,6 +9,7 @@ require 'voxel-fluid'
 require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
+require 'voxel-quarry'
 require 'voxel-webview'
 require 'voxel-workbench'
 require 'voxel-furnace'
@@ -47,6 +48,7 @@ require 'voxel-start'
 require 'voxel-zen'
 require 'voxel-debug'
 require 'voxel-plugins-ui'
+require 'voxel-keys'
 require 'kb-bindings-ui'
 
 fuel = require 'voxel-fuel'
@@ -110,6 +112,7 @@ main = () ->
     'voxel-registry': {}
     'voxel-artpacks': {}
     'voxel-recipes': {}
+    'voxel-quarry': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
@@ -165,6 +168,7 @@ main = () ->
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
     'voxel-voila': {}
+    'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
