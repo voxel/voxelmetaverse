@@ -128,7 +128,7 @@ main = () ->
     'voxel-pickaxe': {}
     'voxel-wool': {}
     'voxel-pumpkin': {}
-    'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
+    #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
 
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
@@ -165,11 +165,11 @@ main = () ->
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
     'voxel-harvest': {}
     # highlight blocks when you look at them
-    'voxel-highlight':
-      color:  0xff0000
-      distance: 8,
-      adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
-    'voxel-voila': {}
+    #'voxel-highlight': # creates three.js mesh
+    #  color:  0xff0000
+    #  distance: 8,
+    #  adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
+    #'voxel-voila': {} # depends on voxel-highlight
     'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
