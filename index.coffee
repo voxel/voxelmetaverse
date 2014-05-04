@@ -2,19 +2,20 @@
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-engine'
 require 'voxel-registry'
+require 'voxel-artpacks'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
 require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
+require 'voxel-quarry'
 require 'voxel-webview'
 require 'voxel-workbench'
 require 'voxel-furnace'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-crafting'
-require 'voxel-oculus'
 require 'voxel-highlight'
 require 'voxel-voila'
 require 'voxel-player'
@@ -37,6 +38,8 @@ require 'voxel-pumpkin'
 require 'voxel-blockdata'
 require 'voxel-daylight'
 require 'voxel-land'
+require 'voxel-decorative'
+require 'voxel-inventory-creative'
 require 'voxel-clientmc'
 require 'voxel-console'
 require 'voxel-commands'
@@ -45,6 +48,7 @@ require 'voxel-start'
 require 'voxel-zen'
 require 'voxel-debug'
 require 'voxel-plugins-ui'
+require 'voxel-keys'
 require 'kb-bindings-ui'
 
 fuel = require 'voxel-fuel'
@@ -96,19 +100,21 @@ main = () ->
 
         # our extras
         'R': 'pov'
-        'Y': 'vr'
         'O': 'home'
         'E': 'inventory'
-        'C': 'gamemode'
 
         'T': 'console'
         '/': 'console2'
         '.': 'console3'
 
+        'P': 'packs'
+
         'F1': 'zen'
 
     'voxel-registry': {}
+    'voxel-artpacks': {}
     'voxel-recipes': {}
+    'voxel-quarry': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
@@ -120,11 +126,13 @@ main = () ->
     'voxel-workbench': {}
     'voxel-furnace': {}
     'voxel-pickaxe': {}
-    'voxel-wool': {onDemand: true} # off by default for now since takes up 16 blocks
+    'voxel-wool': {}
     'voxel-pumpkin': {}
     'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff}
 
     'voxel-land': {populateTrees: true}
+    'voxel-decorative': {}
+    'voxel-inventory-creative': {}
     'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
 
     'voxel-console': {}
@@ -134,8 +142,6 @@ main = () ->
     'voxel-zen': {}
 
 
-    # note: onDemand so doesn't automatically enable
-    'voxel-oculus': { distortion: 0.2, separation: 0.5, onDemand: true } # TODO: switch to voxel-oculus-vr? https://github.com/vladikoff/voxel-oculus-vr?source=c - closer matches threejs example
     'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
     'voxel-health': {}
     'voxel-health-bar': {}
@@ -164,6 +170,7 @@ main = () ->
       distance: 8,
       adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
     'voxel-voila': {}
+    'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
     'voxel-debug': {}
