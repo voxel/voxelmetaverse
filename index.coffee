@@ -10,6 +10,7 @@ require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
 require 'voxel-quarry'
+require 'voxel-measure'
 require 'voxel-webview'
 require 'voxel-workbench'
 require 'voxel-furnace'
@@ -113,6 +114,7 @@ main = () ->
     'voxel-artpacks': {}
     'voxel-recipes': {}
     'voxel-quarry': {}
+    'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
