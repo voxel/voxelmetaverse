@@ -98,7 +98,7 @@ main = () ->
         '<tab>': 'sprint'
 
         # our extras
-        'R': 'pov'
+        'F5': 'pov'
         'O': 'home'
         'E': 'inventory'
 
