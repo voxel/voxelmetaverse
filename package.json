@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#df8a3dac5dc60c7370fa15ff2700d6510c8020b0",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#66651c6f7fecf4e7e696aab36c7e33ea4733553b",
     "voxel-fuel": "git://github.com/deathcap/voxel-fuel.git#fd7a8a2795edc6dd2545d1170f400a7be030e89f",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#ccf1e4a370802372f9704046ffe5b2106d976a7a",
@@ -60,7 +60,7 @@
     "voxel-pumpkin": "git://github.com/deathcap/voxel-pumpkin.git#62784c34ddf6684b60caa1452cfc77a4509c62cd",
     "voxel-registry": "git://github.com/deathcap/voxel-registry.git#6e59ce8ecbc6277595a3776ff8b6a0396c161d86",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#8c2929068a62e0454a01cc1c129e9fae60450b7c",
-    "voxel-land": "git://github.com/deathcap/voxel-land.git#c01750c3d44e57a33f041b99014e74565155ffe8",
+    "voxel-land": "git://github.com/deathcap/voxel-land.git#2e18e31131e5cd5e28af67ba2f01e3f787684776",
     "voxel-decorative": "git://github.com/deathcap/voxel-decorative.git#9859e7683e860afd09592bb823a39462a3880f09",
     "voxel-inventory-creative": "git://github.com/deathcap/voxel-inventory-creative.git#d7071a9873425cb55103604a3f274b3237d5a268",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#5d2fb6f5fb07b429eb3972b600f65b12013d4751",
