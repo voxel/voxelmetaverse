@@ -1,6 +1,5 @@
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
-require 'voxel-engine'
 require 'voxel-registry'
 require 'voxel-artpacks'
 require 'voxel-carry'
@@ -10,6 +9,7 @@ require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
 require 'voxel-quarry'
+require 'voxel-measure'
 require 'voxel-webview'
 require 'voxel-workbench'
 require 'voxel-furnace'
@@ -51,14 +51,14 @@ require 'voxel-plugins-ui'
 require 'voxel-keys'
 require 'kb-bindings-ui'
 
-fuel = require 'voxel-fuel'
+createEngine = require 'voxel-engine'
 
 ndarray = require 'ndarray'
 
 main = () ->
   console.log 'voxpopuli starting'
 
-  fuel {require:require, exposeGlobal:true, logLoadTime:true, engine:require('voxel-engine'), pluginOpts:
+  createEngine {require:require, exposeGlobal:true, pluginOpts:
     'voxel-engine':
       appendDocument: true
       exposeGlobal: true  # for debugging
@@ -99,7 +99,7 @@ main = () ->
         '<tab>': 'sprint'
 
         # our extras
-        'R': 'pov'
+        'F5': 'pov'
         'O': 'home'
         'E': 'inventory'
 
@@ -115,6 +115,7 @@ main = () ->
     'voxel-artpacks': {}
     'voxel-recipes': {}
     'voxel-quarry': {}
+    'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
