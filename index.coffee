@@ -114,7 +114,7 @@ main = () ->
     'voxel-registry': {}
     'voxel-artpacks': {}
     'voxel-recipes': {}
-    'voxel-quarry': {}
+    #'voxel-quarry': {} # requires voxel-harvest
     'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
@@ -128,7 +128,7 @@ main = () ->
     'voxel-furnace': {}
     'voxel-pickaxe': {}
     'voxel-wool': {}
-    'voxel-pumpkin': {}
+    #'voxel-pumpkin': {} # requires voxel-use
     #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
 
     'voxel-land': {populateTrees: true}
@@ -139,32 +139,32 @@ main = () ->
     'voxel-console': {}
     'voxel-commands': {}
     #'voxel-drop': {} # requires voxel-texture-shader
-    'voxel-start': {}
+    #'voxel-start': {} # requires interact
     'voxel-zen': {}
 
 
-    'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]}
+    #'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]} # three.js
     'voxel-health': {}
     'voxel-health-bar': {}
-    'voxel-health-fall': {}
+    #'voxel-health-fall': {} # requires voxel-player
     'voxel-food': {}
     #'voxel-sfx': {} # requires voxel-texture-shader, game.materials artpacks
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
-    'voxel-walk': {}
+    #'voxel-walk': {} # requires controls target
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-crafting': {}
-    'voxel-reach': { reachDistance: 8 }
+    #'voxel-reach': { reachDistance: 8 } # requires interact
     # left-click hold to mine
-    'voxel-mine':
-      instaMine: false
-      progressTexturesPrefix: 'destroy_stage_'
-      progressTexturesCount: 9
+    #'voxel-mine': # requires voxel-reach, and currently three.js mesh
+    #  instaMine: false
+    #  progressTexturesPrefix: 'destroy_stage_'
+    #  progressTexturesCount: 9
     # right-click to place block (etc.)
-    'voxel-use': {}
+    #'voxel-use': {} # requires voxel-reach
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-    'voxel-harvest': {}
+    #'voxel-harvest': {} # requires voxel-mine
     # highlight blocks when you look at them
     #'voxel-highlight': # creates three.js mesh
     #  color:  0xff0000
@@ -174,7 +174,7 @@ main = () ->
     'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
-    'voxel-debug': {}
+    #'voxel-debug': {} # heavily three.js dependent
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
   }
