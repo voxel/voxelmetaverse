@@ -128,7 +128,7 @@ main = () ->
     'voxel-furnace': {}
     'voxel-pickaxe': {}
     'voxel-wool': {}
-    #'voxel-pumpkin': {} # requires voxel-use
+    'voxel-pumpkin': {}
     #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
 
     'voxel-land': {populateTrees: true}
@@ -155,14 +155,14 @@ main = () ->
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-crafting': {}
-    #'voxel-reach': { reachDistance: 8 } # requires interact
+    'voxel-reach': { reachDistance: 8 }
     # left-click hold to mine
-    #'voxel-mine': # requires voxel-reach, and currently three.js mesh
+    #'voxel-mine': # requires three.js mesh for overlay
     #  instaMine: false
     #  progressTexturesPrefix: 'destroy_stage_'
     #  progressTexturesCount: 9
     # right-click to place block (etc.)
-    #'voxel-use': {} # requires voxel-reach
+    'voxel-use': {}
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
     #'voxel-harvest': {} # requires voxel-mine
     # highlight blocks when you look at them
