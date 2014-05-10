@@ -113,7 +113,12 @@ main = () ->
     # built-in plugins
     'voxel-registry': {}
     'voxel-stitch': {},
-    'voxel-shader': {},
+    'voxel-shader':
+      #cameraFOV: 45
+      #cameraFOV: 70
+      cameraFOV: 90
+      #cameraFOV: 110
+
     'voxel-mesher': {},
     'game-shell-fps-camera': {},
 
