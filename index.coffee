@@ -157,14 +157,14 @@ main = () ->
     'voxel-inventory-crafting': {}
     'voxel-reach': { reachDistance: 8 }
     # left-click hold to mine
-    #'voxel-mine': # requires three.js mesh for overlay
-    #  instaMine: false
-    #  progressTexturesPrefix: 'destroy_stage_'
-    #  progressTexturesCount: 9
+    'voxel-mine':
+      instaMine: false
+      progressTexturesPrefix: 'destroy_stage_'
+      progressTexturesCount: 9
     # right-click to place block (etc.)
     'voxel-use': {}
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
-    #'voxel-harvest': {} # requires voxel-mine
+    'voxel-harvest': {}
     # highlight blocks when you look at them
     #'voxel-highlight': # creates three.js mesh
     #  color:  0xff0000

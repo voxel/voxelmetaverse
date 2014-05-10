@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#8d5355e6cddb5d4776924f8b6e63f8b9e554db5b",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#104ef59f709c5d070d87ef146736aee6a8f82403",
     "voxel-texture": "0.5.8",
     "voxel-texture-shader": "git://github.com/deathcap/voxel-texture-shader.git#ccf1e4a370802372f9704046ffe5b2106d976a7a",
     "voxel-artpacks": "git://github.com/deathcap/voxel-artpacks.git#1a4437b980f973bea6b2584680784360b64bf991",
@@ -29,7 +29,7 @@
     "voxel-walk": "git://github.com/deathcap/voxel-walk.git#5480af3d7fc7fed78df59827b97870ab42043e45",
     "voxel-sprint": "git://github.com/deathcap/voxel-sprint.git#84082f70a0c3706137ad6ad26d58fd8a32ac562c",
     "voxel-reach": "git://github.com/deathcap/voxel-reach.git#6f4fd4e21c39c18b0b40cd27f7fa48887e0e3d99",
-    "voxel-mine": "git://github.com/deathcap/voxel-mine.git#03535be90f5ab5b88da4b69f2ad7bfa2002d4a63",
+    "voxel-mine": "git://github.com/deathcap/voxel-mine.git#1f8c73d0f2fcb9797c3bc3335ee2f15497946997",
     "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git#10763697c6107b11a97c8a898783fe9c0158e058",
     "voxel-use": "git://github.com/deathcap/voxel-use.git#a97725a5ddf2700e218760461e879c6eacddd6ca",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git#c9d038dc66597eab446b248f138711dc3ba2fe11",
