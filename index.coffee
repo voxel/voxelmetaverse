@@ -1,6 +1,5 @@
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
-require 'voxel-registry'
 require 'voxel-artpacks'
 require 'voxel-carry'
 require 'voxel-bucket'
@@ -111,7 +110,14 @@ main = () ->
 
         'F1': 'zen'
 
+    # built-in plugins
     'voxel-registry': {}
+    'voxel-stitch': {},
+    'voxel-shader': {},
+    'voxel-mesher': {},
+    'game-shell-fps-camera': {},
+
+
     'voxel-artpacks': {}
     'voxel-recipes': {}
     #'voxel-quarry': {} # requires voxel-harvest

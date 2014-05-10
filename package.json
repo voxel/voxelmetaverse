@@ -57,7 +57,6 @@
     "voxel-pickaxe": "git://github.com/deathcap/voxel-pickaxe.git#65b2a9b5be910154a654d9931aa249c5a7f215ae",
     "voxel-wool": "git://github.com/deathcap/voxel-wool.git#c33cb8827353acbd26069442bcba1c6485ffb11c",
     "voxel-pumpkin": "git://github.com/deathcap/voxel-pumpkin.git#8581bc0daddfec05dab8c17d676605a97b199c12",
-    "voxel-registry": "git://github.com/deathcap/voxel-registry.git#9dbd5c89c5437b57eaa003e1ace3f0c3f1685b16",
     "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#8c2929068a62e0454a01cc1c129e9fae60450b7c",
     "ndarray": "^1.0.10",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#14a48c4b71cdf881adc5ba67ec63c2d996f053a7",
