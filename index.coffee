@@ -1,6 +1,8 @@
 
 # plugins (loaded by voxel-plugins; listed here for browserify)
 require 'voxel-artpacks'
+require 'voxel-wireframe'
+require 'voxel-chunkborder'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
@@ -63,11 +65,6 @@ main = () ->
       appendDocument: true
       exposeGlobal: true  # for debugging
 
-      texture_modules: [
-        require 'voxel-texture-shader'
-        require 'voxel-texture'
-      ]
-
       lightsDisabled: true
       arrayTypeSize: 2  # arrayType: Uint16Array
       useAtlas: true
@@ -125,6 +122,8 @@ main = () ->
 
 
     'voxel-artpacks': {}
+    'voxel-wireframe': {}
+    'voxel-chunkborder': {}
     'voxel-recipes': {}
     #'voxel-quarry': {} # requires voxel-harvest
     'voxel-measure': {}
