@@ -46,6 +46,7 @@ require 'voxel-drop'
 require 'voxel-start'
 require 'voxel-zen'
 require 'voxel-debug'
+require 'camera-debug'
 require 'voxel-plugins-ui'
 require 'voxel-keys'
 require 'kb-bindings-ui'
@@ -186,6 +187,7 @@ main = () ->
 
     # the GUI window (built-in toggle with 'H')
     #'voxel-debug': {} # heavily three.js dependent
+    'camera-debug': {}
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
   }
