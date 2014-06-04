@@ -34,6 +34,7 @@ require 'voxel-harvest'
 require 'voxel-use'
 require 'voxel-reach'
 require 'voxel-pickaxe'
+require 'voxel-hammer'
 require 'voxel-wool'
 require 'voxel-pumpkin'
 require 'voxel-blockdata'
@@ -138,6 +139,7 @@ main = () ->
     'voxel-workbench': {}
     'voxel-furnace': {}
     'voxel-pickaxe': {}
+    'voxel-hammer': {}
     'voxel-wool': {}
     'voxel-pumpkin': {}
     #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
