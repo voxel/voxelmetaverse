@@ -3,6 +3,7 @@
 require 'voxel-artpacks'
 require 'voxel-wireframe'
 require 'voxel-chunkborder'
+require 'voxel-outline'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
@@ -17,7 +18,6 @@ require 'voxel-furnace'
 require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-crafting'
-require 'voxel-highlight'
 require 'voxel-voila'
 require 'voxel-player'
 require 'voxel-health'
@@ -125,6 +125,7 @@ main = () ->
     'voxel-artpacks': {}
     'voxel-wireframe': {}
     'voxel-chunkborder': {}
+    'voxel-outline': {}
     'voxel-recipes': {}
     #'voxel-quarry': {} # requires voxel-harvest
     'voxel-measure': {}
@@ -178,12 +179,7 @@ main = () ->
     'voxel-use': {}
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
     'voxel-harvest': {}
-    # highlight blocks when you look at them
-    #'voxel-highlight': # creates three.js mesh
-    #  color:  0xff0000
-    #  distance: 8,
-    #  adjacentActive: () -> false   # don't hold <Ctrl> for block placement (right-click instead, 'reach' plugin) # TODO: not serializable, problem?
-    #'voxel-voila': {} # depends on voxel-highlight
+    'voxel-voila': {}
     'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
