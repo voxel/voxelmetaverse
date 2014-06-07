@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#aca9bc943f89fdec3166841d98c44466768f09b2",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#ff3d46049b57d90ea0ca9b84c9351f74bde96d0d",
     "voxel-artpacks": "git://github.com/deathcap/voxel-artpacks.git#1a4437b980f973bea6b2584680784360b64bf991",
     "voxel-wireframe": "git://github.com/deathcap/voxel-wireframe.git#a121dbeeeacb4563aa2ec8a55f0ba32f52077b50",
     "voxel-chunkborder": "git://github.com/deathcap/voxel-chunkborder.git#841d517d657a648fc8e35bf74ef169ad40286042",
@@ -33,7 +33,7 @@
     "voxel-harvest": "git://github.com/deathcap/voxel-harvest.git#b8504237a67acf9c8d0845fd70189253555599bd",
     "voxel-use": "git://github.com/deathcap/voxel-use.git#dcb5a9ee231659f5692dbf17e694f3fee7f14928",
     "voxel-debug": "git://github.com/deathcap/voxel-debug.git#c9d038dc66597eab446b248f138711dc3ba2fe11",
-    "camera-debug": "git://github.com/deathcap/camera-debug.git#5e7b5911f4f1822398f800f30c421d52fb3761d6",
+    "camera-debug": "git://github.com/deathcap/camera-debug.git#0a3fce5675dcb02dad791ffe6cadc2dada68aad3",
     "voxel-carry": "git://github.com/deathcap/voxel-carry.git#a464d4dd24641e938665ecedf5d283e6740f7567",
     "voxel-bucket": "git://github.com/deathcap/voxel-bucket.git#b5f9e750c80732b93d86327559433f6e68d36564",
     "voxel-fluid": "git://github.com/deathcap/voxel-fluid.git#67e59f53efa362a019f56cec7f4da63cdd567249",
