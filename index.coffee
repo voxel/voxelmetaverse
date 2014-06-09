@@ -29,6 +29,7 @@ require 'voxel-fly'
 require 'voxel-gamemode'
 require 'voxel-walk'
 require 'voxel-sprint'
+require 'voxel-decals'
 require 'voxel-mine'
 require 'voxel-harvest'
 require 'voxel-use'
@@ -170,6 +171,7 @@ main = () ->
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-crafting': {}
     'voxel-reach': { reachDistance: 8 }
+    'voxel-decals': {}
     # left-click hold to mine
     'voxel-mine':
       instaMine: false
