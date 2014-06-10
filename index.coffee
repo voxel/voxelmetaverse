@@ -161,7 +161,7 @@ main = () ->
     'voxel-health-bar': {}
     #'voxel-health-fall': {} # requires voxel-player
     'voxel-food': {}
-    #'voxel-sfx': {} # requires voxel-texture-shader, game.materials artpacks
+    'voxel-sfx': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     #'voxel-walk': {} # requires controls target
