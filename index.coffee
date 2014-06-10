@@ -128,7 +128,7 @@ main = () ->
     'voxel-chunkborder': {}
     'voxel-outline': {}
     'voxel-recipes': {}
-    #'voxel-quarry': {} # requires voxel-harvest
+    'voxel-quarry': {}
     'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
