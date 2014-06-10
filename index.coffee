@@ -39,7 +39,6 @@ require 'voxel-hammer'
 require 'voxel-wool'
 require 'voxel-pumpkin'
 require 'voxel-blockdata'
-require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-decorative'
 require 'voxel-inventory-creative'
@@ -144,7 +143,6 @@ main = () ->
     'voxel-hammer': {}
     'voxel-wool': {}
     'voxel-pumpkin': {}
-    #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
 
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
