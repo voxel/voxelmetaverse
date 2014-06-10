@@ -148,7 +148,7 @@ main = () ->
 
     'voxel-console': {}
     'voxel-commands': {}
-    #'voxel-drop': {} # requires voxel-texture-shader
+    'voxel-drop': {}
     #'voxel-start': {} # requires interact
     'voxel-zen': {}
 
