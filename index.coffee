@@ -39,7 +39,6 @@ require 'voxel-hammer'
 require 'voxel-wool'
 require 'voxel-pumpkin'
 require 'voxel-blockdata'
-require 'voxel-daylight'
 require 'voxel-land'
 require 'voxel-decorative'
 require 'voxel-inventory-creative'
@@ -57,8 +56,6 @@ require 'kb-bindings-ui'
 
 createEngine = require 'voxel-engine'
 
-ndarray = require 'ndarray'
-
 main = () ->
   console.log 'voxpopuli starting'
 
@@ -72,7 +69,6 @@ main = () ->
       useAtlas: true
       generateChunks: false
       chunkDistance: 2
-      materials: ndarray([]) # added dynamically later
       texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
       artPacks: ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
@@ -128,7 +124,7 @@ main = () ->
     'voxel-chunkborder': {}
     'voxel-outline': {}
     'voxel-recipes': {}
-    #'voxel-quarry': {} # requires voxel-harvest
+    'voxel-quarry': {}
     'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
@@ -144,7 +140,6 @@ main = () ->
     'voxel-hammer': {}
     'voxel-wool': {}
     'voxel-pumpkin': {}
-    #'voxel-daylight': {ambientColor: 0x888888, directionalColor: 0xffffff} # adds three.js lights
 
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
@@ -163,7 +158,7 @@ main = () ->
     'voxel-health-bar': {}
     #'voxel-health-fall': {} # requires voxel-player
     'voxel-food': {}
-    #'voxel-sfx': {} # requires voxel-texture-shader, game.materials artpacks
+    'voxel-sfx': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     #'voxel-walk': {} # requires controls target

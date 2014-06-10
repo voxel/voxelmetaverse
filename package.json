@@ -8,10 +8,10 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#c3aa0e75d878780bb71787e46e81ff1bf450c725",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#26f5099c12c3f8b1dc6216e596f4cf070c8ba318",
     "voxel-artpacks": "git://github.com/deathcap/voxel-artpacks.git#1a4437b980f973bea6b2584680784360b64bf991",
     "voxel-wireframe": "git://github.com/deathcap/voxel-wireframe.git#3ddb129732d70a80b0f1c9a90d1140de0102a81e",
-    "voxel-chunkborder": "git://github.com/deathcap/voxel-chunkborder.git#b30091961d716a9d8e5cf0628f9e11ade5dae2e8",
+    "voxel-chunkborder": "git://github.com/deathcap/voxel-chunkborder.git#c5865aead84553b7cc61137c5a9850feff4a9827",
     "voxel-outline": "git://github.com/deathcap/voxel-outline.git#e0d7d0ea2b44750ac3de8b6617aec5a0e1445e42",
     "voxel-drop": "git://github.com/deathcap/voxel-drop.git#cf364221448f1303f455e9f708b6bdc115e766af",
     "voxel-start": "git://github.com/deathcap/voxel-start.git#a2ec261e772340f8a874869c360d1fd43bd71f04",
@@ -60,13 +60,11 @@
     "voxel-hammer": "git://github.com/deathcap/voxel-hammer.git#a3c50ac140ece682054c46bbe7426c67486c4812",
     "voxel-wool": "git://github.com/deathcap/voxel-wool.git#21638a55ab3821b804dc175127582415e922e85a",
     "voxel-pumpkin": "git://github.com/deathcap/voxel-pumpkin.git#8581bc0daddfec05dab8c17d676605a97b199c12",
-    "voxel-daylight": "git://github.com/deathcap/voxel-daylight.git#03637fc3bac579dc7feadf0130ff6fe879e783fe",
-    "ndarray": "^1.0.10",
     "voxel-land": "git://github.com/deathcap/voxel-land.git#6eb4d761d7f496028244c5a56e090edb31e78934",
     "voxel-decorative": "git://github.com/deathcap/voxel-decorative.git#c9476268358819442ac4a7ad547e9f608bb5c1ff",
     "voxel-inventory-creative": "git://github.com/deathcap/voxel-inventory-creative.git#6e3d02f65cbe51872c702732432e2a20c9472b0c",
     "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#c020c980a0df5914b15ff5bda7273b2a13f9d0f7",
-    "voxel-console": "git://github.com/deathcap/voxel-console.git#ff4366d16caefd2a52a21291c7afc98411800d1d",
+    "voxel-console": "git://github.com/deathcap/voxel-console.git#25a9137789405275ea6a9253205ef74596099ed8",
     "voxel-commands": "git://github.com/deathcap/voxel-commands.git#871b90334b3596cff36f3c6c562cc23eb9044b24"
   },
   "devDependencies": {
