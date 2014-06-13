@@ -108,7 +108,8 @@ main = () ->
 
     # built-in plugins
     'voxel-registry': {}
-    'voxel-stitch': {},
+    'voxel-stitch':
+      artPacks: 'ProgrammerArt-ResourcePack.zip'
     'voxel-shader':
       #cameraFOV: 45
       #cameraFOV: 70
