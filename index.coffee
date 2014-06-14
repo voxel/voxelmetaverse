@@ -39,6 +39,7 @@ require 'voxel-hammer'
 require 'voxel-wool'
 require 'voxel-pumpkin'
 require 'voxel-blockdata'
+require 'voxel-glass'
 require 'voxel-land'
 require 'voxel-decorative'
 require 'voxel-inventory-creative'
@@ -108,7 +109,8 @@ main = () ->
 
     # built-in plugins
     'voxel-registry': {}
-    'voxel-stitch': {},
+    'voxel-stitch':
+      artPacks: 'ProgrammerArt-ResourcePack.zip'
     'voxel-shader':
       #cameraFOV: 45
       #cameraFOV: 70
@@ -141,6 +143,7 @@ main = () ->
     'voxel-wool': {}
     'voxel-pumpkin': {}
 
+    'voxel-glass': {}
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
     'voxel-inventory-creative': {}
@@ -148,7 +151,7 @@ main = () ->
 
     'voxel-console': {}
     'voxel-commands': {}
-    #'voxel-drop': {} # requires voxel-texture-shader
+    'voxel-drop': {}
     #'voxel-start': {} # requires interact
     'voxel-zen': {}
 
