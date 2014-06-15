@@ -49,6 +49,7 @@
     "voxel-quarry": "git://github.com/deathcap/voxel-quarry.git#da570253e3703ba604388f612113805e00dfe608",
     "voxel-measure": "git://github.com/deathcap/voxel-measure.git#a77b8cf6f153d50526f1b5a0ff84fcb59c3daebc",
     "voxel-keys": "git://github.com/deathcap/voxel-keys.git#46a361bd808cdba44ba0eda2164d31946c48d9ba",
+    "voxel-fullscreen": "git://github.com/deathcap/voxel-fullscreen.git#6d97098020af146aa88cd33dc2e6fd9d1ad54e2e",
     "kb-bindings-ui": "git://github.com/deathcap/kb-bindings-ui.git#4611bf3ed0000094b77758d839fb059e73f87ec8",
     "itempile": "git://github.com/deathcap/itempile.git#0e90820649ec3f95a74f97007153a63a80eb8c0e",
     "inventory": "git://github.com/deathcap/inventory.git#ec9e6a7e41c7682f941a6eee680d5fbd8f614e4a",
