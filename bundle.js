@@ -62556,15 +62556,13 @@ Skyhook.prototype.disable = function() {
 
 
 Skyhook.prototype.use = function(held, target) {
-  var avatar = this.game.plugins.get('voxel-player').avatar;
+  var avatar = this.game.controls.target().avatar;
 
   var camera = this.game.cameraVector();
 
   var x = Math.round(avatar.position.x) + Math.round(camera[0]) * this.distance;
   var y = Math.round(avatar.position.y) + Math.round(camera[1]) * this.distance;
   var z = Math.round(avatar.position.z) + Math.round(camera[2]) * this.distance;
-
-  console.log('USING SKYHOOK',x,y,z);
 
   if (this.game.getBlock([x, y, z]) !== 0) {
     console.log('skyhook blocked');
