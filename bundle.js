@@ -245,7 +245,7 @@ main = function() {
 main();
 
 
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":24,"voxel-chest":30,"voxel-chunkborder":69,"voxel-clientmc":96,"voxel-commands":112,"voxel-console":119,"voxel-debug":126,"voxel-decals":140,"voxel-decorative":168,"voxel-drop":170,"voxel-engine":195,"voxel-fluid":449,"voxel-fly":451,"voxel-food":452,"voxel-furnace":453,"voxel-gamemode":492,"voxel-glass":501,"voxel-hammer":502,"voxel-harvest":503,"voxel-health":509,"voxel-health-bar":507,"voxel-health-fall":508,"voxel-inventory-crafting":511,"voxel-inventory-creative":550,"voxel-inventory-hotbar":589,"voxel-keys":601,"voxel-land":605,"voxel-measure":623,"voxel-mine":626,"voxel-outline":655,"voxel-pickaxe":660,"voxel-player":661,"voxel-plugins-ui":666,"voxel-pumpkin":671,"voxel-quarry":672,"voxel-reach":678,"voxel-recipes":685,"voxel-sfx":695,"voxel-skyhook":696,"voxel-sprint":697,"voxel-start":698,"voxel-use":699,"voxel-virus":701,"voxel-voila":702,"voxel-walk":703,"voxel-webview":705,"voxel-wireframe":732,"voxel-wool":734,"voxel-workbench":770,"voxel-zen":771}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":24,"voxel-chest":29,"voxel-chunkborder":68,"voxel-clientmc":95,"voxel-commands":111,"voxel-console":118,"voxel-debug":125,"voxel-decals":139,"voxel-decorative":167,"voxel-drop":169,"voxel-engine":193,"voxel-fluid":446,"voxel-fly":448,"voxel-food":449,"voxel-furnace":450,"voxel-gamemode":489,"voxel-glass":497,"voxel-hammer":504,"voxel-harvest":505,"voxel-health":511,"voxel-health-bar":509,"voxel-health-fall":510,"voxel-inventory-crafting":513,"voxel-inventory-creative":552,"voxel-inventory-hotbar":591,"voxel-keys":604,"voxel-land":608,"voxel-measure":626,"voxel-mine":629,"voxel-outline":658,"voxel-pickaxe":663,"voxel-player":664,"voxel-plugins-ui":669,"voxel-pumpkin":674,"voxel-quarry":675,"voxel-reach":681,"voxel-recipes":688,"voxel-sfx":698,"voxel-skyhook":699,"voxel-sprint":700,"voxel-start":701,"voxel-use":702,"voxel-virus":704,"voxel-voila":705,"voxel-walk":706,"voxel-webview":708,"voxel-wireframe":735,"voxel-wool":737,"voxel-workbench":773,"voxel-zen":774}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5582,7 +5582,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":792}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":795}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6217,7 +6217,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789}],22:[function(require,module,exports){
+},{"buffer":792}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var Object_keys = typeof Object.keys === 'function'
     ? Object.keys
@@ -6492,15 +6492,143 @@ function Carry(game, opts) {
 
 }).call(this);
 
-},{"deep-equal":26,"events":792,"itempile":27}],26:[function(require,module,exports){
+},{"deep-equal":26,"events":795,"itempile":27}],26:[function(require,module,exports){
 module.exports=require(22)
 },{}],27:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":28,"deep-equal":29}],28:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],29:[function(require,module,exports){
-module.exports=require(22)
-},{}],30:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":28,"deep-equal":26}],28:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+function objectToString(o) {
+  return Object.prototype.toString.call(o);
+}
+
+// shim for Node's 'util' package
+// DO NOT REMOVE THIS! It is required for compatibility with EnderJS (http://enderjs.com/).
+var util = {
+  isArray: function (ar) {
+    return Array.isArray(ar) || (typeof ar === 'object' && objectToString(ar) === '[object Array]');
+  },
+  isDate: function (d) {
+    return typeof d === 'object' && objectToString(d) === '[object Date]';
+  },
+  isRegExp: function (re) {
+    return typeof re === 'object' && objectToString(re) === '[object RegExp]';
+  },
+  getRegExpFlags: function (re) {
+    var flags = '';
+    re.global && (flags += 'g');
+    re.ignoreCase && (flags += 'i');
+    re.multiline && (flags += 'm');
+    return flags;
+  }
+};
+
+
+if (typeof module === 'object')
+  module.exports = clone;
+
+/**
+ * Clones (copies) an Object using deep copying.
+ *
+ * This function supports circular references by default, but if you are certain
+ * there are no circular references in your object, you can save some CPU time
+ * by calling clone(obj, false).
+ *
+ * Caution: if `circular` is false and `parent` contains circular references,
+ * your program may enter an infinite loop and crash.
+ *
+ * @param `parent` - the object to be cloned
+ * @param `circular` - set to true if the object to be cloned may contain
+ *    circular references. (optional - true by default)
+ * @param `depth` - set to a number if the object is only to be cloned to
+ *    a particular depth. (optional - defaults to Infinity)
+ * @param `prototype` - sets the prototype to be used when cloning an object.
+ *    (optional - defaults to parent prototype).
+*/
+
+function clone(parent, circular, depth, prototype) {
+  // maintain two arrays for circular references, where corresponding parents
+  // and children have the same index
+  var allParents = [];
+  var allChildren = [];
+
+  var useBuffer = typeof Buffer != 'undefined';
+
+  if (typeof circular == 'undefined')
+    circular = true;
+
+  if (typeof depth == 'undefined')
+    depth = Infinity;
+
+  // recurse this function so we don't reset allParents and allChildren
+  function _clone(parent, depth) {
+    // cloning null always returns null
+    if (parent === null)
+      return null;
+
+    if (depth == 0)
+      return parent;
+
+    var child;
+    if (typeof parent != 'object') {
+      return parent;
+    }
+
+    if (util.isArray(parent)) {
+      child = [];
+    } else if (util.isRegExp(parent)) {
+      child = new RegExp(parent.source, util.getRegExpFlags(parent));
+      if (parent.lastIndex) child.lastIndex = parent.lastIndex;
+    } else if (util.isDate(parent)) {
+      child = new Date(parent.getTime());
+    } else if (useBuffer && Buffer.isBuffer(parent)) {
+      child = new Buffer(parent.length);
+      parent.copy(child);
+    } else {
+      if (typeof prototype == 'undefined') child = Object.create(Object.getPrototypeOf(parent));
+      else child = Object.create(prototype);
+    }
+
+    if (circular) {
+      var index = allParents.indexOf(parent);
+
+      if (index != -1) {
+        return allChildren[index];
+      }
+      allParents.push(parent);
+      allChildren.push(child);
+    }
+
+    for (var i in parent) {
+      child[i] = _clone(parent[i], depth - 1);
+    }
+
+    return child;
+  }
+
+  return _clone(parent, depth);
+}
+
+/**
+ * Simple flat clone using prototype, accepts only objects, usefull for property
+ * override on FLAT configuration object (no nested props).
+ *
+ * USE WITH CAUTION! This may not behave as you wish if you do not know how this
+ * works.
+ */
+clone.clonePrototype = function(parent) {
+  if (parent === null)
+    return null;
+
+  var c = function () {};
+  c.prototype = parent;
+  return new c();
+};
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":792}],29:[function(require,module,exports){
 var Chest, ChestDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -6655,550 +6783,597 @@ ChestDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":39,"inventory-window":31,"itempile":44,"voxel-inventory-dialog":47}],31:[function(require,module,exports){
+},{"inventory":39,"inventory-window":30,"itempile":43,"voxel-inventory-dialog":46}],30:[function(require,module,exports){
 (function (global){
-// Generated by CoffeeScript 1.7.0
-(function() {
-  var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-    __modulo = function(a, b) { return (a % b + +b) % b; };
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
 
-  EventEmitter = (require('events')).EventEmitter;
+EventEmitter = (require('events')).EventEmitter;
 
-  ever = require('ever');
+ever = require('ever');
 
-  createTooltip = require('ftooltip');
+createTooltip = require('ftooltip');
 
-  CubeIcon = require('cube-icon');
+CubeIcon = require('cube-icon');
 
-  touchup = require('touchup');
+touchup = require('touchup');
 
-  module.exports = InventoryWindow = (function(_super) {
-    __extends(InventoryWindow, _super);
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
 
-    function InventoryWindow(opts) {
-      var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
-      if (opts == null) {
-        opts = {};
-      }
-      this.inventory = (function() {
-        if ((_ref = opts.inventory) != null) {
-          return _ref;
-        } else {
-          throw 'inventory-window requires "inventory" option set to Inventory instance';
-        }
-      })();
-      this.linkedInventory = opts.linkedInventory;
-      this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
-      this.registry = opts.registry;
-      if ((this.getTexture == null) && (this.registry == null)) {
-        throw 'inventory-window: required "getTexture" or "registry" option missing';
-      }
-      this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
-      this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
-      this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
-      this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
-      this.textureScaleAlgorithm = 'nearest-neighbor';
-      this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
-      this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
-      this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
-      this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
-      this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
-      this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
-      this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
-      this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
-      this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
-      this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
-      this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
-      this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
-      this.slotNodes = [];
-      this.container = void 0;
-      this.selectedIndex = void 0;
-      this.enable();
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
     }
-
-    InventoryWindow.prototype.enable = function() {
-      if (typeof document !== "undefined" && document !== null) {
-        ever(document).on('mousemove', (function(_this) {
-          return function(ev) {
-            if (!global.InventoryWindow_heldNode) {
-              return;
-            }
-            return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
-          };
-        })(this));
-        ever(document).on('mouseup', (function(_this) {
-          return function(ev) {
-            return global.InventoryWindow_mouseButtonDown = void 0;
-          };
-        })(this));
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
       }
-      return this.inventory.on('changed', (function(_this) {
-        return function() {
-          return _this.refresh();
-        };
-      })(this));
-    };
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
 
-    InventoryWindow.prototype.createContainer = function() {
-      var container, i, node, slotItem, widthpx, _i, _ref;
-      if (typeof document === "undefined" || document === null) {
-        return;
-      }
-      container = document.createElement('div');
-      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        slotItem = this.inventory.get(i);
-        node = this.createSlotNode(slotItem);
-        this.setBorderStyle(node, i);
-        this.bindSlotNodeEvent(node, i);
-        this.slotNodes.push(node);
-        container.appendChild(node);
-      }
-      widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
-      container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
-      return this.container = container;
-    };
-
-    InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
-      ever(node).on('mousedown', (function(_this) {
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
         return function(ev) {
-          return _this.clickSlot(index, ev);
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
         };
       })(this));
-      return ever(node).on('mouseover', (function(_this) {
+      ever(document).on('mouseup', (function(_this) {
         return function(ev) {
-          if (!_this.allowDragPaint) {
-            return;
-          }
-          if (!_this.allowDrop) {
-            return;
-          }
-          if (global.InventoryWindow_heldItemPile == null) {
-            return;
-          }
-          if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
-            return;
-          }
-          _this.dropOneHeld(index);
-          _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
-          return _this.refreshSlotNode(index);
+          return global.InventoryWindow_mouseButtonDown = void 0;
         };
       })(this));
-    };
-
-    InventoryWindow.prototype.createSlotNode = function(itemPile) {
-      var div;
-      div = document.createElement('div');
-      div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
-      this.populateSlotNode(div, itemPile);
-      return div;
-    };
-
-    InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
-      var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
-      src = void 0;
-      text = '';
-      progress = void 0;
-      progressColor = void 0;
-      if (itemPile != null) {
-        if (this.registry != null) {
-          src = this.registry.getItemPileTexture(itemPile);
-        } else if (this.getTexture != null) {
-          src = this.getTexture(itemPile);
-        } else {
-          throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
-        }
-        text = itemPile.count;
-        if (text === 1) {
-          text = '';
-        }
-        if (text === Infinity) {
-          text = '\u221e';
-        }
-        if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
-          if (this.registry != null) {
-            maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
-          } else if (this.getMaxDamage != null) {
-            maxDamage = this.getMaxDamage(itemPile);
-          } else {
-            maxDamage = 100;
-          }
-          progress = (maxDamage - itemPile.tags.damage) / maxDamage;
-          progressColor = this.getProgressBarColor(progress);
-        }
-      }
-      setImage = function(src) {
-        var newImage;
-        if (typeof src === 'string') {
-          newImage = 'url(' + src + ')';
-        } else {
-          newImage = '';
-        }
-        if (global.InventoryWindow_resolvedImageURLs == null) {
-          global.InventoryWindow_resolvedImageURLs = {};
-        }
-        if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
-          div.style.backgroundImage = newImage;
-          return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
-        }
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
       };
-      if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
-        if (global.InventoryWindow_cachedScaledImages == null) {
-          global.InventoryWindow_cachedScaledImages = {};
-        }
-        if (global.InventoryWindow_cachedScaledImages[src]) {
-          setImage(global.InventoryWindow_cachedScaledImages[src]);
-        } else {
-          img = new Image();
-          img.onload = (function(_this) {
-            return function() {
-              var scaled;
-              scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
-              global.InventoryWindow_cachedScaledImages[src] = scaled;
-              return setImage(scaled);
-            };
-          })(this);
-          img.src = src;
-        }
-      } else {
-        setImage(src);
-      }
-      cubeNode = div.children[0];
-      if (cubeNode == null) {
-        cubeNode = document.createElement('div');
-        cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
-        div.appendChild(cubeNode);
-      }
-      while (cubeNode.firstChild) {
-        cubeNode.removeChild(cubeNode.firstChild);
-      }
-      if (Array.isArray(src)) {
-        cube = new CubeIcon({
-          images: src
-        });
-        cubeNode.appendChild(cube.container);
-      }
-      textBox = div.children[1];
-      if (textBox == null) {
-        textBox = document.createElement('div');
-        textBox.setAttribute('style', 'position: absolute;');
-        div.appendChild(textBox);
-      }
-      if (textBox.textContent !== text) {
-        textBox.textContent = text;
-      }
-      progressNode = div.children[2];
-      if (progressNode == null) {
-        progressNode = document.createElement('div');
-        progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
-        div.appendChild(progressNode);
-      }
-      if (progressColor != null) {
-        progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
-      }
-      if (progress != null) {
-        progressNode.style.width = (progress * 100) + '%';
-      }
-      progressNode.style.visibility = progress != null ? '' : 'hidden';
-      if (this.tooltips) {
-        tooltipNode = div.children[3];
-        if (tooltipNode == null) {
-          tooltipNode = document.createTextNode('not set');
-          tooltip = createTooltip(div, tooltipNode);
-          div.appendChild(tooltip.div);
-        }
-        if (itemPile != null) {
-          if (this.registry != null) {
-            tooltipText = this.registry.getItemDisplayName(itemPile.item);
-          } else if (this.getTooltip != null) {
-            tooltipText = this.getTooltip(itemPile);
-          }
-        } else {
-          tooltipText = '';
-        }
-        return tooltipNode.textContent = tooltipText;
-      }
-    };
-
-    InventoryWindow.prototype.getProgressBarColor = function(progress) {
-      var i, threshold, _i, _len, _ref;
-      _ref = this.progressColorsThresholds;
-      for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
-        threshold = _ref[i];
-        if (progress <= threshold) {
-          return this.progressColors[i];
-        }
-      }
-      return this.progressColors.slice(-1)[0];
-    };
-
-    InventoryWindow.prototype.setBorderStyle = function(node, index) {
-      var height, kind, x, y;
-      x = __modulo(index, this.width);
-      y = Math.floor(index / this.width);
-      height = this.inventorySize / this.width;
-      if (index === this.selectedIndex) {
-        kind = 'dotted';
-      } else {
-        kind = 'solid';
-      }
-      node.style.border = "" + this.borderSize + "px " + kind + " black";
-      if (y === 0) {
-        node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
-      }
-      if (y === height - 1) {
-        node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
-      }
-      if (x === 0) {
-        node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
-      }
-      if (x === this.width - 1) {
-        return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
-      }
-    };
-
-    InventoryWindow.prototype.setSelected = function(index) {
-      this.selectedIndex = index;
-      return this.refresh();
-    };
-
-    InventoryWindow.prototype.getSelected = function(index) {
-      return this.selectedIndex;
-    };
-
-    InventoryWindow.prototype.refreshSlotNode = function(index) {
-      this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
-      return this.setBorderStyle(this.slotNodes[index], index);
-    };
-
-    InventoryWindow.prototype.refresh = function() {
-      var i, _i, _ref, _results;
-      _results = [];
-      for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        _results.push(this.refreshSlotNode(i));
-      }
-      return _results;
-    };
-
-    InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
-      var x, y, _ref, _ref1;
-      x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
-      y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
-      x -= this.textureSize / 2;
-      y -= this.textureSize / 2;
-      node.style.left = x + 'px';
-      return node.style.top = y + 'px';
-    };
-
-    InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
-      var style;
-      if (global.InventoryWindow_heldNode) {
-        this.removeHeldNode();
-      }
-      if (!itemPile || itemPile.count === 0) {
-        global.InventoryWindow_heldItemPile = void 0;
-        return;
-      }
-      global.InventoryWindow_heldItemPile = itemPile;
-      global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
-      global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
-      this.positionAtMouse(global.InventoryWindow_heldNode, ev);
-      return document.body.appendChild(global.InventoryWindow_heldNode);
-    };
-
-    InventoryWindow.prototype.removeHeldNode = function() {
-      global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
-      global.InventoryWindow_heldNode = void 0;
-      return global.InventoryWindow_heldItemPile = void 0;
-    };
-
-    InventoryWindow.prototype.dropOneHeld = function(index) {
-      var oneHeld, tmp;
-      if (this.inventory.get(index)) {
-        oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
-        if (this.inventory.get(index).mergePile(oneHeld) === false) {
-          global.InventoryWindow_heldItemPile.increase(1);
-          tmp = global.InventoryWindow_heldItemPile;
-          global.InventoryWindow_heldItemPile = this.inventory.get(index);
-          return this.inventory.set(index, tmp);
-        } else {
-          return this.inventory.changed();
-        }
-      } else {
-        return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
-      }
-    };
-
-    InventoryWindow.prototype.clickSlot = function(index, ev) {
-      var itemPile, shiftDown, tmp, _ref, _ref1;
-      itemPile = this.inventory.get(index);
-      console.log('clickSlot', index, itemPile);
-      global.InventoryWindow_mouseButtonDown = ev.button;
-      shiftDown = ev.shiftKey;
-      if (ev.button !== this.secondaryMouseButton) {
-        if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
-          if (!this.allowPickup) {
-            return;
-          }
-          if (global.InventoryWindow_heldItemPile != null) {
-            if (this.inventory.get(index) != null) {
-              if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
-                return;
-              }
-              global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
-            }
-          } else {
-            if (!shiftDown) {
-              global.InventoryWindow_heldItemPile = this.inventory.get(index);
-              this.inventory.set(index, void 0);
-            } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
-              this.linkedInventory.give(this.inventory.get(index));
-              if (this.inventory.get(index).count === 0) {
-                this.inventory.set(index, void 0);
-              }
-              this.inventory.changed();
-            }
-          }
-          this.emit('pickup');
-        } else {
-          if (this.inventory.get(index)) {
-            if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
-              tmp = global.InventoryWindow_heldItemPile;
-              global.InventoryWindow_heldItemPile = this.inventory.get(index);
-              this.inventory.set(index, tmp);
-            } else {
-              this.inventory.changed();
-            }
-          } else {
-            this.inventory.set(index, global.InventoryWindow_heldItemPile);
-            global.InventoryWindow_heldItemPile = void 0;
-          }
-        }
-      } else {
-        if (!global.InventoryWindow_heldItemPile) {
-          if (!this.allowPickup) {
-            return;
-          }
-          global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
-          if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
-            this.inventory.set(index, void 0);
-          }
-          this.inventory.changed();
-          this.emit('pickup');
-        } else {
-          if (!this.allowDrop) {
-            return;
-          }
-          this.dropOneHeld(index);
-        }
-      }
-      this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
-      return this.refreshSlotNode(index);
-    };
-
-    return InventoryWindow;
-
-  })(EventEmitter);
-
-}).call(this);
-
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":32,"events":792,"ever":33,"ftooltip":36,"touchup":38}],32:[function(require,module,exports){
-// Generated by CoffeeScript 1.7.0
-(function() {
-  var CubeIcon;
-
-  module.exports = function(opts) {
-    return new CubeIcon(opts);
+    })(this));
   };
 
-  CubeIcon = (function() {
-    function CubeIcon(opts) {
-      var a, ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _ignored, _ignoredB, _ignoredBack, _ignoredBottom, _ignoredRight, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
-      if (opts == null) {
-        opts = {};
-      }
-      showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
-      if ((opts.images != null) && Array.isArray(opts.images)) {
-        a = opts.images;
-        if (a.length === 0) {
-          opts.top = opts.side = '';
-        }
-        if (a.length === 1) {
-          opts.top = opts.side = a[0];
-        }
-        if (a.length === 2) {
-          opts.top = a[0], opts.side = a[1];
-        }
-        if (a.length === 3) {
-          opts.top = a[0], _ignored = a[1], opts.side = a[2];
-        }
-        if (a.length === 4) {
-          opts.top = a[0], _ignoredB = a[1], opts.front = a[2], opts.left = a[3];
-        }
-        if (a.length === 5) {
-          throw new Error('cube-icon images.length unrecognized 5');
-        }
-        if (a.length === 6) {
-          _ignoredBack = a[0], opts.front = a[1], opts.top = a[2], _ignoredBottom = a[3], opts.left = a[4], _ignoredRight = a[5];
-        }
-        if (a.length > 6) {
-          throw new Error('cube-icon requires images.length <= 6');
-        }
-      }
-      if (opts.side != null) {
-        opts.left = opts.front = opts.side;
-      }
-      rotateX = (_ref1 = opts.rotateX) != null ? _ref1 : -30;
-      rotateY = (_ref2 = opts.rotateY) != null ? _ref2 : 45;
-      scale = (_ref3 = opts.scale) != null ? _ref3 : 3.55;
-      s = (_ref4 = opts.size) != null ? _ref4 : 16;
-      this.container = document.createElement('div');
-      cw = ch = 90;
-      cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
-      cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
-      shiftX = cw - s * scale - 5;
-      shiftY = ch - s * scale + 5;
-      this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
-      dz = s / 2;
-      faceTransforms = {
-        front: "rotateY(   0deg ) translateZ( " + dz + "px )",
-        back: "rotateX( 180deg ) translateZ( " + dz + "px )",
-        right: "rotateY(  90deg ) translateZ( " + dz + "px )",
-        left: "rotateY( -90deg ) translateZ( " + dz + "px )",
-        top: "rotateX(  90deg ) translateZ( " + dz + "px )",
-        bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
       };
-      faceFilters = (_ref5 = opts.faceFilters) != null ? _ref5 : {
-        front: 'brightness(60%)',
-        left: 'brightness(100%)',
-        top: 'brightness(150%)'
-      };
-      for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
-        faceName = showFaces[i];
-        face = document.createElement('div');
-        face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
-        face.style.backgroundImage = 'url(' + opts[faceName] + ')';
-        if (faceFilters[faceName]) {
-          face.style.webkitFilter = faceFilters[faceName];
-          face.style.filter = faceFilters[faceName];
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
         }
-        this.container.style.webkitTransition = '-webkit-transform 1s';
-        this.container.style.transition = '        transform 1s';
-        this.container.appendChild(face);
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
       }
     }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
 
-    return CubeIcon;
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
 
-  })();
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
 
-}).call(this);
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":31,"events":795,"ever":33,"ftooltip":36,"touchup":38}],31:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":32}],32:[function(require,module,exports){
+'use strict';
+
+var expandName = function(name, order) {
+  var array = new Array(6);
+
+  // from voxel-mesher/ao-mesher -- also seen: 'KFTBLR' (voxel-texture), 'FKTBRL' (Mozilla's WebGL cube demo)
+  order = order || 'RTFLBK';
+
+  if (order.length !== 6) {
+    throw new Error('expandName invalid order length: ' + order);
+  }
+
+  var back   = order.indexOf('K');
+  var front  = order.indexOf('F');
+  var top    = order.indexOf('T');
+  var bottom = order.indexOf('B');
+  var left   = order.indexOf('L');
+  var right  = order.indexOf('R');
+
+  if (back < 0 || front < 0 || top < 0 || bottom < 0 || left < 0 || right < 0) {
+    throw new Error('expandName invalid order: ' + order);
+  }
+
+  if (!name || name.length === 0) {
+    // empty
+    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = undefined;
+  } else if (name.top) {
+    // explicit names
+    array[back] = name.back;
+    array[front] = name.front;
+    array[top] = name.top;
+    array[bottom] = name.bottom;
+    array[left] = name.left;
+    array[right] = name.right;
+  } else if (!Array.isArray(name)) {
+     // scalar is all
+    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = name;
+  } else if (name.length === 1) {
+    // 0 is all
+    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = name[0];
+  } else if (name.length === 2) {
+    // 0 is top/bottom, 1 is sides
+    array[back] = array[front] = array[left] = array[right] = name[1];
+    array[top] = array[bottom] = name[0];
+  } else if (name.length === 3) {
+    // 0 is top, 1 is bottom, 2 is sides
+    array[back] = array[front] = array[left] = array[right] = name[2];
+    array[top] = name[0];
+    array[bottom] = name[1];
+  } else if (name.length === 4) {
+    // 0 is top, 1 is bottom, 2 is front/back, 3 is left/right
+    array[back] = array[front] = name[2];
+    array[top] = name[0];
+    array[bottom] = name[1];
+    array[left] = array[right] = name[3];
+  } else if (name.length === 5) {
+    // 0 is top, 1 is bottom, 2 is front, 3 is back, 4 is left/right
+    array[back] = name[3];
+    array[front] = name[2];
+    array[top] = name[0];
+    array[bottom] = name[1];
+    array[left] = array[right] = name[4];
+  } else if (name.length === 6) {
+    throw new Error('expandName('+name+'): 6-element array support removed, use objects instead ({back:, front:, top:, bottom:, left:, right:...})');
+  } else {
+    throw new Error('expandName('+name+'): invalid side count array length '+name.length);
+  }
+
+  return array;
+};
+
+module.exports = expandName;
+
 
 },{}],33:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":34,"./types.json":35,"events":792}],34:[function(require,module,exports){
+},{"./init.json":34,"./types.json":35,"events":795}],34:[function(require,module,exports){
 module.exports=require(16)
 },{}],35:[function(require,module,exports){
 module.exports=require(17)
@@ -7442,21 +7617,19 @@ module.exports = function(item) {
 
 },{}],39:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":40,"events":792,"itempile":41}],40:[function(require,module,exports){
+},{"deep-equal":40,"events":795,"itempile":41}],40:[function(require,module,exports){
 module.exports=require(22)
 },{}],41:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":42,"deep-equal":40}],42:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],43:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":42,"deep-equal":43}],42:[function(require,module,exports){
+},{"clone":44,"deep-equal":45}],44:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],43:[function(require,module,exports){
+},{"buffer":792}],45:[function(require,module,exports){
 module.exports=require(22)
-},{}],44:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":45,"deep-equal":46}],45:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],46:[function(require,module,exports){
-module.exports=require(22)
-},{}],47:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
@@ -7535,13 +7708,524 @@ module.exports=require(22)
 
 }).call(this);
 
-},{"inventory":56,"inventory-window":48,"itempile":61,"voxel-modal-dialog":64}],48:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":49,"events":792,"ever":50,"ftooltip":53,"touchup":55}],49:[function(require,module,exports){
+},{"inventory":56,"inventory-window":47,"itempile":60,"voxel-modal-dialog":63}],47:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":48,"events":795,"ever":50,"ftooltip":53,"touchup":55}],48:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":49}],49:[function(require,module,exports){
 module.exports=require(32)
 },{}],50:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":51,"./types.json":52,"events":792}],51:[function(require,module,exports){
+},{"./init.json":51,"./types.json":52,"events":795}],51:[function(require,module,exports){
 module.exports=require(16)
 },{}],52:[function(require,module,exports){
 module.exports=require(17)
@@ -7553,31 +8237,29 @@ module.exports=require(37)
 module.exports=require(38)
 },{}],56:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":57,"events":792,"itempile":58}],57:[function(require,module,exports){
+},{"deep-equal":57,"events":795,"itempile":58}],57:[function(require,module,exports){
 module.exports=require(22)
 },{}],58:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":59,"deep-equal":57}],59:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],60:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":59,"deep-equal":60}],59:[function(require,module,exports){
+},{"clone":61,"deep-equal":62}],61:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],60:[function(require,module,exports){
+},{"buffer":792}],62:[function(require,module,exports){
 module.exports=require(22)
-},{}],61:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":62,"deep-equal":63}],62:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],63:[function(require,module,exports){
-module.exports=require(22)
-},{}],64:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":65}],65:[function(require,module,exports){
+},{"voxel-modal":64}],64:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":66}],66:[function(require,module,exports){
+},{"ever":65}],65:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":67,"./types.json":68,"events":792}],67:[function(require,module,exports){
+},{"./init.json":66,"./types.json":67,"events":795}],66:[function(require,module,exports){
 module.exports=require(16)
-},{}],68:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 module.exports=require(17)
-},{}],69:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -7680,7 +8362,7 @@ BorderPlugin.prototype.createBorderMesh = function(mesh, gl, _vert_data, voxels)
     borderVAO.length = borderVertexCount;
     mesh.vertexArrayObjects.chunkborder = borderVAO;
 };
-},{"gl-buffer":70,"gl-vao":88,"glslify":90,"glslify/adapter.js":89}],70:[function(require,module,exports){
+},{"gl-buffer":69,"gl-vao":87,"glslify":89,"glslify/adapter.js":88}],69:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -7832,7 +8514,7 @@ function createBuffer(gl, data, type, usage) {
 }
 
 module.exports = createBuffer
-},{"ndarray":76,"ndarray-ops":71,"typedarray-pool":80,"webglew":82}],71:[function(require,module,exports){
+},{"ndarray":75,"ndarray-ops":70,"typedarray-pool":79,"webglew":81}],70:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -8295,7 +8977,7 @@ exports.equals = compile({
 
 
 
-},{"cwise-compiler":72}],72:[function(require,module,exports){
+},{"cwise-compiler":71}],71:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -8401,7 +9083,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":74}],73:[function(require,module,exports){
+},{"./lib/thunk.js":73}],72:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -8658,7 +9340,7 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":75}],74:[function(require,module,exports){
+},{"uniq":74}],73:[function(require,module,exports){
 "use strict"
 
 var compile = require("./compile.js")
@@ -8707,7 +9389,7 @@ function createThunk(proc) {
 
 module.exports = createThunk
 
-},{"./compile.js":73}],75:[function(require,module,exports){
+},{"./compile.js":72}],74:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -8765,7 +9447,7 @@ function unique(list, compare, sorted) {
 }
 
 module.exports = unique
-},{}],76:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 
@@ -9160,7 +9842,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"iota-array":77}],77:[function(require,module,exports){
+},{"buffer":792,"iota-array":76}],76:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -9172,7 +9854,7 @@ function iota(n) {
 }
 
 module.exports = iota
-},{}],78:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /**
  * Bit twiddling hacks for JavaScript.
  *
@@ -9378,7 +10060,7 @@ exports.nextCombination = function(v) {
 }
 
 
-},{}],79:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 "use strict"
 
 function dupe_array(count, value, i) {
@@ -9428,7 +10110,7 @@ function dupe(count, value) {
 }
 
 module.exports = dupe
-},{}],80:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 (function (global,Buffer){
 "use strict"
 
@@ -9775,7 +10457,7 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":78,"buffer":789,"dup":79}],81:[function(require,module,exports){
+},{"bit-twiddle":77,"buffer":792,"dup":78}],80:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -10017,7 +10699,7 @@ void function(global, undefined_, undefined){
     global.WeakMap.createStorage = createStorage;
 }((0, eval)('this'));
 
-},{}],82:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 "use strict";
 
 var weakMap = typeof WeakMap === "undefined" ? require("weakmap") : WeakMap
@@ -10054,7 +10736,7 @@ function initWebGLEW(gl) {
   return extensions
 }
 module.exports = initWebGLEW
-},{"weakmap":81}],83:[function(require,module,exports){
+},{"weakmap":80}],82:[function(require,module,exports){
 "use strict"
 
 function doBind(gl, elements, attributes) {
@@ -10109,7 +10791,7 @@ function doBind(gl, elements, attributes) {
 }
 
 module.exports = doBind
-},{}],84:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -10147,7 +10829,7 @@ function createVAOEmulated(gl) {
 }
 
 module.exports = createVAOEmulated
-},{"./do-bind.js":83}],85:[function(require,module,exports){
+},{"./do-bind.js":82}],84:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -10233,11 +10915,11 @@ function createVAONative(gl, ext) {
 }
 
 module.exports = createVAONative
-},{"./do-bind.js":83}],86:[function(require,module,exports){
+},{"./do-bind.js":82}],85:[function(require,module,exports){
+module.exports=require(80)
+},{}],86:[function(require,module,exports){
 module.exports=require(81)
-},{}],87:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":86}],88:[function(require,module,exports){
+},{"weakmap":85}],87:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -10257,7 +10939,7 @@ function createVAO(gl, attributes, elements) {
 }
 
 module.exports = createVAO
-},{"./lib/vao-emulated.js":84,"./lib/vao-native.js":85,"webglew":87}],89:[function(require,module,exports){
+},{"./lib/vao-emulated.js":83,"./lib/vao-native.js":84,"webglew":86}],88:[function(require,module,exports){
 module.exports = programify
 
 var shader = require('gl-shader-core')
@@ -10268,7 +10950,7 @@ function programify(vertex, fragment, uniforms, attributes) {
   }
 }
 
-},{"gl-shader-core":95}],90:[function(require,module,exports){
+},{"gl-shader-core":94}],89:[function(require,module,exports){
 module.exports = noop
 
 function noop() {
@@ -10278,7 +10960,7 @@ function noop() {
   )
 }
 
-},{}],91:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 "use strict"
 
 module.exports = createAttributeWrapper
@@ -10375,7 +11057,7 @@ function createAttributeWrapper(gl, program, attributes, doLink) {
   return obj
 }
 
-},{}],92:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 "use strict"
 
 var dup = require("dup")
@@ -10557,7 +11239,7 @@ function createUniformWrapper(gl, program, uniforms, locations) {
   }
 }
 
-},{"./reflect.js":93,"dup":94}],93:[function(require,module,exports){
+},{"./reflect.js":92,"dup":93}],92:[function(require,module,exports){
 "use strict"
 
 module.exports = makeReflectTypes
@@ -10615,9 +11297,9 @@ function makeReflectTypes(uniforms, useIndex) {
   }
   return obj
 }
+},{}],93:[function(require,module,exports){
+module.exports=require(78)
 },{}],94:[function(require,module,exports){
-module.exports=require(79)
-},{}],95:[function(require,module,exports){
 "use strict"
 
 var createUniformWrapper = require("./lib/create-uniforms.js")
@@ -10735,7 +11417,7 @@ function createShader(
 
 module.exports = createShader
 
-},{"./lib/create-attributes.js":91,"./lib/create-uniforms.js":92,"./lib/reflect.js":93}],96:[function(require,module,exports){
+},{"./lib/create-attributes.js":90,"./lib/create-uniforms.js":91,"./lib/reflect.js":92}],95:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -11272,22 +11954,22 @@ ClientMC.prototype.missingChunk = function(pos) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"./zlib_worker.js":111,"bit-twiddle":97,"buffer":789,"ever":98,"minecraft-protocol":101,"ndarray":103,"tellraw2dom":105,"websocket-stream":106,"webworkify":110}],97:[function(require,module,exports){
-module.exports=require(78)
-},{}],98:[function(require,module,exports){
+},{"./zlib_worker.js":110,"bit-twiddle":96,"buffer":792,"ever":97,"minecraft-protocol":100,"ndarray":102,"tellraw2dom":104,"websocket-stream":105,"webworkify":109}],96:[function(require,module,exports){
+module.exports=require(77)
+},{}],97:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":99,"./types.json":100,"events":792}],99:[function(require,module,exports){
+},{"./init.json":98,"./types.json":99,"events":795}],98:[function(require,module,exports){
 module.exports=require(16)
-},{}],100:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports=require(17)
-},{}],101:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 
 module.exports = {
   protocol: require('./lib/protocol')
 };
 
 
-},{"./lib/protocol":102}],102:[function(require,module,exports){
+},{"./lib/protocol":101}],101:[function(require,module,exports){
 (function (process,Buffer){
 var assert = require('assert');
 var util = require('util');
@@ -12659,7 +13341,7 @@ module.exports = {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"assert":773,"buffer":789,"q+64fw":795,"util":811}],103:[function(require,module,exports){
+},{"assert":776,"buffer":792,"q+64fw":798,"util":814}],102:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 
@@ -13054,9 +13736,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"iota-array":104}],104:[function(require,module,exports){
-module.exports=require(77)
-},{}],105:[function(require,module,exports){
+},{"buffer":792,"iota-array":103}],103:[function(require,module,exports){
+module.exports=require(76)
+},{}],104:[function(require,module,exports){
 'use strict';
 
 var colormc2html = {
@@ -13179,7 +13861,7 @@ module.exports = parseRaw;
 
 
 
-},{}],106:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 var through = require('through')
 var isBuffer = require('isbuffer')
 var WebSocketPoly = require('ws')
@@ -13272,7 +13954,7 @@ WebsocketStream.prototype.end = function(data) {
   this._end = true
 }
 
-},{"isbuffer":107,"through":108,"ws":109}],107:[function(require,module,exports){
+},{"isbuffer":106,"through":107,"ws":108}],106:[function(require,module,exports){
 var Buffer = require('buffer').Buffer;
 
 module.exports = isBuffer;
@@ -13282,7 +13964,7 @@ function isBuffer (o) {
     || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
 }
 
-},{"buffer":789}],108:[function(require,module,exports){
+},{"buffer":792}],107:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -13394,7 +14076,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":795,"stream":809}],109:[function(require,module,exports){
+},{"q+64fw":798,"stream":812}],108:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -13439,7 +14121,7 @@ function ws(uri, protocols, opts) {
 
 if (WebSocket) ws.prototype = WebSocket.prototype;
 
-},{}],110:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -13493,7 +14175,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],111:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -13531,7 +14213,7 @@ module.exports = function() {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"ever":98,"zlib":788}],112:[function(require,module,exports){
+},{"buffer":792,"ever":97,"zlib":791}],111:[function(require,module,exports){
 var CommandsPlugin, ItemPile, shellwords,
   __slice = [].slice,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -13771,7 +14453,7 @@ CommandsPlugin = (function() {
 })();
 
 
-},{"itempile":113,"shellwords":118}],113:[function(require,module,exports){
+},{"itempile":112,"shellwords":117}],112:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var ItemPile, clone, deepEqual;
@@ -13932,9 +14614,9 @@ CommandsPlugin = (function() {
 
 }).call(this);
 
-},{"clone":114,"deep-equal":115}],114:[function(require,module,exports){
+},{"clone":113,"deep-equal":114}],113:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],115:[function(require,module,exports){
+},{"buffer":792}],114:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -14011,7 +14693,7 @@ function objEquiv(a, b, opts) {
   return true;
 }
 
-},{"./lib/is_arguments.js":116,"./lib/keys.js":117}],116:[function(require,module,exports){
+},{"./lib/is_arguments.js":115,"./lib/keys.js":116}],115:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -14033,7 +14715,7 @@ function unsupported(object){
     false;
 };
 
-},{}],117:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -14044,7 +14726,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],118:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 // Generated by CoffeeScript 1.3.3
 (function() {
   var scan;
@@ -14103,7 +14785,7 @@ function shim (obj) {
 
 }).call(this);
 
-},{}],119:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 var Console, ConsoleWidget, Modal,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -14190,7 +14872,7 @@ Console = (function(_super) {
 })(Modal);
 
 
-},{"console-widget":120,"voxel-modal":122}],120:[function(require,module,exports){
+},{"console-widget":119,"voxel-modal":121}],119:[function(require,module,exports){
 var ConsoleWidget, EventEmitter, MAX_LINES, vkey,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -14415,17 +15097,17 @@ module.exports = function(opts) {
 };
 
 
-},{"events":792,"vkey":121}],121:[function(require,module,exports){
+},{"events":795,"vkey":120}],120:[function(require,module,exports){
 module.exports=require(10)
-},{}],122:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":123}],123:[function(require,module,exports){
+},{"ever":122}],122:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":124,"./types.json":125,"events":792}],124:[function(require,module,exports){
+},{"./init.json":123,"./types.json":124,"events":795}],123:[function(require,module,exports){
 module.exports=require(16)
-},{}],125:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 module.exports=require(17)
-},{}],126:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 function Debug(game, opts) {
   opts = opts || {}
   if (opts.THREE) game = opts
@@ -14638,13 +15320,13 @@ Debug.prototype._render = function() {
   }
 }
 
-},{"dat-gui":127,"voxel":131}],127:[function(require,module,exports){
+},{"dat-gui":126,"voxel":130}],126:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":128,"./vendor/dat.gui":129}],128:[function(require,module,exports){
+},{"./vendor/dat.color":127,"./vendor/dat.gui":128}],127:[function(require,module,exports){
 module.exports=require(4)
-},{}],129:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports=require(5)
-},{}],130:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -14748,9 +15430,9 @@ Chunker.prototype.voxelAtCoordinates = function(x, y, z, val) {
   var mx = x & mask
   var my = y & mask
   var mz = z & mask
-  var v = chunk.get(mz+h, my+h, mx+h)
+  var v = chunk.get(mx+h, my+h, mz+h)
   if (typeof val !== 'undefined') {
-    chunk.set(mz+h, my+h, mx+h, val)
+    chunk.set(mx+h, my+h, mz+h, val)
   }
   return v
 }
@@ -14765,7 +15447,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":792,"inherits":137}],131:[function(require,module,exports){
+},{"events":795,"inherits":136}],130:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -14868,7 +15550,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":130,"./meshers/culled":132,"./meshers/greedy":133,"./meshers/monotone":134,"./meshers/stupid":135,"./meshers/transgreedy":136,"ndarray":138}],132:[function(require,module,exports){
+},{"./chunker":129,"./meshers/culled":131,"./meshers/greedy":132,"./meshers/monotone":133,"./meshers/stupid":134,"./meshers/transgreedy":135,"ndarray":137}],131:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -14920,7 +15602,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],133:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -15037,7 +15719,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],134:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -15290,7 +15972,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],135:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -15326,7 +16008,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],136:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 var GreedyMesh = (function greedyLoader() {
     
 // contains all forward faces (in terms of scan direction)
@@ -15518,7 +16200,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],137:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -15549,7 +16231,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],138:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 
@@ -15912,9 +16594,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"iota-array":139}],139:[function(require,module,exports){
-module.exports=require(77)
-},{}],140:[function(require,module,exports){
+},{"buffer":792,"iota-array":138}],138:[function(require,module,exports){
+module.exports=require(76)
+},{}],139:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -16078,11 +16760,11 @@ DecalsPlugin.prototype.render = function() {
         this.mesh.unbind();
     }
 };
-},{"gl-buffer":141,"gl-matrix":154,"gl-vao":160,"glslify":162,"glslify/adapter.js":161}],141:[function(require,module,exports){
+},{"gl-buffer":140,"gl-matrix":153,"gl-vao":159,"glslify":161,"glslify/adapter.js":160}],140:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"ndarray":146,"ndarray-ops":141,"typedarray-pool":150,"webglew":152}],141:[function(require,module,exports){
 arguments[4][70][0].apply(exports,arguments)
-},{"ndarray":147,"ndarray-ops":142,"typedarray-pool":151,"webglew":153}],142:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":143}],143:[function(require,module,exports){
+},{"cwise-compiler":142}],142:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -16190,7 +16872,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":145}],144:[function(require,module,exports){
+},{"./lib/thunk.js":144}],143:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -16478,9 +17160,9 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":146}],145:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":144}],146:[function(require,module,exports){
+},{"uniq":145}],144:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":143}],145:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -16539,7 +17221,7 @@ function unique(list, compare, sorted) {
 
 module.exports = unique
 
-},{}],147:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -16939,13 +17621,13 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"iota-array":148}],148:[function(require,module,exports){
+},{"buffer":792,"iota-array":147}],147:[function(require,module,exports){
+module.exports=require(76)
+},{}],148:[function(require,module,exports){
 module.exports=require(77)
 },{}],149:[function(require,module,exports){
 module.exports=require(78)
 },{}],150:[function(require,module,exports){
-module.exports=require(79)
-},{}],151:[function(require,module,exports){
 (function (global,Buffer){
 var bits = require("bit-twiddle")
 var dup = require("dup")
@@ -17315,11 +17997,11 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":149,"buffer":789,"dup":150}],152:[function(require,module,exports){
+},{"bit-twiddle":148,"buffer":792,"dup":149}],151:[function(require,module,exports){
+module.exports=require(80)
+},{}],152:[function(require,module,exports){
 module.exports=require(81)
-},{}],153:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":152}],154:[function(require,module,exports){
+},{"weakmap":151}],153:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -21569,33 +22251,33 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })(this);
 
+},{}],154:[function(require,module,exports){
+module.exports=require(82)
 },{}],155:[function(require,module,exports){
 module.exports=require(83)
-},{}],156:[function(require,module,exports){
+},{"./do-bind.js":154}],156:[function(require,module,exports){
 module.exports=require(84)
-},{"./do-bind.js":155}],157:[function(require,module,exports){
-module.exports=require(85)
-},{"./do-bind.js":155}],158:[function(require,module,exports){
+},{"./do-bind.js":154}],157:[function(require,module,exports){
+module.exports=require(80)
+},{}],158:[function(require,module,exports){
 module.exports=require(81)
-},{}],159:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":158}],160:[function(require,module,exports){
+},{"weakmap":157}],159:[function(require,module,exports){
+module.exports=require(87)
+},{"./lib/vao-emulated.js":155,"./lib/vao-native.js":156,"webglew":158}],160:[function(require,module,exports){
 module.exports=require(88)
-},{"./lib/vao-emulated.js":156,"./lib/vao-native.js":157,"webglew":159}],161:[function(require,module,exports){
+},{"gl-shader-core":166}],161:[function(require,module,exports){
 module.exports=require(89)
-},{"gl-shader-core":167}],162:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 module.exports=require(90)
 },{}],163:[function(require,module,exports){
 module.exports=require(91)
-},{}],164:[function(require,module,exports){
+},{"./reflect.js":164,"dup":165}],164:[function(require,module,exports){
 module.exports=require(92)
-},{"./reflect.js":165,"dup":166}],165:[function(require,module,exports){
-module.exports=require(93)
+},{}],165:[function(require,module,exports){
+module.exports=require(78)
 },{}],166:[function(require,module,exports){
-module.exports=require(79)
-},{}],167:[function(require,module,exports){
-module.exports=require(95)
-},{"./lib/create-attributes.js":163,"./lib/create-uniforms.js":164,"./lib/reflect.js":165}],168:[function(require,module,exports){
+module.exports=require(94)
+},{"./lib/create-attributes.js":162,"./lib/create-uniforms.js":163,"./lib/reflect.js":164}],167:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -21675,9 +22357,9 @@ DecorativePlugin.prototype.disable = function() {
 };
 
 
-},{"ucfirst":169}],169:[function(require,module,exports){
+},{"ucfirst":168}],168:[function(require,module,exports){
 module.exports=require(23)
-},{}],170:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 var DropPlugin, coffee_script, ever, playerdat;
 
 ever = require('ever');
@@ -21861,7 +22543,7 @@ DropPlugin = (function() {
 })();
 
 
-},{"coffee-script":171,"ever":180,"playerdat":183,"string.prototype.endswith":194}],171:[function(require,module,exports){
+},{"coffee-script":170,"ever":179,"playerdat":182,"string.prototype.endswith":192}],170:[function(require,module,exports){
 (function (process,global){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -22200,7 +22882,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":172,"./lexer":173,"./nodes":174,"./parser":175,"./register":176,"./sourcemap":179,"fs":772,"module":772,"path":794,"q+64fw":795,"vm":812}],172:[function(require,module,exports){
+},{"./helpers":171,"./lexer":172,"./nodes":173,"./parser":174,"./register":175,"./sourcemap":178,"fs":775,"module":775,"path":797,"q+64fw":798,"vm":815}],171:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -22456,7 +23138,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":795}],173:[function(require,module,exports){
+},{"q+64fw":798}],172:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -23384,7 +24066,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":172,"./rewriter":177}],174:[function(require,module,exports){
+},{"./helpers":171,"./rewriter":176}],173:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Access, Arr, Assign, Base, Block, Call, Class, Code, CodeFragment, Comment, Existence, Expansion, Extends, For, HEXNUM, IDENTIFIER, IDENTIFIER_STR, IS_REGEX, IS_STRING, If, In, Index, LEVEL_ACCESS, LEVEL_COND, LEVEL_LIST, LEVEL_OP, LEVEL_PAREN, LEVEL_TOP, Literal, METHOD_DEF, NEGATE, NO, NUMBER, Obj, Op, Param, Parens, RESERVED, Range, Return, SIMPLENUM, STRICT_PROSCRIBED, Scope, Slice, Splat, Switch, TAB, THIS, Throw, Try, UTILITIES, Value, While, YES, addLocationDataFn, compact, del, ends, extend, flatten, fragmentsToText, isLiteralArguments, isLiteralThis, last, locationDataToString, merge, multident, parseNum, some, starts, throwSyntaxError, unfoldSoak, utility, _ref, _ref1,
@@ -26544,7 +27226,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":172,"./lexer":173,"./scope":178}],175:[function(require,module,exports){
+},{"./helpers":171,"./lexer":172,"./scope":177}],174:[function(require,module,exports){
 (function (process){
 /* parser generated by jison 0.4.13 */
 /*
@@ -27271,7 +27953,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require("q+64fw"))
-},{"fs":772,"path":794,"q+64fw":795}],176:[function(require,module,exports){
+},{"fs":775,"path":797,"q+64fw":798}],175:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -27339,7 +28021,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":171,"./helpers":172,"child_process":772,"module":772,"path":794}],177:[function(require,module,exports){
+},{"./coffee-script":170,"./helpers":171,"child_process":775,"module":775,"path":797}],176:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -27816,7 +28498,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],178:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Scope, extend, last, _ref;
@@ -27964,7 +28646,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./helpers":172}],179:[function(require,module,exports){
+},{"./helpers":171}],178:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var LineMap, SourceMap;
@@ -28127,13 +28809,13 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],180:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":181,"./types.json":182,"events":792}],181:[function(require,module,exports){
+},{"./init.json":180,"./types.json":181,"events":795}],180:[function(require,module,exports){
 module.exports=require(16)
-},{}],182:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 module.exports=require(17)
-},{}],183:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -28247,23 +28929,21 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"inventory":184,"itempile":189,"nbt":192}],184:[function(require,module,exports){
+},{"buffer":792,"inventory":183,"itempile":187,"nbt":190}],183:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":185,"events":792,"itempile":186}],185:[function(require,module,exports){
+},{"deep-equal":184,"events":795,"itempile":185}],184:[function(require,module,exports){
 module.exports=require(22)
-},{}],186:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":186,"deep-equal":184}],186:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],187:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":187,"deep-equal":188}],187:[function(require,module,exports){
+},{"clone":188,"deep-equal":189}],188:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],188:[function(require,module,exports){
+},{"buffer":792}],189:[function(require,module,exports){
 module.exports=require(22)
-},{}],189:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":190,"deep-equal":191}],190:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],191:[function(require,module,exports){
-module.exports=require(22)
-},{}],192:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 (function (Buffer){
 /*
 	NBT.js - a JavaScript parser for NBT archives
@@ -28433,7 +29113,7 @@ module.exports=require(22)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"node-int64":193,"zlib":788}],193:[function(require,module,exports){
+},{"buffer":792,"node-int64":191,"zlib":791}],191:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -28639,7 +29319,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789}],194:[function(require,module,exports){
+},{"buffer":792}],192:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -28692,7 +29372,7 @@ if (!String.prototype.endsWith) {
 	}());
 }
 
-},{}],195:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 (function (process){
 'use strict'
 var voxel = require('voxel')
@@ -28916,8 +29596,7 @@ Game.prototype.cameraPosition = function() {
 var _cameraVector = vector.create()
 Game.prototype.cameraVector = function() {
   if (this.cameraPlugin) {
-    this.cameraPlugin.camera.getCameraVector(_cameraVector)
-    vector.set(_cameraVector, -_cameraVector[2], -_cameraVector[1], -_cameraVector[0])
+    this.cameraPlugin.getVector(_cameraVector)
   }
 
   return _cameraVector
@@ -29490,7 +30169,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require("q+64fw"))
-},{"./lib/detector":196,"./lib/stats":197,"aabb-3d":198,"collide-3d-tilemap":200,"events":792,"extend":201,"game-shell-fps-camera":202,"gl-matrix":208,"gl-now":209,"inherits":222,"isndarray":223,"ndarray":224,"path":794,"pin-it":226,"q+64fw":795,"spatial-events":227,"tic":229,"voxel":440,"voxel-control":230,"voxel-mesher":232,"voxel-physical":266,"voxel-plugins":271,"voxel-raycast":272,"voxel-region-change":273,"voxel-registry":277,"voxel-shader":278,"voxel-stitch":438}],196:[function(require,module,exports){
+},{"./lib/detector":194,"./lib/stats":195,"aabb-3d":196,"collide-3d-tilemap":198,"events":795,"extend":199,"game-shell-fps-camera":200,"gl-matrix":206,"gl-now":207,"inherits":220,"isndarray":221,"ndarray":222,"path":797,"pin-it":224,"q+64fw":798,"spatial-events":225,"tic":227,"voxel":437,"voxel-control":228,"voxel-mesher":230,"voxel-physical":264,"voxel-plugins":269,"voxel-raycast":270,"voxel-region-change":271,"voxel-registry":274,"voxel-shader":275,"voxel-stitch":435}],194:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -29551,7 +30230,7 @@ module.exports = function() {
   };
 }
 
-},{}],197:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -29697,7 +30376,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],198:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -29814,9 +30493,9 @@ proto.union = function(aabb) {
 
 
 
-},{"gl-matrix":199}],199:[function(require,module,exports){
-module.exports=require(154)
-},{}],200:[function(require,module,exports){
+},{"gl-matrix":197}],197:[function(require,module,exports){
+module.exports=require(153)
+},{}],198:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -29905,7 +30584,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],201:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -29985,7 +30664,7 @@ module.exports = function extend() {
 	return target;
 };
 
-},{}],202:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -30038,9 +30717,9 @@ function CameraPlugin(game, opts) {
   };
 
   var offset = 1.5; // distance between camera pos (eyes) and player pos (feet), voxel-engine makePhysical envelope y TODO: stop hardcoding here..
-  Object.defineProperty(this.player.position, 'x', { get:function() { return -camera.position[2]; }, set:function(v) { camera.position[2] = -v; }});
+  Object.defineProperty(this.player.position, 'x', { get:function() { return -camera.position[0]; }, set:function(v) { camera.position[0] = -v; }});
   Object.defineProperty(this.player.position, 'y', { get:function() { return -camera.position[1]-offset; }, set:function(v) { camera.position[1] = -v-offset; }});
-  Object.defineProperty(this.player.position, 'z', { get:function() { return -camera.position[0]; }, set:function(v) { camera.position[0] = -v; }});
+  Object.defineProperty(this.player.position, 'z', { get:function() { return -camera.position[2]; }, set:function(v) { camera.position[2] = -v; }});
 
   var updateRotation = function() {
     // update Euler angles (order YXZ) to quaternion
@@ -30095,14 +30774,21 @@ CameraPlugin.prototype.view = function(out) {
 };
 
 CameraPlugin.prototype.getPosition = function(out) {
-  // Negate since basic-camera consider -Y up (etc.), but we use +Y for up
-  // and swap X,Z due to differing conventions
-  out[0] = -this.camera.position[2];
+  // Negate since basic-camera considers -Y up (etc.), but we use +Y for up
+  out[0] = -this.camera.position[0];
   out[1] = -this.camera.position[1];
-  out[2] = -this.camera.position[0];
+  out[2] = -this.camera.position[2];
 };
 
-},{"./pointer-stream.js":207,"basic-camera":203,"gl-matrix":205}],203:[function(require,module,exports){
+var _scratch1 = [0,0,0];
+CameraPlugin.prototype.getVector = function(out) {
+  this.camera.getCameraVector(_scratch1);
+  out[0] = -_scratch1[0];
+  out[1] = -_scratch1[1];
+  out[2] = -_scratch1[2];
+};
+
+},{"./pointer-stream.js":205,"basic-camera":201,"gl-matrix":203}],201:[function(require,module,exports){
 var glm = require('gl-matrix')
 var vec3 = glm.vec3
 var mat4 = glm.mat4
@@ -30163,11 +30849,11 @@ noclip.prototype.rotateZ   = function(angle) {
   return this
 }
 
-},{"gl-matrix":204}],204:[function(require,module,exports){
-module.exports=require(154)
-},{}],205:[function(require,module,exports){
-module.exports=require(154)
-},{}],206:[function(require,module,exports){
+},{"gl-matrix":202}],202:[function(require,module,exports){
+module.exports=require(153)
+},{}],203:[function(require,module,exports){
+module.exports=require(153)
+},{}],204:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -30192,7 +30878,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],207:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 'use strict';
 
 var Readable = require('stream').Readable;
@@ -30236,9 +30922,9 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":206,"stream":809}],208:[function(require,module,exports){
-module.exports=require(154)
-},{}],209:[function(require,module,exports){
+},{"inherits":204,"stream":812}],206:[function(require,module,exports){
+module.exports=require(153)
+},{}],207:[function(require,module,exports){
 "use strict"
 
 var makeGameShell = require("game-shell")
@@ -30380,7 +31066,7 @@ function createGLShell(options) {
 
 module.exports = createGLShell
 
-},{"game-shell":219,"webglew":221}],210:[function(require,module,exports){
+},{"game-shell":217,"webglew":219}],208:[function(require,module,exports){
 if(typeof window.performance === "object") {
   if(window.performance.now) {
     module.exports = function() { return window.performance.now() }
@@ -30393,7 +31079,7 @@ if(typeof window.performance === "object") {
   module.exports = function() { return (new Date()).getTime() }
 }
 
-},{}],211:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 //Adapted from here: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel?redirectlocale=en-US&redirectslug=DOM%2FMozilla_event_reference%2Fwheel
 
 var prefix = "", _addEventListener, onwheel, support;
@@ -30453,7 +31139,7 @@ module.exports = function( elem, callback, useCapture ) {
     _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
   }
 };
-},{}],212:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
  
@@ -30483,7 +31169,7 @@ if (!window.cancelAnimationFrame)
         clearTimeout(id);
     };
 
-},{}],213:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 "use strict"
 
 function compileSearch(funcName, predicate, reversed, extraArgs, useNdarray, earlyOut) {
@@ -30545,7 +31231,7 @@ module.exports = {
   eq: compileBoundsSearch("-", true, "EQ", true)
 }
 
-},{}],214:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -30575,7 +31261,7 @@ module.exports = {
 
 });
 
-},{}],215:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 "use strict"
 
 function invert(hash) {
@@ -30589,13 +31275,13 @@ function invert(hash) {
 }
 
 module.exports = invert
+},{}],214:[function(require,module,exports){
+module.exports=require(76)
+},{}],215:[function(require,module,exports){
+module.exports=require(145)
 },{}],216:[function(require,module,exports){
-module.exports=require(77)
-},{}],217:[function(require,module,exports){
-module.exports=require(146)
-},{}],218:[function(require,module,exports){
 module.exports=require(10)
-},{}],219:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 "use strict"
 
 var EventEmitter = require("events").EventEmitter
@@ -31315,13 +32001,13 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":210,"./lib/mousewheel-polyfill.js":211,"./lib/raf-polyfill.js":212,"binary-search-bounds":213,"domready":214,"events":792,"invert-hash":215,"iota-array":216,"uniq":217,"util":811,"vkey":218}],220:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":208,"./lib/mousewheel-polyfill.js":209,"./lib/raf-polyfill.js":210,"binary-search-bounds":211,"domready":212,"events":795,"invert-hash":213,"iota-array":214,"uniq":215,"util":814,"vkey":216}],218:[function(require,module,exports){
+module.exports=require(80)
+},{}],219:[function(require,module,exports){
 module.exports=require(81)
+},{"weakmap":218}],220:[function(require,module,exports){
+module.exports=require(204)
 },{}],221:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":220}],222:[function(require,module,exports){
-module.exports=require(206)
-},{}],223:[function(require,module,exports){
 module.exports = function(arr) {
   if (!arr) return false
   if (!arr.dtype) return false
@@ -31329,11 +32015,11 @@ module.exports = function(arr) {
   return re.test(String(arr.constructor))
 }
 
+},{}],222:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":223}],223:[function(require,module,exports){
+module.exports=require(76)
 },{}],224:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":225}],225:[function(require,module,exports){
-module.exports=require(77)
-},{}],226:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -31415,7 +32101,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],227:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -31551,7 +32237,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":228,"aabb-3d":198}],228:[function(require,module,exports){
+},{"./tree":226,"aabb-3d":196}],226:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -31677,7 +32363,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":198}],229:[function(require,module,exports){
+},{"aabb-3d":196}],227:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -31724,7 +32410,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],230:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -32018,7 +32704,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":809}],231:[function(require,module,exports){
+},{"stream":812}],229:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -32065,9 +32751,9 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
   var modelMatrix = mat4.create()
   var w = voxels.shape[2] - pad  // =[1]=[0]=game.chunkSize
   var translateVector = [
-    position[2] * w,
+    position[0] * w,
     position[1] * w,
-    position[0] * w]
+    position[2] * w]
 
   mat4.translate(modelMatrix, modelMatrix, translateVector)
 
@@ -32086,7 +32772,7 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
 
 module.exports = createVoxelMesh
 
-},{"./mesh.js":233,"gl-buffer":239,"gl-matrix":242,"gl-vao":248,"ndarray":261,"ndarray-ops":256}],232:[function(require,module,exports){
+},{"./mesh.js":231,"gl-buffer":237,"gl-matrix":240,"gl-vao":246,"ndarray":259,"ndarray-ops":254}],230:[function(require,module,exports){
 'use strict';
 
 var createVoxelMesh = require('./mesh-buffer.js');
@@ -32215,7 +32901,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":231,"block-models":234,"events":792,"gl-buffer":239,"gl-vao":248,"inherits":255,"ndarray":261,"ndarray-ops":256}],233:[function(require,module,exports){
+},{"./mesh-buffer.js":229,"block-models":232,"events":795,"gl-buffer":237,"gl-vao":246,"inherits":253,"ndarray":259,"ndarray-ops":254}],231:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -32766,7 +33452,7 @@ function computeMesh(array, voxelSideTextureIDs, voxelSideTextureSizes) {
 
 module.exports = computeMesh
 
-},{"cwise-compiler":235,"greedy-mesher":249,"ndarray":261,"typedarray-pool":265}],234:[function(require,module,exports){
+},{"cwise-compiler":233,"greedy-mesher":247,"ndarray":259,"typedarray-pool":263}],232:[function(require,module,exports){
 'use strict';
 
 // get all coordinates for a cube ranging from vertex a to b
@@ -32912,35 +33598,35 @@ var parseBlockModel = function(elements, getTextureUV, x, y, z) {
 module.exports = parseBlockModel;
 
 
-},{}],235:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":235}],234:[function(require,module,exports){
 module.exports=require(143)
-},{"./lib/thunk.js":237}],236:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":238}],237:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":236}],238:[function(require,module,exports){
-module.exports=require(146)
+},{"uniq":236}],235:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":234}],236:[function(require,module,exports){
+module.exports=require(145)
+},{}],237:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"ndarray":259,"ndarray-ops":254,"typedarray-pool":263,"webglew":239}],238:[function(require,module,exports){
+module.exports=require(80)
 },{}],239:[function(require,module,exports){
-arguments[4][70][0].apply(exports,arguments)
-},{"ndarray":261,"ndarray-ops":256,"typedarray-pool":265,"webglew":241}],240:[function(require,module,exports){
 module.exports=require(81)
+},{"weakmap":238}],240:[function(require,module,exports){
+module.exports=require(153)
 },{}],241:[function(require,module,exports){
 module.exports=require(82)
-},{"weakmap":240}],242:[function(require,module,exports){
-module.exports=require(154)
-},{}],243:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 module.exports=require(83)
-},{}],244:[function(require,module,exports){
+},{"./do-bind.js":241}],243:[function(require,module,exports){
 module.exports=require(84)
-},{"./do-bind.js":243}],245:[function(require,module,exports){
-module.exports=require(85)
-},{"./do-bind.js":243}],246:[function(require,module,exports){
+},{"./do-bind.js":241}],244:[function(require,module,exports){
+module.exports=require(80)
+},{}],245:[function(require,module,exports){
 module.exports=require(81)
-},{}],247:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":246}],248:[function(require,module,exports){
-module.exports=require(88)
-},{"./lib/vao-emulated.js":244,"./lib/vao-native.js":245,"webglew":247}],249:[function(require,module,exports){
+},{"weakmap":244}],246:[function(require,module,exports){
+module.exports=require(87)
+},{"./lib/vao-emulated.js":242,"./lib/vao-native.js":243,"webglew":245}],247:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -33139,39 +33825,39 @@ function compileMesher(options) {
 }
 module.exports = compileMesher
 
-},{"iota-array":250,"typedarray-pool":253,"uniq":254}],250:[function(require,module,exports){
+},{"iota-array":248,"typedarray-pool":251,"uniq":252}],248:[function(require,module,exports){
+module.exports=require(76)
+},{}],249:[function(require,module,exports){
 module.exports=require(77)
+},{}],250:[function(require,module,exports){
+module.exports=require(78)
 },{}],251:[function(require,module,exports){
-module.exports=require(78)
-},{}],252:[function(require,module,exports){
-module.exports=require(79)
+module.exports=require(150)
+},{"bit-twiddle":249,"buffer":792,"dup":250}],252:[function(require,module,exports){
+module.exports=require(145)
 },{}],253:[function(require,module,exports){
-module.exports=require(151)
-},{"bit-twiddle":251,"buffer":789,"dup":252}],254:[function(require,module,exports){
-module.exports=require(146)
-},{}],255:[function(require,module,exports){
-module.exports=require(206)
-},{}],256:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":257}],257:[function(require,module,exports){
+module.exports=require(204)
+},{}],254:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"cwise-compiler":255}],255:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":257}],256:[function(require,module,exports){
 module.exports=require(143)
-},{"./lib/thunk.js":259}],258:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":260}],259:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":258}],260:[function(require,module,exports){
+},{"uniq":258}],257:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":256}],258:[function(require,module,exports){
+module.exports=require(145)
+},{}],259:[function(require,module,exports){
 module.exports=require(146)
+},{"buffer":792,"iota-array":260}],260:[function(require,module,exports){
+module.exports=require(76)
 },{}],261:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":262}],262:[function(require,module,exports){
 module.exports=require(77)
-},{}],263:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports=require(78)
-},{}],264:[function(require,module,exports){
-module.exports=require(79)
-},{}],265:[function(require,module,exports){
-module.exports=require(151)
-},{"bit-twiddle":263,"buffer":789,"dup":264}],266:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
+module.exports=require(150)
+},{"bit-twiddle":261,"buffer":792,"dup":262}],264:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -33431,7 +34117,7 @@ proto.fell = function(distance) {
   return
 }
 
-},{"aabb-3d":267,"gl-matrix":268}],267:[function(require,module,exports){
+},{"aabb-3d":265,"gl-matrix":266}],265:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -33530,11 +34216,11 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":268}],268:[function(require,module,exports){
-module.exports=require(154)
-},{}],269:[function(require,module,exports){
-module.exports=require(137)
-},{}],270:[function(require,module,exports){
+},{"gl-matrix":266}],266:[function(require,module,exports){
+module.exports=require(153)
+},{}],267:[function(require,module,exports){
+module.exports=require(136)
+},{}],268:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -33608,7 +34294,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":811}],271:[function(require,module,exports){
+},{"util":814}],269:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -33925,7 +34611,7 @@ Plugins.prototype.destroy = function(name) {
 inherits(Plugins, EventEmitter);
 
 }).call(this,require("q+64fw"))
-},{"events":792,"inherits":269,"q+64fw":795,"tsort":270}],272:[function(require,module,exports){
+},{"events":795,"inherits":267,"q+64fw":798,"tsort":268}],270:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -34147,7 +34833,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],273:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -34175,9 +34861,9 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":274,"events":792}],274:[function(require,module,exports){
-arguments[4][267][0].apply(exports,arguments)
-},{"gl-matrix":275}],275:[function(require,module,exports){
+},{"aabb-3d":272,"events":795}],272:[function(require,module,exports){
+arguments[4][265][0].apply(exports,arguments)
+},{"gl-matrix":273}],273:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -38050,12 +38736,8 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],276:[function(require,module,exports){
-module.exports=require(37)
-},{}],277:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 'use strict';
-
-var toArray = require('toarray');
 
 module.exports = function(game, opts) {
   return new Registry(game, opts);
@@ -38165,11 +38847,6 @@ Registry.prototype.getBlockIndex = function(name) {
   return this.blockName2Index[name];
 };
 
-// deprecated - now same as getBlockIndex (no more packed opaque bit here)
-Registry.prototype.getPackedBlockIndex = function(name) {
-  return this.getBlockIndex(name);
-};
-
 Registry.prototype.getBlockName = function(blockIndex) {
   var name = this.blockIndex2Name[blockIndex];
     
@@ -38240,13 +38917,39 @@ Registry.prototype.getItemTexture = function(name, tags) {
 
     if (blockTexture !== undefined) {
       // no item texture, use block texture
+
+      // block textures are 3D cubes by default
+      if (typeof blockTexture === 'string') blockTexture = [blockTexture];
+
       // 3D CSS cube using https://github.com/deathcap/cube-icon
-      return toArray(blockTexture).map(this.getTextureURL.bind(this));
+      return this._getTextureURLs(blockTexture);
     }
   }
 
   // returns a Blob URL, could point inside a zipped pack
-  return Array.isArray(textureName) ? textureName.map(this.getTextureURL.bind(this)) : this.getTextureURL(textureName);
+  return this._getTextureURLs(textureName);
+};
+
+// Resolve texture names to URLs in an object - either a string, array, or object
+Registry.prototype._getTextureURLs = function(names) {
+  var out;
+  if (Array.isArray(names)) {
+    out = names.map(this.getTextureURL.bind(this));
+  } else if (typeof names === 'string') {
+    out = this.getTextureURL(names);
+  } else if (names.top || names.left || names.front) {
+    out = {};
+    var keys = Object.keys(names);
+    for (var i = 0; i < keys.length; ++i) {
+      var key = keys[i];
+      out[key] = this.getTextureURL(names[key]);
+    }
+  } else {
+    console.warn('voxel-registry _getTextureURLs invald name object (try a string):'+name);
+    throw new Error('voxel-registry _getTextureURLs invald name object (try a string):'+name);
+  }
+
+  return out;
 };
 
 Registry.prototype.getItemDisplayName = function(name) {
@@ -38291,7 +38994,7 @@ Registry.prototype.getTextureURL = function(name) {
 
 
 
-},{"toarray":276}],278:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 var glslify = require("glslify");
 var fs = require("fs");
 var mat4 = require("gl-matrix").mat4;
@@ -38370,9 +39073,7 @@ ShaderPlugin.prototype.render = function() {
     this.camera.view(this.viewMatrix);
     gl.enable(gl.CULL_FACE);
     gl.enable(gl.DEPTH_TEST);
-    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-    gl.enable(gl.BLEND);
-    gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, true);
+    gl.disable(gl.BLEND);
     var shader = this.shader;
 
     if (!shader)
@@ -38404,6 +39105,8 @@ ShaderPlugin.prototype.render = function() {
         }
     }
 
+    gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+    gl.enable(gl.BLEND);
     var shader2 = this.shader2;
     shader2.bind();
     shader2.attributes.position.location = 0;
@@ -38434,506 +39137,507 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"fs":772,"gl-matrix":279,"glslify":281,"glslify/adapter.js":280}],279:[function(require,module,exports){
-module.exports=require(154)
-},{}],280:[function(require,module,exports){
+},{"fs":775,"gl-matrix":276,"glslify":278,"glslify/adapter.js":277}],276:[function(require,module,exports){
+module.exports=require(153)
+},{}],277:[function(require,module,exports){
+module.exports=require(88)
+},{"gl-shader-core":283}],278:[function(require,module,exports){
 module.exports=require(89)
-},{"gl-shader-core":286}],281:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 module.exports=require(90)
-},{}],282:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 module.exports=require(91)
-},{}],283:[function(require,module,exports){
+},{"./reflect.js":281,"dup":282}],281:[function(require,module,exports){
 module.exports=require(92)
-},{"./reflect.js":284,"dup":285}],284:[function(require,module,exports){
-module.exports=require(93)
-},{}],285:[function(require,module,exports){
-module.exports=require(79)
-},{}],286:[function(require,module,exports){
-module.exports=require(95)
-},{"./lib/create-attributes.js":282,"./lib/create-uniforms.js":283,"./lib/reflect.js":284}],287:[function(require,module,exports){
-// Generated by CoffeeScript 1.7.0
-(function() {
-  var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+},{}],282:[function(require,module,exports){
+module.exports=require(78)
+},{}],283:[function(require,module,exports){
+module.exports=require(94)
+},{"./lib/create-attributes.js":279,"./lib/create-uniforms.js":280,"./lib/reflect.js":281}],284:[function(require,module,exports){
+var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  ZIP = require('zip');
+ZIP = require('zip');
 
-  path = require('path');
+path = require('path');
 
-  fs = require('fs');
+fs = require('fs');
 
-  binaryXHR = require('binary-xhr');
+binaryXHR = require('binary-xhr');
 
-  EventEmitter = (require('events')).EventEmitter;
+EventEmitter = (require('events')).EventEmitter;
 
-  getFrames = require('mcmeta');
+getFrames = require('mcmeta');
 
-  getPixels = require('get-pixels');
+getPixels = require('get-pixels');
 
-  savePixels = require('save-pixels');
+savePixels = require('save-pixels');
 
-  graycolorize = require('graycolorize');
+graycolorize = require('graycolorize');
 
-  arrayBufferToString = function(arrayBuffer) {
-    return String.fromCharCode.apply(null, new Uint8Array(arrayBuffer));
+arrayBufferToString = function(arrayBuffer) {
+  return String.fromCharCode.apply(null, new Uint8Array(arrayBuffer));
+};
+
+ArtPacks = (function(_super) {
+  __extends(ArtPacks, _super);
+
+  function ArtPacks(packs) {
+    var pack, _i, _len;
+    this.packs = [];
+    this.pending = {};
+    this.blobURLs = {};
+    this.shouldColorize = {
+      'grass_top': true,
+      'leaves_oak': true
+    };
+    this.setMaxListeners(0);
+    for (_i = 0, _len = packs.length; _i < _len; _i++) {
+      pack = packs[_i];
+      this.addPack(pack);
+    }
+  }
+
+  ArtPacks.prototype.addPack = function(x, name) {
+    var pack, packIndex, rawZipArchiveData, url;
+    if (name == null) {
+      name = void 0;
+    }
+    if (x instanceof ArrayBuffer) {
+      rawZipArchiveData = x;
+      this.packs.push(new ArtPackArchive(rawZipArchiveData, name != null ? name : "(" + rawZipArchiveData.byteLength + " raw bytes)"));
+      this.refresh();
+      this.emit('loadedRaw', rawZipArchiveData);
+      return this.emit('loadedAll');
+    } else if (typeof x === 'string') {
+      url = x;
+      if (typeof XMLHttpRequest === "undefined" || XMLHttpRequest === null) {
+        throw new Error("artpacks unsupported addPack url " + x + " without XMLHttpRequest");
+      }
+      this.pending[url] = true;
+      packIndex = this.packs.length;
+      this.packs[packIndex] = null;
+      this.emit('loadingURL', url);
+      return binaryXHR(url, (function(_this) {
+        return function(err, packData) {
+          var e;
+          if (_this.packs[packIndex] !== null) {
+            console.log("artpacks warning: index " + packIndex + " occupied, expected to be empty while loading " + url);
+          }
+          if (err || !packData) {
+            console.log("artpack failed to load \#" + packIndex + " - " + url + ": " + err);
+            _this.emit('failedURL', url, err);
+            delete _this.pending[url];
+            return;
+          }
+          try {
+            _this.packs[packIndex] = new ArtPackArchive(packData, url);
+            _this.refresh();
+          } catch (_error) {
+            e = _error;
+            console.log("artpack failed to parse \#" + packIndex + " - " + url + ": " + e);
+            _this.emit('failedURL', url, e);
+          }
+          delete _this.pending[url];
+          console.log('artpacks loaded pack:', url);
+          _this.emit('loadedURL', url);
+          if (Object.keys(_this.pending).length === 0) {
+            return _this.emit('loadedAll');
+          }
+        };
+      })(this));
+    } else {
+      pack = x;
+      this.emit('loadedPack', pack);
+      this.emit('loadedAll');
+      this.packs.push(pack);
+      return this.refresh();
+    }
   };
 
-  ArtPacks = (function(_super) {
-    __extends(ArtPacks, _super);
-
-    function ArtPacks(packs) {
-      var pack, _i, _len;
-      this.packs = [];
-      this.pending = {};
-      this.blobURLs = {};
-      this.shouldColorize = {
-        'grass_top': true,
-        'leaves_oak': true
-      };
-      this.setMaxListeners(0);
-      for (_i = 0, _len = packs.length; _i < _len; _i++) {
-        pack = packs[_i];
-        this.addPack(pack);
-      }
+  ArtPacks.prototype.swap = function(i, j) {
+    var temp;
+    if (i === j) {
+      return;
     }
+    temp = this.packs[i];
+    this.packs[i] = this.packs[j];
+    this.packs[j] = temp;
+    return this.refresh();
+  };
 
-    ArtPacks.prototype.addPack = function(x, name) {
-      var pack, packIndex, rawZipArchiveData, url;
-      if (name == null) {
-        name = void 0;
+  ArtPacks.prototype.colorize = function(img, onload, onerror) {
+    return getPixels(img.src, function(err, pixels) {
+      var img2;
+      if (err) {
+        return onerror(err, img);
       }
-      if (x instanceof ArrayBuffer) {
-        rawZipArchiveData = x;
-        this.packs.push(new ArtPackArchive(rawZipArchiveData, name != null ? name : "(" + rawZipArchiveData.byteLength + " raw bytes)"));
-        this.refresh();
-        this.emit('loadedRaw', rawZipArchiveData);
-        return this.emit('loadedAll');
-      } else if (typeof x === 'string') {
-        url = x;
-        if (typeof XMLHttpRequest === "undefined" || XMLHttpRequest === null) {
-          throw new Error("artpacks unsupported addPack url " + x + " without XMLHttpRequest");
-        }
-        this.pending[url] = true;
-        packIndex = this.packs.length;
-        this.packs[packIndex] = null;
-        this.emit('loadingURL', url);
-        return binaryXHR(url, (function(_this) {
-          return function(err, packData) {
-            var e;
-            if (_this.packs[packIndex] !== null) {
-              console.log("artpacks warning: index " + packIndex + " occupied, expected to be empty while loading " + url);
-            }
-            if (err || !packData) {
-              console.log("artpack failed to load \#" + packIndex + " - " + url + ": " + err);
-              _this.emit('failedURL', url, err);
-              delete _this.pending[url];
-              return;
-            }
-            try {
-              _this.packs[packIndex] = new ArtPackArchive(packData, url);
-              _this.refresh();
-            } catch (_error) {
-              e = _error;
-              console.log("artpack failed to parse \#" + packIndex + " - " + url + ": " + e);
-              _this.emit('failedURL', url, e);
-            }
-            delete _this.pending[url];
-            console.log('artpacks loaded pack:', url);
-            _this.emit('loadedURL', url);
-            if (Object.keys(_this.pending).length === 0) {
-              return _this.emit('loadedAll');
-            }
-          };
-        })(this));
-      } else {
-        pack = x;
-        this.emit('loadedPack', pack);
-        this.emit('loadedAll');
-        this.packs.push(pack);
-        return this.refresh();
+      if (this.colorMap == null) {
+        this.colorMap = graycolorize.generateMap(120 / 360, 0.7);
       }
-    };
+      graycolorize(pixels, this.colorMap);
+      img2 = new Image();
+      img2.src = savePixels(pixels, 'canvas').toDataURL();
+      img2.onload = function() {
+        return onload(img2);
+      };
+      return img2.onerror = function(err) {
+        return onerror(err, img2);
+      };
+    });
+  };
 
-    ArtPacks.prototype.swap = function(i, j) {
-      var temp;
-      if (i === j) {
-        return;
+  ArtPacks.prototype.getTextureNdarray = function(name, onload, onerror) {
+    var onload2;
+    onload2 = function(img) {
+      if (Array.isArray(img)) {
+        img = img[0];
       }
-      temp = this.packs[i];
-      this.packs[i] = this.packs[j];
-      this.packs[j] = temp;
-      return this.refresh();
-    };
-
-    ArtPacks.prototype.colorize = function(img, onload, onerror) {
       return getPixels(img.src, function(err, pixels) {
-        var img2;
         if (err) {
           return onerror(err, img);
         }
-        if (this.colorMap == null) {
-          this.colorMap = graycolorize.generateMap(120 / 360, 0.7);
-        }
-        graycolorize(pixels, this.colorMap);
-        img2 = new Image();
-        img2.src = savePixels(pixels, 'canvas').toDataURL();
-        img2.onload = function() {
-          return onload(img2);
-        };
-        return img2.onerror = function(err) {
-          return onerror(err, img2);
-        };
+        return onload(pixels);
       });
     };
+    return this.getTextureImage(name, onload2, onerror);
+  };
 
-    ArtPacks.prototype.getTextureNdarray = function(name, onload, onerror) {
-      var onload2;
-      onload2 = function(img) {
-        if (Array.isArray(img)) {
-          img = img[0];
+  ArtPacks.prototype.getTextureImage = function(name, onload, onerror) {
+    var img, load;
+    img = new Image();
+    load = (function(_this) {
+      return function() {
+        var url;
+        url = _this.getTexture(name);
+        if (url == null) {
+          return onerror("no such texture in artpacks: " + name, img);
         }
-        return getPixels(img.src, function(err, pixels) {
-          if (err) {
-            return onerror(err, img);
+        img.src = url;
+        img.onload = function() {
+          var json;
+          if (_this.shouldColorize[name]) {
+            return _this.colorize(img, onload, onerror);
           }
-          return onload(pixels);
-        });
-      };
-      return this.getTextureImage(name, onload2, onerror);
-    };
-
-    ArtPacks.prototype.getTextureImage = function(name, onload, onerror) {
-      var img, load;
-      img = new Image();
-      load = (function(_this) {
-        return function() {
-          var url;
-          url = _this.getTexture(name);
-          if (url == null) {
-            return onerror("no such texture in artpacks: " + name, img);
-          }
-          img.src = url;
-          img.onload = function() {
-            var json;
-            if (_this.shouldColorize[name]) {
-              return _this.colorize(img, onload, onerror);
-            }
-            if (img.height === img.width) {
-              return onload(img);
-            } else {
-              json = _this.getMeta(name, 'textures');
-              console.log('.mcmeta=', json);
-              return getPixels(img.src, function(err, pixels) {
-                var frameImgs, frames, loaded;
-                if (err) {
-                  return onerror(err, img);
-                }
-                frames = getFrames(pixels, json);
-                loaded = 0;
-                frameImgs = [];
-                return frames.forEach(function(frame) {
-                  var frameImg;
-                  frameImg = new Image();
-                  frameImg.src = frame.image;
-                  frameImg.onerror = function(err) {
-                    return onerror(err, img, frameImg);
-                  };
-                  return frameImg.onload = function() {
-                    frameImgs.push(frameImg);
-                    if (frameImgs.length === frames.length) {
-                      if (frameImgs.length === 1) {
-                        return onload(frameImgs[0]);
-                      } else {
-                        return onload(frameImgs);
-                      }
+          if (img.height === img.width) {
+            return onload(img);
+          } else {
+            json = _this.getMeta(name, 'textures');
+            console.log('.mcmeta=', json);
+            return getPixels(img.src, function(err, pixels) {
+              var frameImgs, frames, loaded;
+              if (err) {
+                return onerror(err, img);
+              }
+              frames = getFrames(pixels, json);
+              loaded = 0;
+              frameImgs = [];
+              return frames.forEach(function(frame) {
+                var frameImg;
+                frameImg = new Image();
+                frameImg.src = frame.image;
+                frameImg.onerror = function(err) {
+                  return onerror(err, img, frameImg);
+                };
+                return frameImg.onload = function() {
+                  frameImgs.push(frameImg);
+                  if (frameImgs.length === frames.length) {
+                    if (frameImgs.length === 1) {
+                      return onload(frameImgs[0]);
+                    } else {
+                      return onload(frameImgs);
                     }
-                  };
-                });
+                  }
+                };
               });
-            }
-          };
-          return img.onerror = function(err) {
-            return onerror(err, img);
-          };
-        };
-      })(this);
-      if (this.isQuiescent()) {
-        return load();
-      } else {
-        return this.on('loadedAll', load);
-      }
-    };
-
-    ArtPacks.prototype.getTexture = function(name) {
-      return this.getURL(name, 'textures');
-    };
-
-    ArtPacks.prototype.getSound = function(name) {
-      return this.getURL(name, 'sounds');
-    };
-
-    ArtPacks.prototype.getURL = function(name, type) {
-      var blob, url;
-      url = this.blobURLs[type + ' ' + name];
-      if (url != null) {
-        return url;
-      }
-      blob = this.getBlob(name, type);
-      if (blob == null) {
-        return void 0;
-      }
-      url = URL.createObjectURL(blob);
-      this.blobURLs[type + ' ' + name] = url;
-      return url;
-    };
-
-    ArtPacks.prototype.mimeTypes = {
-      textures: 'image/png',
-      sounds: 'audio/ogg'
-    };
-
-    ArtPacks.prototype.getBlob = function(name, type) {
-      var arrayBuffer;
-      arrayBuffer = this.getArrayBuffer(name, type, false);
-      if (arrayBuffer == null) {
-        return void 0;
-      }
-      return new Blob([arrayBuffer], {
-        type: this.mimeTypes[type]
-      });
-    };
-
-    ArtPacks.prototype.getArrayBuffer = function(name, type, isMeta) {
-      var arrayBuffer, pack, _i, _len, _ref;
-      _ref = this.packs.slice(0).reverse();
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        pack = _ref[_i];
-        if (!pack) {
-          continue;
-        }
-        arrayBuffer = pack.getArrayBuffer(name, type, isMeta);
-        if (arrayBuffer != null) {
-          return arrayBuffer;
-        }
-      }
-      return void 0;
-    };
-
-    ArtPacks.prototype.getMeta = function(name, type) {
-      var arrayBuffer, decodedString, encodedString, json;
-      arrayBuffer = this.getArrayBuffer(name, type, true);
-      if (arrayBuffer == null) {
-        return void 0;
-      }
-      encodedString = arrayBufferToString(arrayBuffer);
-      decodedString = decodeURIComponent(escape(encodedString));
-      json = JSON.parse(decodedString);
-      return json;
-    };
-
-    ArtPacks.prototype.refresh = function() {
-      var url, _i, _len, _ref;
-      _ref = this.blobURLs;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        url = _ref[_i];
-        URL.revokeObjectURL(url);
-      }
-      this.blobURLs = [];
-      return this.emit('refresh');
-    };
-
-    ArtPacks.prototype.clear = function() {
-      this.packs = [];
-      return this.refresh();
-    };
-
-    ArtPacks.prototype.getLoadedPacks = function() {
-      var pack, ret, _i, _len, _ref;
-      ret = [];
-      _ref = this.packs.slice(0).reverse();
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        pack = _ref[_i];
-        if (pack != null) {
-          ret.push(pack);
-        }
-      }
-      return ret;
-    };
-
-    ArtPacks.prototype.isQuiescent = function() {
-      return this.getLoadedPacks().length > 0 && Object.keys(this.pending).length === 0;
-    };
-
-    return ArtPacks;
-
-  })(EventEmitter);
-
-  splitNamespace = function(name) {
-    var a, namespace;
-    a = name.split(':');
-    if (a.length > 1) {
-      namespace = a[0], name = a[1];
-    }
-    if (namespace == null) {
-      namespace = '*';
-    }
-    return [namespace, name];
-  };
-
-  ArtPackArchive = (function() {
-    function ArtPackArchive(packData, name) {
-      this.name = name != null ? name : void 0;
-      if (packData instanceof ArrayBuffer) {
-        packData = new Uint8Array(packData);
-      }
-      this.zip = new ZIP.Reader(packData);
-      this.zipEntries = {};
-      this.zip.forEach((function(_this) {
-        return function(entry) {
-          return _this.zipEntries[entry.getName()] = entry;
-        };
-      })(this));
-      this.namespaces = this.scanNamespaces();
-      this.namespaces.push('foo');
-    }
-
-    ArtPackArchive.prototype.toString = function() {
-      var _ref;
-      return (_ref = this.name) != null ? _ref : 'ArtPack';
-    };
-
-    ArtPackArchive.prototype.scanNamespaces = function() {
-      var namespaces, parts, zipEntryName, _i, _len, _ref;
-      namespaces = {};
-      _ref = Object.keys(this.zipEntries);
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        zipEntryName = _ref[_i];
-        parts = zipEntryName.split(path.sep);
-        if (parts.length < 2) {
-          continue;
-        }
-        if (parts[0] !== 'assets') {
-          continue;
-        }
-        if (parts[1].length === 0) {
-          continue;
-        }
-        namespaces[parts[1]] = true;
-      }
-      return Object.keys(namespaces);
-    };
-
-    ArtPackArchive.prototype.nameToPath = {
-      textures: function(fullname) {
-        var a, basename, category, namespace, partname, pathRP, _ref, _ref1;
-        a = fullname.split('/');
-        if (a.length > 1) {
-          category = a[0], partname = a[1];
-        }
-        category = (_ref = {
-          undefined: 'blocks',
-          'i': 'items'
-        }[category]) != null ? _ref : category;
-        if (partname == null) {
-          partname = fullname;
-        }
-        _ref1 = splitNamespace(partname), namespace = _ref1[0], basename = _ref1[1];
-        pathRP = "assets/" + namespace + "/textures/" + category + "/" + basename + ".png";
-        console.log('artpacks texture:', fullname, [category, namespace, basename]);
-        return pathRP;
-      },
-      sounds: function(fullname) {
-        var name, namespace, pathRP, _ref;
-        _ref = splitNamespace(fullname), namespace = _ref[0], name = _ref[1];
-        return pathRP = "assets/" + namespace + "/sounds/" + name + ".ogg";
-      }
-    };
-
-    ArtPackArchive.prototype.getArrayBuffer = function(name, type, isMeta) {
-      var found, namespace, pathRP, tryPath, tryPaths, zipEntry, _i, _len;
-      if (isMeta == null) {
-        isMeta = false;
-      }
-      pathRP = this.nameToPath[type](name);
-      if (isMeta) {
-        pathRP += '.mcmeta';
-      }
-      found = false;
-      if (pathRP.indexOf('*') === -1) {
-        tryPaths = [pathRP];
-      } else {
-        tryPaths = (function() {
-          var _i, _len, _ref, _results;
-          _ref = this.namespaces;
-          _results = [];
-          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-            namespace = _ref[_i];
-            _results.push(pathRP.replace('*', namespace));
+            });
           }
-          return _results;
-        }).call(this);
-      }
-      for (_i = 0, _len = tryPaths.length; _i < _len; _i++) {
-        tryPath = tryPaths[_i];
-        zipEntry = this.zipEntries[tryPath];
-        if (zipEntry != null) {
-          return zipEntry.getData();
-        }
-      }
-      return void 0;
-    };
-
-    ArtPackArchive.prototype.getFixedPathArrayBuffer = function(path) {
-      var _ref;
-      return (_ref = this.zipEntries[path]) != null ? _ref.getData() : void 0;
-    };
-
-    ArtPackArchive.prototype.getPackLogo = function() {
-      var arrayBuffer, blob;
-      if (this.logoURL) {
-        return this.logoURL;
-      }
-      arrayBuffer = this.getFixedPathArrayBuffer('pack.png');
-      if (arrayBuffer != null) {
-        blob = new Blob([arrayBuffer], {
-          type: 'image/png'
-        });
-        return this.logoURL = URL.createObjectURL(blob);
-      } else {
-        return this.logoURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVQYV2N48uTJfxBmgDEAg3wOrbpADeoAAAAASUVORK5CYII=';
-      }
-    };
-
-    ArtPackArchive.prototype.getPackJSON = function() {
-      var arrayBuffer, str;
-      if (this.json != null) {
-        return this.json;
-      }
-      arrayBuffer = this.getFixedPathArrayBuffer('pack.mcmeta');
-      if (arrayBuffer == null) {
-        return {};
-      }
-      str = arrayBufferToString(arrayBuffer);
-      return this.json = JSON.parse(str);
-    };
-
-    ArtPackArchive.prototype.getDescription = function() {
-      var _ref, _ref1, _ref2;
-      return (_ref = (_ref1 = this.getPackJSON()) != null ? (_ref2 = _ref1.pack) != null ? _ref2.description : void 0 : void 0) != null ? _ref : this.name;
-    };
-
-    return ArtPackArchive;
-
-  })();
-
-  module.exports = function(opts) {
-    return new ArtPacks(opts);
+        };
+        return img.onerror = function(err) {
+          return onerror(err, img);
+        };
+      };
+    })(this);
+    if (this.isQuiescent()) {
+      return load();
+    } else {
+      return this.on('loadedAll', load);
+    }
   };
 
-}).call(this);
+  ArtPacks.prototype.getTexture = function(name) {
+    return this.getURL(name, 'textures');
+  };
 
-},{"binary-xhr":288,"events":792,"fs":772,"get-pixels":290,"graycolorize":303,"mcmeta":307,"path":794,"save-pixels":328,"zip":344}],288:[function(require,module,exports){
+  ArtPacks.prototype.getSound = function(name) {
+    return this.getURL(name, 'sounds');
+  };
+
+  ArtPacks.prototype.getURL = function(name, type) {
+    var blob, url;
+    url = this.blobURLs[type + ' ' + name];
+    if (url != null) {
+      return url;
+    }
+    blob = this.getBlob(name, type);
+    if (blob == null) {
+      return void 0;
+    }
+    url = URL.createObjectURL(blob);
+    this.blobURLs[type + ' ' + name] = url;
+    return url;
+  };
+
+  ArtPacks.prototype.mimeTypes = {
+    textures: 'image/png',
+    sounds: 'audio/ogg'
+  };
+
+  ArtPacks.prototype.getBlob = function(name, type) {
+    var arrayBuffer;
+    arrayBuffer = this.getArrayBuffer(name, type, false);
+    if (arrayBuffer == null) {
+      return void 0;
+    }
+    return new Blob([arrayBuffer], {
+      type: this.mimeTypes[type]
+    });
+  };
+
+  ArtPacks.prototype.getArrayBuffer = function(name, type, isMeta) {
+    var arrayBuffer, pack, _i, _len, _ref;
+    _ref = this.packs.slice(0).reverse();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      pack = _ref[_i];
+      if (!pack) {
+        continue;
+      }
+      arrayBuffer = pack.getArrayBuffer(name, type, isMeta);
+      if (arrayBuffer != null) {
+        return arrayBuffer;
+      }
+    }
+    return void 0;
+  };
+
+  ArtPacks.prototype.getMeta = function(name, type) {
+    var arrayBuffer, decodedString, encodedString, json;
+    arrayBuffer = this.getArrayBuffer(name, type, true);
+    if (arrayBuffer == null) {
+      return void 0;
+    }
+    encodedString = arrayBufferToString(arrayBuffer);
+    decodedString = decodeURIComponent(escape(encodedString));
+    json = JSON.parse(decodedString);
+    return json;
+  };
+
+  ArtPacks.prototype.refresh = function() {
+    var url, _i, _len, _ref;
+    _ref = this.blobURLs;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      url = _ref[_i];
+      URL.revokeObjectURL(url);
+    }
+    this.blobURLs = [];
+    return this.emit('refresh');
+  };
+
+  ArtPacks.prototype.clear = function() {
+    this.packs = [];
+    return this.refresh();
+  };
+
+  ArtPacks.prototype.getLoadedPacks = function() {
+    var pack, ret, _i, _len, _ref;
+    ret = [];
+    _ref = this.packs.slice(0).reverse();
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      pack = _ref[_i];
+      if (pack != null) {
+        ret.push(pack);
+      }
+    }
+    return ret;
+  };
+
+  ArtPacks.prototype.isQuiescent = function() {
+    return this.getLoadedPacks().length > 0 && Object.keys(this.pending).length === 0;
+  };
+
+  return ArtPacks;
+
+})(EventEmitter);
+
+splitNamespace = function(name) {
+  var a, namespace;
+  a = name.split(':');
+  if (a.length > 1) {
+    namespace = a[0], name = a[1];
+  }
+  if (namespace == null) {
+    namespace = '*';
+  }
+  return [namespace, name];
+};
+
+ArtPackArchive = (function() {
+  function ArtPackArchive(packData, name) {
+    this.name = name != null ? name : void 0;
+    if (packData instanceof ArrayBuffer) {
+      packData = new Uint8Array(packData);
+    }
+    this.zip = new ZIP.Reader(packData);
+    this.zipEntries = {};
+    this.zip.forEach((function(_this) {
+      return function(entry) {
+        return _this.zipEntries[entry.getName()] = entry;
+      };
+    })(this));
+    this.namespaces = this.scanNamespaces();
+    this.namespaces.push('foo');
+  }
+
+  ArtPackArchive.prototype.toString = function() {
+    var _ref;
+    return (_ref = this.name) != null ? _ref : 'ArtPack';
+  };
+
+  ArtPackArchive.prototype.scanNamespaces = function() {
+    var namespaces, parts, zipEntryName, _i, _len, _ref;
+    namespaces = {};
+    _ref = Object.keys(this.zipEntries);
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      zipEntryName = _ref[_i];
+      parts = zipEntryName.split(path.sep);
+      if (parts.length < 2) {
+        continue;
+      }
+      if (parts[0] !== 'assets') {
+        continue;
+      }
+      if (parts[1].length === 0) {
+        continue;
+      }
+      namespaces[parts[1]] = true;
+    }
+    return Object.keys(namespaces);
+  };
+
+  ArtPackArchive.prototype.nameToPath = {
+    textures: function(fullname) {
+      var a, basename, category, namespace, partname, pathRP, _ref, _ref1;
+      a = fullname.split('/');
+      if (a.length > 1) {
+        category = a[0], partname = a[1];
+      }
+      category = (_ref = {
+        undefined: 'blocks',
+        'i': 'items'
+      }[category]) != null ? _ref : category;
+      if (partname == null) {
+        partname = fullname;
+      }
+      _ref1 = splitNamespace(partname), namespace = _ref1[0], basename = _ref1[1];
+      pathRP = "assets/" + namespace + "/textures/" + category + "/" + basename + ".png";
+      console.log('artpacks texture:', fullname, [category, namespace, basename]);
+      return pathRP;
+    },
+    sounds: function(fullname) {
+      var name, namespace, pathRP, _ref;
+      _ref = splitNamespace(fullname), namespace = _ref[0], name = _ref[1];
+      return pathRP = "assets/" + namespace + "/sounds/" + name + ".ogg";
+    }
+  };
+
+  ArtPackArchive.prototype.getArrayBuffer = function(name, type, isMeta) {
+    var found, namespace, pathRP, tryPath, tryPaths, zipEntry, _i, _len;
+    if (isMeta == null) {
+      isMeta = false;
+    }
+    if (typeof name !== 'string') {
+      console.log('invalid artpacks resource name (not a string) requested:', name, type);
+      throw new Error("invalid artpacks resource name (not a string) requested: " + (JSON.stringify(name)) + " of " + type);
+    }
+    pathRP = this.nameToPath[type](name);
+    if (isMeta) {
+      pathRP += '.mcmeta';
+    }
+    found = false;
+    if (pathRP.indexOf('*') === -1) {
+      tryPaths = [pathRP];
+    } else {
+      tryPaths = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.namespaces;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          namespace = _ref[_i];
+          _results.push(pathRP.replace('*', namespace));
+        }
+        return _results;
+      }).call(this);
+    }
+    for (_i = 0, _len = tryPaths.length; _i < _len; _i++) {
+      tryPath = tryPaths[_i];
+      zipEntry = this.zipEntries[tryPath];
+      if (zipEntry != null) {
+        return zipEntry.getData();
+      }
+    }
+    return void 0;
+  };
+
+  ArtPackArchive.prototype.getFixedPathArrayBuffer = function(path) {
+    var _ref;
+    return (_ref = this.zipEntries[path]) != null ? _ref.getData() : void 0;
+  };
+
+  ArtPackArchive.prototype.getPackLogo = function() {
+    var arrayBuffer, blob;
+    if (this.logoURL) {
+      return this.logoURL;
+    }
+    arrayBuffer = this.getFixedPathArrayBuffer('pack.png');
+    if (arrayBuffer != null) {
+      blob = new Blob([arrayBuffer], {
+        type: 'image/png'
+      });
+      return this.logoURL = URL.createObjectURL(blob);
+    } else {
+      return this.logoURL = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAEUlEQVQYV2N48uTJfxBmgDEAg3wOrbpADeoAAAAASUVORK5CYII=';
+    }
+  };
+
+  ArtPackArchive.prototype.getPackJSON = function() {
+    var arrayBuffer, str;
+    if (this.json != null) {
+      return this.json;
+    }
+    arrayBuffer = this.getFixedPathArrayBuffer('pack.mcmeta');
+    if (arrayBuffer == null) {
+      return {};
+    }
+    str = arrayBufferToString(arrayBuffer);
+    return this.json = JSON.parse(str);
+  };
+
+  ArtPackArchive.prototype.getDescription = function() {
+    var _ref, _ref1, _ref2;
+    return (_ref = (_ref1 = this.getPackJSON()) != null ? (_ref2 = _ref1.pack) != null ? _ref2.description : void 0 : void 0) != null ? _ref : this.name;
+  };
+
+  return ArtPackArchive;
+
+})();
+
+module.exports = function(opts) {
+  return new ArtPacks(opts);
+};
+
+
+},{"binary-xhr":285,"events":795,"fs":775,"get-pixels":287,"graycolorize":300,"mcmeta":304,"path":797,"save-pixels":325,"zip":341}],285:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -38961,9 +39665,9 @@ function BinaryXHR(url, cb) {
   xhr.send(null)
 }
 
-},{"inherits":289}],289:[function(require,module,exports){
-module.exports=require(137)
-},{}],290:[function(require,module,exports){
+},{"inherits":286}],286:[function(require,module,exports){
+module.exports=require(136)
+},{}],287:[function(require,module,exports){
 "use strict"
 
 var path = require("path")
@@ -39086,7 +39790,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":297,"ndarray-pack":291,"omggif":299,"path":794,"ppm":301,"through":302}],291:[function(require,module,exports){
+},{"ndarray":294,"ndarray-pack":288,"omggif":296,"path":797,"ppm":298,"through":299}],288:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -39109,10 +39813,10 @@ module.exports = function convert(arr, result) {
   return result
 }
 
-},{"./doConvert.js":292,"ndarray":297}],292:[function(require,module,exports){
+},{"./doConvert.js":289,"ndarray":294}],289:[function(require,module,exports){
 module.exports=require('cwise-compiler')({"args":["array","scalar","index"],"pre":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"body":{"body":"{\nvar _inline_1_v=_inline_1_arg1_,_inline_1_i\nfor(_inline_1_i=0;_inline_1_i<_inline_1_arg2_.length-1;++_inline_1_i) {\n_inline_1_v=_inline_1_v[_inline_1_arg2_[_inline_1_i]]\n}\n_inline_1_arg0_=_inline_1_v[_inline_1_arg2_[_inline_1_arg2_.length-1]]\n}","args":[{"name":"_inline_1_arg0_","lvalue":true,"rvalue":false,"count":1},{"name":"_inline_1_arg1_","lvalue":false,"rvalue":true,"count":1},{"name":"_inline_1_arg2_","lvalue":false,"rvalue":true,"count":4}],"thisVars":[],"localVars":["_inline_1_i","_inline_1_v"]},"post":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"funcName":"convert","blockSize":64})
 
-},{"cwise-compiler":293}],293:[function(require,module,exports){
+},{"cwise-compiler":290}],290:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -39220,7 +39924,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":295}],294:[function(require,module,exports){
+},{"./lib/thunk.js":292}],291:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -39504,15 +40208,15 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":296}],295:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":294}],296:[function(require,module,exports){
-module.exports=require(75)
-},{}],297:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":298}],298:[function(require,module,exports){
-module.exports=require(77)
-},{}],299:[function(require,module,exports){
+},{"uniq":293}],292:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":291}],293:[function(require,module,exports){
+module.exports=require(74)
+},{}],294:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":295}],295:[function(require,module,exports){
+module.exports=require(76)
+},{}],296:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -40243,7 +40947,7 @@ function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
 
 try { exports.GifWriter = GifWriter; exports.GifReader = GifReader } catch(e) { }  // CommonJS.
 
-},{}],300:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -40350,7 +41054,7 @@ function through (write, end) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":795,"stream":809}],301:[function(require,module,exports){
+},{"q+64fw":798,"stream":812}],298:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -40672,9 +41376,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":789,"q+64fw":795,"through":300}],302:[function(require,module,exports){
-module.exports=require(108)
-},{"q+64fw":795,"stream":809}],303:[function(require,module,exports){
+},{"buffer":792,"q+64fw":798,"through":297}],299:[function(require,module,exports){
+module.exports=require(107)
+},{"q+64fw":798,"stream":812}],300:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -40758,11 +41462,11 @@ var graycolorize = function(pixels, colors) {
 module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
-},{"ndarray":304,"onecolor":306}],304:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":305}],305:[function(require,module,exports){
-module.exports=require(77)
-},{}],306:[function(require,module,exports){
+},{"ndarray":301,"onecolor":303}],301:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":302}],302:[function(require,module,exports){
+module.exports=require(76)
+},{}],303:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
 /*global define*/
 var installedColorSpaces = [],
@@ -41518,7 +42222,7 @@ ONECOLOR.installMethod('toAlpha', function (color) {
 // Convenience functions
 
 
-},{}],307:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 'use strict';
 
 var getPixels = require('get-pixels');
@@ -41660,7 +42364,7 @@ module.exports.getFrames = getFrames;
 module.exports.parseFramesInfo = parseFramesInfo;
 module.exports.splitTiles = splitTiles;
 
-},{"get-pixels":308,"save-pixels":319}],308:[function(require,module,exports){
+},{"get-pixels":305,"save-pixels":316}],305:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -41682,11 +42386,11 @@ module.exports = function getPixels(url, cb) {
   img.src = url
 }
 
-},{"ndarray":309}],309:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":310}],310:[function(require,module,exports){
-module.exports=require(77)
-},{}],311:[function(require,module,exports){
+},{"ndarray":306}],306:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":307}],307:[function(require,module,exports){
+module.exports=require(76)
+},{}],308:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -41888,7 +42592,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":789,"stream":809,"util":811}],312:[function(require,module,exports){
+},{"buffer":792,"stream":812,"util":814}],309:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41928,7 +42632,7 @@ module.exports = {
     COLOR_ALPHA: 4
 };
 
-},{}],313:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -42009,7 +42713,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":809,"util":811}],314:[function(require,module,exports){
+},{"stream":812,"util":814}],311:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -42327,7 +43031,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":311,"buffer":789,"util":811,"zlib":788}],315:[function(require,module,exports){
+},{"./chunkstream":308,"buffer":792,"util":814,"zlib":791}],312:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -42441,7 +43145,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":312,"./crc":313,"./filter":314,"buffer":789,"stream":809,"util":811,"zlib":788}],316:[function(require,module,exports){
+},{"./constants":309,"./crc":310,"./filter":311,"buffer":792,"stream":812,"util":814,"zlib":791}],313:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -42804,7 +43508,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":311,"./constants":312,"./crc":313,"./filter":314,"buffer":789,"util":811,"zlib":788}],317:[function(require,module,exports){
+},{"./chunkstream":308,"./constants":309,"./crc":310,"./filter":311,"buffer":792,"util":814,"zlib":791}],314:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -42955,9 +43659,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./packer":315,"./parser":316,"buffer":789,"q+64fw":795,"stream":809,"util":811}],318:[function(require,module,exports){
-module.exports=require(108)
-},{"q+64fw":795,"stream":809}],319:[function(require,module,exports){
+},{"./packer":312,"./parser":313,"buffer":792,"q+64fw":798,"stream":812,"util":814}],315:[function(require,module,exports){
+module.exports=require(107)
+},{"q+64fw":798,"stream":812}],316:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -43049,25 +43753,25 @@ module.exports = function savePixels(array, type) {
   }
 }
 
-},{"pngjs":317,"through":318}],320:[function(require,module,exports){
+},{"pngjs":314,"through":315}],317:[function(require,module,exports){
+module.exports=require(308)
+},{"buffer":792,"stream":812,"util":814}],318:[function(require,module,exports){
+module.exports=require(309)
+},{}],319:[function(require,module,exports){
+module.exports=require(310)
+},{"stream":812,"util":814}],320:[function(require,module,exports){
 module.exports=require(311)
-},{"buffer":789,"stream":809,"util":811}],321:[function(require,module,exports){
+},{"./chunkstream":317,"buffer":792,"util":814,"zlib":791}],321:[function(require,module,exports){
 module.exports=require(312)
-},{}],322:[function(require,module,exports){
+},{"./constants":318,"./crc":319,"./filter":320,"buffer":792,"stream":812,"util":814,"zlib":791}],322:[function(require,module,exports){
 module.exports=require(313)
-},{"stream":809,"util":811}],323:[function(require,module,exports){
+},{"./chunkstream":317,"./constants":318,"./crc":319,"./filter":320,"buffer":792,"util":814,"zlib":791}],323:[function(require,module,exports){
 module.exports=require(314)
-},{"./chunkstream":320,"buffer":789,"util":811,"zlib":788}],324:[function(require,module,exports){
-module.exports=require(315)
-},{"./constants":321,"./crc":322,"./filter":323,"buffer":789,"stream":809,"util":811,"zlib":788}],325:[function(require,module,exports){
+},{"./packer":321,"./parser":322,"buffer":792,"q+64fw":798,"stream":812,"util":814}],324:[function(require,module,exports){
+module.exports=require(107)
+},{"q+64fw":798,"stream":812}],325:[function(require,module,exports){
 module.exports=require(316)
-},{"./chunkstream":320,"./constants":321,"./crc":322,"./filter":323,"buffer":789,"util":811,"zlib":788}],326:[function(require,module,exports){
-module.exports=require(317)
-},{"./packer":324,"./parser":325,"buffer":789,"q+64fw":795,"stream":809,"util":811}],327:[function(require,module,exports){
-module.exports=require(108)
-},{"q+64fw":795,"stream":809}],328:[function(require,module,exports){
-module.exports=require(319)
-},{"pngjs":326,"through":327}],329:[function(require,module,exports){
+},{"pngjs":323,"through":324}],326:[function(require,module,exports){
 
 var bops = require("bops");
 
@@ -43126,7 +43830,7 @@ function consolidate(buffers) {
 }
 
 
-},{"bops":331}],330:[function(require,module,exports){
+},{"bops":328}],327:[function(require,module,exports){
 /* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
  * Version: 1.0.0.1
  * LastModified: Dec 25 1999
@@ -43882,7 +44586,7 @@ exports.inflate = function (input) {
 };
 
 
-},{"./buffer-io":329,"bops":331}],331:[function(require,module,exports){
+},{"./buffer-io":326,"bops":328}],328:[function(require,module,exports){
 var proto = {}
 module.exports = proto
 
@@ -43903,7 +44607,7 @@ function mix(from, into) {
   }
 }
 
-},{"./copy.js":334,"./create.js":335,"./from.js":336,"./is.js":337,"./join.js":338,"./read.js":340,"./subarray.js":341,"./to.js":342,"./write.js":343}],332:[function(require,module,exports){
+},{"./copy.js":331,"./create.js":332,"./from.js":333,"./is.js":334,"./join.js":335,"./read.js":337,"./subarray.js":338,"./to.js":339,"./write.js":340}],329:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -43989,7 +44693,7 @@ function mix(from, into) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],333:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 module.exports = to_utf8
 
 var out = []
@@ -44064,7 +44768,7 @@ function reduced(list) {
   return out
 }
 
-},{}],334:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 module.exports = copy
 
 var slice = [].slice
@@ -44118,12 +44822,12 @@ function slow_copy(from, to, j, i, jend) {
   }
 }
 
-},{}],335:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
 module.exports = function(size) {
   return new Uint8Array(size)
 }
 
-},{}],336:[function(require,module,exports){
+},{}],333:[function(require,module,exports){
 module.exports = from
 
 var base64 = require('base64-js')
@@ -44259,13 +44963,13 @@ function from_base64(str) {
   return new Uint8Array(base64.toByteArray(str)) 
 }
 
-},{"base64-js":332}],337:[function(require,module,exports){
+},{"base64-js":329}],334:[function(require,module,exports){
 
 module.exports = function(buffer) {
   return buffer instanceof Uint8Array;
 }
 
-},{}],338:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 module.exports = join
 
 function join(targets, hint) {
@@ -44303,7 +45007,7 @@ function get_length(targets) {
   return size
 }
 
-},{}],339:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
 var proto
   , map
 
@@ -44325,7 +45029,7 @@ function get(target) {
   return out
 }
 
-},{}],340:[function(require,module,exports){
+},{}],337:[function(require,module,exports){
 module.exports = {
     readUInt8:      read_uint8
   , readInt8:       read_int8
@@ -44414,14 +45118,14 @@ function read_double_be(target, at) {
   return dv.getFloat64(at + target.byteOffset, false)
 }
 
-},{"./mapped.js":339}],341:[function(require,module,exports){
+},{"./mapped.js":336}],338:[function(require,module,exports){
 module.exports = subarray
 
 function subarray(buf, from, to) {
   return buf.subarray(from || 0, to || buf.length)
 }
 
-},{}],342:[function(require,module,exports){
+},{}],339:[function(require,module,exports){
 module.exports = to
 
 var base64 = require('base64-js')
@@ -44459,7 +45163,7 @@ function to_base64(buf) {
 }
 
 
-},{"base64-js":332,"to-utf8":333}],343:[function(require,module,exports){
+},{"base64-js":329,"to-utf8":330}],340:[function(require,module,exports){
 module.exports = {
     writeUInt8:      write_uint8
   , writeInt8:       write_int8
@@ -44547,7 +45251,7 @@ function write_double_be(target, value, at) {
   return dv.setFloat64(at + target.byteOffset, value, false)
 }
 
-},{"./mapped.js":339}],344:[function(require,module,exports){
+},{"./mapped.js":336}],341:[function(require,module,exports){
 (function (process){
 // Tom Robinson
 // Kris Kowal
@@ -45012,7 +45716,7 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require("q+64fw"))
-},{"./inflate":330,"bops":331,"fs":772,"q+64fw":795}],345:[function(require,module,exports){
+},{"./inflate":327,"bops":328,"fs":775,"q+64fw":798}],342:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -45270,132 +45974,59 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],346:[function(require,module,exports){
-'use strict';
-
-var expandName = function(name, order) {
-  var array = new Array(6);
-
-  // from voxel-mesher/ao-mesher -- also seen: 'KFTBLR' (voxel-texture), 'FKTBRL' (Mozilla's WebGL cube demo)
-  order = order || 'RTFLBK';
-
-  if (order.length !== 6) {
-    throw new Error('expandName invalid order length: ' + order);
-  }
-
-  var back   = order.indexOf('K');
-  var front  = order.indexOf('F');
-  var top    = order.indexOf('T');
-  var bottom = order.indexOf('B');
-  var left   = order.indexOf('L');
-  var right  = order.indexOf('R');
-
-  if (back < 0 || front < 0 || top < 0 || bottom < 0 || left < 0 || right < 0) {
-    throw new Error('expandName invalid order: ' + order);
-  }
-
-  if (!name || name.length === 0) {
-    // empty
-    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = undefined;
-  } else if (name.top) {
-    // explicit names
-    array[back] = name.back;
-    array[front] = name.front;
-    array[top] = name.top;
-    array[bottom] = name.bottom;
-    array[left] = name.left;
-    array[right] = name.right;
-  } else if (!Array.isArray(name)) {
-     // scalar is all
-    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = name;
-  } else if (name.length === 1) {
-    // 0 is all
-    array[back] = array[front] = array[top] = array[bottom] = array[left] = array[right] = name[0];
-  } else if (name.length === 2) {
-    // 0 is top/bottom, 1 is sides
-    array[back] = array[front] = array[left] = array[right] = name[1];
-    array[top] = array[bottom] = name[0];
-  } else if (name.length === 3) {
-    // 0 is top, 1 is bottom, 2 is sides
-    array[back] = array[front] = array[left] = array[right] = name[2];
-    array[top] = name[0];
-    array[bottom] = name[1];
-  } else if (name.length === 4) {
-    // 0 is top, 1 is bottom, 2 is front/back, 3 is left/right
-    array[back] = array[front] = name[2];
-    array[top] = name[0];
-    array[bottom] = name[1];
-    array[left] = array[right] = name[3];
-  } else if (name.length === 5) {
-    // 0 is top, 1 is bottom, 2 is front, 3 is back, 4 is left/right
-    array[back] = name[3];
-    array[front] = name[2];
-    array[top] = name[0];
-    array[bottom] = name[1];
-    array[left] = array[right] = name[4];
-  } else if (name.length === 6) {
-    throw new Error('expandName('+name+'): 6-element array support removed, use objects instead ({back:, front:, top:, bottom:, left:, right:...})');
-  } else {
-    throw new Error('expandName('+name+'): invalid side count array length '+name.length);
-  }
-
-  return array;
-};
-
-module.exports = expandName;
-
-
-},{}],347:[function(require,module,exports){
+},{}],343:[function(require,module,exports){
+module.exports=require(32)
+},{}],344:[function(require,module,exports){
+module.exports=require(287)
+},{"ndarray":351,"ndarray-pack":345,"omggif":353,"path":797,"ppm":355,"through":356}],345:[function(require,module,exports){
+module.exports=require(288)
+},{"./doConvert.js":346,"ndarray":351}],346:[function(require,module,exports){
+module.exports=require(289)
+},{"cwise-compiler":347}],347:[function(require,module,exports){
 module.exports=require(290)
-},{"ndarray":354,"ndarray-pack":348,"omggif":356,"path":794,"ppm":358,"through":359}],348:[function(require,module,exports){
+},{"./lib/thunk.js":349}],348:[function(require,module,exports){
 module.exports=require(291)
-},{"./doConvert.js":349,"ndarray":354}],349:[function(require,module,exports){
-module.exports=require(292)
-},{"cwise-compiler":350}],350:[function(require,module,exports){
-module.exports=require(293)
-},{"./lib/thunk.js":352}],351:[function(require,module,exports){
-module.exports=require(294)
-},{"uniq":353}],352:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":351}],353:[function(require,module,exports){
-module.exports=require(75)
-},{}],354:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":355}],355:[function(require,module,exports){
-module.exports=require(77)
-},{}],356:[function(require,module,exports){
-module.exports=require(299)
-},{}],357:[function(require,module,exports){
-module.exports=require(300)
-},{"q+64fw":795,"stream":809}],358:[function(require,module,exports){
-module.exports=require(301)
-},{"buffer":789,"q+64fw":795,"through":357}],359:[function(require,module,exports){
-module.exports=require(108)
-},{"q+64fw":795,"stream":809}],360:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":361}],361:[function(require,module,exports){
-module.exports=require(143)
-},{"./lib/thunk.js":363}],362:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":364}],363:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":362}],364:[function(require,module,exports){
+},{"uniq":350}],349:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":348}],350:[function(require,module,exports){
+module.exports=require(74)
+},{}],351:[function(require,module,exports){
 module.exports=require(146)
-},{}],365:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":366}],366:[function(require,module,exports){
+},{"buffer":792,"iota-array":352}],352:[function(require,module,exports){
+module.exports=require(76)
+},{}],353:[function(require,module,exports){
+module.exports=require(296)
+},{}],354:[function(require,module,exports){
+module.exports=require(297)
+},{"q+64fw":798,"stream":812}],355:[function(require,module,exports){
+module.exports=require(298)
+},{"buffer":792,"q+64fw":798,"through":354}],356:[function(require,module,exports){
+module.exports=require(107)
+},{"q+64fw":798,"stream":812}],357:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"cwise-compiler":358}],358:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":360}],359:[function(require,module,exports){
+module.exports=require(143)
+},{"uniq":361}],360:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":359}],361:[function(require,module,exports){
+module.exports=require(145)
+},{}],362:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":363}],363:[function(require,module,exports){
+module.exports=require(76)
+},{}],364:[function(require,module,exports){
 module.exports=require(77)
-},{}],367:[function(require,module,exports){
+},{}],365:[function(require,module,exports){
 module.exports=require(78)
+},{}],366:[function(require,module,exports){
+module.exports=require(150)
+},{"bit-twiddle":364,"buffer":792,"dup":365}],367:[function(require,module,exports){
+module.exports=require(80)
 },{}],368:[function(require,module,exports){
-module.exports=require(79)
-},{}],369:[function(require,module,exports){
-module.exports=require(151)
-},{"bit-twiddle":367,"buffer":789,"dup":368}],370:[function(require,module,exports){
 module.exports=require(81)
-},{}],371:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":370}],372:[function(require,module,exports){
+},{"weakmap":367}],369:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -45817,9 +46448,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":365,"ndarray-ops":360,"typedarray-pool":369,"webglew":371}],373:[function(require,module,exports){
-module.exports=require(206)
-},{}],374:[function(require,module,exports){
+},{"ndarray":362,"ndarray-ops":357,"typedarray-pool":366,"webglew":368}],370:[function(require,module,exports){
+module.exports=require(204)
+},{}],371:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -45844,15 +46475,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":375}],375:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":376}],376:[function(require,module,exports){
-module.exports=require(77)
-},{}],377:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":378}],378:[function(require,module,exports){
-module.exports=require(77)
-},{}],379:[function(require,module,exports){
+},{"ndarray":372}],372:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":373}],373:[function(require,module,exports){
+module.exports=require(76)
+},{}],374:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":375}],375:[function(require,module,exports){
+module.exports=require(76)
+},{}],376:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -45968,7 +46599,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":425,"ndarray-downsample2x":380,"ndarray-ops":420}],380:[function(require,module,exports){
+},{"ndarray":422,"ndarray-downsample2x":377,"ndarray-ops":417}],377:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -46053,7 +46684,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":381,"ndarray-fft":389,"ndarray-ops":409,"ndarray-scratch":419}],381:[function(require,module,exports){
+},{"cwise":378,"ndarray-fft":386,"ndarray-ops":406,"ndarray-scratch":416}],378:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -46090,15 +46721,15 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":382,"cwise-parser":386}],382:[function(require,module,exports){
+},{"cwise-compiler":379,"cwise-parser":383}],379:[function(require,module,exports){
+module.exports=require(71)
+},{"./lib/thunk.js":381}],380:[function(require,module,exports){
 module.exports=require(72)
-},{"./lib/thunk.js":384}],383:[function(require,module,exports){
+},{"uniq":382}],381:[function(require,module,exports){
 module.exports=require(73)
-},{"uniq":385}],384:[function(require,module,exports){
+},{"./compile.js":380}],382:[function(require,module,exports){
 module.exports=require(74)
-},{"./compile.js":383}],385:[function(require,module,exports){
-module.exports=require(75)
-},{}],386:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -46294,7 +46925,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":387,"uniq":388}],387:[function(require,module,exports){
+},{"esprima":384,"uniq":385}],384:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -50204,9 +50835,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],388:[function(require,module,exports){
-module.exports=require(75)
-},{}],389:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
+module.exports=require(74)
+},{}],386:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -50291,7 +50922,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":390,"cwise":392,"ndarray":405,"ndarray-ops":400,"typedarray-pool":408}],390:[function(require,module,exports){
+},{"./lib/fft-matrix.js":387,"cwise":389,"ndarray":402,"ndarray-ops":397,"typedarray-pool":405}],387:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -50510,25 +51141,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":391}],391:[function(require,module,exports){
-module.exports=require(78)
-},{}],392:[function(require,module,exports){
-module.exports=require(381)
-},{"cwise-compiler":393,"cwise-parser":397}],393:[function(require,module,exports){
+},{"bit-twiddle":388}],388:[function(require,module,exports){
+module.exports=require(77)
+},{}],389:[function(require,module,exports){
+module.exports=require(378)
+},{"cwise-compiler":390,"cwise-parser":394}],390:[function(require,module,exports){
+module.exports=require(71)
+},{"./lib/thunk.js":392}],391:[function(require,module,exports){
 module.exports=require(72)
-},{"./lib/thunk.js":395}],394:[function(require,module,exports){
+},{"uniq":393}],392:[function(require,module,exports){
 module.exports=require(73)
-},{"uniq":396}],395:[function(require,module,exports){
+},{"./compile.js":391}],393:[function(require,module,exports){
 module.exports=require(74)
-},{"./compile.js":394}],396:[function(require,module,exports){
-module.exports=require(75)
+},{}],394:[function(require,module,exports){
+module.exports=require(383)
+},{"esprima":395,"uniq":396}],395:[function(require,module,exports){
+module.exports=require(384)
+},{}],396:[function(require,module,exports){
+module.exports=require(74)
 },{}],397:[function(require,module,exports){
-module.exports=require(386)
-},{"esprima":398,"uniq":399}],398:[function(require,module,exports){
-module.exports=require(387)
-},{}],399:[function(require,module,exports){
-module.exports=require(75)
-},{}],400:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -50977,21 +51608,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":401}],401:[function(require,module,exports){
+},{"cwise-compiler":398}],398:[function(require,module,exports){
+module.exports=require(71)
+},{"./lib/thunk.js":400}],399:[function(require,module,exports){
 module.exports=require(72)
-},{"./lib/thunk.js":403}],402:[function(require,module,exports){
+},{"uniq":401}],400:[function(require,module,exports){
 module.exports=require(73)
-},{"uniq":404}],403:[function(require,module,exports){
+},{"./compile.js":399}],401:[function(require,module,exports){
 module.exports=require(74)
-},{"./compile.js":402}],404:[function(require,module,exports){
-module.exports=require(75)
+},{}],402:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":403}],403:[function(require,module,exports){
+module.exports=require(76)
+},{}],404:[function(require,module,exports){
+module.exports=require(78)
 },{}],405:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":406}],406:[function(require,module,exports){
-module.exports=require(77)
-},{}],407:[function(require,module,exports){
-module.exports=require(79)
-},{}],408:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -51276,27 +51907,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":391,"dup":407}],409:[function(require,module,exports){
-module.exports=require(400)
-},{"cwise-compiler":410}],410:[function(require,module,exports){
+},{"bit-twiddle":388,"dup":404}],406:[function(require,module,exports){
+module.exports=require(397)
+},{"cwise-compiler":407}],407:[function(require,module,exports){
+module.exports=require(71)
+},{"./lib/thunk.js":409}],408:[function(require,module,exports){
 module.exports=require(72)
-},{"./lib/thunk.js":412}],411:[function(require,module,exports){
+},{"uniq":410}],409:[function(require,module,exports){
 module.exports=require(73)
-},{"uniq":413}],412:[function(require,module,exports){
+},{"./compile.js":408}],410:[function(require,module,exports){
 module.exports=require(74)
-},{"./compile.js":411}],413:[function(require,module,exports){
-module.exports=require(75)
-},{}],414:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":415}],415:[function(require,module,exports){
+},{}],411:[function(require,module,exports){
+module.exports=require(146)
+},{"buffer":792,"iota-array":412}],412:[function(require,module,exports){
+module.exports=require(76)
+},{}],413:[function(require,module,exports){
 module.exports=require(77)
-},{}],416:[function(require,module,exports){
+},{}],414:[function(require,module,exports){
 module.exports=require(78)
-},{}],417:[function(require,module,exports){
-module.exports=require(79)
-},{}],418:[function(require,module,exports){
-module.exports=require(408)
-},{"bit-twiddle":416,"dup":417}],419:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
+module.exports=require(405)
+},{"bit-twiddle":413,"dup":414}],416:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -51320,41 +51951,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":414,"typedarray-pool":418}],420:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":421}],421:[function(require,module,exports){
+},{"ndarray":411,"typedarray-pool":415}],417:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"cwise-compiler":418}],418:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":420}],419:[function(require,module,exports){
 module.exports=require(143)
-},{"./lib/thunk.js":423}],422:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":424}],423:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":422}],424:[function(require,module,exports){
+},{"uniq":421}],420:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":419}],421:[function(require,module,exports){
+module.exports=require(145)
+},{}],422:[function(require,module,exports){
 module.exports=require(146)
-},{}],425:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":426}],426:[function(require,module,exports){
-module.exports=require(77)
-},{}],427:[function(require,module,exports){
+},{"buffer":792,"iota-array":423}],423:[function(require,module,exports){
+module.exports=require(76)
+},{}],424:[function(require,module,exports){
+module.exports=require(308)
+},{"buffer":792,"stream":812,"util":814}],425:[function(require,module,exports){
+module.exports=require(309)
+},{}],426:[function(require,module,exports){
+module.exports=require(310)
+},{"stream":812,"util":814}],427:[function(require,module,exports){
 module.exports=require(311)
-},{"buffer":789,"stream":809,"util":811}],428:[function(require,module,exports){
+},{"./chunkstream":424,"buffer":792,"util":814,"zlib":791}],428:[function(require,module,exports){
 module.exports=require(312)
-},{}],429:[function(require,module,exports){
+},{"./constants":425,"./crc":426,"./filter":427,"buffer":792,"stream":812,"util":814,"zlib":791}],429:[function(require,module,exports){
 module.exports=require(313)
-},{"stream":809,"util":811}],430:[function(require,module,exports){
+},{"./chunkstream":424,"./constants":425,"./crc":426,"./filter":427,"buffer":792,"util":814,"zlib":791}],430:[function(require,module,exports){
 module.exports=require(314)
-},{"./chunkstream":427,"buffer":789,"util":811,"zlib":788}],431:[function(require,module,exports){
-module.exports=require(315)
-},{"./constants":428,"./crc":429,"./filter":430,"buffer":789,"stream":809,"util":811,"zlib":788}],432:[function(require,module,exports){
+},{"./packer":428,"./parser":429,"buffer":792,"q+64fw":798,"stream":812,"util":814}],431:[function(require,module,exports){
+module.exports=require(107)
+},{"q+64fw":798,"stream":812}],432:[function(require,module,exports){
 module.exports=require(316)
-},{"./chunkstream":427,"./constants":428,"./crc":429,"./filter":430,"buffer":789,"util":811,"zlib":788}],433:[function(require,module,exports){
-module.exports=require(317)
-},{"./packer":431,"./parser":432,"buffer":789,"q+64fw":795,"stream":809,"util":811}],434:[function(require,module,exports){
-module.exports=require(108)
-},{"q+64fw":795,"stream":809}],435:[function(require,module,exports){
-module.exports=require(319)
-},{"pngjs":433,"through":434}],436:[function(require,module,exports){
+},{"pngjs":430,"through":431}],433:[function(require,module,exports){
 module.exports=require(37)
-},{}],437:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -51444,7 +52075,7 @@ module.exports=require(37)
 
 }).call(this);
 
-},{}],438:[function(require,module,exports){
+},{}],435:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -51730,27 +52361,27 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":287,"atlaspack":345,"cube-side-array":346,"events":792,"get-pixels":347,"gl-texture2d":372,"inherits":373,"ndarray":377,"ndarray-hash":374,"rect-mip-map":379,"save-pixels":435,"toarray":436,"touchup":437}],439:[function(require,module,exports){
+},{"artpacks":284,"atlaspack":342,"cube-side-array":343,"events":795,"get-pixels":344,"gl-texture2d":369,"inherits":370,"ndarray":374,"ndarray-hash":371,"rect-mip-map":376,"save-pixels":432,"toarray":433,"touchup":434}],436:[function(require,module,exports){
+module.exports=require(129)
+},{"events":795,"inherits":443}],437:[function(require,module,exports){
 module.exports=require(130)
-},{"events":792,"inherits":446}],440:[function(require,module,exports){
+},{"./chunker":436,"./meshers/culled":438,"./meshers/greedy":439,"./meshers/monotone":440,"./meshers/stupid":441,"./meshers/transgreedy":442,"ndarray":444}],438:[function(require,module,exports){
 module.exports=require(131)
-},{"./chunker":439,"./meshers/culled":441,"./meshers/greedy":442,"./meshers/monotone":443,"./meshers/stupid":444,"./meshers/transgreedy":445,"ndarray":447}],441:[function(require,module,exports){
+},{}],439:[function(require,module,exports){
 module.exports=require(132)
-},{}],442:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 module.exports=require(133)
-},{}],443:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 module.exports=require(134)
-},{}],444:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 module.exports=require(135)
-},{}],445:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 module.exports=require(136)
-},{}],446:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 module.exports=require(137)
-},{}],447:[function(require,module,exports){
-module.exports=require(138)
-},{"buffer":789,"iota-array":448}],448:[function(require,module,exports){
-module.exports=require(77)
-},{}],449:[function(require,module,exports){
+},{"buffer":792,"iota-array":445}],445:[function(require,module,exports){
+module.exports=require(76)
+},{}],446:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -51829,9 +52460,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":450}],450:[function(require,module,exports){
+},{"ucfirst":447}],447:[function(require,module,exports){
 module.exports=require(23)
-},{}],451:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -51929,7 +52560,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],452:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -51996,7 +52627,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],453:[function(require,module,exports){
+},{}],450:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -52286,83 +52917,1101 @@ FurnaceDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":462,"inventory-window":454,"itempile":467,"voxel-inventory-dialog":470}],454:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":455,"events":792,"ever":456,"ftooltip":459,"touchup":461}],455:[function(require,module,exports){
+},{"inventory":460,"inventory-window":451,"itempile":464,"voxel-inventory-dialog":467}],451:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":452,"events":795,"ever":454,"ftooltip":457,"touchup":459}],452:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":453}],453:[function(require,module,exports){
 module.exports=require(32)
-},{}],456:[function(require,module,exports){
+},{}],454:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":457,"./types.json":458,"events":792}],457:[function(require,module,exports){
+},{"./init.json":455,"./types.json":456,"events":795}],455:[function(require,module,exports){
 module.exports=require(16)
-},{}],458:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
 module.exports=require(17)
-},{}],459:[function(require,module,exports){
+},{}],457:[function(require,module,exports){
 module.exports=require(36)
-},{"toarray":460}],460:[function(require,module,exports){
+},{"toarray":458}],458:[function(require,module,exports){
 module.exports=require(37)
-},{}],461:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 module.exports=require(38)
-},{}],462:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":463,"events":792,"itempile":464}],463:[function(require,module,exports){
+},{"deep-equal":461,"events":795,"itempile":462}],461:[function(require,module,exports){
 module.exports=require(22)
-},{}],464:[function(require,module,exports){
+},{}],462:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":463,"deep-equal":461}],463:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],464:[function(require,module,exports){
 module.exports=require(20)
 },{"clone":465,"deep-equal":466}],465:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],466:[function(require,module,exports){
+},{"buffer":792}],466:[function(require,module,exports){
 module.exports=require(22)
 },{}],467:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":468,"deep-equal":469}],468:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],469:[function(require,module,exports){
-module.exports=require(22)
-},{}],470:[function(require,module,exports){
-module.exports=require(47)
-},{"inventory":479,"inventory-window":471,"itempile":484,"voxel-modal-dialog":487}],471:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":472,"events":792,"ever":473,"ftooltip":476,"touchup":478}],472:[function(require,module,exports){
+arguments[4][46][0].apply(exports,arguments)
+},{"inventory":477,"inventory-window":468,"itempile":481,"voxel-modal-dialog":484}],468:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":469,"events":795,"ever":471,"ftooltip":474,"touchup":476}],469:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":470}],470:[function(require,module,exports){
 module.exports=require(32)
-},{}],473:[function(require,module,exports){
+},{}],471:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":474,"./types.json":475,"events":792}],474:[function(require,module,exports){
+},{"./init.json":472,"./types.json":473,"events":795}],472:[function(require,module,exports){
 module.exports=require(16)
-},{}],475:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 module.exports=require(17)
-},{}],476:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 module.exports=require(36)
-},{"toarray":477}],477:[function(require,module,exports){
+},{"toarray":475}],475:[function(require,module,exports){
 module.exports=require(37)
-},{}],478:[function(require,module,exports){
+},{}],476:[function(require,module,exports){
 module.exports=require(38)
-},{}],479:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":480,"events":792,"itempile":481}],480:[function(require,module,exports){
+},{"deep-equal":478,"events":795,"itempile":479}],478:[function(require,module,exports){
 module.exports=require(22)
-},{}],481:[function(require,module,exports){
+},{}],479:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":480,"deep-equal":478}],480:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],481:[function(require,module,exports){
 module.exports=require(20)
 },{"clone":482,"deep-equal":483}],482:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],483:[function(require,module,exports){
+},{"buffer":792}],483:[function(require,module,exports){
 module.exports=require(22)
 },{}],484:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":485,"deep-equal":486}],485:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],486:[function(require,module,exports){
-module.exports=require(22)
-},{}],487:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":488}],488:[function(require,module,exports){
+},{"voxel-modal":485}],485:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":489}],489:[function(require,module,exports){
+},{"ever":486}],486:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":490,"./types.json":491,"events":792}],490:[function(require,module,exports){
+},{"./init.json":487,"./types.json":488,"events":795}],487:[function(require,module,exports){
 module.exports=require(16)
-},{}],491:[function(require,module,exports){
+},{}],488:[function(require,module,exports){
 module.exports=require(17)
-},{}],492:[function(require,module,exports){
+},{}],489:[function(require,module,exports){
 var Gamemode, Inventory, ItemPile;
 
 ItemPile = require('itempile');
@@ -52469,44 +54118,106 @@ Gamemode = (function() {
 })();
 
 
-},{"inventory":493,"itempile":498}],493:[function(require,module,exports){
+},{"inventory":490,"itempile":494}],490:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":494,"events":792,"itempile":495}],494:[function(require,module,exports){
+},{"deep-equal":491,"events":795,"itempile":492}],491:[function(require,module,exports){
 module.exports=require(22)
-},{}],495:[function(require,module,exports){
+},{}],492:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":493,"deep-equal":491}],493:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],494:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":496,"deep-equal":497}],496:[function(require,module,exports){
+},{"clone":495,"deep-equal":496}],495:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],497:[function(require,module,exports){
+},{"buffer":792}],496:[function(require,module,exports){
 module.exports=require(22)
-},{}],498:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":499,"deep-equal":500}],499:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],500:[function(require,module,exports){
-module.exports=require(22)
-},{}],501:[function(require,module,exports){
+},{}],497:[function(require,module,exports){
 'use strict';
+
+var ItemPile = require('itempile');
+var ucfirst = require('ucfirst');
 
 module.exports = function(game, opts) {
   return new GlassPlugin(game, opts);
+};
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-registry', 'voxel-use', 'voxel-recipes']
 };
 
 function GlassPlugin(game, opts) {
   this.registry = game.plugins.get('voxel-registry');
   if (!this.registry) throw new Error('voxel-glass requires voxel-registry');
 
+  this.use = game.plugins.get('voxel-use');
+  if (!this.use) throw new Error('voxel-glass requires voxel-use');
+
+  this.recipes = game.plugins.get('voxel-recipes'); // optional
+
+  this.colors = opts.colors !== undefined ? opts.colors : ['black', 'blue', 'brown', 'cyan', 'gray', 'green', 'light_blue', 'lime', 'magenta', 'orange', 'pink', 'purple', 'red', 'silver', 'white', 'yellow'];
+
   this.enable();
 }
 
+// Get X or Z depending on the player orientation
+GlassPlugin.prototype.playerOrientation = function() {
+  var heading = Math.atan2(self.game.cameraVector()[0], self.game.cameraVector()[2]);
+  var dir;
+  if (Math.abs(heading) <= Math.PI / 4) { // 0 +/- 45 degrees // TODO: refactor with voxel-pumpkin, generic block/player orientation module?
+    return 'Z'; // north
+  } else if (Math.PI - Math.abs(heading) <= Math.PI / 4) { // +/-180 +/- 45
+    return 'Z'; // south
+  } else if (heading > 0) { // +90 +/- 45
+    return 'X'; // west
+  } else { // if (heading <= 0) { // -90 +/- 45
+    return 'X'; // east
+  }
+};
+
 GlassPlugin.prototype.enable = function() {
-  this.registry.registerBlock('glass', {texture: 'glass', transparent: true, hardness: 0.2});
-  this.registry.registerBlock('glassCover', { // TODO: all other colors, and orientations
-    displayName: 'Glass Cover',
-    texture: 'glass_blue',
+  this.registry.registerBlock('glass', {texture: 'glass', transparent: true, hardness: 0.2, creativeTab: 'glass'});
+
+  for (var i = 0; i < this.colors.length; i += 1) {
+    this.registerPane(this.colors[i]); // TODO: use metablocks?
+  }
+  this.registerPane(''); // clear
+
+  if (this.recipes) {
+    this.recipes.registerPositional([['glass', 'glass', 'glass']], ['glassPane']);
+
+    // TODO: dye recipes, harmonize with https://github.com/deathcap/voxel-wool (API?)
+  }
+};
+
+// Register an item and two blocks for a glass pane of the given color
+GlassPlugin.prototype.registerPane = function(color) {
+  var colorName = ucfirst(color);
+
+  var texture = color !== '' ? ('glass_' + color) : 'glass';
+
+  // item
+  var self = this;
+  this.registry.registerItem('glassPane' + colorName, {
+    displayName: colorName + ' Glass Pane',
+    itemTexture: texture,
+    creativeTab: 'glass',
+    onUse: function(held, target) {
+      // place X or Z pane depending on facing
+      return self.use.useBlock(target, new ItemPile('glassPane' + self.playerOrientation() + colorName)) === undefined;
+    },
+  });
+
+  // oriented blocks
+
+  this.registry.registerBlock('glassPaneZ' + colorName, {
+    creativeTab: false,
+    itemDrop: 'glassPane' + colorName,
+    displayName: colorName + ' Glass Pane Z',
+    itemTexture: texture, // flat, not 3D cube
+    texture: texture,     // preload for model below
     blockModel:
-      [{from: [0,0,0],
-      to: [16,1,16], // 1/16th flat above ground
+      [{from: [0,0,7],
+      to: [16,16,2],
       faceData: {
         down: {},
         up: {},
@@ -52515,16 +54226,228 @@ GlassPlugin.prototype.enable = function() {
         west: {},
         east: {}
         },
-      texture: 'glass_blue',
+      texture: texture, // for all faces. TODO: use glass_pane_top for narrow faces?
+      }],
+  });
+
+  // same as above but oriented along X axis
+  this.registry.registerBlock('glassPaneX' + colorName, {
+    creativeTab: false,
+    itemDrop: 'glassPane' + colorName,
+    displayName: colorName + ' Glass Pane X',
+    itemTexture: texture,
+    texture: texture,
+    blockModel:
+      [{from: [7,0,0],
+      to: [2,16,16],
+      faceData: {
+        down: {},
+        up: {},
+        north: {},
+        south: {},
+        west: {},
+        east: {}
+        },
+      texture: texture,
       }],
   });
 };
 
 GlassPlugin.prototype.disable = function() {
+  // TODO: unregister blocks
 };
 
 
+},{"itempile":498,"ucfirst":503}],498:[function(require,module,exports){
+// Generated by CoffeeScript 1.7.0
+(function() {
+  var ItemPile, clone, deepEqual;
+
+  deepEqual = require('deep-equal');
+
+  clone = require('clone');
+
+  module.exports = ItemPile = (function() {
+    function ItemPile(item, count, tags) {
+      this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+      this.count = count != null ? count : 1;
+      this.tags = tags != null ? tags : {};
+    }
+
+    ItemPile.prototype.clone = function() {
+      return new ItemPile(this.item, this.count, clone(this.tags, false));
+    };
+
+    ItemPile.maxPileSize = 64;
+
+    ItemPile.itemFromString = function(s) {
+      if (s instanceof ItemPile) {
+        return s;
+      }
+      if (!s) {
+        return '';
+      } else {
+        return s;
+      }
+    };
+
+    ItemPile.itemToString = function(item) {
+      return '' + item;
+    };
+
+    ItemPile.prototype.hasTags = function() {
+      return Object.keys(this.tags).length !== 0;
+    };
+
+    ItemPile.prototype.matchesType = function(itemPile) {
+      return this.item === itemPile.item;
+    };
+
+    ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+      return this.item === itemPile.item && this.count === itemPile.count;
+    };
+
+    ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+      return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+        strict: true
+      });
+    };
+
+    ItemPile.prototype.matchesAll = function(itemPile) {
+      return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+        strict: true
+      });
+    };
+
+    ItemPile.prototype.canPileWith = function(itemPile) {
+      if (itemPile.item !== this.item) {
+        return false;
+      }
+      if (itemPile.count === 0 || this.count === 0) {
+        return true;
+      }
+      if (itemPile.hasTags() || this.hasTags()) {
+        return false;
+      }
+      return true;
+    };
+
+    ItemPile.prototype.mergePile = function(itemPile) {
+      if (!this.canPileWith(itemPile)) {
+        return false;
+      }
+      return itemPile.count = this.increase(itemPile.count);
+    };
+
+    ItemPile.prototype.increase = function(n) {
+      var excessCount, newCount, _ref;
+      _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+      this.count = newCount;
+      return excessCount;
+    };
+
+    ItemPile.prototype.decrease = function(n) {
+      var remainingCount, removedCount, _ref;
+      _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+      this.count = remainingCount;
+      return removedCount;
+    };
+
+    ItemPile.prototype.tryAdding = function(n) {
+      var sum;
+      sum = this.count + n;
+      if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+        return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+      } else {
+        return [sum, 0];
+      }
+    };
+
+    ItemPile.prototype.trySubtracting = function(n) {
+      var difference;
+      difference = this.count - n;
+      if (difference < 0) {
+        return [this.count, n - this.count];
+      } else {
+        return [n, this.count - n];
+      }
+    };
+
+    ItemPile.prototype.splitPile = function(n) {
+      if (n < 0) {
+        n = this.count + n;
+      } else if (n < 1) {
+        n = Math.ceil(this.count * n);
+      }
+      if (n > this.count) {
+        return false;
+      }
+      if (n !== Infinity) {
+        this.count -= n;
+      }
+      return new ItemPile(this.item, n, clone(this.tags, false));
+    };
+
+    ItemPile.prototype.toString = function() {
+      if (this.hasTags()) {
+        return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+      } else {
+        return "" + this.count + ":" + this.item;
+      }
+    };
+
+    ItemPile.fromString = function(s) {
+      var a, count, countStr, item, itemStr, tags, tagsStr, _;
+      a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+      if (!a) {
+        return void 0;
+      }
+      _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+      if (countStr === 'Infinity') {
+        count = Infinity;
+      } else {
+        count = parseInt(countStr, 10);
+      }
+      item = ItemPile.itemFromString(itemStr);
+      if (tagsStr && tagsStr.length) {
+        tags = JSON.parse(tagsStr);
+      } else {
+        tags = {};
+      }
+      return new ItemPile(item, count, tags);
+    };
+
+    ItemPile.fromArray = function(a) {
+      var count, item, tags;
+      item = a[0], count = a[1], tags = a[2];
+      return new ItemPile(item, count, tags);
+    };
+
+    ItemPile.fromArrayIfArray = function(a) {
+      if (Array.isArray(a)) {
+        return ItemPile.fromArray(a);
+      } else {
+        return a;
+      }
+    };
+
+    return ItemPile;
+
+  })();
+
+}).call(this);
+
+},{"clone":499,"deep-equal":500}],499:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],500:[function(require,module,exports){
+module.exports=require(114)
+},{"./lib/is_arguments.js":501,"./lib/keys.js":502}],501:[function(require,module,exports){
+module.exports=require(115)
 },{}],502:[function(require,module,exports){
+module.exports=require(116)
+},{}],503:[function(require,module,exports){
+module.exports=require(23)
+},{}],504:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -52598,7 +54521,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],503:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -52726,13 +54649,13 @@ Harvest = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":792,"itempile":504}],504:[function(require,module,exports){
+},{"events":795,"itempile":506}],506:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":505,"deep-equal":506}],505:[function(require,module,exports){
+},{"clone":507,"deep-equal":508}],507:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],506:[function(require,module,exports){
+},{"buffer":792}],508:[function(require,module,exports){
 module.exports=require(22)
-},{}],507:[function(require,module,exports){
+},{}],509:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -52803,7 +54726,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],508:[function(require,module,exports){
+},{}],510:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new HealthFallPlugin(game, opts);
@@ -52838,7 +54761,7 @@ HealthFallPlugin.prototype.disable = function() {
 };
 
 
-},{}],509:[function(require,module,exports){
+},{}],511:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -52926,9 +54849,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":792,"inherits":510}],510:[function(require,module,exports){
-module.exports=require(206)
-},{}],511:[function(require,module,exports){
+},{"events":795,"inherits":512}],512:[function(require,module,exports){
+module.exports=require(204)
+},{}],513:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -53039,83 +54962,1101 @@ InventoryCrafting = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":520,"inventory-window":512,"itempile":525,"voxel-inventory-dialog":528}],512:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":513,"events":792,"ever":514,"ftooltip":517,"touchup":519}],513:[function(require,module,exports){
+},{"inventory":523,"inventory-window":514,"itempile":527,"voxel-inventory-dialog":530}],514:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":515,"events":795,"ever":517,"ftooltip":520,"touchup":522}],515:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":516}],516:[function(require,module,exports){
 module.exports=require(32)
-},{}],514:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":515,"./types.json":516,"events":792}],515:[function(require,module,exports){
-module.exports=require(16)
-},{}],516:[function(require,module,exports){
-module.exports=require(17)
 },{}],517:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":518}],518:[function(require,module,exports){
-module.exports=require(37)
+module.exports=require(15)
+},{"./init.json":518,"./types.json":519,"events":795}],518:[function(require,module,exports){
+module.exports=require(16)
 },{}],519:[function(require,module,exports){
-module.exports=require(38)
+module.exports=require(17)
 },{}],520:[function(require,module,exports){
-module.exports=require(25)
-},{"deep-equal":521,"events":792,"itempile":522}],521:[function(require,module,exports){
-module.exports=require(22)
+module.exports=require(36)
+},{"toarray":521}],521:[function(require,module,exports){
+module.exports=require(37)
 },{}],522:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":523,"deep-equal":524}],523:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],524:[function(require,module,exports){
+module.exports=require(38)
+},{}],523:[function(require,module,exports){
+module.exports=require(25)
+},{"deep-equal":524,"events":795,"itempile":525}],524:[function(require,module,exports){
 module.exports=require(22)
 },{}],525:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":526,"deep-equal":524}],526:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],527:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":526,"deep-equal":527}],526:[function(require,module,exports){
+},{"clone":528,"deep-equal":529}],528:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],527:[function(require,module,exports){
+},{"buffer":792}],529:[function(require,module,exports){
 module.exports=require(22)
-},{}],528:[function(require,module,exports){
-module.exports=require(47)
-},{"inventory":537,"inventory-window":529,"itempile":542,"voxel-modal-dialog":545}],529:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":530,"events":792,"ever":531,"ftooltip":534,"touchup":536}],530:[function(require,module,exports){
+},{}],530:[function(require,module,exports){
+arguments[4][46][0].apply(exports,arguments)
+},{"inventory":540,"inventory-window":531,"itempile":544,"voxel-modal-dialog":547}],531:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":532,"events":795,"ever":534,"ftooltip":537,"touchup":539}],532:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":533}],533:[function(require,module,exports){
 module.exports=require(32)
-},{}],531:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":532,"./types.json":533,"events":792}],532:[function(require,module,exports){
-module.exports=require(16)
-},{}],533:[function(require,module,exports){
-module.exports=require(17)
 },{}],534:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":535}],535:[function(require,module,exports){
-module.exports=require(37)
+module.exports=require(15)
+},{"./init.json":535,"./types.json":536,"events":795}],535:[function(require,module,exports){
+module.exports=require(16)
 },{}],536:[function(require,module,exports){
-module.exports=require(38)
+module.exports=require(17)
 },{}],537:[function(require,module,exports){
-module.exports=require(25)
-},{"deep-equal":538,"events":792,"itempile":539}],538:[function(require,module,exports){
-module.exports=require(22)
+module.exports=require(36)
+},{"toarray":538}],538:[function(require,module,exports){
+module.exports=require(37)
 },{}],539:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":540,"deep-equal":541}],540:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],541:[function(require,module,exports){
+module.exports=require(38)
+},{}],540:[function(require,module,exports){
+module.exports=require(25)
+},{"deep-equal":541,"events":795,"itempile":542}],541:[function(require,module,exports){
 module.exports=require(22)
 },{}],542:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":543,"deep-equal":541}],543:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],544:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":543,"deep-equal":544}],543:[function(require,module,exports){
+},{"clone":545,"deep-equal":546}],545:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],544:[function(require,module,exports){
+},{"buffer":792}],546:[function(require,module,exports){
 module.exports=require(22)
-},{}],545:[function(require,module,exports){
+},{}],547:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":546}],546:[function(require,module,exports){
+},{"voxel-modal":548}],548:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":547}],547:[function(require,module,exports){
+},{"ever":549}],549:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":548,"./types.json":549,"events":792}],548:[function(require,module,exports){
+},{"./init.json":550,"./types.json":551,"events":795}],550:[function(require,module,exports){
 module.exports=require(16)
-},{}],549:[function(require,module,exports){
+},{}],551:[function(require,module,exports){
 module.exports=require(17)
-},{}],550:[function(require,module,exports){
+},{}],552:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -53272,83 +56213,1101 @@ CreativeInventoryPlugin = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":559,"inventory-window":551,"itempile":564,"voxel-inventory-dialog":567}],551:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":552,"events":792,"ever":553,"ftooltip":556,"touchup":558}],552:[function(require,module,exports){
+},{"inventory":562,"inventory-window":553,"itempile":566,"voxel-inventory-dialog":569}],553:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":554,"events":795,"ever":556,"ftooltip":559,"touchup":561}],554:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":555}],555:[function(require,module,exports){
 module.exports=require(32)
-},{}],553:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":554,"./types.json":555,"events":792}],554:[function(require,module,exports){
-module.exports=require(16)
-},{}],555:[function(require,module,exports){
-module.exports=require(17)
 },{}],556:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":557}],557:[function(require,module,exports){
-module.exports=require(37)
+module.exports=require(15)
+},{"./init.json":557,"./types.json":558,"events":795}],557:[function(require,module,exports){
+module.exports=require(16)
 },{}],558:[function(require,module,exports){
-module.exports=require(38)
+module.exports=require(17)
 },{}],559:[function(require,module,exports){
-module.exports=require(25)
-},{"deep-equal":560,"events":792,"itempile":561}],560:[function(require,module,exports){
-module.exports=require(22)
+module.exports=require(36)
+},{"toarray":560}],560:[function(require,module,exports){
+module.exports=require(37)
 },{}],561:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":562,"deep-equal":563}],562:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],563:[function(require,module,exports){
+module.exports=require(38)
+},{}],562:[function(require,module,exports){
+module.exports=require(25)
+},{"deep-equal":563,"events":795,"itempile":564}],563:[function(require,module,exports){
 module.exports=require(22)
 },{}],564:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":565,"deep-equal":563}],565:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],566:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":565,"deep-equal":566}],565:[function(require,module,exports){
+},{"clone":567,"deep-equal":568}],567:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],566:[function(require,module,exports){
+},{"buffer":792}],568:[function(require,module,exports){
 module.exports=require(22)
-},{}],567:[function(require,module,exports){
-module.exports=require(47)
-},{"inventory":576,"inventory-window":568,"itempile":581,"voxel-modal-dialog":584}],568:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":569,"events":792,"ever":570,"ftooltip":573,"touchup":575}],569:[function(require,module,exports){
+},{}],569:[function(require,module,exports){
+arguments[4][46][0].apply(exports,arguments)
+},{"inventory":579,"inventory-window":570,"itempile":583,"voxel-modal-dialog":586}],570:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":571,"events":795,"ever":573,"ftooltip":576,"touchup":578}],571:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":572}],572:[function(require,module,exports){
 module.exports=require(32)
-},{}],570:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":571,"./types.json":572,"events":792}],571:[function(require,module,exports){
-module.exports=require(16)
-},{}],572:[function(require,module,exports){
-module.exports=require(17)
 },{}],573:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":574}],574:[function(require,module,exports){
-module.exports=require(37)
+module.exports=require(15)
+},{"./init.json":574,"./types.json":575,"events":795}],574:[function(require,module,exports){
+module.exports=require(16)
 },{}],575:[function(require,module,exports){
-module.exports=require(38)
+module.exports=require(17)
 },{}],576:[function(require,module,exports){
-module.exports=require(25)
-},{"deep-equal":577,"events":792,"itempile":578}],577:[function(require,module,exports){
-module.exports=require(22)
+module.exports=require(36)
+},{"toarray":577}],577:[function(require,module,exports){
+module.exports=require(37)
 },{}],578:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],580:[function(require,module,exports){
+module.exports=require(38)
+},{}],579:[function(require,module,exports){
+module.exports=require(25)
+},{"deep-equal":580,"events":795,"itempile":581}],580:[function(require,module,exports){
 module.exports=require(22)
 },{}],581:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":582,"deep-equal":580}],582:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],583:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":582,"deep-equal":583}],582:[function(require,module,exports){
+},{"clone":584,"deep-equal":585}],584:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],583:[function(require,module,exports){
+},{"buffer":792}],585:[function(require,module,exports){
 module.exports=require(22)
-},{}],584:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":585}],585:[function(require,module,exports){
+},{"voxel-modal":587}],587:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":586}],586:[function(require,module,exports){
+},{"ever":588}],588:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":587,"./types.json":588,"events":792}],587:[function(require,module,exports){
+},{"./init.json":589,"./types.json":590,"events":795}],589:[function(require,module,exports){
 module.exports=require(16)
-},{}],588:[function(require,module,exports){
+},{}],590:[function(require,module,exports){
 module.exports=require(17)
-},{}],589:[function(require,module,exports){
+},{}],591:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -53562,29 +57521,540 @@ InventoryHotbarClient = (function(_super) {
 })(InventoryHotbarCommon);
 
 
-},{"events":792,"ever":590,"inventory-window":593}],590:[function(require,module,exports){
+},{"events":795,"ever":592,"inventory-window":595}],592:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":591,"./types.json":592,"events":792}],591:[function(require,module,exports){
+},{"./init.json":593,"./types.json":594,"events":795}],593:[function(require,module,exports){
 module.exports=require(16)
-},{}],592:[function(require,module,exports){
+},{}],594:[function(require,module,exports){
 module.exports=require(17)
-},{}],593:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":594,"events":792,"ever":595,"ftooltip":598,"touchup":600}],594:[function(require,module,exports){
-module.exports=require(32)
 },{}],595:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":596,"./types.json":597,"events":792}],596:[function(require,module,exports){
-module.exports=require(16)
-},{}],597:[function(require,module,exports){
-module.exports=require(17)
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":596,"events":795,"ever":598,"ftooltip":601,"touchup":603}],596:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":597}],597:[function(require,module,exports){
+module.exports=require(32)
 },{}],598:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":599}],599:[function(require,module,exports){
-module.exports=require(37)
+module.exports=require(15)
+},{"./init.json":599,"./types.json":600,"events":795}],599:[function(require,module,exports){
+module.exports=require(16)
 },{}],600:[function(require,module,exports){
-module.exports=require(38)
+module.exports=require(17)
 },{}],601:[function(require,module,exports){
+module.exports=require(36)
+},{"toarray":602}],602:[function(require,module,exports){
+module.exports=require(37)
+},{}],603:[function(require,module,exports){
+module.exports=require(38)
+},{}],604:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -53769,13 +58239,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":792,"inherits":602,"toarray":603,"vkey":604}],602:[function(require,module,exports){
-module.exports=require(206)
-},{}],603:[function(require,module,exports){
+},{"events":795,"inherits":605,"toarray":606,"vkey":607}],605:[function(require,module,exports){
+module.exports=require(204)
+},{}],606:[function(require,module,exports){
 module.exports=require(37)
-},{}],604:[function(require,module,exports){
+},{}],607:[function(require,module,exports){
 module.exports=require(10)
-},{}],605:[function(require,module,exports){
+},{}],608:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -53887,7 +58357,7 @@ Land.prototype.registerBlocks = function()  {
     this.opts.materials = {};
     for (var blockIndex = 1; blockIndex < this.registry.blockProps.length; blockIndex += 1) {
       var name = this.registry.getBlockName(blockIndex);
-      var packedIndex = this.registry.getPackedBlockIndex(name); // includes opaque bit
+      var packedIndex = this.registry.getBlockIndex(name);
       this.opts.materials[name] = packedIndex;
     }
   }
@@ -53928,7 +58398,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require("q+64fw"))
-},{"./worker.js":622,"ndarray":615,"q+64fw":795,"unworkify":618,"webworkify":621}],606:[function(require,module,exports){
+},{"./worker.js":625,"ndarray":618,"q+64fw":798,"unworkify":621,"webworkify":624}],609:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -54039,27 +58509,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],607:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":608,"./types.json":609,"events":792}],608:[function(require,module,exports){
-module.exports=require(16)
-},{}],609:[function(require,module,exports){
-module.exports=require(17)
 },{}],610:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":611}],611:[function(require,module,exports){
+module.exports=require(15)
+},{"./init.json":611,"./types.json":612,"events":795}],611:[function(require,module,exports){
+module.exports=require(16)
+},{}],612:[function(require,module,exports){
+module.exports=require(17)
+},{}],613:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"cwise-compiler":614}],614:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":616}],615:[function(require,module,exports){
 module.exports=require(143)
-},{"./lib/thunk.js":613}],612:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":614}],613:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":612}],614:[function(require,module,exports){
-module.exports=require(146)
-},{}],615:[function(require,module,exports){
+},{"uniq":617}],616:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":615}],617:[function(require,module,exports){
+module.exports=require(145)
+},{}],618:[function(require,module,exports){
+module.exports=require(75)
+},{"buffer":792,"iota-array":619}],619:[function(require,module,exports){
 module.exports=require(76)
-},{"buffer":789,"iota-array":616}],616:[function(require,module,exports){
-module.exports=require(77)
-},{}],617:[function(require,module,exports){
+},{}],620:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -54508,7 +58978,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],618:[function(require,module,exports){
+},{}],621:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -54533,9 +59003,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":792,"inherits":619}],619:[function(require,module,exports){
-module.exports=require(137)
-},{}],620:[function(require,module,exports){
+},{"events":795,"inherits":622}],622:[function(require,module,exports){
+module.exports=require(136)
+},{}],623:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -54744,9 +59214,9 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],621:[function(require,module,exports){
-module.exports=require(110)
-},{}],622:[function(require,module,exports){
+},{}],624:[function(require,module,exports){
+module.exports=require(109)
+},{}],625:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -54849,8 +59319,8 @@ ChunkGenerator.prototype.populateOreClusters = function(random, chunkX, chunkY, 
 
     // replace stone with ore
     for (var j = 0; j < clusterSize; j += 1) {
-      if (voxels.get(z, y, x) === replaceMaterial) {
-        voxels.set(z, y, x, oreMaterial);
+      if (voxels.get(x, y, z) === replaceMaterial) {
+        voxels.set(x, y, z, oreMaterial);
         //console.log('ore gen at '+[chunkX * width + x, chunkY * width + y, chunkZ * width + z].join(' '));
       }
 
@@ -55000,12 +59470,12 @@ ChunkGenerator.prototype.generateChunk = function(pos) {
       for (var z = 0; z < width; ++z) {
         var y = heightMap[x + z * width];
 
-        //y=1;voxels.set(z,y,x, (pos[0]+pos[2]) & 1 ? this.opts.materials.oreCoal : this.opts.materials.oreIron); continue; // flat checkerboard for testing chunk boundaries
+        //y=1;voxels.set(x,y,z, (pos[0]+pos[2]) & 1 ? this.opts.materials.oreCoal : this.opts.materials.oreIron); continue; // flat checkerboard for testing chunk boundaries
 
         // dirt with grass on top
-        voxels.set(z,y,x, this.opts.materials.grass);
+        voxels.set(x,y,z, this.opts.materials.grass);
         while(y-- > 0)
-          voxels.set(z,y,x, this.opts.materials.dirt);
+          voxels.set(x,y,z, this.opts.materials.dirt);
 
       }
     }
@@ -55048,7 +59518,7 @@ module.exports = function() {
 
 
 
-},{"alea":606,"ever":607,"ndarray":615,"ndarray-ops":610,"simplex-noise":617,"voxel-trees":620}],623:[function(require,module,exports){
+},{"alea":609,"ever":610,"ndarray":618,"ndarray-ops":613,"simplex-noise":620,"voxel-trees":623}],626:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -55117,7 +59587,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":624,"gl-matrix":625}],624:[function(require,module,exports){
+},{"asarray":627,"gl-matrix":628}],627:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -55131,9 +59601,9 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],625:[function(require,module,exports){
-module.exports=require(154)
-},{}],626:[function(require,module,exports){
+},{}],628:[function(require,module,exports){
+module.exports=require(153)
+},{}],629:[function(require,module,exports){
 var EventEmitter, Mine,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -55338,8 +59808,8 @@ Mine.prototype.createOverlay = function(target) {
   }
   this.destroyOverlay();
   if (this.decals) {
-    this.decalPosition = target.voxel.slice(0).reverse();
-    this.decalNormal = target.normal.slice(0).reverse();
+    this.decalPosition = target.voxel.slice(0);
+    this.decalNormal = target.normal.slice(0);
     this.decals.add({
       position: this.decalPosition,
       normal: this.decalNormal,
@@ -55493,63 +59963,63 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":792}],627:[function(require,module,exports){
+},{"events":795}],630:[function(require,module,exports){
+arguments[4][69][0].apply(exports,arguments)
+},{"ndarray":636,"ndarray-ops":631,"typedarray-pool":640,"webglew":642}],631:[function(require,module,exports){
 arguments[4][70][0].apply(exports,arguments)
-},{"ndarray":633,"ndarray-ops":628,"typedarray-pool":637,"webglew":639}],628:[function(require,module,exports){
-arguments[4][71][0].apply(exports,arguments)
-},{"cwise-compiler":629}],629:[function(require,module,exports){
+},{"cwise-compiler":632}],632:[function(require,module,exports){
+module.exports=require(142)
+},{"./lib/thunk.js":634}],633:[function(require,module,exports){
 module.exports=require(143)
-},{"./lib/thunk.js":631}],630:[function(require,module,exports){
-module.exports=require(144)
-},{"uniq":632}],631:[function(require,module,exports){
-arguments[4][74][0].apply(exports,arguments)
-},{"./compile.js":630}],632:[function(require,module,exports){
-module.exports=require(146)
-},{}],633:[function(require,module,exports){
-module.exports=require(147)
-},{"buffer":789,"iota-array":634}],634:[function(require,module,exports){
-module.exports=require(77)
-},{}],635:[function(require,module,exports){
-module.exports=require(78)
+},{"uniq":635}],634:[function(require,module,exports){
+arguments[4][73][0].apply(exports,arguments)
+},{"./compile.js":633}],635:[function(require,module,exports){
+module.exports=require(145)
 },{}],636:[function(require,module,exports){
-module.exports=require(79)
-},{}],637:[function(require,module,exports){
-module.exports=require(151)
-},{"bit-twiddle":635,"buffer":789,"dup":636}],638:[function(require,module,exports){
-module.exports=require(81)
+module.exports=require(146)
+},{"buffer":792,"iota-array":637}],637:[function(require,module,exports){
+module.exports=require(76)
+},{}],638:[function(require,module,exports){
+module.exports=require(77)
 },{}],639:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":638}],640:[function(require,module,exports){
-module.exports=require(154)
-},{}],641:[function(require,module,exports){
-module.exports=require(83)
+module.exports=require(78)
+},{}],640:[function(require,module,exports){
+module.exports=require(150)
+},{"bit-twiddle":638,"buffer":792,"dup":639}],641:[function(require,module,exports){
+module.exports=require(80)
 },{}],642:[function(require,module,exports){
-module.exports=require(84)
-},{"./do-bind.js":641}],643:[function(require,module,exports){
-module.exports=require(85)
-},{"./do-bind.js":641}],644:[function(require,module,exports){
 module.exports=require(81)
-},{}],645:[function(require,module,exports){
+},{"weakmap":641}],643:[function(require,module,exports){
+module.exports=require(153)
+},{}],644:[function(require,module,exports){
 module.exports=require(82)
-},{"weakmap":644}],646:[function(require,module,exports){
+},{}],645:[function(require,module,exports){
+module.exports=require(83)
+},{"./do-bind.js":644}],646:[function(require,module,exports){
+module.exports=require(84)
+},{"./do-bind.js":644}],647:[function(require,module,exports){
+module.exports=require(80)
+},{}],648:[function(require,module,exports){
+module.exports=require(81)
+},{"weakmap":647}],649:[function(require,module,exports){
+module.exports=require(87)
+},{"./lib/vao-emulated.js":645,"./lib/vao-native.js":646,"webglew":648}],650:[function(require,module,exports){
 module.exports=require(88)
-},{"./lib/vao-emulated.js":642,"./lib/vao-native.js":643,"webglew":645}],647:[function(require,module,exports){
+},{"gl-shader-core":656}],651:[function(require,module,exports){
 module.exports=require(89)
-},{"gl-shader-core":653}],648:[function(require,module,exports){
-module.exports=require(90)
-},{}],649:[function(require,module,exports){
-module.exports=require(91)
-},{}],650:[function(require,module,exports){
-module.exports=require(92)
-},{"./reflect.js":651,"dup":652}],651:[function(require,module,exports){
-module.exports=require(93)
 },{}],652:[function(require,module,exports){
-module.exports=require(79)
+module.exports=require(90)
 },{}],653:[function(require,module,exports){
-module.exports=require(95)
-},{"./lib/create-attributes.js":649,"./lib/create-uniforms.js":650,"./lib/reflect.js":651}],654:[function(require,module,exports){
-module.exports=require(206)
+module.exports=require(91)
+},{"./reflect.js":654,"dup":655}],654:[function(require,module,exports){
+module.exports=require(92)
 },{}],655:[function(require,module,exports){
+module.exports=require(78)
+},{}],656:[function(require,module,exports){
+module.exports=require(94)
+},{"./lib/create-attributes.js":652,"./lib/create-uniforms.js":653,"./lib/reflect.js":654}],657:[function(require,module,exports){
+module.exports=require(204)
+},{}],658:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -55600,8 +60070,6 @@ OutlinePlugin.prototype.disable = function() {
     this.currentTarget = undefined;
 };
 
-var scratch0 = vec3.create();
-
 OutlinePlugin.prototype.tick = function() {
     var hit = this.game.raycastVoxels();
 
@@ -55616,10 +60084,7 @@ OutlinePlugin.prototype.tick = function() {
 
     if (!this.currentTarget || hit.voxel[0] !== this.currentTarget[0] || hit.voxel[1] !== this.currentTarget[1] || hit.voxel[2] !== this.currentTarget[2]) {
         mat4.identity(this.modelMatrix);
-        scratch0[0] = hit.voxel[2];
-        scratch0[1] = hit.voxel[1];
-        scratch0[2] = hit.voxel[0];
-        mat4.translate(this.modelMatrix, this.modelMatrix, scratch0);
+        mat4.translate(this.modelMatrix, this.modelMatrix, hit.voxel);
 
         if (this.currentTarget) {
             this.emit("remove", this.currentTarget.slice());
@@ -55670,7 +60135,7 @@ OutlinePlugin.prototype.shaderInit = function() {
     outlineVAO.length = outlineVertexCount;
     this.mesh = outlineVAO;
 };
-},{"events":792,"gl-buffer":627,"gl-matrix":640,"gl-vao":646,"glslify":648,"glslify/adapter.js":647,"inherits":654}],656:[function(require,module,exports){
+},{"events":795,"gl-buffer":630,"gl-matrix":643,"gl-vao":649,"glslify":651,"glslify/adapter.js":650,"inherits":657}],659:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -55977,13 +60442,13 @@ OutlinePlugin.prototype.shaderInit = function() {
 
 }).call(this);
 
-},{}],657:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":658,"deep-equal":659}],658:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],659:[function(require,module,exports){
-module.exports=require(22)
 },{}],660:[function(require,module,exports){
+module.exports=require(20)
+},{"clone":661,"deep-equal":662}],661:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":792}],662:[function(require,module,exports){
+module.exports=require(22)
+},{}],663:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -56198,7 +60663,7 @@ RepairRecipe = (function(_super) {
 })(Recipe);
 
 
-},{"craftingrecipes":656,"itempile":657}],661:[function(require,module,exports){
+},{"craftingrecipes":659,"itempile":660}],664:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -56339,7 +60804,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":662}],662:[function(require,module,exports){
+},{"minecraft-skin":665}],665:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -56729,13 +61194,13 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 
-},{}],663:[function(require,module,exports){
-module.exports=require(3)
-},{"./vendor/dat.color":664,"./vendor/dat.gui":665}],664:[function(require,module,exports){
-module.exports=require(4)
-},{}],665:[function(require,module,exports){
-module.exports=require(5)
 },{}],666:[function(require,module,exports){
+module.exports=require(3)
+},{"./vendor/dat.color":667,"./vendor/dat.gui":668}],667:[function(require,module,exports){
+module.exports=require(4)
+},{}],668:[function(require,module,exports){
+module.exports=require(5)
+},{}],669:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -56802,15 +61267,15 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":663}],667:[function(require,module,exports){
+},{"dat-gui":666}],670:[function(require,module,exports){
 module.exports=require(20)
-},{"clone":668,"deep-equal":669}],668:[function(require,module,exports){
+},{"clone":671,"deep-equal":672}],671:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],669:[function(require,module,exports){
+},{"buffer":792}],672:[function(require,module,exports){
 module.exports=require(22)
-},{}],670:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 module.exports=require(23)
-},{}],671:[function(require,module,exports){
+},{}],674:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -57019,7 +61484,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":667,"ucfirst":670}],672:[function(require,module,exports){
+},{"itempile":670,"ucfirst":673}],675:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -57153,13 +61618,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],673:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":674,"./types.json":675,"events":792}],674:[function(require,module,exports){
-module.exports=require(16)
-},{}],675:[function(require,module,exports){
-module.exports=require(17)
 },{}],676:[function(require,module,exports){
+module.exports=require(15)
+},{"./init.json":677,"./types.json":678,"events":795}],677:[function(require,module,exports){
+module.exports=require(16)
+},{}],678:[function(require,module,exports){
+module.exports=require(17)
+},{}],679:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -57168,9 +61633,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],677:[function(require,module,exports){
-module.exports=require(137)
-},{}],678:[function(require,module,exports){
+},{}],680:[function(require,module,exports){
+module.exports=require(136)
+},{}],681:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -57354,9 +61819,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":792,"ever":673,"fract":676,"inherits":677}],679:[function(require,module,exports){
-module.exports=require(656)
-},{}],680:[function(require,module,exports){
+},{"events":795,"ever":676,"fract":679,"inherits":680}],682:[function(require,module,exports){
+module.exports=require(659)
+},{}],683:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -57531,15 +61996,15 @@ module.exports=require(656)
 
 }).call(this);
 
-},{"clone":681,"deep-equal":682}],681:[function(require,module,exports){
+},{"clone":684,"deep-equal":685}],684:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":789}],682:[function(require,module,exports){
+},{"buffer":792}],685:[function(require,module,exports){
+module.exports=require(114)
+},{"./lib/is_arguments.js":686,"./lib/keys.js":687}],686:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/is_arguments.js":683,"./lib/keys.js":684}],683:[function(require,module,exports){
+},{}],687:[function(require,module,exports){
 module.exports=require(116)
-},{}],684:[function(require,module,exports){
-module.exports=require(117)
-},{}],685:[function(require,module,exports){
+},{}],688:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -57588,10 +62053,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":679,"itempile":680}],686:[function(require,module,exports){
+},{"craftingrecipes":682,"itempile":683}],689:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":687}],687:[function(require,module,exports){
+},{"media":690}],690:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -57602,7 +62067,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":689}],688:[function(require,module,exports){
+},{"./lib/player":692}],691:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -57626,7 +62091,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],689:[function(require,module,exports){
+},{}],692:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -57703,7 +62168,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":690,"./src":691,"new-chain":694}],690:[function(require,module,exports){
+},{"./render":693,"./src":694,"new-chain":697}],693:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -57713,7 +62178,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":692,"domify":693}],691:[function(require,module,exports){
+},{"./templates":695,"domify":696}],694:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -57746,10 +62211,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":688}],692:[function(require,module,exports){
+},{"./mime":691}],695:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],693:[function(require,module,exports){
+},{}],696:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -57822,7 +62287,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],694:[function(require,module,exports){
+},{}],697:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -57879,7 +62344,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],695:[function(require,module,exports){
+},{}],698:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -57927,7 +62392,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":686}],696:[function(require,module,exports){
+},{"play-audio":689}],699:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -57981,7 +62446,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],697:[function(require,module,exports){
+},{}],700:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -58054,7 +62519,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],698:[function(require,module,exports){
+},{}],701:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new StartPlugin(game, opts);
 };
@@ -58097,7 +62562,7 @@ StartPlugin.prototype.disable = function() {
   delete self.icon;
 };
 
-},{}],699:[function(require,module,exports){
+},{}],702:[function(require,module,exports){
 var EventEmitter, Use,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -58215,7 +62680,7 @@ Use = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":792}],700:[function(require,module,exports){
+},{"events":795}],703:[function(require,module,exports){
 // Turns virus into water
 module.exports = function(water, material) {
   var old = {
@@ -58258,7 +62723,7 @@ module.exports = function(water, material) {
 
   return toNormal;
 };
-},{}],701:[function(require,module,exports){
+},{}],704:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -58367,7 +62832,7 @@ function defaultHow(block, level) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./example/water.js":700,"q+64fw":795}],702:[function(require,module,exports){
+},{"./example/water.js":703,"q+64fw":798}],705:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -58496,7 +62961,7 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":795}],703:[function(require,module,exports){
+},{"q+64fw":798}],706:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Walk(game, opts)
@@ -58607,7 +63072,7 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],704:[function(require,module,exports){
+},{}],707:[function(require,module,exports){
 // based on https://github.com/mrdoob/three.js/blob/219c07680da08c5254c1b05482eb40ea038234e0/examples/js/renderers/CSS3DRenderer.js
 // adapted for nodejs
 module.exports = function(THREE) {
@@ -58840,7 +63305,7 @@ THREE.CSS3DRenderer = function () {
 
 };
 
-},{}],705:[function(require,module,exports){
+},{}],708:[function(require,module,exports){
 'use strict';
 
 var loadCSS3DRenderer = require('./CSS3DRenderer.js');
@@ -58986,59 +63451,59 @@ WebviewPlugin.prototype.disable = function() {
 };
 
 
-},{"./CSS3DRenderer.js":704}],706:[function(require,module,exports){
-module.exports=require(70)
-},{"ndarray":730,"ndarray-ops":725,"typedarray-pool":709,"webglew":711}],707:[function(require,module,exports){
-module.exports=require(78)
-},{}],708:[function(require,module,exports){
-module.exports=require(79)
-},{}],709:[function(require,module,exports){
-module.exports=require(80)
-},{"bit-twiddle":707,"buffer":789,"dup":708}],710:[function(require,module,exports){
-module.exports=require(81)
-},{}],711:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":710}],712:[function(require,module,exports){
-module.exports=require(83)
-},{}],713:[function(require,module,exports){
-module.exports=require(84)
-},{"./do-bind.js":712}],714:[function(require,module,exports){
-module.exports=require(85)
-},{"./do-bind.js":712}],715:[function(require,module,exports){
-module.exports=require(81)
-},{}],716:[function(require,module,exports){
-module.exports=require(82)
-},{"weakmap":715}],717:[function(require,module,exports){
-module.exports=require(88)
-},{"./lib/vao-emulated.js":713,"./lib/vao-native.js":714,"webglew":716}],718:[function(require,module,exports){
-module.exports=require(89)
-},{"gl-shader-core":724}],719:[function(require,module,exports){
-module.exports=require(90)
-},{}],720:[function(require,module,exports){
-module.exports=require(91)
-},{}],721:[function(require,module,exports){
-module.exports=require(92)
-},{"./reflect.js":722,"dup":723}],722:[function(require,module,exports){
-module.exports=require(93)
-},{}],723:[function(require,module,exports){
-module.exports=require(79)
-},{}],724:[function(require,module,exports){
-module.exports=require(95)
-},{"./lib/create-attributes.js":720,"./lib/create-uniforms.js":721,"./lib/reflect.js":722}],725:[function(require,module,exports){
-module.exports=require(71)
-},{"cwise-compiler":726}],726:[function(require,module,exports){
-module.exports=require(72)
-},{"./lib/thunk.js":728}],727:[function(require,module,exports){
-module.exports=require(73)
-},{"uniq":729}],728:[function(require,module,exports){
-module.exports=require(74)
-},{"./compile.js":727}],729:[function(require,module,exports){
-module.exports=require(75)
-},{}],730:[function(require,module,exports){
-module.exports=require(76)
-},{"buffer":789,"iota-array":731}],731:[function(require,module,exports){
+},{"./CSS3DRenderer.js":707}],709:[function(require,module,exports){
+module.exports=require(69)
+},{"ndarray":733,"ndarray-ops":728,"typedarray-pool":712,"webglew":714}],710:[function(require,module,exports){
 module.exports=require(77)
-},{}],732:[function(require,module,exports){
+},{}],711:[function(require,module,exports){
+module.exports=require(78)
+},{}],712:[function(require,module,exports){
+module.exports=require(79)
+},{"bit-twiddle":710,"buffer":792,"dup":711}],713:[function(require,module,exports){
+module.exports=require(80)
+},{}],714:[function(require,module,exports){
+module.exports=require(81)
+},{"weakmap":713}],715:[function(require,module,exports){
+module.exports=require(82)
+},{}],716:[function(require,module,exports){
+module.exports=require(83)
+},{"./do-bind.js":715}],717:[function(require,module,exports){
+module.exports=require(84)
+},{"./do-bind.js":715}],718:[function(require,module,exports){
+module.exports=require(80)
+},{}],719:[function(require,module,exports){
+module.exports=require(81)
+},{"weakmap":718}],720:[function(require,module,exports){
+module.exports=require(87)
+},{"./lib/vao-emulated.js":716,"./lib/vao-native.js":717,"webglew":719}],721:[function(require,module,exports){
+module.exports=require(88)
+},{"gl-shader-core":727}],722:[function(require,module,exports){
+module.exports=require(89)
+},{}],723:[function(require,module,exports){
+module.exports=require(90)
+},{}],724:[function(require,module,exports){
+module.exports=require(91)
+},{"./reflect.js":725,"dup":726}],725:[function(require,module,exports){
+module.exports=require(92)
+},{}],726:[function(require,module,exports){
+module.exports=require(78)
+},{}],727:[function(require,module,exports){
+module.exports=require(94)
+},{"./lib/create-attributes.js":723,"./lib/create-uniforms.js":724,"./lib/reflect.js":725}],728:[function(require,module,exports){
+module.exports=require(70)
+},{"cwise-compiler":729}],729:[function(require,module,exports){
+module.exports=require(71)
+},{"./lib/thunk.js":731}],730:[function(require,module,exports){
+module.exports=require(72)
+},{"uniq":732}],731:[function(require,module,exports){
+module.exports=require(73)
+},{"./compile.js":730}],732:[function(require,module,exports){
+module.exports=require(74)
+},{}],733:[function(require,module,exports){
+module.exports=require(75)
+},{"buffer":792,"iota-array":734}],734:[function(require,module,exports){
+module.exports=require(76)
+},{}],735:[function(require,module,exports){
 "use strict";
 var ndarray = require("ndarray");
 var ops = require("ndarray-ops");
@@ -59156,9 +63621,9 @@ WireframePlugin.prototype.render = function() {
         }
     }
 };
-},{"gl-buffer":706,"gl-vao":717,"glslify":719,"glslify/adapter.js":718,"ndarray":730,"ndarray-ops":725}],733:[function(require,module,exports){
+},{"gl-buffer":709,"gl-vao":720,"glslify":722,"glslify/adapter.js":721,"ndarray":733,"ndarray-ops":728}],736:[function(require,module,exports){
 module.exports=require(23)
-},{}],734:[function(require,module,exports){
+},{}],737:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -59208,77 +63673,1095 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":733}],735:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":736,"events":792,"ever":737,"ftooltip":740,"touchup":742}],736:[function(require,module,exports){
+},{"ucfirst":736}],738:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":739,"events":795,"ever":741,"ftooltip":744,"touchup":746}],739:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":740}],740:[function(require,module,exports){
 module.exports=require(32)
-},{}],737:[function(require,module,exports){
+},{}],741:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":738,"./types.json":739,"events":792}],738:[function(require,module,exports){
+},{"./init.json":742,"./types.json":743,"events":795}],742:[function(require,module,exports){
 module.exports=require(16)
-},{}],739:[function(require,module,exports){
-module.exports=require(17)
-},{}],740:[function(require,module,exports){
-module.exports=require(36)
-},{"toarray":741}],741:[function(require,module,exports){
-module.exports=require(37)
-},{}],742:[function(require,module,exports){
-module.exports=require(38)
 },{}],743:[function(require,module,exports){
-module.exports=require(25)
-},{"deep-equal":744,"events":792,"itempile":745}],744:[function(require,module,exports){
-module.exports=require(22)
-},{}],745:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":746,"deep-equal":747}],746:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],747:[function(require,module,exports){
-module.exports=require(22)
-},{}],748:[function(require,module,exports){
-module.exports=require(47)
-},{"inventory":757,"inventory-window":749,"itempile":762,"voxel-modal-dialog":765}],749:[function(require,module,exports){
-module.exports=require(31)
-},{"cube-icon":750,"events":792,"ever":751,"ftooltip":754,"touchup":756}],750:[function(require,module,exports){
-module.exports=require(32)
-},{}],751:[function(require,module,exports){
-module.exports=require(15)
-},{"./init.json":752,"./types.json":753,"events":792}],752:[function(require,module,exports){
-module.exports=require(16)
-},{}],753:[function(require,module,exports){
 module.exports=require(17)
-},{}],754:[function(require,module,exports){
+},{}],744:[function(require,module,exports){
 module.exports=require(36)
-},{"toarray":755}],755:[function(require,module,exports){
+},{"toarray":745}],745:[function(require,module,exports){
 module.exports=require(37)
-},{}],756:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 module.exports=require(38)
-},{}],757:[function(require,module,exports){
+},{}],747:[function(require,module,exports){
 module.exports=require(25)
-},{"deep-equal":758,"events":792,"itempile":759}],758:[function(require,module,exports){
+},{"deep-equal":748,"events":795,"itempile":749}],748:[function(require,module,exports){
 module.exports=require(22)
-},{}],759:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":760,"deep-equal":761}],760:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],761:[function(require,module,exports){
-module.exports=require(22)
-},{}],762:[function(require,module,exports){
-module.exports=require(20)
-},{"clone":763,"deep-equal":764}],763:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":789}],764:[function(require,module,exports){
-module.exports=require(22)
-},{}],765:[function(require,module,exports){
-module.exports=require(13)
-},{"voxel-modal":766}],766:[function(require,module,exports){
-module.exports=require(14)
-},{"ever":767}],767:[function(require,module,exports){
+},{}],749:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":750,"deep-equal":748}],750:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],751:[function(require,module,exports){
+arguments[4][46][0].apply(exports,arguments)
+},{"inventory":761,"inventory-window":752,"itempile":765,"voxel-modal-dialog":768}],752:[function(require,module,exports){
+(function (global){
+var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
+  __hasProp = {}.hasOwnProperty,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __modulo = function(a, b) { return (a % b + +b) % b; };
+
+EventEmitter = (require('events')).EventEmitter;
+
+ever = require('ever');
+
+createTooltip = require('ftooltip');
+
+CubeIcon = require('cube-icon');
+
+touchup = require('touchup');
+
+module.exports = InventoryWindow = (function(_super) {
+  __extends(InventoryWindow, _super);
+
+  function InventoryWindow(opts) {
+    var _ref, _ref1, _ref10, _ref11, _ref12, _ref13, _ref14, _ref15, _ref16, _ref17, _ref18, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7, _ref8, _ref9;
+    if (opts == null) {
+      opts = {};
+    }
+    this.inventory = (function() {
+      if ((_ref = opts.inventory) != null) {
+        return _ref;
+      } else {
+        throw 'inventory-window requires "inventory" option set to Inventory instance';
+      }
+    })();
+    this.linkedInventory = opts.linkedInventory;
+    this.getTexture = (_ref1 = (_ref2 = opts.getTexture) != null ? _ref2 : InventoryWindow.defaultGetTexture) != null ? _ref1 : global.InventoryWindow_defaultGetTexture;
+    this.registry = opts.registry;
+    if ((this.getTexture == null) && (this.registry == null)) {
+      throw 'inventory-window: required "getTexture" or "registry" option missing';
+    }
+    this.getMaxDamage = (_ref3 = (_ref4 = opts.getMaxDamage) != null ? _ref4 : InventoryWindow.defaultGetMaxDamage) != null ? _ref3 : global.InventoryWindow_defaultGetMaxDamage;
+    this.inventorySize = (_ref5 = opts.inventorySize) != null ? _ref5 : this.inventory.size();
+    this.width = (_ref6 = opts.width) != null ? _ref6 : this.inventory.width;
+    this.textureScale = (_ref7 = opts.textureScale) != null ? _ref7 : 5;
+    this.textureScaleAlgorithm = 'nearest-neighbor';
+    this.textureSrcPx = (_ref8 = opts.textureSrcPx) != null ? _ref8 : 16;
+    this.textureSize = (_ref9 = opts.textureSize) != null ? _ref9 : this.textureSrcPx * this.textureScale;
+    this.getTooltip = (_ref10 = (_ref11 = opts.getTooltip) != null ? _ref11 : InventoryWindow.defaultGetTooltip) != null ? _ref10 : global.InventoryWindow_defaultGetTooltip;
+    this.tooltips = (_ref12 = opts.tooltips) != null ? _ref12 : true;
+    this.borderSize = (_ref13 = opts.borderSize) != null ? _ref13 : 4;
+    this.progressThickness = (_ref14 = opts.progressThickness) != null ? _ref14 : 10;
+    this.secondaryMouseButton = (_ref15 = opts.secondaryMouseButton) != null ? _ref15 : 2;
+    this.allowDrop = (_ref16 = opts.allowDrop) != null ? _ref16 : true;
+    this.allowPickup = (_ref17 = opts.allowPickup) != null ? _ref17 : true;
+    this.allowDragPaint = (_ref18 = opts.allowDragPaint) != null ? _ref18 : true;
+    this.progressColorsThresholds = opts.progressColorsThresholds != null ? opts.progressColorsThresholds : opts.progressColorsThresholds = [0.20, 0.40, Infinity];
+    this.progressColors = opts.progressColors != null ? opts.progressColors : opts.progressColors = ['red', 'orange', 'green'];
+    this.slotNodes = [];
+    this.container = void 0;
+    this.selectedIndex = void 0;
+    this.enable();
+  }
+
+  InventoryWindow.prototype.enable = function() {
+    if (typeof document !== "undefined" && document !== null) {
+      ever(document).on('mousemove', (function(_this) {
+        return function(ev) {
+          if (!global.InventoryWindow_heldNode) {
+            return;
+          }
+          return _this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+        };
+      })(this));
+      ever(document).on('mouseup', (function(_this) {
+        return function(ev) {
+          return global.InventoryWindow_mouseButtonDown = void 0;
+        };
+      })(this));
+    }
+    return this.inventory.on('changed', (function(_this) {
+      return function() {
+        return _this.refresh();
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createContainer = function() {
+    var container, i, node, slotItem, widthpx, _i, _ref;
+    if (typeof document === "undefined" || document === null) {
+      return;
+    }
+    container = document.createElement('div');
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      slotItem = this.inventory.get(i);
+      node = this.createSlotNode(slotItem);
+      this.setBorderStyle(node, i);
+      this.bindSlotNodeEvent(node, i);
+      this.slotNodes.push(node);
+      container.appendChild(node);
+    }
+    widthpx = this.width * (this.textureSize + this.borderSize * 2) + 2 * this.borderSize;
+    container.setAttribute('style', "display: block; float: left; width: " + widthpx + "px; -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none;");
+    return this.container = container;
+  };
+
+  InventoryWindow.prototype.bindSlotNodeEvent = function(node, index) {
+    ever(node).on('mousedown', (function(_this) {
+      return function(ev) {
+        return _this.clickSlot(index, ev);
+      };
+    })(this));
+    return ever(node).on('mouseover', (function(_this) {
+      return function(ev) {
+        if (!_this.allowDragPaint) {
+          return;
+        }
+        if (!_this.allowDrop) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile == null) {
+          return;
+        }
+        if (global.InventoryWindow_mouseButtonDown !== _this.secondaryMouseButton) {
+          return;
+        }
+        _this.dropOneHeld(index);
+        _this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+        return _this.refreshSlotNode(index);
+      };
+    })(this));
+  };
+
+  InventoryWindow.prototype.createSlotNode = function(itemPile) {
+    var div;
+    div = document.createElement('div');
+    div.setAttribute('style', "display: inline-block; float: inherit; margin: 0; padding: 0; width: " + this.textureSize + "px; height: " + this.textureSize + "px; font-size: 20pt; background-size: 100% auto; image-rendering: -moz-crisp-edges; image-rendering: -o-crisp-edges; image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; -ms-interpolation-mode: nearest-neighbor;");
+    this.populateSlotNode(div, itemPile);
+    return div;
+  };
+
+  InventoryWindow.prototype.populateSlotNode = function(div, itemPile, isSelected) {
+    var cube, cubeNode, img, maxDamage, progress, progressColor, progressNode, setImage, src, text, textBox, tooltip, tooltipNode, tooltipText, _ref;
+    src = void 0;
+    text = '';
+    progress = void 0;
+    progressColor = void 0;
+    if (itemPile != null) {
+      if (this.registry != null) {
+        src = this.registry.getItemPileTexture(itemPile);
+      } else if (this.getTexture != null) {
+        src = this.getTexture(itemPile);
+      } else {
+        throw 'inventory-window textures not specified, set global.InventoryWindow_defaultGetTexture or pass "getTexture" or "registry" option';
+      }
+      text = itemPile.count;
+      if (text === 1) {
+        text = '';
+      }
+      if (text === Infinity) {
+        text = '\u221e';
+      }
+      if (((_ref = itemPile.tags) != null ? _ref.damage : void 0) != null) {
+        if (this.registry != null) {
+          maxDamage = this.registry.getItemProps(itemPile.item).maxDamage;
+        } else if (this.getMaxDamage != null) {
+          maxDamage = this.getMaxDamage(itemPile);
+        } else {
+          maxDamage = 100;
+        }
+        progress = (maxDamage - itemPile.tags.damage) / maxDamage;
+        progressColor = this.getProgressBarColor(progress);
+      }
+    }
+    setImage = function(src) {
+      var newImage;
+      if (typeof src === 'string') {
+        newImage = 'url(' + src + ')';
+      } else {
+        newImage = '';
+      }
+      if (global.InventoryWindow_resolvedImageURLs == null) {
+        global.InventoryWindow_resolvedImageURLs = {};
+      }
+      if (global.InventoryWindow_resolvedImageURLs[newImage] !== div.style.backgroundImage) {
+        div.style.backgroundImage = newImage;
+        return global.InventoryWindow_resolvedImageURLs[newImage] = div.style.backgroundImage;
+      }
+    };
+    if ((this.textureScaleAlgorithm != null) && typeof src === 'string') {
+      if (global.InventoryWindow_cachedScaledImages == null) {
+        global.InventoryWindow_cachedScaledImages = {};
+      }
+      if (global.InventoryWindow_cachedScaledImages[src]) {
+        setImage(global.InventoryWindow_cachedScaledImages[src]);
+      } else {
+        img = new Image();
+        img.onload = (function(_this) {
+          return function() {
+            var scaled;
+            scaled = touchup.scale(img, _this.textureScale, _this.textureScale, _this.textureScaleAlgorithm);
+            global.InventoryWindow_cachedScaledImages[src] = scaled;
+            return setImage(scaled);
+          };
+        })(this);
+        img.src = src;
+      }
+    } else {
+      setImage(src);
+    }
+    cubeNode = div.children[0];
+    if (cubeNode == null) {
+      cubeNode = document.createElement('div');
+      cubeNode.setAttribute('style', 'position: relative; z-index: 0;');
+      div.appendChild(cubeNode);
+    }
+    while (cubeNode.firstChild) {
+      cubeNode.removeChild(cubeNode.firstChild);
+    }
+    if (Array.isArray(src) || typeof src === 'object') {
+      cube = new CubeIcon({
+        images: src
+      });
+      cubeNode.appendChild(cube.container);
+    }
+    textBox = div.children[1];
+    if (textBox == null) {
+      textBox = document.createElement('div');
+      textBox.setAttribute('style', 'position: absolute;');
+      div.appendChild(textBox);
+    }
+    if (textBox.textContent !== text) {
+      textBox.textContent = text;
+    }
+    progressNode = div.children[2];
+    if (progressNode == null) {
+      progressNode = document.createElement('div');
+      progressNode.setAttribute('style', "width: 0%; top: " + (this.textureSize - this.borderSize * 2) + "px; position: relative; visibility: hidden;");
+      div.appendChild(progressNode);
+    }
+    if (progressColor != null) {
+      progressNode.style.borderTop = "" + this.progressThickness + "px solid " + progressColor;
+    }
+    if (progress != null) {
+      progressNode.style.width = (progress * 100) + '%';
+    }
+    progressNode.style.visibility = progress != null ? '' : 'hidden';
+    if (this.tooltips) {
+      tooltipNode = div.children[3];
+      if (tooltipNode == null) {
+        tooltipNode = document.createTextNode('not set');
+        tooltip = createTooltip(div, tooltipNode);
+        div.appendChild(tooltip.div);
+      }
+      if (itemPile != null) {
+        if (this.registry != null) {
+          tooltipText = this.registry.getItemDisplayName(itemPile.item);
+        } else if (this.getTooltip != null) {
+          tooltipText = this.getTooltip(itemPile);
+        }
+      } else {
+        tooltipText = '';
+      }
+      return tooltipNode.textContent = tooltipText;
+    }
+  };
+
+  InventoryWindow.prototype.getProgressBarColor = function(progress) {
+    var i, threshold, _i, _len, _ref;
+    _ref = this.progressColorsThresholds;
+    for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+      threshold = _ref[i];
+      if (progress <= threshold) {
+        return this.progressColors[i];
+      }
+    }
+    return this.progressColors.slice(-1)[0];
+  };
+
+  InventoryWindow.prototype.setBorderStyle = function(node, index) {
+    var height, kind, x, y;
+    x = __modulo(index, this.width);
+    y = Math.floor(index / this.width);
+    height = this.inventorySize / this.width;
+    if (index === this.selectedIndex) {
+      kind = 'dotted';
+    } else {
+      kind = 'solid';
+    }
+    node.style.border = "" + this.borderSize + "px " + kind + " black";
+    if (y === 0) {
+      node.style.borderTop = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (y === height - 1) {
+      node.style.borderBottom = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === 0) {
+      node.style.borderLeft = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+    if (x === this.width - 1) {
+      return node.style.borderRight = "" + (this.borderSize * 2) + "px " + kind + " black";
+    }
+  };
+
+  InventoryWindow.prototype.setSelected = function(index) {
+    this.selectedIndex = index;
+    return this.refresh();
+  };
+
+  InventoryWindow.prototype.getSelected = function(index) {
+    return this.selectedIndex;
+  };
+
+  InventoryWindow.prototype.refreshSlotNode = function(index) {
+    this.populateSlotNode(this.slotNodes[index], this.inventory.get(index));
+    return this.setBorderStyle(this.slotNodes[index], index);
+  };
+
+  InventoryWindow.prototype.refresh = function() {
+    var i, _i, _ref, _results;
+    _results = [];
+    for (i = _i = 0, _ref = this.inventorySize; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      _results.push(this.refreshSlotNode(i));
+    }
+    return _results;
+  };
+
+  InventoryWindow.prototype.positionAtMouse = function(node, mouseEvent) {
+    var x, y, _ref, _ref1;
+    x = (_ref = mouseEvent.x) != null ? _ref : mouseEvent.clientX;
+    y = (_ref1 = mouseEvent.y) != null ? _ref1 : mouseEvent.clientY;
+    x -= this.textureSize / 2;
+    y -= this.textureSize / 2;
+    node.style.left = x + 'px';
+    return node.style.top = y + 'px';
+  };
+
+  InventoryWindow.prototype.createHeldNode = function(itemPile, ev) {
+    var style;
+    if (global.InventoryWindow_heldNode) {
+      this.removeHeldNode();
+    }
+    if (!itemPile || itemPile.count === 0) {
+      global.InventoryWindow_heldItemPile = void 0;
+      return;
+    }
+    global.InventoryWindow_heldItemPile = itemPile;
+    global.InventoryWindow_heldNode = this.createSlotNode(global.InventoryWindow_heldItemPile);
+    global.InventoryWindow_heldNode.setAttribute('style', style = global.InventoryWindow_heldNode.getAttribute('style') + "position: absolute; user-select: none; -moz-user-select: none; -webkit-user-select: none; pointer-events: none; z-index: 10;");
+    this.positionAtMouse(global.InventoryWindow_heldNode, ev);
+    return document.body.appendChild(global.InventoryWindow_heldNode);
+  };
+
+  InventoryWindow.prototype.removeHeldNode = function() {
+    global.InventoryWindow_heldNode.parentNode.removeChild(global.InventoryWindow_heldNode);
+    global.InventoryWindow_heldNode = void 0;
+    return global.InventoryWindow_heldItemPile = void 0;
+  };
+
+  InventoryWindow.prototype.dropOneHeld = function(index) {
+    var oneHeld, tmp;
+    if (this.inventory.get(index)) {
+      oneHeld = global.InventoryWindow_heldItemPile.splitPile(1);
+      if (this.inventory.get(index).mergePile(oneHeld) === false) {
+        global.InventoryWindow_heldItemPile.increase(1);
+        tmp = global.InventoryWindow_heldItemPile;
+        global.InventoryWindow_heldItemPile = this.inventory.get(index);
+        return this.inventory.set(index, tmp);
+      } else {
+        return this.inventory.changed();
+      }
+    } else {
+      return this.inventory.set(index, global.InventoryWindow_heldItemPile.splitPile(1));
+    }
+  };
+
+  InventoryWindow.prototype.clickSlot = function(index, ev) {
+    var itemPile, shiftDown, tmp, _ref, _ref1;
+    itemPile = this.inventory.get(index);
+    console.log('clickSlot', index, itemPile);
+    global.InventoryWindow_mouseButtonDown = ev.button;
+    shiftDown = ev.shiftKey;
+    if (ev.button !== this.secondaryMouseButton) {
+      if (!global.InventoryWindow_heldItemPile || !this.allowDrop) {
+        if (!this.allowPickup) {
+          return;
+        }
+        if (global.InventoryWindow_heldItemPile != null) {
+          if (this.inventory.get(index) != null) {
+            if (!global.InventoryWindow_heldItemPile.canPileWith(this.inventory.get(index))) {
+              return;
+            }
+            global.InventoryWindow_heldItemPile.mergePile(this.inventory.get(index));
+          }
+        } else {
+          if (!shiftDown) {
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, void 0);
+          } else if (this.linkedInventory && (this.inventory.get(index) != null)) {
+            this.linkedInventory.give(this.inventory.get(index));
+            if (this.inventory.get(index).count === 0) {
+              this.inventory.set(index, void 0);
+            }
+            this.inventory.changed();
+          }
+        }
+        this.emit('pickup');
+      } else {
+        if (this.inventory.get(index)) {
+          if (this.inventory.get(index).mergePile(global.InventoryWindow_heldItemPile) === false) {
+            tmp = global.InventoryWindow_heldItemPile;
+            global.InventoryWindow_heldItemPile = this.inventory.get(index);
+            this.inventory.set(index, tmp);
+          } else {
+            this.inventory.changed();
+          }
+        } else {
+          this.inventory.set(index, global.InventoryWindow_heldItemPile);
+          global.InventoryWindow_heldItemPile = void 0;
+        }
+      }
+    } else {
+      if (!global.InventoryWindow_heldItemPile) {
+        if (!this.allowPickup) {
+          return;
+        }
+        global.InventoryWindow_heldItemPile = (_ref = this.inventory.get(index)) != null ? _ref.splitPile(0.5) : void 0;
+        if (((_ref1 = this.inventory.get(index)) != null ? _ref1.count : void 0) === 0) {
+          this.inventory.set(index, void 0);
+        }
+        this.inventory.changed();
+        this.emit('pickup');
+      } else {
+        if (!this.allowDrop) {
+          return;
+        }
+        this.dropOneHeld(index);
+      }
+    }
+    this.createHeldNode(global.InventoryWindow_heldItemPile, ev);
+    return this.refreshSlotNode(index);
+  };
+
+  return InventoryWindow;
+
+})(EventEmitter);
+
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"cube-icon":753,"events":795,"ever":755,"ftooltip":758,"touchup":760}],753:[function(require,module,exports){
+var CubeIcon, expandName;
+
+expandName = require('cube-side-array');
+
+module.exports = function(opts) {
+  return new CubeIcon(opts);
+};
+
+CubeIcon = (function() {
+  function CubeIcon(opts) {
+    var ch, cubeH, cubeW, cw, dz, face, faceFilters, faceName, faceTransforms, i, rotateX, rotateY, s, scale, shiftX, shiftY, showFaces, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6;
+    if (opts == null) {
+      opts = {};
+    }
+    showFaces = (_ref = opts.showFaces) != null ? _ref : ['left', 'top', 'front'];
+    if (opts.images != null) {
+      _ref1 = expandName(opts.images, 'KRLTBF'), opts.back = _ref1[0], opts.right = _ref1[1], opts.left = _ref1[2], opts.top = _ref1[3], opts.bottom = _ref1[4], opts.front = _ref1[5];
+    }
+    if (opts.side != null) {
+      opts.left = opts.front = opts.side;
+    }
+    rotateX = (_ref2 = opts.rotateX) != null ? _ref2 : -30;
+    rotateY = (_ref3 = opts.rotateY) != null ? _ref3 : 45;
+    scale = (_ref4 = opts.scale) != null ? _ref4 : 3.55;
+    s = (_ref5 = opts.size) != null ? _ref5 : 16;
+    this.container = document.createElement('div');
+    cw = ch = 90;
+    cubeW = Math.floor(ch / (1 - Math.sin(rotateX * Math.PI / 180)) - 2);
+    cubeH = Math.ceil(cw / (1 + Math.cos(rotateY * Math.PI / 180)) + 1);
+    shiftX = cw - s * scale - 5;
+    shiftY = ch - s * scale + 5;
+    this.container.setAttribute('style', "-webkit-transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); transform: rotateX(" + rotateX + "deg) rotateY(" + rotateY + "deg) translateX(" + shiftX + "px) translateY(" + shiftY + "px) scale3d(" + scale + "," + scale + "," + scale + "); -webkit-transform-origin: 0 0; transform-origin: 0 0; position: relative; -webkit-transform-style: preserve-3d; transform-style: preserve-3d;");
+    dz = s / 2;
+    faceTransforms = {
+      front: "rotateY(   0deg ) translateZ( " + dz + "px )",
+      back: "rotateX( 180deg ) translateZ( " + dz + "px )",
+      right: "rotateY(  90deg ) translateZ( " + dz + "px )",
+      left: "rotateY( -90deg ) translateZ( " + dz + "px )",
+      top: "rotateX(  90deg ) translateZ( " + dz + "px )",
+      bottom: "rotateX( -90deg ) translateZ( " + dz + "px )"
+    };
+    faceFilters = (_ref6 = opts.faceFilters) != null ? _ref6 : {
+      front: 'brightness(60%)',
+      left: 'brightness(100%)',
+      top: 'brightness(150%)'
+    };
+    for (i = _i = 0, _len = showFaces.length; _i < _len; i = ++_i) {
+      faceName = showFaces[i];
+      face = document.createElement('div');
+      face.setAttribute('style', "-webkit-transform-style: preserve-3d; transform-style: preserve-3d; -webkit-transform: " + faceTransforms[faceName] + "; transform: " + faceTransforms[faceName] + "; position: absolute; border: 0.5px solid black; width: " + s + "px; height: " + s + "px;");
+      face.style.backgroundImage = 'url(' + opts[faceName] + ')';
+      if (faceFilters[faceName]) {
+        face.style.webkitFilter = faceFilters[faceName];
+        face.style.filter = faceFilters[faceName];
+      }
+      this.container.style.webkitTransition = '-webkit-transform 1s';
+      this.container.style.transition = '        transform 1s';
+      this.container.appendChild(face);
+    }
+  }
+
+  return CubeIcon;
+
+})();
+
+
+},{"cube-side-array":754}],754:[function(require,module,exports){
+module.exports=require(32)
+},{}],755:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":768,"./types.json":769,"events":792}],768:[function(require,module,exports){
+},{"./init.json":756,"./types.json":757,"events":795}],756:[function(require,module,exports){
 module.exports=require(16)
-},{}],769:[function(require,module,exports){
+},{}],757:[function(require,module,exports){
 module.exports=require(17)
-},{}],770:[function(require,module,exports){
+},{}],758:[function(require,module,exports){
+module.exports=require(36)
+},{"toarray":759}],759:[function(require,module,exports){
+module.exports=require(37)
+},{}],760:[function(require,module,exports){
+module.exports=require(38)
+},{}],761:[function(require,module,exports){
+module.exports=require(25)
+},{"deep-equal":762,"events":795,"itempile":763}],762:[function(require,module,exports){
+module.exports=require(22)
+},{}],763:[function(require,module,exports){
+arguments[4][20][0].apply(exports,arguments)
+},{"clone":764,"deep-equal":762}],764:[function(require,module,exports){
+module.exports=require(28)
+},{"buffer":792}],765:[function(require,module,exports){
+module.exports=require(20)
+},{"clone":766,"deep-equal":767}],766:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":792}],767:[function(require,module,exports){
+module.exports=require(22)
+},{}],768:[function(require,module,exports){
+module.exports=require(13)
+},{"voxel-modal":769}],769:[function(require,module,exports){
+module.exports=require(14)
+},{"ever":770}],770:[function(require,module,exports){
+module.exports=require(15)
+},{"./init.json":771,"./types.json":772,"events":795}],771:[function(require,module,exports){
+module.exports=require(16)
+},{}],772:[function(require,module,exports){
+module.exports=require(17)
+},{}],773:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -59458,7 +64941,7 @@ WorkbenchDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":743,"inventory-window":735,"voxel-inventory-dialog":748}],771:[function(require,module,exports){
+},{"inventory":747,"inventory-window":738,"voxel-inventory-dialog":751}],774:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -59564,9 +65047,9 @@ ZenPlugin = (function() {
 })();
 
 
-},{}],772:[function(require,module,exports){
+},{}],775:[function(require,module,exports){
 
-},{}],773:[function(require,module,exports){
+},{}],776:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -59928,14 +65411,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":775}],774:[function(require,module,exports){
+},{"util/":778}],777:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],775:[function(require,module,exports){
+},{}],778:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -60525,7 +66008,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":774,"inherits":793,"q+64fw":795}],776:[function(require,module,exports){
+},{"./support/isBuffer":777,"inherits":796,"q+64fw":798}],779:[function(require,module,exports){
 'use strict';
 
 
@@ -60628,7 +66111,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],777:[function(require,module,exports){
+},{}],780:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -60661,7 +66144,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],778:[function(require,module,exports){
+},{}],781:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -60709,7 +66192,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],779:[function(require,module,exports){
+},{}],782:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -60751,7 +66234,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],780:[function(require,module,exports){
+},{}],783:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -62517,7 +68000,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":776,"./adler32":777,"./crc32":779,"./messages":784,"./trees":785}],781:[function(require,module,exports){
+},{"../utils/common":779,"./adler32":780,"./crc32":782,"./messages":787,"./trees":788}],784:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -62844,7 +68327,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],782:[function(require,module,exports){
+},{}],785:[function(require,module,exports){
 'use strict';
 
 
@@ -64348,7 +69831,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":776,"./adler32":777,"./crc32":779,"./inffast":781,"./inftrees":783}],783:[function(require,module,exports){
+},{"../utils/common":779,"./adler32":780,"./crc32":782,"./inffast":784,"./inftrees":786}],786:[function(require,module,exports){
 'use strict';
 
 
@@ -64675,7 +70158,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   opts.bits = root;
   return 0;
 };
-},{"../utils/common":776}],784:[function(require,module,exports){
+},{"../utils/common":779}],787:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -64689,7 +70172,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],785:[function(require,module,exports){
+},{}],788:[function(require,module,exports){
 'use strict';
 
 
@@ -65889,7 +71372,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":776}],786:[function(require,module,exports){
+},{"../utils/common":779}],789:[function(require,module,exports){
 'use strict';
 
 
@@ -65919,7 +71402,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],787:[function(require,module,exports){
+},{}],790:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -66159,7 +71642,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":789,"pako/lib/zlib/constants":778,"pako/lib/zlib/deflate.js":780,"pako/lib/zlib/inflate.js":782,"pako/lib/zlib/messages":784,"pako/lib/zlib/zstream":786,"q+64fw":795}],788:[function(require,module,exports){
+},{"buffer":792,"pako/lib/zlib/constants":781,"pako/lib/zlib/deflate.js":783,"pako/lib/zlib/inflate.js":785,"pako/lib/zlib/messages":787,"pako/lib/zlib/zstream":789,"q+64fw":798}],791:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -66773,7 +72256,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./binding":787,"_stream_transform":807,"assert":773,"buffer":789,"q+64fw":795,"util":811}],789:[function(require,module,exports){
+},{"./binding":790,"_stream_transform":810,"assert":776,"buffer":792,"q+64fw":798,"util":814}],792:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -67923,7 +73406,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":790,"ieee754":791}],790:[function(require,module,exports){
+},{"base64-js":793,"ieee754":794}],793:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -68046,7 +73529,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],791:[function(require,module,exports){
+},{}],794:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -68132,7 +73615,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],792:[function(require,module,exports){
+},{}],795:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -68437,9 +73920,9 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],793:[function(require,module,exports){
-module.exports=require(206)
-},{}],794:[function(require,module,exports){
+},{}],796:[function(require,module,exports){
+module.exports=require(204)
+},{}],797:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -68667,7 +74150,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":795}],795:[function(require,module,exports){
+},{"q+64fw":798}],798:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -68732,10 +74215,10 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],796:[function(require,module,exports){
+},{}],799:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":797}],797:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":800}],800:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -68828,7 +74311,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_readable":799,"./_stream_writable":801,"core-util-is":802,"inherits":793,"q+64fw":795}],798:[function(require,module,exports){
+},{"./_stream_readable":802,"./_stream_writable":804,"core-util-is":805,"inherits":796,"q+64fw":798}],801:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -68876,7 +74359,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":800,"core-util-is":802,"inherits":793}],799:[function(require,module,exports){
+},{"./_stream_transform":803,"core-util-is":805,"inherits":796}],802:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -69839,7 +75322,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("q+64fw"))
-},{"buffer":789,"core-util-is":802,"events":792,"inherits":793,"isarray":803,"q+64fw":795,"stream":809,"string_decoder/":804}],800:[function(require,module,exports){
+},{"buffer":792,"core-util-is":805,"events":795,"inherits":796,"isarray":806,"q+64fw":798,"stream":812,"string_decoder/":807}],803:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -70051,7 +75534,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":797,"core-util-is":802,"inherits":793}],801:[function(require,module,exports){
+},{"./_stream_duplex":800,"core-util-is":805,"inherits":796}],804:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -70442,7 +75925,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_duplex":797,"buffer":789,"core-util-is":802,"inherits":793,"q+64fw":795,"stream":809}],802:[function(require,module,exports){
+},{"./_stream_duplex":800,"buffer":792,"core-util-is":805,"inherits":796,"q+64fw":798,"stream":812}],805:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -70552,12 +76035,12 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":789}],803:[function(require,module,exports){
+},{"buffer":792}],806:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],804:[function(require,module,exports){
+},{}],807:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -70759,10 +76242,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":789}],805:[function(require,module,exports){
+},{"buffer":792}],808:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":798}],806:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":801}],809:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -70770,13 +76253,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":797,"./lib/_stream_passthrough.js":798,"./lib/_stream_readable.js":799,"./lib/_stream_transform.js":800,"./lib/_stream_writable.js":801}],807:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":800,"./lib/_stream_passthrough.js":801,"./lib/_stream_readable.js":802,"./lib/_stream_transform.js":803,"./lib/_stream_writable.js":804}],810:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":800}],808:[function(require,module,exports){
+},{"./lib/_stream_transform.js":803}],811:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":801}],809:[function(require,module,exports){
+},{"./lib/_stream_writable.js":804}],812:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -70905,11 +76388,11 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":792,"inherits":793,"readable-stream/duplex.js":796,"readable-stream/passthrough.js":805,"readable-stream/readable.js":806,"readable-stream/transform.js":807,"readable-stream/writable.js":808}],810:[function(require,module,exports){
-module.exports=require(774)
-},{}],811:[function(require,module,exports){
-module.exports=require(775)
-},{"./support/isBuffer":810,"inherits":793,"q+64fw":795}],812:[function(require,module,exports){
+},{"events":795,"inherits":796,"readable-stream/duplex.js":799,"readable-stream/passthrough.js":808,"readable-stream/readable.js":809,"readable-stream/transform.js":810,"readable-stream/writable.js":811}],813:[function(require,module,exports){
+module.exports=require(777)
+},{}],814:[function(require,module,exports){
+module.exports=require(778)
+},{"./support/isBuffer":813,"inherits":796,"q+64fw":798}],815:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -71049,7 +76532,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":813}],813:[function(require,module,exports){
+},{"indexof":816}],816:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
