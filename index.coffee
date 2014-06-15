@@ -52,6 +52,7 @@ require 'voxel-zen'
 require 'voxel-debug'
 require 'camera-debug'
 require 'voxel-plugins-ui'
+require 'voxel-fullscreen'
 require 'voxel-keys'
 require 'kb-bindings-ui'
 
@@ -180,6 +181,7 @@ main = () ->
     # handles 'break' event from voxel-mine (left-click hold breaks blocks), collects block and adds to inventory
     'voxel-harvest': {}
     'voxel-voila': {}
+    'voxel-fullscreen': {}
     'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
