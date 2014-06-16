@@ -71,8 +71,6 @@ main = () ->
       useAtlas: true
       generateChunks: false
       chunkDistance: 2
-      texturePath: 'ArtPacks/ProgrammerArt/textures/blocks/' # subproject with textures
-      artPacks: ['ProgrammerArt-ResourcePack.zip']
       worldOrigin: [0, 0, 0]
       controls:
         discreteFire: false
@@ -111,7 +109,7 @@ main = () ->
     # built-in plugins
     'voxel-registry': {}
     'voxel-stitch':
-      artPacks: 'ProgrammerArt-ResourcePack.zip'
+      artpacks: ['ProgrammerArt-ResourcePack.zip']
     'voxel-shader':
       #cameraFOV: 45
       #cameraFOV: 70
