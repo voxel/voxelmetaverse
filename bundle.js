@@ -246,7 +246,7 @@ main = function() {
 main();
 
 
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":132,"voxel-console":139,"voxel-debug":146,"voxel-decals":160,"voxel-decorative":188,"voxel-drop":190,"voxel-engine":221,"voxel-fluid":474,"voxel-fly":476,"voxel-food":477,"voxel-fullscreen":478,"voxel-furnace":479,"voxel-gamemode":532,"voxel-glass":547,"voxel-hammer":554,"voxel-harvest":555,"voxel-health":563,"voxel-health-bar":561,"voxel-health-fall":562,"voxel-inventory-crafting":565,"voxel-inventory-creative":618,"voxel-inventory-hotbar":671,"voxel-keys":684,"voxel-land":688,"voxel-measure":706,"voxel-mine":709,"voxel-outline":738,"voxel-pickaxe":745,"voxel-player":746,"voxel-plugins-ui":751,"voxel-pumpkin":758,"voxel-quarry":759,"voxel-reach":765,"voxel-recipes":772,"voxel-sfx":782,"voxel-skyhook":783,"voxel-sprint":784,"voxel-start":785,"voxel-use":786,"voxel-virus":788,"voxel-voila":789,"voxel-walk":790,"voxel-webview":792,"voxel-wireframe":819,"voxel-wool":821,"voxel-workbench":869,"voxel-zen":870}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":519,"voxel-fly":521,"voxel-food":522,"voxel-fullscreen":523,"voxel-furnace":524,"voxel-gamemode":577,"voxel-glass":592,"voxel-hammer":599,"voxel-harvest":600,"voxel-health":608,"voxel-health-bar":606,"voxel-health-fall":607,"voxel-inventory-crafting":610,"voxel-inventory-creative":663,"voxel-inventory-hotbar":716,"voxel-keys":729,"voxel-land":733,"voxel-measure":751,"voxel-mine":754,"voxel-outline":783,"voxel-pickaxe":790,"voxel-player":791,"voxel-plugins-ui":796,"voxel-pumpkin":803,"voxel-quarry":804,"voxel-reach":810,"voxel-recipes":817,"voxel-sfx":827,"voxel-skyhook":828,"voxel-sprint":829,"voxel-start":830,"voxel-use":831,"voxel-virus":833,"voxel-voila":834,"voxel-walk":835,"voxel-webview":837,"voxel-wireframe":864,"voxel-wool":866,"voxel-workbench":914,"voxel-zen":915}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5583,7 +5583,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":891}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":936}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6218,7 +6218,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888}],22:[function(require,module,exports){
+},{"buffer":933}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6512,7 +6512,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":28,"events":891,"itempile":31}],28:[function(require,module,exports){
+},{"deep-equal":28,"events":936,"itempile":31}],28:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6796,7 +6796,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":32,"deep-equal":33}],32:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],33:[function(require,module,exports){
+},{"buffer":933}],33:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":34,"./lib/keys.js":35}],34:[function(require,module,exports){
 module.exports=require(23)
@@ -7182,7 +7182,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -7403,7 +7403,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":38,"events":891,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
+},{"cube-icon":38,"events":936,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -7547,7 +7547,7 @@ module.exports = expandName;
 
 },{}],40:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":41,"./types.json":42,"events":891}],41:[function(require,module,exports){
+},{"./init.json":41,"./types.json":42,"events":936}],41:[function(require,module,exports){
 module.exports=require(16)
 },{}],42:[function(require,module,exports){
 module.exports=require(17)
@@ -7949,7 +7949,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":47,"events":891,"itempile":50}],47:[function(require,module,exports){
+},{"deep-equal":47,"events":936,"itempile":50}],47:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":48,"./lib/keys.js":49}],48:[function(require,module,exports){
 module.exports=require(23)
@@ -8139,7 +8139,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":51,"deep-equal":52}],51:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],52:[function(require,module,exports){
+},{"buffer":933}],52:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":53,"./lib/keys.js":54}],53:[function(require,module,exports){
 module.exports=require(23)
@@ -8329,7 +8329,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":56,"deep-equal":57}],56:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],57:[function(require,module,exports){
+},{"buffer":933}],57:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":58,"./lib/keys.js":59}],58:[function(require,module,exports){
 module.exports=require(23)
@@ -8636,7 +8636,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -8857,7 +8857,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":62,"events":891,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
+},{"cube-icon":62,"events":936,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -8928,7 +8928,7 @@ CubeIcon = (function() {
 module.exports=require(39)
 },{}],64:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":65,"./types.json":66,"events":891}],65:[function(require,module,exports){
+},{"./init.json":65,"./types.json":66,"events":936}],65:[function(require,module,exports){
 module.exports=require(16)
 },{}],66:[function(require,module,exports){
 module.exports=require(17)
@@ -9098,7 +9098,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":71,"events":891,"itempile":74}],71:[function(require,module,exports){
+},{"deep-equal":71,"events":936,"itempile":74}],71:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":72,"./lib/keys.js":73}],72:[function(require,module,exports){
 module.exports=require(23)
@@ -9288,7 +9288,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":75,"deep-equal":76}],75:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],76:[function(require,module,exports){
+},{"buffer":933}],76:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":77,"./lib/keys.js":78}],77:[function(require,module,exports){
 module.exports=require(23)
@@ -9478,7 +9478,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":80,"deep-equal":81}],80:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],81:[function(require,module,exports){
+},{"buffer":933}],81:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":82,"./lib/keys.js":83}],82:[function(require,module,exports){
 module.exports=require(23)
@@ -9490,7 +9490,7 @@ module.exports=require(13)
 module.exports=require(14)
 },{"ever":86}],86:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":87,"./types.json":88,"events":891}],87:[function(require,module,exports){
+},{"./init.json":87,"./types.json":88,"events":936}],87:[function(require,module,exports){
 module.exports=require(16)
 },{}],88:[function(require,module,exports){
 module.exports=require(17)
@@ -11077,7 +11077,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"iota-array":97}],97:[function(require,module,exports){
+},{"buffer":933,"iota-array":97}],97:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -11692,7 +11692,7 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":98,"buffer":888,"dup":99}],101:[function(require,module,exports){
+},{"bit-twiddle":98,"buffer":933,"dup":99}],101:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -12657,12 +12657,11 @@ module.exports = createShader
 'use strict';
 
 var ndarray = require('ndarray');
-var websocket_stream = require('websocket-stream');
-var minecraft_protocol = require('minecraft-protocol');
+var mineflayer = require('mineflayer');
 var ever = require('ever');
-var webworkify = require('webworkify');
 var tellraw2dom = require('tellraw2dom');
 var bit_twiddle = require('bit-twiddle');
+var webworkify = require('webworkify');
 var popCount = bit_twiddle.popCount;
 
 module.exports = function(game, opts) {
@@ -12689,7 +12688,7 @@ function ClientMC(game, opts) {
 
   this.console = game.plugins.get('voxel-console'); // optional
 
-  opts.url = opts.url || 'ws://'+document.location.hostname+':1234';
+  opts.url = opts.url || 'ws://'+document.location.hostname+':24444/server';
 
   // Translate network block indices to our block names
   // http://minecraft.gamepedia.com/Data_values#Block_IDs http://minecraft-ids.grahamedgecombe.com/
@@ -12887,9 +12886,21 @@ ClientMC.prototype.enable = function() {
   this.game.plugins.disable('voxel-land');   // also provides chunks, use ours instead
   //this.game.plugins.get('voxel-player').homePosition = [-248, 77, -198] // can't do this TODO
   //this.game.plugins.get('voxel-player').moveTo -251, 81, -309
-  this.game.plugins.enable('voxel-fly');
 
-  this.ws = websocket_stream(this.opts.url, {type: Uint8Array});
+  // login credential
+  var username;
+  var hash = document.location.hash;
+  if (hash.length < 2) {
+    // try anonymous auth
+    username = 'mcwebchatuserX';
+  } else {
+    username = hash.substring(1); // remove #
+  }
+
+  // create bot
+  this.bot = mineflayer.createBot({
+    username: username
+  });
 
   this.game.voxels.on('missingChunk', this.missingChunk.bind(this));
 
@@ -12897,33 +12908,31 @@ ClientMC.prototype.enable = function() {
 
   // WebSocket to server proxy (wsmc)
   var self = this;
-  this.ws.on('error', function(err) {
+  this.bot.on('error', function(err) {
     self.log('WebSocket error', err);
+    console.log('WebSocket error',err);
     self.game.plugins.disable('voxel-clientmc');
   });
-  this.ws.on('end', function() {
-    self.log('WebSocket end');
+  this.bot.on('close', function() {
+    self.log('WebSocket closed');
     self.game.plugins.disable('voxel-clientmc');
   });
 
-  this.ws.on('data', function(data) {
-    var packet = self.decodePacket(data);
-    if (!packet) {
-      return;
-    }
-
-    self.handlePacket(packet.name, packet.payload);
+  var self = this;
+  this.bot.on('message', function(message) {
+    self.console.logNode(tellraw2dom(message.json)); // TODO: also decode color codes
   });
 
   if (this.console) this.console.widget.on('input', this.onConsoleInput = function(text) {
-    self.sendChat(text);
+    self.bot.chat(text);
   });
 
-  // chunk decompression
-  this.zlib_worker = webworkify(require('./zlib_worker.js'));
-  ever(this.zlib_worker).on('message', this.onDecompressed.bind(this));
-  this.packetPayloadsPending = {};
-  this.packetPayloadsNextID = 0;
+  this.bot.on('chunkColumnLoad', function(point,column) {
+    self.console.log('CHUNK LOAD',point,column);
+
+    self.addColumn(point, column);
+  });
+
 
   var maxId = 255; // TODO: 4096?
 
@@ -12997,38 +13006,19 @@ ClientMC.prototype.log = function(msg) {
   if (this.console) this.console.log(msg + ' ' + rest.join(' '));
 };
 
+/* TODO: integrate with mineflayer
 ClientMC.prototype.handlePacket = function(name, payload) {
   var self = this;
 
-  if (name === 'map_chunk_bulk') {
-    this.log('payload.compressedChunkData ',payload.compressedChunkData.length,payload.compressedChunkData);
-
-    //require('zlib').inflate(payload.compressedChunkData, function(err, decompressed) {
-    //  self.log('NON-WORKER decomp=',err+'',decompressed);
-    //};
-
-    var id = this.packetPayloadsNextID;
-    this.packetPayloadsPending[id] = payload; // save for continued processing in onDecompressed
-    this.packetPayloadsNextID += 1;
-    // send the ArrayBuffer as a transferrable, along with any possible offsets/length within the data view
-    var compressed = payload.compressedChunkData.buffer;
-    var byteLength = payload.compressedChunkData.byteLength;
-    var byteOffset = payload.compressedChunkData.byteOffset;
-    this.log('sending compressedBuffer ',byteLength);
-    this.zlib_worker.postMessage({
-      id:id,
-      compressed:compressed,
-      byteOffset:byteOffset,
-      byteLength:byteLength}, [compressed]);
- 
-  } else if (name === 'spawn_position') {
+  if (name === 'spawn_position') {
     // move to spawn TODO: this might only reset the compass 
     this.log('Spawn at ',payload);
-    this.game.plugins.get('voxel-player').moveTo(payload.x, payload.y, payload.z);
+    var pos = this.game.plugins.get('game-shell-fps-camera').camera.position;
+    pos[0] = payload.x;
+    pos[1] = payload.y;
+    pos[2] = payload.z;
     //this.game.plugins.get('voxel-player').homePosition = [-248, 77, -198] # can't do this TODO
     
-    this.setupPositionUpdates();  // TODO: now or when?
-  
   } else if (name === 'block_change') {
     this.log('block_change',payload);
     var blockID = this.translateBlockIDs[payload.type]; //  TODO: .metadata
@@ -13038,7 +13028,10 @@ ClientMC.prototype.handlePacket = function(name, payload) {
     // TODO, yaw, pitch. to convert see http://wiki.vg/Protocol#Player_Position_And_Look
     this.log('player pos and look', payload);
     var ourY = payload.y - 1.62; // empirical  TODO: not playerHeight?
-    this.game.plugins.get('voxel-player').moveTo(payload.x, ourY, payload.z);
+    var pos = this.game.plugins.get('game-shell-fps-camera').camera.position;
+    pos[0] = payload.x;
+    pos[1] = ourY;
+    pos[2] = payload.z;
 
     // the "apology"
     this.sendPacket('position', payload);
@@ -13050,130 +13043,48 @@ ClientMC.prototype.handlePacket = function(name, payload) {
     this.game.plugins.get('voxel-console').logNode(tellraw2dom(payload.message));
   }
 };
-
-ClientMC.prototype.sendChat = function(text) {
-  this.sendPacket('chat', {message: text});
-};
-
-// setup timer to send player position updates to the server
-ClientMC.prototype.setupPositionUpdates = function() {
-  // MC requires every 50 ms (server = 20 ticks/second)
-  this.clearPositionUpdateTimer = this.game.setInterval(this.sendPositionUpdate.bind(this), 50);
-};
-
-ClientMC.prototype.sendPositionUpdate = function() {
-  var pos = this.game.plugins.get('voxel-player').yaw.position;
-  if (!pos) return;
-
-  var x = pos.x;
-  var y = pos.y + 1;
-  var z = pos.z;
-
-  var stance = y + this.mcPlayerHeight;
-  var onGround = true;
-
-  this.sendPacket('position', {
-    x:x,
-    y:y,
-    z:z,
-    stance:stance,
-    onGround:onGround});
-};
-
-ClientMC.prototype.sendPacket = function(name, params) {
-  var state = 'play';
-  var data = minecraft_protocol.protocol.createPacketBuffer(name, state, params);
-  this.ws.write(data); // TODO: handle error
-};
-
-ClientMC.prototype.onDecompressed = function(ev) {
-  this.log('onDecompressed',ev);
-
-  var id = ev.data.id;
-  var payload = this.packetPayloadsPending[id];
-  delete this.packetPayloadsPending[id];
-
-  if (ev.data.err) {
-    this.log('received decompression error',ev.data.err,' for ',ev.data.id);
-    return;
-  }
-
-  var inflated = new Buffer(new Uint8Array(ev.data.decompressed));// new Buffer() for .slice method below. TODO: replace with typed array alternative
-  this.log('  decomp', id, inflated.length);
-
-  // unpack chunk data
-  // based on https://github.com/superjoe30/mineflayer/blob/cc3eae10f622da24c9051268e9fc8ec3fe01ed7e/lib/plugins/blocks.js#L195
-  // and http://wiki.vg/SMP_Map_Format#Data
-  var offset = 0;
-  var meta = 0;
-  var size = 0;
-  for (var i = 0; i < payload.meta.length; i += 1) {
-    meta = payload.meta[i];
-    size = (8192 + (payload.skyLightSent ? 2048 : 0)) *
-      popCount(meta.bitMap) +
-      2048 * popCount(meta.addBitMap) + 256;
-    this.addColumn({
-      x: meta.x,
-      z: meta.z,
-      bitMap: meta.bitMap,
-      addBitMap: meta.addBitMap,
-      skyLightSent: payload.skyLightSent,
-      groundUp: true,
-      data: inflated.slice(offset, offset + size),
-    });
-    offset += size;
-  }
-
-  if (offset !== inflated.length) {
-    this.log('incomplete chunk decode: '+offset+' != '+inflated.length);
-  }
-};
-
+*/
 
 // convert MC chunk format to ours, caching to be ready for missingChunk()
-ClientMC.prototype.addColumn = function(args) {
-  var chunkX = args.x;
-  var chunkZ = args.z;
+ClientMC.prototype.addColumn = function(point, column) {
+  var chunkX = point.x;
+  var chunkZ = point.z;
 
   var offset = 0;
   var size = 4096;
   var s = this.game.chunkSize;
-  for (var chunkY = 0; chunkY <= 16; chunkY += 1) {
-    if (args.bitMap & (1 << chunkY)) {
-      var miniChunk = args.data.slice(offset, offset + size);
-      offset += size;
+  var length = column.blockType.length;
+  for (var chunkY = 0; chunkY < length; chunkY += 1) {
+    var miniChunk = column.blockType[chunkY];
+    if (miniChunk === null) continue; // skip 100% solid air
 
-      // translate network block IDs
-      for (var i = 0; i < miniChunk.length; i += 1) {
-          var mcBlockID = miniChunk[i];
-          var ourBlockID = this.translateBlockIDs[mcBlockID];
-          //vChunk.data[i] = ourBlockID;
-          miniChunk[i] = ourBlockID;
-      }
+    // translate network block IDs
+    for (var i = 0; i < miniChunk.length; i += 1) {
+        var mcBlockID = miniChunk[i];
+        var ourBlockID = this.translateBlockIDs[mcBlockID];
+        //vChunk.data[i] = ourBlockID;
+        miniChunk[i] = ourBlockID;
+    }
 
-      var vChunk = ndarray(new this.game.arrayType(s*s*s), [s,s,s]);
+    var vChunk = ndarray(new this.game.arrayType(s*s*s), [s,s,s]);
 
-      // transpose since MC uses XZY but voxel-engine XYZ
-      // TODO: changes stride..requires clients to use ndarray API get(), not access .data directly..
-      //  just switch to 100% ndarray-based voxel-engine?
-      /*
-      vChunk = vChunk.transpose(0, 2, 1);
-      */
-      for (var x = 0; x < vChunk.shape[0]; x += 1) {
-        for (var z = 0; z < vChunk.shape[1]; z += 1) {
-          for (var y = 0; y < vChunk.shape[2]; y += 1) {
-            vChunk.set(z, y, x, miniChunk[x | z<<4 | y<<8]);
-          }
+    // transpose since MC uses XZY but voxel-engine XYZ
+    // TODO: changes stride..requires clients to use ndarray API get(), not access .data directly..
+    //  just switch to 100% ndarray-based voxel-engine?
+    for (var x = 0; x < vChunk.shape[0]; x += 1) {
+      for (var z = 0; z < vChunk.shape[1]; z += 1) {
+        for (var y = 0; y < vChunk.shape[2]; y += 1) {
+          vChunk.set(z, y, x, miniChunk[x | z<<4 | y<<8]);
         }
       }
-
-      // save TODO: avoid recreating array, mutate in-place?
-      var key = [chunkX, chunkY, chunkZ].join('|');
-      vChunk.position = [chunkX, chunkY, chunkZ];
-      this.voxelChunks[key] = vChunk;
-    } else {
-      // entirely air
     }
+    var ss="";for(var k=0;k<vChunk.data.length;++k)ss+=vChunk.data[k]+",";
+    console.log(ss);
+
+    // save TODO: avoid recreating array, mutate in-place?
+    var key = [chunkX, chunkY, chunkZ].join('|');
+    vChunk.position = [chunkX, chunkY, chunkZ];
+    this.voxelChunks[key] = vChunk;
   }
 
   // TODO: metadata,light,sky,add,biome
@@ -13189,22 +13100,17016 @@ ClientMC.prototype.missingChunk = function(pos) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"./zlib_worker.js":131,"bit-twiddle":117,"buffer":888,"ever":118,"minecraft-protocol":121,"ndarray":123,"tellraw2dom":125,"websocket-stream":126,"webworkify":130}],117:[function(require,module,exports){
+},{"bit-twiddle":117,"buffer":933,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
 module.exports=require(98)
 },{}],118:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":119,"./types.json":120,"events":891}],119:[function(require,module,exports){
+},{"./init.json":119,"./types.json":120,"events":936}],119:[function(require,module,exports){
 module.exports=require(16)
 },{}],120:[function(require,module,exports){
 module.exports=require(17)
 },{}],121:[function(require,module,exports){
+(function (Buffer){
+var mc = require('minecraft-protocol')
+  , EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , path = require('path')
+  , websocket_stream = require('websocket-stream')
+  , plugins = {
+      bed: require('./lib/plugins/bed'),
+      block_actions: require('./lib/plugins/block_actions'),
+      blocks: require('./lib/plugins/blocks'),
+      chat: require('./lib/plugins/chat'),
+      digging: require('./lib/plugins/digging'),
+      entities: require('./lib/plugins/entities'),
+      experience: require('./lib/plugins/experience'),
+      game: require('./lib/plugins/game'),
+      health: require('./lib/plugins/health'),
+      inventory: require('./lib/plugins/inventory'),
+      kick: require('./lib/plugins/kick'),
+      physics: require('./lib/plugins/physics'),
+      rain: require('./lib/plugins/rain'),
+      settings: require('./lib/plugins/settings'),
+      spawn_point: require('./lib/plugins/spawn_point'),
+      time: require('./lib/plugins/time')
+    };
 
 module.exports = {
-  protocol: require('./lib/protocol')
+  vec3: require('vec3'),
+  createBot: createBot,
+  Block: require('./lib/block'),
+  Location: require('./lib/location'),
+  Biome: require('./lib/biome'),
+  Entity: require('./lib/entity'),
+  Painting: require('./lib/painting'),
+  Item: require('./lib/item'),
+  Recipe: require('./lib/recipe'),
+  windows: require('./lib/windows'),
+  Chest: require('./lib/chest'),
+  Furnace: require('./lib/furnace'),
+  Dispenser: require('./lib/dispenser'),
+  EnchantmentTable: require('./lib/enchantment_table'),
+  blocks: require('./lib/enums/blocks'),
+  biomes: require('./lib/enums/biomes'),
+  items: require('./lib/enums/items'),
+  recipes: require('./lib/enums/recipes'),
+  instruments: require('./lib/enums/instruments'),
+  materials: require('./lib/enums/materials'),
+};
+
+function createBot(options) {
+  options = options || {};
+  options.username = options.username || 'Player';
+  options.protocol = options.protocol || 'ws';
+  options.host = options.host || 'localhost';
+  options.port = options.port || 24444;
+  options.path = options.path || 'server';
+  options.url = options.url || (options.protocol + '://' + options.host + ':' + options.port + '/' + options.path);
+
+  var bot = new Bot();
+  bot.connect(options);
+  return bot;
+}
+
+function Bot() {
+  EventEmitter.call(this);
+  this.client = null;
+}
+util.inherits(Bot, EventEmitter);
+
+// decode packet over WebSocket - always in play state
+var decodePacket = function(data) {
+  if (!(data instanceof Uint8Array)) {
+    return undefined;
+  }
+
+  // convert typed array to NodeJS buffer for minecraft-protocol's API
+  // TODO: is this conversion fast? backed by ArrayBuffer in Browserify 3, see https://npmjs.org/package/native-buffer-browserify
+  //  but is this the right way to "convert" from an ArrayBuffer to a Buffer, without copying?
+  data._isBuffer = true;
+  //var length = String.fromCharCode(data.length); // XXX
+  //var buffer = new Buffer(length + data);
+  var buffer = new Buffer(data);
+
+  var state = minecraft_protocol.protocol.states.PLAY;
+  var isServer = false;
+  var shouldParsePayload = {packet: 1}; // somehow this is needed to parse the fields TODO: figure out how this is supposed to work
+
+  var result = minecraft_protocol.protocol.parsePacket(buffer, state, isServer, shouldParsePayload);
+  if (!result || result.error) {
+    console.log('protocol parse error',result);
+    log('protocol parse error: ' + JSON.stringify(result));
+    return;
+  }
+  var payload = result.results;
+  var id = result.results.id;
+  var name = minecraft_protocol.protocol.packetNames[state].toClient[id];
+  //console.log('parsed',name,result);
+
+  return {name:name, id:id, payload:payload};
+};
+
+Bot.prototype.connect = function(options) {
+  var self = this;
+  self.client = mc.createClient(options);
+  self.username = self.client.username;
+  self.client.on('session', function() {
+    self.username = self.client.username;
+  });
+  self.client.on('connect', function() {
+    self.emit('connect');
+  });
+  self.client.on('error', function(err) {
+    self.emit('error', err);
+  });
+  self.client.on('end', function() {
+    self.emit('end');
+  });
+  for (var pluginName in plugins) {
+    plugins[pluginName](self, options);
+  }
+};
+
+Bot.prototype.end = function() {
+  this.client.end();
+};
+
+}).call(this,require("buffer").Buffer)
+},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":933,"events":936,"minecraft-protocol":160,"path":938,"util":955,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
+var biomes = require('./enums/biomes')
+
+module.exports = Biome;
+
+function Biome(id) {
+  this.id = id;
+  var biomeEnum = biomes[id];
+  if (biomeEnum) {
+    this.color = biomeEnum.color;
+    this.name = biomeEnum.name;
+    this.height = biomeEnum.height;
+    this.rainfall = biomeEnum.rainfall;
+    this.temperature = biomeEnum.temperature;
+  } else {
+    this.color = 0;
+    this.height = null;
+    this.name = "";
+    this.rainfall = 0;
+    this.temperature = 0;
+  }
+}
+
+
+},{"./enums/biomes":130}],123:[function(require,module,exports){
+var Biome = require('./biome')
+  , blocks = require('./enums/blocks')
+
+module.exports = Block;
+
+function Block(type, biomeId) {
+  this.type = type;
+  this.metadata = 0;
+  this.light = 0;
+  this.skyLight = 0;
+  this.add = 0;
+  this.biome = new Biome(biomeId);
+  this.position = null;
+
+  var blockEnum = blocks[type];
+  if (blockEnum) {
+    this.name = blockEnum.name;
+    this.hardness = blockEnum.hardness;
+    this.displayName = blockEnum.displayName;
+    this.boundingBox = blockEnum.boundingBox;
+    this.diggable = blockEnum.diggable;
+    this.material = blockEnum.material;
+    this.harvestTools = blockEnum.harvestTools;
+  } else {
+    this.name = "";
+    this.displayName = "";
+    this.hardness = 0;
+    this.boundingBox = "empty"
+    this.diggable = false;
+  }
+}
+
+
+},{"./biome":122,"./enums/blocks":131}],124:[function(require,module,exports){
+var util = require('util');
+
+/**
+ * ChatMessage Constructor
+ * @param {String|Object} message content of ChatMessage
+ */
+function ChatMessage(message) {
+	if(typeof message === 'string') {
+		this.json = { text: message };
+	}else if(typeof message === 'object' && !Array.isArray(message)) {
+		this.json = message;
+	}else{
+		throw new Error('Expected String or Object for Message argument');
+	}
+	this.parse();
+}
+
+/**
+ * Parses the this.json property to decorate the properties of the ChatMessage.
+ * Called by the Constructor
+ * @return {void}
+ */
+ChatMessage.prototype.parse = function() {
+	var json = this.json;
+	// Message scope for callback functions
+	var that = this;
+
+	// There is EITHER, a text property or a translate property
+	// If there is no translate property, there is no with property	
+	// HOWEVER! If there is a translate property, there may not be a with property
+	if(typeof json.text == 'string') {
+		this.text = json.text;
+	}else if(typeof json.translate === 'string') {
+		this.translate = json.translate;
+		if(typeof json.with === 'object' || Array.isArray(json.with)) {
+			this.with = [];
+			json.with.forEach(function(entry) {
+				if(typeof entry === 'string') {
+					that.with.push(entry);
+				}else if(typeof entry === 'object') {
+					// Parse ChatMessage
+					var subChatMessage = new ChatMessage(entry);
+					that.with.push(subChatMessage);
+				}
+			});
+		}
+	}
+	// Parse extra property
+	// Extras are appended to the initial text
+	if(typeof json.extra === 'object') {
+		if(!Array.isArray(json.extra)) {
+			throw new Error('Expected extra property to be an Array in ChatMessage');
+		}
+		this.extra = [];
+		json.extra.forEach(function(entry) {
+			if(typeof entry === 'string') {
+				that.extra.push(entry);
+			}else if(typeof entry === 'object') {
+				var subChatMessage = new ChatMessage(entry);
+				that.extra.push(subChatMessage);
+			}
+		});
+	}
+	// Text modifiers
+	this.bold = json.bold;
+	this.italic = json.italic;
+	this.underlined = json.underlined;
+	this.strikethrough = json.strikethrough;
+	this.obfuscated = json.obfuscated;
+
+	// Supported constants @ 2014-04-21
+	var supportedColors = [ 'black', 'dark_blue', 'dark_green', 'dark_aqua', 'dark_red', 'dark_purple',
+							'gold', 'gray', 'dark_gray', 'blue', 'green', 'aqua', 'red', 'light_purple',
+							'yellow', 'white', 'obfuscated', 'bold', 'strikethrough', 'underlined', 'italic',
+							'reset'];
+	var supportedClick = ['open_url', 'open_file', 'run_command', 'suggest_command'];
+	var supportedHover = ['show_text', 'show_achievement', 'show_item'];
+
+	// Parse color
+	this.color = json.color;
+	switch(this.color) {
+		case 'obfuscated': this.obfuscated = true; this.color = null; break;
+		case 'bold': this.bold = true; this.color = null; break;
+		case 'strikethrough': this.strikethrough = true; this.color = null; break;
+		case 'underlined': this.underlined = true; this.color = null; break;
+		case 'italic': this.italic = true; this.color = null; break;
+		case 'reset': this.reset = true; this.color = null; break;
+	}
+	if(Array.prototype.indexOf && this.color && 
+		supportedColors.indexOf(this.color) === -1) {
+		console.warn('ChatMessage parsed with unsupported color', this.color);
+	}
+
+	// Parse click event
+	if(typeof json.clickEvent === 'object') {
+		this.clickEvent = json.clickEvent;
+		if(typeof this.clickEvent.action !== 'string') {
+			throw new Error('ClickEvent action missing in ChatMessage');
+		}else if(Array.prototype.indexOf && supportedClick.indexOf(this.clickEvent.action) === -1) {
+			console.warn('ChatMessage parsed with unsupported clickEvent', this.clickEvent.action);
+		}
+	}
+
+	// Parse hover event
+	if(typeof json.hoverEvent === 'object') {
+		this.hoverEvent = json.hoverEvent;
+		if(typeof this.hoverEvent.action !== 'string') {
+			throw new Error('HoverEvent action missing in ChatMessage');
+		}else if(Array.prototype.indexOf && supportedHover.indexOf(this.hoverEvent.action) === -1) {
+			console.warn('ChatMessage parsed with unsupported hoverEvent', this.hoverEvent.action);
+		}
+		// Special case
+		if(this.hoverEvent.action === 'show_item') {
+			// Unfortunately, Mojang do not use compliant JSON as per the specifications
+			// So some adjustments must be made
+			// Note: Probably could have put this in a single regex, but felt it better
+			// to leave it seperate for the sake of maintainability 
+			this.hoverEvent.value = this.hoverEvent.value
+			.replace(/[\w],/g, ',')			// Remove number suffix
+			.replace(/(\w+):/g, '"$1":')	// Convert keys to JSON standard (quoted)
+			.replace(',}', '}');			// Replace any hanging commas
+			try {
+				this.hoverEvent.value = JSON.parse(this.hoverEvent.value);
+				if(typeof this.hoverEvent.value !== 'object') {
+					throw new Error('Parsed Item Object is not an Object');
+				}
+			}catch(err) {
+				console.info('Error parsing JSON Item Object', err);
+				throw new Error('Expected JSON item object in hoverEvent.value');
+			}
+		}
+	}
+}
+
+/**
+ * Returns the count of text extras and child ChatMessages
+ * Does not count recursively in to the children
+ * @return {Number}
+ */
+ChatMessage.prototype.length = function() {
+	var count = 0;
+	if(this.text) count++;
+	else if(this.translate) count += this.with.length;
+
+	if(this.extra) count += this.extra.length;
+}
+
+/**
+ * Returns a text part from the message
+ * @param  {Number} idx Index of the part	
+ * @return {String}
+ */
+ChatMessage.prototype.getText = function(idx) {
+	// If the index is not defined is is invalid, return toString
+	if(typeof idx !== 'number') return this.toString();
+	// If we are not a translating message, return the text
+	if(this.text && idx == 0) return this.text;
+	// Else return the with child if it's in range
+	else if(this.with.length > idx) return this.with[idx].toString();
+	// Else return the extra if it's in range
+	if(this.extra && this.extra.length + (this.text ? 1 : this.with.length) > idx)
+		return this.extra[idx - (this.text ? 1 : this.with.length)].toString();
+	// Not sure how you want to default this
+	// Undefined, an error ? 
+	return "";
+}
+
+/**
+ * Flattens the message in to plain-text
+ * @return {String}
+ */
+ChatMessage.prototype.toString = function() {
+	var message = "";
+	if(typeof this.text === 'string') message += this.text + " ";
+	else {
+		this.with.forEach(function(entry) {
+			message += entry.toString() + " ";
+		})
+	}
+	if(this.extra) {
+		this.extra.forEach(function(entry) {
+			message += entry.toString() + " ";
+		})
+	}
+	return message.trim();
+}
+
+
+
+
+module.exports = ChatMessage;
+
+},{"util":955}],125:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , assert = require('assert')
+
+module.exports = Chest;
+
+function Chest() {
+  EventEmitter.call(this);
+
+  this.window = null;
+}
+util.inherits(Chest, EventEmitter);
+
+Chest.windowType = 0;
+
+// this function is replaced by the inventory plugin
+Chest.prototype.close = function() {
+  assert.ok(false, "override");
+};
+
+Chest.prototype.deposit = function(itemType, metadata, count) {
+  assert.ok(false, "override");
+};
+
+Chest.prototype.withdraw = function(itemType, metadata, count) {
+  assert.ok(false, "override");
+};
+
+Chest.prototype.count = function(itemType, metadata) {
+  assert.ok(this.window);
+  return this.window.chestCount(itemType, metadata);
+};
+
+Chest.prototype.items = function() {
+  assert.ok(this.window);
+  return this.window.chestItems();
+};
+
+},{"assert":917,"events":936,"util":955}],126:[function(require,module,exports){
+var math = require('./math')
+  , euclideanMod = math.euclideanMod
+  , PI = Math.PI
+  , PI_2 = Math.PI * 2
+  , TO_RAD = PI / 180
+  , TO_DEG = 1 / TO_RAD
+  , FROM_NOTCH_BYTE = 360 / 256
+  , FROM_NOTCH_VEL = 5 / 32000
+
+exports.toRadians = toRadians;
+exports.toDegrees = toDegrees;
+exports.fromNotchianYaw = fromNotchianYaw;
+exports.fromNotchianPitch = fromNotchianPitch;
+
+exports.toNotchianYaw = function(yaw) {
+  return toDegrees(PI - yaw);
+}
+
+exports.toNotchianPitch = function(pitch) {
+  return toDegrees(-pitch);
+}
+
+exports.fromNotchianYawByte = function(yaw) {
+  return fromNotchianYaw(yaw * FROM_NOTCH_BYTE);
+}
+
+exports.fromNotchianPitchByte = function(pitch) {
+  return fromNotchianPitch(pitch * FROM_NOTCH_BYTE);
+}
+
+exports.fromNotchVelocity = function(vel) {
+  return vel.scaled(FROM_NOTCH_VEL);
+};
+
+function toRadians(degrees) {
+  return TO_RAD * degrees;
+}
+
+function toDegrees(radians) {
+  return TO_DEG * radians;
+}
+
+function fromNotchianYaw(yaw) {
+  return euclideanMod(PI - toRadians(yaw), PI_2);
+}
+
+function fromNotchianPitch(pitch) {
+  return euclideanMod(toRadians(-pitch) + PI, PI_2) - PI;
+}
+
+},{"./math":139}],127:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , assert = require('assert')
+
+module.exports = Dispenser;
+
+function Dispenser() {
+  EventEmitter.call(this);
+
+  this.window = null;
+}
+util.inherits(Dispenser, EventEmitter);
+
+Dispenser.windowType = 3;
+
+// this function is replaced by the inventory plugin
+Dispenser.prototype.close = function() {
+  assert.ok(false, "override");
+};
+
+Dispenser.prototype.deposit = function(itemType, metadata, count) {
+  assert.ok(false, "override");
+};
+
+Dispenser.prototype.withdraw = function(itemType, metadata, count) {
+  assert.ok(false, "override");
+};
+
+Dispenser.prototype.count = function(itemType, metadata) {
+  assert.ok(this.window);
+  return this.window.dispenserCount(itemType, metadata);
+};
+
+Dispenser.prototype.items = function() {
+  assert.ok(this.window);
+  return this.window.dispenserItems();
+};
+
+},{"assert":917,"events":936,"util":955}],128:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , assert = require('assert')
+
+module.exports = EnchantmentTable;
+
+function EnchantmentTable() {
+  EventEmitter.call(this);
+
+  this.window = null;
+}
+util.inherits(EnchantmentTable, EventEmitter);
+
+EnchantmentTable.windowType = 4;
+
+// this function is replaced by the inventory plugin
+EnchantmentTable.prototype.close = function() {
+  assert.ok(false, "override");
+};
+
+EnchantmentTable.prototype.targetItem = function() {
+  return this.window.slots[0];
+};
+
+EnchantmentTable.prototype.enchant = function() {
+  assert.ok(false, "override");
+};
+
+EnchantmentTable.prototype.takeTargetItem = function() {
+  assert.ok(false, "override");
+};
+
+EnchantmentTable.prototype.putTargetItem = function() {
+  assert.ok(false, "override");
+};
+
+},{"assert":917,"events":936,"util":955}],129:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3;
+
+module.exports = Entity;
+
+function Entity(id) {
+  this.id = id;
+  this.type = null;
+  this.position = new Vec3(0, 0, 0);
+  this.velocity = new Vec3(0, 0, 0);
+  this.yaw = 0;
+  this.pitch = 0;
+  this.onGround = true;
+  this.height = 0;
+  this.effects = {};
+  // 0 = held item, 1-4 = armor slot
+  this.equipment = new Array(5);
+  this.heldItem = this.equipment[0]; // shortcut to equipment[0]
+  this.isValid = true;
+}
+
+Entity.prototype.setEquipment = function(index, item) {
+  this.equipment[index] = item;
+  this.heldItem = this.equipment[0];
 };
 
 
-},{"./lib/protocol":122}],122:[function(require,module,exports){
+},{"vec3":168}],130:[function(require,module,exports){
+module.exports={
+  "0": {
+    "id": 0,
+    "color": 112,
+    "height": [
+      -1,
+      0.4
+    ],
+    "name": "Ocean",
+    "rainfall": 0.5,
+    "temperature": 0.5
+  },
+  "1": {
+    "id": 1,
+    "color": 9286496,
+    "height": [
+      0.1,
+      0.3
+    ],
+    "name": "Plains",
+    "rainfall": 0.4,
+    "temperature": 0.8
+  },
+  "2": {
+    "id": 2,
+    "color": 16421912,
+    "height": [
+      0.1,
+      0.2
+    ],
+    "name": "Desert",
+    "rainfall": 0,
+    "temperature": 2
+  },
+  "3": {
+    "id": 3,
+    "color": 6316128,
+    "height": [
+      0.3,
+      1.5
+    ],
+    "name": "Extreme Hills",
+    "rainfall": 0.3,
+    "temperature": 0.2
+  },
+  "4": {
+    "id": 4,
+    "color": 353825,
+    "height": [
+      0.1,
+      0.3
+    ],
+    "name": "Forest",
+    "rainfall": 0.8,
+    "temperature": 0.7
+  },
+  "5": {
+    "id": 5,
+    "color": 747097,
+    "height": [
+      0.1,
+      0.4
+    ],
+    "name": "Taiga",
+    "rainfall": 0.8,
+    "temperature": 0.05
+  },
+  "6": {
+    "id": 6,
+    "color": 522674,
+    "height": [
+      -0.2,
+      0.1
+    ],
+    "name": "Swampland",
+    "rainfall": 0.9,
+    "temperature": 0.8
+  },
+  "7": {
+    "id": 7,
+    "height": [
+      -0.5,
+      0
+    ],
+    "name": "River",
+    "rainfall": 0.5,
+    "temperature": 0.5
+  },
+  "8": {
+    "id": 8,
+    "color": 16711680,
+    "height": [
+      0.1,
+      0.3
+    ],
+    "name": "Hell",
+    "rainfall": 0,
+    "temperature": 2
+  },
+  "9": {
+    "id": 9,
+    "color": 8421631,
+    "height": [
+      0.1,
+      0.3
+    ],
+    "name": "Sky",
+    "rainfall": 0,
+    "temperature": 0.5
+  },
+  "10": {
+    "id": 10,
+    "color": 9474208,
+    "height": [
+      -1,
+      0.5
+    ],
+    "name": "FrozenOcean",
+    "rainfall": 0.5,
+    "temperature": 0
+  },
+  "11": {
+    "id": 11,
+    "color": 10526975,
+    "height": [
+      -0.5,
+      0
+    ],
+    "name": "FrozenRiver",
+    "rainfall": 0.5,
+    "temperature": 0
+  },
+  "12": {
+    "id": 12,
+    "color": 16777215,
+    "height": [
+      0.1,
+      0.3
+    ],
+    "name": "Ice Plains",
+    "rainfall": 0.5,
+    "temperature": 0
+  },
+  "13": {
+    "id": 13,
+    "color": 10526880,
+    "height": [
+      0.3,
+      1.3
+    ],
+    "name": "Ice Mountains",
+    "rainfall": 0.5,
+    "temperature": 0
+  },
+  "14": {
+    "id": 14,
+    "color": 16711935,
+    "height": [
+      0.2,
+      1
+    ],
+    "name": "MushroomIsland",
+    "rainfall": 1,
+    "temperature": 0.9
+  },
+  "15": {
+    "id": 15,
+    "color": 10486015,
+    "height": [
+      -1,
+      0.1
+    ],
+    "name": "MushroomIslandShore",
+    "rainfall": 1,
+    "temperature": 0.9
+  },
+  "16": {
+    "id": 16,
+    "color": 16440917,
+    "height": [
+      0,
+      0.1
+    ],
+    "name": "Beach",
+    "rainfall": 0.4,
+    "temperature": 0.8
+  },
+  "17": {
+    "id": 17,
+    "color": 13786898,
+    "height": [
+      0.3,
+      0.8
+    ],
+    "name": "DesertHills",
+    "rainfall": 0,
+    "temperature": 2
+  },
+  "18": {
+    "id": 18,
+    "color": 2250012,
+    "height": [
+      0.3,
+      0.7
+    ],
+    "name": "ForestHills",
+    "rainfall": 0.8,
+    "temperature": 0.7
+  },
+  "19": {
+    "id": 19,
+    "color": 1456435,
+    "height": [
+      0.3,
+      0.8
+    ],
+    "name": "TaigaHills",
+    "rainfall": 0.8,
+    "temperature": 0.05
+  },
+  "20": {
+    "id": 20,
+    "color": 7501978,
+    "height": [
+      0.2,
+      0.8
+    ],
+    "name": "Extreme Hills Edge",
+    "rainfall": 0.3,
+    "temperature": 0.2
+  },
+  "21": {
+    "id": 21,
+    "color": 5470985,
+    "height": [
+      0.2,
+      0.4
+    ],
+    "name": "Jungle",
+    "rainfall": 0.9,
+    "temperature": 1.2
+  },
+  "22": {
+    "id": 22,
+    "color": 2900485,
+    "height": [
+      1.8,
+      0.5
+    ],
+    "name": "JungleHills",
+    "rainfall": 0.9,
+    "temperature": 1.2
+  }
+}
+},{}],131:[function(require,module,exports){
+module.exports={
+  "0": {
+    "id": 0,
+    "name": "air",
+    "displayName": "Air",
+    "hardness": 0,
+    "stackSize": null,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "1": {
+    "id": 1,
+    "displayName": "Stone",
+    "name": "stone",
+    "hardness": 1.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "2": {
+    "id": 2,
+    "displayName": "Grass Block",
+    "name": "grass",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "3": {
+    "id": 3,
+    "displayName": "Dirt",
+    "name": "dirt",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "4": {
+    "id": 4,
+    "displayName": "Cobblestone",
+    "name": "stonebrick",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "5": {
+    "id": 5,
+    "displayName": "Wooden Planks",
+    "name": "wood",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "6": {
+    "id": 6,
+    "displayName": "Sapling",
+    "name": "sapling",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "7": {
+    "id": 7,
+    "displayName": "Bedrock",
+    "name": "bedrock",
+    "hardness": null,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "block"
+  },
+  "8": {
+    "id": 8,
+    "displayName": "Water",
+    "name": "water",
+    "hardness": 100,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "9": {
+    "id": 9,
+    "displayName": "Stationary Water",
+    "name": "waterStationary",
+    "hardness": 100,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "10": {
+    "id": 10,
+    "displayName": "Lava",
+    "name": "lava",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "11": {
+    "id": 11,
+    "displayName": "Stationary Lava",
+    "name": "lavaStationary",
+    "hardness": 100,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "12": {
+    "id": 12,
+    "displayName": "Sand",
+    "name": "sand",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "13": {
+    "id": 13,
+    "displayName": "Gravel",
+    "name": "gravel",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "14": {
+    "id": 14,
+    "displayName": "Gold Ore",
+    "name": "oreGold",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "15": {
+    "id": 15,
+    "displayName": "Iron Ore",
+    "name": "oreIron",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "274": true,
+      "257": true,
+      "278": true
+    }
+  },
+  "16": {
+    "id": 16,
+    "displayName": "Coal Ore",
+    "name": "oreCoal",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "17": {
+    "id": 17,
+    "displayName": "Wood",
+    "name": "log",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "18": {
+    "id": 18,
+    "displayName": "Leaves",
+    "name": "leaves",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "leaves"
+  },
+  "19": {
+    "id": 19,
+    "displayName": "Sponge",
+    "name": "sponge",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "20": {
+    "id": 20,
+    "displayName": "Glass",
+    "name": "glass",
+    "hardness": 0.3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "21": {
+    "id": 21,
+    "displayName": "Lapis Lazuli Ore",
+    "name": "oreLapis",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "274": true,
+      "257": true,
+      "278": true
+    }
+  },
+  "22": {
+    "id": 22,
+    "displayName": "Lapis Lazuli Block",
+    "name": "blockLapis",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "274": true,
+      "257": true,
+      "278": true
+    }
+  },
+  "23": {
+    "id": 23,
+    "displayName": "Dispenser",
+    "name": "dispenser",
+    "hardness": 3.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "24": {
+    "id": 24,
+    "displayName": "Sandstone",
+    "name": "sandStone",
+    "hardness": 0.8,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "25": {
+    "id": 25,
+    "displayName": "Note Block",
+    "name": "musicBlock",
+    "hardness": 0.8,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "26": {
+    "id": 26,
+    "displayName": "Bed",
+    "name": "bed",
+    "hardness": 0.2,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "27": {
+    "id": 27,
+    "displayName": "Powered Rail",
+    "name": "goldenRail",
+    "hardness": 0.7,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock"
+  },
+  "28": {
+    "id": 28,
+    "displayName": "Detector Rail",
+    "name": "detectorRail",
+    "hardness": 0.7,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock"
+  },
+  "29": {
+    "id": 29,
+    "displayName": "Sticky Piston",
+    "name": "pistonStickyBase",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "30": {
+    "id": 30,
+    "displayName": "Cobweb",
+    "name": "web",
+    "hardness": 4,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "web",
+    "harvestTools": {
+      "359": true,
+      "267": true,
+      "268": true,
+      "272": true,
+      "276": true,
+      "283": true
+    }
+  },
+  "31": {
+    "id": 31,
+    "displayName": "Grass",
+    "name": "tallgrass",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "32": {
+    "id": 32,
+    "displayName": "Dead Bush",
+    "name": "deadbush",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "33": {
+    "id": 33,
+    "displayName": "Piston",
+    "name": "pistonBase",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "34": {
+    "id": 34,
+    "name": "pistonExtension",
+    "displayName": "Piston Extension",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "35": {
+    "id": 35,
+    "displayName": "Wool",
+    "name": "cloth",
+    "hardness": 0.8,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wool"
+  },
+  "36": {
+    "id": 36,
+    "name": "blockMovedByPiston",
+    "displayName": "Block Moved by Piston",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "block"
+  },
+  "37": {
+    "id": 37,
+    "displayName": "Flower",
+    "name": "flower",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "38": {
+    "id": 38,
+    "displayName": "Rose",
+    "name": "rose",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "39": {
+    "id": 39,
+    "displayName": "Brown Mushroom",
+    "name": "mushroomBrown",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "40": {
+    "id": 40,
+    "displayName": "Red Mushroom",
+    "name": "mushroomRed",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "41": {
+    "id": 41,
+    "displayName": "Block of Gold",
+    "name": "blockGold",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "42": {
+    "id": 42,
+    "displayName": "Block of Iron",
+    "name": "blockIron",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "274": true,
+      "257": true,
+      "278": true
+    }
+  },
+  "43": {
+    "id": 43,
+    "displayName": "Double Stone Slab",
+    "name": "stoneSlabDouble",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "44": {
+    "id": 44,
+    "displayName": "Stone Slab",
+    "name": "stoneSlab",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "45": {
+    "id": 45,
+    "displayName": "Bricks",
+    "name": "brick",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "46": {
+    "id": 46,
+    "displayName": "TNT",
+    "name": "tnt",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "47": {
+    "id": 47,
+    "displayName": "Bookshelf",
+    "name": "bookshelf",
+    "hardness": 1.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "48": {
+    "id": 48,
+    "displayName": "Moss Stone",
+    "name": "stoneMoss",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "49": {
+    "id": 49,
+    "displayName": "Obsidian",
+    "name": "obsidian",
+    "hardness": 50,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "278": true
+    }
+  },
+  "50": {
+    "id": 50,
+    "displayName": "Torch",
+    "name": "torch",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "51": {
+    "id": 51,
+    "displayName": "Fire",
+    "name": "fire",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "52": {
+    "id": 52,
+    "displayName": "Monster Spawner",
+    "name": "mobSpawner",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "53": {
+    "id": 53,
+    "displayName": "Wooden Stairs",
+    "name": "stairsWood",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "54": {
+    "id": 54,
+    "displayName": "Chest",
+    "name": "chest",
+    "hardness": 2.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "55": {
+    "id": 55,
+    "displayName": "Redstone Dust",
+    "name": "redstoneDust",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "56": {
+    "id": 56,
+    "displayName": "Diamond Ore",
+    "name": "oreDiamond",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "57": {
+    "id": 57,
+    "displayName": "Block of Diamond",
+    "name": "blockDiamond",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "58": {
+    "id": 58,
+    "displayName": "Crafting Table",
+    "name": "workbench",
+    "hardness": 2.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "59": {
+    "id": 59,
+    "displayName": "Crops",
+    "name": "crops",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "60": {
+    "id": 60,
+    "displayName": "Farmland",
+    "name": "farmland",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "61": {
+    "id": 61,
+    "displayName": "Furnace",
+    "name": "furnace",
+    "hardness": 3.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "62": {
+    "id": 62,
+    "displayName": "Burning Furnace",
+    "name": "furnaceBurning",
+    "hardness": 3.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "63": {
+    "id": 63,
+    "displayName": "Sign Post",
+    "name": "signPost",
+    "hardness": 1,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "wood"
+  },
+  "64": {
+    "id": 64,
+    "displayName": "Wooden Door",
+    "name": "doorWood",
+    "hardness": 3,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "65": {
+    "id": 65,
+    "displayName": "Ladder",
+    "name": "ladder",
+    "hardness": 0.4,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "66": {
+    "id": 66,
+    "displayName": "Rail",
+    "name": "rail",
+    "hardness": 0.7,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock"
+  },
+  "67": {
+    "id": 67,
+    "displayName": "Cobblestone Stairs",
+    "name": "stairsStone",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "68": {
+    "id": 68,
+    "displayName": "Wall Sign",
+    "name": "signWall",
+    "hardness": 1,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "69": {
+    "id": 69,
+    "displayName": "Lever",
+    "name": "lever",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "70": {
+    "id": 70,
+    "displayName": "Stone Pressure Plate",
+    "name": "stonePressurePlate",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "71": {
+    "id": 71,
+    "displayName": "Iron Door",
+    "name": "doorIron",
+    "hardness": 5,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "72": {
+    "id": 72,
+    "displayName": "Wooden Pressure Plate",
+    "name": "woodPressurePlate",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "wood"
+  },
+  "73": {
+    "id": 73,
+    "displayName": "Redstone Ore",
+    "name": "oreRedstone",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "74": {
+    "id": 74,
+    "displayName": "Glowing Redstone Ore",
+    "name": "oreRedstoneGlowing",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "75": {
+    "id": 75,
+    "displayName": "Redstone Torch (Inactive)",
+    "name": "notGateInactive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "76": {
+    "id": 76,
+    "displayName": "Redstone Torch (Active)",
+    "name": "notGateActive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "77": {
+    "id": 77,
+    "displayName": "Stone Button",
+    "name": "buttonStone",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "78": {
+    "id": 78,
+    "displayName": "Snow",
+    "name": "snow",
+    "hardness": 0.1,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "dirt",
+    "harvestTools": {
+      "269": true,
+      "273": true,
+      "256": true,
+      "277": true,
+      "284": true
+    }
+  },
+  "79": {
+    "id": 79,
+    "displayName": "Ice",
+    "name": "ice",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock"
+  },
+  "80": {
+    "id": 80,
+    "displayName": "Snow Block",
+    "name": "snowBlock",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt",
+    "harvestTools": {
+      "269": true,
+      "273": true,
+      "256": true,
+      "277": true,
+      "284": true
+    }
+  },
+  "81": {
+    "id": 81,
+    "displayName": "Cactus",
+    "name": "cactus",
+    "hardness": 0.4,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "82": {
+    "id": 82,
+    "displayName": "Clay",
+    "name": "clay",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "83": {
+    "id": 83,
+    "displayName": "Sugar cane",
+    "name": "reeds",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "84": {
+    "id": 84,
+    "displayName": "Jukebox",
+    "name": "jukebox",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "85": {
+    "id": 85,
+    "displayName": "Fence",
+    "name": "fence",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "86": {
+    "id": 86,
+    "displayName": "Pumpkin",
+    "name": "pumpkin",
+    "hardness": 1,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "plant"
+  },
+  "87": {
+    "id": 87,
+    "displayName": "Netherrack",
+    "name": "hellrock",
+    "hardness": 0.4,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "88": {
+    "id": 88,
+    "displayName": "Soul Sand",
+    "name": "hellsand",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "89": {
+    "id": 89,
+    "displayName": "Glowstone",
+    "name": "lightgem",
+    "hardness": 0.3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "90": {
+    "id": 90,
+    "displayName": "Portal",
+    "name": "portal",
+    "hardness": null,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "91": {
+    "id": 91,
+    "displayName": "Jack 'o' Lantern",
+    "name": "litpumpkin",
+    "hardness": 1,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "plant"
+  },
+  "92": {
+    "id": 92,
+    "displayName": "Cake",
+    "name": "cake",
+    "hardness": 0.5,
+    "stackSize": 1,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "93": {
+    "id": 93,
+    "displayName": "Redstone Repeater (Inactive)",
+    "name": "redstoneRepeaterInactive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "94": {
+    "id": 94,
+    "displayName": "Redstone Repeater (Active)",
+    "name": "redstoneRepeaterActive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "95": {
+    "id": 95,
+    "displayName": "Locked chest",
+    "name": "lockedchest",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "96": {
+    "id": 96,
+    "displayName": "Trapdoor",
+    "name": "trapdoor",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "97": {
+    "id": 97,
+    "displayName": "Monster Egg",
+    "name": "monsterStoneEgg",
+    "hardness": 0.75,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "98": {
+    "id": 98,
+    "displayName": "Stone Brick",
+    "name": "stonebricksmooth",
+    "hardness": 1.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "99": {
+    "id": 99,
+    "displayName": "Huge Brown Mushroom",
+    "name": "mushroomHugeBrown",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "100": {
+    "id": 100,
+    "displayName": "Huge Red Mushroom",
+    "name": "mushroomHugeRed",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "101": {
+    "id": 101,
+    "displayName": "Iron Bars",
+    "name": "fenceIron",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "102": {
+    "id": 102,
+    "displayName": "Glass Pane",
+    "name": "thinGlass",
+    "hardness": 0.3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "103": {
+    "id": 103,
+    "displayName": "Melon",
+    "name": "melon",
+    "hardness": 1,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "melon"
+  },
+  "104": {
+    "id": 104,
+    "displayName": "Pumpkin Stem",
+    "name": "pumpkinStem",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "105": {
+    "id": 105,
+    "displayName": "Melon Stem",
+    "name": "melonStem",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "106": {
+    "id": 106,
+    "displayName": "Vines",
+    "name": "vine",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "plant"
+  },
+  "107": {
+    "id": 107,
+    "displayName": "Fence Gate",
+    "name": "fenceGate",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "108": {
+    "id": 108,
+    "displayName": "Brick Stairs",
+    "name": "stairsBrick",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "109": {
+    "id": 109,
+    "displayName": "Stone Brick Stairs",
+    "name": "stairsStoneBrickSmooth",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "110": {
+    "id": 110,
+    "displayName": "Mycelium",
+    "name": "mycel",
+    "hardness": 0.6,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "dirt"
+  },
+  "111": {
+    "id": 111,
+    "displayName": "Lily Pad",
+    "name": "waterlily",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "112": {
+    "id": 112,
+    "displayName": "Nether Brick",
+    "name": "netherBrick",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "113": {
+    "id": 113,
+    "displayName": "Nether Brick Fence",
+    "name": "netherFence",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "114": {
+    "id": 114,
+    "displayName": "Nether Brick Stairs",
+    "name": "stairsNetherBrick",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "115": {
+    "id": 115,
+    "displayName": "Nether Wart",
+    "name": "netherStalk",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "116": {
+    "id": 116,
+    "displayName": "Enchantment Table",
+    "name": "enchantmentTable",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "117": {
+    "id": 117,
+    "displayName": "Brewing Stand",
+    "name": "brewingStand",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "118": {
+    "id": 118,
+    "displayName": "Cauldron",
+    "name": "cauldron",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "119": {
+    "id": 119,
+    "name": "endPortal",
+    "displayName": "End Portal",
+    "hardness": null,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "empty"
+  },
+  "120": {
+    "id": 120,
+    "displayName": "End Portal Frame",
+    "name": "endPortalFrame",
+    "hardness": null,
+    "stackSize": 64,
+    "diggable": false,
+    "boundingBox": "block"
+  },
+  "121": {
+    "id": 121,
+    "displayName": "End Stone",
+    "name": "whiteStone",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "122": {
+    "id": 122,
+    "displayName": "Dragon Egg",
+    "name": "dragonEgg",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "123": {
+    "id": 123,
+    "displayName": "Redstone Lamp (Inactive)",
+    "name": "redstoneLightInactive",
+    "hardness": 0.3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "124": {
+    "id": 124,
+    "displayName": "Redstone Lamp (Active)",
+    "name": "redstoneLightActive",
+    "hardness": 0.3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "125": {
+    "id": 125,
+    "displayName": "Wooden Double Slab",
+    "name": "woodSlabDouble",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "126": {
+    "id": 126,
+    "displayName": "Wooden Slab",
+    "name": "woodSlab",
+    "hardness": 2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "127": {
+    "id": 127,
+    "displayName": "Cocoa Pod",
+    "name": "cocoa",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "plant"
+  },
+  "128": {
+    "id": 128,
+    "displayName": "Sandstone Stairs",
+    "name": "stairsSandStone",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "129": {
+    "id": 129,
+    "displayName": "Emerald Ore",
+    "name": "oreEmerald",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "130": {
+    "id": 130,
+    "displayName": "Ender Chest",
+    "name": "enderChest",
+    "hardness": 22.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "131": {
+    "id": 131,
+    "displayName": "Tripwire Hook",
+    "name": "tripWireSource",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "132": {
+    "id": 132,
+    "displayName": "Tripwire",
+    "name": "tripWire",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "133": {
+    "id": 133,
+    "displayName": "Block of Emerald",
+    "name": "blockEmerald",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "257": true,
+      "278": true
+    }
+  },
+  "134": {
+    "id": 134,
+    "displayName": "Spruce Wood Stairs",
+    "name": "stairsWoodSpruce",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "135": {
+    "id": 135,
+    "displayName": "Birch Wood Stairs",
+    "name": "stairsWoodBirch",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "136": {
+    "id": 136,
+    "displayName": "Jungle Wood Stairs",
+    "name": "stairsWoodJungle",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "137": {
+    "id": 137,
+    "displayName": "Command Block",
+    "name": "commandBlock",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "138": {
+    "id": 138,
+    "displayName": "Beacon",
+    "name": "beacon",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "139": {
+    "id": 139,
+    "displayName": "Cobblestone Wall",
+    "name": "cobbleWall",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "140": {
+    "id": 140,
+    "displayName": "Flower Pot",
+    "name": "flowerPot",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "141": {
+    "id": 141,
+    "displayName": "Carrots",
+    "name": "carrots",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "142": {
+    "id": 142,
+    "displayName": "Potatoes",
+    "name": "potatoes",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "143": {
+    "id": 143,
+    "displayName": "Wooden Button",
+    "name": "buttonWood",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty"
+  },
+  "144": {
+    "id": 144,
+    "displayName": "Mob Head",
+    "name": "skull",
+    "hardness": 1,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "145": {
+    "id": 145,
+    "displayName": "Anvil",
+    "name": "anvil",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "146": {
+    "id": 146,
+    "displayName": "Trapped Chest",
+    "name": "trappedChest",
+    "hardness": 2.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "147": {
+    "id": 147,
+    "displayName": "Weighted Pressure plate (Light)",
+    "name": "pressurePlateWeightedLight",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "148": {
+    "id": 148,
+    "displayName": "Weighted Pressure plate (Heavy)",
+    "name": "pressurePlateWeightedHeavy",
+    "hardness": 0.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "149": {
+    "id": 149,
+    "displayName": "Redstone Comparator (Inactive)",
+    "name": "redstoneComparatorInactive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "150": {
+    "id": 150,
+    "displayName": "Redstone Comparator (Active)",
+    "name": "redstoneComparatorActive",
+    "hardness": 0,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block"
+  },
+  "151": {
+    "id": 151,
+    "displayName": "Daylight Sensor",
+    "name": "daylightSensor",
+    "hardness": 0.2,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "wood"
+  },
+  "152": {
+    "id": 152,
+    "displayName": "Block of Redstone",
+    "name": "redstoneBlock",
+    "hardness": 5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "153": {
+    "id": 153,
+    "displayName": "Nether Quartz Ore",
+    "name": "netherQuartzOre",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "154": {
+    "id": 154,
+    "displayName": "Hopper",
+    "name": "hopper",
+    "hardness": 3,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "155": {
+    "id": 155,
+    "displayName": "Block of Quartz",
+    "name": "quartzBlock",
+    "hardness": 0.8,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "156": {
+    "id": 156,
+    "displayName": "Quartz Stairs",
+    "name": "quartzStairs",
+    "hardness": 0.8,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  },
+  "157": {
+    "id": 157,
+    "displayName": "Activator Rail",
+    "name": "activatorRail",
+    "hardness": 0.7,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "empty",
+    "material": "rock"
+  },
+  "158": {
+    "id": 158,
+    "displayName": "Dropper",
+    "name": "dropper",
+    "hardness": 3.5,
+    "stackSize": 64,
+    "diggable": true,
+    "boundingBox": "block",
+    "material": "rock",
+    "harvestTools": {
+      "270": true,
+      "274": true,
+      "257": true,
+      "278": true,
+      "285": true
+    }
+  }
+}
+
+},{}],132:[function(require,module,exports){
+module.exports={
+  "0": {
+    "id": 0,
+    "name": "harp"
+  },
+  "1": {
+    "id": 1,
+    "name": "doubleBass"
+  },
+  "2": {
+    "id": 2,
+    "name": "snareDrum"
+  },
+  "3": {
+    "id": 3,
+    "name": "sticks"
+  },
+  "4": {
+    "id": 4,
+    "name": "bassDrum"
+  }
+}
+
+},{}],133:[function(require,module,exports){
+module.exports={
+  "256": {
+    "id": 256,
+    "displayName": "Iron Shovel",
+    "stackSize": 1,
+    "name": "shovelIron"
+  },
+  "257": {
+    "id": 257,
+    "displayName": "Iron Pickaxe",
+    "stackSize": 1,
+    "name": "pickaxeIron"
+  },
+  "258": {
+    "id": 258,
+    "displayName": "Iron Axe",
+    "stackSize": 1,
+    "name": "hatchetIron"
+  },
+  "259": {
+    "id": 259,
+    "displayName": "Flint and Steel",
+    "stackSize": 1,
+    "name": "flintAndSteel"
+  },
+  "260": {
+    "id": 260,
+    "displayName": "Apple",
+    "stackSize": 64,
+    "name": "apple"
+  },
+  "261": {
+    "id": 261,
+    "displayName": "Bow",
+    "stackSize": 1,
+    "name": "bow"
+  },
+  "262": {
+    "id": 262,
+    "displayName": "Arrow",
+    "stackSize": 64,
+    "name": "arrow"
+  },
+  "263": {
+    "id": 263,
+    "displayName": "Coal",
+    "stackSize": 64,
+    "name": "coal"
+  },
+  "264": {
+    "id": 264,
+    "displayName": "Diamond",
+    "stackSize": 64,
+    "name": "diamond"
+  },
+  "265": {
+    "id": 265,
+    "displayName": "Iron Ingot",
+    "stackSize": 64,
+    "name": "ingotIron"
+  },
+  "266": {
+    "id": 266,
+    "displayName": "Gold Ingot",
+    "stackSize": 64,
+    "name": "ingotGold"
+  },
+  "267": {
+    "id": 267,
+    "displayName": "Iron Sword",
+    "stackSize": 1,
+    "name": "swordIron"
+  },
+  "268": {
+    "id": 268,
+    "displayName": "Wooden Sword",
+    "stackSize": 1,
+    "name": "swordWood"
+  },
+  "269": {
+    "id": 269,
+    "displayName": "Wooden Shovel",
+    "stackSize": 1,
+    "name": "shovelWood"
+  },
+  "270": {
+    "id": 270,
+    "displayName": "Wooden Pickaxe",
+    "stackSize": 1,
+    "name": "pickaxeWood"
+  },
+  "271": {
+    "id": 271,
+    "displayName": "Wooden Axe",
+    "stackSize": 1,
+    "name": "hatchetWood"
+  },
+  "272": {
+    "id": 272,
+    "displayName": "Stone Sword",
+    "stackSize": 1,
+    "name": "swordStone"
+  },
+  "273": {
+    "id": 273,
+    "displayName": "Stone Shovel",
+    "stackSize": 1,
+    "name": "shovelStone"
+  },
+  "274": {
+    "id": 274,
+    "displayName": "Stone Pickaxe",
+    "stackSize": 1,
+    "name": "pickaxeStone"
+  },
+  "275": {
+    "id": 275,
+    "displayName": "Stone Axe",
+    "stackSize": 1,
+    "name": "hatchetStone"
+  },
+  "276": {
+    "id": 276,
+    "displayName": "Diamond Sword",
+    "stackSize": 1,
+    "name": "swordDiamond"
+  },
+  "277": {
+    "id": 277,
+    "displayName": "Diamond Shovel",
+    "stackSize": 1,
+    "name": "shovelDiamond"
+  },
+  "278": {
+    "id": 278,
+    "displayName": "Diamond Pickaxe",
+    "stackSize": 1,
+    "name": "pickaxeDiamond"
+  },
+  "279": {
+    "id": 279,
+    "displayName": "Diamond Axe",
+    "stackSize": 1,
+    "name": "hatchetDiamond"
+  },
+  "280": {
+    "id": 280,
+    "displayName": "Stick",
+    "stackSize": 64,
+    "name": "stick"
+  },
+  "281": {
+    "id": 281,
+    "displayName": "Bowl",
+    "stackSize": 64,
+    "name": "bowl"
+  },
+  "282": {
+    "id": 282,
+    "displayName": "Mushroom Stew",
+    "stackSize": 64,
+    "name": "mushroomStew"
+  },
+  "283": {
+    "id": 283,
+    "displayName": "Golden Sword",
+    "stackSize": 1,
+    "name": "swordGold"
+  },
+  "284": {
+    "id": 284,
+    "displayName": "Golden Shovel",
+    "stackSize": 1,
+    "name": "shovelGold"
+  },
+  "285": {
+    "id": 285,
+    "displayName": "Golden Pickaxe",
+    "stackSize": 1,
+    "name": "pickaxeGold"
+  },
+  "286": {
+    "id": 286,
+    "displayName": "Golden Axe",
+    "stackSize": 1,
+    "name": "hatchetGold"
+  },
+  "287": {
+    "id": 287,
+    "displayName": "String",
+    "stackSize": 64,
+    "name": "string"
+  },
+  "288": {
+    "id": 288,
+    "displayName": "Feather",
+    "stackSize": 64,
+    "name": "feather"
+  },
+  "289": {
+    "id": 289,
+    "displayName": "Gunpowder",
+    "stackSize": 64,
+    "name": "sulphur"
+  },
+  "290": {
+    "id": 290,
+    "displayName": "Wooden Hoe",
+    "stackSize": 1,
+    "name": "hoeWood"
+  },
+  "291": {
+    "id": 291,
+    "displayName": "Stone Hoe",
+    "stackSize": 1,
+    "name": "hoeStone"
+  },
+  "292": {
+    "id": 292,
+    "displayName": "Iron Hoe",
+    "stackSize": 1,
+    "name": "hoeIron"
+  },
+  "293": {
+    "id": 293,
+    "displayName": "Diamond Hoe",
+    "stackSize": 1,
+    "name": "hoeDiamond"
+  },
+  "294": {
+    "id": 294,
+    "displayName": "Golden Hoe",
+    "stackSize": 1,
+    "name": "hoeGold"
+  },
+  "295": {
+    "id": 295,
+    "displayName": "Seeds",
+    "stackSize": 64,
+    "name": "seeds"
+  },
+  "296": {
+    "id": 296,
+    "displayName": "Wheat",
+    "stackSize": 64,
+    "name": "wheat"
+  },
+  "297": {
+    "id": 297,
+    "displayName": "Bread",
+    "stackSize": 64,
+    "name": "bread"
+  },
+  "298": {
+    "id": 298,
+    "displayName": "Leather Cap",
+    "stackSize": 1,
+    "name": "helmetCloth"
+  },
+  "299": {
+    "id": 299,
+    "displayName": "Leather Tunic",
+    "stackSize": 1,
+    "name": "chestplateCloth"
+  },
+  "300": {
+    "id": 300,
+    "displayName": "Leather Pants",
+    "stackSize": 1,
+    "name": "leggingsCloth"
+  },
+  "301": {
+    "id": 301,
+    "displayName": "Leather Boots",
+    "stackSize": 1,
+    "name": "bootsCloth"
+  },
+  "302": {
+    "id": 302,
+    "displayName": "Chain Helmet",
+    "stackSize": 1,
+    "name": "helmetChain"
+  },
+  "303": {
+    "id": 303,
+    "displayName": "Chain Chestplate",
+    "stackSize": 1,
+    "name": "chestplateChain"
+  },
+  "304": {
+    "id": 304,
+    "displayName": "Chain Leggings",
+    "stackSize": 1,
+    "name": "leggingsChain"
+  },
+  "305": {
+    "id": 305,
+    "displayName": "Chain Boots",
+    "stackSize": 1,
+    "name": "bootsChain"
+  },
+  "306": {
+    "id": 306,
+    "displayName": "Iron Helmet",
+    "stackSize": 1,
+    "name": "helmetIron"
+  },
+  "307": {
+    "id": 307,
+    "displayName": "Iron Chestplate",
+    "stackSize": 1,
+    "name": "chestplateIron"
+  },
+  "308": {
+    "id": 308,
+    "displayName": "Iron Leggings",
+    "stackSize": 1,
+    "name": "leggingsIron"
+  },
+  "309": {
+    "id": 309,
+    "displayName": "Iron Boots",
+    "stackSize": 1,
+    "name": "bootsIron"
+  },
+  "310": {
+    "id": 310,
+    "displayName": "Diamond Helmet",
+    "stackSize": 1,
+    "name": "helmetDiamond"
+  },
+  "311": {
+    "id": 311,
+    "displayName": "Diamond Chestplate",
+    "stackSize": 1,
+    "name": "chestplateDiamond"
+  },
+  "312": {
+    "id": 312,
+    "displayName": "Diamond Leggings",
+    "stackSize": 1,
+    "name": "leggingsDiamond"
+  },
+  "313": {
+    "id": 313,
+    "displayName": "Diamond Boots",
+    "stackSize": 1,
+    "name": "bootsDiamond"
+  },
+  "314": {
+    "id": 314,
+    "displayName": "Golden Helmet",
+    "stackSize": 1,
+    "name": "helmetGold"
+  },
+  "315": {
+    "id": 315,
+    "displayName": "Golden Chestplate",
+    "stackSize": 1,
+    "name": "chestplateGold"
+  },
+  "316": {
+    "id": 316,
+    "displayName": "Golden Leggings",
+    "stackSize": 1,
+    "name": "leggingsGold"
+  },
+  "317": {
+    "id": 317,
+    "displayName": "Golden Boots",
+    "stackSize": 1,
+    "name": "bootsGold"
+  },
+  "318": {
+    "id": 318,
+    "displayName": "Flint",
+    "stackSize": 64,
+    "name": "flint"
+  },
+  "319": {
+    "id": 319,
+    "displayName": "Raw Porkchop",
+    "stackSize": 64,
+    "name": "porkchopRaw"
+  },
+  "320": {
+    "id": 320,
+    "displayName": "Cooked Porkchop",
+    "stackSize": 64,
+    "name": "porkchopCooked"
+  },
+  "321": {
+    "id": 321,
+    "displayName": "Painting",
+    "stackSize": 64,
+    "name": "painting"
+  },
+  "322": {
+    "id": 322,
+    "displayName": "Golden Apple",
+    "stackSize": 64,
+    "name": "appleGold"
+  },
+  "323": {
+    "id": 323,
+    "displayName": "Sign",
+    "stackSize": 1,
+    "name": "sign"
+  },
+  "324": {
+    "id": 324,
+    "displayName": "Wooden Door",
+    "stackSize": 1,
+    "name": "doorWood"
+  },
+  "325": {
+    "id": 325,
+    "displayName": "Bucket",
+    "name": "bucket",
+    "stackSize": 16
+  },
+  "326": {
+    "id": 326,
+    "displayName": "Water Bucket",
+    "stackSize": 1,
+    "name": "bucketWater"
+  },
+  "327": {
+    "id": 327,
+    "displayName": "Lava Bucket",
+    "stackSize": 1,
+    "name": "bucketLava"
+  },
+  "328": {
+    "id": 328,
+    "displayName": "Minecart",
+    "stackSize": 1,
+    "name": "minecart"
+  },
+  "329": {
+    "id": 329,
+    "displayName": "Saddle",
+    "stackSize": 1,
+    "name": "saddle"
+  },
+  "330": {
+    "id": 330,
+    "displayName": "Iron Door",
+    "stackSize": 1,
+    "name": "doorIron"
+  },
+  "331": {
+    "id": 331,
+    "displayName": "Redstone",
+    "stackSize": 64,
+    "name": "redstone"
+  },
+  "332": {
+    "id": 332,
+    "displayName": "Snowball",
+    "stackSize": 16,
+    "name": "snowball"
+  },
+  "333": {
+    "id": 333,
+    "displayName": "Boat",
+    "stackSize": 1,
+    "name": "boat"
+  },
+  "334": {
+    "id": 334,
+    "displayName": "Leather",
+    "stackSize": 64,
+    "name": "leather"
+  },
+  "335": {
+    "id": 335,
+    "displayName": "Milk",
+    "stackSize": 1,
+    "name": "milk"
+  },
+  "336": {
+    "id": 336,
+    "displayName": "Brick",
+    "stackSize": 64,
+    "name": "brick"
+  },
+  "337": {
+    "id": 337,
+    "displayName": "Clay",
+    "stackSize": 64,
+    "name": "clay"
+  },
+  "338": {
+    "id": 338,
+    "displayName": "Sugar Canes",
+    "stackSize": 64,
+    "name": "reeds"
+  },
+  "339": {
+    "id": 339,
+    "displayName": "Paper",
+    "stackSize": 64,
+    "name": "paper"
+  },
+  "340": {
+    "id": 340,
+    "displayName": "Book",
+    "stackSize": 64,
+    "name": "book"
+  },
+  "341": {
+    "id": 341,
+    "displayName": "Slimeball",
+    "stackSize": 64,
+    "name": "slimeball"
+  },
+  "342": {
+    "id": 342,
+    "displayName": "Minecart with Chest",
+    "stackSize": 1,
+    "name": "minecartChest"
+  },
+  "343": {
+    "id": 343,
+    "displayName": "Minecart with Furnace",
+    "stackSize": 1,
+    "name": "minecartFurnace"
+  },
+  "344": {
+    "id": 344,
+    "displayName": "Egg",
+    "stackSize": 16,
+    "name": "egg"
+  },
+  "345": {
+    "id": 345,
+    "displayName": "Compass",
+    "stackSize": 64,
+    "name": "compass"
+  },
+  "346": {
+    "id": 346,
+    "displayName": "Fishing Rod",
+    "stackSize": 1,
+    "name": "fishingRod"
+  },
+  "347": {
+    "id": 347,
+    "displayName": "Clock",
+    "stackSize": 64,
+    "name": "clock"
+  },
+  "348": {
+    "id": 348,
+    "displayName": "Glowstone Dust",
+    "stackSize": 64,
+    "name": "yellowDust"
+  },
+  "349": {
+    "id": 349,
+    "displayName": "Raw Fish",
+    "stackSize": 64,
+    "name": "fishRaw"
+  },
+  "350": {
+    "id": 350,
+    "displayName": "Cooked Fish",
+    "stackSize": 64,
+    "name": "fishCooked"
+  },
+  "351": {
+    "id": 351,
+    "stackSize": 64,
+    "displayName": "Dye",
+    "name": "dyePowder"
+  },
+  "352": {
+    "id": 352,
+    "displayName": "Bone",
+    "stackSize": 64,
+    "name": "bone"
+  },
+  "353": {
+    "id": 353,
+    "displayName": "Sugar",
+    "stackSize": 64,
+    "name": "sugar"
+  },
+  "354": {
+    "id": 354,
+    "displayName": "Cake",
+    "name": "cake",
+    "stackSize": 1
+  },
+  "355": {
+    "id": 355,
+    "displayName": "Bed",
+    "name": "bed",
+    "stackSize": 1
+  },
+  "356": {
+    "id": 356,
+    "displayName": "Redstone Repeater",
+    "stackSize": 64,
+    "name": "diode"
+  },
+  "357": {
+    "id": 357,
+    "displayName": "Cookie",
+    "stackSize": 8,
+    "name": "cookie"
+  },
+  "358": {
+    "id": 358,
+    "displayName": "Map",
+    "stackSize": 1,
+    "name": "map"
+  },
+  "359": {
+    "id": 359,
+    "displayName": "Shears",
+    "stackSize": 1,
+    "name": "shears"
+  },
+  "360": {
+    "id": 360,
+    "displayName": "Melon",
+    "stackSize": 64,
+    "name": "melon"
+  },
+  "361": {
+    "id": 361,
+    "displayName": "Pumpkin Seeds",
+    "stackSize": 64,
+    "name": "seeds_pumpkin"
+  },
+  "362": {
+    "id": 362,
+    "displayName": "Melon Seeds",
+    "stackSize": 64,
+    "name": "seeds_melon"
+  },
+  "363": {
+    "id": 363,
+    "displayName": "Raw Beef",
+    "stackSize": 64,
+    "name": "beefRaw"
+  },
+  "364": {
+    "id": 364,
+    "displayName": "Steak",
+    "stackSize": 64,
+    "name": "beefCooked"
+  },
+  "365": {
+    "id": 365,
+    "displayName": "Raw Chicken",
+    "stackSize": 64,
+    "name": "chickenRaw"
+  },
+  "366": {
+    "id": 366,
+    "displayName": "Cooked Chicken",
+    "stackSize": 64,
+    "name": "chickenCooked"
+  },
+  "367": {
+    "id": 367,
+    "displayName": "Rotten Flesh",
+    "stackSize": 64,
+    "name": "rottenFlesh"
+  },
+  "368": {
+    "id": 368,
+    "displayName": "Ender Pearl",
+    "stackSize": 64,
+    "name": "enderPearl"
+  },
+  "369": {
+    "id": 369,
+    "displayName": "Blaze Rod",
+    "stackSize": 64,
+    "name": "blazeRod"
+  },
+  "370": {
+    "id": 370,
+    "displayName": "Ghast Tear",
+    "stackSize": 64,
+    "name": "ghastTear"
+  },
+  "371": {
+    "id": 371,
+    "displayName": "Gold Nugget",
+    "stackSize": 64,
+    "name": "goldNugget"
+  },
+  "372": {
+    "id": 372,
+    "displayName": "Nether Wart",
+    "stackSize": 64,
+    "name": "netherStalkSeeds"
+  },
+  "373": {
+    "id": 373,
+    "displayName": "Potion",
+    "stackSize": 1,
+    "name": "potion"
+  },
+  "374": {
+    "id": 374,
+    "displayName": "Glass Bottle",
+    "stackSize": 64,
+    "name": "glassBottle"
+  },
+  "375": {
+    "id": 375,
+    "displayName": "Spider Eye",
+    "stackSize": 64,
+    "name": "spiderEye"
+  },
+  "376": {
+    "id": 376,
+    "displayName": "Fermented Spider Eye",
+    "stackSize": 64,
+    "name": "fermentedSpiderEye"
+  },
+  "377": {
+    "id": 377,
+    "displayName": "Blaze Powder",
+    "stackSize": 64,
+    "name": "blazePowder"
+  },
+  "378": {
+    "id": 378,
+    "displayName": "Magma Cream",
+    "stackSize": 64,
+    "name": "magmaCream"
+  },
+  "379": {
+    "id": 379,
+    "displayName": "Brewing Stand",
+    "stackSize": 64,
+    "name": "brewingStand"
+  },
+  "380": {
+    "id": 380,
+    "displayName": "Cauldron",
+    "stackSize": 1,
+    "name": "cauldron"
+  },
+  "381": {
+    "id": 381,
+    "displayName": "Eye of Ender",
+    "stackSize": 1,
+    "name": "eyeOfEnder"
+  },
+  "382": {
+    "id": 382,
+    "displayName": "Glistering Melon",
+    "stackSize": 64,
+    "name": "speckledMelon"
+  },
+  "383": {
+    "id": 383,
+    "displayName": "Spawn",
+    "stackSize": 64,
+    "name": "monsterPlacer"
+  },
+  "384": {
+    "id": 384,
+    "displayName": "Bottle o' Enchanting",
+    "stackSize": 64,
+    "name": "expBottle"
+  },
+  "385": {
+    "id": 385,
+    "displayName": "Fire Charge",
+    "stackSize": 64,
+    "name": "fireball"
+  },
+  "386": {
+    "id": 386,
+    "displayName": "Book and Quill",
+    "stackSize": 1,
+    "name": "writingBook"
+  },
+  "387": {
+    "id": 387,
+    "displayName": "Written Book",
+    "stackSize": 1,
+    "name": "writtenBook"
+  },
+  "388": {
+    "id": 388,
+    "displayName": "Emerald",
+    "stackSize": 64,
+    "name": "emerald"
+  },
+  "389": {
+    "id": 389,
+    "displayName": "Item Frame",
+    "stackSize": 64,
+    "name": "frame"
+  },
+  "390": {
+    "id": 390,
+    "displayName": "Flower Pot",
+    "stackSize": 64,
+    "name": "flowerPot"
+  },
+  "391": {
+    "id": 391,
+    "displayName": "Carrot",
+    "stackSize": 64,
+    "name": "carrots"
+  },
+  "392": {
+    "id": 392,
+    "displayName": "Potato",
+    "stackSize": 64,
+    "name": "potato"
+  },
+  "393": {
+    "id": 393,
+    "displayName": "Baked Potato",
+    "stackSize": 64,
+    "name": "potatoBaked"
+  },
+  "394": {
+    "id": 394,
+    "displayName": "Poisonous Potato",
+    "stackSize": 64,
+    "name": "potatoPoisonous"
+  },
+  "395": {
+    "id": 395,
+    "displayName": "Empty Map",
+    "stackSize": 64,
+    "name": "emptyMap"
+  },
+  "396": {
+    "id": 396,
+    "displayName": "Golden Carrot",
+    "stackSize": 64,
+    "name": "carrotGolden"
+  },
+  "397": {
+    "id": 397,
+    "stackSize": 64,
+    "displayName": "Mob Head",
+    "name": "skull"
+  },
+  "398": {
+    "id": 398,
+    "displayName": "Carrot on a Stick",
+    "stackSize": 64,
+    "name": "carrotOnAStick"
+  },
+  "399": {
+    "id": 399,
+    "displayName": "Nether Star",
+    "stackSize": 64,
+    "name": "netherStar"
+  },
+  "400": {
+    "id": 400,
+    "displayName": "Pumpkin Pie",
+    "stackSize": 64,
+    "name": "pumpkinPie"
+  },
+  "401": {
+    "id": 401,
+    "displayName": "Firework Rocket",
+    "stackSize": 64,
+    "name": "fireworks"
+  },
+  "402": {
+    "id": 402,
+    "displayName": "Firework Star",
+    "stackSize": 64,
+    "name": "fireworksCharge"
+  },
+  "403": {
+    "id": 403,
+    "displayName": "Enchanted Book",
+    "name": "enchantedBook",
+    "stackSize": 1
+  },
+  "2256": {
+    "id": 2256,
+    "displayName": "13 Disc",
+    "stackSize": 1,
+    "name": "record13"
+  },
+  "2257": {
+    "id": 2257,
+    "displayName": "Cat Disc",
+    "stackSize": 1,
+    "name": "recordCat"
+  },
+  "2258": {
+    "id": 2258,
+    "displayName": "Blocks Disc",
+    "stackSize": 1,
+    "name": "recordBlocks"
+  },
+  "2259": {
+    "id": 2259,
+    "displayName": "Chirp Disc",
+    "stackSize": 1,
+    "name": "recordChirp"
+  },
+  "2260": {
+    "id": 2260,
+    "displayName": "Far Disc",
+    "stackSize": 1,
+    "name": "recordFar"
+  },
+  "2261": {
+    "id": 2261,
+    "displayName": "Mall Disc",
+    "stackSize": 1,
+    "name": "recordMall"
+  },
+  "2262": {
+    "id": 2262,
+    "displayName": "Mellohi Disc",
+    "stackSize": 1,
+    "name": "recordMellohi"
+  },
+  "2263": {
+    "id": 2263,
+    "displayName": "Stal Disc",
+    "stackSize": 1,
+    "name": "recordStal"
+  },
+  "2264": {
+    "id": 2264,
+    "displayName": "Strad Disc",
+    "stackSize": 1,
+    "name": "recordStrad"
+  },
+  "2265": {
+    "id": 2265,
+    "displayName": "Ward Disc",
+    "stackSize": 1,
+    "name": "recordWard"
+  },
+  "2266": {
+    "id": 2266,
+    "displayName": "11 Disc",
+    "stackSize": 1,
+    "name": "record11"
+  },
+  "2267": {
+    "id": 2267,
+    "displayName": "Wait Disc",
+    "stackSize": 1,
+    "name": "recordWait"
+  }
+}
+
+},{}],134:[function(require,module,exports){
+module.exports={
+  "rock": {
+    "257": 6,
+    "270": 2,
+    "274": 4,
+    "278": 8,
+    "285": 12
+  },
+  "wood": {
+    "258": 6,
+    "271": 2,
+    "275": 4,
+    "279": 8,
+    "286": 12
+  },
+  "plant": {
+    "258": 6,
+    "267": 1.5,
+    "268": 1.5,
+    "271": 2,
+    "272": 1.5,
+    "275": 4,
+    "276": 1.5,
+    "279": 8,
+    "283": 1.5,
+    "286": 12
+  },
+  "melon": {
+    "267": 1.5,
+    "268": 1.5,
+    "272": 1.5,
+    "276": 1.5,
+    "283": 1.5
+  },
+  "leaves": {
+    "267": 1.5,
+    "268": 1.5,
+    "272": 1.5,
+    "276": 1.5,
+    "283": 1.5,
+    "359": 6
+  },
+  "dirt": {
+    "256": 6,
+    "269": 2,
+    "273": 4,
+    "277": 8,
+    "284": 12
+  },
+  "web": {
+    "267": 15,
+    "268": 15,
+    "272": 15,
+    "276": 15,
+    "283": 15,
+    "359": 15
+  },
+  "wool": {
+    "359": 4.8
+  }
+}
+},{}],135:[function(require,module,exports){
+module.exports={
+  "5": [
+    {
+      "type": 5,
+      "count": 4,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 17,
+          "metadata": 0
+        }
+      ]
+    },
+    {
+      "type": 5,
+      "count": 4,
+      "metadata": 1,
+      "ingredients": [
+        {
+          "id": 17,
+          "metadata": 1
+        }
+      ]
+    },
+    {
+      "type": 5,
+      "count": 4,
+      "metadata": 2,
+      "ingredients": [
+        {
+          "id": 17,
+          "metadata": 2
+        }
+      ]
+    },
+    {
+      "type": 5,
+      "count": 4,
+      "metadata": 3,
+      "ingredients": [
+        {
+          "id": 17,
+          "metadata": 3
+        }
+      ]
+    }
+  ],
+  "23": [
+    {
+      "type": 23,
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          261,
+          4
+        ],
+        [
+          4,
+          331,
+          4
+        ]
+      ]
+    }
+  ],
+  "24": [
+    {
+      "count": 4,
+      "metadata": 2,
+      "inShape": [
+        [
+          24,
+          24
+        ],
+        [
+          24,
+          24
+        ]
+      ],
+      "type": 24
+    },
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          12,
+          12
+        ],
+        [
+          12,
+          12
+        ]
+      ],
+      "type": 24
+    }
+  ],
+  "25": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          331,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 25
+    }
+  ],
+  "27": [
+    {
+      "count": 6,
+      "metadata": 0,
+      "inShape": [
+        [
+          266,
+          null,
+          266
+        ],
+        [
+          266,
+          280,
+          266
+        ],
+        [
+          266,
+          331,
+          266
+        ]
+      ],
+      "type": 27
+    }
+  ],
+  "28": [
+    {
+      "count": 6,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          70,
+          265
+        ],
+        [
+          265,
+          331,
+          265
+        ]
+      ],
+      "type": 28
+    }
+  ],
+  "29": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          341
+        ],
+        [
+          33
+        ]
+      ],
+      "type": 29
+    }
+  ],
+  "33": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          4,
+          265,
+          4
+        ],
+        [
+          4,
+          331,
+          4
+        ]
+      ],
+      "type": 33
+    }
+  ],
+  "35": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          287,
+          287
+        ],
+        [
+          287,
+          287
+        ]
+      ],
+      "type": 35
+    }
+  ],
+  "41": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          266,
+          266,
+          266
+        ],
+        [
+          266,
+          266,
+          266
+        ],
+        [
+          266,
+          266,
+          266
+        ]
+      ],
+      "type": 41
+    }
+  ],
+  "42": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 42
+    }
+  ],
+  "44": [
+    {
+      "count": 6,
+      "metadata": 5,
+      "inShape": [
+        [
+          98,
+          98,
+          98
+        ]
+      ],
+      "type": 44
+    },
+    {
+      "count": 6,
+      "metadata": 4,
+      "inShape": [
+        [
+          45,
+          45,
+          45
+        ]
+      ],
+      "type": 44
+    },
+    {
+      "count": 6,
+      "metadata": 1,
+      "inShape": [
+        [
+          24,
+          24,
+          24
+        ]
+      ],
+      "type": 44
+    },
+    {
+      "count": 6,
+      "metadata": 0,
+      "inShape": [
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "type": 44
+    },
+    {
+      "count": 6,
+      "metadata": 3,
+      "inShape": [
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "type": 44
+    }
+  ],
+  "45": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          336,
+          336
+        ],
+        [
+          336,
+          336
+        ]
+      ],
+      "type": 45
+    }
+  ],
+  "46": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          289,
+          12,
+          289
+        ],
+        [
+          12,
+          289,
+          12
+        ],
+        [
+          289,
+          12,
+          289
+        ]
+      ],
+      "type": 46
+    }
+  ],
+  "47": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          340,
+          340,
+          340
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 47
+    }
+  ],
+  "50": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          263
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 50
+    }
+  ],
+  "54": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          null,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 54
+    }
+  ],
+  "57": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          264,
+          264,
+          264
+        ]
+      ],
+      "type": 57
+    }
+  ],
+  "58": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "type": 58
+    }
+  ],
+  "61": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          null,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "type": 61
+    }
+  ],
+  "65": [
+    {
+      "count": 3,
+      "metadata": 0,
+      "inShape": [
+        [
+          280,
+          null,
+          280
+        ],
+        [
+          280,
+          280,
+          280
+        ],
+        [
+          280,
+          null,
+          280
+        ]
+      ],
+      "type": 65
+    }
+  ],
+  "66": [
+    {
+      "count": 16,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          280,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ]
+      ],
+      "type": 66
+    }
+  ],
+  "67": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          null,
+          null
+        ],
+        [
+          4,
+          4,
+          null
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "type": 67
+    }
+  ],
+  "69": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          280
+        ],
+        [
+          4
+        ]
+      ],
+      "type": 69
+    }
+  ],
+  "70": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          1,
+          1
+        ]
+      ],
+      "type": 70
+    }
+  ],
+  "72": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5
+        ]
+      ],
+      "type": 72
+    }
+  ],
+  "76": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          331
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 76
+    }
+  ],
+  "77": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          1
+        ]
+      ],
+      "type": 77
+    }
+  ],
+  "80": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          332,
+          332
+        ],
+        [
+          332,
+          332
+        ]
+      ],
+      "type": 80
+    }
+  ],
+  "82": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          337,
+          337
+        ],
+        [
+          337,
+          337
+        ]
+      ],
+      "type": 82
+    }
+  ],
+  "84": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          264,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 84
+    }
+  ],
+  "85": [
+    {
+      "count": 2,
+      "metadata": 0,
+      "inShape": [
+        [
+          280,
+          280,
+          280
+        ],
+        [
+          280,
+          280,
+          280
+        ]
+      ],
+      "type": 85
+    }
+  ],
+  "89": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          348,
+          348
+        ],
+        [
+          348,
+          348
+        ]
+      ],
+      "type": 89
+    }
+  ],
+  "91": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          86
+        ],
+        [
+          50
+        ]
+      ],
+      "type": 91
+    }
+  ],
+  "96": [
+    {
+      "count": 2,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 96
+    }
+  ],
+  "98": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "type": 98
+    }
+  ],
+  "101": [
+    {
+      "count": 16,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 101
+    }
+  ],
+  "102": [
+    {
+      "count": 16,
+      "metadata": 0,
+      "inShape": [
+        [
+          20,
+          20,
+          20
+        ],
+        [
+          20,
+          20,
+          20
+        ]
+      ],
+      "type": 102
+    }
+  ],
+  "103": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          360,
+          360,
+          360
+        ],
+        [
+          360,
+          360,
+          360
+        ],
+        [
+          360,
+          360,
+          360
+        ]
+      ],
+      "type": 103
+    }
+  ],
+  "107": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          280,
+          5,
+          280
+        ],
+        [
+          280,
+          5,
+          280
+        ]
+      ],
+      "type": 107
+    }
+  ],
+  "108": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          45,
+          null,
+          null
+        ],
+        [
+          45,
+          45,
+          null
+        ],
+        [
+          45,
+          45,
+          45
+        ]
+      ],
+      "type": 108
+    }
+  ],
+  "109": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          98,
+          null,
+          null
+        ],
+        [
+          98,
+          98,
+          null
+        ],
+        [
+          98,
+          98,
+          98
+        ]
+      ],
+      "type": 109
+    }
+  ],
+  "113": [
+    {
+      "count": 6,
+      "metadata": 0,
+      "inShape": [
+        [
+          112,
+          112,
+          112
+        ],
+        [
+          112,
+          112,
+          112
+        ]
+      ],
+      "type": 113
+    }
+  ],
+  "114": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          112,
+          null,
+          null
+        ],
+        [
+          112,
+          112,
+          null
+        ],
+        [
+          112,
+          112,
+          112
+        ]
+      ],
+      "type": 114
+    }
+  ],
+  "116": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          340,
+          null
+        ],
+        [
+          264,
+          49,
+          264
+        ],
+        [
+          49,
+          49,
+          49
+        ]
+      ],
+      "type": 116
+    }
+  ],
+  "123": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          331,
+          null
+        ],
+        [
+          331,
+          89,
+          331
+        ],
+        [
+          null,
+          331,
+          null
+        ]
+      ],
+      "type": 123
+    }
+  ],
+  "128": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          24,
+          null,
+          null
+        ],
+        [
+          24,
+          24,
+          null
+        ],
+        [
+          24,
+          24,
+          24
+        ]
+      ],
+      "type": 128
+    }
+  ],
+  "130": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          49,
+          49,
+          49
+        ],
+        [
+          49,
+          381,
+          49
+        ],
+        [
+          49,
+          49,
+          49
+        ]
+      ],
+      "type": 130
+    }
+  ],
+  "131": [
+    {
+      "count": 2,
+      "metadata": 0,
+      "inShape": [
+        [
+          265
+        ],
+        [
+          280
+        ],
+        [
+          5
+        ]
+      ],
+      "type": 131
+    }
+  ],
+  "133": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          388,
+          388,
+          388
+        ],
+        [
+          388,
+          388,
+          388
+        ],
+        [
+          388,
+          388,
+          388
+        ]
+      ],
+      "type": 133
+    }
+  ],
+  "138": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          20,
+          20,
+          20
+        ],
+        [
+          20,
+          399,
+          20
+        ],
+        [
+          49,
+          49,
+          49
+        ]
+      ],
+      "type": 138
+    }
+  ],
+  "139": [
+    {
+      "count": 6,
+      "metadata": 1,
+      "inShape": [
+        [
+          48,
+          48,
+          48
+        ],
+        [
+          48,
+          48,
+          48
+        ]
+      ],
+      "type": 139
+    },
+    {
+      "count": 6,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "type": 139
+    }
+  ],
+  "143": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5
+        ]
+      ],
+      "type": 143
+    }
+  ],
+  "145": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          42,
+          42,
+          42
+        ],
+        [
+          null,
+          265,
+          null
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 145
+    }
+  ],
+  "146": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          131,
+          54
+        ]
+      ],
+      "type": 146
+    }
+  ],
+  "152": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          55,
+          55,
+          55
+        ],
+        [
+          55,
+          55,
+          55
+        ],
+        [
+          55,
+          55,
+          55
+        ]
+      ],
+      "type": 152
+    }
+  ],
+  "154": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          54,
+          265
+        ],
+        [
+          null,
+          265,
+          null
+        ]
+      ],
+      "type": 154
+    }
+  ],
+  "256": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265
+        ],
+        [
+          280
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 256
+    }
+  ],
+  "257": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          null,
+          280,
+          null
+        ],
+        [
+          null,
+          280,
+          null
+        ]
+      ],
+      "type": 257
+    }
+  ],
+  "258": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265
+        ],
+        [
+          265,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 258
+    }
+  ],
+  "259": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null
+        ],
+        [
+          null,
+          318
+        ]
+      ],
+      "type": 259
+    }
+  ],
+  "261": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          280,
+          287
+        ],
+        [
+          280,
+          null,
+          287
+        ],
+        [
+          null,
+          280,
+          287
+        ]
+      ],
+      "type": 261
+    }
+  ],
+  "262": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          318
+        ],
+        [
+          280
+        ],
+        [
+          288
+        ]
+      ],
+      "type": 262
+    }
+  ],
+  "266": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          371,
+          371,
+          371
+        ],
+        [
+          371,
+          371,
+          371
+        ],
+        [
+          371,
+          371,
+          371
+        ]
+      ],
+      "type": 266
+    }
+  ],
+  "267": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265
+        ],
+        [
+          265
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 267
+    }
+  ],
+  "268": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5
+        ],
+        [
+          5
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 268
+    }
+  ],
+  "269": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5
+        ],
+        [
+          280
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 269
+    }
+  ],
+  "270": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          null,
+          280,
+          null
+        ],
+        [
+          null,
+          280,
+          null
+        ]
+      ],
+      "type": 270
+    }
+  ],
+  "271": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 271
+    }
+  ],
+  "272": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4
+        ],
+        [
+          4
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 272
+    }
+  ],
+  "273": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4
+        ],
+        [
+          280
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 273
+    }
+  ],
+  "274": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4,
+          4
+        ],
+        [
+          null,
+          280,
+          null
+        ],
+        [
+          null,
+          280,
+          null
+        ]
+      ],
+      "type": 274
+    }
+  ],
+  "275": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 275
+    }
+  ],
+  "276": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264
+        ],
+        [
+          264
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 276
+    }
+  ],
+  "277": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264
+        ],
+        [
+          280
+        ],
+        [
+          280
+        ]
+      ],
+      "type": 277
+    }
+  ],
+  "278": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          null,
+          280,
+          null
+        ],
+        [
+          null,
+          280,
+          null
+        ]
+      ],
+      "type": 278
+    }
+  ],
+  "279": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264
+        ],
+        [
+          264,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 279
+    }
+  ],
+  "280": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          5
+        ],
+        [
+          5
+        ]
+      ],
+      "type": 280
+    }
+  ],
+  "281": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          null,
+          5
+        ],
+        [
+          null,
+          5,
+          null
+        ]
+      ],
+      "type": 281
+    }
+  ],
+  "282": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 281
+        },
+        {
+          "id": 40
+        },
+        {
+          "id": 39
+        }
+      ],
+      "type": 282
+    }
+  ],
+  "290": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5
+        ],
+        [
+          null,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 290
+    }
+  ],
+  "291": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          4,
+          4
+        ],
+        [
+          null,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 291
+    }
+  ],
+  "292": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265
+        ],
+        [
+          null,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 292
+    }
+  ],
+  "293": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264
+        ],
+        [
+          null,
+          280
+        ],
+        [
+          null,
+          280
+        ]
+      ],
+      "type": 293
+    }
+  ],
+  "297": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          296,
+          296,
+          296
+        ]
+      ],
+      "type": 297
+    }
+  ],
+  "298": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          334,
+          334,
+          334
+        ],
+        [
+          334,
+          null,
+          334
+        ]
+      ],
+      "type": 298
+    }
+  ],
+  "299": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          334,
+          null,
+          334
+        ],
+        [
+          334,
+          334,
+          334
+        ],
+        [
+          334,
+          334,
+          334
+        ]
+      ],
+      "type": 299
+    }
+  ],
+  "300": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          334,
+          334,
+          334
+        ],
+        [
+          334,
+          null,
+          334
+        ],
+        [
+          334,
+          null,
+          334
+        ]
+      ],
+      "type": 300
+    }
+  ],
+  "301": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          334,
+          null,
+          334
+        ],
+        [
+          334,
+          null,
+          334
+        ]
+      ],
+      "type": 301
+    }
+  ],
+  "306": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ]
+      ],
+      "type": 306
+    }
+  ],
+  "307": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 307
+    }
+  ],
+  "308": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ]
+      ],
+      "type": 308
+    }
+  ],
+  "309": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ]
+      ],
+      "type": 309
+    }
+  ],
+  "310": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          264,
+          null,
+          264
+        ]
+      ],
+      "type": 310
+    }
+  ],
+  "311": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          null,
+          264
+        ],
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          264,
+          264,
+          264
+        ]
+      ],
+      "type": 311
+    }
+  ],
+  "312": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          264,
+          264
+        ],
+        [
+          264,
+          null,
+          264
+        ],
+        [
+          264,
+          null,
+          264
+        ]
+      ],
+      "type": 312
+    }
+  ],
+  "313": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          264,
+          null,
+          264
+        ],
+        [
+          264,
+          null,
+          264
+        ]
+      ],
+      "type": 313
+    }
+  ],
+  "321": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          280,
+          280,
+          280
+        ],
+        [
+          280,
+          35,
+          280
+        ],
+        [
+          280,
+          280,
+          280
+        ]
+      ],
+      "type": 321
+    }
+  ],
+  "322": [
+    {
+      "count": 1,
+      "metadata": 1,
+      "inShape": [
+        [
+          41,
+          41,
+          41
+        ],
+        [
+          41,
+          260,
+          41
+        ],
+        [
+          41,
+          41,
+          41
+        ]
+      ],
+      "type": 322
+    },
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          371,
+          371,
+          371
+        ],
+        [
+          371,
+          260,
+          371
+        ],
+        [
+          371,
+          371,
+          371
+        ]
+      ],
+      "type": 322
+    }
+  ],
+  "323": [
+    {
+      "count": 3,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ],
+        [
+          null,
+          280,
+          null
+        ]
+      ],
+      "type": 323
+    }
+  ],
+  "324": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "type": 324
+    }
+  ],
+  "325": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          null,
+          265,
+          null
+        ]
+      ],
+      "type": 325
+    }
+  ],
+  "328": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 328
+    }
+  ],
+  "330": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          265
+        ],
+        [
+          265,
+          265
+        ],
+        [
+          265,
+          265
+        ]
+      ],
+      "type": 330
+    }
+  ],
+  "333": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          5,
+          null,
+          5
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 333
+    }
+  ],
+  "339": [
+    {
+      "count": 3,
+      "metadata": 0,
+      "inShape": [
+        [
+          338,
+          338,
+          338
+        ]
+      ],
+      "type": 339
+    }
+  ],
+  "340": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 334
+        },
+        {
+          "id": 339
+        },
+        {
+          "id": 339
+        },
+        {
+          "id": 339
+        }
+      ],
+      "type": 340
+    }
+  ],
+  "342": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          54
+        ],
+        [
+          328
+        ]
+      ],
+      "type": 342
+    }
+  ],
+  "343": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          61
+        ],
+        [
+          328
+        ]
+      ],
+      "type": 343
+    }
+  ],
+  "345": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          265,
+          null
+        ],
+        [
+          265,
+          331,
+          265
+        ],
+        [
+          null,
+          265,
+          null
+        ]
+      ],
+      "type": 345
+    }
+  ],
+  "346": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          null,
+          280
+        ],
+        [
+          null,
+          280,
+          287
+        ],
+        [
+          280,
+          null,
+          287
+        ]
+      ],
+      "type": 346
+    }
+  ],
+  "347": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          266,
+          null
+        ],
+        [
+          266,
+          331,
+          266
+        ],
+        [
+          null,
+          266,
+          null
+        ]
+      ],
+      "type": 347
+    }
+  ],
+  "351": [
+    {
+      "count": 3,
+      "metadata": 15,
+      "ingredients": [
+        {
+          "id": 352
+        }
+      ],
+      "type": 351
+    },
+    {
+      "count": 2,
+      "metadata": 1,
+      "ingredients": [
+        {
+          "id": 38
+        }
+      ],
+      "type": 351
+    },
+    {
+      "count": 2,
+      "metadata": 11,
+      "ingredients": [
+        {
+          "id": 37
+        }
+      ],
+      "type": 351
+    }
+  ],
+  "353": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          338
+        ]
+      ],
+      "type": 353
+    }
+  ],
+  "354": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          335,
+          335,
+          335
+        ],
+        [
+          353,
+          344,
+          353
+        ],
+        [
+          296,
+          296,
+          296
+        ]
+      ],
+      "outShape": [
+        [
+          325,
+          325,
+          325
+        ],
+        [
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null
+        ]
+      ],
+      "type": 354
+    }
+  ],
+  "355": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          35,
+          35,
+          35
+        ],
+        [
+          5,
+          5,
+          5
+        ]
+      ],
+      "type": 355
+    }
+  ],
+  "356": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          76,
+          331,
+          76
+        ],
+        [
+          1,
+          1,
+          1
+        ]
+      ],
+      "type": 356
+    }
+  ],
+  "359": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          265
+        ],
+        [
+          265,
+          null
+        ]
+      ],
+      "type": 359
+    }
+  ],
+  "361": [
+    {
+      "count": 4,
+      "metadata": 0,
+      "inShape": [
+        [
+          86
+        ]
+      ],
+      "type": 361
+    }
+  ],
+  "362": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          360
+        ]
+      ],
+      "type": 362
+    }
+  ],
+  "371": [
+    {
+      "count": 9,
+      "metadata": 0,
+      "inShape": [
+        [
+          266
+        ]
+      ],
+      "type": 371
+    }
+  ],
+  "374": [
+    {
+      "count": 3,
+      "metadata": 0,
+      "inShape": [
+        [
+          20,
+          null,
+          20
+        ],
+        [
+          null,
+          20,
+          null
+        ]
+      ],
+      "type": 374
+    }
+  ],
+  "376": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 353
+        },
+        {
+          "id": 39
+        },
+        {
+          "id": 375
+        }
+      ],
+      "type": 376
+    }
+  ],
+  "377": [
+    {
+      "count": 2,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 369
+        }
+      ],
+      "type": 377
+    }
+  ],
+  "378": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 341
+        },
+        {
+          "id": 377
+        }
+      ],
+      "type": 378
+    }
+  ],
+  "379": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          null,
+          369,
+          null
+        ],
+        [
+          4,
+          4,
+          4
+        ]
+      ],
+      "type": 379
+    }
+  ],
+  "380": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          null,
+          265
+        ],
+        [
+          265,
+          265,
+          265
+        ]
+      ],
+      "type": 380
+    }
+  ],
+  "381": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 377
+        },
+        {
+          "id": 368
+        }
+      ],
+      "type": 381
+    }
+  ],
+  "382": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 371
+        },
+        {
+          "id": 360
+        }
+      ],
+      "type": 382
+    }
+  ],
+  "385": [
+    {
+      "count": 3,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 263
+        },
+        {
+          "id": 377
+        },
+        {
+          "id": 289
+        }
+      ],
+      "type": 385
+    }
+  ],
+  "389": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          280,
+          280,
+          280
+        ],
+        [
+          280,
+          334,
+          280
+        ],
+        [
+          280,
+          280,
+          280
+        ]
+      ],
+      "type": 389
+    }
+  ],
+  "390": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          336,
+          null,
+          336
+        ],
+        [
+          null,
+          336,
+          null
+        ]
+      ],
+      "type": 390
+    }
+  ],
+  "395": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          339,
+          339,
+          339
+        ],
+        [
+          339,
+          345,
+          339
+        ],
+        [
+          339,
+          339,
+          339
+        ]
+      ],
+      "type": 395
+    }
+  ],
+  "396": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          371,
+          371,
+          371
+        ],
+        [
+          371,
+          391,
+          371
+        ],
+        [
+          371,
+          371,
+          371
+        ]
+      ],
+      "type": 396
+    }
+  ],
+  "398": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "inShape": [
+        [
+          346,
+          null
+        ],
+        [
+          null,
+          391
+        ]
+      ],
+      "type": 398
+    }
+  ],
+  "400": [
+    {
+      "count": 1,
+      "metadata": 0,
+      "ingredients": [
+        {
+          "id": 344
+        },
+        {
+          "id": 353
+        },
+        {
+          "id": 86
+        }
+      ],
+      "type": 400
+    }
+  ]
+}
+
+},{}],136:[function(require,module,exports){
+var EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , assert = require('assert')
+
+module.exports = Furnace;
+
+function Furnace() {
+  EventEmitter.call(this);
+
+  this.window = null;
+  this.fuel = null;
+  this.progress = null;
+}
+util.inherits(Furnace, EventEmitter);
+
+Furnace.windowType = 2;
+
+// this function is replaced by the inventory plugin
+Furnace.prototype.close = function() {
+  assert.ok(false, "override");
+};
+
+Furnace.prototype.takeInput = function(cb) {
+  assert.ok(false, "override");
+};
+Furnace.prototype.takeFuel = function(cb) {
+  assert.ok(false, "override");
+};
+Furnace.prototype.takeOutput = function(cb) {
+  assert.ok(false, "override");
+};
+Furnace.prototype.putInput = function(itemType, metadata, cb) {
+  assert.ok(false, "override");
+};
+Furnace.prototype.putFuel = function(itemType, metadata, cb) {
+  assert.ok(false, "override");
+};
+Furnace.prototype.inputItem = function() {
+  assert.notEqual(this.window, null);
+  return this.window.slots[0];
+}
+Furnace.prototype.fuelItem = function() {
+  assert.notEqual(this.window, null);
+  return this.window.slots[1];
+}
+Furnace.prototype.outputItem = function() {
+  assert.notEqual(this.window, null);
+  return this.window.slots[2];
+}
+
+},{"assert":917,"events":936,"util":955}],137:[function(require,module,exports){
+(function (Buffer){
+var items = require('./enums/items')
+  , blocks = require('./enums/blocks')
+  , assert = require('assert')
+
+module.exports = Item;
+
+function Item(type, count, metadata, nbt) {
+  if (type == null) return null;
+
+  this.type = type;
+  this.count = count;
+  this.metadata = metadata;
+  this.nbt = nbt || new Buffer(0);
+
+  var itemEnum = items[type] || blocks[type];
+  assert.ok(itemEnum);
+  this.name = itemEnum.name;
+  this.displayName = itemEnum.displayName;
+  this.stackSize = itemEnum.stackSize;
+}
+
+Item.equal = function(item1, item2) {
+  if (item1 == null && item2 == null) {
+    return true;
+  } else if (item1 == null) {
+    return false;
+  } else if (item2 == null) {
+    return false;
+  } else {
+    return item1.type === item2.type &&
+      item1.count === item2.count &&
+      item1.metadata === item2.metadata;
+  }
+};
+
+}).call(this,require("buffer").Buffer)
+},{"./enums/blocks":131,"./enums/items":133,"assert":917,"buffer":933}],138:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3;
+var CHUNK_SIZE = new Vec3(16, 16, 16)
+
+module.exports = Location;
+
+function Location(absoluteVector) {
+  this.floored = absoluteVector.floored();
+  this.blockPoint = this.floored.modulus(CHUNK_SIZE);
+  this.chunkCorner = this.floored.minus(this.blockPoint);
+  this.blockIndex =
+    this.blockPoint.x +
+    CHUNK_SIZE.x * this.blockPoint.z +
+    CHUNK_SIZE.x * CHUNK_SIZE.z * this.blockPoint.y;
+  this.biomeBlockIndex = this.blockPoint.x + CHUNK_SIZE.x * this.blockPoint.z;
+  this.chunkYIndex = Math.floor(absoluteVector.y / 16);
+}
+
+},{"vec3":168}],139:[function(require,module,exports){
+exports.clamp = function clamp(min, x, max) {
+  return x < min ? min : x > max ? max : x;
+};
+
+exports.sign = function sign(n) {
+  return n > 0 ?  1 : n < 0 ?  -1 : 0;
+};
+
+exports.euclideanMod = function euclideanMod(numerator, denominator) {
+  var result = numerator % denominator;
+  return result < 0 ? result + denominator : result;
+};
+
+},{}],140:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3;
+
+module.exports = Painting;
+
+function Painting(id, pos, name, direction) {
+  this.id = id;
+  this.position = pos;
+  this.name = name;
+  this.direction = direction;
+}
+
+},{"vec3":168}],141:[function(require,module,exports){
+var assert = require('assert');
+
+module.exports = inject;
+
+function inject(bot) {
+  bot.isSleeping = false;
+
+  function wake() {
+    assert.strictEqual(bot.isSleeping, true, "already awake");
+    bot.client.write('entity_action', {
+      entityId: bot.entity.id,
+      actionId: 3,
+      jumpBoost: 0
+    });
+  }
+
+  function sleep(bedBlock) {
+    assert.strictEqual(bot.isSleeping, false, "already sleeping");
+    assert.strictEqual(bedBlock.type, 26);
+    bot.activateBlock(bedBlock);
+  }
+
+  bot.client.on('game_state_change', function(packet) {
+    if (packet.reason === 0) {
+      // occurs when you can't spawn in your bed and your spawn point gets reset
+      bot.emit('spawnReset');
+    }
+  });
+
+  bot.on('entitySleep', function(entity) {
+    if (entity === bot.entity) {
+      bot.isSleeping = true;
+      bot.emit('sleep');
+    }
+  });
+
+  bot.on('entityWake', function(entity) {
+    if (entity === bot.entity) {
+      bot.isSleeping = false;
+      bot.emit('wake');
+    }
+  });
+
+  bot.wake = wake;
+  bot.sleep = sleep;
+}
+
+},{"assert":917}],142:[function(require,module,exports){
+var instruments = require('../enums/instruments')
+  , Vec3 = require('vec3').Vec3
+
+module.exports = inject;
+
+function inject(bot) {
+  bot.client.on('block_action', function(packet) {
+    // block action
+    var pt = new Vec3(packet.x, packet.y, packet.z);
+    var block = bot.blockAt(pt);
+    if (packet.blockId === 25) {
+      bot.emit('noteHeard', block, instruments[packet.byte1], packet.byte2);
+    } else if (packet.blockId === 29 || packet.blockId === 33) {
+      bot.emit('pistonMove', block, packet.byte1, packet.byte2);
+    } else {
+      bot.emit('chestLidMove', block, packet.byte2);
+    }
+  });
+}
+
+},{"../enums/instruments":132,"vec3":168}],143:[function(require,module,exports){
+(function (Buffer){
+var vec3 = require('vec3')
+  , Vec3 = vec3.Vec3
+  , assert = require('assert')
+  , zlib = require('zlib')
+  , Block = require('../block')
+  , Painting = require('../painting')
+  , Location = require('../location')
+
+module.exports = inject;
+
+var paintingFaceToVec = [
+  new Vec3(0, 0, -1),
+  new Vec3(-1, 0, 0),
+  new Vec3(0, 0, 1),
+  new Vec3(1, 0, 0),
+];
+
+function inject(bot) {
+  var columns = {};
+  var signs = {};
+  var paintingsByPos = {};
+  var paintingsById = {};
+
+  function addPainting(painting) {
+    paintingsById[painting.id] = painting;
+    paintingsByPos[painting.position] = painting;
+  }
+
+  function deletePainting(painting) {
+    delete paintingsById[painting.id];
+    delete paintingsByPos[painting.position];
+  }
+
+  function addColumn(args) {
+    var columnCorner = new Vec3(args.x * 16, 0, args.z * 16);
+    var key = columnKeyXZ(columnCorner.x, columnCorner.z);
+    if (! args.bitMap) {
+      // stop storing the chunk column
+      delete columns[key];
+      bot.emit("chunkColumnUnload", columnCorner);
+      return;
+    }
+    var column = columns[key];
+    if (! column) columns[key] = column = new Column();
+    var chunkIncluded = new Array(16);
+    var addIncluded = new Array(16);
+    var y;
+    for (y = 0; y < 16; ++y) {
+      chunkIncluded[y] = args.bitMap & (1 << y);
+      addIncluded[y] = args.addBitMap & (1 << y);
+    }
+
+    var offset = 0;
+
+    // block types
+    var size = 4096;
+    for (y = 0; y < 16; ++y) {
+      column.blockType[y] = chunkIncluded[y] ?
+        args.data.slice(offset, offset + size) : null;
+      offset = chunkIncluded[y] ? offset + size : offset;
+    }
+    // block metadata
+    size = 2048;
+    for (y = 0; y < 16; ++y) {
+      column.metadata[y] = chunkIncluded[y] ?
+        args.data.slice(offset, offset + size) : null;
+      offset = chunkIncluded[y] ? offset + size : offset;
+    }
+    // light
+    for (y = 0; y < 16; ++y) {
+      column.light[y] = chunkIncluded[y] ?
+        args.data.slice(offset, offset + size) : null;
+      offset = chunkIncluded[y] ? offset + size : offset;
+    }
+    // sky light
+    if (args.skyLightSent) {
+      for (y = 0; y < 16; ++y) {
+        column.skyLight[y] = chunkIncluded[y] ?
+          args.data.slice(offset, offset + size) : null;
+        offset = chunkIncluded[y] ? offset + size : offset;
+      }
+    }
+    // add
+    for (y = 0; y < 16; ++y) {
+      column.add[y] = addIncluded[y] ?
+        args.data.slice(offset, offset + size) : null;
+      offset = addIncluded[y] ? offset + size : offset;
+    }
+    // biome
+    if (args.groundUp) {
+      size = 256;
+      column.biome = args.data.slice(offset, offset + size);
+      offset += size;
+    }
+
+    assert.strictEqual(offset, args.data.length);
+    bot.emit("chunkColumnLoad", columnCorner, column);
+  }
+
+  function blockAt(absolutePoint) {
+    var loc = new Location(absolutePoint);
+    var key = columnKeyXZ(loc.chunkCorner.x, loc.chunkCorner.z);
+    var column = columns[key];
+    // null column means chunk not loaded
+    if (! column) return null;
+
+    var blockType = bite(column.blockType);
+
+    var nibbleIndex = loc.blockIndex >> 1;
+    var lowNibble = loc.blockIndex % 2 === 1;
+
+    var biomeId = column.biome.readUInt8(loc.biomeBlockIndex);
+
+    var block = new Block(blockType, biomeId);
+    block.metadata = nib(column.metadata);
+    block.light = nib(column.light);
+    block.skyLight = nib(column.skyLight);
+    block.add = nib(column.add);
+    block.position = loc.floored;
+    block.signText = signs[loc.floored];
+    block.painting = paintingsByPos[loc.floored];
+
+    return block;
+
+    function bite(array) {
+      var buf = array[loc.chunkYIndex];
+      return buf ? buf.readUInt8(loc.blockIndex) : 0;
+    }
+
+    function nib(array) {
+      var buf = array[loc.chunkYIndex];
+      return buf ? nibble(buf.readUInt8(nibbleIndex), lowNibble) : 0;
+    }
+  }
+
+  function emitBlockUpdate(oldBlock, newBlock) {
+    bot.emit("blockUpdate", oldBlock, newBlock);
+    var position = oldBlock ? oldBlock.position :
+      (newBlock ? newBlock.position : null);
+    if (position) bot.emit("blockUpdate:" + newBlock.position, oldBlock, newBlock);
+  }
+
+  function updateBlock(point, type, metadata) {
+    var oldBlock = blockAt(point);
+    var loc = new Location(point);
+    var nibbleIndex = loc.blockIndex >> 1;
+    var key = columnKeyXZ(loc.chunkCorner.x, loc.chunkCorner.z);
+    var column = columns[key];
+    // sometimes minecraft server sends us block updates before it sends
+    // us the column that the block is in. ignore this.
+    if (! column) return;
+    var blockTypeBuffer = column.blockType[loc.chunkYIndex];
+    // if it's null, it was all air, but now we're inserting a block.
+    if (! blockTypeBuffer) {
+      blockTypeBuffer = new Buffer(4096);
+      blockTypeBuffer.fill(0);
+      column.blockType[loc.chunkYIndex] = blockTypeBuffer;
+    }
+    blockTypeBuffer.writeUInt8(type, loc.blockIndex);
+    var metadataBuffer = column.metadata[loc.chunkYIndex];
+    if (! metadataBuffer) {
+      metadataBuffer = new Buffer(2048);
+      metadataBuffer.fill(0);
+      column.metadata[loc.chunkYIndex] = metadataBuffer;
+    }
+    var oldValue = metadataBuffer.readUInt8(nibbleIndex);
+    var nibbleValue = (loc.blockIndex % 2 === 0) ? metadata << 4 : metadata;
+    metadataBuffer.writeUInt8(nibbleValue | oldValue, nibbleIndex);
+
+    delete signs[loc.floored];
+
+    var painting = paintingsByPos[loc.floored];
+    if (painting) deletePainting(painting);
+
+    emitBlockUpdate(oldBlock, blockAt(point));
+  }
+
+  bot.client.on('map_chunk', function(packet) {
+    zlib.inflate(packet.compressedChunkData, function(err, inflated) {
+      if (err) return bot.emit('error', err);
+
+      addColumn({
+        x: packet.x,
+        z: packet.z,
+        bitMap: packet.bitMap,
+        addBitMap: packet.addBitMap,
+        skyLightSent: true,
+        groundUp: packet.groundUp,
+        data: inflated,
+      });
+    });
+  });
+
+
+  bot.client.on('map_chunk_bulk', function(packet) {
+    zlib.inflate(packet.compressedChunkData, function(err, inflated) {
+      if(err) return bot.emit('error', err);
+
+      var offset = 0;
+      var meta, i, size;
+      for (i = 0; i < packet.meta.length; ++i) {
+        meta = packet.meta[i];
+        size = (8192 + (packet.skyLightSent ? 2048 : 0)) *
+          onesInShort(meta.bitMap) +
+          2048 * onesInShort(meta.addBitMap) + 256;
+        addColumn({
+          x: meta.x,
+          z: meta.z,
+          bitMap: meta.bitMap,
+          addBitMap: meta.addBitMap,
+          skyLightSent: packet.skyLightSent,
+          groundUp: true,
+          data: inflated.slice(offset, offset + size),
+        });
+        offset += size;
+      }
+
+      assert.strictEqual(offset, inflated.length);
+    });
+  });
+
+  bot.client.on('multi_block_change', function(packet) {
+    // multi block change
+    var i, record, metadata, type, blockX, blockZ, y, pt;
+    for (i = 0; i < packet.recordCount; ++i) {
+      record = packet.data.readUInt32BE(i * 4);
+      metadata = (record & 0x0000000f) >> 0;
+      type     = (record & 0x0000fff0) >> 4;
+      y        = (record & 0x00ff0000) >> 16;
+      blockZ   = (record & 0x0f000000) >> 24;
+      blockX   = (record & 0xf0000000) >> 28;
+
+      pt = new Vec3(packet.chunkX * 16 + blockX, y, packet.chunkZ * 16 + blockZ);
+      updateBlock(pt, type, metadata);
+    }
+  });
+
+  bot.client.on('block_change', function(packet) {
+    // block change
+    var pt = new Vec3(packet.x, packet.y, packet.z);
+    updateBlock(pt, packet.type, packet.metadata);
+  });
+
+  bot.client.on('explosion', function(packet) {
+    // explosion
+    packet.affectedBlockOffsets.forEach(function(offset) {
+      var pt = vec3(offset).offset(packet.x, packet.y, packet.z);
+      updateBlock(pt.floor(), 0, 0);
+    });
+  });
+
+  bot.client.on('spawn_entity_painting', function(packet) {
+    var pos = new Vec3(packet.x, packet.y, packet.z);
+    var painting = new Painting(packet.entityId,
+      pos, packet.title, paintingFaceToVec[packet.direction]);
+    addPainting(painting);
+  });
+
+  bot.client.on('entity_destroy', function(packet) {
+    // destroy entity
+    packet.entityIds.forEach(function(id) {
+      var painting = paintingsById[id];
+      if (painting) deletePainting(painting);
+    });
+  });
+
+  bot.client.on('update_sign', function(packet) {
+    // update sign
+    var pos = new Vec3(packet.x, packet.y, packet.z);
+    var oldBlock = blockAt(pos);
+    var str = packet.text1 + "\n" + packet.text2 + "\n" + packet.text3 + "\n" + packet.text4;
+    signs[pos] = str;
+    emitBlockUpdate(oldBlock, blockAt(pos));
+  });
+  bot.updateSign = function(block, text) {
+    var lines = text.split("\n");
+    if (lines.length > 4) {
+      bot.emit("error", new Error("too many lines for sign text"));
+      return;
+    }
+    for (var i = 0; i < lines.length; ++i) {
+      if (lines[i].length > 15) {
+        bot.emit("error", new Error("signs have max line length 15"));
+        return;
+      }
+    }
+    bot.client.write('update_sign', {
+      x: block.position.x,
+      y: block.position.y,
+      z: block.position.z,
+      text1: lines[0] || "",
+      text2: lines[1] || "",
+      text3: lines[2] || "",
+      text4: lines[3] || "",
+    });
+  }
+
+  // if we get a respawn packet and the dimension is changed,
+  // unload all chunks from memory.
+  var dimension;
+  bot.client.on('login', function(packet) {
+    dimension = packet.dimension
+  });
+  bot.client.on('respawn', function(packet) {
+    if (dimension === packet.dimension) return;
+    dimension = packet.dimension;
+    columns = {};
+  });
+
+  bot.blockAt = blockAt;
+  bot._updateBlock = updateBlock;
+}
+
+function columnKeyXZ(x, z) {
+  return x + ',' + z;
+}
+
+function onesInShort(n) {
+  n = n & 0xffff;
+  var count = 0;
+  for (var i = 0; i < 16; ++i) {
+    count = ((1 << i) & n) ? count + 1 : count;
+  }
+  return count;
+}
+
+function nibble(wholeByte, low) {
+  return low ?
+    wholeByte & 0x0f :
+    wholeByte >> 4;
+}
+
+function Column() {
+  this.blockType = new Array(16);
+  this.metadata = new Array(16);
+  this.light = new Array(16);
+  this.skyLight = new Array(16);
+  this.add = new Array(16);
+  this.biome = null;
+}
+
+
+}).call(this,require("buffer").Buffer)
+},{"../block":123,"../location":138,"../painting":140,"assert":917,"buffer":933,"vec3":168,"zlib":932}],144:[function(require,module,exports){
+var assert = require('assert')
+  , quoteMeta = require('quotemeta')
+  , ChatMessage = require('../chat_message')
+  , LEGAL_CHARS = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»§'
+  , CHAT_LENGTH_LIMIT = 100
+
+module.exports = inject;
+
+var quotedLegalChars = quoteMeta(LEGAL_CHARS);
+var incomingFilter = new RegExp("([^" + quotedLegalChars + "]|§.)", 'g');
+var outgoingFilter = new RegExp("([^" + quotedLegalChars + "])", 'g');
+
+function inject(bot) {
+  bot.client.on('chat', function(packet) {
+
+    // used by minecraft <= 1.6.1 and craftbukkit >= 1.6.2
+    function parseOldMessage(message) {
+      var legalContent = message.replace(incomingFilter, '');
+      var match, username, content;
+      if (match = legalContent.match(/^<(?:.+? )?(.+?)> (.*)$/)) {
+        // spoken chat
+        username = match[1];
+        content = match[2];
+        bot.emit('chat', username, content, message);
+      } else if (match = legalContent.match(/^(?:.+? )?(.+?) (?:whispers to you:|whispers) (.*)$/)) {
+        // whispered chat
+        username = match[1];
+        content = match[2];
+        bot.emit('whisper', username, content, message);
+      }
+    }
+
+    /**
+     * Parse 1.6.* version message
+     * @param  {JSONObject} jsonMessage
+     * @return {void}
+     */
+    function parseJsonMessage6(jsonMessage) {
+      if (typeof jsonMsg.translate === 'string' && jsonMsg.translate.match(/^chat\./)) {
+        var username = jsonMsg.using[0];
+        var content = jsonMsg.using[1].replace(incomingFilter, '');
+        bot.emit('chat', username, content, jsonMessage.translate, jsonMessage)
+      } else if (jsonMsg.translate === "commands.message.display.incoming") {
+        username = jsonMsg.using[0];
+        content = jsonMsg.using[1].replace(incomingFilter, '');
+        bot.emit('whisper', username, content, jsonMsg.translate, jsonMsg);
+      } else if (typeof jsonMsg.text === 'string') {
+        // craftbukkit message format
+        parseOldMessage(jsonMsg.text);
+      }
+      bot.emit('message', jsonMsg);
+    }
+
+    /**
+     * Parse 1.7+ version message
+     * @param  {JSONObject} jsonMessage
+     * @return {void}
+     */
+    function parseJsonMessage7(jsonMessage) {
+      var chatMessage = new ChatMessage(jsonMessage);
+      bot.emit('message', chatMessage);
+      // Now parse the message type
+      switch(chatMessage.translate) {
+        case undefined: {
+          parseOldMessage(chatMessage.toString());
+          break;
+        }
+        case 'chat.type.text': {
+          var username = chatMessage.getText(0);
+          var extendedMessage = chatMessage.toString().substring(username.length).trim();
+          bot.emit('chat', username, extendedMessage, chatMessage.translate, chatMessage);
+          break;
+        }
+        case 'commands.message.display.incoming': {
+          var username = chatMessage.getText(0);
+          var extendedMessage = chatMessage.toString().substring(username.length).trim();
+          bot.emit('whisper', username, extendedMessage, chatMessage.translate, chatMessage);
+          break;
+        }
+      }
+    }
+
+    // used by minecraft >= 1.6.2
+    function parseJsonMessage(jsonMessage) {
+      if(jsonMessage.using) {
+        parseJsonMessage6(jsonMessage);
+      }else {
+        parseJsonMessage7(jsonMessage);
+      }      
+    }
+
+    var jsonMsg;
+    // Honestly we should be checking against the server version
+    try {
+      jsonMsg = JSON.parse(packet.message);
+    } catch (e) {
+      // old message format
+      bot.emit('message', packet.message);
+      parseOldMessage(packet.message);
+      return;
+    }
+    parseJsonMessage(jsonMsg)
+  });
+
+  function chatWithHeader(header, message) {
+    message = message.replace(outgoingFilter, '');
+    var lengthLimit = CHAT_LENGTH_LIMIT - header.length;
+    message.split("\n").forEach(function(subMessage) {
+      if (! subMessage) return;
+      var i, smallMsg;
+      for (i = 0; i < subMessage.length; i += lengthLimit) {
+        smallMsg = header + subMessage.substring(i, i + lengthLimit);
+        bot.client.write('chat', {message: smallMsg});
+      }
+    });
+  }
+  bot.whisper = function(username, message) {
+    chatWithHeader("/tell " + username + " ", message);
+  };
+  bot.chat = function(message) {
+    chatWithHeader("", message);
+  };
+}
+
+},{"../chat_message":124,"assert":917,"quotemeta":167}],145:[function(require,module,exports){
+var assert = require('assert');
+var toolMultipliers = require('../enums/materials');
+
+module.exports = inject;
+
+function inject(bot) {
+  var swingInterval = null;
+  var waitTimeout = null;
+
+  bot.targetDigBlock = null;
+  bot.lastDigTime = null
+
+  function dig(block, cb) {
+    if (bot.targetDigBlock) bot.stopDigging();
+    cb = cb || noop;
+    bot.lookAt(block.position);
+    bot.client.write('block_dig', {
+      status: 0, // start digging
+      x: block.position.x,
+      y: block.position.y,
+      z: block.position.z,
+      face: 1, // hard coded to always dig from the top
+    });
+    var waitTime = bot.digTime(block);
+    waitTimeout = setTimeout(finishDigging, waitTime);
+    bot.targetDigBlock = block;
+    swingInterval = setInterval(function() {
+      bot.client.write('arm_animation', {
+        entityId: bot.entity.id,
+        animation: 1,
+      });
+    }, 350);
+    var eventName = "blockUpdate:" + block.position;
+    bot.on(eventName, onBlockUpdate);
+
+    bot.stopDigging = function() {
+      bot.removeListener(eventName, onBlockUpdate);
+      clearInterval(swingInterval);
+      clearTimeout(waitTimeout);
+      swingInterval = null;
+      waitTimeout = null;
+      bot.client.write('block_dig', {
+        status: 1, // cancel digging
+        x: bot.targetDigBlock.position.x,
+        y: bot.targetDigBlock.position.y,
+        z: bot.targetDigBlock.position.z,
+        face: 1, // hard coded to always dig from the top
+      });
+      var block = bot.targetDigBlock;
+      bot.targetDigBlock = null;
+      bot.lastDigTime = new Date();
+      bot.emit("diggingAborted", block);
+      bot.stopDigging = noop;
+    };
+
+    function onBlockUpdate(oldBlock, newBlock) {
+      bot.removeListener(eventName, onBlockUpdate);
+      clearInterval(swingInterval);
+      clearTimeout(waitTimeout);
+      swingInterval = null;
+      waitTimeout = null;
+      bot.targetDigBlock = null;
+      bot.lastDigTime = new Date();
+      if (newBlock.type === 0) {
+        bot.emit("diggingCompleted", newBlock);
+        cb();
+      } else {
+        bot.emit("diggingAborted", newBlock);
+        var err = new Error("digging interruption");
+        err.code = "EDIGINTERRUPT";
+        cb(err);
+      }
+    }
+
+    function finishDigging() {
+      clearInterval(swingInterval);
+      clearTimeout(waitTimeout);
+      swingInterval = null;
+      waitTimeout = null;
+      bot.client.write('block_dig', {
+        status: 2, // finish digging
+        x: bot.targetDigBlock.position.x,
+        y: bot.targetDigBlock.position.y,
+        z: bot.targetDigBlock.position.z,
+        face: 1, // hard coded to always dig from the top
+      });
+      bot.targetDigBlock = null;
+      bot.lastDigTime = new Date();
+      bot._updateBlock(block.position, 0, 0);
+    }
+  }
+
+  function canDigBlock(block) {
+    return block && block.diggable && block.position.offset(0.5, 0.5, 0.5).distanceTo(bot.entity.position) < 6;
+  }
+
+  function digTime(block) {
+    if (bot.game.gameMode === 'creative') return 0;
+    var time = 1000 * block.hardness * 1.5;
+    if (block.harvestTools) {
+      var penalty = !bot.heldItem || !block.harvestTools[bot.heldItem.type];
+      if (penalty) return time * 10 / 3;
+    }
+    var toolMultiplier = toolMultipliers[block.material];
+    if (toolMultiplier && bot.heldItem) {
+      var multiplier = toolMultiplier[bot.heldItem.type];
+      if (multiplier) time /= multiplier;
+    }
+    if (! bot.entity.onGround) time *= 5;
+    var blockIn = bot.blockAt(bot.entity.position);
+    var inWater = blockIn.type === 9; // only stationary water counts
+    if (inWater) time *= 5;
+    return time;
+  }
+
+  bot.dig = dig;
+  bot.stopDigging = noop;
+  bot.canDigBlock = canDigBlock;
+  bot.digTime = digTime;
+}
+
+function noop(err) {
+  if (err) throw err;
+}
+
+},{"../enums/materials":134,"assert":917}],146:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3
+  , _ = require('lodash')
+  , Entity = require('../entity')
+  , conv = require('../conversions')
+  , NAMED_ENTITY_HEIGHT = 1.62
+  , CROUCH_HEIGHT = NAMED_ENTITY_HEIGHT - 0.08
+
+module.exports = inject;
+
+var animationEvents = {
+  1: 'entitySwingArm',
+  2: 'entityHurt',
+  3: 'entityWake',
+  5: 'entityEat',
+  104: 'entityCrouch',
+  105: 'entityUncrouch',
+};
+
+var entityStatusEvents = {
+  2: 'entityHurt',
+  3: 'entityDead',
+  6: 'entityTaming',
+  7: 'entityTamed',
+  8: 'entityShakingOffWater',
+  10: 'entityEatingGrass',
+};
+
+var spawnedObjectTypes = {
+  1: 'boat',
+  2: 'itemStack',
+  10: 'minecart',
+  11: 'minecartChest',
+  12: 'minecartPowered',
+  50: 'activatedTnt',
+  51: 'enderCrystal',
+  60: 'arrowProjectile',
+  61: 'snowballProjectile',
+  62: 'eggProjectile',
+  65: 'thrownEnderpearl',
+  66: 'witherSkull',
+  70: 'fallingObjects',
+  71: 'itemFrames',
+  72: 'eyeOfEnder',
+  73: 'thrownPotion',
+  74: 'fallingDragonEgg',
+  75: 'thrownExperienceBottle',
+  90: 'fishingFloat',
+};
+
+var mobTypes = {
+  50: "creeper",
+  51: "skeleton",
+  52: "spider",
+  53: "giantZombie",
+  54: "zombie",
+  55: "slime",
+  56: "ghast",
+  57: "zombiePigman",
+  58: "enderman",
+  59: "caveSpider",
+  60: "silverfish",
+  61: "blaze",
+  62: "magmaCube",
+  63: "enderDragon",
+  64: "wither",
+  65: "bat",
+  66: "witch",
+  90: "pig",
+  91: "sheep",
+  92: "cow",
+  93: "chicken",
+  94: "squid",
+  95: "wolf",
+  96: "mooshroom",
+  97: "snowman",
+  98: "ocelot",
+  99: "ironGolem",
+  120: "villager",
+};
+
+function inject(bot) {
+  
+  bot.findPlayer = bot.findPlayers = function(filter) {
+    var filterFn =  function(entity) {
+      if(entity.type !== 'player') return false;
+      if(filter == null) return true;
+      if(typeof filter === 'object' && filter instanceof RegExp) {
+        return entity.username.search(filter) !== -1;
+      }else if(typeof filter === 'function') {
+        return filter(entity);
+      }else if(typeof filter === 'string') {
+        return entity.username.toLowerCase() === filter.toLowerCase();
+      }
+      return false;
+    }
+    var resultSet = _.transform(bot.entities, function(players, entity) {
+      if(filterFn(entity)) players.push(entity);
+    }, []);
+
+    if(typeof filter === 'string') {
+      switch(resultSet.length) {
+        case 0: return null;
+        case 1: return resultSet[0];
+        default: return resultSet;
+      }
+    }
+    return resultSet;
+  }
+
+  bot.players = {}
+  bot.entities = {};
+
+  bot.client.once('login', function(packet) {
+    // login
+    bot.entity = fetchEntity(packet.entityId);
+    bot.entity.username = bot.username;
+    bot.entity.type = 'player';
+  });
+
+  bot.client.on('entity_equipment', function(packet) {
+    // entity equipment
+    var entity = fetchEntity(packet.entityId);
+    entity.setEquipment(packet.slot, packet.item);
+    bot.emit('entityEquip', entity);
+  });
+
+  bot.client.on('bed', function(packet) {
+    // use bed
+    var entity = fetchEntity(packet.entityId);
+    entity.position.set(packet.x, packet.y, packet.z);
+    bot.emit('entitySleep', entity);
+  });
+
+  bot.client.on('animation', function(packet) {
+    // animation
+    var entity = fetchEntity(packet.entityId);
+    var eventName = animationEvents[packet.animation];
+    if (eventName) bot.emit(eventName, entity);
+  });
+
+  bot.client.on('named_entity_spawn', function(packet) {
+    // spawn named entity
+    var entity = fetchEntity(packet.entityId);
+    entity.type = 'player';
+    entity.username = packet.playerName;
+    entity.uuid = packet.playerUUID;
+    entity.dataBlobs = packet.data;
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    entity.height = NAMED_ENTITY_HEIGHT;
+    entity.metadata = parseMetadata(packet.metadata);
+    if(!bot.players[entity.username]) {
+      bot.players[entity.username] = {
+        username: entity.username,
+        ping: 999,
+        entity: entity
+      };
+    }
+    bot.emit('entitySpawn', entity);
+  });
+  bot.on("entityCrouch", function(entity) {
+    entity.height = CROUCH_HEIGHT;
+  });
+  bot.on("entityUncrouch", function(entity) {
+    entity.height = NAMED_ENTITY_HEIGHT;
+  });
+
+  bot.client.on('collect', function(packet) {
+    // collect item
+    var collector = fetchEntity(packet.collectorEntityId);
+    var collected = fetchEntity(packet.collectedEntityId);
+    bot.emit('playerCollect', collector, collected);
+  });
+
+  bot.client.on('spawn_entity', function(packet) {
+    // spawn object/vehicle
+    var entity = fetchEntity(packet.entityId);
+    entity.type = 'object';
+    entity.objectType = spawnedObjectTypes[packet.type];
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    entity.objectData = packet.objectData;
+    bot.emit('entitySpawn', entity);
+  });
+
+  bot.client.on('spawn_entity_experience_orb', function(packet) {
+    var entity = fetchEntity(packet.entityId);
+    entity.type = 'orb';
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    entity.count = packet.count;
+    bot.emit('entitySpawn', entity);
+  });
+
+  bot.client.on('spawn_entity_living', function(packet) {
+    // spawn mob
+    var entity = fetchEntity(packet.entityId);
+    entity.type = 'mob';
+    entity.mobType = mobTypes[packet.type];
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    entity.headPitch = conv.fromNotchianPitchByte(packet.headPitch);
+    var notchVel = new Vec3(packet.velocityX, packet.velocityY, packet.velocityZ);
+    entity.velocity.update(conv.fromNotchVelocity(notchVel));
+    entity.metadata = parseMetadata(packet.metadata);
+    bot.emit('entitySpawn', entity);
+  });
+
+  bot.client.on('entity_velocity', function(packet) {
+    // entity velocity
+    var entity = fetchEntity(packet.entityId);
+    var notchVel = new Vec3(packet.velocityX, packet.velocityY, packet.velocityZ);
+    entity.velocity.update(conv.fromNotchVelocity(notchVel));
+  });
+
+  bot.client.on('entity_destroy', function(packet) {
+    // destroy entity
+    packet.entityIds.forEach(function(id) {
+      var entity = fetchEntity(id);
+      bot.emit('entityGone', entity);
+      entity.isValid = false;
+      if(entity.username && bot.players[entity.username]) {
+        bot.players[entity.username].entity = null;
+      }
+      delete bot.entities[id];
+    });
+  });
+
+  bot.client.on('rel_entity_move', function(packet) {
+    // entity relative move
+    var entity = fetchEntity(packet.entityId);
+    entity.position.translate(packet.dX / 32, packet.dY / 32, packet.dZ / 32);
+    bot.emit('entityMoved', entity);
+  });
+
+  bot.client.on('entity_look', function(packet) {
+    // entity look
+    var entity = fetchEntity(packet.entityId);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    bot.emit('entityMoved', entity);
+  });
+
+  bot.client.on('entity_move_look', function(packet) {
+    // entity look and relative move
+    var entity = fetchEntity(packet.entityId);
+    entity.position.translate(packet.dX / 32, packet.dY / 32, packet.dZ / 32);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    bot.emit('entityMoved', entity);
+  });
+
+  bot.client.on('entity_teleport', function(packet) {
+    // entity teleport
+    var entity = fetchEntity(packet.entityId);
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
+    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
+    bot.emit('entityMoved', entity);
+  });
+
+  bot.client.on('entity_head_rotation', function(packet) {
+    // entity head look
+    var entity = fetchEntity(packet.entityId);
+    entity.headYaw = conv.fromNotchianYawByte(packet.headYaw);
+    bot.emit('entityMoved', entity);
+  });
+
+  bot.client.on('entity_status', function(packet) {
+    // entity status
+    var entity = fetchEntity(packet.entityId);
+    var eventName = entityStatusEvents[packet.status];
+    if (eventName) bot.emit(eventName, entity);
+  });
+
+  bot.client.on('attach_entity', function(packet) {
+    // attach entity
+    var entity = fetchEntity(packet.entityId);
+    if (packet.vehicleId === -1) {
+      var vehicle = entity.vehicle;
+      delete entity.vehicle;
+      bot.emit('entityDetach', entity, vehicle);
+    } else {
+      entity.vehicle = fetchEntity(packet.vehicleId);
+      bot.emit('entityAttach', entity, entity.vehicle);
+    }
+  });
+
+  bot.client.on('entity_metadata', function(packet) {
+    // entity metadata
+    var entity = fetchEntity(packet.entityId);
+    entity.metadata = parseMetadata(packet.metadata);
+    bot.emit('entityUpdate', entity);
+  });
+
+  bot.client.on('entity_effect', function(packet) {
+    // entity effect
+    var entity = fetchEntity(packet.entityId);
+    var effect = {
+      id: packet.effectId,
+      amplifier: packet.amplifier,
+      duration: packet.duration,
+    };
+    entity.effects[effect.id] = effect;
+    bot.emit('entityEffect', entity, effect);
+  });
+
+  bot.client.on('remove_entity_effect', function(packet) {
+    // remove entity effect
+    var entity = fetchEntity(packet.entityId);
+    var effect = entity.effects[packet.effectId];
+    delete entity.effects[effect.id];
+    bot.emit('entityEffectEnd', entity, effect);
+  });
+
+  bot.client.on('spawn_entity_weather', function(packet) {
+    // spawn global entity
+    var entity = fetchEntity(packet.entityId);
+    entity.type = 'global';
+    entity.globalType = 'thunderbolt';
+    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
+    bot.emit('entitySpawn', entity);
+  });
+
+  bot.on('spawn', function() {
+    bot.emit('entitySpawn', bot.entity);
+  });
+  bot.client.on('player_info', function(packet) {
+    // player list item
+    var playerEntity = bot.findPlayers(packet.playerName);
+    var player = bot.players[packet.playerName];
+    if(packet.online) {
+      // New Player
+      if(!player) {
+        player = bot.players[packet.playerName] = { username: packet.playerName, ping: packet.ping };
+        bot.emit('playerJoined', player);
+        // Just an Update
+      } else player.ping = packet.ping;
+      
+      player.entity = playerEntity;
+    // Player has parted
+    } else {
+      player.entity = null;
+      delete bot.players[packet.playerName];
+      bot.emit('playerLeft', player);
+    }
+  });
+
+  // attaching to a vehicle
+  bot.client.on('attach_entity', function(packet) {
+    if (packet.entityId !== bot.entity.id) return;
+    var vehicle = bot.vehicle;
+    if (packet.vehicleId === -1) {
+      bot.vehicle = null;
+      bot.emit("dismount", vehicle);
+    } else {
+      bot.vehicle = bot.entities[packet.vehicleId];
+      bot.emit("mount");
+    }
+  });
+
+
+  bot.attack = attack;
+  bot.mount = mount;
+  bot.dismount = dismount;
+  bot.useOn = useOn;
+
+  function useOn(target) {
+    // TODO: check if not crouching will make make this action always use the item
+    useEntity(target, false);
+  }
+
+  function attack(target, swing) {
+    if(swing)
+    {
+      bot.client.write('arm_animation', {
+        entityId: target.id,
+        animation: 1
+      });
+    }
+    useEntity(target, true);
+  }
+
+  function mount(target) {
+    // TODO: check if crouching will make make this action always mount
+    useEntity(target, false);
+  }
+
+  function dismount(target) {
+    if (bot.vehicle) {
+      mount(bot.vehicle);
+    } else {
+      bot.emit("error", new Error("dismount: not mounted"));
+    }
+  }
+
+  function useEntity(target, leftClick) {
+    bot.client.write('use_entity', {
+      target: target.id,
+      leftClick: leftClick,
+    });
+  }
+
+  function fetchEntity(id) {
+    return bot.entities[id] || (bot.entities[id] = new Entity(id));
+  }
+}
+
+function parseMetadata(metadata) {
+  var o = {};
+  metadata.forEach(function(pair) {
+    o[pair.key] = pair.value;
+  });
+  return o;
+}
+
+},{"../conversions":126,"../entity":129,"lodash":159,"vec3":168}],147:[function(require,module,exports){
+module.exports = inject;
+
+function inject(bot) {
+  bot.experience = {
+    level: null,
+    points: null,
+    progress: null,
+  };
+  bot.client.on('experience', function(packet) {
+    bot.experience.level = packet.level;
+    bot.experience.points = packet.totalExperience;
+    bot.experience.progress = packet.experienceBar;
+    bot.emit('experience');
+  });
+}
+
+},{}],148:[function(require,module,exports){
+(function (Buffer){
+module.exports = inject;
+
+var dimensionNames = {
+  '-1': 'nether',
+  '0': 'overworld',
+  '1': 'end',
+};
+
+var difficultyNames = ['peaceful', 'easy', 'normal', 'hard'];
+
+function inject(bot, options) {
+  bot.game = {};
+
+  bot.client.on('login', function(packet) {
+    bot.game.levelType = packet.levelType;
+    bot.game.gameMode = parseGameMode(packet.gameMode);
+    bot.game.hardcore = parseHardcore(packet.gameMode);
+    bot.game.dimension = dimensionNames[packet.dimension];
+    bot.game.difficulty = difficultyNames[packet.difficulty];
+    bot.game.maxPlayers = packet.maxPlayers;
+    bot.emit('login');
+    bot.emit('game');
+    bot.client.write('held_item_slot', {slotId: 0});
+    bot.client.write('custom_payload', {channel: 'MC|Brand', data: new Buffer('vanilla')})
+
+    //autoRespawn(bot);
+  });
+
+  bot.client.on('respawn', function(packet) {
+    bot.game.levelType = packet.levelType;
+    bot.game.dimension = dimensionNames[packet.dimension];
+    bot.game.difficulty = difficultyNames[packet.difficulty];
+    bot.game.gameMode = parseGameMode(packet.gameMode);
+    bot.game.hardcore = parseHardcore(packet.gameMode);
+    bot.emit('game');
+  });
+
+  bot.client.on('game_state_change', function(packet) {
+    if (packet.reason === 3) {
+      bot.game.gameMode = parseGameMode(packet.gameMode);
+      bot.emit('game');
+    }
+  });
+}
+
+var gameModes = ['survival', 'creative', 'adventure'];
+
+function parseGameMode(gameModeBits) {
+  return gameModes[(gameModeBits & 0x03)];
+}
+
+function parseHardcore(gameModeBits) {
+  return !!(gameModeBits & 0x04);
+}
+
+/**
+ * AutoRespawn if dead on login
+ * Waits 2 seconds for the update_health packet,
+ * on timeout of this packet it sends a respawn request
+ * I can't think of a cleaner way to do this at the moment.
+ * @param  {Bot} bot
+ * @return {void}
+ */
+function autoRespawn(bot) {
+  var timer = setTimeout(function() {
+    bot.client.write('client_command', { payload: 0 });
+  }, 2000);
+  bot.client.once('update_health', function() {
+    clearTimeout(timer);
+  })
+}
+
+
+}).call(this,require("buffer").Buffer)
+},{"buffer":933}],149:[function(require,module,exports){
+module.exports = inject;
+
+function inject(bot, options) {
+  bot.isAlive = false;
+
+  bot.client.on('respawn', function(packet) {
+    bot.isAlive = false;
+    bot.emit("respawn");
+  });
+
+  bot.client.on('update_health', function(packet) {
+    bot.health = packet.health;
+    bot.food = packet.food;
+    bot.foodSaturation = packet.foodSaturation;
+    bot.emit('health');
+    if (bot.health <= 0) {
+      bot.isAlive = false;
+      bot.emit('death');
+      bot.client.write('client_command', { payload: 0 });
+    } else if (bot.health > 0 && !bot.isAlive) {
+      bot.isAlive = true;
+      bot.emit('spawn');
+    }
+  });
+}
+
+},{}],150:[function(require,module,exports){
+(function (process){
+var Item = require('../item')
+  , assert = require('assert')
+  , Recipe = require('../recipe')
+  , windows = require('../windows')
+  , Chest = require('../chest')
+  , Furnace = require('../furnace')
+  , Dispenser = require('../dispenser')
+  , EnchantmentTable = require('../enchantment_table')
+
+module.exports = inject;
+
+var QUICK_BAR_START = 36;
+var QUICK_BAR_COUNT = 9;
+
+// ms to wait before clicking on a tool so the server can send the new
+// damage information
+var DIG_CLICK_TIMEOUT = 500;
+
+var armorSlots = {
+  head: 5,
+  torso: 6,
+  legs: 7,
+  feet: 8,
+};
+
+function inject(bot) {
+  var nextActionNumber = 0;
+  var windowClickQueue = [];
+  var nextQuickBarSlot = 0;
+
+  // 0-8, null = uninitialized
+  // which quick bar slot is selected
+  bot.quickBarSlot = null;
+  bot.inventory = new windows.InventoryWindow(0, "Inventory", 44);
+  bot.currentWindow = null;
+  bot.heldItem = null;
+
+  function activateItem() {
+    bot.client.write('block_place', {
+      x: -1,
+      y: 255,
+      z: -1,
+      direction: -1,
+      heldItem: itemToNotch(bot.heldItem),
+      cursorX: -1,
+      cursorY: -1,
+      cursorZ: -1,
+    });
+  }
+
+  function deactivateItem() {
+    bot.client.write('block_dig', {
+      status: 5,
+      x: 0,
+      y: 0,
+      z: 0,
+      face: 255,
+    });
+  }
+
+
+  function putSelectedItemRange(start, end, window, slot, cb) {
+    // put the selected item back indow the slot range in window
+
+    // try to put it in an item that already exists and just increase
+    // the count.
+    tryToJoin();
+
+    function tryToJoin() {
+      if (! window.selectedItem) {
+        cb();
+        return;
+      }
+      var item = window.findItemRange(start, end, window.selectedItem.type,
+          window.selectedItem.metadata, true);
+      if (item) {
+        clickWindow(item.slot, 0, 0, onClick);
+      } else {
+        tryToFindEmpty();
+      }
+
+      function onClick(err) {
+        if (err) {
+          cb(err);
+        } else {
+          tryToJoin();
+        }
+      }
+    }
+    function tryToFindEmpty() {
+      var emptySlot = window.firstEmptySlotRange(start, end);
+      if (emptySlot == null) {
+        // if there is still some leftover and slot is not null, click slot
+        if (slot == null) {
+          tossLeftover();
+        } else {
+          clickWindow(slot, 0, 0, tossLeftover);
+        }
+      } else {
+        clickWindow(emptySlot, 0, 0, cb);
+      }
+    }
+    function tossLeftover() {
+      if (window.selectedItem) {
+        clickWindow(-999, 0, 0, cb);
+      } else {
+        cb();
+      }
+    }
+  }
+
+  function activateBlock(block) {
+    // TODO: tell the server that we are not sneaking while doing this
+    bot.lookAt(block.position);
+    // swing arm animation
+    bot.client.write('arm_animation', {
+      entityId: bot.entity.id,
+      animation: 1,
+    });
+    // place block message
+    bot.client.write('block_place', {
+      x: block.position.x,
+      y: block.position.y,
+      z: block.position.z,
+      direction: 1,
+      heldItem: itemToNotch(bot.heldItem),
+      cursorX: 8,
+      cursorY: 8,
+      cursorZ: 8,
+    });
+  }
+
+  function openDispenser(dispenserBlock) {
+    assert.strictEqual(dispenserBlock.type, 23);
+    var dispenser = openBlock(dispenserBlock, Dispenser);
+    dispenser.deposit = deposit;
+    dispenser.withdraw = withdraw;
+    return dispenser;
+    function deposit(itemType, metadata, count, cb) {
+      var options = {
+        window: dispenser.window,
+        itemType: itemType,
+        metadata: metadata,
+        count: count,
+        sourceStart: dispenser.window.inventorySlotStart,
+        sourceEnd: dispenser.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+        destStart: 0,
+        destEnd: dispenser.window.inventorySlotStart,
+      };
+      transfer(options, cb);
+    }
+    function withdraw(itemType, metadata, count, cb) {
+      var options = {
+        window: dispenser.window,
+        itemType: itemType,
+        metadata: metadata,
+        count: count,
+        sourceStart: 0,
+        sourceEnd: dispenser.window.inventorySlotStart,
+        destStart: dispenser.window.inventorySlotStart,
+        destEnd: dispenser.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+      };
+      transfer(options, cb);
+    }
+  }
+
+  function openFurnace(furnaceBlock) {
+    assert.ok(furnaceBlock.type === 61 || furnaceBlock.type === 62);
+    var furnace = openBlock(furnaceBlock, Furnace);
+    furnace.takeInput = takeInput;
+    furnace.takeFuel = takeFuel;
+    furnace.takeOutput = takeOutput;
+    furnace.putInput = putInput;
+    furnace.putFuel = putFuel;
+    bot.client.on('craft_progress_bar', onUpdateWindowProperty);
+    furnace.once("close", onClose);
+    return furnace;
+    function onClose() {
+      bot.client.removeListener('craft_progress_bar', onUpdateWindowProperty);
+    }
+    function onUpdateWindowProperty(packet) {
+      if (!furnace.window) return;
+      if (packet.windowId !== furnace.window.id) return;
+      if (packet.property === 0) {
+        furnace.progress = packet.value / 200;
+      } else if (packet.property === 1) {
+        furnace.fuel = packet.value / 300;
+      }
+      furnace.emit("update");
+    }
+    function takeSomething(item, cb) {
+      assert.ok(item);
+      putAway(item.slot, function(err) {
+        if (err) {
+          cb(err);
+        } else {
+          cb(null, item);
+        }
+      });
+    }
+    function takeInput(cb) {
+      takeSomething(furnace.inputItem(), cb);
+    }
+    function takeFuel(cb) {
+      takeSomething(furnace.fuelItem(), cb);
+    }
+    function takeOutput(cb) {
+      takeSomething(furnace.outputItem(), cb);
+    }
+    function putSomething(destSlot, itemType, metadata, count, cb) {
+      var options = {
+        window: furnace.window,
+        itemType: itemType,
+        metadata: metadata,
+        count: count,
+        sourceStart: furnace.window.inventorySlotStart,
+        sourceEnd: furnace.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+        destStart: destSlot,
+      };
+      transfer(options, cb);
+    }
+    function putInput(itemType, metadata, count, cb) {
+      putSomething(0, itemType, metadata, count, cb);
+    }
+    function putFuel(itemType, metadata, count, cb) {
+      putSomething(1, itemType, metadata, count, cb);
+    }
+  }
+
+  function openEnchantmentTable(enchantmentTableBlock) {
+    assert.strictEqual(enchantmentTableBlock.type, 116);
+    var ready = false;
+    var enchantmentTable = openBlock(enchantmentTableBlock, EnchantmentTable);
+    resetEnchantmentOptions();
+    bot.client.on('craft_progress_bar', onUpdateWindowProperty);
+    enchantmentTable.on('updateSlot', onUpdateSlot);
+    enchantmentTable.once('close', onClose);
+    enchantmentTable.enchant = enchant;
+    enchantmentTable.takeTargetItem = takeTargetItem;
+    enchantmentTable.putTargetItem = putTargetItem;
+    return enchantmentTable;
+    function onClose() {
+      bot.client.removeListener('craft_progress_bar', onUpdateWindowProperty);
+    }
+    function onUpdateWindowProperty(packet) {
+      if (!enchantmentTable.window) return;
+      if (packet.windowId !== enchantmentTable.window.id) return;
+      assert.ok(packet.property >= 0);
+      assert.ok(packet.property < 3);
+      var arr = enchantmentTable.enchantments;
+      arr[packet.property].level = packet.value;
+      if (arr[0].level && arr[1].level && arr[2].level && ! ready) {
+        ready = true;
+        enchantmentTable.emit("ready");
+      }
+    }
+    function onUpdateSlot(oldItem, newItem) {
+      resetEnchantmentOptions();
+    }
+    function resetEnchantmentOptions() {
+      enchantmentTable.enchantments = [ {level: null}, {level: null}, {level: null} ];
+      ready = false;
+    }
+    function enchant(choice, cb) {
+      choice = parseInt(choice, 10); // allow string argument
+      cb = cb || noop;
+      assert.notEqual(enchantmentTable.enchantments[choice].level, null);
+      bot.client.write('enchant_item', {
+        windowId: enchantmentTable.window.id,
+        enchantment: choice,
+      });
+      enchantmentTable.once('updateSlot', function(oldItem, newItem) { cb(null, newItem); });
+    }
+    function takeTargetItem(cb) {
+      cb = cb || noop;
+      var item = enchantmentTable.targetItem();
+      assert.ok(item);
+      putAway(item.slot, function(err) {
+        cb(err, item);
+      });
+    }
+    function putTargetItem(item, cb) {
+      cb = cb || noop;
+      moveSlotItem(item.slot, 0, cb);
+    }
+  }
+
+  function transfer(options, cb) {
+    var window = options.window || bot.currentWindow || bot.inventory;
+    var itemType = options.itemType;
+    var metadata = options.metadata;
+    var count = options.count == null ? 1 : options.count;
+    cb = cb || noop;
+    var firstSourceSlot = null;
+
+    // ranges
+    var sourceStart = options.sourceStart;
+    var destStart = options.destStart;
+    assert.notEqual(sourceStart, null);
+    assert.notEqual(destStart, null);
+    var sourceEnd = options.sourceEnd == null ? sourceStart + 1 : options.sourceEnd;
+    var destEnd = options.destEnd == null ? destStart + 1 : options.destEnd;
+
+    transferOne();
+
+    function transferOne() {
+      if (count === 0) {
+        putSelectedItemRange(sourceStart, sourceEnd, window, firstSourceSlot, cb);
+        return;
+      }
+      if (!window.selectedItem || window.selectedItem.type !== itemType ||
+        (metadata != null && window.selectedItem.metadata !== metadata))
+      {
+        // we are not holding the item we need. click it.
+        var sourceItem = window.findItemRange(sourceStart, sourceEnd, itemType, metadata);
+        if (!sourceItem) return cb(new Error("missing source item"));
+        if (firstSourceSlot == null) firstSourceSlot = sourceItem.slot;
+        clickWindow(sourceItem.slot, 0, 0, function(err) {
+          if (err) {
+            cb(err);
+          } else {
+            clickDest();
+          }
+        });
+      } else {
+        clickDest();
+      }
+
+      function clickDest() {
+        assert.notEqual(window.selectedItem.type, null);
+        assert.notEqual(window.selectedItem.metadata, null);
+        var destItem, destSlot;
+        // special case for tossing
+        if (destStart === -999) {
+          destSlot = -999;
+        } else {
+          // find a non full item that we can drop into
+          destItem = window.findItemRange(destStart, destEnd,
+              window.selectedItem.type, window.selectedItem.metadata, true);
+          // if that didn't work find an empty slot to drop into
+          destSlot = destItem ? destItem.slot :
+            window.firstEmptySlotRange(destStart, destEnd);
+          // if that didn't work, give up
+          if (destSlot == null) {
+            cb(new Error("destination full"));
+            return;
+          }
+        }
+        clickWindow(destSlot, 1, 0, function(err) {
+          if (err) {
+            cb(err);
+          } else {
+            count -= 1;
+            transferOne();
+          }
+        });
+      }
+    }
+  }
+  
+  function openBlock(block, Class) {
+    var session = new Class();
+    session.close = close;
+    bot.once("windowOpen", onWindowOpen);
+    bot.activateBlock(block);
+    return session;
+    function onWindowOpen(window) {
+      if (window.type !== Class.windowType) return;
+      session.window = window;
+      bot.once("windowClose", onClose);
+      bot.on("setSlot:" + window.id, onSetSlot);
+      session.emit("open");
+    }
+    function close() {
+      assert.notEqual(session.window, null);
+      closeWindow(session.window);
+    }
+    function onClose() {
+      bot.removeListener("setSlot:" + session.window.id, onSetSlot);
+      session.window = null;
+      session.emit("close");
+    }
+    function onSetSlot(oldItem, newItem) {
+      if (! Item.equal(oldItem, newItem)) {
+        session.emit("updateSlot", oldItem, newItem);
+      }
+    }
+  }
+
+  function openChest(chestBlock) {
+    assert.ok(chestBlock.type === 54 || chestBlock.type === 130 || chestBlock.type === 146);
+    var chest = openBlock(chestBlock, Chest);
+    chest.withdraw = withdraw;
+    chest.deposit = deposit;
+    return chest;
+    function deposit(itemType, metadata, count, cb) {
+      var options = {
+        window: chest.window,
+        itemType: itemType,
+        metadata: metadata,
+        count: count,
+        sourceStart: chest.window.inventorySlotStart,
+        sourceEnd: chest.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+        destStart: 0,
+        destEnd: chest.window.inventorySlotStart,
+      };
+      transfer(options, cb);
+    }
+    function withdraw(itemType, metadata, count, cb) {
+      var options = {
+        window: chest.window,
+        itemType: itemType,
+        metadata: metadata,
+        count: count,
+        sourceStart: 0,
+        sourceEnd: chest.window.inventorySlotStart,
+        destStart: chest.window.inventorySlotStart,
+        destEnd: chest.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+      };
+      transfer(options, cb);
+    }
+  }
+
+  function craft(recipe, count, craftingTable, cb) {
+    assert.ok(recipe);
+    cb = cb || noop;
+    count = count == null ? 1 : parseInt(count, 10);
+    if (recipe.requiresTable && !craftingTable) {
+      cb(new Error("recipe requires craftingTable"));
+      return;
+    }
+    next();
+    function next(err) {
+      if (err) {
+        cb(err);
+      } else if (count > 0) {
+        count -= 1;
+        craftOnce(recipe, craftingTable, next);
+      } else {
+        cb();
+      }
+    }
+  }
+
+  function craftOnce(recipe, craftingTable, cb) {
+    if (craftingTable) {
+      activateBlock(craftingTable);
+      bot.once('windowOpen', function(window) {
+        if (window.type !== 1) {
+          cb(new Error("crafting: non craftingTable used as craftingTable"));
+          return;
+        }
+        startClicking(window, 3, 3);
+      });
+    } else {
+      startClicking(bot.inventory, 2, 2);
+    }
+
+    function startClicking(window, w, h) {
+      var extraSlots = unusedRecipeSlots();
+      var ingredientIndex = 0;
+      var originalSourceSlot = null;
+      var it;
+      if (recipe.inShape) {
+        it = {
+          x: 0,
+          y: 0,
+          row: recipe.inShape[0],
+        };
+        clickShape();
+      } else {
+        nextIngredientsClick();
+      }
+
+      function incrementShapeIterator() {
+        it.x += 1;
+        if (it.x >= it.row.length) {
+          it.y += 1;
+          if (it.y >= recipe.inShape.length) return null;
+          it.x = 0;
+          it.row = recipe.inShape[it.y];
+        }
+        return it;
+      }
+      function nextShapeClick() {
+        if (incrementShapeIterator()) {
+          clickShape();
+        } else if (! recipe.ingredients) {
+          putMaterialsAway();
+        } else {
+          nextIngredientsClick();
+        }
+      }
+      function clickShape() {
+        var destSlot = slot(it.x, it.y);
+        var ingredient = it.row[it.x];
+        if (!ingredient) return nextShapeClick();
+        if (!window.selectedItem || window.selectedItem.type !== ingredient.id ||
+            (ingredient.metadata != null &&
+             window.selectedItem.metadata !== ingredient.metadata))
+        {
+          // we are not holding the item we need. click it.
+          var sourceItem = window.findInventoryItem(ingredient.id, ingredient.metadata);
+          if (!sourceItem) return cb(new Error("missing ingredient"));
+          if (originalSourceSlot == null) originalSourceSlot = sourceItem.slot;
+          clickWindow(sourceItem.slot, 0, 0, function(err) {
+            if (err) return cb(err);
+            clickDest();
+          });
+        } else {
+          clickDest();
+        }
+        function clickDest() {
+          clickWindow(destSlot, 1, 0, function(err) {
+            if (err) {
+              cb(err);
+            } else {
+              nextShapeClick();
+            }
+          });
+        }
+      }
+      function nextIngredientsClick() {
+        var ingredient = recipe.ingredients[ingredientIndex];
+        var destSlot = extraSlots.pop();
+        if (!window.selectedItem || window.selectedItem.type !== ingredient.id ||
+          (ingredient.metadata != null &&
+           window.selectedItem.metadata !== ingredient.metadata))
+        {
+          // we are not holding the item we need. click it.
+          var sourceItem = window.findInventoryItem(ingredient.id, ingredient.metadata);
+          if (!sourceItem) return cb(new Error("missing ingredient"));
+          if (originalSourceSlot == null) originalSourceSlot = sourceItem.slot;
+          clickWindow(sourceItem.slot, 0, 0, clickDest);
+        } else {
+          clickDest();
+        }
+        function clickDest() {
+          clickWindow(destSlot, 1, 0, function(err) {
+            if (err) {
+              cb(err);
+            } else if (++ingredientIndex < recipe.ingredients.length) {
+              nextIngredientsClick();
+            } else {
+              putMaterialsAway();
+            }
+          });
+        }
+      }
+      function putMaterialsAway() {
+        var start = window.inventorySlotStart;
+        var end = start + windows.INVENTORY_SLOT_COUNT;
+        putSelectedItemRange(start, end, window, originalSourceSlot, function(err) {
+          if (err) {
+            cb(err);
+          } else {
+            grabResult();
+          }
+        });
+      }
+      function grabResult() {
+        assert.equal(window.selectedItem, null);
+        // put the recipe result in the output
+        var item = new Item(recipe.type, recipe.count, recipe.metadata);
+        window.updateSlot(0, item);
+        // shift click result
+        putAway(0, function (err) {
+          if (err) {
+            cb(err);
+          } else {
+            updateOutShape();
+          }
+        });
+      }
+      function updateOutShape() {
+        if (! recipe.outShape) {
+          closeTheWindow();
+          return;
+        }
+        var slotsToClick = [];
+        var x, y, row, item, theSlot;
+        for (y = 0; y < recipe.outShape.length; ++y) {
+          row = recipe.outShape[y];
+          for (x = 0; x < row.length; ++x) {
+            theSlot = slot(x, y);
+            if (row[x]) {
+              item = new Item(row[x].id, row[x].count, row[x].metadata || 0);
+              slotsToClick.push(theSlot);
+            } else {
+              item = null;
+            }
+            window.updateSlot(theSlot, item);
+          }
+        }
+        next();
+        function next() {
+          var theSlot = slotsToClick.pop();
+          if (!theSlot) {
+            closeTheWindow();
+            return
+          }
+          putAway(theSlot, function(err) {
+            if (err) {
+              cb(err);
+            } else {
+              next();
+            }
+          });
+        }
+      }
+      function closeTheWindow() {
+        closeWindow(window);
+        cb();
+      }
+      function slot(x, y) {
+        return 1 + x + w * y;
+      }
+      function unusedRecipeSlots() {
+        var result = [];
+        var x, y, row;
+        if (recipe.inShape) {
+          for (y = 0; y < recipe.inShape.length; ++y) {
+            row = recipe.inShape[y];
+            for (x = 0; x < row.length; ++x) {
+              if (! row[x]) result.push(slot(x, y));
+            }
+            for (; x < w; ++x) {
+              result.push(slot(x, y));
+            }
+          }
+          for (; y < h; ++y) {
+            for (x = 0; x < w; ++x) {
+              result.push(slot(x, y));
+            }
+          }
+        } else {
+          for (y = 0; y < h; ++y) {
+            for (x = 0; x < w; ++x) {
+              result.push(slot(x, y));
+            }
+          }
+        }
+        return result;
+      }
+    }
+  }
+
+  function recipesFor(itemType, metadata, minResultCount, craftingTable) {
+    minResultCount = minResultCount == null ? 1 : minResultCount;
+    var results = [];
+    Recipe.find(itemType, metadata).forEach(function(recipe) {
+      if (requirementsMetForRecipe(recipe, minResultCount, craftingTable)) {
+        results.push(recipe);
+      }
+    });
+    return results;
+  }
+
+  function requirementsMetForRecipe(recipe, minResultCount, craftingTable) {
+    if (recipe.requiresTable && !craftingTable) return false;
+
+    // how many times we have to perform the craft to achieve minResultCount
+    var craftCount = Math.ceil(minResultCount / recipe.count);
+
+    // false if not enough inventory to make all the ones that we want
+    for (var i = 0; i < recipe.delta.length; ++i) {
+      var d = recipe.delta[i];
+      if (bot.inventory.count(d.type, d.metadata) + d.count * craftCount < 0) return false;
+    }
+
+    // otherwise true
+    return true;
+  }
+
+  function placeBlock(referenceBlock, faceVector) {
+    assert.ok(bot.heldItem, "must be holding an item to place a block");
+    // TODO: tell the server that we are sneaking while doing this
+    var pos = referenceBlock.position;
+    bot.client.write('block_place', {
+      x: pos.x,
+      y: pos.y,
+      z: pos.z,
+      direction: vectorToDirection(faceVector),
+      heldItem: itemToNotch(bot.heldItem),
+      cursorX: 8,
+      cursorY: 8,
+      cursorZ: 8,
+    });
+    // update it immediately; the server will correct us if it did not work.
+    var dest = pos.plus(faceVector);
+    bot._updateBlock(dest, bot.heldItem.type, bot.heldItem.metadata);
+  }
+
+  function createActionNumber() {
+    return nextActionNumber++;
+  }
+
+  function setQuickBarSlot(slot) {
+    assert.ok(slot >= 0);
+    assert.ok(slot < 9);
+    if (bot.quickBarSlot === slot) return;
+    bot.quickBarSlot = slot;
+    bot.client.write('held_item_slot', {
+      slotId: slot,
+    });
+    updateHeldItem();
+  }
+
+  function updateHeldItem() {
+    bot.heldItem = bot.inventory.slots[QUICK_BAR_START + bot.quickBarSlot];
+  }
+
+  function closeWindow(window) {
+    bot.client.write('close_window', {
+      windowId: window.id,
+    });
+    bot.currentWindow = null;
+    bot.emit("windowClose", window);
+  }
+
+  function confirmTransaction(windowId, actionId, accepted) {
+    // drop the queue entries for all the clicks that the server did not send
+    // transaction packets for.
+    var click = windowClickQueue.shift();
+    assert.ok(click.id <= actionId);
+    while (actionId > click.id) {
+      onAccepted();
+      click = windowClickQueue.shift();
+    }
+    assert.ok(click);
+
+    if (accepted) {
+      onAccepted();
+    } else {
+      onRejected();
+    }
+    updateHeldItem();
+
+    function onAccepted() {
+      var window = windowId === 0 ? bot.inventory : bot.currentWindow;
+      if (! window || window.id !== click.windowId) return;
+      window.acceptClick(click);
+      bot.emit("confirmTransaction" + click.id, true);
+    }
+
+    function onRejected() {
+      bot.client.write('transaction', {
+        windowId: 0,
+        action: click.id,
+        accepted: false,
+      });
+      bot.emit("confirmTransaction" + click.id, false);
+    }
+  }
+
+  function clickWindow(slot, mouseButton, mode, cb) {
+    // if you click on the quick bar and have dug recently,
+    // wait a bit
+    if (slot >= QUICK_BAR_START && bot.lastDigTime != null) {
+      var timeSinceLastDig = new Date() - bot.lastDigTime;
+      if (timeSinceLastDig < DIG_CLICK_TIMEOUT) {
+        setTimeout(function() {
+          clickWindow(slot, mouseButton, mode, cb);
+        }, DIG_CLICK_TIMEOUT - timeSinceLastDig);
+        return;
+      }
+    }
+    cb = cb || noop;
+    var window = bot.currentWindow || bot.inventory;
+
+    assert.ok(mouseButton === 0 || mouseButton === 1);
+    assert.strictEqual(mode, 0);
+    var actionId = createActionNumber();
+
+    var click = {
+      slot: slot,
+      mouseButton: mouseButton,
+      mode: mode,
+      id: actionId,
+      windowId: window.id,
+    };
+    windowClickQueue.push(click);
+    bot.client.write('window_click', {
+      windowId: window.id,
+      slot: slot,
+      mouseButton: mouseButton,
+      action: actionId,
+      mode: mode,
+      item: slot === -999 ? { id: -1 } : itemToNotch(window.slots[slot]),
+    });
+    bot.once("confirmTransaction" + actionId, function(success) {
+      if (success) {
+        cb();
+      } else {
+        cb(new Error("Server rejected transaction."));
+      }
+    });
+    // notchian servers are assholes and only confirm certain transactions.
+    if (! window.transactionRequiresConfirmation(click)) {
+      // jump the gun and accept the click
+      confirmTransaction(window.id, actionId, true);
+    }
+  }
+
+  function tossStack(item, cb) {
+    cb = cb || noop;
+    assert.ok(item);
+    clickWindow(item.slot, 0, 0, function(err) {
+      if (err) return cb(err);
+      clickWindow(-999, 0, 0, cb);
+      closeWindow(bot.currentWindow || bot.inventory);
+    });
+  }
+
+  function toss(itemType, metadata, count, cb) {
+    var window = bot.currentWindow || bot.inventory;
+    var options = {
+      window: window,
+      itemType: itemType,
+      metadata: metadata,
+      count: count,
+      sourceStart: window.inventorySlotStart,
+      sourceEnd: window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
+      destStart: -999,
+    };
+    transfer(options, cb);
+  }
+
+  function getDestSlot(destination) {
+    if (! destination || destination === 'hand') {
+      return QUICK_BAR_START + bot.quickBarSlot;
+    } else {
+      var destSlot = armorSlots[destination];
+      assert.ok(destSlot != null, "invalid destination: " + destination);
+      return destSlot;
+    }
+  }
+
+  function unequip(destination, cb) {
+    cb = cb || noop;
+    if (destination === 'hand') {
+      equipEmpty(cb);
+    } else {
+      disrobe(destination, cb);
+    }
+  }
+
+  function equipEmpty(cb) {
+    for (var i = 0; i < 9; ++i) {
+      if (! bot.inventory.slots[QUICK_BAR_START + i]) {
+        setQuickBarSlot(i);
+        process.nextTick(cb);
+        return;
+      }
+    }
+    var slot = bot.inventory.firstEmptyInventorySlot();
+    if (! slot) {
+      bot.tossStack(bot.heldItem, cb);
+      return;
+    }
+    var equipSlot = QUICK_BAR_START + bot.quickBarSlot;
+    clickWindow(equipSlot, 0, 0, function(err) {
+      if (err) return cb(err);
+      clickWindow(slot, 0, 0, function(err) {
+        if (err) return cb(err);
+        if (bot.inventory.selectedItem) {
+          clickWindow(-999, 0, 0, cb);
+        } else {
+          cb();
+        }
+      });
+    });
+  }
+
+  function putAway(slot, cb) {
+    clickWindow(slot, 0, 0, function(err) {
+      if (err) return cb(err);
+      var window = bot.currentWindow || bot.inventory;
+      var start = window.inventorySlotStart;
+      var end = start + windows.INVENTORY_SLOT_COUNT;
+      putSelectedItemRange(start, end, window, null, cb);
+    });
+  }
+
+  function disrobe(destination, cb) {
+    assert.equal(bot.currentWindow, null);
+    var destSlot = getDestSlot(destination);
+    putAway(destSlot, cb);
+  }
+
+  function equip(item, destination, cb) {
+    cb = cb || noop;
+    if(typeof item === 'number') {
+      item = bot.inventory.findInventoryItem(item);
+    }
+    if(item == null || typeof item !== 'object') {
+      return cb(new Error('Invalid item object in equip'));
+    }
+    var sourceSlot = item.slot;
+    var destSlot = getDestSlot(destination);
+
+    if (sourceSlot === destSlot) {
+      // don't need to do anything
+      process.nextTick(cb);
+      return;
+    }
+
+    if (destSlot >= QUICK_BAR_START && sourceSlot >= QUICK_BAR_START) {
+      // all we have to do is change the quick bar selection
+      bot.setQuickBarSlot(sourceSlot - QUICK_BAR_START);
+      process.nextTick(cb);
+      return;
+    }
+
+    if (destination !== 'hand') {
+      moveSlotItem(sourceSlot, destSlot, cb);
+      return;
+    }
+
+    // find an empty slot on the quick bar to put the source item in
+    destSlot = bot.inventory.firstEmptySlotRange(QUICK_BAR_START, QUICK_BAR_START + QUICK_BAR_COUNT);
+    if (destSlot == null) {
+      // LRU cache for the quick bar items
+      destSlot = QUICK_BAR_START + nextQuickBarSlot;
+      nextQuickBarSlot = (nextQuickBarSlot + 1) % QUICK_BAR_COUNT;
+    }
+    bot.setQuickBarSlot(destSlot - QUICK_BAR_START);
+    moveSlotItem(sourceSlot, destSlot, cb);
+  }
+
+  function moveSlotItem(sourceSlot, destSlot, cb) {
+    clickWindow(sourceSlot, 0, 0, function(err) {
+      if (err) return cb(err);
+      clickWindow(destSlot, 0, 0, function(err) {
+        // if we're holding an item, put it back where the source item was.
+        // otherwise we're done.
+        if (err) {
+          cb(err);
+        } else if (bot.inventory.selectedItem) {
+          clickWindow(sourceSlot, 0, 0, cb);
+        } else {
+          cb();
+        }
+      });
+    });
+  }
+
+  bot.client.on('transaction', function(packet) {
+    // confirm transaction
+    confirmTransaction(packet.windowId, packet.action, packet.accepted);
+  });
+
+  bot.client.on('held_item_slot', function(packet) {
+    // held item change
+    bot.quickBarSlot = packet.slot;
+    updateHeldItem();
+  });
+  bot.client.on('open_window', function(packet) {
+    // open window
+    bot.currentWindow = windows.createWindow(packet.windowId,
+      packet.inventoryType, packet.windowTitle, packet.slotCount);
+    // don't emit windowOpen until we have the slot data
+    var window = bot.currentWindow;
+    bot.once("setWindowItems:" + window.id, function() {
+      bot.emit("windowOpen", window);
+    });
+  });
+  bot.client.on('close_window', function(packet) {
+    // close window
+    var oldWindow = bot.currentWindow;
+    bot.currentWindow = null;
+    bot.emit("windowClose", oldWindow);
+  });
+  bot.client.on('set_slot', function(packet) {
+    // set slot
+    var window = packet.windowId === 0 ? bot.inventory : bot.currentWindow;
+    if (! window || window.id !== packet.windowId) return;
+    var newItem = itemFromNotch(packet.item);
+    var oldItem = window.slots[packet.slot];
+    window.updateSlot(packet.slot, newItem);
+    updateHeldItem();
+    bot.emit("setSlot:" + window.id, oldItem, newItem);
+  });
+  bot.client.on('window_items', function(packet) {
+    // set window items
+    var window = packet.windowId === 0 ? bot.inventory : bot.currentWindow;
+    if (! window || window.id !== packet.windowId) return;
+    var i, item;
+    for (i = 0; i < packet.items.length; ++i) {
+      item = itemFromNotch(packet.items[i]);
+      window.updateSlot(i, item);
+    }
+    updateHeldItem();
+    bot.emit("setWindowItems:" + window.id);
+  });
+
+  bot.equip = equip;
+  bot.unequip = unequip;
+  bot.toss = toss;
+  bot.tossStack = tossStack;
+  bot.activateBlock = activateBlock;
+  bot.placeBlock = placeBlock;
+  bot.setQuickBarSlot = setQuickBarSlot;
+  bot.craft = craft;
+  bot.recipesFor = recipesFor;
+  bot.openChest = openChest;
+  bot.openFurnace = openFurnace;
+  bot.openDispenser = openDispenser;
+  bot.openEnchantmentTable = openEnchantmentTable;
+  bot.activateItem = activateItem;
+  bot.deactivateItem = deactivateItem;
+}
+
+function itemToNotch(item) {
+  console.log('itemToNotch', item);
+  assert.ok(typeof item === 'object');
+  return item ? {
+    id: item.type,
+    itemCount: item.count,
+    itemDamage: item.metadata,
+    nbtData: item.nbt,
+  } : { id: -1 };
+}
+
+function itemFromNotch(item) {
+  return item.id === -1 ? null :
+    new Item(item.id, item.itemCount, item.itemDamage, item.nbtData);
+}
+
+function noop(err) {
+  if (err) throw err;
+}
+
+function vectorToDirection(v) {
+  if (v.y < 0) {
+    return 0;
+  } else if (v.y > 0) {
+    return 1;
+  } else if (v.z < 0) {
+    return 2;
+  } else if (v.z > 0) {
+    return 3;
+  } else if (v.x < 0) {
+    return 4;
+  } else if (v.x > 0) {
+    return 5;
+  }
+  assert.ok(false, "invalid direction vector " + v);
+}
+
+}).call(this,require("q+64fw"))
+},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"assert":917,"q+64fw":939}],151:[function(require,module,exports){
+module.exports = inject;
+
+function inject(bot) {
+  bot.client.on('kick_disconnect', function(packet) {
+    bot.emit('kicked', packet.reason);
+  });
+  bot.quit = function(reason) {
+    reason = reason || 'disconnect.quitting';
+    bot.client.end(reason);
+  };
+}
+
+},{}],152:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3
+  , assert = require('assert')
+  , math = require('../math')
+  , conv = require('../conversions')
+
+module.exports = inject;
+
+var EPSILON = 0.000001
+  , PI = Math.PI
+  , PI_2 = Math.PI * 2
+  , POSITION_UPDATE_INTERVAL_MS = 50
+  , PHYSICS_INTERVAL_MS = 20
+  , MAX_PHYSICS_DELTA_SECONDS = 0.2;
+
+function inject(bot) {
+  var physics = {
+    maxGroundSpeed: 4.27, // according to the internet
+    terminalVelocity: 20.0, // guess
+    walkingAcceleration: 100.0, // seems good
+    gravity: 27.0, // seems good
+    groundFriction: 0.9, // seems good
+    playerApothem: 0.32, // notch's client F3 says 0.30, but that caused spankings
+    playerHeight: 1.74, // tested with a binary search
+    jumpSpeed: 9.0, // seems good
+    yawSpeed: 3.0, // seems good
+    sprintSpeed: 1.3, // correct
+  };
+
+  var controlState = {
+    forward: false,
+    back: false,
+    left: false,
+    right: false,
+    jump: false,
+    sprint: false,
+  };
+  var jumpQueued = false;
+  var lastSentYaw = null;
+  var positionUpdateTimer = null;
+  var doPhysicsTimer = null;
+  var lastPositionSentTime = null;
+  var lastPhysicsFrameTime = null;
+  var lastFlyingUpdate = 0;
+
+  function doPhysics() {
+    var now = new Date();
+    var deltaSeconds = (now - lastPhysicsFrameTime) / 1000;
+    lastPhysicsFrameTime = now;
+    var deltaToUse = deltaSeconds < MAX_PHYSICS_DELTA_SECONDS ?
+                     deltaSeconds : MAX_PHYSICS_DELTA_SECONDS;
+    nextFrame(deltaToUse);
+  }
+
+  function cleanup() {
+    stopPhysics();
+    stopPositionUpdates();
+  }
+
+  function stopPositionUpdates() {
+    clearInterval(positionUpdateTimer);
+    positionUpdateTimer = null;
+  }
+
+  function stopPhysics() {
+    clearInterval(doPhysicsTimer);
+    doPhysicsTimer = null;
+  }
+
+  function nextFrame(deltaSeconds) {
+    if (deltaSeconds < EPSILON) return; // too fast
+    var pos = bot.entity.position;
+    var vel = bot.entity.velocity;
+
+    // derive xy movement vector from controls
+    var movementRight = 0;
+    if (controlState.right) movementRight += 1;
+    if (controlState.left) movementRight -= 1;
+    var movementForward = 0;
+    if (controlState.forward) movementForward += 1;
+    if (controlState.back) movementForward -= 1;
+
+    // acceleration is m/s/s
+    var acceleration = new Vec3(0, 0, 0);
+    if (movementForward || movementRight) {
+      // input acceleration
+      var rotationFromInput = Math.atan2(-movementRight, movementForward);
+      var inputYaw = bot.entity.yaw + rotationFromInput;
+      acceleration.x += physics.walkingAcceleration * -Math.sin(inputYaw);
+      acceleration.z += physics.walkingAcceleration * -Math.cos(inputYaw);
+      if (controlState.sprint) {
+        acceleration.x *= physics.sprintSpeed;
+        acceleration.z *= physics.sprintSpeed;
+      }
+    }
+
+    // jumping
+    if ((controlState.jump || jumpQueued) && bot.entity.onGround) {
+      vel.y = physics.jumpSpeed;
+    }
+    jumpQueued = false;
+
+    // gravity
+    acceleration.y -= physics.gravity;
+
+    var oldGroundSpeedSquared = calcGroundSpeedSquared();
+    if (oldGroundSpeedSquared < EPSILON) {
+      // stopped
+      vel.x = 0;
+      vel.z = 0;
+    } else {
+      // non-zero ground speed
+      var oldGroundSpeed = Math.sqrt(oldGroundSpeedSquared);
+      var groundFriction = physics.groundFriction * physics.walkingAcceleration;
+      // less friction for air
+      if (! bot.entity.onGround) groundFriction *= 0.05;
+      // if friction would stop the motion, do it
+      var maybeNewGroundFriction = oldGroundSpeed / deltaSeconds;
+      groundFriction = groundFriction > maybeNewGroundFriction ?
+        maybeNewGroundFriction : groundFriction;
+      acceleration.x -= vel.x / oldGroundSpeed * groundFriction;
+      acceleration.z -= vel.z / oldGroundSpeed * groundFriction;
+    }
+
+    // calculate new speed
+    vel.add(acceleration.scaled(deltaSeconds))
+
+    // limit speed
+    var groundSpeedSquared = calcGroundSpeedSquared();
+    if (groundSpeedSquared > physics.maxGroundSpeed * physics.maxGroundSpeed) {
+      var groundSpeed = Math.sqrt(groundSpeedSquared);
+      var correctionScale = physics.maxGroundSpeed / groundSpeed;
+      vel.x *= correctionScale;
+      vel.z *= correctionScale;
+    }
+    vel.y = math.clamp(-physics.terminalVelocity, vel.y, physics.terminalVelocity);
+
+    // calculate new positions and resolve collisions
+    var boundingBox = getBoundingBox();
+    var boundingBoxMin, boundingBoxMax;
+    if (vel.x !== 0) {
+      pos.x += vel.x * deltaSeconds;
+      var blockX = Math.floor(pos.x + math.sign(vel.x) * physics.playerApothem);
+      boundingBoxMin = new Vec3(blockX, boundingBox.min.y, boundingBox.min.z);
+      boundingBoxMax = new Vec3(blockX, boundingBox.max.y, boundingBox.max.z);
+      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
+        pos.x = blockX + (vel.x < 0 ? 1 + physics.playerApothem : -physics.playerApothem) * 1.001;
+        vel.x = 0;
+        boundingBox = getBoundingBox();
+      }
+    }
+
+    if (vel.z !== 0) {
+      pos.z += vel.z * deltaSeconds;
+      var blockZ = Math.floor(pos.z + math.sign(vel.z) * physics.playerApothem);
+      boundingBoxMin = new Vec3(boundingBox.min.x, boundingBox.min.y, blockZ);
+      boundingBoxMax = new Vec3(boundingBox.max.x, boundingBox.max.y, blockZ);
+      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
+        pos.z = blockZ + (vel.z < 0 ? 1 + physics.playerApothem : -physics.playerApothem) * 1.001;
+        vel.z = 0;
+        boundingBox = getBoundingBox();
+      }
+    }
+
+
+    bot.entity.onGround = false;
+    if (vel.y !== 0) {
+      pos.y += vel.y * deltaSeconds;
+      var playerHalfHeight = physics.playerHeight / 2;
+      var blockY = Math.floor(pos.y + playerHalfHeight + math.sign(vel.y) * playerHalfHeight);
+      boundingBoxMin = new Vec3(boundingBox.min.x, blockY, boundingBox.min.z);
+      boundingBoxMax = new Vec3(boundingBox.max.x, blockY, boundingBox.max.z);
+      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
+        pos.y = blockY + (vel.y < 0 ? 1 : -physics.playerHeight) * 1.001;
+        bot.entity.onGround = vel.y < 0 ? true : bot.entity.onGround;
+        vel.y = 0;
+      }
+    }
+
+    bot.emit('move');
+  }
+
+  function collisionInRange(boundingBoxMin, boundingBoxMax) {
+    var cursor = new Vec3(0, 0, 0);
+    var block;
+    for (cursor.x = boundingBoxMin.x; cursor.x <= boundingBoxMax.x; cursor.x++) {
+      for (cursor.y = boundingBoxMin.y; cursor.y <= boundingBoxMax.y; cursor.y++) {
+        for (cursor.z = boundingBoxMin.z; cursor.z <= boundingBoxMax.z; cursor.z++) {
+          block = bot.blockAt(cursor);
+          if (block && block.boundingBox === 'block') return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  function calcGroundSpeedSquared() {
+    var vel = bot.entity.velocity;
+    return vel.x * vel.x + vel.z * vel.z;
+  }
+
+  function getBoundingBox() {
+    var pos = bot.entity.position;
+    return {
+      min: new Vec3(
+        pos.x - physics.playerApothem,
+        pos.y,
+        pos.z - physics.playerApothem
+      ).floor(),
+      max: new Vec3(
+        pos.x + physics.playerApothem,
+        pos.y + physics.playerHeight,
+        pos.z + physics.playerApothem
+      ).floor(),
+    };
+  }
+
+  function sendPositionAndLook(entity) {
+    // sends data, no logic
+    var packet = {
+      x: entity.position.x,
+      y: entity.position.y + entity.height,
+      z: entity.position.z,
+      stance: entity.position.y,
+      onGround: entity.onGround,
+    };
+    packet.yaw = conv.toNotchianYaw(entity.yaw);
+    packet.pitch = conv.toNotchianPitch(entity.pitch);
+    bot.client.write('position_look', packet);
+  }
+
+  function sendPosition() {
+    // increment the yaw in baby steps so that notchian clients (not the server) can keep up.
+    if(typeof bot.entity.height !== 'number' || isNaN(bot.entity.height) || bot.entity.height < 0.1 || bot.entity.height > 1.65) {
+      // Sometimes this is NaN, not sure of why, it seems it's set via a position packet
+      // Note seems some packets handled by 'position' event do not have a stance. 
+      bot.entity.height = 1.62;
+    }
+    var sentPosition = {
+      yaw: bot.entity.yaw % PI_2,
+      pitch: bot.entity.pitch,
+      position: bot.entity.position,
+      velocity: bot.entity.velocity,
+      height: bot.entity.height,
+      onGround: bot.entity.onGround,
+    }
+    var deltaYaw = math.euclideanMod(sentPosition.yaw - lastSentYaw, PI_2);
+    deltaYaw = deltaYaw < 0 ?
+      (deltaYaw < -PI ? deltaYaw + PI_2 : deltaYaw) :
+      (deltaYaw >  PI ? deltaYaw - PI_2 : deltaYaw);
+    var absDeltaYaw = Math.abs(deltaYaw);
+    assert.ok(absDeltaYaw < PI + 0.001);
+
+    var now = new Date();
+    var deltaMs = now - lastPositionSentTime;
+    lastPositionSentTime = now;
+    var maxDeltaYaw = deltaMs / 1000 * physics.yawSpeed;
+    deltaYaw = absDeltaYaw > maxDeltaYaw ? maxDeltaYaw * math.sign(deltaYaw) : deltaYaw;
+    lastSentYaw = (lastSentYaw + deltaYaw) % PI_2;
+    sentPosition.yaw = lastSentYaw;
+
+    if(new Date() - lastFlyingUpdate > 1000) {
+      // Always send flying messages
+      // If you're dead, you're probably on the ground though ...
+      if(!bot.isAlive) bot.onGround = true;
+      bot.client.write('flying', {onGround: bot.onGround});
+      lastFlyingUpdate = new Date();
+    }
+
+    // Only send location when alive though
+    if(bot.isAlive) {
+      sendPositionAndLook(sentPosition);
+    }
+  }
+
+  bot.physics = physics;
+
+  bot.setControlState = function(control, state) {
+    assert.ok(control in controlState, "invalid control: " + control);
+    if (controlState[control] === state) return;
+    controlState[control] = state;
+    if (control === 'jump' && state) {
+      jumpQueued = true;
+    } else if(control === 'sprint') {
+      bot.client.write('entity_action', {
+        entityId: bot.entity.id,
+        actionId: state ? 4 : 5,
+      });
+    }
+  };
+
+  bot.clearControlStates = function() {
+    for (var control in controlState) {
+      bot.setControlState(control, false);
+    }
+  };
+
+  bot.look = function(yaw, pitch, force) {
+    bot.entity.yaw = yaw;
+    bot.entity.pitch = pitch;
+    if (force) lastSentYaw = yaw;
+    bot.emit("move")
+  };
+
+  bot.lookAt = function(point, force) {
+    var delta = point.minus(bot.entity.position.offset(0, bot.entity.height, 0));
+    var yaw = Math.atan2(-delta.x, -delta.z);
+    var groundDistance = Math.sqrt(delta.x * delta.x + delta.z * delta.z);
+    var pitch = Math.atan2(delta.y, groundDistance);
+    bot.look(yaw, pitch, force);
+  };
+
+  // player position and look
+  bot.client.on('position', function(packet) {
+    if (positionUpdateTimer == null) {
+      // got first 0x0d. start the clocks
+      bot.entity.yaw = conv.fromNotchianYaw(packet.yaw);
+      bot.entity.pitch = conv.fromNotchianPitch(packet.pitch);
+      positionUpdateTimer = setInterval(sendPosition, POSITION_UPDATE_INTERVAL_MS);
+    }
+
+    bot.entity.velocity.set(0, 0, 0);
+    bot.entity.position.set(packet.x, packet.y, packet.z);
+
+    // Packet 0x08 Player Position And Look, does not send a stance
+    if(packet.stance) bot.entity.height = packet.stance - bot.entity.position.y;
+    else bot.entity.height = 1.62;
+    bot.entity.onGround = packet.onGround;
+
+    // NOTE: TODO: - NeverCast
+    // The y position sent to us is actually the eye position, but the physics
+    // Engine assumes it's the foot position.
+    // There needs to be discussion about how to handle this.
+    // Currently I'm just taking the eye height off the y position when we receive it
+    // And adding it back when we send it.
+    bot.entity.position.y -= bot.entity.height;
+
+    // apologize to the notchian server by echoing an identical position back
+    sendPositionAndLook(bot.entity);
+
+    if (doPhysicsTimer == null) {
+      lastSentYaw = math.euclideanMod(bot.entity.yaw, PI_2);
+      lastPositionSentTime = new Date();
+      lastPhysicsFrameTime = new Date();
+      doPhysicsTimer = setInterval(doPhysics, PHYSICS_INTERVAL_MS);
+    }
+  });
+
+  bot.on('mount', stopPhysics);
+  bot.on('respawn', stopPhysics);
+  bot.on('end', cleanup);
+}
+
+},{"../conversions":126,"../math":139,"assert":917,"vec3":168}],153:[function(require,module,exports){
+module.exports = inject;
+
+function inject(bot) {
+  bot.isRaining = false;
+  bot.client.on('game_state_change', function(packet) {
+    if (packet.reason === 1) {
+      bot.isRaining = true;
+      bot.emit('rain');
+    } else if (packet.reason === 2) {
+      bot.isRaining = false;
+      bot.emit('rain');
+    }
+  });
+}
+
+},{}],154:[function(require,module,exports){
+var assert = require('assert');
+
+module.exports = inject;
+
+var chatToBits = {
+  enabled: 0,
+  commandsOnly: 1,
+  disabled: 2,
+};
+
+var viewDistanceToBits = {
+  'far': 0,
+  'normal': 1,
+  'short': 2,
+  'tiny': 3,
+};
+
+function inject(bot, options) {
+  function setSettings(settings) {
+    extend(bot.settings, settings);
+    var chatBits = chatToBits[bot.settings.chat];
+    assert.ok(chatBits != null, "invalid chat setting: " + bot.settings.chat);
+    var viewDistanceBits = viewDistanceToBits[bot.settings.viewDistance];
+    assert.ok(viewDistanceBits != null, "invalid view distance setting: " + bot.settings.viewDistance);
+    bot.settings.showCape = !!bot.settings.showCape;
+    bot.client.write('settings', {
+      locale: bot.settings.locale || 'en_US',
+      viewDistance: viewDistanceBits,
+      chatFlags: chatBits,
+      chatColors: bot.settings.colorsEnabled,
+      difficulty: bot.settings.difficulty,
+      showCape: bot.settings.showCape,
+    });
+  }
+
+  bot.settings = {
+    chat: options.chat || 'enabled',
+    colorsEnabled: options.colorsEnabled == null ? true : options.colorsEnabled,
+    viewDistance: options.viewDistance || 'far',
+    difficulty: options.difficulty == null ? 2 : options.difficulty,
+    showCape: options.showCape == null ? true : !!options.showCape,
+  };
+
+  bot.client.once('login', function() {
+    setSettings({});
+  });
+
+  bot.setSettings = setSettings;
+}
+
+var hasOwn = {}.hasOwnProperty;
+function extend(obj, src) {
+  for (var key in src) {
+    if (hasOwn.call(src, key)) obj[key] = src[key];
+  }
+  return obj;
+}
+
+},{"assert":917}],155:[function(require,module,exports){
+var Vec3 = require('vec3').Vec3;
+
+module.exports = inject;
+
+function inject(bot) {
+  bot.spawnPoint = new Vec3(0, 0, 0);
+  bot.client.on('spawn_position', function(packet) {
+    bot.spawnPoint.set(packet.x, packet.y, packet.z);
+    bot.emit('game');
+  });
+}
+
+},{"vec3":168}],156:[function(require,module,exports){
+module.exports = inject;
+
+function inject(bot) {
+  bot.time = {
+    day: null,
+    age: null,
+  };
+  bot.client.on('update_time', function(packet) {
+    // for day we ignore the big number since it is always 0
+    bot.time.day = longToNumber(packet.time) % 24000;
+    bot.time.age = longToNumber(packet.age);
+    bot.emit('time');
+  });
+}
+
+function longToNumber(arr) {
+  return arr[1] + 4294967296 * arr[0];
+}
+
+},{}],157:[function(require,module,exports){
+var recipes = require('./enums/recipes');
+
+module.exports = Recipe;
+
+function Recipe(recipeEnumItem) {
+  this.type = recipeEnumItem.type;
+  this.count = recipeEnumItem.count;
+  this.metadata = recipeEnumItem.metadata;
+
+  var x, y, row, myRow;
+  this.inShape = recipeEnumItem.inShape ?
+    reformatShape(recipeEnumItem.inShape) : null;
+  this.outShape = recipeEnumItem.outShape ?
+    reformatShape(recipeEnumItem.outShape) : null;
+  this.ingredients = recipeEnumItem.ingredients ?
+    reformatIngredients(recipeEnumItem.ingredients) : null;
+  this.delta = computeDelta(this);
+  this.requiresTable = computeRequiresTable(this);
+}
+
+Recipe.find = function(itemType, metadata) {
+  var results = [];
+  (recipes[itemType] || []).forEach(function(recipeEnumItem) {
+    if ((metadata == null || recipeEnumItem.metadata === metadata)) {
+      results.push(new Recipe(recipeEnumItem));
+    }
+  });
+  return results;
+};
+
+function computeRequiresTable(recipe) {
+  var spaceLeft = 4;
+
+  var x, y, row;
+  if (recipe.inShape) {
+    if (recipe.inShape.length > 2) return true;
+    for (y = 0; y < recipe.inShape.length; ++y) {
+      row = recipe.inShape[y];
+      if (row.length > 2) return true;
+      for (x = 0; x < row.length; ++x) {
+        if (row[x]) spaceLeft -= 1;
+      }
+    }
+  }
+  if (recipe.ingredients) spaceLeft -= recipe.ingredients.length;
+  return spaceLeft < 0;
+}
+
+function computeDelta(recipe) {
+  // returns a list of item type and metadata with the delta how many more or
+  // less you will have in your inventory after crafting
+  var delta = [];
+  if (recipe.inShape) applyShape(recipe.inShape, -1);
+  if (recipe.outShape) applyShape(recipe.outShape, 1);
+  if (recipe.ingredients) applyIngredients(recipe.ingredients);
+  // add the result
+  add(recipe.type, recipe.metadata, recipe.count);
+  return delta;
+
+  function add(type, metadata, count) {
+    metadata = metadata == null ? null : metadata;
+    for (var i = 0; i < delta.length; ++i) {
+      var d = delta[i];
+      if (d.type === type && d.metadata === metadata) {
+        d.count += count;
+        return;
+      }
+    }
+    delta.push({
+      type: type,
+      metadata: metadata,
+      count: count,
+    });
+  }
+
+  function applyShape(shape, direction) {
+    var x, y, row;
+    for (y = 0; y < shape.length; ++y) {
+      row = recipe.inShape[y];
+      for (x = 0; x < row.length; ++x) {
+        if (row[x] != null) add(row[x].id, null, direction);
+      }
+    }
+  }
+
+  function applyIngredients(ingredients) {
+    var i, id;
+    for (i = 0; i < ingredients.length; ++i) {
+      id = ingredients[i].id;
+      add(ingredients[i].id, ingredients[i].metadata, -1);
+    }
+  }
+}
+
+function reformatShape(shape) {
+  var out = new Array(shape.length);
+  var x, y, row, outRow;
+  for (y = 0; y < shape.length; ++y) {
+    row = shape[y];
+    out[y] = outRow = new Array(row.length);
+    for (x = 0; x < outRow.length; ++x) {
+      outRow[x] = row[x] ? {
+        id: row[x],
+        metadata: null,
+        count: 1,
+      } : null;
+    }
+  }
+  return out;
+}
+
+function reformatIngredients(ingredients) {
+  var out = new Array(ingredients.length);
+  for (var i = 0; i < out.length; ++i) {
+    out[i] = {
+      id: ingredients[i].id,
+      metadata: ingredients[i].metadata,
+    };
+  }
+  return out;
+}
+
+},{"./enums/recipes":135}],158:[function(require,module,exports){
+var util = require('util')
+  , assert = require('assert')
+  , Item = require('./item')
+
+
+var INVENTORY_SLOT_COUNT = 36;
+
+module.exports = {
+  createWindow: createWindow,
+  Window: Window,
+  InventoryWindow: InventoryWindow,
+  ChestWindow: ChestWindow,
+  CraftingTableWindow: CraftingTableWindow,
+  FurnaceWindow: FurnaceWindow,
+  DispenserWindow: DispenserWindow,
+  EnchantmentTableWindow: EnchantmentTableWindow,
+  BrewingStandWindow: BrewingStandWindow,
+  INVENTORY_SLOT_COUNT: INVENTORY_SLOT_COUNT,
+};
+
+var windows = [
+  ChestWindow,
+  CraftingTableWindow,
+  FurnaceWindow,
+  DispenserWindow,
+  EnchantmentTableWindow,
+  BrewingStandWindow,
+];
+
+function createWindow(id, type, title, slotCount) {
+  return new windows[type](id, title, slotCount);
+}
+
+function Window(id, type, title, slotCount) {
+  this.id = id;
+  this.type = type;
+  this.title = title;
+  this.slots = new Array(slotCount);
+  // in vanilla client, this is the item you are holding with the
+  // mouse cursor
+  this.selectedItem = null;
+}
+
+Window.prototype.findItemRange = function(start, end, itemType, metadata, notFull) {
+  assert.notEqual(itemType, null);
+  for (var i = start; i < end; ++i) {
+    var item = this.slots[i];
+    if (item && itemType === item.type &&
+       (metadata == null || metadata === item.metadata) &&
+       (!notFull || item.count < item.stackSize))
+    {
+      return item;
+    }
+  }
+  return null;
+};
+
+Window.prototype.findInventoryItem = function(itemType, metadata, notFull) {
+  assert.ok(this.inventorySlotStart != null);
+
+  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  return this.findItemRange(this.inventorySlotStart, end, itemType, metadata, notFull);
+};
+
+Window.prototype.firstEmptySlotRange = function(start, end) {
+  for (var i = start; i < end; ++i) {
+    if (!this.slots[i]) return i;
+  }
+  return null;
+};
+
+Window.prototype.firstEmptyInventorySlot = function() {
+  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  return this.firstEmptySlotRange(this.inventorySlotStart, end);
+};
+
+Window.prototype.acceptClick = function(click) {
+  assert.ok(click.mouseButton === 0 || click.mouseButton === 1);
+  var invSlotEnd = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  if (click.slot === -999) {
+    this.acceptOutsideWindowClick(click);
+  } else if (click.slot >= this.inventorySlotStart && click.slot < invSlotEnd) {
+    this.acceptInventoryClick(click);
+  } else {
+    this.acceptUniqueClick(click);
+  }
+};
+
+Window.prototype.acceptOutsideWindowClick = function(click) {
+  assert.strictEqual(click.mode, 0, "unimplemented");
+  if (click.mouseButton === 0) {
+    this.selectedItem = null;
+  } else if (click.mouseButton === 1) {
+    this.selectedItem.count -= 1;
+    if (! this.selectedItem.count) this.selectedItem = null;
+  } else {
+    assert.ok(false, "unimplemented");
+  }
+}
+
+Window.prototype.acceptInventoryClick = function(click) {
+  if (click.mouseButton === 0) {
+    if (click.mode > 0) {
+      assert.ok(false, "unimplemented");
+    } else {
+      this.acceptSwapAreaLeftClick(click);
+    }
+  } else if (click.mouseButton === 1) {
+    this.acceptSwapAreaRightClick(click);
+  } else {
+    assert.ok(false, "unimplemented");
+  }
+};
+
+Window.prototype.acceptNonInventorySwapAreaClick = function(click) {
+  assert.strictEqual(click.mode, 0, "unimplemented");
+  if (click.mouseButton === 0) {
+    this.acceptSwapAreaLeftClick(click);
+  } else if (click.mouseButton === 1) {
+    this.acceptSwapAreaRightClick(click);
+  } else {
+    assert.ok(false, "unimplemented");
+  }
+};
+
+
+Window.prototype.acceptSwapAreaRightClick = function(click) {
+  assert.strictEqual(click.mouseButton, 1);
+  assert.strictEqual(click.mode, 0);
+
+  var item = this.slots[click.slot];
+  if (this.selectedItem) {
+    if (item) {
+      if (item.type === this.selectedItem.type &&
+          item.metadata === this.selectedItem.metadata)
+      {
+        item.count += 1;
+        this.selectedItem.count -= 1;
+        if (this.selectedItem.count === 0) this.selectedItem = null;
+      } else {
+        // swap selected item and window item
+        this.updateSlot(click.slot, this.selectedItem);
+        this.selectedItem = item;
+      }
+    } else {
+      if (this.selectedItem.count === 1) {
+        this.updateSlot(click.slot, this.selectedItem);
+        this.selectedItem = null;
+      } else {
+        this.updateSlot(click.slot, new Item(this.selectedItem.type, 1,
+              this.selectedItem.metadata, this.selectedItem.nbt));
+        this.selectedItem.count -= 1;
+      }
+    }
+  } else if (item) {
+    // grab 1/2 of item
+    this.selectedItem = new Item(item.type, Math.ceil(item.count / 2),
+        item.metadata, item.nbt);
+    item.count -= this.selectedItem.count;
+    if (item.count === 0) this.updateSlot(item.slot, null);
+  }
+}
+
+Window.prototype.acceptSwapAreaLeftClick = function(click) {
+  assert.strictEqual(click.mouseButton, 0);
+  assert.strictEqual(click.mode, 0);
+  var item = this.slots[click.slot];
+  if (item && this.selectedItem &&
+      item.type === this.selectedItem.type &&
+      item.metadata === this.selectedItem.metadata)
+  {
+    // drop as many held item counts into the slot as we can
+    var newCount = item.count + this.selectedItem.count;
+    var leftover = newCount - item.stackSize;
+    if (leftover <= 0) {
+      item.count = newCount;
+      this.selectedItem = null;
+    } else {
+      item.count = item.stackSize;
+      this.selectedItem.count = leftover;
+    }
+  } else {
+    // swap selected item and window item
+    var tmp = this.selectedItem;
+    this.selectedItem = item;
+    this.updateSlot(click.slot, tmp);
+  }
+};
+
+Window.prototype.updateSlot = function (slot, newItem) {
+  if (newItem) newItem.slot = slot;
+  this.slots[slot] = newItem;
+};
+
+Window.prototype.acceptUniqueClick = function(click) {
+  assert.ok(false, "override this method");
+};
+
+Window.prototype.countRange = function(start, end, itemType, metadata) {
+  var sum = 0;
+  for (var i = start; i < end; ++i) {
+    var item = this.slots[i];
+    if (item && itemType === item.type &&
+       (metadata == null || item.metadata === metadata))
+    {
+      sum += item.count;
+    }
+  }
+  return sum;
+};
+
+Window.prototype.itemsRange = function(start, end) {
+  var results = [];
+  for (var i = start; i < end; ++i) {
+    var item = this.slots[i];
+    if (item) results.push(item);
+  }
+  return results;
+};
+
+Window.prototype.count = function(itemType, metadata) {
+  itemType = parseInt(itemType, 10); // allow input to be string
+  assert.ok(this.inventorySlotStart != null);
+
+  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  return this.countRange(this.inventorySlotStart, end, itemType, metadata);
+};
+
+Window.prototype.items = function() {
+  assert.ok(this.inventorySlotStart != null);
+  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  return this.itemsRange(this.inventorySlotStart, end);
+};
+
+Window.prototype.emptySlotCount = function() {
+  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
+  var count = 0;
+  for (var i = this.inventorySlotStart; i < end; ++i) {
+    if (!this.slots[i]) count += 1;
+  }
+  return count;
+};
+
+Window.prototype.transactionRequiresConfirmation = function(click) {
+  return true;
+};
+
+Window.prototype.acceptCraftingClick = function(click) {
+  assert.strictEqual(click.mouseButton, 0);
+  assert.strictEqual(click.mode, 0);
+  assert.equal(this.selectedItem, null);
+  this.acceptNonInventorySwapAreaClick(click);
+};
+
+function InventoryWindow(id, title, slotCount) {
+  Window.call(this, id, null, title, slotCount);
+}
+util.inherits(InventoryWindow, Window);
+
+InventoryWindow.prototype.inventorySlotStart = 9;
+
+InventoryWindow.prototype.acceptUniqueClick = function(click) {
+  if (click.slot === 0) {
+    this.acceptCraftingClick(click);
+  } else if (click.slot >= 1 && click.slot < 9) {
+    this.acceptNonInventorySwapAreaClick(click);
+  }
+}
+
+
+function ChestWindow(id, title, slotCount) {
+  Window.call(this, id, 0, title, slotCount);
+
+  this.inventorySlotStart = slotCount > 62 ? 54 : 27;
+}
+util.inherits(ChestWindow, Window);
+
+ChestWindow.prototype.chestItems = function() {
+  return this.itemsRange(0, this.inventorySlotStart);
+};
+
+ChestWindow.prototype.chestCount = function(itemType, metadata) {
+  itemType = parseInt(itemType, 10); // allow input to be a string
+  return this.countRange(0, this.inventorySlotStart, itemType, metadata);
+};
+
+ChestWindow.prototype.findChestItem = function(itemType, metadata, notFull) {
+  itemType = parseInt(itemType, 10); // allow input to be a string
+  return this.findItemRange(0, this.inventorySlotStart, itemType, metadata, notFull);
+};
+
+ChestWindow.prototype.firstEmptyChestSlot = function() {
+  return this.firstEmptySlotRange(0, this.inventorySlotStart);
+};
+
+ChestWindow.prototype.acceptUniqueClick = function(click) {
+  assert.ok(click.slot >= 0);
+  assert.ok(click.slot < this.inventorySlotStart);
+  this.acceptNonInventorySwapAreaClick(click);
+};
+
+function CraftingTableWindow(id, title, slotCount) {
+  Window.call(this, id, 1, title, slotCount);
+}
+util.inherits(CraftingTableWindow, Window);
+
+CraftingTableWindow.prototype.inventorySlotStart = 10;
+
+CraftingTableWindow.prototype.acceptUniqueClick = function(click) {
+  if (click.slot === 0) {
+    this.acceptCraftingClick(click);
+  } else if (click.slot >= 1 && click.slot < 10) {
+    this.acceptNonInventorySwapAreaClick(click);
+  }
+};
+
+function FurnaceWindow(id, title, slotCount) {
+  Window.call(this, id, 2, title, slotCount);
+}
+util.inherits(FurnaceWindow, Window);
+
+FurnaceWindow.prototype.inventorySlotStart = 3;
+
+FurnaceWindow.prototype.acceptUniqueClick = function(click) {
+  this.acceptNonInventorySwapAreaClick(click);
+}
+
+function DispenserWindow(id, title, slotCount) {
+  Window.call(this, id, 3, title, slotCount);
+}
+util.inherits(DispenserWindow, Window);
+
+DispenserWindow.prototype.inventorySlotStart = 9;
+
+DispenserWindow.prototype.dispenserItems = function() {
+  return this.itemsRange(0, this.inventorySlotStart);
+};
+
+DispenserWindow.prototype.dispenserCount = function(itemType, metadata) {
+  itemType = parseInt(itemType, 10); // allow input to be a string
+  return this.countRange(0, this.inventorySlotStart, itemType, metadata);
+};
+
+DispenserWindow.prototype.acceptUniqueClick = function(click) {
+  assert.ok(click.slot >= 0);
+  assert.ok(click.slot < this.inventorySlotStart);
+  this.acceptNonInventorySwapAreaClick(click);
+};
+
+function EnchantmentTableWindow(id, title, slotCount) {
+  // this window incorrectly reports the number of slots as 9. it should be 1.
+  Window.call(this, id, 4, title, 1);
+}
+util.inherits(EnchantmentTableWindow, Window);
+
+EnchantmentTableWindow.prototype.inventorySlotStart = 1;
+
+EnchantmentTableWindow.prototype.acceptUniqueClick = function(click) {
+  if (click.slot === 0) {
+    // this is technically incorrect. there are some exceptions to enchantment
+    // table slot clicks but we're going to bank on them not being used.
+    this.acceptNonInventorySwapAreaClick(click);
+  }
+}
+
+
+function BrewingStandWindow(id, title, slotCount) {
+  Window.call(this, id, 5, title, slotCount);
+}
+util.inherits(BrewingStandWindow, Window);
+
+BrewingStandWindow.prototype.inventorySlotStart = 5;
+
+},{"./item":137,"assert":917,"util":955}],159:[function(require,module,exports){
+(function (global){
+/**
+ * @license
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
+ * Build: `lodash modern -o ./dist/lodash.js`
+ * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
+ * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
+ * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ * Available under MIT license <http://lodash.com/license>
+ */
+;(function() {
+
+  /** Used as a safe reference for `undefined` in pre ES5 environments */
+  var undefined;
+
+  /** Used to pool arrays and objects used internally */
+  var arrayPool = [],
+      objectPool = [];
+
+  /** Used to generate unique IDs */
+  var idCounter = 0;
+
+  /** Used to prefix keys to avoid issues with `__proto__` and properties on `Object.prototype` */
+  var keyPrefix = +new Date + '';
+
+  /** Used as the size when optimizations are enabled for large arrays */
+  var largeArraySize = 75;
+
+  /** Used as the max size of the `arrayPool` and `objectPool` */
+  var maxPoolSize = 40;
+
+  /** Used to detect and test whitespace */
+  var whitespace = (
+    // whitespace
+    ' \t\x0B\f\xA0\ufeff' +
+
+    // line terminators
+    '\n\r\u2028\u2029' +
+
+    // unicode category "Zs" space separators
+    '\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000'
+  );
+
+  /** Used to match empty string literals in compiled template source */
+  var reEmptyStringLeading = /\b__p \+= '';/g,
+      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
+      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+
+  /**
+   * Used to match ES6 template delimiters
+   * http://people.mozilla.org/~jorendorff/es6-draft.html#sec-literals-string-literals
+   */
+  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+
+  /** Used to match regexp flags from their coerced string values */
+  var reFlags = /\w*$/;
+
+  /** Used to detected named functions */
+  var reFuncName = /^\s*function[ \n\r\t]+\w/;
+
+  /** Used to match "interpolate" template delimiters */
+  var reInterpolate = /<%=([\s\S]+?)%>/g;
+
+  /** Used to match leading whitespace and zeros to be removed */
+  var reLeadingSpacesAndZeros = RegExp('^[' + whitespace + ']*0+(?=.$)');
+
+  /** Used to ensure capturing order of template delimiters */
+  var reNoMatch = /($^)/;
+
+  /** Used to detect functions containing a `this` reference */
+  var reThis = /\bthis\b/;
+
+  /** Used to match unescaped characters in compiled string literals */
+  var reUnescapedString = /['\n\r\t\u2028\u2029\\]/g;
+
+  /** Used to assign default `context` object properties */
+  var contextProps = [
+    'Array', 'Boolean', 'Date', 'Function', 'Math', 'Number', 'Object',
+    'RegExp', 'String', '_', 'attachEvent', 'clearTimeout', 'isFinite', 'isNaN',
+    'parseInt', 'setTimeout'
+  ];
+
+  /** Used to make template sourceURLs easier to identify */
+  var templateCounter = 0;
+
+  /** `Object#toString` result shortcuts */
+  var argsClass = '[object Arguments]',
+      arrayClass = '[object Array]',
+      boolClass = '[object Boolean]',
+      dateClass = '[object Date]',
+      funcClass = '[object Function]',
+      numberClass = '[object Number]',
+      objectClass = '[object Object]',
+      regexpClass = '[object RegExp]',
+      stringClass = '[object String]';
+
+  /** Used to identify object classifications that `_.clone` supports */
+  var cloneableClasses = {};
+  cloneableClasses[funcClass] = false;
+  cloneableClasses[argsClass] = cloneableClasses[arrayClass] =
+  cloneableClasses[boolClass] = cloneableClasses[dateClass] =
+  cloneableClasses[numberClass] = cloneableClasses[objectClass] =
+  cloneableClasses[regexpClass] = cloneableClasses[stringClass] = true;
+
+  /** Used as an internal `_.debounce` options object */
+  var debounceOptions = {
+    'leading': false,
+    'maxWait': 0,
+    'trailing': false
+  };
+
+  /** Used as the property descriptor for `__bindData__` */
+  var descriptor = {
+    'configurable': false,
+    'enumerable': false,
+    'value': null,
+    'writable': false
+  };
+
+  /** Used to determine if values are of the language type Object */
+  var objectTypes = {
+    'boolean': false,
+    'function': true,
+    'object': true,
+    'number': false,
+    'string': false,
+    'undefined': false
+  };
+
+  /** Used to escape characters for inclusion in compiled string literals */
+  var stringEscapes = {
+    '\\': '\\',
+    "'": "'",
+    '\n': 'n',
+    '\r': 'r',
+    '\t': 't',
+    '\u2028': 'u2028',
+    '\u2029': 'u2029'
+  };
+
+  /** Used as a reference to the global object */
+  var root = (objectTypes[typeof window] && window) || this;
+
+  /** Detect free variable `exports` */
+  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
+
+  /** Detect free variable `module` */
+  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
+
+  /** Detect the popular CommonJS extension `module.exports` */
+  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
+
+  /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
+  var freeGlobal = objectTypes[typeof global] && global;
+  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
+    root = freeGlobal;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * The base implementation of `_.indexOf` without support for binary searches
+   * or `fromIndex` constraints.
+   *
+   * @private
+   * @param {Array} array The array to search.
+   * @param {*} value The value to search for.
+   * @param {number} [fromIndex=0] The index to search from.
+   * @returns {number} Returns the index of the matched value or `-1`.
+   */
+  function baseIndexOf(array, value, fromIndex) {
+    var index = (fromIndex || 0) - 1,
+        length = array ? array.length : 0;
+
+    while (++index < length) {
+      if (array[index] === value) {
+        return index;
+      }
+    }
+    return -1;
+  }
+
+  /**
+   * An implementation of `_.contains` for cache objects that mimics the return
+   * signature of `_.indexOf` by returning `0` if the value is found, else `-1`.
+   *
+   * @private
+   * @param {Object} cache The cache object to inspect.
+   * @param {*} value The value to search for.
+   * @returns {number} Returns `0` if `value` is found, else `-1`.
+   */
+  function cacheIndexOf(cache, value) {
+    var type = typeof value;
+    cache = cache.cache;
+
+    if (type == 'boolean' || value == null) {
+      return cache[value] ? 0 : -1;
+    }
+    if (type != 'number' && type != 'string') {
+      type = 'object';
+    }
+    var key = type == 'number' ? value : keyPrefix + value;
+    cache = (cache = cache[type]) && cache[key];
+
+    return type == 'object'
+      ? (cache && baseIndexOf(cache, value) > -1 ? 0 : -1)
+      : (cache ? 0 : -1);
+  }
+
+  /**
+   * Adds a given value to the corresponding cache object.
+   *
+   * @private
+   * @param {*} value The value to add to the cache.
+   */
+  function cachePush(value) {
+    var cache = this.cache,
+        type = typeof value;
+
+    if (type == 'boolean' || value == null) {
+      cache[value] = true;
+    } else {
+      if (type != 'number' && type != 'string') {
+        type = 'object';
+      }
+      var key = type == 'number' ? value : keyPrefix + value,
+          typeCache = cache[type] || (cache[type] = {});
+
+      if (type == 'object') {
+        (typeCache[key] || (typeCache[key] = [])).push(value);
+      } else {
+        typeCache[key] = true;
+      }
+    }
+  }
+
+  /**
+   * Used by `_.max` and `_.min` as the default callback when a given
+   * collection is a string value.
+   *
+   * @private
+   * @param {string} value The character to inspect.
+   * @returns {number} Returns the code unit of given character.
+   */
+  function charAtCallback(value) {
+    return value.charCodeAt(0);
+  }
+
+  /**
+   * Used by `sortBy` to compare transformed `collection` elements, stable sorting
+   * them in ascending order.
+   *
+   * @private
+   * @param {Object} a The object to compare to `b`.
+   * @param {Object} b The object to compare to `a`.
+   * @returns {number} Returns the sort order indicator of `1` or `-1`.
+   */
+  function compareAscending(a, b) {
+    var ac = a.criteria,
+        bc = b.criteria,
+        index = -1,
+        length = ac.length;
+
+    while (++index < length) {
+      var value = ac[index],
+          other = bc[index];
+
+      if (value !== other) {
+        if (value > other || typeof value == 'undefined') {
+          return 1;
+        }
+        if (value < other || typeof other == 'undefined') {
+          return -1;
+        }
+      }
+    }
+    // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
+    // that causes it, under certain circumstances, to return the same value for
+    // `a` and `b`. See https://github.com/jashkenas/underscore/pull/1247
+    //
+    // This also ensures a stable sort in V8 and other engines.
+    // See http://code.google.com/p/v8/issues/detail?id=90
+    return a.index - b.index;
+  }
+
+  /**
+   * Creates a cache object to optimize linear searches of large arrays.
+   *
+   * @private
+   * @param {Array} [array=[]] The array to search.
+   * @returns {null|Object} Returns the cache object or `null` if caching should not be used.
+   */
+  function createCache(array) {
+    var index = -1,
+        length = array.length,
+        first = array[0],
+        mid = array[(length / 2) | 0],
+        last = array[length - 1];
+
+    if (first && typeof first == 'object' &&
+        mid && typeof mid == 'object' && last && typeof last == 'object') {
+      return false;
+    }
+    var cache = getObject();
+    cache['false'] = cache['null'] = cache['true'] = cache['undefined'] = false;
+
+    var result = getObject();
+    result.array = array;
+    result.cache = cache;
+    result.push = cachePush;
+
+    while (++index < length) {
+      result.push(array[index]);
+    }
+    return result;
+  }
+
+  /**
+   * Used by `template` to escape characters for inclusion in compiled
+   * string literals.
+   *
+   * @private
+   * @param {string} match The matched character to escape.
+   * @returns {string} Returns the escaped character.
+   */
+  function escapeStringChar(match) {
+    return '\\' + stringEscapes[match];
+  }
+
+  /**
+   * Gets an array from the array pool or creates a new one if the pool is empty.
+   *
+   * @private
+   * @returns {Array} The array from the pool.
+   */
+  function getArray() {
+    return arrayPool.pop() || [];
+  }
+
+  /**
+   * Gets an object from the object pool or creates a new one if the pool is empty.
+   *
+   * @private
+   * @returns {Object} The object from the pool.
+   */
+  function getObject() {
+    return objectPool.pop() || {
+      'array': null,
+      'cache': null,
+      'criteria': null,
+      'false': false,
+      'index': 0,
+      'null': false,
+      'number': null,
+      'object': null,
+      'push': null,
+      'string': null,
+      'true': false,
+      'undefined': false,
+      'value': null
+    };
+  }
+
+  /**
+   * Releases the given array back to the array pool.
+   *
+   * @private
+   * @param {Array} [array] The array to release.
+   */
+  function releaseArray(array) {
+    array.length = 0;
+    if (arrayPool.length < maxPoolSize) {
+      arrayPool.push(array);
+    }
+  }
+
+  /**
+   * Releases the given object back to the object pool.
+   *
+   * @private
+   * @param {Object} [object] The object to release.
+   */
+  function releaseObject(object) {
+    var cache = object.cache;
+    if (cache) {
+      releaseObject(cache);
+    }
+    object.array = object.cache = object.criteria = object.object = object.number = object.string = object.value = null;
+    if (objectPool.length < maxPoolSize) {
+      objectPool.push(object);
+    }
+  }
+
+  /**
+   * Slices the `collection` from the `start` index up to, but not including,
+   * the `end` index.
+   *
+   * Note: This function is used instead of `Array#slice` to support node lists
+   * in IE < 9 and to ensure dense arrays are returned.
+   *
+   * @private
+   * @param {Array|Object|string} collection The collection to slice.
+   * @param {number} start The start index.
+   * @param {number} end The end index.
+   * @returns {Array} Returns the new array.
+   */
+  function slice(array, start, end) {
+    start || (start = 0);
+    if (typeof end == 'undefined') {
+      end = array ? array.length : 0;
+    }
+    var index = -1,
+        length = end - start || 0,
+        result = Array(length < 0 ? 0 : length);
+
+    while (++index < length) {
+      result[index] = array[start + index];
+    }
+    return result;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  /**
+   * Create a new `lodash` function using the given context object.
+   *
+   * @static
+   * @memberOf _
+   * @category Utilities
+   * @param {Object} [context=root] The context object.
+   * @returns {Function} Returns the `lodash` function.
+   */
+  function runInContext(context) {
+    // Avoid issues with some ES3 environments that attempt to use values, named
+    // after built-in constructors like `Object`, for the creation of literals.
+    // ES5 clears this up by stating that literals must use built-in constructors.
+    // See http://es5.github.io/#x11.1.5.
+    context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
+
+    /** Native constructor references */
+    var Array = context.Array,
+        Boolean = context.Boolean,
+        Date = context.Date,
+        Function = context.Function,
+        Math = context.Math,
+        Number = context.Number,
+        Object = context.Object,
+        RegExp = context.RegExp,
+        String = context.String,
+        TypeError = context.TypeError;
+
+    /**
+     * Used for `Array` method references.
+     *
+     * Normally `Array.prototype` would suffice, however, using an array literal
+     * avoids issues in Narwhal.
+     */
+    var arrayRef = [];
+
+    /** Used for native method references */
+    var objectProto = Object.prototype;
+
+    /** Used to restore the original `_` reference in `noConflict` */
+    var oldDash = context._;
+
+    /** Used to resolve the internal [[Class]] of values */
+    var toString = objectProto.toString;
+
+    /** Used to detect if a method is native */
+    var reNative = RegExp('^' +
+      String(toString)
+        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+        .replace(/toString| for [^\]]+/g, '.*?') + '$'
+    );
+
+    /** Native method shortcuts */
+    var ceil = Math.ceil,
+        clearTimeout = context.clearTimeout,
+        floor = Math.floor,
+        fnToString = Function.prototype.toString,
+        getPrototypeOf = isNative(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
+        hasOwnProperty = objectProto.hasOwnProperty,
+        push = arrayRef.push,
+        setTimeout = context.setTimeout,
+        splice = arrayRef.splice,
+        unshift = arrayRef.unshift;
+
+    /** Used to set meta data on functions */
+    var defineProperty = (function() {
+      // IE 8 only accepts DOM elements
+      try {
+        var o = {},
+            func = isNative(func = Object.defineProperty) && func,
+            result = func(o, o, o) && func;
+      } catch(e) { }
+      return result;
+    }());
+
+    /* Native method shortcuts for methods with the same name as other `lodash` methods */
+    var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate,
+        nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray,
+        nativeIsFinite = context.isFinite,
+        nativeIsNaN = context.isNaN,
+        nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys,
+        nativeMax = Math.max,
+        nativeMin = Math.min,
+        nativeParseInt = context.parseInt,
+        nativeRandom = Math.random;
+
+    /** Used to lookup a built-in constructor by [[Class]] */
+    var ctorByClass = {};
+    ctorByClass[arrayClass] = Array;
+    ctorByClass[boolClass] = Boolean;
+    ctorByClass[dateClass] = Date;
+    ctorByClass[funcClass] = Function;
+    ctorByClass[objectClass] = Object;
+    ctorByClass[numberClass] = Number;
+    ctorByClass[regexpClass] = RegExp;
+    ctorByClass[stringClass] = String;
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` object which wraps the given value to enable intuitive
+     * method chaining.
+     *
+     * In addition to Lo-Dash methods, wrappers also have the following `Array` methods:
+     * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`, `splice`,
+     * and `unshift`
+     *
+     * Chaining is supported in custom builds as long as the `value` method is
+     * implicitly or explicitly included in the build.
+     *
+     * The chainable wrapper functions are:
+     * `after`, `assign`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
+     * `compose`, `concat`, `countBy`, `create`, `createCallback`, `curry`,
+     * `debounce`, `defaults`, `defer`, `delay`, `difference`, `filter`, `flatten`,
+     * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
+     * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
+     * `invoke`, `keys`, `map`, `max`, `memoize`, `merge`, `min`, `object`, `omit`,
+     * `once`, `pairs`, `partial`, `partialRight`, `pick`, `pluck`, `pull`, `push`,
+     * `range`, `reject`, `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`,
+     * `sortBy`, `splice`, `tap`, `throttle`, `times`, `toArray`, `transform`,
+     * `union`, `uniq`, `unshift`, `unzip`, `values`, `where`, `without`, `wrap`,
+     * and `zip`
+     *
+     * The non-chainable wrapper functions are:
+     * `clone`, `cloneDeep`, `contains`, `escape`, `every`, `find`, `findIndex`,
+     * `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `has`, `identity`,
+     * `indexOf`, `isArguments`, `isArray`, `isBoolean`, `isDate`, `isElement`,
+     * `isEmpty`, `isEqual`, `isFinite`, `isFunction`, `isNaN`, `isNull`, `isNumber`,
+     * `isObject`, `isPlainObject`, `isRegExp`, `isString`, `isUndefined`, `join`,
+     * `lastIndexOf`, `mixin`, `noConflict`, `parseInt`, `pop`, `random`, `reduce`,
+     * `reduceRight`, `result`, `shift`, `size`, `some`, `sortedIndex`, `runInContext`,
+     * `template`, `unescape`, `uniqueId`, and `value`
+     *
+     * The wrapper functions `first` and `last` return wrapped values when `n` is
+     * provided, otherwise they return unwrapped values.
+     *
+     * Explicit chaining can be enabled by using the `_.chain` method.
+     *
+     * @name _
+     * @constructor
+     * @category Chaining
+     * @param {*} value The value to wrap in a `lodash` instance.
+     * @returns {Object} Returns a `lodash` instance.
+     * @example
+     *
+     * var wrapped = _([1, 2, 3]);
+     *
+     * // returns an unwrapped value
+     * wrapped.reduce(function(sum, num) {
+     *   return sum + num;
+     * });
+     * // => 6
+     *
+     * // returns a wrapped value
+     * var squares = wrapped.map(function(num) {
+     *   return num * num;
+     * });
+     *
+     * _.isArray(squares);
+     * // => false
+     *
+     * _.isArray(squares.value());
+     * // => true
+     */
+    function lodash(value) {
+      // don't wrap if already wrapped, even if wrapped by a different `lodash` constructor
+      return (value && typeof value == 'object' && !isArray(value) && hasOwnProperty.call(value, '__wrapped__'))
+       ? value
+       : new lodashWrapper(value);
+    }
+
+    /**
+     * A fast path for creating `lodash` wrapper objects.
+     *
+     * @private
+     * @param {*} value The value to wrap in a `lodash` instance.
+     * @param {boolean} chainAll A flag to enable chaining for all methods
+     * @returns {Object} Returns a `lodash` instance.
+     */
+    function lodashWrapper(value, chainAll) {
+      this.__chain__ = !!chainAll;
+      this.__wrapped__ = value;
+    }
+    // ensure `new lodashWrapper` is an instance of `lodash`
+    lodashWrapper.prototype = lodash.prototype;
+
+    /**
+     * An object used to flag environments features.
+     *
+     * @static
+     * @memberOf _
+     * @type Object
+     */
+    var support = lodash.support = {};
+
+    /**
+     * Detect if functions can be decompiled by `Function#toString`
+     * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcDecomp = !isNative(context.WinRTError) && reThis.test(runInContext);
+
+    /**
+     * Detect if `Function#name` is supported (all but IE).
+     *
+     * @memberOf _.support
+     * @type boolean
+     */
+    support.funcNames = typeof Function.name == 'string';
+
+    /**
+     * By default, the template delimiters used by Lo-Dash are similar to those in
+     * embedded Ruby (ERB). Change the following template settings to use alternative
+     * delimiters.
+     *
+     * @static
+     * @memberOf _
+     * @type Object
+     */
+    lodash.templateSettings = {
+
+      /**
+       * Used to detect `data` property values to be HTML-escaped.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'escape': /<%-([\s\S]+?)%>/g,
+
+      /**
+       * Used to detect code to be evaluated.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'evaluate': /<%([\s\S]+?)%>/g,
+
+      /**
+       * Used to detect `data` property values to inject.
+       *
+       * @memberOf _.templateSettings
+       * @type RegExp
+       */
+      'interpolate': reInterpolate,
+
+      /**
+       * Used to reference the data object in the template text.
+       *
+       * @memberOf _.templateSettings
+       * @type string
+       */
+      'variable': '',
+
+      /**
+       * Used to import variables into the compiled template.
+       *
+       * @memberOf _.templateSettings
+       * @type Object
+       */
+      'imports': {
+
+        /**
+         * A reference to the `lodash` function.
+         *
+         * @memberOf _.templateSettings.imports
+         * @type Function
+         */
+        '_': lodash
+      }
+    };
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * The base implementation of `_.bind` that creates the bound function and
+     * sets its meta data.
+     *
+     * @private
+     * @param {Array} bindData The bind data array.
+     * @returns {Function} Returns the new bound function.
+     */
+    function baseBind(bindData) {
+      var func = bindData[0],
+          partialArgs = bindData[2],
+          thisArg = bindData[4];
+
+      function bound() {
+        // `Function#bind` spec
+        // http://es5.github.io/#x15.3.4.5
+        if (partialArgs) {
+          // avoid `arguments` object deoptimizations by using `slice` instead
+          // of `Array.prototype.slice.call` and not assigning `arguments` to a
+          // variable as a ternary expression
+          var args = slice(partialArgs);
+          push.apply(args, arguments);
+        }
+        // mimic the constructor's `return` behavior
+        // http://es5.github.io/#x13.2.2
+        if (this instanceof bound) {
+          // ensure `new bound` is an instance of `func`
+          var thisBinding = baseCreate(func.prototype),
+              result = func.apply(thisBinding, args || arguments);
+          return isObject(result) ? result : thisBinding;
+        }
+        return func.apply(thisArg, args || arguments);
+      }
+      setBindData(bound, bindData);
+      return bound;
+    }
+
+    /**
+     * The base implementation of `_.clone` without argument juggling or support
+     * for `thisArg` binding.
+     *
+     * @private
+     * @param {*} value The value to clone.
+     * @param {boolean} [isDeep=false] Specify a deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {Array} [stackA=[]] Tracks traversed source objects.
+     * @param {Array} [stackB=[]] Associates clones with source counterparts.
+     * @returns {*} Returns the cloned value.
+     */
+    function baseClone(value, isDeep, callback, stackA, stackB) {
+      if (callback) {
+        var result = callback(value);
+        if (typeof result != 'undefined') {
+          return result;
+        }
+      }
+      // inspect [[Class]]
+      var isObj = isObject(value);
+      if (isObj) {
+        var className = toString.call(value);
+        if (!cloneableClasses[className]) {
+          return value;
+        }
+        var ctor = ctorByClass[className];
+        switch (className) {
+          case boolClass:
+          case dateClass:
+            return new ctor(+value);
+
+          case numberClass:
+          case stringClass:
+            return new ctor(value);
+
+          case regexpClass:
+            result = ctor(value.source, reFlags.exec(value));
+            result.lastIndex = value.lastIndex;
+            return result;
+        }
+      } else {
+        return value;
+      }
+      var isArr = isArray(value);
+      if (isDeep) {
+        // check for circular references and return corresponding clone
+        var initedStack = !stackA;
+        stackA || (stackA = getArray());
+        stackB || (stackB = getArray());
+
+        var length = stackA.length;
+        while (length--) {
+          if (stackA[length] == value) {
+            return stackB[length];
+          }
+        }
+        result = isArr ? ctor(value.length) : {};
+      }
+      else {
+        result = isArr ? slice(value) : assign({}, value);
+      }
+      // add array properties assigned by `RegExp#exec`
+      if (isArr) {
+        if (hasOwnProperty.call(value, 'index')) {
+          result.index = value.index;
+        }
+        if (hasOwnProperty.call(value, 'input')) {
+          result.input = value.input;
+        }
+      }
+      // exit for shallow clone
+      if (!isDeep) {
+        return result;
+      }
+      // add the source value to the stack of traversed objects
+      // and associate it with its clone
+      stackA.push(value);
+      stackB.push(result);
+
+      // recursively populate clone (susceptible to call stack limits)
+      (isArr ? forEach : forOwn)(value, function(objValue, key) {
+        result[key] = baseClone(objValue, isDeep, callback, stackA, stackB);
+      });
+
+      if (initedStack) {
+        releaseArray(stackA);
+        releaseArray(stackB);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.create` without support for assigning
+     * properties to the created object.
+     *
+     * @private
+     * @param {Object} prototype The object to inherit from.
+     * @returns {Object} Returns the new object.
+     */
+    function baseCreate(prototype, properties) {
+      return isObject(prototype) ? nativeCreate(prototype) : {};
+    }
+    // fallback for browsers without `Object.create`
+    if (!nativeCreate) {
+      baseCreate = (function() {
+        function Object() {}
+        return function(prototype) {
+          if (isObject(prototype)) {
+            Object.prototype = prototype;
+            var result = new Object;
+            Object.prototype = null;
+          }
+          return result || context.Object();
+        };
+      }());
+    }
+
+    /**
+     * The base implementation of `_.createCallback` without support for creating
+     * "_.pluck" or "_.where" style callbacks.
+     *
+     * @private
+     * @param {*} [func=identity] The value to convert to a callback.
+     * @param {*} [thisArg] The `this` binding of the created callback.
+     * @param {number} [argCount] The number of arguments the callback accepts.
+     * @returns {Function} Returns a callback function.
+     */
+    function baseCreateCallback(func, thisArg, argCount) {
+      if (typeof func != 'function') {
+        return identity;
+      }
+      // exit early for no `thisArg` or already bound by `Function#bind`
+      if (typeof thisArg == 'undefined' || !('prototype' in func)) {
+        return func;
+      }
+      var bindData = func.__bindData__;
+      if (typeof bindData == 'undefined') {
+        if (support.funcNames) {
+          bindData = !func.name;
+        }
+        bindData = bindData || !support.funcDecomp;
+        if (!bindData) {
+          var source = fnToString.call(func);
+          if (!support.funcNames) {
+            bindData = !reFuncName.test(source);
+          }
+          if (!bindData) {
+            // checks if `func` references the `this` keyword and stores the result
+            bindData = reThis.test(source);
+            setBindData(func, bindData);
+          }
+        }
+      }
+      // exit early if there are no `this` references or `func` is bound
+      if (bindData === false || (bindData !== true && bindData[1] & 1)) {
+        return func;
+      }
+      switch (argCount) {
+        case 1: return function(value) {
+          return func.call(thisArg, value);
+        };
+        case 2: return function(a, b) {
+          return func.call(thisArg, a, b);
+        };
+        case 3: return function(value, index, collection) {
+          return func.call(thisArg, value, index, collection);
+        };
+        case 4: return function(accumulator, value, index, collection) {
+          return func.call(thisArg, accumulator, value, index, collection);
+        };
+      }
+      return bind(func, thisArg);
+    }
+
+    /**
+     * The base implementation of `createWrapper` that creates the wrapper and
+     * sets its meta data.
+     *
+     * @private
+     * @param {Array} bindData The bind data array.
+     * @returns {Function} Returns the new function.
+     */
+    function baseCreateWrapper(bindData) {
+      var func = bindData[0],
+          bitmask = bindData[1],
+          partialArgs = bindData[2],
+          partialRightArgs = bindData[3],
+          thisArg = bindData[4],
+          arity = bindData[5];
+
+      var isBind = bitmask & 1,
+          isBindKey = bitmask & 2,
+          isCurry = bitmask & 4,
+          isCurryBound = bitmask & 8,
+          key = func;
+
+      function bound() {
+        var thisBinding = isBind ? thisArg : this;
+        if (partialArgs) {
+          var args = slice(partialArgs);
+          push.apply(args, arguments);
+        }
+        if (partialRightArgs || isCurry) {
+          args || (args = slice(arguments));
+          if (partialRightArgs) {
+            push.apply(args, partialRightArgs);
+          }
+          if (isCurry && args.length < arity) {
+            bitmask |= 16 & ~32;
+            return baseCreateWrapper([func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity]);
+          }
+        }
+        args || (args = arguments);
+        if (isBindKey) {
+          func = thisBinding[key];
+        }
+        if (this instanceof bound) {
+          thisBinding = baseCreate(func.prototype);
+          var result = func.apply(thisBinding, args);
+          return isObject(result) ? result : thisBinding;
+        }
+        return func.apply(thisBinding, args);
+      }
+      setBindData(bound, bindData);
+      return bound;
+    }
+
+    /**
+     * The base implementation of `_.difference` that accepts a single array
+     * of values to exclude.
+     *
+     * @private
+     * @param {Array} array The array to process.
+     * @param {Array} [values] The array of values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     */
+    function baseDifference(array, values) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          isLarge = length >= largeArraySize && indexOf === baseIndexOf,
+          result = [];
+
+      if (isLarge) {
+        var cache = createCache(values);
+        if (cache) {
+          indexOf = cacheIndexOf;
+          values = cache;
+        } else {
+          isLarge = false;
+        }
+      }
+      while (++index < length) {
+        var value = array[index];
+        if (indexOf(values, value) < 0) {
+          result.push(value);
+        }
+      }
+      if (isLarge) {
+        releaseObject(values);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.flatten` without support for callback
+     * shorthands or `thisArg` binding.
+     *
+     * @private
+     * @param {Array} array The array to flatten.
+     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
+     * @param {boolean} [isStrict=false] A flag to restrict flattening to arrays and `arguments` objects.
+     * @param {number} [fromIndex=0] The index to start from.
+     * @returns {Array} Returns a new flattened array.
+     */
+    function baseFlatten(array, isShallow, isStrict, fromIndex) {
+      var index = (fromIndex || 0) - 1,
+          length = array ? array.length : 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index];
+
+        if (value && typeof value == 'object' && typeof value.length == 'number'
+            && (isArray(value) || isArguments(value))) {
+          // recursively flatten arrays (susceptible to call stack limits)
+          if (!isShallow) {
+            value = baseFlatten(value, isShallow, isStrict);
+          }
+          var valIndex = -1,
+              valLength = value.length,
+              resIndex = result.length;
+
+          result.length += valLength;
+          while (++valIndex < valLength) {
+            result[resIndex++] = value[valIndex];
+          }
+        } else if (!isStrict) {
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.isEqual`, without support for `thisArg` binding,
+     * that allows partial "_.where" style comparisons.
+     *
+     * @private
+     * @param {*} a The value to compare.
+     * @param {*} b The other value to compare.
+     * @param {Function} [callback] The function to customize comparing values.
+     * @param {Function} [isWhere=false] A flag to indicate performing partial comparisons.
+     * @param {Array} [stackA=[]] Tracks traversed `a` objects.
+     * @param {Array} [stackB=[]] Tracks traversed `b` objects.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     */
+    function baseIsEqual(a, b, callback, isWhere, stackA, stackB) {
+      // used to indicate that when comparing objects, `a` has at least the properties of `b`
+      if (callback) {
+        var result = callback(a, b);
+        if (typeof result != 'undefined') {
+          return !!result;
+        }
+      }
+      // exit early for identical values
+      if (a === b) {
+        // treat `+0` vs. `-0` as not equal
+        return a !== 0 || (1 / a == 1 / b);
+      }
+      var type = typeof a,
+          otherType = typeof b;
+
+      // exit early for unlike primitive values
+      if (a === a &&
+          !(a && objectTypes[type]) &&
+          !(b && objectTypes[otherType])) {
+        return false;
+      }
+      // exit early for `null` and `undefined` avoiding ES3's Function#call behavior
+      // http://es5.github.io/#x15.3.4.4
+      if (a == null || b == null) {
+        return a === b;
+      }
+      // compare [[Class]] names
+      var className = toString.call(a),
+          otherClass = toString.call(b);
+
+      if (className == argsClass) {
+        className = objectClass;
+      }
+      if (otherClass == argsClass) {
+        otherClass = objectClass;
+      }
+      if (className != otherClass) {
+        return false;
+      }
+      switch (className) {
+        case boolClass:
+        case dateClass:
+          // coerce dates and booleans to numbers, dates to milliseconds and booleans
+          // to `1` or `0` treating invalid dates coerced to `NaN` as not equal
+          return +a == +b;
+
+        case numberClass:
+          // treat `NaN` vs. `NaN` as equal
+          return (a != +a)
+            ? b != +b
+            // but treat `+0` vs. `-0` as not equal
+            : (a == 0 ? (1 / a == 1 / b) : a == +b);
+
+        case regexpClass:
+        case stringClass:
+          // coerce regexes to strings (http://es5.github.io/#x15.10.6.4)
+          // treat string primitives and their corresponding object instances as equal
+          return a == String(b);
+      }
+      var isArr = className == arrayClass;
+      if (!isArr) {
+        // unwrap any `lodash` wrapped values
+        var aWrapped = hasOwnProperty.call(a, '__wrapped__'),
+            bWrapped = hasOwnProperty.call(b, '__wrapped__');
+
+        if (aWrapped || bWrapped) {
+          return baseIsEqual(aWrapped ? a.__wrapped__ : a, bWrapped ? b.__wrapped__ : b, callback, isWhere, stackA, stackB);
+        }
+        // exit for functions and DOM nodes
+        if (className != objectClass) {
+          return false;
+        }
+        // in older versions of Opera, `arguments` objects have `Array` constructors
+        var ctorA = a.constructor,
+            ctorB = b.constructor;
+
+        // non `Object` object instances with different constructors are not equal
+        if (ctorA != ctorB &&
+              !(isFunction(ctorA) && ctorA instanceof ctorA && isFunction(ctorB) && ctorB instanceof ctorB) &&
+              ('constructor' in a && 'constructor' in b)
+            ) {
+          return false;
+        }
+      }
+      // assume cyclic structures are equal
+      // the algorithm for detecting cyclic structures is adapted from ES 5.1
+      // section 15.12.3, abstract operation `JO` (http://es5.github.io/#x15.12.3)
+      var initedStack = !stackA;
+      stackA || (stackA = getArray());
+      stackB || (stackB = getArray());
+
+      var length = stackA.length;
+      while (length--) {
+        if (stackA[length] == a) {
+          return stackB[length] == b;
+        }
+      }
+      var size = 0;
+      result = true;
+
+      // add `a` and `b` to the stack of traversed objects
+      stackA.push(a);
+      stackB.push(b);
+
+      // recursively compare objects and arrays (susceptible to call stack limits)
+      if (isArr) {
+        // compare lengths to determine if a deep comparison is necessary
+        length = a.length;
+        size = b.length;
+        result = size == length;
+
+        if (result || isWhere) {
+          // deep compare the contents, ignoring non-numeric properties
+          while (size--) {
+            var index = length,
+                value = b[size];
+
+            if (isWhere) {
+              while (index--) {
+                if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                  break;
+                }
+              }
+            } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+              break;
+            }
+          }
+        }
+      }
+      else {
+        // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+        // which, in this case, is more costly
+        forIn(b, function(value, key, b) {
+          if (hasOwnProperty.call(b, key)) {
+            // count the number of properties.
+            size++;
+            // deep compare each property value.
+            return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
+          }
+        });
+
+        if (result && !isWhere) {
+          // ensure both objects have the same number of properties
+          forIn(a, function(value, key, a) {
+            if (hasOwnProperty.call(a, key)) {
+              // `size` will be `-1` if `a` has more properties than `b`
+              return (result = --size > -1);
+            }
+          });
+        }
+      }
+      stackA.pop();
+      stackB.pop();
+
+      if (initedStack) {
+        releaseArray(stackA);
+        releaseArray(stackB);
+      }
+      return result;
+    }
+
+    /**
+     * The base implementation of `_.merge` without argument juggling or support
+     * for `thisArg` binding.
+     *
+     * @private
+     * @param {Object} object The destination object.
+     * @param {Object} source The source object.
+     * @param {Function} [callback] The function to customize merging properties.
+     * @param {Array} [stackA=[]] Tracks traversed source objects.
+     * @param {Array} [stackB=[]] Associates values with source counterparts.
+     */
+    function baseMerge(object, source, callback, stackA, stackB) {
+      (isArray(source) ? forEach : forOwn)(source, function(source, key) {
+        var found,
+            isArr,
+            result = source,
+            value = object[key];
+
+        if (source && ((isArr = isArray(source)) || isPlainObject(source))) {
+          // avoid merging previously merged cyclic sources
+          var stackLength = stackA.length;
+          while (stackLength--) {
+            if ((found = stackA[stackLength] == source)) {
+              value = stackB[stackLength];
+              break;
+            }
+          }
+          if (!found) {
+            var isShallow;
+            if (callback) {
+              result = callback(value, source);
+              if ((isShallow = typeof result != 'undefined')) {
+                value = result;
+              }
+            }
+            if (!isShallow) {
+              value = isArr
+                ? (isArray(value) ? value : [])
+                : (isPlainObject(value) ? value : {});
+            }
+            // add `source` and associated `value` to the stack of traversed objects
+            stackA.push(source);
+            stackB.push(value);
+
+            // recursively merge objects and arrays (susceptible to call stack limits)
+            if (!isShallow) {
+              baseMerge(value, source, callback, stackA, stackB);
+            }
+          }
+        }
+        else {
+          if (callback) {
+            result = callback(value, source);
+            if (typeof result == 'undefined') {
+              result = source;
+            }
+          }
+          if (typeof result != 'undefined') {
+            value = result;
+          }
+        }
+        object[key] = value;
+      });
+    }
+
+    /**
+     * The base implementation of `_.random` without argument juggling or support
+     * for returning floating-point numbers.
+     *
+     * @private
+     * @param {number} min The minimum possible value.
+     * @param {number} max The maximum possible value.
+     * @returns {number} Returns a random number.
+     */
+    function baseRandom(min, max) {
+      return min + floor(nativeRandom() * (max - min + 1));
+    }
+
+    /**
+     * The base implementation of `_.uniq` without support for callback shorthands
+     * or `thisArg` binding.
+     *
+     * @private
+     * @param {Array} array The array to process.
+     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
+     * @param {Function} [callback] The function called per iteration.
+     * @returns {Array} Returns a duplicate-value-free array.
+     */
+    function baseUniq(array, isSorted, callback) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = array ? array.length : 0,
+          result = [];
+
+      var isLarge = !isSorted && length >= largeArraySize && indexOf === baseIndexOf,
+          seen = (callback || isLarge) ? getArray() : result;
+
+      if (isLarge) {
+        var cache = createCache(seen);
+        indexOf = cacheIndexOf;
+        seen = cache;
+      }
+      while (++index < length) {
+        var value = array[index],
+            computed = callback ? callback(value, index, array) : value;
+
+        if (isSorted
+              ? !index || seen[seen.length - 1] !== computed
+              : indexOf(seen, computed) < 0
+            ) {
+          if (callback || isLarge) {
+            seen.push(computed);
+          }
+          result.push(value);
+        }
+      }
+      if (isLarge) {
+        releaseArray(seen.array);
+        releaseObject(seen);
+      } else if (callback) {
+        releaseArray(seen);
+      }
+      return result;
+    }
+
+    /**
+     * Creates a function that aggregates a collection, creating an object composed
+     * of keys generated from the results of running each element of the collection
+     * through a callback. The given `setter` function sets the keys and values
+     * of the composed object.
+     *
+     * @private
+     * @param {Function} setter The setter function.
+     * @returns {Function} Returns the new aggregator function.
+     */
+    function createAggregator(setter) {
+      return function(collection, callback, thisArg) {
+        var result = {};
+        callback = lodash.createCallback(callback, thisArg, 3);
+
+        var index = -1,
+            length = collection ? collection.length : 0;
+
+        if (typeof length == 'number') {
+          while (++index < length) {
+            var value = collection[index];
+            setter(result, value, callback(value, index, collection), collection);
+          }
+        } else {
+          forOwn(collection, function(value, key, collection) {
+            setter(result, value, callback(value, key, collection), collection);
+          });
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function that, when called, either curries or invokes `func`
+     * with an optional `this` binding and partially applied arguments.
+     *
+     * @private
+     * @param {Function|string} func The function or method name to reference.
+     * @param {number} bitmask The bitmask of method flags to compose.
+     *  The bitmask may be composed of the following flags:
+     *  1 - `_.bind`
+     *  2 - `_.bindKey`
+     *  4 - `_.curry`
+     *  8 - `_.curry` (bound)
+     *  16 - `_.partial`
+     *  32 - `_.partialRight`
+     * @param {Array} [partialArgs] An array of arguments to prepend to those
+     *  provided to the new function.
+     * @param {Array} [partialRightArgs] An array of arguments to append to those
+     *  provided to the new function.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {number} [arity] The arity of `func`.
+     * @returns {Function} Returns the new function.
+     */
+    function createWrapper(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
+      var isBind = bitmask & 1,
+          isBindKey = bitmask & 2,
+          isCurry = bitmask & 4,
+          isCurryBound = bitmask & 8,
+          isPartial = bitmask & 16,
+          isPartialRight = bitmask & 32;
+
+      if (!isBindKey && !isFunction(func)) {
+        throw new TypeError;
+      }
+      if (isPartial && !partialArgs.length) {
+        bitmask &= ~16;
+        isPartial = partialArgs = false;
+      }
+      if (isPartialRight && !partialRightArgs.length) {
+        bitmask &= ~32;
+        isPartialRight = partialRightArgs = false;
+      }
+      var bindData = func && func.__bindData__;
+      if (bindData && bindData !== true) {
+        // clone `bindData`
+        bindData = slice(bindData);
+        if (bindData[2]) {
+          bindData[2] = slice(bindData[2]);
+        }
+        if (bindData[3]) {
+          bindData[3] = slice(bindData[3]);
+        }
+        // set `thisBinding` is not previously bound
+        if (isBind && !(bindData[1] & 1)) {
+          bindData[4] = thisArg;
+        }
+        // set if previously bound but not currently (subsequent curried functions)
+        if (!isBind && bindData[1] & 1) {
+          bitmask |= 8;
+        }
+        // set curried arity if not yet set
+        if (isCurry && !(bindData[1] & 4)) {
+          bindData[5] = arity;
+        }
+        // append partial left arguments
+        if (isPartial) {
+          push.apply(bindData[2] || (bindData[2] = []), partialArgs);
+        }
+        // append partial right arguments
+        if (isPartialRight) {
+          unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+        }
+        // merge flags
+        bindData[1] |= bitmask;
+        return createWrapper.apply(null, bindData);
+      }
+      // fast path for `_.bind`
+      var creater = (bitmask == 1 || bitmask === 17) ? baseBind : baseCreateWrapper;
+      return creater([func, bitmask, partialArgs, partialRightArgs, thisArg, arity]);
+    }
+
+    /**
+     * Used by `escape` to convert characters to HTML entities.
+     *
+     * @private
+     * @param {string} match The matched character to escape.
+     * @returns {string} Returns the escaped character.
+     */
+    function escapeHtmlChar(match) {
+      return htmlEscapes[match];
+    }
+
+    /**
+     * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
+     * customized, this method returns the custom method, otherwise it returns
+     * the `baseIndexOf` function.
+     *
+     * @private
+     * @returns {Function} Returns the "indexOf" function.
+     */
+    function getIndexOf() {
+      var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
+      return result;
+    }
+
+    /**
+     * Checks if `value` is a native function.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+     */
+    function isNative(value) {
+      return typeof value == 'function' && reNative.test(value);
+    }
+
+    /**
+     * Sets `this` binding data on a given function.
+     *
+     * @private
+     * @param {Function} func The function to set data on.
+     * @param {Array} value The data array to set.
+     */
+    var setBindData = !defineProperty ? noop : function(func, value) {
+      descriptor.value = value;
+      defineProperty(func, '__bindData__', descriptor);
+    };
+
+    /**
+     * A fallback implementation of `isPlainObject` which checks if a given value
+     * is an object created by the `Object` constructor, assuming objects created
+     * by the `Object` constructor have no inherited enumerable properties and that
+     * there are no `Object.prototype` extensions.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+     */
+    function shimIsPlainObject(value) {
+      var ctor,
+          result;
+
+      // avoid non Object objects, `arguments` objects, and DOM elements
+      if (!(value && toString.call(value) == objectClass) ||
+          (ctor = value.constructor, isFunction(ctor) && !(ctor instanceof ctor))) {
+        return false;
+      }
+      // In most environments an object's own properties are iterated before
+      // its inherited properties. If the last iterated property is an object's
+      // own property then there are no inherited enumerable properties.
+      forIn(value, function(value, key) {
+        result = key;
+      });
+      return typeof result == 'undefined' || hasOwnProperty.call(value, result);
+    }
+
+    /**
+     * Used by `unescape` to convert HTML entities to characters.
+     *
+     * @private
+     * @param {string} match The matched character to unescape.
+     * @returns {string} Returns the unescaped character.
+     */
+    function unescapeHtmlChar(match) {
+      return htmlUnescapes[match];
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Checks if `value` is an `arguments` object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an `arguments` object, else `false`.
+     * @example
+     *
+     * (function() { return _.isArguments(arguments); })(1, 2, 3);
+     * // => true
+     *
+     * _.isArguments([1, 2, 3]);
+     * // => false
+     */
+    function isArguments(value) {
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == argsClass || false;
+    }
+
+    /**
+     * Checks if `value` is an array.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an array, else `false`.
+     * @example
+     *
+     * (function() { return _.isArray(arguments); })();
+     * // => false
+     *
+     * _.isArray([1, 2, 3]);
+     * // => true
+     */
+    var isArray = nativeIsArray || function(value) {
+      return value && typeof value == 'object' && typeof value.length == 'number' &&
+        toString.call(value) == arrayClass || false;
+    };
+
+    /**
+     * A fallback implementation of `Object.keys` which produces an array of the
+     * given object's own enumerable property names.
+     *
+     * @private
+     * @type Function
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names.
+     */
+    var shimKeys = function(object) {
+      var index, iterable = object, result = [];
+      if (!iterable) return result;
+      if (!(objectTypes[typeof object])) return result;
+        for (index in iterable) {
+          if (hasOwnProperty.call(iterable, index)) {
+            result.push(index);
+          }
+        }
+      return result
+    };
+
+    /**
+     * Creates an array composed of the own enumerable property names of an object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names.
+     * @example
+     *
+     * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
+     */
+    var keys = !nativeKeys ? shimKeys : function(object) {
+      if (!isObject(object)) {
+        return [];
+      }
+      return nativeKeys(object);
+    };
+
+    /**
+     * Used to convert characters to HTML entities:
+     *
+     * Though the `>` character is escaped for symmetry, characters like `>` and `/`
+     * don't require escaping in HTML and have no special meaning unless they're part
+     * of a tag or an unquoted attribute value.
+     * http://mathiasbynens.be/notes/ambiguous-ampersands (under "semi-related fun fact")
+     */
+    var htmlEscapes = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      '"': '&quot;',
+      "'": '&#39;'
+    };
+
+    /** Used to convert HTML entities to characters */
+    var htmlUnescapes = invert(htmlEscapes);
+
+    /** Used to match HTML entities and HTML characters */
+    var reEscapedHtml = RegExp('(' + keys(htmlUnescapes).join('|') + ')', 'g'),
+        reUnescapedHtml = RegExp('[' + keys(htmlEscapes).join('') + ']', 'g');
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Assigns own enumerable properties of source object(s) to the destination
+     * object. Subsequent sources will overwrite property assignments of previous
+     * sources. If a callback is provided it will be executed to produce the
+     * assigned values. The callback is bound to `thisArg` and invoked with two
+     * arguments; (objectValue, sourceValue).
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @alias extend
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param {Function} [callback] The function to customize assigning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * _.assign({ 'name': 'fred' }, { 'employer': 'slate' });
+     * // => { 'name': 'fred', 'employer': 'slate' }
+     *
+     * var defaults = _.partialRight(_.assign, function(a, b) {
+     *   return typeof a == 'undefined' ? b : a;
+     * });
+     *
+     * var object = { 'name': 'barney' };
+     * defaults(object, { 'name': 'fred', 'employer': 'slate' });
+     * // => { 'name': 'barney', 'employer': 'slate' }
+     */
+    var assign = function(object, source, guard) {
+      var index, iterable = object, result = iterable;
+      if (!iterable) return result;
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = typeof guard == 'number' ? 2 : args.length;
+      if (argsLength > 3 && typeof args[argsLength - 2] == 'function') {
+        var callback = baseCreateCallback(args[--argsLength - 1], args[argsLength--], 2);
+      } else if (argsLength > 2 && typeof args[argsLength - 1] == 'function') {
+        callback = args[--argsLength];
+      }
+      while (++argsIndex < argsLength) {
+        iterable = args[argsIndex];
+        if (iterable && objectTypes[typeof iterable]) {
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          result[index] = callback ? callback(result[index], iterable[index]) : iterable[index];
+        }
+        }
+      }
+      return result
+    };
+
+    /**
+     * Creates a clone of `value`. If `isDeep` is `true` nested objects will also
+     * be cloned, otherwise they will be assigned by reference. If a callback
+     * is provided it will be executed to produce the cloned values. If the
+     * callback returns `undefined` cloning will be handled by the method instead.
+     * The callback is bound to `thisArg` and invoked with one argument; (value).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to clone.
+     * @param {boolean} [isDeep=false] Specify a deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the cloned value.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * var shallow = _.clone(characters);
+     * shallow[0] === characters[0];
+     * // => true
+     *
+     * var deep = _.clone(characters, true);
+     * deep[0] === characters[0];
+     * // => false
+     *
+     * _.mixin({
+     *   'clone': _.partialRight(_.clone, function(value) {
+     *     return _.isElement(value) ? value.cloneNode(false) : undefined;
+     *   })
+     * });
+     *
+     * var clone = _.clone(document.body);
+     * clone.childNodes.length;
+     * // => 0
+     */
+    function clone(value, isDeep, callback, thisArg) {
+      // allows working with "Collections" methods without using their `index`
+      // and `collection` arguments for `isDeep` and `callback`
+      if (typeof isDeep != 'boolean' && isDeep != null) {
+        thisArg = callback;
+        callback = isDeep;
+        isDeep = false;
+      }
+      return baseClone(value, isDeep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+    }
+
+    /**
+     * Creates a deep clone of `value`. If a callback is provided it will be
+     * executed to produce the cloned values. If the callback returns `undefined`
+     * cloning will be handled by the method instead. The callback is bound to
+     * `thisArg` and invoked with one argument; (value).
+     *
+     * Note: This method is loosely based on the structured clone algorithm. Functions
+     * and DOM nodes are **not** cloned. The enumerable properties of `arguments` objects and
+     * objects created by constructors other than `Object` are cloned to plain `Object` objects.
+     * See http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to deep clone.
+     * @param {Function} [callback] The function to customize cloning values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the deep cloned value.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * var deep = _.cloneDeep(characters);
+     * deep[0] === characters[0];
+     * // => false
+     *
+     * var view = {
+     *   'label': 'docs',
+     *   'node': element
+     * };
+     *
+     * var clone = _.cloneDeep(view, function(value) {
+     *   return _.isElement(value) ? value.cloneNode(true) : undefined;
+     * });
+     *
+     * clone.node == view.node;
+     * // => false
+     */
+    function cloneDeep(value, callback, thisArg) {
+      return baseClone(value, true, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
+    }
+
+    /**
+     * Creates an object that inherits from the given `prototype` object. If a
+     * `properties` object is provided its own enumerable properties are assigned
+     * to the created object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} prototype The object to inherit from.
+     * @param {Object} [properties] The properties to assign to the object.
+     * @returns {Object} Returns the new object.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * function Circle() {
+     *   Shape.call(this);
+     * }
+     *
+     * Circle.prototype = _.create(Shape.prototype, { 'constructor': Circle });
+     *
+     * var circle = new Circle;
+     * circle instanceof Circle;
+     * // => true
+     *
+     * circle instanceof Shape;
+     * // => true
+     */
+    function create(prototype, properties) {
+      var result = baseCreate(prototype);
+      return properties ? assign(result, properties) : result;
+    }
+
+    /**
+     * Assigns own enumerable properties of source object(s) to the destination
+     * object for all destination properties that resolve to `undefined`. Once a
+     * property is set, additional defaults of the same property will be ignored.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param- {Object} [guard] Allows working with `_.reduce` without using its
+     *  `key` and `object` arguments as sources.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * var object = { 'name': 'barney' };
+     * _.defaults(object, { 'name': 'fred', 'employer': 'slate' });
+     * // => { 'name': 'barney', 'employer': 'slate' }
+     */
+    var defaults = function(object, source, guard) {
+      var index, iterable = object, result = iterable;
+      if (!iterable) return result;
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = typeof guard == 'number' ? 2 : args.length;
+      while (++argsIndex < argsLength) {
+        iterable = args[argsIndex];
+        if (iterable && objectTypes[typeof iterable]) {
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          if (typeof result[index] == 'undefined') result[index] = iterable[index];
+        }
+        }
+      }
+      return result
+    };
+
+    /**
+     * This method is like `_.findIndex` except that it returns the key of the
+     * first element that passes the callback check, instead of the element itself.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to search.
+     * @param {Function|Object|string} [callback=identity] The function called per
+     *  iteration. If a property name or object is provided it will be used to
+     *  create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
+     * @example
+     *
+     * var characters = {
+     *   'barney': {  'age': 36, 'blocked': false },
+     *   'fred': {    'age': 40, 'blocked': true },
+     *   'pebbles': { 'age': 1,  'blocked': false }
+     * };
+     *
+     * _.findKey(characters, function(chr) {
+     *   return chr.age < 40;
+     * });
+     * // => 'barney' (property order is not guaranteed across environments)
+     *
+     * // using "_.where" callback shorthand
+     * _.findKey(characters, { 'age': 1 });
+     * // => 'pebbles'
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findKey(characters, 'blocked');
+     * // => 'fred'
+     */
+    function findKey(object, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forOwn(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * This method is like `_.findKey` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to search.
+     * @param {Function|Object|string} [callback=identity] The function called per
+     *  iteration. If a property name or object is provided it will be used to
+     *  create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
+     * @example
+     *
+     * var characters = {
+     *   'barney': {  'age': 36, 'blocked': true },
+     *   'fred': {    'age': 40, 'blocked': false },
+     *   'pebbles': { 'age': 1,  'blocked': true }
+     * };
+     *
+     * _.findLastKey(characters, function(chr) {
+     *   return chr.age < 40;
+     * });
+     * // => returns `pebbles`, assuming `_.findKey` returns `barney`
+     *
+     * // using "_.where" callback shorthand
+     * _.findLastKey(characters, { 'age': 40 });
+     * // => 'fred'
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findLastKey(characters, 'blocked');
+     * // => 'pebbles'
+     */
+    function findLastKey(object, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forOwnRight(object, function(value, key, object) {
+        if (callback(value, key, object)) {
+          result = key;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * Iterates over own and inherited enumerable properties of an object,
+     * executing the callback for each property. The callback is bound to `thisArg`
+     * and invoked with three arguments; (value, key, object). Callbacks may exit
+     * iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * Shape.prototype.move = function(x, y) {
+     *   this.x += x;
+     *   this.y += y;
+     * };
+     *
+     * _.forIn(new Shape, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'x', 'y', and 'move' (property order is not guaranteed across environments)
+     */
+    var forIn = function(collection, callback, thisArg) {
+      var index, iterable = collection, result = iterable;
+      if (!iterable) return result;
+      if (!objectTypes[typeof iterable]) return result;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+        for (index in iterable) {
+          if (callback(iterable[index], index, collection) === false) return result;
+        }
+      return result
+    };
+
+    /**
+     * This method is like `_.forIn` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * Shape.prototype.move = function(x, y) {
+     *   this.x += x;
+     *   this.y += y;
+     * };
+     *
+     * _.forInRight(new Shape, function(value, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'move', 'y', and 'x' assuming `_.forIn ` logs 'x', 'y', and 'move'
+     */
+    function forInRight(object, callback, thisArg) {
+      var pairs = [];
+
+      forIn(object, function(value, key) {
+        pairs.push(key, value);
+      });
+
+      var length = pairs.length;
+      callback = baseCreateCallback(callback, thisArg, 3);
+      while (length--) {
+        if (callback(pairs[length--], pairs[length], object) === false) {
+          break;
+        }
+      }
+      return object;
+    }
+
+    /**
+     * Iterates over own enumerable properties of an object, executing the callback
+     * for each property. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, key, object). Callbacks may exit iteration early by
+     * explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * _.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+     *   console.log(key);
+     * });
+     * // => logs '0', '1', and 'length' (property order is not guaranteed across environments)
+     */
+    var forOwn = function(collection, callback, thisArg) {
+      var index, iterable = collection, result = iterable;
+      if (!iterable) return result;
+      if (!objectTypes[typeof iterable]) return result;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+        var ownIndex = -1,
+            ownProps = objectTypes[typeof iterable] && keys(iterable),
+            length = ownProps ? ownProps.length : 0;
+
+        while (++ownIndex < length) {
+          index = ownProps[ownIndex];
+          if (callback(iterable[index], index, collection) === false) return result;
+        }
+      return result
+    };
+
+    /**
+     * This method is like `_.forOwn` except that it iterates over elements
+     * of a `collection` in the opposite order.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * _.forOwnRight({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
+     *   console.log(key);
+     * });
+     * // => logs 'length', '1', and '0' assuming `_.forOwn` logs '0', '1', and 'length'
+     */
+    function forOwnRight(object, callback, thisArg) {
+      var props = keys(object),
+          length = props.length;
+
+      callback = baseCreateCallback(callback, thisArg, 3);
+      while (length--) {
+        var key = props[length];
+        if (callback(object[key], key, object) === false) {
+          break;
+        }
+      }
+      return object;
+    }
+
+    /**
+     * Creates a sorted array of property names of all enumerable properties,
+     * own and inherited, of `object` that have function values.
+     *
+     * @static
+     * @memberOf _
+     * @alias methods
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property names that have function values.
+     * @example
+     *
+     * _.functions(_);
+     * // => ['all', 'any', 'bind', 'bindAll', 'clone', 'compact', 'compose', ...]
+     */
+    function functions(object) {
+      var result = [];
+      forIn(object, function(value, key) {
+        if (isFunction(value)) {
+          result.push(key);
+        }
+      });
+      return result.sort();
+    }
+
+    /**
+     * Checks if the specified property name exists as a direct property of `object`,
+     * instead of an inherited property.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @param {string} key The name of the property to check.
+     * @returns {boolean} Returns `true` if key is a direct property, else `false`.
+     * @example
+     *
+     * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
+     * // => true
+     */
+    function has(object, key) {
+      return object ? hasOwnProperty.call(object, key) : false;
+    }
+
+    /**
+     * Creates an object composed of the inverted keys and values of the given object.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to invert.
+     * @returns {Object} Returns the created inverted object.
+     * @example
+     *
+     * _.invert({ 'first': 'fred', 'second': 'barney' });
+     * // => { 'fred': 'first', 'barney': 'second' }
+     */
+    function invert(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = {};
+
+      while (++index < length) {
+        var key = props[index];
+        result[object[key]] = key;
+      }
+      return result;
+    }
+
+    /**
+     * Checks if `value` is a boolean value.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a boolean value, else `false`.
+     * @example
+     *
+     * _.isBoolean(null);
+     * // => false
+     */
+    function isBoolean(value) {
+      return value === true || value === false ||
+        value && typeof value == 'object' && toString.call(value) == boolClass || false;
+    }
+
+    /**
+     * Checks if `value` is a date.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a date, else `false`.
+     * @example
+     *
+     * _.isDate(new Date);
+     * // => true
+     */
+    function isDate(value) {
+      return value && typeof value == 'object' && toString.call(value) == dateClass || false;
+    }
+
+    /**
+     * Checks if `value` is a DOM element.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a DOM element, else `false`.
+     * @example
+     *
+     * _.isElement(document.body);
+     * // => true
+     */
+    function isElement(value) {
+      return value && value.nodeType === 1 || false;
+    }
+
+    /**
+     * Checks if `value` is empty. Arrays, strings, or `arguments` objects with a
+     * length of `0` and objects with no own enumerable properties are considered
+     * "empty".
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Array|Object|string} value The value to inspect.
+     * @returns {boolean} Returns `true` if the `value` is empty, else `false`.
+     * @example
+     *
+     * _.isEmpty([1, 2, 3]);
+     * // => false
+     *
+     * _.isEmpty({});
+     * // => true
+     *
+     * _.isEmpty('');
+     * // => true
+     */
+    function isEmpty(value) {
+      var result = true;
+      if (!value) {
+        return result;
+      }
+      var className = toString.call(value),
+          length = value.length;
+
+      if ((className == arrayClass || className == stringClass || className == argsClass ) ||
+          (className == objectClass && typeof length == 'number' && isFunction(value.splice))) {
+        return !length;
+      }
+      forOwn(value, function() {
+        return (result = false);
+      });
+      return result;
+    }
+
+    /**
+     * Performs a deep comparison between two values to determine if they are
+     * equivalent to each other. If a callback is provided it will be executed
+     * to compare values. If the callback returns `undefined` comparisons will
+     * be handled by the method instead. The callback is bound to `thisArg` and
+     * invoked with two arguments; (a, b).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} a The value to compare.
+     * @param {*} b The other value to compare.
+     * @param {Function} [callback] The function to customize comparing values.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * var copy = { 'name': 'fred' };
+     *
+     * object == copy;
+     * // => false
+     *
+     * _.isEqual(object, copy);
+     * // => true
+     *
+     * var words = ['hello', 'goodbye'];
+     * var otherWords = ['hi', 'goodbye'];
+     *
+     * _.isEqual(words, otherWords, function(a, b) {
+     *   var reGreet = /^(?:hello|hi)$/i,
+     *       aGreet = _.isString(a) && reGreet.test(a),
+     *       bGreet = _.isString(b) && reGreet.test(b);
+     *
+     *   return (aGreet || bGreet) ? (aGreet == bGreet) : undefined;
+     * });
+     * // => true
+     */
+    function isEqual(a, b, callback, thisArg) {
+      return baseIsEqual(a, b, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 2));
+    }
+
+    /**
+     * Checks if `value` is, or can be coerced to, a finite number.
+     *
+     * Note: This is not the same as native `isFinite` which will return true for
+     * booleans and empty strings. See http://es5.github.io/#x15.1.2.5.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is finite, else `false`.
+     * @example
+     *
+     * _.isFinite(-101);
+     * // => true
+     *
+     * _.isFinite('10');
+     * // => true
+     *
+     * _.isFinite(true);
+     * // => false
+     *
+     * _.isFinite('');
+     * // => false
+     *
+     * _.isFinite(Infinity);
+     * // => false
+     */
+    function isFinite(value) {
+      return nativeIsFinite(value) && !nativeIsNaN(parseFloat(value));
+    }
+
+    /**
+     * Checks if `value` is a function.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a function, else `false`.
+     * @example
+     *
+     * _.isFunction(_);
+     * // => true
+     */
+    function isFunction(value) {
+      return typeof value == 'function';
+    }
+
+    /**
+     * Checks if `value` is the language type of Object.
+     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is an object, else `false`.
+     * @example
+     *
+     * _.isObject({});
+     * // => true
+     *
+     * _.isObject([1, 2, 3]);
+     * // => true
+     *
+     * _.isObject(1);
+     * // => false
+     */
+    function isObject(value) {
+      // check if the value is the ECMAScript language type of Object
+      // http://es5.github.io/#x8
+      // and avoid a V8 bug
+      // http://code.google.com/p/v8/issues/detail?id=2291
+      return !!(value && objectTypes[typeof value]);
+    }
+
+    /**
+     * Checks if `value` is `NaN`.
+     *
+     * Note: This is not the same as native `isNaN` which will return `true` for
+     * `undefined` and other non-numeric values. See http://es5.github.io/#x15.1.2.4.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `NaN`, else `false`.
+     * @example
+     *
+     * _.isNaN(NaN);
+     * // => true
+     *
+     * _.isNaN(new Number(NaN));
+     * // => true
+     *
+     * isNaN(undefined);
+     * // => true
+     *
+     * _.isNaN(undefined);
+     * // => false
+     */
+    function isNaN(value) {
+      // `NaN` as a primitive is the only value that is not equal to itself
+      // (perform the [[Class]] check first to avoid errors with some host objects in IE)
+      return isNumber(value) && value != +value;
+    }
+
+    /**
+     * Checks if `value` is `null`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `null`, else `false`.
+     * @example
+     *
+     * _.isNull(null);
+     * // => true
+     *
+     * _.isNull(undefined);
+     * // => false
+     */
+    function isNull(value) {
+      return value === null;
+    }
+
+    /**
+     * Checks if `value` is a number.
+     *
+     * Note: `NaN` is considered a number. See http://es5.github.io/#x8.5.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a number, else `false`.
+     * @example
+     *
+     * _.isNumber(8.4 * 5);
+     * // => true
+     */
+    function isNumber(value) {
+      return typeof value == 'number' ||
+        value && typeof value == 'object' && toString.call(value) == numberClass || false;
+    }
+
+    /**
+     * Checks if `value` is an object created by the `Object` constructor.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+     * @example
+     *
+     * function Shape() {
+     *   this.x = 0;
+     *   this.y = 0;
+     * }
+     *
+     * _.isPlainObject(new Shape);
+     * // => false
+     *
+     * _.isPlainObject([1, 2, 3]);
+     * // => false
+     *
+     * _.isPlainObject({ 'x': 0, 'y': 0 });
+     * // => true
+     */
+    var isPlainObject = !getPrototypeOf ? shimIsPlainObject : function(value) {
+      if (!(value && toString.call(value) == objectClass)) {
+        return false;
+      }
+      var valueOf = value.valueOf,
+          objProto = isNative(valueOf) && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
+
+      return objProto
+        ? (value == objProto || getPrototypeOf(value) == objProto)
+        : shimIsPlainObject(value);
+    };
+
+    /**
+     * Checks if `value` is a regular expression.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a regular expression, else `false`.
+     * @example
+     *
+     * _.isRegExp(/fred/);
+     * // => true
+     */
+    function isRegExp(value) {
+      return value && typeof value == 'object' && toString.call(value) == regexpClass || false;
+    }
+
+    /**
+     * Checks if `value` is a string.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a string, else `false`.
+     * @example
+     *
+     * _.isString('fred');
+     * // => true
+     */
+    function isString(value) {
+      return typeof value == 'string' ||
+        value && typeof value == 'object' && toString.call(value) == stringClass || false;
+    }
+
+    /**
+     * Checks if `value` is `undefined`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is `undefined`, else `false`.
+     * @example
+     *
+     * _.isUndefined(void 0);
+     * // => true
+     */
+    function isUndefined(value) {
+      return typeof value == 'undefined';
+    }
+
+    /**
+     * Creates an object with the same keys as `object` and values generated by
+     * running each own enumerable property of `object` through the callback.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new object with values of the results of each `callback` execution.
+     * @example
+     *
+     * _.mapValues({ 'a': 1, 'b': 2, 'c': 3} , function(num) { return num * 3; });
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     *
+     * var characters = {
+     *   'fred': { 'name': 'fred', 'age': 40 },
+     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
+     * };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.mapValues(characters, 'age');
+     * // => { 'fred': 40, 'pebbles': 1 }
+     */
+    function mapValues(object, callback, thisArg) {
+      var result = {};
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      forOwn(object, function(value, key, object) {
+        result[key] = callback(value, key, object);
+      });
+      return result;
+    }
+
+    /**
+     * Recursively merges own enumerable properties of the source object(s), that
+     * don't resolve to `undefined` into the destination object. Subsequent sources
+     * will overwrite property assignments of previous sources. If a callback is
+     * provided it will be executed to produce the merged values of the destination
+     * and source properties. If the callback returns `undefined` merging will
+     * be handled by the method instead. The callback is bound to `thisArg` and
+     * invoked with two arguments; (objectValue, sourceValue).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The destination object.
+     * @param {...Object} [source] The source objects.
+     * @param {Function} [callback] The function to customize merging properties.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the destination object.
+     * @example
+     *
+     * var names = {
+     *   'characters': [
+     *     { 'name': 'barney' },
+     *     { 'name': 'fred' }
+     *   ]
+     * };
+     *
+     * var ages = {
+     *   'characters': [
+     *     { 'age': 36 },
+     *     { 'age': 40 }
+     *   ]
+     * };
+     *
+     * _.merge(names, ages);
+     * // => { 'characters': [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred', 'age': 40 }] }
+     *
+     * var food = {
+     *   'fruits': ['apple'],
+     *   'vegetables': ['beet']
+     * };
+     *
+     * var otherFood = {
+     *   'fruits': ['banana'],
+     *   'vegetables': ['carrot']
+     * };
+     *
+     * _.merge(food, otherFood, function(a, b) {
+     *   return _.isArray(a) ? a.concat(b) : undefined;
+     * });
+     * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot] }
+     */
+    function merge(object) {
+      var args = arguments,
+          length = 2;
+
+      if (!isObject(object)) {
+        return object;
+      }
+      // allows working with `_.reduce` and `_.reduceRight` without using
+      // their `index` and `collection` arguments
+      if (typeof args[2] != 'number') {
+        length = args.length;
+      }
+      if (length > 3 && typeof args[length - 2] == 'function') {
+        var callback = baseCreateCallback(args[--length - 1], args[length--], 2);
+      } else if (length > 2 && typeof args[length - 1] == 'function') {
+        callback = args[--length];
+      }
+      var sources = slice(arguments, 1, length),
+          index = -1,
+          stackA = getArray(),
+          stackB = getArray();
+
+      while (++index < length) {
+        baseMerge(object, sources[index], callback, stackA, stackB);
+      }
+      releaseArray(stackA);
+      releaseArray(stackB);
+      return object;
+    }
+
+    /**
+     * Creates a shallow clone of `object` excluding the specified properties.
+     * Property names may be specified as individual arguments or as arrays of
+     * property names. If a callback is provided it will be executed for each
+     * property of `object` omitting the properties the callback returns truey
+     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The source object.
+     * @param {Function|...string|string[]} [callback] The properties to omit or the
+     *  function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns an object without the omitted properties.
+     * @example
+     *
+     * _.omit({ 'name': 'fred', 'age': 40 }, 'age');
+     * // => { 'name': 'fred' }
+     *
+     * _.omit({ 'name': 'fred', 'age': 40 }, function(value) {
+     *   return typeof value == 'number';
+     * });
+     * // => { 'name': 'fred' }
+     */
+    function omit(object, callback, thisArg) {
+      var result = {};
+      if (typeof callback != 'function') {
+        var props = [];
+        forIn(object, function(value, key) {
+          props.push(key);
+        });
+        props = baseDifference(props, baseFlatten(arguments, true, false, 1));
+
+        var index = -1,
+            length = props.length;
+
+        while (++index < length) {
+          var key = props[index];
+          result[key] = object[key];
+        }
+      } else {
+        callback = lodash.createCallback(callback, thisArg, 3);
+        forIn(object, function(value, key, object) {
+          if (!callback(value, key, object)) {
+            result[key] = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Creates a two dimensional array of an object's key-value pairs,
+     * i.e. `[[key1, value1], [key2, value2]]`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns new array of key-value pairs.
+     * @example
+     *
+     * _.pairs({ 'barney': 36, 'fred': 40 });
+     * // => [['barney', 36], ['fred', 40]] (property order is not guaranteed across environments)
+     */
+    function pairs(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = Array(length);
+
+      while (++index < length) {
+        var key = props[index];
+        result[index] = [key, object[key]];
+      }
+      return result;
+    }
+
+    /**
+     * Creates a shallow clone of `object` composed of the specified properties.
+     * Property names may be specified as individual arguments or as arrays of
+     * property names. If a callback is provided it will be executed for each
+     * property of `object` picking the properties the callback returns truey
+     * for. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, key, object).
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The source object.
+     * @param {Function|...string|string[]} [callback] The function called per
+     *  iteration or property names to pick, specified as individual property
+     *  names or arrays of property names.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns an object composed of the picked properties.
+     * @example
+     *
+     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, 'name');
+     * // => { 'name': 'fred' }
+     *
+     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, function(value, key) {
+     *   return key.charAt(0) != '_';
+     * });
+     * // => { 'name': 'fred' }
+     */
+    function pick(object, callback, thisArg) {
+      var result = {};
+      if (typeof callback != 'function') {
+        var index = -1,
+            props = baseFlatten(arguments, true, false, 1),
+            length = isObject(object) ? props.length : 0;
+
+        while (++index < length) {
+          var key = props[index];
+          if (key in object) {
+            result[key] = object[key];
+          }
+        }
+      } else {
+        callback = lodash.createCallback(callback, thisArg, 3);
+        forIn(object, function(value, key, object) {
+          if (callback(value, key, object)) {
+            result[key] = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * An alternative to `_.reduce` this method transforms `object` to a new
+     * `accumulator` object which is the result of running each of its own
+     * enumerable properties through a callback, with each callback execution
+     * potentially mutating the `accumulator` object. The callback is bound to
+     * `thisArg` and invoked with four arguments; (accumulator, value, key, object).
+     * Callbacks may exit iteration early by explicitly returning `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Array|Object} object The object to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] The custom accumulator value.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var squares = _.transform([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], function(result, num) {
+     *   num *= num;
+     *   if (num % 2) {
+     *     return result.push(num) < 3;
+     *   }
+     * });
+     * // => [1, 9, 25]
+     *
+     * var mapped = _.transform({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
+     *   result[key] = num * 3;
+     * });
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     */
+    function transform(object, callback, accumulator, thisArg) {
+      var isArr = isArray(object);
+      if (accumulator == null) {
+        if (isArr) {
+          accumulator = [];
+        } else {
+          var ctor = object && object.constructor,
+              proto = ctor && ctor.prototype;
+
+          accumulator = baseCreate(proto);
+        }
+      }
+      if (callback) {
+        callback = lodash.createCallback(callback, thisArg, 4);
+        (isArr ? forEach : forOwn)(object, function(value, index, object) {
+          return callback(accumulator, value, index, object);
+        });
+      }
+      return accumulator;
+    }
+
+    /**
+     * Creates an array composed of the own enumerable property values of `object`.
+     *
+     * @static
+     * @memberOf _
+     * @category Objects
+     * @param {Object} object The object to inspect.
+     * @returns {Array} Returns an array of property values.
+     * @example
+     *
+     * _.values({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => [1, 2, 3] (property order is not guaranteed across environments)
+     */
+    function values(object) {
+      var index = -1,
+          props = keys(object),
+          length = props.length,
+          result = Array(length);
+
+      while (++index < length) {
+        result[index] = object[props[index]];
+      }
+      return result;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array of elements from the specified indexes, or keys, of the
+     * `collection`. Indexes may be specified as individual arguments or as arrays
+     * of indexes.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {...(number|number[]|string|string[])} [index] The indexes of `collection`
+     *   to retrieve, specified as individual indexes or arrays of indexes.
+     * @returns {Array} Returns a new array of elements corresponding to the
+     *  provided indexes.
+     * @example
+     *
+     * _.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
+     * // => ['a', 'c', 'e']
+     *
+     * _.at(['fred', 'barney', 'pebbles'], 0, 2);
+     * // => ['fred', 'pebbles']
+     */
+    function at(collection) {
+      var args = arguments,
+          index = -1,
+          props = baseFlatten(args, true, false, 1),
+          length = (args[2] && args[2][args[1]] === collection) ? 1 : props.length,
+          result = Array(length);
+
+      while(++index < length) {
+        result[index] = collection[props[index]];
+      }
+      return result;
+    }
+
+    /**
+     * Checks if a given value is present in a collection using strict equality
+     * for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the
+     * offset from the end of the collection.
+     *
+     * @static
+     * @memberOf _
+     * @alias include
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {*} target The value to check for.
+     * @param {number} [fromIndex=0] The index to search from.
+     * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
+     * @example
+     *
+     * _.contains([1, 2, 3], 1);
+     * // => true
+     *
+     * _.contains([1, 2, 3], 1, 2);
+     * // => false
+     *
+     * _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
+     * // => true
+     *
+     * _.contains('pebbles', 'eb');
+     * // => true
+     */
+    function contains(collection, target, fromIndex) {
+      var index = -1,
+          indexOf = getIndexOf(),
+          length = collection ? collection.length : 0,
+          result = false;
+
+      fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex) || 0;
+      if (isArray(collection)) {
+        result = indexOf(collection, target, fromIndex) > -1;
+      } else if (typeof length == 'number') {
+        result = (isString(collection) ? collection.indexOf(target, fromIndex) : indexOf(collection, target, fromIndex)) > -1;
+      } else {
+        forOwn(collection, function(value) {
+          if (++index >= fromIndex) {
+            return !(result = value === target);
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of `collection` through the callback. The corresponding value
+     * of each key is the number of times the key was returned by the callback.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.countBy([4.3, 6.1, 6.4], function(num) { return Math.floor(num); });
+     * // => { '4': 1, '6': 2 }
+     *
+     * _.countBy([4.3, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+     * // => { '4': 1, '6': 2 }
+     *
+     * _.countBy(['one', 'two', 'three'], 'length');
+     * // => { '3': 2, '5': 1 }
+     */
+    var countBy = createAggregator(function(result, value, key) {
+      (hasOwnProperty.call(result, key) ? result[key]++ : result[key] = 1);
+    });
+
+    /**
+     * Checks if the given callback returns truey value for **all** elements of
+     * a collection. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias all
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if all elements passed the callback check,
+     *  else `false`.
+     * @example
+     *
+     * _.every([true, 1, null, 'yes']);
+     * // => false
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.every(characters, 'age');
+     * // => true
+     *
+     * // using "_.where" callback shorthand
+     * _.every(characters, { 'age': 36 });
+     * // => false
+     */
+    function every(collection, callback, thisArg) {
+      var result = true;
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if (!(result = !!callback(collection[index], index, collection))) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          return (result = !!callback(value, index, collection));
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, returning an array of all elements
+     * the callback returns truey for. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias select
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of elements that passed the callback check.
+     * @example
+     *
+     * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+     * // => [2, 4, 6]
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.filter(characters, 'blocked');
+     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
+     *
+     * // using "_.where" callback shorthand
+     * _.filter(characters, { 'age': 36 });
+     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
+     */
+    function filter(collection, callback, thisArg) {
+      var result = [];
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          var value = collection[index];
+          if (callback(value, index, collection)) {
+            result.push(value);
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          if (callback(value, index, collection)) {
+            result.push(value);
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, returning the first element that
+     * the callback returns truey for. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias detect, findWhere
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the found element, else `undefined`.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'fred',    'age': 40, 'blocked': true },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+     * ];
+     *
+     * _.find(characters, function(chr) {
+     *   return chr.age < 40;
+     * });
+     * // => { 'name': 'barney', 'age': 36, 'blocked': false }
+     *
+     * // using "_.where" callback shorthand
+     * _.find(characters, { 'age': 1 });
+     * // =>  { 'name': 'pebbles', 'age': 1, 'blocked': false }
+     *
+     * // using "_.pluck" callback shorthand
+     * _.find(characters, 'blocked');
+     * // => { 'name': 'fred', 'age': 40, 'blocked': true }
+     */
+    function find(collection, callback, thisArg) {
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          var value = collection[index];
+          if (callback(value, index, collection)) {
+            return value;
+          }
+        }
+      } else {
+        var result;
+        forOwn(collection, function(value, index, collection) {
+          if (callback(value, index, collection)) {
+            result = value;
+            return false;
+          }
+        });
+        return result;
+      }
+    }
+
+    /**
+     * This method is like `_.find` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the found element, else `undefined`.
+     * @example
+     *
+     * _.findLast([1, 2, 3, 4], function(num) {
+     *   return num % 2 == 1;
+     * });
+     * // => 3
+     */
+    function findLast(collection, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      forEachRight(collection, function(value, index, collection) {
+        if (callback(value, index, collection)) {
+          result = value;
+          return false;
+        }
+      });
+      return result;
+    }
+
+    /**
+     * Iterates over elements of a collection, executing the callback for each
+     * element. The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection). Callbacks may exit iteration early by
+     * explicitly returning `false`.
+     *
+     * Note: As with other "Collections" methods, objects with a `length` property
+     * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
+     * may be used for object iteration.
+     *
+     * @static
+     * @memberOf _
+     * @alias each
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array|Object|string} Returns `collection`.
+     * @example
+     *
+     * _([1, 2, 3]).forEach(function(num) { console.log(num); }).join(',');
+     * // => logs each number and returns '1,2,3'
+     *
+     * _.forEach({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { console.log(num); });
+     * // => logs each number and returns the object (property order is not guaranteed across environments)
+     */
+    function forEach(collection, callback, thisArg) {
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if (callback(collection[index], index, collection) === false) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, callback);
+      }
+      return collection;
+    }
+
+    /**
+     * This method is like `_.forEach` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @alias eachRight
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array|Object|string} Returns `collection`.
+     * @example
+     *
+     * _([1, 2, 3]).forEachRight(function(num) { console.log(num); }).join(',');
+     * // => logs each number from right to left and returns '3,2,1'
+     */
+    function forEachRight(collection, callback, thisArg) {
+      var length = collection ? collection.length : 0;
+      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        while (length--) {
+          if (callback(collection[length], length, collection) === false) {
+            break;
+          }
+        }
+      } else {
+        var props = keys(collection);
+        length = props.length;
+        forOwn(collection, function(value, key, collection) {
+          key = props ? props[--length] : --length;
+          return callback(collection[key], key, collection);
+        });
+      }
+      return collection;
+    }
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of a collection through the callback. The corresponding value
+     * of each key is an array of the elements responsible for generating the key.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * _.groupBy([4.2, 6.1, 6.4], function(num) { return Math.floor(num); });
+     * // => { '4': [4.2], '6': [6.1, 6.4] }
+     *
+     * _.groupBy([4.2, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
+     * // => { '4': [4.2], '6': [6.1, 6.4] }
+     *
+     * // using "_.pluck" callback shorthand
+     * _.groupBy(['one', 'two', 'three'], 'length');
+     * // => { '3': ['one', 'two'], '5': ['three'] }
+     */
+    var groupBy = createAggregator(function(result, value, key) {
+      (hasOwnProperty.call(result, key) ? result[key] : result[key] = []).push(value);
+    });
+
+    /**
+     * Creates an object composed of keys generated from the results of running
+     * each element of the collection through the given callback. The corresponding
+     * value of each key is the last element responsible for generating the key.
+     * The callback is bound to `thisArg` and invoked with three arguments;
+     * (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Object} Returns the composed aggregate object.
+     * @example
+     *
+     * var keys = [
+     *   { 'dir': 'left', 'code': 97 },
+     *   { 'dir': 'right', 'code': 100 }
+     * ];
+     *
+     * _.indexBy(keys, 'dir');
+     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
+     *
+     * _.indexBy(keys, function(key) { return String.fromCharCode(key.code); });
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     *
+     * _.indexBy(characters, function(key) { this.fromCharCode(key.code); }, String);
+     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
+     */
+    var indexBy = createAggregator(function(result, value, key) {
+      result[key] = value;
+    });
+
+    /**
+     * Invokes the method named by `methodName` on each element in the `collection`
+     * returning an array of the results of each invoked method. Additional arguments
+     * will be provided to each invoked method. If `methodName` is a function it
+     * will be invoked for, and `this` bound to, each element in the `collection`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|string} methodName The name of the method to invoke or
+     *  the function invoked per iteration.
+     * @param {...*} [arg] Arguments to invoke the method with.
+     * @returns {Array} Returns a new array of the results of each invoked method.
+     * @example
+     *
+     * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
+     * // => [[1, 5, 7], [1, 2, 3]]
+     *
+     * _.invoke([123, 456], String.prototype.split, '');
+     * // => [['1', '2', '3'], ['4', '5', '6']]
+     */
+    function invoke(collection, methodName) {
+      var args = slice(arguments, 2),
+          index = -1,
+          isFunc = typeof methodName == 'function',
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      forEach(collection, function(value) {
+        result[++index] = (isFunc ? methodName : value[methodName]).apply(value, args);
+      });
+      return result;
+    }
+
+    /**
+     * Creates an array of values by running each element in the collection
+     * through the callback. The callback is bound to `thisArg` and invoked with
+     * three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias collect
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of the results of each `callback` execution.
+     * @example
+     *
+     * _.map([1, 2, 3], function(num) { return num * 3; });
+     * // => [3, 6, 9]
+     *
+     * _.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
+     * // => [3, 6, 9] (property order is not guaranteed across environments)
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.map(characters, 'name');
+     * // => ['barney', 'fred']
+     */
+    function map(collection, callback, thisArg) {
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      if (typeof length == 'number') {
+        var result = Array(length);
+        while (++index < length) {
+          result[index] = callback(collection[index], index, collection);
+        }
+      } else {
+        result = [];
+        forOwn(collection, function(value, key, collection) {
+          result[++index] = callback(value, key, collection);
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the maximum value of a collection. If the collection is empty or
+     * falsey `-Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the maximum value.
+     * @example
+     *
+     * _.max([4, 2, 8, 6]);
+     * // => 8
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * _.max(characters, function(chr) { return chr.age; });
+     * // => { 'name': 'fred', 'age': 40 };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.max(characters, 'age');
+     * // => { 'name': 'fred', 'age': 40 };
+     */
+    function max(collection, callback, thisArg) {
+      var computed = -Infinity,
+          result = computed;
+
+      // allows working with functions like `_.map` without using
+      // their `index` argument as a callback
+      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
+        callback = null;
+      }
+      if (callback == null && isArray(collection)) {
+        var index = -1,
+            length = collection.length;
+
+        while (++index < length) {
+          var value = collection[index];
+          if (value > result) {
+            result = value;
+          }
+        }
+      } else {
+        callback = (callback == null && isString(collection))
+          ? charAtCallback
+          : lodash.createCallback(callback, thisArg, 3);
+
+        forEach(collection, function(value, index, collection) {
+          var current = callback(value, index, collection);
+          if (current > computed) {
+            computed = current;
+            result = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the minimum value of a collection. If the collection is empty or
+     * falsey `Infinity` is returned. If a callback is provided it will be executed
+     * for each value in the collection to generate the criterion by which the value
+     * is ranked. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the minimum value.
+     * @example
+     *
+     * _.min([4, 2, 8, 6]);
+     * // => 2
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * _.min(characters, function(chr) { return chr.age; });
+     * // => { 'name': 'barney', 'age': 36 };
+     *
+     * // using "_.pluck" callback shorthand
+     * _.min(characters, 'age');
+     * // => { 'name': 'barney', 'age': 36 };
+     */
+    function min(collection, callback, thisArg) {
+      var computed = Infinity,
+          result = computed;
+
+      // allows working with functions like `_.map` without using
+      // their `index` argument as a callback
+      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
+        callback = null;
+      }
+      if (callback == null && isArray(collection)) {
+        var index = -1,
+            length = collection.length;
+
+        while (++index < length) {
+          var value = collection[index];
+          if (value < result) {
+            result = value;
+          }
+        }
+      } else {
+        callback = (callback == null && isString(collection))
+          ? charAtCallback
+          : lodash.createCallback(callback, thisArg, 3);
+
+        forEach(collection, function(value, index, collection) {
+          var current = callback(value, index, collection);
+          if (current < computed) {
+            computed = current;
+            result = value;
+          }
+        });
+      }
+      return result;
+    }
+
+    /**
+     * Retrieves the value of a specified property from all elements in the collection.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {string} property The name of the property to pluck.
+     * @returns {Array} Returns a new array of property values.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * _.pluck(characters, 'name');
+     * // => ['barney', 'fred']
+     */
+    var pluck = map;
+
+    /**
+     * Reduces a collection to a value which is the accumulated result of running
+     * each element in the collection through the callback, where each successive
+     * callback execution consumes the return value of the previous execution. If
+     * `accumulator` is not provided the first element of the collection will be
+     * used as the initial `accumulator` value. The callback is bound to `thisArg`
+     * and invoked with four arguments; (accumulator, value, index|key, collection).
+     *
+     * @static
+     * @memberOf _
+     * @alias foldl, inject
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] Initial value of the accumulator.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var sum = _.reduce([1, 2, 3], function(sum, num) {
+     *   return sum + num;
+     * });
+     * // => 6
+     *
+     * var mapped = _.reduce({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
+     *   result[key] = num * 3;
+     *   return result;
+     * }, {});
+     * // => { 'a': 3, 'b': 6, 'c': 9 }
+     */
+    function reduce(collection, callback, accumulator, thisArg) {
+      if (!collection) return accumulator;
+      var noaccum = arguments.length < 3;
+      callback = lodash.createCallback(callback, thisArg, 4);
+
+      var index = -1,
+          length = collection.length;
+
+      if (typeof length == 'number') {
+        if (noaccum) {
+          accumulator = collection[++index];
+        }
+        while (++index < length) {
+          accumulator = callback(accumulator, collection[index], index, collection);
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          accumulator = noaccum
+            ? (noaccum = false, value)
+            : callback(accumulator, value, index, collection)
+        });
+      }
+      return accumulator;
+    }
+
+    /**
+     * This method is like `_.reduce` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * @static
+     * @memberOf _
+     * @alias foldr
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function} [callback=identity] The function called per iteration.
+     * @param {*} [accumulator] Initial value of the accumulator.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the accumulated value.
+     * @example
+     *
+     * var list = [[0, 1], [2, 3], [4, 5]];
+     * var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
+     * // => [4, 5, 2, 3, 0, 1]
+     */
+    function reduceRight(collection, callback, accumulator, thisArg) {
+      var noaccum = arguments.length < 3;
+      callback = lodash.createCallback(callback, thisArg, 4);
+      forEachRight(collection, function(value, index, collection) {
+        accumulator = noaccum
+          ? (noaccum = false, value)
+          : callback(accumulator, value, index, collection);
+      });
+      return accumulator;
+    }
+
+    /**
+     * The opposite of `_.filter` this method returns the elements of a
+     * collection that the callback does **not** return truey for.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of elements that failed the callback check.
+     * @example
+     *
+     * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
+     * // => [1, 3, 5]
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.reject(characters, 'blocked');
+     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
+     *
+     * // using "_.where" callback shorthand
+     * _.reject(characters, { 'age': 36 });
+     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
+     */
+    function reject(collection, callback, thisArg) {
+      callback = lodash.createCallback(callback, thisArg, 3);
+      return filter(collection, function(value, index, collection) {
+        return !callback(value, index, collection);
+      });
+    }
+
+    /**
+     * Retrieves a random element or `n` random elements from a collection.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to sample.
+     * @param {number} [n] The number of elements to sample.
+     * @param- {Object} [guard] Allows working with functions like `_.map`
+     *  without using their `index` arguments as `n`.
+     * @returns {Array} Returns the random sample(s) of `collection`.
+     * @example
+     *
+     * _.sample([1, 2, 3, 4]);
+     * // => 2
+     *
+     * _.sample([1, 2, 3, 4], 2);
+     * // => [3, 1]
+     */
+    function sample(collection, n, guard) {
+      if (collection && typeof collection.length != 'number') {
+        collection = values(collection);
+      }
+      if (n == null || guard) {
+        return collection ? collection[baseRandom(0, collection.length - 1)] : undefined;
+      }
+      var result = shuffle(collection);
+      result.length = nativeMin(nativeMax(0, n), result.length);
+      return result;
+    }
+
+    /**
+     * Creates an array of shuffled values, using a version of the Fisher-Yates
+     * shuffle. See http://en.wikipedia.org/wiki/Fisher-Yates_shuffle.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to shuffle.
+     * @returns {Array} Returns a new shuffled collection.
+     * @example
+     *
+     * _.shuffle([1, 2, 3, 4, 5, 6]);
+     * // => [4, 1, 6, 3, 5, 2]
+     */
+    function shuffle(collection) {
+      var index = -1,
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      forEach(collection, function(value) {
+        var rand = baseRandom(0, ++index);
+        result[index] = result[rand];
+        result[rand] = value;
+      });
+      return result;
+    }
+
+    /**
+     * Gets the size of the `collection` by returning `collection.length` for arrays
+     * and array-like objects or the number of own enumerable properties for objects.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to inspect.
+     * @returns {number} Returns `collection.length` or number of own enumerable properties.
+     * @example
+     *
+     * _.size([1, 2]);
+     * // => 2
+     *
+     * _.size({ 'one': 1, 'two': 2, 'three': 3 });
+     * // => 3
+     *
+     * _.size('pebbles');
+     * // => 7
+     */
+    function size(collection) {
+      var length = collection ? collection.length : 0;
+      return typeof length == 'number' ? length : keys(collection).length;
+    }
+
+    /**
+     * Checks if the callback returns a truey value for **any** element of a
+     * collection. The function returns as soon as it finds a passing value and
+     * does not iterate over the entire collection. The callback is bound to
+     * `thisArg` and invoked with three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias any
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {boolean} Returns `true` if any element passed the callback check,
+     *  else `false`.
+     * @example
+     *
+     * _.some([null, 0, 'yes', false], Boolean);
+     * // => true
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'blocked': false },
+     *   { 'name': 'fred',   'age': 40, 'blocked': true }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.some(characters, 'blocked');
+     * // => true
+     *
+     * // using "_.where" callback shorthand
+     * _.some(characters, { 'age': 1 });
+     * // => false
+     */
+    function some(collection, callback, thisArg) {
+      var result;
+      callback = lodash.createCallback(callback, thisArg, 3);
+
+      var index = -1,
+          length = collection ? collection.length : 0;
+
+      if (typeof length == 'number') {
+        while (++index < length) {
+          if ((result = callback(collection[index], index, collection))) {
+            break;
+          }
+        }
+      } else {
+        forOwn(collection, function(value, index, collection) {
+          return !(result = callback(value, index, collection));
+        });
+      }
+      return !!result;
+    }
+
+    /**
+     * Creates an array of elements, sorted in ascending order by the results of
+     * running each element in a collection through the callback. This method
+     * performs a stable sort, that is, it will preserve the original sort order
+     * of equal elements. The callback is bound to `thisArg` and invoked with
+     * three arguments; (value, index|key, collection).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an array of property names is provided for `callback` the collection
+     * will be sorted by each property value.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Array|Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of sorted elements.
+     * @example
+     *
+     * _.sortBy([1, 2, 3], function(num) { return Math.sin(num); });
+     * // => [3, 1, 2]
+     *
+     * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
+     * // => [3, 1, 2]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36 },
+     *   { 'name': 'fred',    'age': 40 },
+     *   { 'name': 'barney',  'age': 26 },
+     *   { 'name': 'fred',    'age': 30 }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.map(_.sortBy(characters, 'age'), _.values);
+     * // => [['barney', 26], ['fred', 30], ['barney', 36], ['fred', 40]]
+     *
+     * // sorting by multiple properties
+     * _.map(_.sortBy(characters, ['name', 'age']), _.values);
+     * // = > [['barney', 26], ['barney', 36], ['fred', 30], ['fred', 40]]
+     */
+    function sortBy(collection, callback, thisArg) {
+      var index = -1,
+          isArr = isArray(callback),
+          length = collection ? collection.length : 0,
+          result = Array(typeof length == 'number' ? length : 0);
+
+      if (!isArr) {
+        callback = lodash.createCallback(callback, thisArg, 3);
+      }
+      forEach(collection, function(value, key, collection) {
+        var object = result[++index] = getObject();
+        if (isArr) {
+          object.criteria = map(callback, function(key) { return value[key]; });
+        } else {
+          (object.criteria = getArray())[0] = callback(value, key, collection);
+        }
+        object.index = index;
+        object.value = value;
+      });
+
+      length = result.length;
+      result.sort(compareAscending);
+      while (length--) {
+        var object = result[length];
+        result[length] = object.value;
+        if (!isArr) {
+          releaseArray(object.criteria);
+        }
+        releaseObject(object);
+      }
+      return result;
+    }
+
+    /**
+     * Converts the `collection` to an array.
+     *
+     * @static
+     * @memberOf _
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to convert.
+     * @returns {Array} Returns the new converted array.
+     * @example
+     *
+     * (function() { return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
+     * // => [2, 3, 4]
+     */
+    function toArray(collection) {
+      if (collection && typeof collection.length == 'number') {
+        return slice(collection);
+      }
+      return values(collection);
+    }
+
+    /**
+     * Performs a deep comparison of each element in a `collection` to the given
+     * `properties` object, returning an array of all elements that have equivalent
+     * property values.
+     *
+     * @static
+     * @memberOf _
+     * @type Function
+     * @category Collections
+     * @param {Array|Object|string} collection The collection to iterate over.
+     * @param {Object} props The object of property values to filter by.
+     * @returns {Array} Returns a new array of elements that have the given properties.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36, 'pets': ['hoppy'] },
+     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
+     * ];
+     *
+     * _.where(characters, { 'age': 36 });
+     * // => [{ 'name': 'barney', 'age': 36, 'pets': ['hoppy'] }]
+     *
+     * _.where(characters, { 'pets': ['dino'] });
+     * // => [{ 'name': 'fred', 'age': 40, 'pets': ['baby puss', 'dino'] }]
+     */
+    var where = filter;
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates an array with all falsey values removed. The values `false`, `null`,
+     * `0`, `""`, `undefined`, and `NaN` are all falsey.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to compact.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.compact([0, 1, false, 2, '', 3]);
+     * // => [1, 2, 3]
+     */
+    function compact(array) {
+      var index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
+      while (++index < length) {
+        var value = array[index];
+        if (value) {
+          result.push(value);
+        }
+      }
+      return result;
+    }
+
+    /**
+     * Creates an array excluding all values of the provided arrays using strict
+     * equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to process.
+     * @param {...Array} [values] The arrays of values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
+     * // => [1, 3, 4]
+     */
+    function difference(array) {
+      return baseDifference(array, baseFlatten(arguments, true, true, 1));
+    }
+
+    /**
+     * This method is like `_.find` except that it returns the index of the first
+     * element that passes the callback check, instead of the element itself.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': false },
+     *   { 'name': 'fred',    'age': 40, 'blocked': true },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
+     * ];
+     *
+     * _.findIndex(characters, function(chr) {
+     *   return chr.age < 20;
+     * });
+     * // => 2
+     *
+     * // using "_.where" callback shorthand
+     * _.findIndex(characters, { 'age': 36 });
+     * // => 0
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findIndex(characters, 'blocked');
+     * // => 1
+     */
+    function findIndex(array, callback, thisArg) {
+      var index = -1,
+          length = array ? array.length : 0;
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (++index < length) {
+        if (callback(array[index], index, array)) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * This method is like `_.findIndex` except that it iterates over elements
+     * of a `collection` from right to left.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index of the found element, else `-1`.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36, 'blocked': true },
+     *   { 'name': 'fred',    'age': 40, 'blocked': false },
+     *   { 'name': 'pebbles', 'age': 1,  'blocked': true }
+     * ];
+     *
+     * _.findLastIndex(characters, function(chr) {
+     *   return chr.age > 30;
+     * });
+     * // => 1
+     *
+     * // using "_.where" callback shorthand
+     * _.findLastIndex(characters, { 'age': 36 });
+     * // => 0
+     *
+     * // using "_.pluck" callback shorthand
+     * _.findLastIndex(characters, 'blocked');
+     * // => 2
+     */
+    function findLastIndex(array, callback, thisArg) {
+      var length = array ? array.length : 0;
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (length--) {
+        if (callback(array[length], length, array)) {
+          return length;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * Gets the first element or first `n` elements of an array. If a callback
+     * is provided elements at the beginning of the array are returned as long
+     * as the callback returns truey. The callback is bound to `thisArg` and
+     * invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias head, take
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback] The function called
+     *  per element or the number of elements to return. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the first element(s) of `array`.
+     * @example
+     *
+     * _.first([1, 2, 3]);
+     * // => 1
+     *
+     * _.first([1, 2, 3], 2);
+     * // => [1, 2]
+     *
+     * _.first([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [1, 2]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.first(characters, 'blocked');
+     * // => [{ 'name': 'barney', 'blocked': true, 'employer': 'slate' }]
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.first(characters, { 'employer': 'slate' }), 'name');
+     * // => ['barney', 'fred']
+     */
+    function first(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = -1;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (++index < length && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = callback;
+        if (n == null || thisArg) {
+          return array ? array[0] : undefined;
+        }
+      }
+      return slice(array, 0, nativeMin(nativeMax(0, n), length));
+    }
+
+    /**
+     * Flattens a nested array (the nesting can be to any depth). If `isShallow`
+     * is truey, the array will only be flattened a single level. If a callback
+     * is provided each element of the array is passed through the callback before
+     * flattening. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to flatten.
+     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new flattened array.
+     * @example
+     *
+     * _.flatten([1, [2], [3, [[4]]]]);
+     * // => [1, 2, 3, 4];
+     *
+     * _.flatten([1, [2], [3, [[4]]]], true);
+     * // => [1, 2, 3, [[4]]];
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
+     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.flatten(characters, 'pets');
+     * // => ['hoppy', 'baby puss', 'dino']
+     */
+    function flatten(array, isShallow, callback, thisArg) {
+      // juggle arguments
+      if (typeof isShallow != 'boolean' && isShallow != null) {
+        thisArg = callback;
+        callback = (typeof isShallow != 'function' && thisArg && thisArg[isShallow] === array) ? null : isShallow;
+        isShallow = false;
+      }
+      if (callback != null) {
+        array = map(array, callback, thisArg);
+      }
+      return baseFlatten(array, isShallow);
+    }
+
+    /**
+     * Gets the index at which the first occurrence of `value` is found using
+     * strict equality for comparisons, i.e. `===`. If the array is already sorted
+     * providing `true` for `fromIndex` will run a faster binary search.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {*} value The value to search for.
+     * @param {boolean|number} [fromIndex=0] The index to search from or `true`
+     *  to perform a binary search on a sorted array.
+     * @returns {number} Returns the index of the matched value or `-1`.
+     * @example
+     *
+     * _.indexOf([1, 2, 3, 1, 2, 3], 2);
+     * // => 1
+     *
+     * _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
+     * // => 4
+     *
+     * _.indexOf([1, 1, 2, 2, 3, 3], 2, true);
+     * // => 2
+     */
+    function indexOf(array, value, fromIndex) {
+      if (typeof fromIndex == 'number') {
+        var length = array ? array.length : 0;
+        fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex || 0);
+      } else if (fromIndex) {
+        var index = sortedIndex(array, value);
+        return array[index] === value ? index : -1;
+      }
+      return baseIndexOf(array, value, fromIndex);
+    }
+
+    /**
+     * Gets all but the last element or last `n` elements of an array. If a
+     * callback is provided elements at the end of the array are excluded from
+     * the result as long as the callback returns truey. The callback is bound
+     * to `thisArg` and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback=1] The function called
+     *  per element or the number of elements to exclude. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a slice of `array`.
+     * @example
+     *
+     * _.initial([1, 2, 3]);
+     * // => [1, 2]
+     *
+     * _.initial([1, 2, 3], 2);
+     * // => [1]
+     *
+     * _.initial([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [1]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.initial(characters, 'blocked');
+     * // => [{ 'name': 'barney',  'blocked': false, 'employer': 'slate' }]
+     *
+     * // using "_.where" callback shorthand
+     * _.pluck(_.initial(characters, { 'employer': 'na' }), 'name');
+     * // => ['barney', 'fred']
+     */
+    function initial(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = length;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (index-- && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = (callback == null || thisArg) ? 1 : callback || n;
+      }
+      return slice(array, 0, nativeMin(nativeMax(0, length - n), length));
+    }
+
+    /**
+     * Creates an array of unique values present in all provided arrays using
+     * strict equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of shared values.
+     * @example
+     *
+     * _.intersection([1, 2, 3], [5, 2, 1, 4], [2, 1]);
+     * // => [1, 2]
+     */
+    function intersection() {
+      var args = [],
+          argsIndex = -1,
+          argsLength = arguments.length,
+          caches = getArray(),
+          indexOf = getIndexOf(),
+          trustIndexOf = indexOf === baseIndexOf,
+          seen = getArray();
+
+      while (++argsIndex < argsLength) {
+        var value = arguments[argsIndex];
+        if (isArray(value) || isArguments(value)) {
+          args.push(value);
+          caches.push(trustIndexOf && value.length >= largeArraySize &&
+            createCache(argsIndex ? args[argsIndex] : seen));
+        }
+      }
+      var array = args[0],
+          index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
+      outer:
+      while (++index < length) {
+        var cache = caches[0];
+        value = array[index];
+
+        if ((cache ? cacheIndexOf(cache, value) : indexOf(seen, value)) < 0) {
+          argsIndex = argsLength;
+          (cache || seen).push(value);
+          while (--argsIndex) {
+            cache = caches[argsIndex];
+            if ((cache ? cacheIndexOf(cache, value) : indexOf(args[argsIndex], value)) < 0) {
+              continue outer;
+            }
+          }
+          result.push(value);
+        }
+      }
+      while (argsLength--) {
+        cache = caches[argsLength];
+        if (cache) {
+          releaseObject(cache);
+        }
+      }
+      releaseArray(caches);
+      releaseArray(seen);
+      return result;
+    }
+
+    /**
+     * Gets the last element or last `n` elements of an array. If a callback is
+     * provided elements at the end of the array are returned as long as the
+     * callback returns truey. The callback is bound to `thisArg` and invoked
+     * with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback] The function called
+     *  per element or the number of elements to return. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {*} Returns the last element(s) of `array`.
+     * @example
+     *
+     * _.last([1, 2, 3]);
+     * // => 3
+     *
+     * _.last([1, 2, 3], 2);
+     * // => [2, 3]
+     *
+     * _.last([1, 2, 3], function(num) {
+     *   return num > 1;
+     * });
+     * // => [2, 3]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.last(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
+     *
+     * // using "_.where" callback shorthand
+     * _.last(characters, { 'employer': 'na' });
+     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
+     */
+    function last(array, callback, thisArg) {
+      var n = 0,
+          length = array ? array.length : 0;
+
+      if (typeof callback != 'number' && callback != null) {
+        var index = length;
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (index-- && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = callback;
+        if (n == null || thisArg) {
+          return array ? array[length - 1] : undefined;
+        }
+      }
+      return slice(array, nativeMax(0, length - n));
+    }
+
+    /**
+     * Gets the index at which the last occurrence of `value` is found using strict
+     * equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used
+     * as the offset from the end of the collection.
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to search.
+     * @param {*} value The value to search for.
+     * @param {number} [fromIndex=array.length-1] The index to search from.
+     * @returns {number} Returns the index of the matched value or `-1`.
+     * @example
+     *
+     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
+     * // => 4
+     *
+     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
+     * // => 1
+     */
+    function lastIndexOf(array, value, fromIndex) {
+      var index = array ? array.length : 0;
+      if (typeof fromIndex == 'number') {
+        index = (fromIndex < 0 ? nativeMax(0, index + fromIndex) : nativeMin(fromIndex, index - 1)) + 1;
+      }
+      while (index--) {
+        if (array[index] === value) {
+          return index;
+        }
+      }
+      return -1;
+    }
+
+    /**
+     * Removes all provided values from the given array using strict equality for
+     * comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to modify.
+     * @param {...*} [value] The values to remove.
+     * @returns {Array} Returns `array`.
+     * @example
+     *
+     * var array = [1, 2, 3, 1, 2, 3];
+     * _.pull(array, 2, 3);
+     * console.log(array);
+     * // => [1, 1]
+     */
+    function pull(array) {
+      var args = arguments,
+          argsIndex = 0,
+          argsLength = args.length,
+          length = array ? array.length : 0;
+
+      while (++argsIndex < argsLength) {
+        var index = -1,
+            value = args[argsIndex];
+        while (++index < length) {
+          if (array[index] === value) {
+            splice.call(array, index--, 1);
+            length--;
+          }
+        }
+      }
+      return array;
+    }
+
+    /**
+     * Creates an array of numbers (positive and/or negative) progressing from
+     * `start` up to but not including `end`. If `start` is less than `stop` a
+     * zero-length range is created unless a negative `step` is specified.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {number} [start=0] The start of the range.
+     * @param {number} end The end of the range.
+     * @param {number} [step=1] The value to increment or decrement by.
+     * @returns {Array} Returns a new range array.
+     * @example
+     *
+     * _.range(4);
+     * // => [0, 1, 2, 3]
+     *
+     * _.range(1, 5);
+     * // => [1, 2, 3, 4]
+     *
+     * _.range(0, 20, 5);
+     * // => [0, 5, 10, 15]
+     *
+     * _.range(0, -4, -1);
+     * // => [0, -1, -2, -3]
+     *
+     * _.range(1, 4, 0);
+     * // => [1, 1, 1]
+     *
+     * _.range(0);
+     * // => []
+     */
+    function range(start, end, step) {
+      start = +start || 0;
+      step = typeof step == 'number' ? step : (+step || 1);
+
+      if (end == null) {
+        end = start;
+        start = 0;
+      }
+      // use `Array(length)` so engines like Chakra and V8 avoid slower modes
+      // http://youtu.be/XAqIpGU8ZZk#t=17m25s
+      var index = -1,
+          length = nativeMax(0, ceil((end - start) / (step || 1))),
+          result = Array(length);
+
+      while (++index < length) {
+        result[index] = start;
+        start += step;
+      }
+      return result;
+    }
+
+    /**
+     * Removes all elements from an array that the callback returns truey for
+     * and returns an array of removed elements. The callback is bound to `thisArg`
+     * and invoked with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to modify.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a new array of removed elements.
+     * @example
+     *
+     * var array = [1, 2, 3, 4, 5, 6];
+     * var evens = _.remove(array, function(num) { return num % 2 == 0; });
+     *
+     * console.log(array);
+     * // => [1, 3, 5]
+     *
+     * console.log(evens);
+     * // => [2, 4, 6]
+     */
+    function remove(array, callback, thisArg) {
+      var index = -1,
+          length = array ? array.length : 0,
+          result = [];
+
+      callback = lodash.createCallback(callback, thisArg, 3);
+      while (++index < length) {
+        var value = array[index];
+        if (callback(value, index, array)) {
+          result.push(value);
+          splice.call(array, index--, 1);
+          length--;
+        }
+      }
+      return result;
+    }
+
+    /**
+     * The opposite of `_.initial` this method gets all but the first element or
+     * first `n` elements of an array. If a callback function is provided elements
+     * at the beginning of the array are excluded from the result as long as the
+     * callback returns truey. The callback is bound to `thisArg` and invoked
+     * with three arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias drop, tail
+     * @category Arrays
+     * @param {Array} array The array to query.
+     * @param {Function|Object|number|string} [callback=1] The function called
+     *  per element or the number of elements to exclude. If a property name or
+     *  object is provided it will be used to create a "_.pluck" or "_.where"
+     *  style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a slice of `array`.
+     * @example
+     *
+     * _.rest([1, 2, 3]);
+     * // => [2, 3]
+     *
+     * _.rest([1, 2, 3], 2);
+     * // => [3]
+     *
+     * _.rest([1, 2, 3], function(num) {
+     *   return num < 3;
+     * });
+     * // => [3]
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
+     *   { 'name': 'fred',    'blocked': false,  'employer': 'slate' },
+     *   { 'name': 'pebbles', 'blocked': true, 'employer': 'na' }
+     * ];
+     *
+     * // using "_.pluck" callback shorthand
+     * _.pluck(_.rest(characters, 'blocked'), 'name');
+     * // => ['fred', 'pebbles']
+     *
+     * // using "_.where" callback shorthand
+     * _.rest(characters, { 'employer': 'slate' });
+     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
+     */
+    function rest(array, callback, thisArg) {
+      if (typeof callback != 'number' && callback != null) {
+        var n = 0,
+            index = -1,
+            length = array ? array.length : 0;
+
+        callback = lodash.createCallback(callback, thisArg, 3);
+        while (++index < length && callback(array[index], index, array)) {
+          n++;
+        }
+      } else {
+        n = (callback == null || thisArg) ? 1 : nativeMax(0, callback);
+      }
+      return slice(array, n);
+    }
+
+    /**
+     * Uses a binary search to determine the smallest index at which a value
+     * should be inserted into a given sorted array in order to maintain the sort
+     * order of the array. If a callback is provided it will be executed for
+     * `value` and each element of `array` to compute their sort ranking. The
+     * callback is bound to `thisArg` and invoked with one argument; (value).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to inspect.
+     * @param {*} value The value to evaluate.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {number} Returns the index at which `value` should be inserted
+     *  into `array`.
+     * @example
+     *
+     * _.sortedIndex([20, 30, 50], 40);
+     * // => 2
+     *
+     * // using "_.pluck" callback shorthand
+     * _.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
+     * // => 2
+     *
+     * var dict = {
+     *   'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
+     * };
+     *
+     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+     *   return dict.wordToNumber[word];
+     * });
+     * // => 2
+     *
+     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
+     *   return this.wordToNumber[word];
+     * }, dict);
+     * // => 2
+     */
+    function sortedIndex(array, value, callback, thisArg) {
+      var low = 0,
+          high = array ? array.length : low;
+
+      // explicitly reference `identity` for better inlining in Firefox
+      callback = callback ? lodash.createCallback(callback, thisArg, 1) : identity;
+      value = callback(value);
+
+      while (low < high) {
+        var mid = (low + high) >>> 1;
+        (callback(array[mid]) < value)
+          ? low = mid + 1
+          : high = mid;
+      }
+      return low;
+    }
+
+    /**
+     * Creates an array of unique values, in order, of the provided arrays using
+     * strict equality for comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of combined values.
+     * @example
+     *
+     * _.union([1, 2, 3], [5, 2, 1, 4], [2, 1]);
+     * // => [1, 2, 3, 5, 4]
+     */
+    function union() {
+      return baseUniq(baseFlatten(arguments, true, true));
+    }
+
+    /**
+     * Creates a duplicate-value-free version of an array using strict equality
+     * for comparisons, i.e. `===`. If the array is sorted, providing
+     * `true` for `isSorted` will use a faster algorithm. If a callback is provided
+     * each element of `array` is passed through the callback before uniqueness
+     * is computed. The callback is bound to `thisArg` and invoked with three
+     * arguments; (value, index, array).
+     *
+     * If a property name is provided for `callback` the created "_.pluck" style
+     * callback will return the property value of the given element.
+     *
+     * If an object is provided for `callback` the created "_.where" style callback
+     * will return `true` for elements that have the properties of the given object,
+     * else `false`.
+     *
+     * @static
+     * @memberOf _
+     * @alias unique
+     * @category Arrays
+     * @param {Array} array The array to process.
+     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
+     * @param {Function|Object|string} [callback=identity] The function called
+     *  per iteration. If a property name or object is provided it will be used
+     *  to create a "_.pluck" or "_.where" style callback, respectively.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns a duplicate-value-free array.
+     * @example
+     *
+     * _.uniq([1, 2, 1, 3, 1]);
+     * // => [1, 2, 3]
+     *
+     * _.uniq([1, 1, 2, 2, 3], true);
+     * // => [1, 2, 3]
+     *
+     * _.uniq(['A', 'b', 'C', 'a', 'B', 'c'], function(letter) { return letter.toLowerCase(); });
+     * // => ['A', 'b', 'C']
+     *
+     * _.uniq([1, 2.5, 3, 1.5, 2, 3.5], function(num) { return this.floor(num); }, Math);
+     * // => [1, 2.5, 3]
+     *
+     * // using "_.pluck" callback shorthand
+     * _.uniq([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
+     * // => [{ 'x': 1 }, { 'x': 2 }]
+     */
+    function uniq(array, isSorted, callback, thisArg) {
+      // juggle arguments
+      if (typeof isSorted != 'boolean' && isSorted != null) {
+        thisArg = callback;
+        callback = (typeof isSorted != 'function' && thisArg && thisArg[isSorted] === array) ? null : isSorted;
+        isSorted = false;
+      }
+      if (callback != null) {
+        callback = lodash.createCallback(callback, thisArg, 3);
+      }
+      return baseUniq(array, isSorted, callback);
+    }
+
+    /**
+     * Creates an array excluding all provided values using strict equality for
+     * comparisons, i.e. `===`.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {Array} array The array to filter.
+     * @param {...*} [value] The values to exclude.
+     * @returns {Array} Returns a new array of filtered values.
+     * @example
+     *
+     * _.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
+     * // => [2, 3, 4]
+     */
+    function without(array) {
+      return baseDifference(array, slice(arguments, 1));
+    }
+
+    /**
+     * Creates an array that is the symmetric difference of the provided arrays.
+     * See http://en.wikipedia.org/wiki/Symmetric_difference.
+     *
+     * @static
+     * @memberOf _
+     * @category Arrays
+     * @param {...Array} [array] The arrays to inspect.
+     * @returns {Array} Returns an array of values.
+     * @example
+     *
+     * _.xor([1, 2, 3], [5, 2, 1, 4]);
+     * // => [3, 5, 4]
+     *
+     * _.xor([1, 2, 5], [2, 3, 5], [3, 4, 5]);
+     * // => [1, 4, 5]
+     */
+    function xor() {
+      var index = -1,
+          length = arguments.length;
+
+      while (++index < length) {
+        var array = arguments[index];
+        if (isArray(array) || isArguments(array)) {
+          var result = result
+            ? baseUniq(baseDifference(result, array).concat(baseDifference(array, result)))
+            : array;
+        }
+      }
+      return result || [];
+    }
+
+    /**
+     * Creates an array of grouped elements, the first of which contains the first
+     * elements of the given arrays, the second of which contains the second
+     * elements of the given arrays, and so on.
+     *
+     * @static
+     * @memberOf _
+     * @alias unzip
+     * @category Arrays
+     * @param {...Array} [array] Arrays to process.
+     * @returns {Array} Returns a new array of grouped elements.
+     * @example
+     *
+     * _.zip(['fred', 'barney'], [30, 40], [true, false]);
+     * // => [['fred', 30, true], ['barney', 40, false]]
+     */
+    function zip() {
+      var array = arguments.length > 1 ? arguments : arguments[0],
+          index = -1,
+          length = array ? max(pluck(array, 'length')) : 0,
+          result = Array(length < 0 ? 0 : length);
+
+      while (++index < length) {
+        result[index] = pluck(array, index);
+      }
+      return result;
+    }
+
+    /**
+     * Creates an object composed from arrays of `keys` and `values`. Provide
+     * either a single two dimensional array, i.e. `[[key1, value1], [key2, value2]]`
+     * or two arrays, one of `keys` and one of corresponding `values`.
+     *
+     * @static
+     * @memberOf _
+     * @alias object
+     * @category Arrays
+     * @param {Array} keys The array of keys.
+     * @param {Array} [values=[]] The array of values.
+     * @returns {Object} Returns an object composed of the given keys and
+     *  corresponding values.
+     * @example
+     *
+     * _.zipObject(['fred', 'barney'], [30, 40]);
+     * // => { 'fred': 30, 'barney': 40 }
+     */
+    function zipObject(keys, values) {
+      var index = -1,
+          length = keys ? keys.length : 0,
+          result = {};
+
+      if (!values && length && !isArray(keys[0])) {
+        values = [];
+      }
+      while (++index < length) {
+        var key = keys[index];
+        if (values) {
+          result[key] = values[index];
+        } else if (key) {
+          result[key[0]] = key[1];
+        }
+      }
+      return result;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a function that executes `func`, with  the `this` binding and
+     * arguments of the created function, only after being called `n` times.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {number} n The number of times the function must be called before
+     *  `func` is executed.
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var saves = ['profile', 'settings'];
+     *
+     * var done = _.after(saves.length, function() {
+     *   console.log('Done saving!');
+     * });
+     *
+     * _.forEach(saves, function(type) {
+     *   asyncSave({ 'type': type, 'complete': done });
+     * });
+     * // => logs 'Done saving!', after all saves have completed
+     */
+    function after(n, func) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      return function() {
+        if (--n < 1) {
+          return func.apply(this, arguments);
+        }
+      };
+    }
+
+    /**
+     * Creates a function that, when called, invokes `func` with the `this`
+     * binding of `thisArg` and prepends any additional `bind` arguments to those
+     * provided to the bound function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to bind.
+     * @param {*} [thisArg] The `this` binding of `func`.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * var func = function(greeting) {
+     *   return greeting + ' ' + this.name;
+     * };
+     *
+     * func = _.bind(func, { 'name': 'fred' }, 'hi');
+     * func();
+     * // => 'hi fred'
+     */
+    function bind(func, thisArg) {
+      return arguments.length > 2
+        ? createWrapper(func, 17, slice(arguments, 2), null, thisArg)
+        : createWrapper(func, 1, null, null, thisArg);
+    }
+
+    /**
+     * Binds methods of an object to the object itself, overwriting the existing
+     * method. Method names may be specified as individual arguments or as arrays
+     * of method names. If no method names are provided all the function properties
+     * of `object` will be bound.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Object} object The object to bind and assign the bound methods to.
+     * @param {...string} [methodName] The object method names to
+     *  bind, specified as individual method names or arrays of method names.
+     * @returns {Object} Returns `object`.
+     * @example
+     *
+     * var view = {
+     *   'label': 'docs',
+     *   'onClick': function() { console.log('clicked ' + this.label); }
+     * };
+     *
+     * _.bindAll(view);
+     * jQuery('#docs').on('click', view.onClick);
+     * // => logs 'clicked docs', when the button is clicked
+     */
+    function bindAll(object) {
+      var funcs = arguments.length > 1 ? baseFlatten(arguments, true, false, 1) : functions(object),
+          index = -1,
+          length = funcs.length;
+
+      while (++index < length) {
+        var key = funcs[index];
+        object[key] = createWrapper(object[key], 1, null, null, object);
+      }
+      return object;
+    }
+
+    /**
+     * Creates a function that, when called, invokes the method at `object[key]`
+     * and prepends any additional `bindKey` arguments to those provided to the bound
+     * function. This method differs from `_.bind` by allowing bound functions to
+     * reference methods that will be redefined or don't yet exist.
+     * See http://michaux.ca/articles/lazy-function-definition-pattern.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Object} object The object the method belongs to.
+     * @param {string} key The key of the method.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new bound function.
+     * @example
+     *
+     * var object = {
+     *   'name': 'fred',
+     *   'greet': function(greeting) {
+     *     return greeting + ' ' + this.name;
+     *   }
+     * };
+     *
+     * var func = _.bindKey(object, 'greet', 'hi');
+     * func();
+     * // => 'hi fred'
+     *
+     * object.greet = function(greeting) {
+     *   return greeting + 'ya ' + this.name + '!';
+     * };
+     *
+     * func();
+     * // => 'hiya fred!'
+     */
+    function bindKey(object, key) {
+      return arguments.length > 2
+        ? createWrapper(key, 19, slice(arguments, 2), null, object)
+        : createWrapper(key, 3, null, null, object);
+    }
+
+    /**
+     * Creates a function that is the composition of the provided functions,
+     * where each function consumes the return value of the function that follows.
+     * For example, composing the functions `f()`, `g()`, and `h()` produces `f(g(h()))`.
+     * Each function is executed with the `this` binding of the composed function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {...Function} [func] Functions to compose.
+     * @returns {Function} Returns the new composed function.
+     * @example
+     *
+     * var realNameMap = {
+     *   'pebbles': 'penelope'
+     * };
+     *
+     * var format = function(name) {
+     *   name = realNameMap[name.toLowerCase()] || name;
+     *   return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+     * };
+     *
+     * var greet = function(formatted) {
+     *   return 'Hiya ' + formatted + '!';
+     * };
+     *
+     * var welcome = _.compose(greet, format);
+     * welcome('pebbles');
+     * // => 'Hiya Penelope!'
+     */
+    function compose() {
+      var funcs = arguments,
+          length = funcs.length;
+
+      while (length--) {
+        if (!isFunction(funcs[length])) {
+          throw new TypeError;
+        }
+      }
+      return function() {
+        var args = arguments,
+            length = funcs.length;
+
+        while (length--) {
+          args = [funcs[length].apply(this, args)];
+        }
+        return args[0];
+      };
+    }
+
+    /**
+     * Creates a function which accepts one or more arguments of `func` that when
+     * invoked either executes `func` returning its result, if all `func` arguments
+     * have been provided, or returns a function that accepts one or more of the
+     * remaining `func` arguments, and so on. The arity of `func` can be specified
+     * if `func.length` is not sufficient.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to curry.
+     * @param {number} [arity=func.length] The arity of `func`.
+     * @returns {Function} Returns the new curried function.
+     * @example
+     *
+     * var curried = _.curry(function(a, b, c) {
+     *   console.log(a + b + c);
+     * });
+     *
+     * curried(1)(2)(3);
+     * // => 6
+     *
+     * curried(1, 2)(3);
+     * // => 6
+     *
+     * curried(1, 2, 3);
+     * // => 6
+     */
+    function curry(func, arity) {
+      arity = typeof arity == 'number' ? arity : (+arity || func.length);
+      return createWrapper(func, 4, null, null, null, arity);
+    }
+
+    /**
+     * Creates a function that will delay the execution of `func` until after
+     * `wait` milliseconds have elapsed since the last time it was invoked.
+     * Provide an options object to indicate that `func` should be invoked on
+     * the leading and/or trailing edge of the `wait` timeout. Subsequent calls
+     * to the debounced function will return the result of the last `func` call.
+     *
+     * Note: If `leading` and `trailing` options are `true` `func` will be called
+     * on the trailing edge of the timeout only if the the debounced function is
+     * invoked more than once during the `wait` timeout.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to debounce.
+     * @param {number} wait The number of milliseconds to delay.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.leading=false] Specify execution on the leading edge of the timeout.
+     * @param {number} [options.maxWait] The maximum time `func` is allowed to be delayed before it's called.
+     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+     * @returns {Function} Returns the new debounced function.
+     * @example
+     *
+     * // avoid costly calculations while the window size is in flux
+     * var lazyLayout = _.debounce(calculateLayout, 150);
+     * jQuery(window).on('resize', lazyLayout);
+     *
+     * // execute `sendMail` when the click event is fired, debouncing subsequent calls
+     * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
+     *   'leading': true,
+     *   'trailing': false
+     * });
+     *
+     * // ensure `batchLog` is executed once after 1 second of debounced calls
+     * var source = new EventSource('/stream');
+     * source.addEventListener('message', _.debounce(batchLog, 250, {
+     *   'maxWait': 1000
+     * }, false);
+     */
+    function debounce(func, wait, options) {
+      var args,
+          maxTimeoutId,
+          result,
+          stamp,
+          thisArg,
+          timeoutId,
+          trailingCall,
+          lastCalled = 0,
+          maxWait = false,
+          trailing = true;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      wait = nativeMax(0, wait) || 0;
+      if (options === true) {
+        var leading = true;
+        trailing = false;
+      } else if (isObject(options)) {
+        leading = options.leading;
+        maxWait = 'maxWait' in options && (nativeMax(wait, options.maxWait) || 0);
+        trailing = 'trailing' in options ? options.trailing : trailing;
+      }
+      var delayed = function() {
+        var remaining = wait - (now() - stamp);
+        if (remaining <= 0) {
+          if (maxTimeoutId) {
+            clearTimeout(maxTimeoutId);
+          }
+          var isCalled = trailingCall;
+          maxTimeoutId = timeoutId = trailingCall = undefined;
+          if (isCalled) {
+            lastCalled = now();
+            result = func.apply(thisArg, args);
+            if (!timeoutId && !maxTimeoutId) {
+              args = thisArg = null;
+            }
+          }
+        } else {
+          timeoutId = setTimeout(delayed, remaining);
+        }
+      };
+
+      var maxDelayed = function() {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        maxTimeoutId = timeoutId = trailingCall = undefined;
+        if (trailing || (maxWait !== wait)) {
+          lastCalled = now();
+          result = func.apply(thisArg, args);
+          if (!timeoutId && !maxTimeoutId) {
+            args = thisArg = null;
+          }
+        }
+      };
+
+      return function() {
+        args = arguments;
+        stamp = now();
+        thisArg = this;
+        trailingCall = trailing && (timeoutId || !leading);
+
+        if (maxWait === false) {
+          var leadingCall = leading && !timeoutId;
+        } else {
+          if (!maxTimeoutId && !leading) {
+            lastCalled = stamp;
+          }
+          var remaining = maxWait - (stamp - lastCalled),
+              isCalled = remaining <= 0;
+
+          if (isCalled) {
+            if (maxTimeoutId) {
+              maxTimeoutId = clearTimeout(maxTimeoutId);
+            }
+            lastCalled = stamp;
+            result = func.apply(thisArg, args);
+          }
+          else if (!maxTimeoutId) {
+            maxTimeoutId = setTimeout(maxDelayed, remaining);
+          }
+        }
+        if (isCalled && timeoutId) {
+          timeoutId = clearTimeout(timeoutId);
+        }
+        else if (!timeoutId && wait !== maxWait) {
+          timeoutId = setTimeout(delayed, wait);
+        }
+        if (leadingCall) {
+          isCalled = true;
+          result = func.apply(thisArg, args);
+        }
+        if (isCalled && !timeoutId && !maxTimeoutId) {
+          args = thisArg = null;
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Defers executing the `func` function until the current call stack has cleared.
+     * Additional arguments will be provided to `func` when it is invoked.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to defer.
+     * @param {...*} [arg] Arguments to invoke the function with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * _.defer(function(text) { console.log(text); }, 'deferred');
+     * // logs 'deferred' after one or more milliseconds
+     */
+    function defer(func) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var args = slice(arguments, 1);
+      return setTimeout(function() { func.apply(undefined, args); }, 1);
+    }
+
+    /**
+     * Executes the `func` function after `wait` milliseconds. Additional arguments
+     * will be provided to `func` when it is invoked.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to delay.
+     * @param {number} wait The number of milliseconds to delay execution.
+     * @param {...*} [arg] Arguments to invoke the function with.
+     * @returns {number} Returns the timer id.
+     * @example
+     *
+     * _.delay(function(text) { console.log(text); }, 1000, 'later');
+     * // => logs 'later' after one second
+     */
+    function delay(func, wait) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var args = slice(arguments, 2);
+      return setTimeout(function() { func.apply(undefined, args); }, wait);
+    }
+
+    /**
+     * Creates a function that memoizes the result of `func`. If `resolver` is
+     * provided it will be used to determine the cache key for storing the result
+     * based on the arguments provided to the memoized function. By default, the
+     * first argument provided to the memoized function is used as the cache key.
+     * The `func` is executed with the `this` binding of the memoized function.
+     * The result cache is exposed as the `cache` property on the memoized function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to have its output memoized.
+     * @param {Function} [resolver] A function used to resolve the cache key.
+     * @returns {Function} Returns the new memoizing function.
+     * @example
+     *
+     * var fibonacci = _.memoize(function(n) {
+     *   return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
+     * });
+     *
+     * fibonacci(9)
+     * // => 34
+     *
+     * var data = {
+     *   'fred': { 'name': 'fred', 'age': 40 },
+     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
+     * };
+     *
+     * // modifying the result cache
+     * var get = _.memoize(function(name) { return data[name]; }, _.identity);
+     * get('pebbles');
+     * // => { 'name': 'pebbles', 'age': 1 }
+     *
+     * get.cache.pebbles.name = 'penelope';
+     * get('pebbles');
+     * // => { 'name': 'penelope', 'age': 1 }
+     */
+    function memoize(func, resolver) {
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      var memoized = function() {
+        var cache = memoized.cache,
+            key = resolver ? resolver.apply(this, arguments) : keyPrefix + arguments[0];
+
+        return hasOwnProperty.call(cache, key)
+          ? cache[key]
+          : (cache[key] = func.apply(this, arguments));
+      }
+      memoized.cache = {};
+      return memoized;
+    }
+
+    /**
+     * Creates a function that is restricted to execute `func` once. Repeat calls to
+     * the function will return the value of the first call. The `func` is executed
+     * with the `this` binding of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to restrict.
+     * @returns {Function} Returns the new restricted function.
+     * @example
+     *
+     * var initialize = _.once(createApplication);
+     * initialize();
+     * initialize();
+     * // `initialize` executes `createApplication` once
+     */
+    function once(func) {
+      var ran,
+          result;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      return function() {
+        if (ran) {
+          return result;
+        }
+        ran = true;
+        result = func.apply(this, arguments);
+
+        // clear the `func` variable so the function may be garbage collected
+        func = null;
+        return result;
+      };
+    }
+
+    /**
+     * Creates a function that, when called, invokes `func` with any additional
+     * `partial` arguments prepended to those provided to the new function. This
+     * method is similar to `_.bind` except it does **not** alter the `this` binding.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * var greet = function(greeting, name) { return greeting + ' ' + name; };
+     * var hi = _.partial(greet, 'hi');
+     * hi('fred');
+     * // => 'hi fred'
+     */
+    function partial(func) {
+      return createWrapper(func, 16, slice(arguments, 1));
+    }
+
+    /**
+     * This method is like `_.partial` except that `partial` arguments are
+     * appended to those provided to the new function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to partially apply arguments to.
+     * @param {...*} [arg] Arguments to be partially applied.
+     * @returns {Function} Returns the new partially applied function.
+     * @example
+     *
+     * var defaultsDeep = _.partialRight(_.merge, _.defaults);
+     *
+     * var options = {
+     *   'variable': 'data',
+     *   'imports': { 'jq': $ }
+     * };
+     *
+     * defaultsDeep(options, _.templateSettings);
+     *
+     * options.variable
+     * // => 'data'
+     *
+     * options.imports
+     * // => { '_': _, 'jq': $ }
+     */
+    function partialRight(func) {
+      return createWrapper(func, 32, null, slice(arguments, 1));
+    }
+
+    /**
+     * Creates a function that, when executed, will only call the `func` function
+     * at most once per every `wait` milliseconds. Provide an options object to
+     * indicate that `func` should be invoked on the leading and/or trailing edge
+     * of the `wait` timeout. Subsequent calls to the throttled function will
+     * return the result of the last `func` call.
+     *
+     * Note: If `leading` and `trailing` options are `true` `func` will be called
+     * on the trailing edge of the timeout only if the the throttled function is
+     * invoked more than once during the `wait` timeout.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {Function} func The function to throttle.
+     * @param {number} wait The number of milliseconds to throttle executions to.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.leading=true] Specify execution on the leading edge of the timeout.
+     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
+     * @returns {Function} Returns the new throttled function.
+     * @example
+     *
+     * // avoid excessively updating the position while scrolling
+     * var throttled = _.throttle(updatePosition, 100);
+     * jQuery(window).on('scroll', throttled);
+     *
+     * // execute `renewToken` when the click event is fired, but not more than once every 5 minutes
+     * jQuery('.interactive').on('click', _.throttle(renewToken, 300000, {
+     *   'trailing': false
+     * }));
+     */
+    function throttle(func, wait, options) {
+      var leading = true,
+          trailing = true;
+
+      if (!isFunction(func)) {
+        throw new TypeError;
+      }
+      if (options === false) {
+        leading = false;
+      } else if (isObject(options)) {
+        leading = 'leading' in options ? options.leading : leading;
+        trailing = 'trailing' in options ? options.trailing : trailing;
+      }
+      debounceOptions.leading = leading;
+      debounceOptions.maxWait = wait;
+      debounceOptions.trailing = trailing;
+
+      return debounce(func, wait, debounceOptions);
+    }
+
+    /**
+     * Creates a function that provides `value` to the wrapper function as its
+     * first argument. Additional arguments provided to the function are appended
+     * to those provided to the wrapper function. The wrapper is executed with
+     * the `this` binding of the created function.
+     *
+     * @static
+     * @memberOf _
+     * @category Functions
+     * @param {*} value The value to wrap.
+     * @param {Function} wrapper The wrapper function.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var p = _.wrap(_.escape, function(func, text) {
+     *   return '<p>' + func(text) + '</p>';
+     * });
+     *
+     * p('Fred, Wilma, & Pebbles');
+     * // => '<p>Fred, Wilma, &amp; Pebbles</p>'
+     */
+    function wrap(value, wrapper) {
+      return createWrapper(wrapper, 16, [value]);
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a function that returns `value`.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} value The value to return from the new function.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * var getter = _.constant(object);
+     * getter() === object;
+     * // => true
+     */
+    function constant(value) {
+      return function() {
+        return value;
+      };
+    }
+
+    /**
+     * Produces a callback bound to an optional `thisArg`. If `func` is a property
+     * name the created callback will return the property value for a given element.
+     * If `func` is an object the created callback will return `true` for elements
+     * that contain the equivalent object properties, otherwise it will return `false`.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} [func=identity] The value to convert to a callback.
+     * @param {*} [thisArg] The `this` binding of the created callback.
+     * @param {number} [argCount] The number of arguments the callback accepts.
+     * @returns {Function} Returns a callback function.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * // wrap to create custom callback shorthands
+     * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
+     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
+     *   return !match ? func(callback, thisArg) : function(object) {
+     *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
+     *   };
+     * });
+     *
+     * _.filter(characters, 'age__gt38');
+     * // => [{ 'name': 'fred', 'age': 40 }]
+     */
+    function createCallback(func, thisArg, argCount) {
+      var type = typeof func;
+      if (func == null || type == 'function') {
+        return baseCreateCallback(func, thisArg, argCount);
+      }
+      // handle "_.pluck" style callback shorthands
+      if (type != 'object') {
+        return property(func);
+      }
+      var props = keys(func),
+          key = props[0],
+          a = func[key];
+
+      // handle "_.where" style callback shorthands
+      if (props.length == 1 && a === a && !isObject(a)) {
+        // fast path the common case of providing an object with a single
+        // property containing a primitive value
+        return function(object) {
+          var b = object[key];
+          return a === b && (a !== 0 || (1 / a == 1 / b));
+        };
+      }
+      return function(object) {
+        var length = props.length,
+            result = false;
+
+        while (length--) {
+          if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
+            break;
+          }
+        }
+        return result;
+      };
+    }
+
+    /**
+     * Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their
+     * corresponding HTML entities.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} string The string to escape.
+     * @returns {string} Returns the escaped string.
+     * @example
+     *
+     * _.escape('Fred, Wilma, & Pebbles');
+     * // => 'Fred, Wilma, &amp; Pebbles'
+     */
+    function escape(string) {
+      return string == null ? '' : String(string).replace(reUnescapedHtml, escapeHtmlChar);
+    }
+
+    /**
+     * This method returns the first argument provided to it.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {*} value Any value.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * _.identity(object) === object;
+     * // => true
+     */
+    function identity(value) {
+      return value;
+    }
+
+    /**
+     * Adds function properties of a source object to the destination object.
+     * If `object` is a function methods will be added to its prototype as well.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {Function|Object} [object=lodash] object The destination object.
+     * @param {Object} source The object of functions to add.
+     * @param {Object} [options] The options object.
+     * @param {boolean} [options.chain=true] Specify whether the functions added are chainable.
+     * @example
+     *
+     * function capitalize(string) {
+     *   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+     * }
+     *
+     * _.mixin({ 'capitalize': capitalize });
+     * _.capitalize('fred');
+     * // => 'Fred'
+     *
+     * _('fred').capitalize().value();
+     * // => 'Fred'
+     *
+     * _.mixin({ 'capitalize': capitalize }, { 'chain': false });
+     * _('fred').capitalize();
+     * // => 'Fred'
+     */
+    function mixin(object, source, options) {
+      var chain = true,
+          methodNames = source && functions(source);
+
+      if (!source || (!options && !methodNames.length)) {
+        if (options == null) {
+          options = source;
+        }
+        ctor = lodashWrapper;
+        source = object;
+        object = lodash;
+        methodNames = functions(source);
+      }
+      if (options === false) {
+        chain = false;
+      } else if (isObject(options) && 'chain' in options) {
+        chain = options.chain;
+      }
+      var ctor = object,
+          isFunc = isFunction(ctor);
+
+      forEach(methodNames, function(methodName) {
+        var func = object[methodName] = source[methodName];
+        if (isFunc) {
+          ctor.prototype[methodName] = function() {
+            var chainAll = this.__chain__,
+                value = this.__wrapped__,
+                args = [value];
+
+            push.apply(args, arguments);
+            var result = func.apply(object, args);
+            if (chain || chainAll) {
+              if (value === result && isObject(result)) {
+                return this;
+              }
+              result = new ctor(result);
+              result.__chain__ = chainAll;
+            }
+            return result;
+          };
+        }
+      });
+    }
+
+    /**
+     * Reverts the '_' variable to its previous value and returns a reference to
+     * the `lodash` function.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @returns {Function} Returns the `lodash` function.
+     * @example
+     *
+     * var lodash = _.noConflict();
+     */
+    function noConflict() {
+      context._ = oldDash;
+      return this;
+    }
+
+    /**
+     * A no-operation function.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @example
+     *
+     * var object = { 'name': 'fred' };
+     * _.noop(object) === undefined;
+     * // => true
+     */
+    function noop() {
+      // no operation performed
+    }
+
+    /**
+     * Gets the number of milliseconds that have elapsed since the Unix epoch
+     * (1 January 1970 00:00:00 UTC).
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @example
+     *
+     * var stamp = _.now();
+     * _.defer(function() { console.log(_.now() - stamp); });
+     * // => logs the number of milliseconds it took for the deferred function to be called
+     */
+    var now = isNative(now = Date.now) && now || function() {
+      return new Date().getTime();
+    };
+
+    /**
+     * Converts the given value into an integer of the specified radix.
+     * If `radix` is `undefined` or `0` a `radix` of `10` is used unless the
+     * `value` is a hexadecimal, in which case a `radix` of `16` is used.
+     *
+     * Note: This method avoids differences in native ES3 and ES5 `parseInt`
+     * implementations. See http://es5.github.io/#E.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} value The value to parse.
+     * @param {number} [radix] The radix used to interpret the value to parse.
+     * @returns {number} Returns the new integer value.
+     * @example
+     *
+     * _.parseInt('08');
+     * // => 8
+     */
+    var parseInt = nativeParseInt(whitespace + '08') == 8 ? nativeParseInt : function(value, radix) {
+      // Firefox < 21 and Opera < 15 follow the ES3 specified implementation of `parseInt`
+      return nativeParseInt(isString(value) ? value.replace(reLeadingSpacesAndZeros, '') : value, radix || 0);
+    };
+
+    /**
+     * Creates a "_.pluck" style function, which returns the `key` value of a
+     * given object.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} key The name of the property to retrieve.
+     * @returns {Function} Returns the new function.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'fred',   'age': 40 },
+     *   { 'name': 'barney', 'age': 36 }
+     * ];
+     *
+     * var getName = _.property('name');
+     *
+     * _.map(characters, getName);
+     * // => ['barney', 'fred']
+     *
+     * _.sortBy(characters, getName);
+     * // => [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred',   'age': 40 }]
+     */
+    function property(key) {
+      return function(object) {
+        return object[key];
+      };
+    }
+
+    /**
+     * Produces a random number between `min` and `max` (inclusive). If only one
+     * argument is provided a number between `0` and the given number will be
+     * returned. If `floating` is truey or either `min` or `max` are floats a
+     * floating-point number will be returned instead of an integer.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {number} [min=0] The minimum possible value.
+     * @param {number} [max=1] The maximum possible value.
+     * @param {boolean} [floating=false] Specify returning a floating-point number.
+     * @returns {number} Returns a random number.
+     * @example
+     *
+     * _.random(0, 5);
+     * // => an integer between 0 and 5
+     *
+     * _.random(5);
+     * // => also an integer between 0 and 5
+     *
+     * _.random(5, true);
+     * // => a floating-point number between 0 and 5
+     *
+     * _.random(1.2, 5.2);
+     * // => a floating-point number between 1.2 and 5.2
+     */
+    function random(min, max, floating) {
+      var noMin = min == null,
+          noMax = max == null;
+
+      if (floating == null) {
+        if (typeof min == 'boolean' && noMax) {
+          floating = min;
+          min = 1;
+        }
+        else if (!noMax && typeof max == 'boolean') {
+          floating = max;
+          noMax = true;
+        }
+      }
+      if (noMin && noMax) {
+        max = 1;
+      }
+      min = +min || 0;
+      if (noMax) {
+        max = min;
+        min = 0;
+      } else {
+        max = +max || 0;
+      }
+      if (floating || min % 1 || max % 1) {
+        var rand = nativeRandom();
+        return nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max);
+      }
+      return baseRandom(min, max);
+    }
+
+    /**
+     * Resolves the value of property `key` on `object`. If `key` is a function
+     * it will be invoked with the `this` binding of `object` and its result returned,
+     * else the property value is returned. If `object` is falsey then `undefined`
+     * is returned.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {Object} object The object to inspect.
+     * @param {string} key The name of the property to resolve.
+     * @returns {*} Returns the resolved value.
+     * @example
+     *
+     * var object = {
+     *   'cheese': 'crumpets',
+     *   'stuff': function() {
+     *     return 'nonsense';
+     *   }
+     * };
+     *
+     * _.result(object, 'cheese');
+     * // => 'crumpets'
+     *
+     * _.result(object, 'stuff');
+     * // => 'nonsense'
+     */
+    function result(object, key) {
+      if (object) {
+        var value = object[key];
+        return isFunction(value) ? object[key]() : value;
+      }
+    }
+
+    /**
+     * A micro-templating method that handles arbitrary delimiters, preserves
+     * whitespace, and correctly escapes quotes within interpolated code.
+     *
+     * Note: In the development build, `_.template` utilizes sourceURLs for easier
+     * debugging. See http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+     *
+     * For more information on precompiling templates see:
+     * http://lodash.com/custom-builds
+     *
+     * For more information on Chrome extension sandboxes see:
+     * http://developer.chrome.com/stable/extensions/sandboxingEval.html
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} text The template text.
+     * @param {Object} data The data object used to populate the text.
+     * @param {Object} [options] The options object.
+     * @param {RegExp} [options.escape] The "escape" delimiter.
+     * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
+     * @param {Object} [options.imports] An object to import into the template as local variables.
+     * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
+     * @param {string} [sourceURL] The sourceURL of the template's compiled source.
+     * @param {string} [variable] The data object variable name.
+     * @returns {Function|string} Returns a compiled function when no `data` object
+     *  is given, else it returns the interpolated text.
+     * @example
+     *
+     * // using the "interpolate" delimiter to create a compiled template
+     * var compiled = _.template('hello <%= name %>');
+     * compiled({ 'name': 'fred' });
+     * // => 'hello fred'
+     *
+     * // using the "escape" delimiter to escape HTML in data property values
+     * _.template('<b><%- value %></b>', { 'value': '<script>' });
+     * // => '<b>&lt;script&gt;</b>'
+     *
+     * // using the "evaluate" delimiter to generate HTML
+     * var list = '<% _.forEach(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['fred', 'barney'] });
+     * // => '<li>fred</li><li>barney</li>'
+     *
+     * // using the ES6 delimiter as an alternative to the default "interpolate" delimiter
+     * _.template('hello ${ name }', { 'name': 'pebbles' });
+     * // => 'hello pebbles'
+     *
+     * // using the internal `print` function in "evaluate" delimiters
+     * _.template('<% print("hello " + name); %>!', { 'name': 'barney' });
+     * // => 'hello barney!'
+     *
+     * // using a custom template delimiters
+     * _.templateSettings = {
+     *   'interpolate': /{{([\s\S]+?)}}/g
+     * };
+     *
+     * _.template('hello {{ name }}!', { 'name': 'mustache' });
+     * // => 'hello mustache!'
+     *
+     * // using the `imports` option to import jQuery
+     * var list = '<% jq.each(people, function(name) { %><li><%- name %></li><% }); %>';
+     * _.template(list, { 'people': ['fred', 'barney'] }, { 'imports': { 'jq': jQuery } });
+     * // => '<li>fred</li><li>barney</li>'
+     *
+     * // using the `sourceURL` option to specify a custom sourceURL for the template
+     * var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
+     * compiled(data);
+     * // => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
+     *
+     * // using the `variable` option to ensure a with-statement isn't used in the compiled template
+     * var compiled = _.template('hi <%= data.name %>!', null, { 'variable': 'data' });
+     * compiled.source;
+     * // => function(data) {
+     *   var __t, __p = '', __e = _.escape;
+     *   __p += 'hi ' + ((__t = ( data.name )) == null ? '' : __t) + '!';
+     *   return __p;
+     * }
+     *
+     * // using the `source` property to inline compiled templates for meaningful
+     * // line numbers in error messages and a stack trace
+     * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
+     *   var JST = {\
+     *     "main": ' + _.template(mainText).source + '\
+     *   };\
+     * ');
+     */
+    function template(text, data, options) {
+      // based on John Resig's `tmpl` implementation
+      // http://ejohn.org/blog/javascript-micro-templating/
+      // and Laura Doktorova's doT.js
+      // https://github.com/olado/doT
+      var settings = lodash.templateSettings;
+      text = String(text || '');
+
+      // avoid missing dependencies when `iteratorTemplate` is not defined
+      options = defaults({}, options, settings);
+
+      var imports = defaults({}, options.imports, settings.imports),
+          importsKeys = keys(imports),
+          importsValues = values(imports);
+
+      var isEvaluating,
+          index = 0,
+          interpolate = options.interpolate || reNoMatch,
+          source = "__p += '";
+
+      // compile the regexp to match each delimiter
+      var reDelimiters = RegExp(
+        (options.escape || reNoMatch).source + '|' +
+        interpolate.source + '|' +
+        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
+        (options.evaluate || reNoMatch).source + '|$'
+      , 'g');
+
+      text.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+        interpolateValue || (interpolateValue = esTemplateValue);
+
+        // escape characters that cannot be included in string literals
+        source += text.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+
+        // replace delimiters with snippets
+        if (escapeValue) {
+          source += "' +\n__e(" + escapeValue + ") +\n'";
+        }
+        if (evaluateValue) {
+          isEvaluating = true;
+          source += "';\n" + evaluateValue + ";\n__p += '";
+        }
+        if (interpolateValue) {
+          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+        }
+        index = offset + match.length;
+
+        // the JS engine embedded in Adobe products requires returning the `match`
+        // string in order to produce the correct `offset` value
+        return match;
+      });
+
+      source += "';\n";
+
+      // if `variable` is not specified, wrap a with-statement around the generated
+      // code to add the data object to the top of the scope chain
+      var variable = options.variable,
+          hasVariable = variable;
+
+      if (!hasVariable) {
+        variable = 'obj';
+        source = 'with (' + variable + ') {\n' + source + '\n}\n';
+      }
+      // cleanup code by stripping empty strings
+      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
+        .replace(reEmptyStringMiddle, '$1')
+        .replace(reEmptyStringTrailing, '$1;');
+
+      // frame code as the function body
+      source = 'function(' + variable + ') {\n' +
+        (hasVariable ? '' : variable + ' || (' + variable + ' = {});\n') +
+        "var __t, __p = '', __e = _.escape" +
+        (isEvaluating
+          ? ', __j = Array.prototype.join;\n' +
+            "function print() { __p += __j.call(arguments, '') }\n"
+          : ';\n'
+        ) +
+        source +
+        'return __p\n}';
+
+      // Use a sourceURL for easier debugging.
+      // http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
+      var sourceURL = '\n/*\n//# sourceURL=' + (options.sourceURL || '/lodash/template/source[' + (templateCounter++) + ']') + '\n*/';
+
+      try {
+        var result = Function(importsKeys, 'return ' + source + sourceURL).apply(undefined, importsValues);
+      } catch(e) {
+        e.source = source;
+        throw e;
+      }
+      if (data) {
+        return result(data);
+      }
+      // provide the compiled function's source by its `toString` method, in
+      // supported environments, or the `source` property as a convenience for
+      // inlining compiled templates during the build process
+      result.source = source;
+      return result;
+    }
+
+    /**
+     * Executes the callback `n` times, returning an array of the results
+     * of each callback execution. The callback is bound to `thisArg` and invoked
+     * with one argument; (index).
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {number} n The number of times to execute the callback.
+     * @param {Function} callback The function called per iteration.
+     * @param {*} [thisArg] The `this` binding of `callback`.
+     * @returns {Array} Returns an array of the results of each `callback` execution.
+     * @example
+     *
+     * var diceRolls = _.times(3, _.partial(_.random, 1, 6));
+     * // => [3, 6, 4]
+     *
+     * _.times(3, function(n) { mage.castSpell(n); });
+     * // => calls `mage.castSpell(n)` three times, passing `n` of `0`, `1`, and `2` respectively
+     *
+     * _.times(3, function(n) { this.cast(n); }, mage);
+     * // => also calls `mage.castSpell(n)` three times
+     */
+    function times(n, callback, thisArg) {
+      n = (n = +n) > -1 ? n : 0;
+      var index = -1,
+          result = Array(n);
+
+      callback = baseCreateCallback(callback, thisArg, 1);
+      while (++index < n) {
+        result[index] = callback(index);
+      }
+      return result;
+    }
+
+    /**
+     * The inverse of `_.escape` this method converts the HTML entities
+     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` in `string` to their
+     * corresponding characters.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} string The string to unescape.
+     * @returns {string} Returns the unescaped string.
+     * @example
+     *
+     * _.unescape('Fred, Barney &amp; Pebbles');
+     * // => 'Fred, Barney & Pebbles'
+     */
+    function unescape(string) {
+      return string == null ? '' : String(string).replace(reEscapedHtml, unescapeHtmlChar);
+    }
+
+    /**
+     * Generates a unique ID. If `prefix` is provided the ID will be appended to it.
+     *
+     * @static
+     * @memberOf _
+     * @category Utilities
+     * @param {string} [prefix] The value to prefix the ID with.
+     * @returns {string} Returns the unique ID.
+     * @example
+     *
+     * _.uniqueId('contact_');
+     * // => 'contact_104'
+     *
+     * _.uniqueId();
+     * // => '105'
+     */
+    function uniqueId(prefix) {
+      var id = ++idCounter;
+      return String(prefix == null ? '' : prefix) + id;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * Creates a `lodash` object that wraps the given value with explicit
+     * method chaining enabled.
+     *
+     * @static
+     * @memberOf _
+     * @category Chaining
+     * @param {*} value The value to wrap.
+     * @returns {Object} Returns the wrapper object.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney',  'age': 36 },
+     *   { 'name': 'fred',    'age': 40 },
+     *   { 'name': 'pebbles', 'age': 1 }
+     * ];
+     *
+     * var youngest = _.chain(characters)
+     *     .sortBy('age')
+     *     .map(function(chr) { return chr.name + ' is ' + chr.age; })
+     *     .first()
+     *     .value();
+     * // => 'pebbles is 1'
+     */
+    function chain(value) {
+      value = new lodashWrapper(value);
+      value.__chain__ = true;
+      return value;
+    }
+
+    /**
+     * Invokes `interceptor` with the `value` as the first argument and then
+     * returns `value`. The purpose of this method is to "tap into" a method
+     * chain in order to perform operations on intermediate results within
+     * the chain.
+     *
+     * @static
+     * @memberOf _
+     * @category Chaining
+     * @param {*} value The value to provide to `interceptor`.
+     * @param {Function} interceptor The function to invoke.
+     * @returns {*} Returns `value`.
+     * @example
+     *
+     * _([1, 2, 3, 4])
+     *  .tap(function(array) { array.pop(); })
+     *  .reverse()
+     *  .value();
+     * // => [3, 2, 1]
+     */
+    function tap(value, interceptor) {
+      interceptor(value);
+      return value;
+    }
+
+    /**
+     * Enables explicit method chaining on the wrapper object.
+     *
+     * @name chain
+     * @memberOf _
+     * @category Chaining
+     * @returns {*} Returns the wrapper object.
+     * @example
+     *
+     * var characters = [
+     *   { 'name': 'barney', 'age': 36 },
+     *   { 'name': 'fred',   'age': 40 }
+     * ];
+     *
+     * // without explicit chaining
+     * _(characters).first();
+     * // => { 'name': 'barney', 'age': 36 }
+     *
+     * // with explicit chaining
+     * _(characters).chain()
+     *   .first()
+     *   .pick('age')
+     *   .value();
+     * // => { 'age': 36 }
+     */
+    function wrapperChain() {
+      this.__chain__ = true;
+      return this;
+    }
+
+    /**
+     * Produces the `toString` result of the wrapped value.
+     *
+     * @name toString
+     * @memberOf _
+     * @category Chaining
+     * @returns {string} Returns the string result.
+     * @example
+     *
+     * _([1, 2, 3]).toString();
+     * // => '1,2,3'
+     */
+    function wrapperToString() {
+      return String(this.__wrapped__);
+    }
+
+    /**
+     * Extracts the wrapped value.
+     *
+     * @name valueOf
+     * @memberOf _
+     * @alias value
+     * @category Chaining
+     * @returns {*} Returns the wrapped value.
+     * @example
+     *
+     * _([1, 2, 3]).valueOf();
+     * // => [1, 2, 3]
+     */
+    function wrapperValueOf() {
+      return this.__wrapped__;
+    }
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions that return wrapped values when chaining
+    lodash.after = after;
+    lodash.assign = assign;
+    lodash.at = at;
+    lodash.bind = bind;
+    lodash.bindAll = bindAll;
+    lodash.bindKey = bindKey;
+    lodash.chain = chain;
+    lodash.compact = compact;
+    lodash.compose = compose;
+    lodash.constant = constant;
+    lodash.countBy = countBy;
+    lodash.create = create;
+    lodash.createCallback = createCallback;
+    lodash.curry = curry;
+    lodash.debounce = debounce;
+    lodash.defaults = defaults;
+    lodash.defer = defer;
+    lodash.delay = delay;
+    lodash.difference = difference;
+    lodash.filter = filter;
+    lodash.flatten = flatten;
+    lodash.forEach = forEach;
+    lodash.forEachRight = forEachRight;
+    lodash.forIn = forIn;
+    lodash.forInRight = forInRight;
+    lodash.forOwn = forOwn;
+    lodash.forOwnRight = forOwnRight;
+    lodash.functions = functions;
+    lodash.groupBy = groupBy;
+    lodash.indexBy = indexBy;
+    lodash.initial = initial;
+    lodash.intersection = intersection;
+    lodash.invert = invert;
+    lodash.invoke = invoke;
+    lodash.keys = keys;
+    lodash.map = map;
+    lodash.mapValues = mapValues;
+    lodash.max = max;
+    lodash.memoize = memoize;
+    lodash.merge = merge;
+    lodash.min = min;
+    lodash.omit = omit;
+    lodash.once = once;
+    lodash.pairs = pairs;
+    lodash.partial = partial;
+    lodash.partialRight = partialRight;
+    lodash.pick = pick;
+    lodash.pluck = pluck;
+    lodash.property = property;
+    lodash.pull = pull;
+    lodash.range = range;
+    lodash.reject = reject;
+    lodash.remove = remove;
+    lodash.rest = rest;
+    lodash.shuffle = shuffle;
+    lodash.sortBy = sortBy;
+    lodash.tap = tap;
+    lodash.throttle = throttle;
+    lodash.times = times;
+    lodash.toArray = toArray;
+    lodash.transform = transform;
+    lodash.union = union;
+    lodash.uniq = uniq;
+    lodash.values = values;
+    lodash.where = where;
+    lodash.without = without;
+    lodash.wrap = wrap;
+    lodash.xor = xor;
+    lodash.zip = zip;
+    lodash.zipObject = zipObject;
+
+    // add aliases
+    lodash.collect = map;
+    lodash.drop = rest;
+    lodash.each = forEach;
+    lodash.eachRight = forEachRight;
+    lodash.extend = assign;
+    lodash.methods = functions;
+    lodash.object = zipObject;
+    lodash.select = filter;
+    lodash.tail = rest;
+    lodash.unique = uniq;
+    lodash.unzip = zip;
+
+    // add functions to `lodash.prototype`
+    mixin(lodash);
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions that return unwrapped values when chaining
+    lodash.clone = clone;
+    lodash.cloneDeep = cloneDeep;
+    lodash.contains = contains;
+    lodash.escape = escape;
+    lodash.every = every;
+    lodash.find = find;
+    lodash.findIndex = findIndex;
+    lodash.findKey = findKey;
+    lodash.findLast = findLast;
+    lodash.findLastIndex = findLastIndex;
+    lodash.findLastKey = findLastKey;
+    lodash.has = has;
+    lodash.identity = identity;
+    lodash.indexOf = indexOf;
+    lodash.isArguments = isArguments;
+    lodash.isArray = isArray;
+    lodash.isBoolean = isBoolean;
+    lodash.isDate = isDate;
+    lodash.isElement = isElement;
+    lodash.isEmpty = isEmpty;
+    lodash.isEqual = isEqual;
+    lodash.isFinite = isFinite;
+    lodash.isFunction = isFunction;
+    lodash.isNaN = isNaN;
+    lodash.isNull = isNull;
+    lodash.isNumber = isNumber;
+    lodash.isObject = isObject;
+    lodash.isPlainObject = isPlainObject;
+    lodash.isRegExp = isRegExp;
+    lodash.isString = isString;
+    lodash.isUndefined = isUndefined;
+    lodash.lastIndexOf = lastIndexOf;
+    lodash.mixin = mixin;
+    lodash.noConflict = noConflict;
+    lodash.noop = noop;
+    lodash.now = now;
+    lodash.parseInt = parseInt;
+    lodash.random = random;
+    lodash.reduce = reduce;
+    lodash.reduceRight = reduceRight;
+    lodash.result = result;
+    lodash.runInContext = runInContext;
+    lodash.size = size;
+    lodash.some = some;
+    lodash.sortedIndex = sortedIndex;
+    lodash.template = template;
+    lodash.unescape = unescape;
+    lodash.uniqueId = uniqueId;
+
+    // add aliases
+    lodash.all = every;
+    lodash.any = some;
+    lodash.detect = find;
+    lodash.findWhere = find;
+    lodash.foldl = reduce;
+    lodash.foldr = reduceRight;
+    lodash.include = contains;
+    lodash.inject = reduce;
+
+    mixin(function() {
+      var source = {}
+      forOwn(lodash, function(func, methodName) {
+        if (!lodash.prototype[methodName]) {
+          source[methodName] = func;
+        }
+      });
+      return source;
+    }(), false);
+
+    /*--------------------------------------------------------------------------*/
+
+    // add functions capable of returning wrapped and unwrapped values when chaining
+    lodash.first = first;
+    lodash.last = last;
+    lodash.sample = sample;
+
+    // add aliases
+    lodash.take = first;
+    lodash.head = first;
+
+    forOwn(lodash, function(func, methodName) {
+      var callbackable = methodName !== 'sample';
+      if (!lodash.prototype[methodName]) {
+        lodash.prototype[methodName]= function(n, guard) {
+          var chainAll = this.__chain__,
+              result = func(this.__wrapped__, n, guard);
+
+          return !chainAll && (n == null || (guard && !(callbackable && typeof n == 'function')))
+            ? result
+            : new lodashWrapper(result, chainAll);
+        };
+      }
+    });
+
+    /*--------------------------------------------------------------------------*/
+
+    /**
+     * The semantic version number.
+     *
+     * @static
+     * @memberOf _
+     * @type string
+     */
+    lodash.VERSION = '2.4.1';
+
+    // add "Chaining" functions to the wrapper
+    lodash.prototype.chain = wrapperChain;
+    lodash.prototype.toString = wrapperToString;
+    lodash.prototype.value = wrapperValueOf;
+    lodash.prototype.valueOf = wrapperValueOf;
+
+    // add `Array` functions that return unwrapped values
+    forEach(['join', 'pop', 'shift'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        var chainAll = this.__chain__,
+            result = func.apply(this.__wrapped__, arguments);
+
+        return chainAll
+          ? new lodashWrapper(result, chainAll)
+          : result;
+      };
+    });
+
+    // add `Array` functions that return the existing wrapped value
+    forEach(['push', 'reverse', 'sort', 'unshift'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        func.apply(this.__wrapped__, arguments);
+        return this;
+      };
+    });
+
+    // add `Array` functions that return new wrapped values
+    forEach(['concat', 'slice', 'splice'], function(methodName) {
+      var func = arrayRef[methodName];
+      lodash.prototype[methodName] = function() {
+        return new lodashWrapper(func.apply(this.__wrapped__, arguments), this.__chain__);
+      };
+    });
+
+    return lodash;
+  }
+
+  /*--------------------------------------------------------------------------*/
+
+  // expose Lo-Dash
+  var _ = runInContext();
+
+  // some AMD build optimizers like r.js check for condition patterns like the following:
+  if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
+    // Expose Lo-Dash to the global object even when an AMD loader is present in
+    // case Lo-Dash is loaded with a RequireJS shim config.
+    // See http://requirejs.org/docs/api.html#config-shim
+    root._ = _;
+
+    // define as an anonymous module so, through path mapping, it can be
+    // referenced as the "underscore" module
+    define(function() {
+      return _;
+    });
+  }
+  // check for `exports` after `define` in case a build optimizer adds an `exports` object
+  else if (freeExports && freeModule) {
+    // in Node.js or RingoJS
+    if (moduleExports) {
+      (freeModule.exports = _)._ = _;
+    }
+    // in Narwhal or Rhino -require
+    else {
+      freeExports._ = _;
+    }
+  }
+  else {
+    // in a browser or Rhino
+    root._ = _;
+  }
+}.call(this));
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],160:[function(require,module,exports){
+(function (Buffer){
+'use strict';
+
+var Client = require('./lib/client')
+    , protocol = require('./lib/protocol')
+    , assert = require('assert')
+    , states = protocol.states;
+
+module.exports = {
+  protocol: require('./lib/protocol'),
+  createClient: createClient
+};
+
+// websocket version of index.js createClient()
+function createClient(options) {
+  assert.ok(options, "options is required");
+  var port = options.port || 24444;
+  var host = options.host || 'localhost';
+  var protocol = options.protocol || 'ws';
+  var path = options.path || 'server';
+  var url = options.url || (options.protocol + '://' + options.host + ':' + options.port + '/' + options.path);
+
+  assert.ok(options.username, "username is required");
+  var keepAlive = options.keepAlive == null ? true : options.keepAlive;
+
+
+  var client = new Client(false);
+  client.on('connect', onConnect);
+  if (keepAlive) client.on([states.PLAY, 0x00], onKeepAlive);
+
+  client.username = options.username;
+  client.connectWS(url);
+
+  return client;
+
+  function onConnect() {
+    client.socket.write(new Buffer(client.username));
+    client.state = states.PLAY;
+  }
+
+  function onKeepAlive(packet) {
+    client.write(0x00, {
+      keepAliveId: packet.keepAliveId
+    });
+  }
+}
+
+
+}).call(this,require("buffer").Buffer)
+},{"./lib/client":161,"./lib/protocol":162,"assert":917,"buffer":933}],161:[function(require,module,exports){
+(function (Buffer){
+var net = require('net')
+  , EventEmitter = require('events').EventEmitter
+  , util = require('util')
+  , websocket_stream = require('websocket-stream')
+  , protocol = require('./protocol')
+  , dns = require('dns')
+  , createPacketBuffer = protocol.createPacketBuffer
+  , parsePacket = protocol.parsePacket
+  , states = protocol.states
+  , debug = protocol.debug
+;
+
+module.exports = Client;
+
+function Client(isServer) {
+  EventEmitter.call(this);
+
+  this._state = states.HANDSHAKING;
+  Object.defineProperty(this, "state", {
+    get: function() {
+      return this._state;
+    },
+    set: function(newProperty) {
+      var oldProperty = this._state;
+      this._state = newProperty;
+      this.emit('state', newProperty, oldProperty);
+    }
+  });
+  this.isServer = !!isServer;
+  this.socket = null;
+  this.encryptionEnabled = false;
+  this.cipher = null;
+  this.decipher = null;
+  this.packetsToParse = {};
+  this.on('newListener', function(event, listener) {
+    var direction = this.isServer ? 'toServer' : 'toClient';
+    if (protocol.packetStates[direction].hasOwnProperty(event) || event === "packet") {
+      if (typeof this.packetsToParse[event] === "undefined") this.packetsToParse[event] = 1;
+      else this.packetsToParse[event] += 1;
+    }
+  });
+  this.on('removeListener', function(event, listener) {
+    var direction = this.isServer ? 'toServer' : 'toClient';
+    if (protocol.packetStates[direction].hasOwnProperty(event) || event === "packet") {
+      this.packetsToParse[event] -= 1;
+    }
+  });
+}
+
+util.inherits(Client, EventEmitter);
+
+// Transform weird "packet" types into string representing their type. Should be mostly retro-compatible
+Client.prototype.on = function(type, func) {
+    var direction = this.isServer ? 'toServer' : 'toClient';
+    if (Array.isArray(type)) {
+        arguments[0] = protocol.packetNames[type[0]][direction][type[1]];
+    } else if (typeof type === "number") {
+        arguments[0] = protocol.packetNames[this.state][direction][type];
+    }
+    EventEmitter.prototype.on.apply(this, arguments);
+};
+
+Client.prototype.onRaw = function(type, func) {
+    var arg = "raw.";
+    if (Array.isArray(type)) {
+        arg += protocol.packetNames[type[0]][direction][type[1]];
+    } else if (typeof type === "number") {
+        arg += protocol.packetNames[this.state][direction][type];
+    } else {
+        arg += type;
+    }
+    arguments[0] = arg;
+    EventEmitter.prototype.on.apply(this, arguments);
+};
+
+Client.prototype.setSocket = function(socket) {
+  var self = this;
+  self.socket = socket;
+  var incomingBuffer = new Buffer(0);
+  self.socket.on('data', function(data) {
+    if (self.encryptionEnabled) data = new Buffer(self.decipher.update(data), 'binary');
+    if (!Buffer.isBuffer(data)) data = new Buffer(data);
+    incomingBuffer = Buffer.concat([incomingBuffer, data]);
+    var parsed, packet;
+    while (true) {
+      parsed = parsePacket(incomingBuffer, self.state, self.isServer, self.packetsToParse);
+      if (! parsed) break;
+      if (parsed.error) {
+          this.emit('error', parsed.error);
+          this.end("ProtocolError");
+          return;
+      }
+      packet = parsed.results;
+      incomingBuffer = incomingBuffer.slice(parsed.size);
+
+      var packetName = protocol.packetNames[self.state][self.isServer ? 'toServer' : 'toClient'][packet.id];
+      self.emit(packetName, packet);
+      self.emit('packet', packet);
+      self.emit('raw.' + packetName, parsed.buffer);
+      self.emit('raw', parsed.buffer);
+    }
+  });
+
+  self.socket.on('connect', function() {
+    self.emit('connect');
+  });
+
+  self.socket.on('error', onError);
+  self.socket.on('close', endSocket);
+  self.socket.on('end', endSocket);
+  self.socket.on('timeout', endSocket);
+
+  function onError(err) {
+    self.emit('error', err);
+    endSocket();
+  }
+
+  var ended = false;
+  function endSocket() {
+    if (ended) return;
+    ended = true;
+    self.socket.removeListener('close', endSocket);
+    self.socket.removeListener('end', endSocket);
+    self.socket.removeListener('timeout', endSocket);
+    self.emit('end', self._endReason);
+  }
+};
+
+Client.prototype.connectWS = function(url) {
+  var ws = websocket_stream(url, {type: Uint8Array});
+  this.setSocket(ws);
+};
+
+Client.prototype.connect = function(port, host) {
+  var self = this;
+  if (port == 25565) {
+      dns.resolveSrv("_minecraft._tcp." + host, function(err, addresses) {
+      if (addresses) {
+        self.setSocket(net.connect(addresses[0].port, addresses[0].name));
+      } else {
+        self.setSocket(net.connect(port, host));
+      }
+    });
+  } else {
+    self.setSocket(net.connect(port, host));
+  }
+};
+
+Client.prototype.end = function(reason) {
+  this._endReason = reason;
+  this.socket.end();
+};
+
+Client.prototype.write = function(packetId, params) {
+  if (Array.isArray(packetId)) {
+     if (packetId[0] !== this.state)
+      return false;
+    packetId = packetId[1];
+  }
+  
+  var buffer = createPacketBuffer(packetId, this.state, params, this.isServer);
+  debug("writing packetId " + packetId + " (0x" + packetId.toString(16) + ")");
+  debug(params);
+  var out = this.encryptionEnabled ? new Buffer(this.cipher.update(buffer), 'binary') : buffer;
+  this.socket.write(out);
+  return true;
+};
+
+Client.prototype.writeRaw = function(buffer, shouldEncrypt) {
+    if (shouldEncrypt === null) {
+        shouldEncrypt = true;
+    }
+    var out = (shouldEncrypt && this.encryptionEnabled) ? new Buffer(this.cipher.update(buffer), 'binary') : buffer;
+    this.socket.write(out);
+};
+}).call(this,require("buffer").Buffer)
+},{"./protocol":162,"buffer":933,"dns":916,"events":936,"net":916,"util":955,"websocket-stream":163}],162:[function(require,module,exports){
 (function (process,Buffer){
 var assert = require('assert');
 var util = require('util');
@@ -14576,7 +31481,411 @@ module.exports = {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"assert":872,"buffer":888,"q+64fw":894,"util":910}],123:[function(require,module,exports){
+},{"assert":917,"buffer":933,"q+64fw":939,"util":955}],163:[function(require,module,exports){
+(function (process){
+var through = require('through')
+var isBuffer = require('isbuffer')
+var WebSocketPoly = require('ws')
+
+function WebsocketStream(server, options) {
+  if (!(this instanceof WebsocketStream)) return new WebsocketStream(server, options)
+
+  this.stream = through(this.write.bind(this), this.end.bind(this))
+
+  this.stream.websocketStream = this
+  this.options = options || {}
+  this._buffer = []
+ 
+  if (typeof server === "object") {
+    this.ws = server
+    this.ws.on('message', this.onMessage.bind(this))
+    this.ws.on('error', this.onError.bind(this))
+    this.ws.on('close', this.onClose.bind(this))
+    this.ws.on('open', this.onOpen.bind(this))
+    if (this.ws.readyState === 1) this._open = true
+  } else {
+    var opts = (process.title === 'browser') ? this.options.protocol : this.options
+    this.ws = new WebSocketPoly(server, opts)
+    this.ws.binaryType = this.options.binaryType || 'arraybuffer'
+    this.ws.onmessage = this.onMessage.bind(this)
+    this.ws.onerror = this.onError.bind(this)
+    this.ws.onclose = this.onClose.bind(this)
+    this.ws.onopen = this.onOpen.bind(this)
+  }
+  
+  return this.stream
+}
+
+module.exports = WebsocketStream
+module.exports.WebsocketStream = WebsocketStream
+
+WebsocketStream.prototype.onMessage = function(e) {
+  var data = e
+  if (typeof data.data !== 'undefined') data = data.data
+
+  // type must be a Typed Array (ArrayBufferView)
+  var type = this.options.type
+  if (type && data instanceof ArrayBuffer) data = new type(data)
+  
+  this.stream.queue(data)
+}
+
+WebsocketStream.prototype.onError = function(err) {
+  this.stream.emit('error', err)
+}
+
+WebsocketStream.prototype.onClose = function(err) {
+  if (this._destroy) return
+  this.stream.emit('end')
+  this.stream.emit('close')
+}
+
+WebsocketStream.prototype.onOpen = function(err) {
+  if (this._destroy) return
+  this._open = true
+  for (var i = 0; i < this._buffer.length; i++) {
+    this._write(this._buffer[i])
+  }
+  this._buffer = undefined
+  this.stream.emit('open')
+  this.stream.emit('connect')
+  if (this._end) this.ws.close()
+}
+
+WebsocketStream.prototype.write = function(data) {
+  if (!this._open) {
+    this._buffer.push(data)
+  } else {
+    this._write(data)
+  }
+}
+
+WebsocketStream.prototype._write = function(data) {
+  if (this.ws.readyState == 1)
+    // we are connected
+    typeof WebSocket != 'undefined' && this.ws instanceof WebSocket
+      ? this.ws.send(data)
+      : this.ws.send(data, { binary : isBuffer(data) })
+  else
+    this.stream.emit('error', 'Not connected')
+}
+
+WebsocketStream.prototype.end = function(data) {
+  if (data !== undefined) this.stream.queue(data)
+  if (this._open) this.ws.close()
+  this._end = true
+}
+
+}).call(this,require("q+64fw"))
+},{"isbuffer":164,"q+64fw":939,"through":165,"ws":166}],164:[function(require,module,exports){
+var Buffer = require('buffer').Buffer;
+
+module.exports = isBuffer;
+
+function isBuffer (o) {
+  return Buffer.isBuffer(o)
+    || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
+}
+
+},{"buffer":933}],165:[function(require,module,exports){
+(function (process){
+var Stream = require('stream')
+
+// through
+//
+// a stream that does nothing but re-emit the input.
+// useful for aggregating a series of changing but not ending streams into one stream)
+
+exports = module.exports = through
+through.through = through
+
+//create a readable writable stream.
+
+function through (write, end, opts) {
+  write = write || function (data) { this.queue(data) }
+  end = end || function () { this.queue(null) }
+
+  var ended = false, destroyed = false, buffer = [], _ended = false
+  var stream = new Stream()
+  stream.readable = stream.writable = true
+  stream.paused = false
+
+//  stream.autoPause   = !(opts && opts.autoPause   === false)
+  stream.autoDestroy = !(opts && opts.autoDestroy === false)
+
+  stream.write = function (data) {
+    write.call(this, data)
+    return !stream.paused
+  }
+
+  function drain() {
+    while(buffer.length && !stream.paused) {
+      var data = buffer.shift()
+      if(null === data)
+        return stream.emit('end')
+      else
+        stream.emit('data', data)
+    }
+  }
+
+  stream.queue = stream.push = function (data) {
+//    console.error(ended)
+    if(_ended) return stream
+    if(data == null) _ended = true
+    buffer.push(data)
+    drain()
+    return stream
+  }
+
+  //this will be registered as the first 'end' listener
+  //must call destroy next tick, to make sure we're after any
+  //stream piped from here.
+  //this is only a problem if end is not emitted synchronously.
+  //a nicer way to do this is to make sure this is the last listener for 'end'
+
+  stream.on('end', function () {
+    stream.readable = false
+    if(!stream.writable && stream.autoDestroy)
+      process.nextTick(function () {
+        stream.destroy()
+      })
+  })
+
+  function _end () {
+    stream.writable = false
+    end.call(stream)
+    if(!stream.readable && stream.autoDestroy)
+      stream.destroy()
+  }
+
+  stream.end = function (data) {
+    if(ended) return
+    ended = true
+    if(arguments.length) stream.write(data)
+    _end() // will emit or queue
+    return stream
+  }
+
+  stream.destroy = function () {
+    if(destroyed) return
+    destroyed = true
+    ended = true
+    buffer.length = 0
+    stream.writable = stream.readable = false
+    stream.emit('close')
+    return stream
+  }
+
+  stream.pause = function () {
+    if(stream.paused) return
+    stream.paused = true
+    return stream
+  }
+
+  stream.resume = function () {
+    if(stream.paused) {
+      stream.paused = false
+      stream.emit('resume')
+    }
+    drain()
+    //may have become paused again,
+    //as drain emits 'data'.
+    if(!stream.paused)
+      stream.emit('drain')
+    return stream
+  }
+  return stream
+}
+
+
+}).call(this,require("q+64fw"))
+},{"q+64fw":939,"stream":953}],166:[function(require,module,exports){
+
+/**
+ * Module dependencies.
+ */
+
+var global = (function() { return this; })();
+
+/**
+ * WebSocket constructor.
+ */
+
+var WebSocket = global.WebSocket || global.MozWebSocket;
+
+/**
+ * Module exports.
+ */
+
+module.exports = WebSocket ? ws : null;
+
+/**
+ * WebSocket constructor.
+ *
+ * The third `opts` options object gets ignored in web browsers, since it's
+ * non-standard, and throws a TypeError if passed to the constructor.
+ * See: https://github.com/einaros/ws/issues/227
+ *
+ * @param {String} uri
+ * @param {Array} protocols (optional)
+ * @param {Object) opts (optional)
+ * @api public
+ */
+
+function ws(uri, protocols, opts) {
+  var instance;
+  if (protocols) {
+    instance = new WebSocket(uri, protocols);
+  } else {
+    instance = new WebSocket(uri);
+  }
+  return instance;
+}
+
+if (WebSocket) ws.prototype = WebSocket.prototype;
+
+},{}],167:[function(require,module,exports){
+module.exports = function (str) {
+    return String(str).replace(/(\W)/g, '\\$1');
+};
+
+},{}],168:[function(require,module,exports){
+module.exports = v;
+v.Vec3 = Vec3;
+
+var re = /\((-?[.\d]+), (-?[.\d]+), (-?[.\d]+)\)/;
+
+function Vec3(x, y, z) {
+  this.x = x;
+  this.y = y;
+  this.z = z;
+}
+
+function v(x, y, z) {
+  if (x == null) {
+    return new Vec3(0, 0, 0);
+  } else if (Array.isArray(x)) {
+    return new Vec3(parseFloat(x[0], 10), parseFloat(x[1], 10), parseFloat(x[2], 10));
+  } else if (typeof x === 'object') {
+    return new Vec3(parseFloat(x.x, 10), parseFloat(x.y, 10), parseFloat(x.z, 10));
+  } else if (typeof x === 'string' && y == null) {
+    var match = x.match(re);
+    if (match) {
+      return new Vec3(
+          parseFloat(match[1], 10),
+          parseFloat(match[2], 10),
+          parseFloat(match[3], 10));
+    } else {
+      throw new Error("vec3: cannot parse: " + x);
+    }
+  } else {
+    return new Vec3(parseFloat(x, 10), parseFloat(y, 10), parseFloat(z, 10));
+  }
+}
+
+Vec3.prototype.set = function(x, y, z) {
+  this.x = x;
+  this.y = y;
+  this.z = z;
+  return this;
+};
+
+Vec3.prototype.update = function(other) {
+  this.x = other.x;
+  this.y = other.y;
+  this.z = other.z;
+  return this;
+};
+
+Vec3.prototype.floored = function() {
+  return new Vec3(Math.floor(this.x), Math.floor(this.y), Math.floor(this.z));
+};
+
+Vec3.prototype.floor = function() {
+  this.x = Math.floor(this.x);
+  this.y = Math.floor(this.y);
+  this.z = Math.floor(this.z);
+  return this;
+};
+
+Vec3.prototype.offset = function(dx, dy, dz) {
+  return new Vec3(this.x + dx, this.y + dy, this.z + dz);
+};
+Vec3.prototype.translate = function(dx, dy, dz) {
+  this.x += dx;
+  this.y += dy;
+  this.z += dz;
+  return this;
+};
+Vec3.prototype.add = function(other) {
+  this.x += other.x;
+  this.y += other.y;
+  this.z += other.z;
+  return this;
+};
+Vec3.prototype.subtract = function(other) {
+  this.x -= other.x;
+  this.y -= other.y;
+  this.z -= other.z;
+  return this;
+};
+Vec3.prototype.plus = function(other) {
+  return this.offset(other.x, other.y, other.z);
+};
+Vec3.prototype.minus = function(other) {
+  return this.offset(-other.x, -other.y, -other.z);
+};
+Vec3.prototype.scaled = function(scalar) {
+  return new Vec3(this.x * scalar, this.y * scalar, this.z * scalar);
+};
+Vec3.prototype.abs = function() {
+  return new Vec3(Math.abs(this.x), Math.abs(this.y), Math.abs(this.z));
+};
+Vec3.prototype.volume = function() {
+  return this.x * this.y * this.z;
+};
+Vec3.prototype.modulus = function(other) {
+  return new Vec3(
+    euclideanMod(this.x, other.x),
+    euclideanMod(this.y, other.y),
+    euclideanMod(this.z, other.z));
+};
+Vec3.prototype.distanceTo = function(other) {
+  var dx = other.x - this.x;
+  var dy = other.y - this.y;
+  var dz = other.z - this.z;
+  return Math.sqrt(dx * dx + dy * dy + dz * dz);
+};
+Vec3.prototype.equals = function(other) {
+  return this.x === other.x && this.y === other.y && this.z === other.z;
+};
+Vec3.prototype.toString = function() {
+  return "(" + this.x + ", " + this.y + ", " + this.z + ")";
+};
+Vec3.prototype.clone = function() {
+  return this.offset(0, 0, 0);
+};
+Vec3.prototype.min = function(other) {
+  return new Vec3(Math.min(this.x, other.x), Math.min(this.y, other.y), Math.min(this.z, other.z));
+};
+Vec3.prototype.max = function(other) {
+  return new Vec3(Math.max(this.x, other.x), Math.max(this.y, other.y), Math.max(this.z, other.z));
+};
+
+function euclideanMod(numerator, denominator) {
+  var result = numerator % denominator;
+  return result < 0 ? result + denominator : result;
+}
+
+},{}],169:[function(require,module,exports){
+module.exports=require(163)
+},{"isbuffer":170,"q+64fw":939,"through":171,"ws":172}],170:[function(require,module,exports){
+module.exports=require(164)
+},{"buffer":933}],171:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],172:[function(require,module,exports){
+module.exports=require(166)
+},{}],173:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 
@@ -14971,9 +32280,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"iota-array":124}],124:[function(require,module,exports){
+},{"buffer":933,"iota-array":174}],174:[function(require,module,exports){
 module.exports=require(97)
-},{}],125:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 'use strict';
 
 var colormc2html = {
@@ -15096,267 +32405,7 @@ module.exports = parseRaw;
 
 
 
-},{}],126:[function(require,module,exports){
-var through = require('through')
-var isBuffer = require('isbuffer')
-var WebSocketPoly = require('ws')
-
-function WebsocketStream(server, options) {
-  if (!(this instanceof WebsocketStream)) return new WebsocketStream(server, options)
-
-  this.stream = through(this.write.bind(this), this.end.bind(this))
-
-  this.stream.websocketStream = this
-  this.options = options || {}
-  this._buffer = []
- 
-  if (typeof server === "object") {
-    this.ws = server
-    this.ws.on('message', this.onMessage.bind(this))
-    this.ws.on('error', this.onError.bind(this))
-    this.ws.on('close', this.onClose.bind(this))
-    this.ws.on('open', this.onOpen.bind(this))
-    if (this.ws.readyState === 1) this._open = true
-  } else {
-    this.ws = new WebSocketPoly(server, this.options.protocol)
-    this.ws.binaryType = this.options.binaryType || 'arraybuffer'
-    this.ws.onmessage = this.onMessage.bind(this)
-    this.ws.onerror = this.onError.bind(this)
-    this.ws.onclose = this.onClose.bind(this)
-    this.ws.onopen = this.onOpen.bind(this)
-  }
-  
-  return this.stream
-}
-
-module.exports = WebsocketStream
-module.exports.WebsocketStream = WebsocketStream
-
-WebsocketStream.prototype.onMessage = function(e) {
-  var data = e
-  if (data.data) data = data.data
-  
-  // type must be a Typed Array (ArrayBufferView)
-  var type = this.options.type
-  if (type && data instanceof ArrayBuffer) data = new type(data)
-  
-  this.stream.queue(data)
-}
-
-WebsocketStream.prototype.onError = function(err) {
-  this.stream.emit('error', err)
-}
-
-WebsocketStream.prototype.onClose = function(err) {
-  if (this._destroy) return
-  this.stream.emit('end')
-  this.stream.emit('close')
-}
-
-WebsocketStream.prototype.onOpen = function(err) {
-  if (this._destroy) return
-  this._open = true
-  for (var i = 0; i < this._buffer.length; i++) {
-    this._write(this._buffer[i])
-  }
-  this._buffer = undefined
-  this.stream.emit('open')
-  this.stream.emit('connect')
-  if (this._end) this.ws.close()
-}
-
-WebsocketStream.prototype.write = function(data) {
-  if (!this._open) {
-    this._buffer.push(data)
-  } else {
-    this._write(data)
-  }
-}
-
-WebsocketStream.prototype._write = function(data) {
-  if (this.ws.readyState == 1)
-    // we are connected
-    typeof WebSocket != 'undefined' && this.ws instanceof WebSocket
-      ? this.ws.send(data)
-      : this.ws.send(data, { binary : isBuffer(data) })
-  else
-    this.stream.emit('error', 'Not connected')
-}
-
-WebsocketStream.prototype.end = function(data) {
-  if (data !== undefined) this.stream.queue(data)
-  if (this._open) this.ws.close()
-  this._end = true
-}
-
-},{"isbuffer":127,"through":128,"ws":129}],127:[function(require,module,exports){
-var Buffer = require('buffer').Buffer;
-
-module.exports = isBuffer;
-
-function isBuffer (o) {
-  return Buffer.isBuffer(o)
-    || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
-}
-
-},{"buffer":888}],128:[function(require,module,exports){
-(function (process){
-var Stream = require('stream')
-
-// through
-//
-// a stream that does nothing but re-emit the input.
-// useful for aggregating a series of changing but not ending streams into one stream)
-
-exports = module.exports = through
-through.through = through
-
-//create a readable writable stream.
-
-function through (write, end, opts) {
-  write = write || function (data) { this.queue(data) }
-  end = end || function () { this.queue(null) }
-
-  var ended = false, destroyed = false, buffer = [], _ended = false
-  var stream = new Stream()
-  stream.readable = stream.writable = true
-  stream.paused = false
-
-//  stream.autoPause   = !(opts && opts.autoPause   === false)
-  stream.autoDestroy = !(opts && opts.autoDestroy === false)
-
-  stream.write = function (data) {
-    write.call(this, data)
-    return !stream.paused
-  }
-
-  function drain() {
-    while(buffer.length && !stream.paused) {
-      var data = buffer.shift()
-      if(null === data)
-        return stream.emit('end')
-      else
-        stream.emit('data', data)
-    }
-  }
-
-  stream.queue = stream.push = function (data) {
-//    console.error(ended)
-    if(_ended) return stream
-    if(data == null) _ended = true
-    buffer.push(data)
-    drain()
-    return stream
-  }
-
-  //this will be registered as the first 'end' listener
-  //must call destroy next tick, to make sure we're after any
-  //stream piped from here.
-  //this is only a problem if end is not emitted synchronously.
-  //a nicer way to do this is to make sure this is the last listener for 'end'
-
-  stream.on('end', function () {
-    stream.readable = false
-    if(!stream.writable && stream.autoDestroy)
-      process.nextTick(function () {
-        stream.destroy()
-      })
-  })
-
-  function _end () {
-    stream.writable = false
-    end.call(stream)
-    if(!stream.readable && stream.autoDestroy)
-      stream.destroy()
-  }
-
-  stream.end = function (data) {
-    if(ended) return
-    ended = true
-    if(arguments.length) stream.write(data)
-    _end() // will emit or queue
-    return stream
-  }
-
-  stream.destroy = function () {
-    if(destroyed) return
-    destroyed = true
-    ended = true
-    buffer.length = 0
-    stream.writable = stream.readable = false
-    stream.emit('close')
-    return stream
-  }
-
-  stream.pause = function () {
-    if(stream.paused) return
-    stream.paused = true
-    return stream
-  }
-
-  stream.resume = function () {
-    if(stream.paused) {
-      stream.paused = false
-      stream.emit('resume')
-    }
-    drain()
-    //may have become paused again,
-    //as drain emits 'data'.
-    if(!stream.paused)
-      stream.emit('drain')
-    return stream
-  }
-  return stream
-}
-
-
-}).call(this,require("q+64fw"))
-},{"q+64fw":894,"stream":908}],129:[function(require,module,exports){
-
-/**
- * Module dependencies.
- */
-
-var global = (function() { return this; })();
-
-/**
- * WebSocket constructor.
- */
-
-var WebSocket = global.WebSocket || global.MozWebSocket;
-
-/**
- * Module exports.
- */
-
-module.exports = WebSocket ? ws : null;
-
-/**
- * WebSocket constructor.
- *
- * The third `opts` options object gets ignored in web browsers, since it's
- * non-standard, and throws a TypeError if passed to the constructor.
- * See: https://github.com/einaros/ws/issues/227
- *
- * @param {String} uri
- * @param {Array} protocols (optional)
- * @param {Object) opts (optional)
- * @api public
- */
-
-function ws(uri, protocols, opts) {
-  var instance;
-  if (protocols) {
-    instance = new WebSocket(uri, protocols);
-  } else {
-    instance = new WebSocket(uri);
-  }
-  return instance;
-}
-
-if (WebSocket) ws.prototype = WebSocket.prototype;
-
-},{}],130:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -15410,45 +32459,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],131:[function(require,module,exports){
-(function (Buffer){
-'use strict';
-
-var zlib = require('zlib');
-var ever = require('ever');
-
-module.exports = function() {
-  ever(self).on('message', function(ev) {
-    var compressedArrayBuffer = ev.data.compressed;
-    var compressedArrayView = new Uint8Array(compressedArrayBuffer, ev.data.byteOffset, ev.data.byteLength);
-    var compressedBuffer = new Buffer(compressedArrayView);
-
-    var id = ev.data.id;
-    console.log('worker decomp start '+id+' len'+compressedBuffer.length);
-
-    zlib.inflate(compressedBuffer, function(err, decompressed) {
-      console.log('worker err'+ err);
-      if(err) {
-        self.postMessage({
-            id:id,
-            compressed:compressedArrayBuffer,
-            err:err.toString()}, // toString() to make cloneable
-          [compressedArrayBuffer]);
-        return;
-      }
-
-      var decompressedBuffer = decompressed.buffer;
-      self.postMessage({
-          id:id,
-          decompressed:decompressedBuffer},
-        [decompressedBuffer]);
-    });
-  });
-};
-
-
-}).call(this,require("buffer").Buffer)
-},{"buffer":888,"ever":118,"zlib":887}],132:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 var CommandsPlugin, ItemPile, shellwords,
   __slice = [].slice,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -15697,7 +32708,7 @@ CommandsPlugin = (function() {
 })();
 
 
-},{"itempile":133,"shellwords":138}],133:[function(require,module,exports){
+},{"itempile":178,"shellwords":183}],178:[function(require,module,exports){
 // Generated by CoffeeScript 1.6.3
 (function() {
   var ItemPile, clone, deepEqual;
@@ -15858,15 +32869,15 @@ CommandsPlugin = (function() {
 
 }).call(this);
 
-},{"clone":134,"deep-equal":135}],134:[function(require,module,exports){
+},{"clone":179,"deep-equal":180}],179:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],135:[function(require,module,exports){
+},{"buffer":933}],180:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":136,"./lib/keys.js":137}],136:[function(require,module,exports){
+},{"./lib/is_arguments.js":181,"./lib/keys.js":182}],181:[function(require,module,exports){
 module.exports=require(23)
-},{}],137:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 module.exports=require(24)
-},{}],138:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 // Generated by CoffeeScript 1.3.3
 (function() {
   var scan;
@@ -15925,7 +32936,7 @@ module.exports=require(24)
 
 }).call(this);
 
-},{}],139:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 var Console, ConsoleWidget, Modal,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -16012,7 +33023,7 @@ Console = (function(_super) {
 })(Modal);
 
 
-},{"console-widget":140,"voxel-modal":142}],140:[function(require,module,exports){
+},{"console-widget":185,"voxel-modal":187}],185:[function(require,module,exports){
 var ConsoleWidget, EventEmitter, MAX_LINES, vkey,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -16237,17 +33248,17 @@ module.exports = function(opts) {
 };
 
 
-},{"events":891,"vkey":141}],141:[function(require,module,exports){
+},{"events":936,"vkey":186}],186:[function(require,module,exports){
 module.exports=require(10)
-},{}],142:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":143}],143:[function(require,module,exports){
+},{"ever":188}],188:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":144,"./types.json":145,"events":891}],144:[function(require,module,exports){
+},{"./init.json":189,"./types.json":190,"events":936}],189:[function(require,module,exports){
 module.exports=require(16)
-},{}],145:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 module.exports=require(17)
-},{}],146:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 function Debug(game, opts) {
   opts = opts || {}
   if (opts.THREE) game = opts
@@ -16460,13 +33471,13 @@ Debug.prototype._render = function() {
   }
 }
 
-},{"dat-gui":147,"voxel":151}],147:[function(require,module,exports){
+},{"dat-gui":192,"voxel":196}],192:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":148,"./vendor/dat.gui":149}],148:[function(require,module,exports){
+},{"./vendor/dat.color":193,"./vendor/dat.gui":194}],193:[function(require,module,exports){
 module.exports=require(4)
-},{}],149:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 module.exports=require(5)
-},{}],150:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -16587,7 +33598,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":891,"inherits":157}],151:[function(require,module,exports){
+},{"events":936,"inherits":202}],196:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -16690,7 +33701,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":150,"./meshers/culled":152,"./meshers/greedy":153,"./meshers/monotone":154,"./meshers/stupid":155,"./meshers/transgreedy":156,"ndarray":158}],152:[function(require,module,exports){
+},{"./chunker":195,"./meshers/culled":197,"./meshers/greedy":198,"./meshers/monotone":199,"./meshers/stupid":200,"./meshers/transgreedy":201,"ndarray":203}],197:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -16742,7 +33753,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],153:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -16859,7 +33870,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],154:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -17112,7 +34123,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],155:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -17148,7 +34159,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],156:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 var GreedyMesh = (function greedyLoader() {
     
 // contains all forward faces (in terms of scan direction)
@@ -17340,7 +34351,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],157:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -17371,7 +34382,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],158:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 (function (Buffer){
 "use strict"
 
@@ -17734,9 +34745,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"iota-array":159}],159:[function(require,module,exports){
+},{"buffer":933,"iota-array":204}],204:[function(require,module,exports){
 module.exports=require(97)
-},{}],160:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -17900,11 +34911,11 @@ DecalsPlugin.prototype.render = function() {
         this.mesh.unbind();
     }
 };
-},{"gl-buffer":161,"gl-matrix":174,"gl-vao":180,"glslify":182,"glslify/adapter.js":181}],161:[function(require,module,exports){
+},{"gl-buffer":206,"gl-matrix":219,"gl-vao":225,"glslify":227,"glslify/adapter.js":226}],206:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"ndarray":167,"ndarray-ops":162,"typedarray-pool":171,"webglew":173}],162:[function(require,module,exports){
+},{"ndarray":212,"ndarray-ops":207,"typedarray-pool":216,"webglew":218}],207:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":163}],163:[function(require,module,exports){
+},{"cwise-compiler":208}],208:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -18012,7 +35023,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":165}],164:[function(require,module,exports){
+},{"./lib/thunk.js":210}],209:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -18300,9 +35311,9 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":166}],165:[function(require,module,exports){
+},{"uniq":211}],210:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":164}],166:[function(require,module,exports){
+},{"./compile.js":209}],211:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -18361,7 +35372,7 @@ function unique(list, compare, sorted) {
 
 module.exports = unique
 
-},{}],167:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -18761,13 +35772,13 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"iota-array":168}],168:[function(require,module,exports){
+},{"buffer":933,"iota-array":213}],213:[function(require,module,exports){
 module.exports=require(97)
-},{}],169:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 module.exports=require(98)
-},{}],170:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 module.exports=require(99)
-},{}],171:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 (function (global,Buffer){
 var bits = require("bit-twiddle")
 var dup = require("dup")
@@ -19137,11 +36148,11 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":169,"buffer":888,"dup":170}],172:[function(require,module,exports){
+},{"bit-twiddle":214,"buffer":933,"dup":215}],217:[function(require,module,exports){
 module.exports=require(101)
-},{}],173:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":172}],174:[function(require,module,exports){
+},{"weakmap":217}],219:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -23391,33 +40402,33 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })(this);
 
-},{}],175:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 module.exports=require(103)
-},{}],176:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":175}],177:[function(require,module,exports){
+},{"./do-bind.js":220}],222:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":175}],178:[function(require,module,exports){
+},{"./do-bind.js":220}],223:[function(require,module,exports){
 module.exports=require(101)
-},{}],179:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":178}],180:[function(require,module,exports){
+},{"weakmap":223}],225:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":176,"./lib/vao-native.js":177,"webglew":179}],181:[function(require,module,exports){
+},{"./lib/vao-emulated.js":221,"./lib/vao-native.js":222,"webglew":224}],226:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":187}],182:[function(require,module,exports){
+},{"gl-shader-core":232}],227:[function(require,module,exports){
 module.exports=require(110)
-},{}],183:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports=require(111)
-},{}],184:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":185,"dup":186}],185:[function(require,module,exports){
+},{"./reflect.js":230,"dup":231}],230:[function(require,module,exports){
 module.exports=require(113)
-},{}],186:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 module.exports=require(99)
-},{}],187:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":183,"./lib/create-uniforms.js":184,"./lib/reflect.js":185}],188:[function(require,module,exports){
+},{"./lib/create-attributes.js":228,"./lib/create-uniforms.js":229,"./lib/reflect.js":230}],233:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -23497,9 +40508,9 @@ DecorativePlugin.prototype.disable = function() {
 };
 
 
-},{"ucfirst":189}],189:[function(require,module,exports){
+},{"ucfirst":234}],234:[function(require,module,exports){
 module.exports=require(25)
-},{}],190:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 var DropPlugin, coffee_script, ever, playerdat;
 
 ever = require('ever');
@@ -23683,7 +40694,7 @@ DropPlugin = (function() {
 })();
 
 
-},{"coffee-script":191,"ever":200,"playerdat":203,"string.prototype.endswith":220}],191:[function(require,module,exports){
+},{"coffee-script":236,"ever":245,"playerdat":248,"string.prototype.endswith":265}],236:[function(require,module,exports){
 (function (process,global){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -24022,7 +41033,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":192,"./lexer":193,"./nodes":194,"./parser":195,"./register":196,"./sourcemap":199,"fs":871,"module":871,"path":893,"q+64fw":894,"vm":911}],192:[function(require,module,exports){
+},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"fs":916,"module":916,"path":938,"q+64fw":939,"vm":956}],237:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -24278,7 +41289,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":894}],193:[function(require,module,exports){
+},{"q+64fw":939}],238:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -25206,7 +42217,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":192,"./rewriter":197}],194:[function(require,module,exports){
+},{"./helpers":237,"./rewriter":242}],239:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Access, Arr, Assign, Base, Block, Call, Class, Code, CodeFragment, Comment, Existence, Expansion, Extends, For, HEXNUM, IDENTIFIER, IDENTIFIER_STR, IS_REGEX, IS_STRING, If, In, Index, LEVEL_ACCESS, LEVEL_COND, LEVEL_LIST, LEVEL_OP, LEVEL_PAREN, LEVEL_TOP, Literal, METHOD_DEF, NEGATE, NO, NUMBER, Obj, Op, Param, Parens, RESERVED, Range, Return, SIMPLENUM, STRICT_PROSCRIBED, Scope, Slice, Splat, Switch, TAB, THIS, Throw, Try, UTILITIES, Value, While, YES, addLocationDataFn, compact, del, ends, extend, flatten, fragmentsToText, isLiteralArguments, isLiteralThis, last, locationDataToString, merge, multident, parseNum, some, starts, throwSyntaxError, unfoldSoak, utility, _ref, _ref1,
@@ -28366,7 +45377,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":192,"./lexer":193,"./scope":198}],195:[function(require,module,exports){
+},{"./helpers":237,"./lexer":238,"./scope":243}],240:[function(require,module,exports){
 (function (process){
 /* parser generated by jison 0.4.13 */
 /*
@@ -29093,7 +46104,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require("q+64fw"))
-},{"fs":871,"path":893,"q+64fw":894}],196:[function(require,module,exports){
+},{"fs":916,"path":938,"q+64fw":939}],241:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -29161,7 +46172,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":191,"./helpers":192,"child_process":871,"module":871,"path":893}],197:[function(require,module,exports){
+},{"./coffee-script":236,"./helpers":237,"child_process":916,"module":916,"path":938}],242:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -29638,7 +46649,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],198:[function(require,module,exports){
+},{}],243:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Scope, extend, last, _ref;
@@ -29786,7 +46797,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./helpers":192}],199:[function(require,module,exports){
+},{"./helpers":237}],244:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var LineMap, SourceMap;
@@ -29949,13 +46960,13 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],200:[function(require,module,exports){
+},{}],245:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":201,"./types.json":202,"events":891}],201:[function(require,module,exports){
+},{"./init.json":246,"./types.json":247,"events":936}],246:[function(require,module,exports){
 module.exports=require(16)
-},{}],202:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports=require(17)
-},{}],203:[function(require,module,exports){
+},{}],248:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -30069,7 +47080,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"inventory":204,"itempile":213,"nbt":218}],204:[function(require,module,exports){
+},{"buffer":933,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -30229,13 +47240,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":205,"events":891,"itempile":208}],205:[function(require,module,exports){
+},{"deep-equal":250,"events":936,"itempile":253}],250:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":206,"./lib/keys.js":207}],206:[function(require,module,exports){
+},{"./lib/is_arguments.js":251,"./lib/keys.js":252}],251:[function(require,module,exports){
 module.exports=require(23)
-},{}],207:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports=require(24)
-},{}],208:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -30417,15 +47428,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":209,"deep-equal":210}],209:[function(require,module,exports){
+},{"clone":254,"deep-equal":255}],254:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],210:[function(require,module,exports){
+},{"buffer":933}],255:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":211,"./lib/keys.js":212}],211:[function(require,module,exports){
+},{"./lib/is_arguments.js":256,"./lib/keys.js":257}],256:[function(require,module,exports){
 module.exports=require(23)
-},{}],212:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports=require(24)
-},{}],213:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -30607,15 +47618,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":214,"deep-equal":215}],214:[function(require,module,exports){
+},{"clone":259,"deep-equal":260}],259:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],215:[function(require,module,exports){
+},{"buffer":933}],260:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":216,"./lib/keys.js":217}],216:[function(require,module,exports){
+},{"./lib/is_arguments.js":261,"./lib/keys.js":262}],261:[function(require,module,exports){
 module.exports=require(23)
-},{}],217:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports=require(24)
-},{}],218:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 (function (Buffer){
 /*
 	NBT.js - a JavaScript parser for NBT archives
@@ -30785,7 +47796,7 @@ module.exports=require(24)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"node-int64":219,"zlib":887}],219:[function(require,module,exports){
+},{"buffer":933,"node-int64":264,"zlib":932}],264:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -30991,7 +48002,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888}],220:[function(require,module,exports){
+},{"buffer":933}],265:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -31044,12 +48055,12 @@ if (!String.prototype.endsWith) {
 	}());
 }
 
-},{}],221:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 (function (process){
 'use strict'
 var voxel = require('voxel')
 var ray = require('voxel-raycast')
-var control = require('voxel-control')
+var control = require('voxel-controls')
 var Stats = require('./lib/stats')
 var Detector = require('./lib/detector')
 var inherits = require('inherits')
@@ -31061,7 +48072,7 @@ var glMatrix = require('gl-matrix')
 var vector = glMatrix.vec3
 var SpatialEventEmitter = require('spatial-events')
 var regionChange = require('voxel-region-change')
-var physical = require('voxel-physical')
+var physical = require('voxel-physicals')
 var pin = require('pin-it')
 var tic = require('tic')()
 var createShell = require('gl-now')
@@ -31084,7 +48095,7 @@ var BUILTIN_PLUGIN_OPTS = {
   'voxel-shader': {},
   'voxel-mesher': {},
   'game-shell-fps-camera': {},
-};
+}
 
 function Game(opts) {
   if (!(this instanceof Game)) return new Game(opts)
@@ -31659,8 +48670,8 @@ Game.prototype.showAllChunks = function() {
 
 // Calculate fraction of each voxel type in chunk, for debugging
 var chunkDensity = function(chunk) {
-  var counts = {};
-  var length = chunk.data.length;
+  var counts = {}
+  var length = chunk.data.length
   for (var i = 0; i < length; i += 1) {
     var val = chunk.data[i]
     if (!(val in counts)) counts[val] = 0
@@ -31854,7 +48865,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require("q+64fw"))
-},{"./lib/detector":222,"./lib/stats":223,"aabb-3d":224,"collide-3d-tilemap":226,"events":891,"extend":227,"game-shell-fps-camera":228,"gl-matrix":234,"gl-now":235,"inherits":248,"isndarray":249,"ndarray":250,"path":893,"pin-it":252,"q+64fw":894,"spatial-events":253,"tic":255,"voxel":465,"voxel-control":256,"voxel-mesher":258,"voxel-physical":292,"voxel-plugins":297,"voxel-raycast":298,"voxel-region-change":299,"voxel-registry":302,"voxel-shader":303,"voxel-stitch":463}],222:[function(require,module,exports){
+},{"./lib/detector":267,"./lib/stats":268,"aabb-3d":269,"collide-3d-tilemap":271,"events":936,"extend":272,"game-shell-fps-camera":273,"gl-matrix":279,"gl-now":280,"inherits":293,"isndarray":294,"ndarray":295,"path":938,"pin-it":297,"q+64fw":939,"spatial-events":298,"tic":300,"voxel":510,"voxel-controls":301,"voxel-mesher":303,"voxel-physicals":339,"voxel-plugins":342,"voxel-raycast":343,"voxel-region-change":344,"voxel-registry":347,"voxel-shader":348,"voxel-stitch":508}],267:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -31915,7 +48926,7 @@ module.exports = function() {
   };
 }
 
-},{}],223:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -32061,7 +49072,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],224:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -32178,9 +49189,9 @@ proto.union = function(aabb) {
 
 
 
-},{"gl-matrix":225}],225:[function(require,module,exports){
-module.exports=require(174)
-},{}],226:[function(require,module,exports){
+},{"gl-matrix":270}],270:[function(require,module,exports){
+module.exports=require(219)
+},{}],271:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -32269,7 +49280,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],227:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 
@@ -32349,7 +49360,7 @@ module.exports = function extend() {
 	return target;
 };
 
-},{}],228:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -32473,7 +49484,7 @@ CameraPlugin.prototype.getVector = function(out) {
   out[2] = -_scratch1[2];
 };
 
-},{"./pointer-stream.js":233,"basic-camera":229,"gl-matrix":231}],229:[function(require,module,exports){
+},{"./pointer-stream.js":278,"basic-camera":274,"gl-matrix":276}],274:[function(require,module,exports){
 var glm = require('gl-matrix')
 var vec3 = glm.vec3
 var mat4 = glm.mat4
@@ -32534,11 +49545,11 @@ noclip.prototype.rotateZ   = function(angle) {
   return this
 }
 
-},{"gl-matrix":230}],230:[function(require,module,exports){
-module.exports=require(174)
-},{}],231:[function(require,module,exports){
-module.exports=require(174)
-},{}],232:[function(require,module,exports){
+},{"gl-matrix":275}],275:[function(require,module,exports){
+module.exports=require(219)
+},{}],276:[function(require,module,exports){
+module.exports=require(219)
+},{}],277:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -32563,7 +49574,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],233:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 'use strict';
 
 var Readable = require('stream').Readable;
@@ -32607,9 +49618,9 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":232,"stream":908}],234:[function(require,module,exports){
-module.exports=require(174)
-},{}],235:[function(require,module,exports){
+},{"inherits":277,"stream":953}],279:[function(require,module,exports){
+module.exports=require(219)
+},{}],280:[function(require,module,exports){
 "use strict"
 
 var makeGameShell = require("game-shell")
@@ -32751,7 +49762,7 @@ function createGLShell(options) {
 
 module.exports = createGLShell
 
-},{"game-shell":245,"webglew":247}],236:[function(require,module,exports){
+},{"game-shell":290,"webglew":292}],281:[function(require,module,exports){
 if(typeof window.performance === "object") {
   if(window.performance.now) {
     module.exports = function() { return window.performance.now() }
@@ -32764,7 +49775,7 @@ if(typeof window.performance === "object") {
   module.exports = function() { return (new Date()).getTime() }
 }
 
-},{}],237:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 //Adapted from here: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel?redirectlocale=en-US&redirectslug=DOM%2FMozilla_event_reference%2Fwheel
 
 var prefix = "", _addEventListener, onwheel, support;
@@ -32824,7 +49835,7 @@ module.exports = function( elem, callback, useCapture ) {
     _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
   }
 };
-},{}],238:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
  
@@ -32854,7 +49865,7 @@ if (!window.cancelAnimationFrame)
         clearTimeout(id);
     };
 
-},{}],239:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 "use strict"
 
 function compileSearch(funcName, predicate, reversed, extraArgs, useNdarray, earlyOut) {
@@ -32916,7 +49927,7 @@ module.exports = {
   eq: compileBoundsSearch("-", true, "EQ", true)
 }
 
-},{}],240:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -32946,7 +49957,7 @@ module.exports = {
 
 });
 
-},{}],241:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 "use strict"
 
 function invert(hash) {
@@ -32960,13 +49971,13 @@ function invert(hash) {
 }
 
 module.exports = invert
-},{}],242:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 module.exports=require(97)
-},{}],243:[function(require,module,exports){
-module.exports=require(166)
-},{}],244:[function(require,module,exports){
+},{}],288:[function(require,module,exports){
+module.exports=require(211)
+},{}],289:[function(require,module,exports){
 module.exports=require(10)
-},{}],245:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 "use strict"
 
 var EventEmitter = require("events").EventEmitter
@@ -33686,13 +50697,13 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":236,"./lib/mousewheel-polyfill.js":237,"./lib/raf-polyfill.js":238,"binary-search-bounds":239,"domready":240,"events":891,"invert-hash":241,"iota-array":242,"uniq":243,"util":910,"vkey":244}],246:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":281,"./lib/mousewheel-polyfill.js":282,"./lib/raf-polyfill.js":283,"binary-search-bounds":284,"domready":285,"events":936,"invert-hash":286,"iota-array":287,"uniq":288,"util":955,"vkey":289}],291:[function(require,module,exports){
 module.exports=require(101)
-},{}],247:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":246}],248:[function(require,module,exports){
-module.exports=require(232)
-},{}],249:[function(require,module,exports){
+},{"weakmap":291}],293:[function(require,module,exports){
+module.exports=require(277)
+},{}],294:[function(require,module,exports){
 module.exports = function(arr) {
   if (!arr) return false
   if (!arr.dtype) return false
@@ -33700,11 +50711,11 @@ module.exports = function(arr) {
   return re.test(String(arr.constructor))
 }
 
-},{}],250:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":251}],251:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":296}],296:[function(require,module,exports){
 module.exports=require(97)
-},{}],252:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 module.exports = pin
 
 var pins = {}
@@ -33786,7 +50797,7 @@ function pin(item, every, obj, name) {
   }
 }
 
-},{}],253:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -33922,7 +50933,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":254,"aabb-3d":224}],254:[function(require,module,exports){
+},{"./tree":299,"aabb-3d":269}],299:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -34048,7 +51059,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":224}],255:[function(require,module,exports){
+},{"aabb-3d":269}],300:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -34095,7 +51106,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],256:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -34389,7 +51400,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":908}],257:[function(require,module,exports){
+},{"stream":953}],302:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -34457,7 +51468,7 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
 
 module.exports = createVoxelMesh
 
-},{"./mesh.js":259,"gl-buffer":265,"gl-matrix":268,"gl-vao":274,"ndarray":287,"ndarray-ops":282}],258:[function(require,module,exports){
+},{"./mesh.js":304,"gl-buffer":310,"gl-matrix":313,"gl-vao":319,"ndarray":332,"ndarray-ops":327}],303:[function(require,module,exports){
 'use strict';
 
 var createVoxelMesh = require('./mesh-buffer.js');
@@ -34586,7 +51597,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":257,"block-models":260,"events":891,"gl-buffer":265,"gl-vao":274,"inherits":281,"ndarray":287,"ndarray-ops":282}],259:[function(require,module,exports){
+},{"./mesh-buffer.js":302,"block-models":305,"events":936,"gl-buffer":310,"gl-vao":319,"inherits":326,"ndarray":332,"ndarray-ops":327}],304:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -35137,7 +52148,7 @@ function computeMesh(array, voxelSideTextureIDs, voxelSideTextureSizes) {
 
 module.exports = computeMesh
 
-},{"cwise-compiler":261,"greedy-mesher":275,"ndarray":287,"typedarray-pool":291}],260:[function(require,module,exports){
+},{"cwise-compiler":306,"greedy-mesher":320,"ndarray":332,"typedarray-pool":336}],305:[function(require,module,exports){
 'use strict';
 
 // get all coordinates for a cube ranging from vertex a to b
@@ -35283,35 +52294,35 @@ var parseBlockModel = function(elements, getTextureUV, x, y, z) {
 module.exports = parseBlockModel;
 
 
-},{}],261:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":263}],262:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":264}],263:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":308}],307:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":309}],308:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":262}],264:[function(require,module,exports){
-module.exports=require(166)
-},{}],265:[function(require,module,exports){
+},{"./compile.js":307}],309:[function(require,module,exports){
+module.exports=require(211)
+},{}],310:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"ndarray":287,"ndarray-ops":282,"typedarray-pool":291,"webglew":267}],266:[function(require,module,exports){
+},{"ndarray":332,"ndarray-ops":327,"typedarray-pool":336,"webglew":312}],311:[function(require,module,exports){
 module.exports=require(101)
-},{}],267:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":266}],268:[function(require,module,exports){
-module.exports=require(174)
-},{}],269:[function(require,module,exports){
+},{"weakmap":311}],313:[function(require,module,exports){
+module.exports=require(219)
+},{}],314:[function(require,module,exports){
 module.exports=require(103)
-},{}],270:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":269}],271:[function(require,module,exports){
+},{"./do-bind.js":314}],316:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":269}],272:[function(require,module,exports){
+},{"./do-bind.js":314}],317:[function(require,module,exports){
 module.exports=require(101)
-},{}],273:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":272}],274:[function(require,module,exports){
+},{"weakmap":317}],319:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":270,"./lib/vao-native.js":271,"webglew":273}],275:[function(require,module,exports){
+},{"./lib/vao-emulated.js":315,"./lib/vao-native.js":316,"webglew":318}],320:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -35510,39 +52521,140 @@ function compileMesher(options) {
 }
 module.exports = compileMesher
 
-},{"iota-array":276,"typedarray-pool":279,"uniq":280}],276:[function(require,module,exports){
+},{"iota-array":321,"typedarray-pool":324,"uniq":325}],321:[function(require,module,exports){
 module.exports=require(97)
-},{}],277:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 module.exports=require(98)
-},{}],278:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 module.exports=require(99)
-},{}],279:[function(require,module,exports){
-module.exports=require(171)
-},{"bit-twiddle":277,"buffer":888,"dup":278}],280:[function(require,module,exports){
-module.exports=require(166)
-},{}],281:[function(require,module,exports){
-module.exports=require(232)
-},{}],282:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
+module.exports=require(216)
+},{"bit-twiddle":322,"buffer":933,"dup":323}],325:[function(require,module,exports){
+module.exports=require(211)
+},{}],326:[function(require,module,exports){
+module.exports=require(277)
+},{}],327:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":283}],283:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":285}],284:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":286}],285:[function(require,module,exports){
+},{"cwise-compiler":328}],328:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":330}],329:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":331}],330:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":284}],286:[function(require,module,exports){
-module.exports=require(166)
-},{}],287:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":288}],288:[function(require,module,exports){
+},{"./compile.js":329}],331:[function(require,module,exports){
+module.exports=require(211)
+},{}],332:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":333}],333:[function(require,module,exports){
 module.exports=require(97)
-},{}],289:[function(require,module,exports){
+},{}],334:[function(require,module,exports){
 module.exports=require(98)
-},{}],290:[function(require,module,exports){
+},{}],335:[function(require,module,exports){
 module.exports=require(99)
-},{}],291:[function(require,module,exports){
-module.exports=require(171)
-},{"bit-twiddle":289,"buffer":888,"dup":290}],292:[function(require,module,exports){
+},{}],336:[function(require,module,exports){
+module.exports=require(216)
+},{"bit-twiddle":334,"buffer":933,"dup":335}],337:[function(require,module,exports){
+module.exports = AABB
+
+var vec3 = require('gl-matrix').vec3
+
+function AABB(pos, vec) {
+  if(!(this instanceof AABB)) {
+    return new AABB(pos, vec)
+  }
+
+  this.base = pos
+  this.vec = vec
+
+  this.mag = vec3.length(this.vec)
+
+  this.max = vec3.create()
+  vec3.add(this.max, this.base, this.vec)
+}
+
+var cons = AABB
+  , proto = cons.prototype
+
+proto.width = function() {
+  return this.vec[0]
+}
+
+proto.height = function() {
+  return this.vec[1]
+}
+
+proto.depth = function() {
+  return this.vec[2]
+}
+
+proto.x0 = function() {
+  return this.base[0]
+}
+
+proto.y0 = function() {
+  return this.base[1]
+}
+
+proto.z0 = function() {
+  return this.base[2]
+}
+
+proto.x1 = function() {
+  return this.max[0]
+}
+
+proto.y1 = function() {
+  return this.max[1]
+}
+
+proto.z1 = function() {
+  return this.max[2]
+}
+
+proto.translate = function(by) {
+  vec3.add(this.max, this.max, by)
+  vec3.add(this.base, this.base, by)
+  return this
+}
+
+proto.expand = function(aabb) {
+  var max = vec3.create()
+    , min = vec3.create()
+
+  vec3.max(max, aabb.max, this.max)
+  vec3.min(min, aabb.base, this.base)
+  vec3.sub(max, max, min)
+
+  return new AABB(min, max)
+}
+
+proto.intersects = function(aabb) {
+  if(aabb.base[0] > this.max[0]) return false
+  if(aabb.base[1] > this.max[1]) return false
+  if(aabb.base[2] > this.max[2]) return false
+  if(aabb.max[0] < this.base[0]) return false
+  if(aabb.max[1] < this.base[1]) return false
+  if(aabb.max[2] < this.base[2]) return false
+
+  return true
+}
+
+proto.union = function(aabb) {
+  if(!this.intersects(aabb)) return null
+
+  var base_x = Math.max(aabb.base[0], this.base[0])
+    , base_y = Math.max(aabb.base[1], this.base[1])
+    , base_z = Math.max(aabb.base[2], this.base[2])
+    , max_x = Math.min(aabb.max[0], this.max[0])
+    , max_y = Math.min(aabb.max[1], this.max[1])
+    , max_z = Math.min(aabb.max[2], this.max[2])
+
+  return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
+}
+
+},{"gl-matrix":338}],338:[function(require,module,exports){
+module.exports=require(219)
+},{}],339:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -35802,110 +52914,9 @@ proto.fell = function(distance) {
   return
 }
 
-},{"aabb-3d":293,"gl-matrix":294}],293:[function(require,module,exports){
-module.exports = AABB
-
-var vec3 = require('gl-matrix').vec3
-
-function AABB(pos, vec) {
-  if(!(this instanceof AABB)) {
-    return new AABB(pos, vec)
-  }
-
-  this.base = pos
-  this.vec = vec
-
-  this.mag = vec3.length(this.vec)
-
-  this.max = vec3.create()
-  vec3.add(this.max, this.base, this.vec)
-}
-
-var cons = AABB
-  , proto = cons.prototype
-
-proto.width = function() {
-  return this.vec[0]
-}
-
-proto.height = function() {
-  return this.vec[1]
-}
-
-proto.depth = function() {
-  return this.vec[2]
-}
-
-proto.x0 = function() {
-  return this.base[0]
-}
-
-proto.y0 = function() {
-  return this.base[1]
-}
-
-proto.z0 = function() {
-  return this.base[2]
-}
-
-proto.x1 = function() {
-  return this.max[0]
-}
-
-proto.y1 = function() {
-  return this.max[1]
-}
-
-proto.z1 = function() {
-  return this.max[2]
-}
-
-proto.translate = function(by) {
-  vec3.add(this.max, this.max, by)
-  vec3.add(this.base, this.base, by)
-  return this
-}
-
-proto.expand = function(aabb) {
-  var max = vec3.create()
-    , min = vec3.create()
-
-  vec3.max(max, aabb.max, this.max)
-  vec3.min(min, aabb.base, this.base)
-  vec3.sub(max, max, min)
-
-  return new AABB(min, max)
-}
-
-proto.intersects = function(aabb) {
-  if(aabb.base[0] > this.max[0]) return false
-  if(aabb.base[1] > this.max[1]) return false
-  if(aabb.base[2] > this.max[2]) return false
-  if(aabb.max[0] < this.base[0]) return false
-  if(aabb.max[1] < this.base[1]) return false
-  if(aabb.max[2] < this.base[2]) return false
-
-  return true
-}
-
-proto.union = function(aabb) {
-  if(!this.intersects(aabb)) return null
-
-  var base_x = Math.max(aabb.base[0], this.base[0])
-    , base_y = Math.max(aabb.base[1], this.base[1])
-    , base_z = Math.max(aabb.base[2], this.base[2])
-    , max_x = Math.min(aabb.max[0], this.max[0])
-    , max_y = Math.min(aabb.max[1], this.max[1])
-    , max_z = Math.min(aabb.max[2], this.max[2])
-
-  return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
-}
-
-},{"gl-matrix":294}],294:[function(require,module,exports){
-module.exports=require(174)
-},{}],295:[function(require,module,exports){
-module.exports=require(157)
-},{}],296:[function(require,module,exports){
+},{"aabb-3d":337,"gl-matrix":338}],340:[function(require,module,exports){
+module.exports=require(202)
+},{}],341:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -35979,7 +52990,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":910}],297:[function(require,module,exports){
+},{"util":955}],342:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -36296,7 +53307,7 @@ Plugins.prototype.destroy = function(name) {
 inherits(Plugins, EventEmitter);
 
 }).call(this,require("q+64fw"))
-},{"events":891,"inherits":295,"q+64fw":894,"tsort":296}],298:[function(require,module,exports){
+},{"events":936,"inherits":340,"q+64fw":939,"tsort":341}],343:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -36518,7 +53529,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],299:[function(require,module,exports){
+},{}],344:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -36546,9 +53557,9 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":300,"events":891}],300:[function(require,module,exports){
-arguments[4][293][0].apply(exports,arguments)
-},{"gl-matrix":301}],301:[function(require,module,exports){
+},{"aabb-3d":345,"events":936}],345:[function(require,module,exports){
+arguments[4][337][0].apply(exports,arguments)
+},{"gl-matrix":346}],346:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -40421,7 +57432,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],302:[function(require,module,exports){
+},{}],347:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -40679,7 +57690,7 @@ Registry.prototype.getTextureURL = function(name) {
 
 
 
-},{}],303:[function(require,module,exports){
+},{}],348:[function(require,module,exports){
 var glslify = require("glslify");
 var fs = require("fs");
 var mat4 = require("gl-matrix").mat4;
@@ -40822,23 +57833,23 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"fs":871,"gl-matrix":304,"glslify":306,"glslify/adapter.js":305}],304:[function(require,module,exports){
-module.exports=require(174)
-},{}],305:[function(require,module,exports){
+},{"fs":916,"gl-matrix":349,"glslify":351,"glslify/adapter.js":350}],349:[function(require,module,exports){
+module.exports=require(219)
+},{}],350:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":311}],306:[function(require,module,exports){
+},{"gl-shader-core":356}],351:[function(require,module,exports){
 module.exports=require(110)
-},{}],307:[function(require,module,exports){
+},{}],352:[function(require,module,exports){
 module.exports=require(111)
-},{}],308:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":309,"dup":310}],309:[function(require,module,exports){
+},{"./reflect.js":354,"dup":355}],354:[function(require,module,exports){
 module.exports=require(113)
-},{}],310:[function(require,module,exports){
+},{}],355:[function(require,module,exports){
 module.exports=require(99)
-},{}],311:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":307,"./lib/create-uniforms.js":308,"./lib/reflect.js":309}],312:[function(require,module,exports){
+},{"./lib/create-attributes.js":352,"./lib/create-uniforms.js":353,"./lib/reflect.js":354}],357:[function(require,module,exports){
 var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -41322,7 +58333,7 @@ module.exports = function(opts) {
 };
 
 
-},{"binary-xhr":313,"events":891,"fs":871,"get-pixels":315,"graycolorize":328,"mcmeta":332,"path":893,"save-pixels":353,"zip":369}],313:[function(require,module,exports){
+},{"binary-xhr":358,"events":936,"fs":916,"get-pixels":360,"graycolorize":373,"mcmeta":377,"path":938,"save-pixels":398,"zip":414}],358:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -41350,9 +58361,9 @@ function BinaryXHR(url, cb) {
   xhr.send(null)
 }
 
-},{"inherits":314}],314:[function(require,module,exports){
-module.exports=require(157)
-},{}],315:[function(require,module,exports){
+},{"inherits":359}],359:[function(require,module,exports){
+module.exports=require(202)
+},{}],360:[function(require,module,exports){
 "use strict"
 
 var path = require("path")
@@ -41475,7 +58486,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":322,"ndarray-pack":316,"omggif":324,"path":893,"ppm":326,"through":327}],316:[function(require,module,exports){
+},{"ndarray":367,"ndarray-pack":361,"omggif":369,"path":938,"ppm":371,"through":372}],361:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -41498,10 +58509,10 @@ module.exports = function convert(arr, result) {
   return result
 }
 
-},{"./doConvert.js":317,"ndarray":322}],317:[function(require,module,exports){
+},{"./doConvert.js":362,"ndarray":367}],362:[function(require,module,exports){
 module.exports=require('cwise-compiler')({"args":["array","scalar","index"],"pre":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"body":{"body":"{\nvar _inline_1_v=_inline_1_arg1_,_inline_1_i\nfor(_inline_1_i=0;_inline_1_i<_inline_1_arg2_.length-1;++_inline_1_i) {\n_inline_1_v=_inline_1_v[_inline_1_arg2_[_inline_1_i]]\n}\n_inline_1_arg0_=_inline_1_v[_inline_1_arg2_[_inline_1_arg2_.length-1]]\n}","args":[{"name":"_inline_1_arg0_","lvalue":true,"rvalue":false,"count":1},{"name":"_inline_1_arg1_","lvalue":false,"rvalue":true,"count":1},{"name":"_inline_1_arg2_","lvalue":false,"rvalue":true,"count":4}],"thisVars":[],"localVars":["_inline_1_i","_inline_1_v"]},"post":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"funcName":"convert","blockSize":64})
 
-},{"cwise-compiler":318}],318:[function(require,module,exports){
+},{"cwise-compiler":363}],363:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -41609,7 +58620,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":320}],319:[function(require,module,exports){
+},{"./lib/thunk.js":365}],364:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -41893,15 +58904,15 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":321}],320:[function(require,module,exports){
+},{"uniq":366}],365:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":319}],321:[function(require,module,exports){
+},{"./compile.js":364}],366:[function(require,module,exports){
 module.exports=require(95)
-},{}],322:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":323}],323:[function(require,module,exports){
+},{}],367:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":368}],368:[function(require,module,exports){
 module.exports=require(97)
-},{}],324:[function(require,module,exports){
+},{}],369:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -42632,7 +59643,7 @@ function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
 
 try { exports.GifWriter = GifWriter; exports.GifReader = GifReader } catch(e) { }  // CommonJS.
 
-},{}],325:[function(require,module,exports){
+},{}],370:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -42739,7 +59750,7 @@ function through (write, end) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":894,"stream":908}],326:[function(require,module,exports){
+},{"q+64fw":939,"stream":953}],371:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -43061,9 +60072,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":888,"q+64fw":894,"through":325}],327:[function(require,module,exports){
-module.exports=require(128)
-},{"q+64fw":894,"stream":908}],328:[function(require,module,exports){
+},{"buffer":933,"q+64fw":939,"through":370}],372:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],373:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -43147,11 +60158,11 @@ var graycolorize = function(pixels, colors) {
 module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
-},{"ndarray":329,"onecolor":331}],329:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":330}],330:[function(require,module,exports){
+},{"ndarray":374,"onecolor":376}],374:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":375}],375:[function(require,module,exports){
 module.exports=require(97)
-},{}],331:[function(require,module,exports){
+},{}],376:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
 /*global define*/
 var installedColorSpaces = [],
@@ -43907,7 +60918,7 @@ ONECOLOR.installMethod('toAlpha', function (color) {
 // Convenience functions
 
 
-},{}],332:[function(require,module,exports){
+},{}],377:[function(require,module,exports){
 'use strict';
 
 var getPixels = require('get-pixels');
@@ -44049,7 +61060,7 @@ module.exports.getFrames = getFrames;
 module.exports.parseFramesInfo = parseFramesInfo;
 module.exports.splitTiles = splitTiles;
 
-},{"get-pixels":333,"save-pixels":344}],333:[function(require,module,exports){
+},{"get-pixels":378,"save-pixels":389}],378:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -44071,11 +61082,11 @@ module.exports = function getPixels(url, cb) {
   img.src = url
 }
 
-},{"ndarray":334}],334:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":335}],335:[function(require,module,exports){
+},{"ndarray":379}],379:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":380}],380:[function(require,module,exports){
 module.exports=require(97)
-},{}],336:[function(require,module,exports){
+},{}],381:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -44277,7 +61288,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888,"stream":908,"util":910}],337:[function(require,module,exports){
+},{"buffer":933,"stream":953,"util":955}],382:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44317,7 +61328,7 @@ module.exports = {
     COLOR_ALPHA: 4
 };
 
-},{}],338:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44398,7 +61409,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":908,"util":910}],339:[function(require,module,exports){
+},{"stream":953,"util":955}],384:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -44716,7 +61727,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":336,"buffer":888,"util":910,"zlib":887}],340:[function(require,module,exports){
+},{"./chunkstream":381,"buffer":933,"util":955,"zlib":932}],385:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -44830,7 +61841,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":337,"./crc":338,"./filter":339,"buffer":888,"stream":908,"util":910,"zlib":887}],341:[function(require,module,exports){
+},{"./constants":382,"./crc":383,"./filter":384,"buffer":933,"stream":953,"util":955,"zlib":932}],386:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -45193,7 +62204,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":336,"./constants":337,"./crc":338,"./filter":339,"buffer":888,"util":910,"zlib":887}],342:[function(require,module,exports){
+},{"./chunkstream":381,"./constants":382,"./crc":383,"./filter":384,"buffer":933,"util":955,"zlib":932}],387:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -45344,9 +62355,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./packer":340,"./parser":341,"buffer":888,"q+64fw":894,"stream":908,"util":910}],343:[function(require,module,exports){
-module.exports=require(128)
-},{"q+64fw":894,"stream":908}],344:[function(require,module,exports){
+},{"./packer":385,"./parser":386,"buffer":933,"q+64fw":939,"stream":953,"util":955}],388:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],389:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -45438,25 +62449,25 @@ module.exports = function savePixels(array, type) {
   }
 }
 
-},{"pngjs":342,"through":343}],345:[function(require,module,exports){
-module.exports=require(336)
-},{"buffer":888,"stream":908,"util":910}],346:[function(require,module,exports){
-module.exports=require(337)
-},{}],347:[function(require,module,exports){
-module.exports=require(338)
-},{"stream":908,"util":910}],348:[function(require,module,exports){
-module.exports=require(339)
-},{"./chunkstream":345,"buffer":888,"util":910,"zlib":887}],349:[function(require,module,exports){
-module.exports=require(340)
-},{"./constants":346,"./crc":347,"./filter":348,"buffer":888,"stream":908,"util":910,"zlib":887}],350:[function(require,module,exports){
-module.exports=require(341)
-},{"./chunkstream":345,"./constants":346,"./crc":347,"./filter":348,"buffer":888,"util":910,"zlib":887}],351:[function(require,module,exports){
-module.exports=require(342)
-},{"./packer":349,"./parser":350,"buffer":888,"q+64fw":894,"stream":908,"util":910}],352:[function(require,module,exports){
-module.exports=require(128)
-},{"q+64fw":894,"stream":908}],353:[function(require,module,exports){
-module.exports=require(344)
-},{"pngjs":351,"through":352}],354:[function(require,module,exports){
+},{"pngjs":387,"through":388}],390:[function(require,module,exports){
+module.exports=require(381)
+},{"buffer":933,"stream":953,"util":955}],391:[function(require,module,exports){
+module.exports=require(382)
+},{}],392:[function(require,module,exports){
+module.exports=require(383)
+},{"stream":953,"util":955}],393:[function(require,module,exports){
+module.exports=require(384)
+},{"./chunkstream":390,"buffer":933,"util":955,"zlib":932}],394:[function(require,module,exports){
+module.exports=require(385)
+},{"./constants":391,"./crc":392,"./filter":393,"buffer":933,"stream":953,"util":955,"zlib":932}],395:[function(require,module,exports){
+module.exports=require(386)
+},{"./chunkstream":390,"./constants":391,"./crc":392,"./filter":393,"buffer":933,"util":955,"zlib":932}],396:[function(require,module,exports){
+module.exports=require(387)
+},{"./packer":394,"./parser":395,"buffer":933,"q+64fw":939,"stream":953,"util":955}],397:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],398:[function(require,module,exports){
+module.exports=require(389)
+},{"pngjs":396,"through":397}],399:[function(require,module,exports){
 
 var bops = require("bops");
 
@@ -45515,7 +62526,7 @@ function consolidate(buffers) {
 }
 
 
-},{"bops":356}],355:[function(require,module,exports){
+},{"bops":401}],400:[function(require,module,exports){
 /* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
  * Version: 1.0.0.1
  * LastModified: Dec 25 1999
@@ -46271,7 +63282,7 @@ exports.inflate = function (input) {
 };
 
 
-},{"./buffer-io":354,"bops":356}],356:[function(require,module,exports){
+},{"./buffer-io":399,"bops":401}],401:[function(require,module,exports){
 var proto = {}
 module.exports = proto
 
@@ -46292,7 +63303,7 @@ function mix(from, into) {
   }
 }
 
-},{"./copy.js":359,"./create.js":360,"./from.js":361,"./is.js":362,"./join.js":363,"./read.js":365,"./subarray.js":366,"./to.js":367,"./write.js":368}],357:[function(require,module,exports){
+},{"./copy.js":404,"./create.js":405,"./from.js":406,"./is.js":407,"./join.js":408,"./read.js":410,"./subarray.js":411,"./to.js":412,"./write.js":413}],402:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -46378,7 +63389,7 @@ function mix(from, into) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],358:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 module.exports = to_utf8
 
 var out = []
@@ -46453,7 +63464,7 @@ function reduced(list) {
   return out
 }
 
-},{}],359:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 module.exports = copy
 
 var slice = [].slice
@@ -46507,12 +63518,12 @@ function slow_copy(from, to, j, i, jend) {
   }
 }
 
-},{}],360:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 module.exports = function(size) {
   return new Uint8Array(size)
 }
 
-},{}],361:[function(require,module,exports){
+},{}],406:[function(require,module,exports){
 module.exports = from
 
 var base64 = require('base64-js')
@@ -46648,13 +63659,13 @@ function from_base64(str) {
   return new Uint8Array(base64.toByteArray(str)) 
 }
 
-},{"base64-js":357}],362:[function(require,module,exports){
+},{"base64-js":402}],407:[function(require,module,exports){
 
 module.exports = function(buffer) {
   return buffer instanceof Uint8Array;
 }
 
-},{}],363:[function(require,module,exports){
+},{}],408:[function(require,module,exports){
 module.exports = join
 
 function join(targets, hint) {
@@ -46692,7 +63703,7 @@ function get_length(targets) {
   return size
 }
 
-},{}],364:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 var proto
   , map
 
@@ -46714,7 +63725,7 @@ function get(target) {
   return out
 }
 
-},{}],365:[function(require,module,exports){
+},{}],410:[function(require,module,exports){
 module.exports = {
     readUInt8:      read_uint8
   , readInt8:       read_int8
@@ -46803,14 +63814,14 @@ function read_double_be(target, at) {
   return dv.getFloat64(at + target.byteOffset, false)
 }
 
-},{"./mapped.js":364}],366:[function(require,module,exports){
+},{"./mapped.js":409}],411:[function(require,module,exports){
 module.exports = subarray
 
 function subarray(buf, from, to) {
   return buf.subarray(from || 0, to || buf.length)
 }
 
-},{}],367:[function(require,module,exports){
+},{}],412:[function(require,module,exports){
 module.exports = to
 
 var base64 = require('base64-js')
@@ -46848,7 +63859,7 @@ function to_base64(buf) {
 }
 
 
-},{"base64-js":357,"to-utf8":358}],368:[function(require,module,exports){
+},{"base64-js":402,"to-utf8":403}],413:[function(require,module,exports){
 module.exports = {
     writeUInt8:      write_uint8
   , writeInt8:       write_int8
@@ -46936,7 +63947,7 @@ function write_double_be(target, value, at) {
   return dv.setFloat64(at + target.byteOffset, value, false)
 }
 
-},{"./mapped.js":364}],369:[function(require,module,exports){
+},{"./mapped.js":409}],414:[function(require,module,exports){
 (function (process){
 // Tom Robinson
 // Kris Kowal
@@ -47401,7 +64412,7 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require("q+64fw"))
-},{"./inflate":355,"bops":356,"fs":871,"q+64fw":894}],370:[function(require,module,exports){
+},{"./inflate":400,"bops":401,"fs":916,"q+64fw":939}],415:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -47453,7 +64464,7 @@ module.exports.Rect = Rect;
 // pack image/rect to the atlas
 Atlas.prototype.pack = function(rect) {
   this._cache = [];
-  this._uvcache = [];
+  this._uvcache = Object.create(null);
   rect = this._toRect(rect);
 
   if (this.img && this.tilepad) {
@@ -47540,9 +64551,6 @@ Atlas.prototype.index = function() {
 
 Atlas.prototype.uv = function(w, h) {
   var self = this;
-  if (self._uvcache.length > 0) {
-    return self._uvcache;
-  }
   w = w || self.rect.w;
   h = h || self.rect.h;
   var isPad = this.tilepad;
@@ -47659,59 +64667,59 @@ Atlas.prototype._debug = function() {
   });
 };
 
-},{}],371:[function(require,module,exports){
+},{}],416:[function(require,module,exports){
 module.exports=require(39)
-},{}],372:[function(require,module,exports){
-module.exports=require(315)
-},{"ndarray":379,"ndarray-pack":373,"omggif":381,"path":893,"ppm":383,"through":384}],373:[function(require,module,exports){
-module.exports=require(316)
-},{"./doConvert.js":374,"ndarray":379}],374:[function(require,module,exports){
-module.exports=require(317)
-},{"cwise-compiler":375}],375:[function(require,module,exports){
-module.exports=require(318)
-},{"./lib/thunk.js":377}],376:[function(require,module,exports){
-module.exports=require(319)
-},{"uniq":378}],377:[function(require,module,exports){
+},{}],417:[function(require,module,exports){
+module.exports=require(360)
+},{"ndarray":424,"ndarray-pack":418,"omggif":426,"path":938,"ppm":428,"through":429}],418:[function(require,module,exports){
+module.exports=require(361)
+},{"./doConvert.js":419,"ndarray":424}],419:[function(require,module,exports){
+module.exports=require(362)
+},{"cwise-compiler":420}],420:[function(require,module,exports){
+module.exports=require(363)
+},{"./lib/thunk.js":422}],421:[function(require,module,exports){
+module.exports=require(364)
+},{"uniq":423}],422:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":376}],378:[function(require,module,exports){
+},{"./compile.js":421}],423:[function(require,module,exports){
 module.exports=require(95)
-},{}],379:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":380}],380:[function(require,module,exports){
+},{}],424:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":425}],425:[function(require,module,exports){
 module.exports=require(97)
-},{}],381:[function(require,module,exports){
-module.exports=require(324)
-},{}],382:[function(require,module,exports){
-module.exports=require(325)
-},{"q+64fw":894,"stream":908}],383:[function(require,module,exports){
-module.exports=require(326)
-},{"buffer":888,"q+64fw":894,"through":382}],384:[function(require,module,exports){
-module.exports=require(128)
-},{"q+64fw":894,"stream":908}],385:[function(require,module,exports){
+},{}],426:[function(require,module,exports){
+module.exports=require(369)
+},{}],427:[function(require,module,exports){
+module.exports=require(370)
+},{"q+64fw":939,"stream":953}],428:[function(require,module,exports){
+module.exports=require(371)
+},{"buffer":933,"q+64fw":939,"through":427}],429:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],430:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":386}],386:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":388}],387:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":389}],388:[function(require,module,exports){
+},{"cwise-compiler":431}],431:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":433}],432:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":434}],433:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":387}],389:[function(require,module,exports){
-module.exports=require(166)
-},{}],390:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":391}],391:[function(require,module,exports){
+},{"./compile.js":432}],434:[function(require,module,exports){
+module.exports=require(211)
+},{}],435:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":436}],436:[function(require,module,exports){
 module.exports=require(97)
-},{}],392:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 module.exports=require(98)
-},{}],393:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 module.exports=require(99)
-},{}],394:[function(require,module,exports){
-module.exports=require(171)
-},{"bit-twiddle":392,"buffer":888,"dup":393}],395:[function(require,module,exports){
+},{}],439:[function(require,module,exports){
+module.exports=require(216)
+},{"bit-twiddle":437,"buffer":933,"dup":438}],440:[function(require,module,exports){
 module.exports=require(101)
-},{}],396:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":395}],397:[function(require,module,exports){
+},{"weakmap":440}],442:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -48133,9 +65141,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":390,"ndarray-ops":385,"typedarray-pool":394,"webglew":396}],398:[function(require,module,exports){
-module.exports=require(232)
-},{}],399:[function(require,module,exports){
+},{"ndarray":435,"ndarray-ops":430,"typedarray-pool":439,"webglew":441}],443:[function(require,module,exports){
+module.exports=require(277)
+},{}],444:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -48160,15 +65168,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":400}],400:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":401}],401:[function(require,module,exports){
+},{"ndarray":445}],445:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":446}],446:[function(require,module,exports){
 module.exports=require(97)
-},{}],402:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":403}],403:[function(require,module,exports){
+},{}],447:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":448}],448:[function(require,module,exports){
 module.exports=require(97)
-},{}],404:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -48284,7 +65292,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":450,"ndarray-downsample2x":405,"ndarray-ops":445}],405:[function(require,module,exports){
+},{"ndarray":495,"ndarray-downsample2x":450,"ndarray-ops":490}],450:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -48369,7 +65377,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":406,"ndarray-fft":414,"ndarray-ops":434,"ndarray-scratch":444}],406:[function(require,module,exports){
+},{"cwise":451,"ndarray-fft":459,"ndarray-ops":479,"ndarray-scratch":489}],451:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -48406,15 +65414,15 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":407,"cwise-parser":411}],407:[function(require,module,exports){
+},{"cwise-compiler":452,"cwise-parser":456}],452:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":409}],408:[function(require,module,exports){
+},{"./lib/thunk.js":454}],453:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":410}],409:[function(require,module,exports){
+},{"uniq":455}],454:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":408}],410:[function(require,module,exports){
+},{"./compile.js":453}],455:[function(require,module,exports){
 module.exports=require(95)
-},{}],411:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -48610,7 +65618,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":412,"uniq":413}],412:[function(require,module,exports){
+},{"esprima":457,"uniq":458}],457:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -52520,9 +69528,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],413:[function(require,module,exports){
+},{}],458:[function(require,module,exports){
 module.exports=require(95)
-},{}],414:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -52607,7 +69615,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":415,"cwise":417,"ndarray":430,"ndarray-ops":425,"typedarray-pool":433}],415:[function(require,module,exports){
+},{"./lib/fft-matrix.js":460,"cwise":462,"ndarray":475,"ndarray-ops":470,"typedarray-pool":478}],460:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -52826,25 +69834,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":416}],416:[function(require,module,exports){
+},{"bit-twiddle":461}],461:[function(require,module,exports){
 module.exports=require(98)
-},{}],417:[function(require,module,exports){
-module.exports=require(406)
-},{"cwise-compiler":418,"cwise-parser":422}],418:[function(require,module,exports){
+},{}],462:[function(require,module,exports){
+module.exports=require(451)
+},{"cwise-compiler":463,"cwise-parser":467}],463:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":420}],419:[function(require,module,exports){
+},{"./lib/thunk.js":465}],464:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":421}],420:[function(require,module,exports){
+},{"uniq":466}],465:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":419}],421:[function(require,module,exports){
+},{"./compile.js":464}],466:[function(require,module,exports){
 module.exports=require(95)
-},{}],422:[function(require,module,exports){
-module.exports=require(411)
-},{"esprima":423,"uniq":424}],423:[function(require,module,exports){
-module.exports=require(412)
-},{}],424:[function(require,module,exports){
+},{}],467:[function(require,module,exports){
+module.exports=require(456)
+},{"esprima":468,"uniq":469}],468:[function(require,module,exports){
+module.exports=require(457)
+},{}],469:[function(require,module,exports){
 module.exports=require(95)
-},{}],425:[function(require,module,exports){
+},{}],470:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -53293,21 +70301,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":426}],426:[function(require,module,exports){
+},{"cwise-compiler":471}],471:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":428}],427:[function(require,module,exports){
+},{"./lib/thunk.js":473}],472:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":429}],428:[function(require,module,exports){
+},{"uniq":474}],473:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":427}],429:[function(require,module,exports){
+},{"./compile.js":472}],474:[function(require,module,exports){
 module.exports=require(95)
-},{}],430:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":431}],431:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":476}],476:[function(require,module,exports){
 module.exports=require(97)
-},{}],432:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 module.exports=require(99)
-},{}],433:[function(require,module,exports){
+},{}],478:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -53592,27 +70600,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":416,"dup":432}],434:[function(require,module,exports){
-module.exports=require(425)
-},{"cwise-compiler":435}],435:[function(require,module,exports){
+},{"bit-twiddle":461,"dup":477}],479:[function(require,module,exports){
+module.exports=require(470)
+},{"cwise-compiler":480}],480:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":437}],436:[function(require,module,exports){
+},{"./lib/thunk.js":482}],481:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":438}],437:[function(require,module,exports){
+},{"uniq":483}],482:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":436}],438:[function(require,module,exports){
+},{"./compile.js":481}],483:[function(require,module,exports){
 module.exports=require(95)
-},{}],439:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":440}],440:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":485}],485:[function(require,module,exports){
 module.exports=require(97)
-},{}],441:[function(require,module,exports){
+},{}],486:[function(require,module,exports){
 module.exports=require(98)
-},{}],442:[function(require,module,exports){
+},{}],487:[function(require,module,exports){
 module.exports=require(99)
-},{}],443:[function(require,module,exports){
-module.exports=require(433)
-},{"bit-twiddle":441,"dup":442}],444:[function(require,module,exports){
+},{}],488:[function(require,module,exports){
+module.exports=require(478)
+},{"bit-twiddle":486,"dup":487}],489:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -53636,41 +70644,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":439,"typedarray-pool":443}],445:[function(require,module,exports){
+},{"ndarray":484,"typedarray-pool":488}],490:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":446}],446:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":448}],447:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":449}],448:[function(require,module,exports){
+},{"cwise-compiler":491}],491:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":493}],492:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":494}],493:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":447}],449:[function(require,module,exports){
-module.exports=require(166)
-},{}],450:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":451}],451:[function(require,module,exports){
+},{"./compile.js":492}],494:[function(require,module,exports){
+module.exports=require(211)
+},{}],495:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":496}],496:[function(require,module,exports){
 module.exports=require(97)
-},{}],452:[function(require,module,exports){
-module.exports=require(336)
-},{"buffer":888,"stream":908,"util":910}],453:[function(require,module,exports){
-module.exports=require(337)
-},{}],454:[function(require,module,exports){
-module.exports=require(338)
-},{"stream":908,"util":910}],455:[function(require,module,exports){
-module.exports=require(339)
-},{"./chunkstream":452,"buffer":888,"util":910,"zlib":887}],456:[function(require,module,exports){
-module.exports=require(340)
-},{"./constants":453,"./crc":454,"./filter":455,"buffer":888,"stream":908,"util":910,"zlib":887}],457:[function(require,module,exports){
-module.exports=require(341)
-},{"./chunkstream":452,"./constants":453,"./crc":454,"./filter":455,"buffer":888,"util":910,"zlib":887}],458:[function(require,module,exports){
-module.exports=require(342)
-},{"./packer":456,"./parser":457,"buffer":888,"q+64fw":894,"stream":908,"util":910}],459:[function(require,module,exports){
-module.exports=require(128)
-},{"q+64fw":894,"stream":908}],460:[function(require,module,exports){
-module.exports=require(344)
-},{"pngjs":458,"through":459}],461:[function(require,module,exports){
+},{}],497:[function(require,module,exports){
+module.exports=require(381)
+},{"buffer":933,"stream":953,"util":955}],498:[function(require,module,exports){
+module.exports=require(382)
+},{}],499:[function(require,module,exports){
+module.exports=require(383)
+},{"stream":953,"util":955}],500:[function(require,module,exports){
+module.exports=require(384)
+},{"./chunkstream":497,"buffer":933,"util":955,"zlib":932}],501:[function(require,module,exports){
+module.exports=require(385)
+},{"./constants":498,"./crc":499,"./filter":500,"buffer":933,"stream":953,"util":955,"zlib":932}],502:[function(require,module,exports){
+module.exports=require(386)
+},{"./chunkstream":497,"./constants":498,"./crc":499,"./filter":500,"buffer":933,"util":955,"zlib":932}],503:[function(require,module,exports){
+module.exports=require(387)
+},{"./packer":501,"./parser":502,"buffer":933,"q+64fw":939,"stream":953,"util":955}],504:[function(require,module,exports){
+module.exports=require(165)
+},{"q+64fw":939,"stream":953}],505:[function(require,module,exports){
+module.exports=require(389)
+},{"pngjs":503,"through":504}],506:[function(require,module,exports){
 module.exports=require(44)
-},{}],462:[function(require,module,exports){
+},{}],507:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -53760,7 +70768,7 @@ module.exports=require(44)
 
 }).call(this);
 
-},{}],463:[function(require,module,exports){
+},{}],508:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -53795,6 +70803,7 @@ function StitchPlugin(game, opts) {
   opts.artpacks = opts.artpacks || ['https://dl.dropboxusercontent.com/u/258156216/artpacks/ProgrammerArt-v2.2.1-dev-ResourcePack-20140322.zip'];
 
   this.debug = opts.debug !== undefined ? opts.debug : false;
+  this.verbose = opts.verbose !== undefined ? opts.verbose : true;
 
   // texture atlas width and height
   this.atlasSize = opts.atlasSize !== undefined ? opts.atlasSize : 2048;
@@ -53936,13 +70945,13 @@ StitchPlugin.prototype.updateTextureSideIDs = function() {
       if (lgW !== lgW|0) throw new Error('voxel-stitch texture '+name+' non-power-of-two size '+w+', '+lgW);
       this.voxelSideTextureSizes.set(blockIndex, side, lgW);
 
-      console.log('texture',name,': block',blockIndex,this.registry.getBlockName(blockIndex),'side',side,'=',textureIndex,' UV=('+sx+','+sy+')-('+ex+','+ey+') ('+w+'x'+h+') lgW='+lgW);
+      if (this.verbose) console.log('texture',name,': block',blockIndex,this.registry.getBlockName(blockIndex),'side',side,'=',textureIndex,' UV=('+sx+','+sy+')-('+ex+','+ey+') ('+w+'x'+h+') lgW='+lgW);
     }
     // TODO: texture sizes, w and h
   }
 
   var self = this;
-  console.log('updateTextureSideIDs complete, about to call createGLTexture');
+  if (this.verbose) console.log('updateTextureSideIDs complete, about to call createGLTexture');
   this.emit('updatedSides'); // now ready: this.voxelSideTextureIDs, this.voxelSideTextureSizes
 
   this.createGLTexture(this.shell.gl, function(err, texture) {
@@ -53974,7 +70983,7 @@ StitchPlugin.prototype.createGLTexture = function(gl, cb) {
     if (err) return cb(err);
 
     var pyramid = rectMipMap(array, atlas);
-    console.log('pyramid=',pyramid);
+    if (self.verbose) console.log('pyramid=',pyramid);
 
     if (showLevels) {
       // add each mip level to the page for debugging TODO: refactor with rect-mip-map demo
@@ -54030,7 +71039,7 @@ StitchPlugin.prototype._addTextureName = function(name) {
     img2.src = touchup.repeat(img, self.tilePad, self.tilePad);
 
   }, function(err) {
-    console.log('voxel-stitch _addTextureName error in getTextureImage for '+name+': '+err);
+    console.error('voxel-stitch _addTextureName error in getTextureImage for '+name+': '+err);
   });
 };
 
@@ -54046,27 +71055,27 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":312,"atlaspack":370,"cube-side-array":371,"events":891,"get-pixels":372,"gl-texture2d":397,"inherits":398,"ndarray":402,"ndarray-hash":399,"rect-mip-map":404,"save-pixels":460,"toarray":461,"touchup":462}],464:[function(require,module,exports){
-module.exports=require(150)
-},{"events":891,"inherits":471}],465:[function(require,module,exports){
-module.exports=require(151)
-},{"./chunker":464,"./meshers/culled":466,"./meshers/greedy":467,"./meshers/monotone":468,"./meshers/stupid":469,"./meshers/transgreedy":470,"ndarray":472}],466:[function(require,module,exports){
-module.exports=require(152)
-},{}],467:[function(require,module,exports){
-module.exports=require(153)
-},{}],468:[function(require,module,exports){
-module.exports=require(154)
-},{}],469:[function(require,module,exports){
-module.exports=require(155)
-},{}],470:[function(require,module,exports){
-module.exports=require(156)
-},{}],471:[function(require,module,exports){
-module.exports=require(157)
-},{}],472:[function(require,module,exports){
-module.exports=require(158)
-},{"buffer":888,"iota-array":473}],473:[function(require,module,exports){
+},{"artpacks":357,"atlaspack":415,"cube-side-array":416,"events":936,"get-pixels":417,"gl-texture2d":442,"inherits":443,"ndarray":447,"ndarray-hash":444,"rect-mip-map":449,"save-pixels":505,"toarray":506,"touchup":507}],509:[function(require,module,exports){
+module.exports=require(195)
+},{"events":936,"inherits":516}],510:[function(require,module,exports){
+module.exports=require(196)
+},{"./chunker":509,"./meshers/culled":511,"./meshers/greedy":512,"./meshers/monotone":513,"./meshers/stupid":514,"./meshers/transgreedy":515,"ndarray":517}],511:[function(require,module,exports){
+module.exports=require(197)
+},{}],512:[function(require,module,exports){
+module.exports=require(198)
+},{}],513:[function(require,module,exports){
+module.exports=require(199)
+},{}],514:[function(require,module,exports){
+module.exports=require(200)
+},{}],515:[function(require,module,exports){
+module.exports=require(201)
+},{}],516:[function(require,module,exports){
+module.exports=require(202)
+},{}],517:[function(require,module,exports){
+module.exports=require(203)
+},{"buffer":933,"iota-array":518}],518:[function(require,module,exports){
 module.exports=require(97)
-},{}],474:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -54145,9 +71154,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":475}],475:[function(require,module,exports){
+},{"ucfirst":520}],520:[function(require,module,exports){
 module.exports=require(25)
-},{}],476:[function(require,module,exports){
+},{}],521:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -54245,7 +71254,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],477:[function(require,module,exports){
+},{}],522:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -54312,7 +71321,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],478:[function(require,module,exports){
+},{}],523:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -54446,7 +71455,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],479:[function(require,module,exports){
+},{}],524:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -54736,7 +71745,7 @@ FurnaceDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":489,"inventory-window":480,"itempile":498,"voxel-inventory-dialog":503}],480:[function(require,module,exports){
+},{"inventory":534,"inventory-window":525,"itempile":543,"voxel-inventory-dialog":548}],525:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -54961,7 +71970,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -55182,7 +72191,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":481,"events":891,"ever":483,"ftooltip":486,"touchup":488}],481:[function(require,module,exports){
+},{"cube-icon":526,"events":936,"ever":528,"ftooltip":531,"touchup":533}],526:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -55249,21 +72258,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":482}],482:[function(require,module,exports){
+},{"cube-side-array":527}],527:[function(require,module,exports){
 module.exports=require(39)
-},{}],483:[function(require,module,exports){
+},{}],528:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":484,"./types.json":485,"events":891}],484:[function(require,module,exports){
+},{"./init.json":529,"./types.json":530,"events":936}],529:[function(require,module,exports){
 module.exports=require(16)
-},{}],485:[function(require,module,exports){
+},{}],530:[function(require,module,exports){
 module.exports=require(17)
-},{}],486:[function(require,module,exports){
+},{}],531:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":487}],487:[function(require,module,exports){
+},{"toarray":532}],532:[function(require,module,exports){
 module.exports=require(44)
-},{}],488:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 module.exports=require(45)
-},{}],489:[function(require,module,exports){
+},{}],534:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -55423,13 +72432,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":490,"events":891,"itempile":493}],490:[function(require,module,exports){
+},{"deep-equal":535,"events":936,"itempile":538}],535:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":491,"./lib/keys.js":492}],491:[function(require,module,exports){
+},{"./lib/is_arguments.js":536,"./lib/keys.js":537}],536:[function(require,module,exports){
 module.exports=require(23)
-},{}],492:[function(require,module,exports){
+},{}],537:[function(require,module,exports){
 module.exports=require(24)
-},{}],493:[function(require,module,exports){
+},{}],538:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -55611,15 +72620,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":494,"deep-equal":495}],494:[function(require,module,exports){
+},{"clone":539,"deep-equal":540}],539:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],495:[function(require,module,exports){
+},{"buffer":933}],540:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":496,"./lib/keys.js":497}],496:[function(require,module,exports){
+},{"./lib/is_arguments.js":541,"./lib/keys.js":542}],541:[function(require,module,exports){
 module.exports=require(23)
-},{}],497:[function(require,module,exports){
+},{}],542:[function(require,module,exports){
 module.exports=require(24)
-},{}],498:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -55801,15 +72810,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":499,"deep-equal":500}],499:[function(require,module,exports){
+},{"clone":544,"deep-equal":545}],544:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],500:[function(require,module,exports){
+},{"buffer":933}],545:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":501,"./lib/keys.js":502}],501:[function(require,module,exports){
+},{"./lib/is_arguments.js":546,"./lib/keys.js":547}],546:[function(require,module,exports){
 module.exports=require(23)
-},{}],502:[function(require,module,exports){
+},{}],547:[function(require,module,exports){
 module.exports=require(24)
-},{}],503:[function(require,module,exports){
+},{}],548:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -55885,7 +72894,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":513,"inventory-window":504,"itempile":522,"voxel-modal-dialog":527}],504:[function(require,module,exports){
+},{"inventory":558,"inventory-window":549,"itempile":567,"voxel-modal-dialog":572}],549:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -56110,7 +73119,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -56331,7 +73340,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":505,"events":891,"ever":507,"ftooltip":510,"touchup":512}],505:[function(require,module,exports){
+},{"cube-icon":550,"events":936,"ever":552,"ftooltip":555,"touchup":557}],550:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -56398,21 +73407,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":506}],506:[function(require,module,exports){
+},{"cube-side-array":551}],551:[function(require,module,exports){
 module.exports=require(39)
-},{}],507:[function(require,module,exports){
+},{}],552:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":508,"./types.json":509,"events":891}],508:[function(require,module,exports){
+},{"./init.json":553,"./types.json":554,"events":936}],553:[function(require,module,exports){
 module.exports=require(16)
-},{}],509:[function(require,module,exports){
+},{}],554:[function(require,module,exports){
 module.exports=require(17)
-},{}],510:[function(require,module,exports){
+},{}],555:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":511}],511:[function(require,module,exports){
+},{"toarray":556}],556:[function(require,module,exports){
 module.exports=require(44)
-},{}],512:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 module.exports=require(45)
-},{}],513:[function(require,module,exports){
+},{}],558:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -56572,13 +73581,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":514,"events":891,"itempile":517}],514:[function(require,module,exports){
+},{"deep-equal":559,"events":936,"itempile":562}],559:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":515,"./lib/keys.js":516}],515:[function(require,module,exports){
+},{"./lib/is_arguments.js":560,"./lib/keys.js":561}],560:[function(require,module,exports){
 module.exports=require(23)
-},{}],516:[function(require,module,exports){
+},{}],561:[function(require,module,exports){
 module.exports=require(24)
-},{}],517:[function(require,module,exports){
+},{}],562:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -56760,15 +73769,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":518,"deep-equal":519}],518:[function(require,module,exports){
+},{"clone":563,"deep-equal":564}],563:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],519:[function(require,module,exports){
+},{"buffer":933}],564:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":520,"./lib/keys.js":521}],520:[function(require,module,exports){
+},{"./lib/is_arguments.js":565,"./lib/keys.js":566}],565:[function(require,module,exports){
 module.exports=require(23)
-},{}],521:[function(require,module,exports){
+},{}],566:[function(require,module,exports){
 module.exports=require(24)
-},{}],522:[function(require,module,exports){
+},{}],567:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -56950,25 +73959,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":523,"deep-equal":524}],523:[function(require,module,exports){
+},{"clone":568,"deep-equal":569}],568:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],524:[function(require,module,exports){
+},{"buffer":933}],569:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":525,"./lib/keys.js":526}],525:[function(require,module,exports){
+},{"./lib/is_arguments.js":570,"./lib/keys.js":571}],570:[function(require,module,exports){
 module.exports=require(23)
-},{}],526:[function(require,module,exports){
+},{}],571:[function(require,module,exports){
 module.exports=require(24)
-},{}],527:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":528}],528:[function(require,module,exports){
+},{"voxel-modal":573}],573:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":529}],529:[function(require,module,exports){
+},{"ever":574}],574:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":530,"./types.json":531,"events":891}],530:[function(require,module,exports){
+},{"./init.json":575,"./types.json":576,"events":936}],575:[function(require,module,exports){
 module.exports=require(16)
-},{}],531:[function(require,module,exports){
+},{}],576:[function(require,module,exports){
 module.exports=require(17)
-},{}],532:[function(require,module,exports){
+},{}],577:[function(require,module,exports){
 var Gamemode, Inventory, ItemPile;
 
 ItemPile = require('itempile');
@@ -57075,7 +74084,7 @@ Gamemode = (function() {
 })();
 
 
-},{"inventory":533,"itempile":542}],533:[function(require,module,exports){
+},{"inventory":578,"itempile":587}],578:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -57235,13 +74244,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":534,"events":891,"itempile":537}],534:[function(require,module,exports){
+},{"deep-equal":579,"events":936,"itempile":582}],579:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":535,"./lib/keys.js":536}],535:[function(require,module,exports){
+},{"./lib/is_arguments.js":580,"./lib/keys.js":581}],580:[function(require,module,exports){
 module.exports=require(23)
-},{}],536:[function(require,module,exports){
+},{}],581:[function(require,module,exports){
 module.exports=require(24)
-},{}],537:[function(require,module,exports){
+},{}],582:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -57423,15 +74432,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":538,"deep-equal":539}],538:[function(require,module,exports){
+},{"clone":583,"deep-equal":584}],583:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],539:[function(require,module,exports){
+},{"buffer":933}],584:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":540,"./lib/keys.js":541}],540:[function(require,module,exports){
+},{"./lib/is_arguments.js":585,"./lib/keys.js":586}],585:[function(require,module,exports){
 module.exports=require(23)
-},{}],541:[function(require,module,exports){
+},{}],586:[function(require,module,exports){
 module.exports=require(24)
-},{}],542:[function(require,module,exports){
+},{}],587:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -57613,15 +74622,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":543,"deep-equal":544}],543:[function(require,module,exports){
+},{"clone":588,"deep-equal":589}],588:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],544:[function(require,module,exports){
+},{"buffer":933}],589:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":545,"./lib/keys.js":546}],545:[function(require,module,exports){
+},{"./lib/is_arguments.js":590,"./lib/keys.js":591}],590:[function(require,module,exports){
 module.exports=require(23)
-},{}],546:[function(require,module,exports){
+},{}],591:[function(require,module,exports){
 module.exports=require(24)
-},{}],547:[function(require,module,exports){
+},{}],592:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -57672,7 +74681,7 @@ GlassPlugin.prototype.enable = function() {
   this.registerPane(''); // clear
 
   if (this.recipes) {
-    this.recipes.registerPositional([['glass', 'glass', 'glass']], ['glassPane']);
+    this.recipes.registerPositional([['glass', 'glass', 'glass']], ['glassPane', 3]);
 
     // TODO: dye recipes, harmonize with https://github.com/deathcap/voxel-wool (API?)
   }
@@ -57749,7 +74758,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":548,"ucfirst":553}],548:[function(require,module,exports){
+},{"itempile":593,"ucfirst":598}],593:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -57928,7 +74937,7 @@ GlassPlugin.prototype.disable = function() {
 
 }).call(this);
 
-},{"clone":549,"deep-equal":550}],549:[function(require,module,exports){
+},{"clone":594,"deep-equal":595}],594:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -58060,15 +75069,15 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":888}],550:[function(require,module,exports){
+},{"buffer":933}],595:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":551,"./lib/keys.js":552}],551:[function(require,module,exports){
+},{"./lib/is_arguments.js":596,"./lib/keys.js":597}],596:[function(require,module,exports){
 module.exports=require(23)
-},{}],552:[function(require,module,exports){
+},{}],597:[function(require,module,exports){
 module.exports=require(24)
-},{}],553:[function(require,module,exports){
+},{}],598:[function(require,module,exports){
 module.exports=require(25)
-},{}],554:[function(require,module,exports){
+},{}],599:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -58142,7 +75151,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],555:[function(require,module,exports){
+},{}],600:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -58290,7 +75299,7 @@ Harvest = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":891,"itempile":556}],556:[function(require,module,exports){
+},{"events":936,"itempile":601}],601:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -58472,15 +75481,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":557,"deep-equal":558}],557:[function(require,module,exports){
+},{"clone":602,"deep-equal":603}],602:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],558:[function(require,module,exports){
+},{"buffer":933}],603:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":559,"./lib/keys.js":560}],559:[function(require,module,exports){
+},{"./lib/is_arguments.js":604,"./lib/keys.js":605}],604:[function(require,module,exports){
 module.exports=require(23)
-},{}],560:[function(require,module,exports){
+},{}],605:[function(require,module,exports){
 module.exports=require(24)
-},{}],561:[function(require,module,exports){
+},{}],606:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -58551,7 +75560,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],562:[function(require,module,exports){
+},{}],607:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new HealthFallPlugin(game, opts);
@@ -58586,7 +75595,7 @@ HealthFallPlugin.prototype.disable = function() {
 };
 
 
-},{}],563:[function(require,module,exports){
+},{}],608:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -58674,9 +75683,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":891,"inherits":564}],564:[function(require,module,exports){
-module.exports=require(232)
-},{}],565:[function(require,module,exports){
+},{"events":936,"inherits":609}],609:[function(require,module,exports){
+module.exports=require(277)
+},{}],610:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -58795,7 +75804,7 @@ InventoryCrafting = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":575,"inventory-window":566,"itempile":584,"voxel-inventory-dialog":589}],566:[function(require,module,exports){
+},{"inventory":620,"inventory-window":611,"itempile":629,"voxel-inventory-dialog":634}],611:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -59020,7 +76029,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -59241,7 +76250,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":567,"events":891,"ever":569,"ftooltip":572,"touchup":574}],567:[function(require,module,exports){
+},{"cube-icon":612,"events":936,"ever":614,"ftooltip":617,"touchup":619}],612:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -59308,21 +76317,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":568}],568:[function(require,module,exports){
+},{"cube-side-array":613}],613:[function(require,module,exports){
 module.exports=require(39)
-},{}],569:[function(require,module,exports){
+},{}],614:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":570,"./types.json":571,"events":891}],570:[function(require,module,exports){
+},{"./init.json":615,"./types.json":616,"events":936}],615:[function(require,module,exports){
 module.exports=require(16)
-},{}],571:[function(require,module,exports){
+},{}],616:[function(require,module,exports){
 module.exports=require(17)
-},{}],572:[function(require,module,exports){
+},{}],617:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":573}],573:[function(require,module,exports){
+},{"toarray":618}],618:[function(require,module,exports){
 module.exports=require(44)
-},{}],574:[function(require,module,exports){
+},{}],619:[function(require,module,exports){
 module.exports=require(45)
-},{}],575:[function(require,module,exports){
+},{}],620:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -59482,13 +76491,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":576,"events":891,"itempile":579}],576:[function(require,module,exports){
+},{"deep-equal":621,"events":936,"itempile":624}],621:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":577,"./lib/keys.js":578}],577:[function(require,module,exports){
+},{"./lib/is_arguments.js":622,"./lib/keys.js":623}],622:[function(require,module,exports){
 module.exports=require(23)
-},{}],578:[function(require,module,exports){
+},{}],623:[function(require,module,exports){
 module.exports=require(24)
-},{}],579:[function(require,module,exports){
+},{}],624:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -59670,15 +76679,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":580,"deep-equal":581}],580:[function(require,module,exports){
+},{"clone":625,"deep-equal":626}],625:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],581:[function(require,module,exports){
+},{"buffer":933}],626:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":582,"./lib/keys.js":583}],582:[function(require,module,exports){
+},{"./lib/is_arguments.js":627,"./lib/keys.js":628}],627:[function(require,module,exports){
 module.exports=require(23)
-},{}],583:[function(require,module,exports){
+},{}],628:[function(require,module,exports){
 module.exports=require(24)
-},{}],584:[function(require,module,exports){
+},{}],629:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -59860,15 +76869,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":585,"deep-equal":586}],585:[function(require,module,exports){
+},{"clone":630,"deep-equal":631}],630:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],586:[function(require,module,exports){
+},{"buffer":933}],631:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":587,"./lib/keys.js":588}],587:[function(require,module,exports){
+},{"./lib/is_arguments.js":632,"./lib/keys.js":633}],632:[function(require,module,exports){
 module.exports=require(23)
-},{}],588:[function(require,module,exports){
+},{}],633:[function(require,module,exports){
 module.exports=require(24)
-},{}],589:[function(require,module,exports){
+},{}],634:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -59944,7 +76953,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":599,"inventory-window":590,"itempile":608,"voxel-modal-dialog":613}],590:[function(require,module,exports){
+},{"inventory":644,"inventory-window":635,"itempile":653,"voxel-modal-dialog":658}],635:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -60169,7 +77178,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -60390,7 +77399,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":591,"events":891,"ever":593,"ftooltip":596,"touchup":598}],591:[function(require,module,exports){
+},{"cube-icon":636,"events":936,"ever":638,"ftooltip":641,"touchup":643}],636:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -60457,21 +77466,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":592}],592:[function(require,module,exports){
+},{"cube-side-array":637}],637:[function(require,module,exports){
 module.exports=require(39)
-},{}],593:[function(require,module,exports){
+},{}],638:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":594,"./types.json":595,"events":891}],594:[function(require,module,exports){
+},{"./init.json":639,"./types.json":640,"events":936}],639:[function(require,module,exports){
 module.exports=require(16)
-},{}],595:[function(require,module,exports){
+},{}],640:[function(require,module,exports){
 module.exports=require(17)
-},{}],596:[function(require,module,exports){
+},{}],641:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":597}],597:[function(require,module,exports){
+},{"toarray":642}],642:[function(require,module,exports){
 module.exports=require(44)
-},{}],598:[function(require,module,exports){
+},{}],643:[function(require,module,exports){
 module.exports=require(45)
-},{}],599:[function(require,module,exports){
+},{}],644:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -60631,13 +77640,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":600,"events":891,"itempile":603}],600:[function(require,module,exports){
+},{"deep-equal":645,"events":936,"itempile":648}],645:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":601,"./lib/keys.js":602}],601:[function(require,module,exports){
+},{"./lib/is_arguments.js":646,"./lib/keys.js":647}],646:[function(require,module,exports){
 module.exports=require(23)
-},{}],602:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 module.exports=require(24)
-},{}],603:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -60819,15 +77828,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":604,"deep-equal":605}],604:[function(require,module,exports){
+},{"clone":649,"deep-equal":650}],649:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],605:[function(require,module,exports){
+},{"buffer":933}],650:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":606,"./lib/keys.js":607}],606:[function(require,module,exports){
+},{"./lib/is_arguments.js":651,"./lib/keys.js":652}],651:[function(require,module,exports){
 module.exports=require(23)
-},{}],607:[function(require,module,exports){
+},{}],652:[function(require,module,exports){
 module.exports=require(24)
-},{}],608:[function(require,module,exports){
+},{}],653:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -61009,25 +78018,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":609,"deep-equal":610}],609:[function(require,module,exports){
+},{"clone":654,"deep-equal":655}],654:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],610:[function(require,module,exports){
+},{"buffer":933}],655:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":611,"./lib/keys.js":612}],611:[function(require,module,exports){
+},{"./lib/is_arguments.js":656,"./lib/keys.js":657}],656:[function(require,module,exports){
 module.exports=require(23)
-},{}],612:[function(require,module,exports){
+},{}],657:[function(require,module,exports){
 module.exports=require(24)
-},{}],613:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":614}],614:[function(require,module,exports){
+},{"voxel-modal":659}],659:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":615}],615:[function(require,module,exports){
+},{"ever":660}],660:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":616,"./types.json":617,"events":891}],616:[function(require,module,exports){
+},{"./init.json":661,"./types.json":662,"events":936}],661:[function(require,module,exports){
 module.exports=require(16)
-},{}],617:[function(require,module,exports){
+},{}],662:[function(require,module,exports){
 module.exports=require(17)
-},{}],618:[function(require,module,exports){
+},{}],663:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -61197,7 +78206,7 @@ CreativeInventoryPlugin = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":628,"inventory-window":619,"itempile":637,"voxel-inventory-dialog":642}],619:[function(require,module,exports){
+},{"inventory":673,"inventory-window":664,"itempile":682,"voxel-inventory-dialog":687}],664:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -61422,7 +78431,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -61643,7 +78652,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":620,"events":891,"ever":622,"ftooltip":625,"touchup":627}],620:[function(require,module,exports){
+},{"cube-icon":665,"events":936,"ever":667,"ftooltip":670,"touchup":672}],665:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -61710,21 +78719,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":621}],621:[function(require,module,exports){
+},{"cube-side-array":666}],666:[function(require,module,exports){
 module.exports=require(39)
-},{}],622:[function(require,module,exports){
+},{}],667:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":623,"./types.json":624,"events":891}],623:[function(require,module,exports){
+},{"./init.json":668,"./types.json":669,"events":936}],668:[function(require,module,exports){
 module.exports=require(16)
-},{}],624:[function(require,module,exports){
+},{}],669:[function(require,module,exports){
 module.exports=require(17)
-},{}],625:[function(require,module,exports){
+},{}],670:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":626}],626:[function(require,module,exports){
+},{"toarray":671}],671:[function(require,module,exports){
 module.exports=require(44)
-},{}],627:[function(require,module,exports){
+},{}],672:[function(require,module,exports){
 module.exports=require(45)
-},{}],628:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -61884,13 +78893,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":629,"events":891,"itempile":632}],629:[function(require,module,exports){
+},{"deep-equal":674,"events":936,"itempile":677}],674:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":630,"./lib/keys.js":631}],630:[function(require,module,exports){
+},{"./lib/is_arguments.js":675,"./lib/keys.js":676}],675:[function(require,module,exports){
 module.exports=require(23)
-},{}],631:[function(require,module,exports){
+},{}],676:[function(require,module,exports){
 module.exports=require(24)
-},{}],632:[function(require,module,exports){
+},{}],677:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -62072,15 +79081,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":633,"deep-equal":634}],633:[function(require,module,exports){
+},{"clone":678,"deep-equal":679}],678:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],634:[function(require,module,exports){
+},{"buffer":933}],679:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":635,"./lib/keys.js":636}],635:[function(require,module,exports){
+},{"./lib/is_arguments.js":680,"./lib/keys.js":681}],680:[function(require,module,exports){
 module.exports=require(23)
-},{}],636:[function(require,module,exports){
+},{}],681:[function(require,module,exports){
 module.exports=require(24)
-},{}],637:[function(require,module,exports){
+},{}],682:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -62262,15 +79271,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":638,"deep-equal":639}],638:[function(require,module,exports){
+},{"clone":683,"deep-equal":684}],683:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],639:[function(require,module,exports){
+},{"buffer":933}],684:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":640,"./lib/keys.js":641}],640:[function(require,module,exports){
+},{"./lib/is_arguments.js":685,"./lib/keys.js":686}],685:[function(require,module,exports){
 module.exports=require(23)
-},{}],641:[function(require,module,exports){
+},{}],686:[function(require,module,exports){
 module.exports=require(24)
-},{}],642:[function(require,module,exports){
+},{}],687:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -62346,7 +79355,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":652,"inventory-window":643,"itempile":661,"voxel-modal-dialog":666}],643:[function(require,module,exports){
+},{"inventory":697,"inventory-window":688,"itempile":706,"voxel-modal-dialog":711}],688:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -62571,7 +79580,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -62792,7 +79801,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":644,"events":891,"ever":646,"ftooltip":649,"touchup":651}],644:[function(require,module,exports){
+},{"cube-icon":689,"events":936,"ever":691,"ftooltip":694,"touchup":696}],689:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -62859,21 +79868,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":645}],645:[function(require,module,exports){
+},{"cube-side-array":690}],690:[function(require,module,exports){
 module.exports=require(39)
-},{}],646:[function(require,module,exports){
+},{}],691:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":647,"./types.json":648,"events":891}],647:[function(require,module,exports){
+},{"./init.json":692,"./types.json":693,"events":936}],692:[function(require,module,exports){
 module.exports=require(16)
-},{}],648:[function(require,module,exports){
+},{}],693:[function(require,module,exports){
 module.exports=require(17)
-},{}],649:[function(require,module,exports){
+},{}],694:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":650}],650:[function(require,module,exports){
+},{"toarray":695}],695:[function(require,module,exports){
 module.exports=require(44)
-},{}],651:[function(require,module,exports){
+},{}],696:[function(require,module,exports){
 module.exports=require(45)
-},{}],652:[function(require,module,exports){
+},{}],697:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -63033,13 +80042,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":653,"events":891,"itempile":656}],653:[function(require,module,exports){
+},{"deep-equal":698,"events":936,"itempile":701}],698:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":654,"./lib/keys.js":655}],654:[function(require,module,exports){
+},{"./lib/is_arguments.js":699,"./lib/keys.js":700}],699:[function(require,module,exports){
 module.exports=require(23)
-},{}],655:[function(require,module,exports){
+},{}],700:[function(require,module,exports){
 module.exports=require(24)
-},{}],656:[function(require,module,exports){
+},{}],701:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -63221,15 +80230,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":657,"deep-equal":658}],657:[function(require,module,exports){
+},{"clone":702,"deep-equal":703}],702:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],658:[function(require,module,exports){
+},{"buffer":933}],703:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":659,"./lib/keys.js":660}],659:[function(require,module,exports){
+},{"./lib/is_arguments.js":704,"./lib/keys.js":705}],704:[function(require,module,exports){
 module.exports=require(23)
-},{}],660:[function(require,module,exports){
+},{}],705:[function(require,module,exports){
 module.exports=require(24)
-},{}],661:[function(require,module,exports){
+},{}],706:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -63411,25 +80420,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":662,"deep-equal":663}],662:[function(require,module,exports){
+},{"clone":707,"deep-equal":708}],707:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],663:[function(require,module,exports){
+},{"buffer":933}],708:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":664,"./lib/keys.js":665}],664:[function(require,module,exports){
+},{"./lib/is_arguments.js":709,"./lib/keys.js":710}],709:[function(require,module,exports){
 module.exports=require(23)
-},{}],665:[function(require,module,exports){
+},{}],710:[function(require,module,exports){
 module.exports=require(24)
-},{}],666:[function(require,module,exports){
+},{}],711:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":667}],667:[function(require,module,exports){
+},{"voxel-modal":712}],712:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":668}],668:[function(require,module,exports){
+},{"ever":713}],713:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":669,"./types.json":670,"events":891}],669:[function(require,module,exports){
+},{"./init.json":714,"./types.json":715,"events":936}],714:[function(require,module,exports){
 module.exports=require(16)
-},{}],670:[function(require,module,exports){
+},{}],715:[function(require,module,exports){
 module.exports=require(17)
-},{}],671:[function(require,module,exports){
+},{}],716:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -63643,13 +80652,13 @@ InventoryHotbarClient = (function(_super) {
 })(InventoryHotbarCommon);
 
 
-},{"events":891,"ever":672,"inventory-window":675}],672:[function(require,module,exports){
+},{"events":936,"ever":717,"inventory-window":720}],717:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":673,"./types.json":674,"events":891}],673:[function(require,module,exports){
+},{"./init.json":718,"./types.json":719,"events":936}],718:[function(require,module,exports){
 module.exports=require(16)
-},{}],674:[function(require,module,exports){
+},{}],719:[function(require,module,exports){
 module.exports=require(17)
-},{}],675:[function(require,module,exports){
+},{}],720:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -63874,7 +80883,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -64095,7 +81104,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":676,"events":891,"ever":678,"ftooltip":681,"touchup":683}],676:[function(require,module,exports){
+},{"cube-icon":721,"events":936,"ever":723,"ftooltip":726,"touchup":728}],721:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -64162,21 +81171,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":677}],677:[function(require,module,exports){
+},{"cube-side-array":722}],722:[function(require,module,exports){
 module.exports=require(39)
-},{}],678:[function(require,module,exports){
+},{}],723:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":679,"./types.json":680,"events":891}],679:[function(require,module,exports){
+},{"./init.json":724,"./types.json":725,"events":936}],724:[function(require,module,exports){
 module.exports=require(16)
-},{}],680:[function(require,module,exports){
+},{}],725:[function(require,module,exports){
 module.exports=require(17)
-},{}],681:[function(require,module,exports){
+},{}],726:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":682}],682:[function(require,module,exports){
+},{"toarray":727}],727:[function(require,module,exports){
 module.exports=require(44)
-},{}],683:[function(require,module,exports){
+},{}],728:[function(require,module,exports){
 module.exports=require(45)
-},{}],684:[function(require,module,exports){
+},{}],729:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -64361,13 +81370,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":891,"inherits":685,"toarray":686,"vkey":687}],685:[function(require,module,exports){
-module.exports=require(232)
-},{}],686:[function(require,module,exports){
+},{"events":936,"inherits":730,"toarray":731,"vkey":732}],730:[function(require,module,exports){
+module.exports=require(277)
+},{}],731:[function(require,module,exports){
 module.exports=require(44)
-},{}],687:[function(require,module,exports){
+},{}],732:[function(require,module,exports){
 module.exports=require(10)
-},{}],688:[function(require,module,exports){
+},{}],733:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -64520,7 +81529,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require("q+64fw"))
-},{"./worker.js":705,"ndarray":698,"q+64fw":894,"unworkify":701,"webworkify":704}],689:[function(require,module,exports){
+},{"./worker.js":750,"ndarray":743,"q+64fw":939,"unworkify":746,"webworkify":749}],734:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -64631,27 +81640,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],690:[function(require,module,exports){
+},{}],735:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":691,"./types.json":692,"events":891}],691:[function(require,module,exports){
+},{"./init.json":736,"./types.json":737,"events":936}],736:[function(require,module,exports){
 module.exports=require(16)
-},{}],692:[function(require,module,exports){
+},{}],737:[function(require,module,exports){
 module.exports=require(17)
-},{}],693:[function(require,module,exports){
+},{}],738:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":694}],694:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":696}],695:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":697}],696:[function(require,module,exports){
+},{"cwise-compiler":739}],739:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":741}],740:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":742}],741:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":695}],697:[function(require,module,exports){
-module.exports=require(166)
-},{}],698:[function(require,module,exports){
+},{"./compile.js":740}],742:[function(require,module,exports){
+module.exports=require(211)
+},{}],743:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":888,"iota-array":699}],699:[function(require,module,exports){
+},{"buffer":933,"iota-array":744}],744:[function(require,module,exports){
 module.exports=require(97)
-},{}],700:[function(require,module,exports){
+},{}],745:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -65100,7 +82109,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],701:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -65125,9 +82134,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":891,"inherits":702}],702:[function(require,module,exports){
-module.exports=require(157)
-},{}],703:[function(require,module,exports){
+},{"events":936,"inherits":747}],747:[function(require,module,exports){
+module.exports=require(202)
+},{}],748:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -65336,9 +82345,9 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],704:[function(require,module,exports){
-module.exports=require(130)
-},{}],705:[function(require,module,exports){
+},{}],749:[function(require,module,exports){
+module.exports=require(176)
+},{}],750:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -65640,7 +82649,7 @@ module.exports = function() {
 
 
 
-},{"alea":689,"ever":690,"ndarray":698,"ndarray-ops":693,"simplex-noise":700,"voxel-trees":703}],706:[function(require,module,exports){
+},{"alea":734,"ever":735,"ndarray":743,"ndarray-ops":738,"simplex-noise":745,"voxel-trees":748}],751:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -65709,7 +82718,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":707,"gl-matrix":708}],707:[function(require,module,exports){
+},{"asarray":752,"gl-matrix":753}],752:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -65723,9 +82732,9 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],708:[function(require,module,exports){
-module.exports=require(174)
-},{}],709:[function(require,module,exports){
+},{}],753:[function(require,module,exports){
+module.exports=require(219)
+},{}],754:[function(require,module,exports){
 var EventEmitter, Mine,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -66085,63 +83094,63 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":891}],710:[function(require,module,exports){
+},{"events":936}],755:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"ndarray":716,"ndarray-ops":711,"typedarray-pool":720,"webglew":722}],711:[function(require,module,exports){
+},{"ndarray":761,"ndarray-ops":756,"typedarray-pool":765,"webglew":767}],756:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":712}],712:[function(require,module,exports){
-module.exports=require(163)
-},{"./lib/thunk.js":714}],713:[function(require,module,exports){
-module.exports=require(164)
-},{"uniq":715}],714:[function(require,module,exports){
+},{"cwise-compiler":757}],757:[function(require,module,exports){
+module.exports=require(208)
+},{"./lib/thunk.js":759}],758:[function(require,module,exports){
+module.exports=require(209)
+},{"uniq":760}],759:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":713}],715:[function(require,module,exports){
-module.exports=require(166)
-},{}],716:[function(require,module,exports){
-module.exports=require(167)
-},{"buffer":888,"iota-array":717}],717:[function(require,module,exports){
+},{"./compile.js":758}],760:[function(require,module,exports){
+module.exports=require(211)
+},{}],761:[function(require,module,exports){
+module.exports=require(212)
+},{"buffer":933,"iota-array":762}],762:[function(require,module,exports){
 module.exports=require(97)
-},{}],718:[function(require,module,exports){
+},{}],763:[function(require,module,exports){
 module.exports=require(98)
-},{}],719:[function(require,module,exports){
+},{}],764:[function(require,module,exports){
 module.exports=require(99)
-},{}],720:[function(require,module,exports){
-module.exports=require(171)
-},{"bit-twiddle":718,"buffer":888,"dup":719}],721:[function(require,module,exports){
+},{}],765:[function(require,module,exports){
+module.exports=require(216)
+},{"bit-twiddle":763,"buffer":933,"dup":764}],766:[function(require,module,exports){
 module.exports=require(101)
-},{}],722:[function(require,module,exports){
+},{}],767:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":721}],723:[function(require,module,exports){
-module.exports=require(174)
-},{}],724:[function(require,module,exports){
+},{"weakmap":766}],768:[function(require,module,exports){
+module.exports=require(219)
+},{}],769:[function(require,module,exports){
 module.exports=require(103)
-},{}],725:[function(require,module,exports){
+},{}],770:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":724}],726:[function(require,module,exports){
+},{"./do-bind.js":769}],771:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":724}],727:[function(require,module,exports){
+},{"./do-bind.js":769}],772:[function(require,module,exports){
 module.exports=require(101)
-},{}],728:[function(require,module,exports){
+},{}],773:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":727}],729:[function(require,module,exports){
+},{"weakmap":772}],774:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":725,"./lib/vao-native.js":726,"webglew":728}],730:[function(require,module,exports){
+},{"./lib/vao-emulated.js":770,"./lib/vao-native.js":771,"webglew":773}],775:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":736}],731:[function(require,module,exports){
+},{"gl-shader-core":781}],776:[function(require,module,exports){
 module.exports=require(110)
-},{}],732:[function(require,module,exports){
+},{}],777:[function(require,module,exports){
 module.exports=require(111)
-},{}],733:[function(require,module,exports){
+},{}],778:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":734,"dup":735}],734:[function(require,module,exports){
+},{"./reflect.js":779,"dup":780}],779:[function(require,module,exports){
 module.exports=require(113)
-},{}],735:[function(require,module,exports){
+},{}],780:[function(require,module,exports){
 module.exports=require(99)
-},{}],736:[function(require,module,exports){
+},{}],781:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":732,"./lib/create-uniforms.js":733,"./lib/reflect.js":734}],737:[function(require,module,exports){
-module.exports=require(232)
-},{}],738:[function(require,module,exports){
+},{"./lib/create-attributes.js":777,"./lib/create-uniforms.js":778,"./lib/reflect.js":779}],782:[function(require,module,exports){
+module.exports=require(277)
+},{}],783:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -66257,7 +83266,7 @@ OutlinePlugin.prototype.shaderInit = function() {
     outlineVAO.length = outlineVertexCount;
     this.mesh = outlineVAO;
 };
-},{"events":891,"gl-buffer":710,"gl-matrix":723,"gl-vao":729,"glslify":731,"glslify/adapter.js":730,"inherits":737}],739:[function(require,module,exports){
+},{"events":936,"gl-buffer":755,"gl-matrix":768,"gl-vao":774,"glslify":776,"glslify/adapter.js":775,"inherits":782}],784:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -66564,7 +83573,7 @@ OutlinePlugin.prototype.shaderInit = function() {
 
 }).call(this);
 
-},{}],740:[function(require,module,exports){
+},{}],785:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -66746,15 +83755,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":741,"deep-equal":742}],741:[function(require,module,exports){
+},{"clone":786,"deep-equal":787}],786:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],742:[function(require,module,exports){
+},{"buffer":933}],787:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":743,"./lib/keys.js":744}],743:[function(require,module,exports){
+},{"./lib/is_arguments.js":788,"./lib/keys.js":789}],788:[function(require,module,exports){
 module.exports=require(23)
-},{}],744:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
 module.exports=require(24)
-},{}],745:[function(require,module,exports){
+},{}],790:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -66969,7 +83978,7 @@ RepairRecipe = (function(_super) {
 })(Recipe);
 
 
-},{"craftingrecipes":739,"itempile":740}],746:[function(require,module,exports){
+},{"craftingrecipes":784,"itempile":785}],791:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -67110,7 +84119,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":747}],747:[function(require,module,exports){
+},{"minecraft-skin":792}],792:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -67500,13 +84509,13 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 
-},{}],748:[function(require,module,exports){
+},{}],793:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":749,"./vendor/dat.gui":750}],749:[function(require,module,exports){
+},{"./vendor/dat.color":794,"./vendor/dat.gui":795}],794:[function(require,module,exports){
 module.exports=require(4)
-},{}],750:[function(require,module,exports){
+},{}],795:[function(require,module,exports){
 module.exports=require(5)
-},{}],751:[function(require,module,exports){
+},{}],796:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -67573,7 +84582,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":748}],752:[function(require,module,exports){
+},{"dat-gui":793}],797:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -67755,17 +84764,17 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":753,"deep-equal":754}],753:[function(require,module,exports){
+},{"clone":798,"deep-equal":799}],798:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],754:[function(require,module,exports){
+},{"buffer":933}],799:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":755,"./lib/keys.js":756}],755:[function(require,module,exports){
+},{"./lib/is_arguments.js":800,"./lib/keys.js":801}],800:[function(require,module,exports){
 module.exports=require(23)
-},{}],756:[function(require,module,exports){
+},{}],801:[function(require,module,exports){
 module.exports=require(24)
-},{}],757:[function(require,module,exports){
+},{}],802:[function(require,module,exports){
 module.exports=require(25)
-},{}],758:[function(require,module,exports){
+},{}],803:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -67974,7 +84983,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":752,"ucfirst":757}],759:[function(require,module,exports){
+},{"itempile":797,"ucfirst":802}],804:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -68108,13 +85117,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],760:[function(require,module,exports){
+},{}],805:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":761,"./types.json":762,"events":891}],761:[function(require,module,exports){
+},{"./init.json":806,"./types.json":807,"events":936}],806:[function(require,module,exports){
 module.exports=require(16)
-},{}],762:[function(require,module,exports){
+},{}],807:[function(require,module,exports){
 module.exports=require(17)
-},{}],763:[function(require,module,exports){
+},{}],808:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -68123,9 +85132,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],764:[function(require,module,exports){
-module.exports=require(157)
-},{}],765:[function(require,module,exports){
+},{}],809:[function(require,module,exports){
+module.exports=require(202)
+},{}],810:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -68309,9 +85318,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":891,"ever":760,"fract":763,"inherits":764}],766:[function(require,module,exports){
-module.exports=require(739)
-},{}],767:[function(require,module,exports){
+},{"events":936,"ever":805,"fract":808,"inherits":809}],811:[function(require,module,exports){
+module.exports=require(784)
+},{}],812:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -68486,15 +85495,15 @@ module.exports=require(739)
 
 }).call(this);
 
-},{"clone":768,"deep-equal":769}],768:[function(require,module,exports){
+},{"clone":813,"deep-equal":814}],813:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],769:[function(require,module,exports){
+},{"buffer":933}],814:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":770,"./lib/keys.js":771}],770:[function(require,module,exports){
+},{"./lib/is_arguments.js":815,"./lib/keys.js":816}],815:[function(require,module,exports){
 module.exports=require(23)
-},{}],771:[function(require,module,exports){
+},{}],816:[function(require,module,exports){
 module.exports=require(24)
-},{}],772:[function(require,module,exports){
+},{}],817:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -68543,10 +85552,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":766,"itempile":767}],773:[function(require,module,exports){
+},{"craftingrecipes":811,"itempile":812}],818:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":774}],774:[function(require,module,exports){
+},{"media":819}],819:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -68557,7 +85566,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":776}],775:[function(require,module,exports){
+},{"./lib/player":821}],820:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -68581,7 +85590,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],776:[function(require,module,exports){
+},{}],821:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -68658,7 +85667,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":777,"./src":778,"new-chain":781}],777:[function(require,module,exports){
+},{"./render":822,"./src":823,"new-chain":826}],822:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -68668,7 +85677,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":779,"domify":780}],778:[function(require,module,exports){
+},{"./templates":824,"domify":825}],823:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -68701,10 +85710,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":775}],779:[function(require,module,exports){
+},{"./mime":820}],824:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],780:[function(require,module,exports){
+},{}],825:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -68777,7 +85786,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],781:[function(require,module,exports){
+},{}],826:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -68834,7 +85843,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],782:[function(require,module,exports){
+},{}],827:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -68893,7 +85902,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":773}],783:[function(require,module,exports){
+},{"play-audio":818}],828:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -68945,7 +85954,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],784:[function(require,module,exports){
+},{}],829:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -69018,7 +86027,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],785:[function(require,module,exports){
+},{}],830:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new StartPlugin(game, opts);
 };
@@ -69061,7 +86070,7 @@ StartPlugin.prototype.disable = function() {
   delete self.icon;
 };
 
-},{}],786:[function(require,module,exports){
+},{}],831:[function(require,module,exports){
 var EventEmitter, Use,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -69179,7 +86188,7 @@ Use = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":891}],787:[function(require,module,exports){
+},{"events":936}],832:[function(require,module,exports){
 // Turns virus into water
 module.exports = function(water, material) {
   var old = {
@@ -69222,7 +86231,7 @@ module.exports = function(water, material) {
 
   return toNormal;
 };
-},{}],788:[function(require,module,exports){
+},{}],833:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -69331,7 +86340,7 @@ function defaultHow(block, level) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./example/water.js":787,"q+64fw":894}],789:[function(require,module,exports){
+},{"./example/water.js":832,"q+64fw":939}],834:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -69464,7 +86473,7 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":894}],790:[function(require,module,exports){
+},{"q+64fw":939}],835:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Walk(game, opts)
@@ -69575,7 +86584,7 @@ Walk.prototype.setAcceleration = function(newA) {
   this.acceleration = newA
 }
 
-},{}],791:[function(require,module,exports){
+},{}],836:[function(require,module,exports){
 // based on https://github.com/mrdoob/three.js/blob/219c07680da08c5254c1b05482eb40ea038234e0/examples/js/renderers/CSS3DRenderer.js
 // adapted for nodejs
 module.exports = function(THREE) {
@@ -69808,7 +86817,7 @@ THREE.CSS3DRenderer = function () {
 
 };
 
-},{}],792:[function(require,module,exports){
+},{}],837:[function(require,module,exports){
 'use strict';
 
 var loadCSS3DRenderer = require('./CSS3DRenderer.js');
@@ -69954,59 +86963,59 @@ WebviewPlugin.prototype.disable = function() {
 };
 
 
-},{"./CSS3DRenderer.js":791}],793:[function(require,module,exports){
+},{"./CSS3DRenderer.js":836}],838:[function(require,module,exports){
 module.exports=require(90)
-},{"ndarray":817,"ndarray-ops":812,"typedarray-pool":796,"webglew":798}],794:[function(require,module,exports){
+},{"ndarray":862,"ndarray-ops":857,"typedarray-pool":841,"webglew":843}],839:[function(require,module,exports){
 module.exports=require(98)
-},{}],795:[function(require,module,exports){
+},{}],840:[function(require,module,exports){
 module.exports=require(99)
-},{}],796:[function(require,module,exports){
+},{}],841:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":794,"buffer":888,"dup":795}],797:[function(require,module,exports){
+},{"bit-twiddle":839,"buffer":933,"dup":840}],842:[function(require,module,exports){
 module.exports=require(101)
-},{}],798:[function(require,module,exports){
+},{}],843:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":797}],799:[function(require,module,exports){
+},{"weakmap":842}],844:[function(require,module,exports){
 module.exports=require(103)
-},{}],800:[function(require,module,exports){
+},{}],845:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":799}],801:[function(require,module,exports){
+},{"./do-bind.js":844}],846:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":799}],802:[function(require,module,exports){
+},{"./do-bind.js":844}],847:[function(require,module,exports){
 module.exports=require(101)
-},{}],803:[function(require,module,exports){
+},{}],848:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":802}],804:[function(require,module,exports){
+},{"weakmap":847}],849:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":800,"./lib/vao-native.js":801,"webglew":803}],805:[function(require,module,exports){
+},{"./lib/vao-emulated.js":845,"./lib/vao-native.js":846,"webglew":848}],850:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":811}],806:[function(require,module,exports){
+},{"gl-shader-core":856}],851:[function(require,module,exports){
 module.exports=require(110)
-},{}],807:[function(require,module,exports){
+},{}],852:[function(require,module,exports){
 module.exports=require(111)
-},{}],808:[function(require,module,exports){
+},{}],853:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":809,"dup":810}],809:[function(require,module,exports){
+},{"./reflect.js":854,"dup":855}],854:[function(require,module,exports){
 module.exports=require(113)
-},{}],810:[function(require,module,exports){
+},{}],855:[function(require,module,exports){
 module.exports=require(99)
-},{}],811:[function(require,module,exports){
+},{}],856:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":807,"./lib/create-uniforms.js":808,"./lib/reflect.js":809}],812:[function(require,module,exports){
+},{"./lib/create-attributes.js":852,"./lib/create-uniforms.js":853,"./lib/reflect.js":854}],857:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":813}],813:[function(require,module,exports){
+},{"cwise-compiler":858}],858:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":815}],814:[function(require,module,exports){
+},{"./lib/thunk.js":860}],859:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":816}],815:[function(require,module,exports){
+},{"uniq":861}],860:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":814}],816:[function(require,module,exports){
+},{"./compile.js":859}],861:[function(require,module,exports){
 module.exports=require(95)
-},{}],817:[function(require,module,exports){
+},{}],862:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":888,"iota-array":818}],818:[function(require,module,exports){
+},{"buffer":933,"iota-array":863}],863:[function(require,module,exports){
 module.exports=require(97)
-},{}],819:[function(require,module,exports){
+},{}],864:[function(require,module,exports){
 "use strict";
 var ndarray = require("ndarray");
 var ops = require("ndarray-ops");
@@ -70124,9 +87133,9 @@ WireframePlugin.prototype.render = function() {
         }
     }
 };
-},{"gl-buffer":793,"gl-vao":804,"glslify":806,"glslify/adapter.js":805,"ndarray":817,"ndarray-ops":812}],820:[function(require,module,exports){
+},{"gl-buffer":838,"gl-vao":849,"glslify":851,"glslify/adapter.js":850,"ndarray":862,"ndarray-ops":857}],865:[function(require,module,exports){
 module.exports=require(25)
-},{}],821:[function(require,module,exports){
+},{}],866:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -70176,7 +87185,7 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":820}],822:[function(require,module,exports){
+},{"ucfirst":865}],867:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -70401,7 +87410,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -70622,7 +87631,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":823,"events":891,"ever":825,"ftooltip":828,"touchup":830}],823:[function(require,module,exports){
+},{"cube-icon":868,"events":936,"ever":870,"ftooltip":873,"touchup":875}],868:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -70689,21 +87698,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":824}],824:[function(require,module,exports){
+},{"cube-side-array":869}],869:[function(require,module,exports){
 module.exports=require(39)
-},{}],825:[function(require,module,exports){
+},{}],870:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":826,"./types.json":827,"events":891}],826:[function(require,module,exports){
+},{"./init.json":871,"./types.json":872,"events":936}],871:[function(require,module,exports){
 module.exports=require(16)
-},{}],827:[function(require,module,exports){
+},{}],872:[function(require,module,exports){
 module.exports=require(17)
-},{}],828:[function(require,module,exports){
+},{}],873:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":829}],829:[function(require,module,exports){
+},{"toarray":874}],874:[function(require,module,exports){
 module.exports=require(44)
-},{}],830:[function(require,module,exports){
+},{}],875:[function(require,module,exports){
 module.exports=require(45)
-},{}],831:[function(require,module,exports){
+},{}],876:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -70863,13 +87872,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":832,"events":891,"itempile":835}],832:[function(require,module,exports){
+},{"deep-equal":877,"events":936,"itempile":880}],877:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":833,"./lib/keys.js":834}],833:[function(require,module,exports){
+},{"./lib/is_arguments.js":878,"./lib/keys.js":879}],878:[function(require,module,exports){
 module.exports=require(23)
-},{}],834:[function(require,module,exports){
+},{}],879:[function(require,module,exports){
 module.exports=require(24)
-},{}],835:[function(require,module,exports){
+},{}],880:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -71051,15 +88060,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":836,"deep-equal":837}],836:[function(require,module,exports){
+},{"clone":881,"deep-equal":882}],881:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],837:[function(require,module,exports){
+},{"buffer":933}],882:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":838,"./lib/keys.js":839}],838:[function(require,module,exports){
+},{"./lib/is_arguments.js":883,"./lib/keys.js":884}],883:[function(require,module,exports){
 module.exports=require(23)
-},{}],839:[function(require,module,exports){
+},{}],884:[function(require,module,exports){
 module.exports=require(24)
-},{}],840:[function(require,module,exports){
+},{}],885:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -71135,7 +88144,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":850,"inventory-window":841,"itempile":859,"voxel-modal-dialog":864}],841:[function(require,module,exports){
+},{"inventory":895,"inventory-window":886,"itempile":904,"voxel-modal-dialog":909}],886:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -71360,7 +88369,7 @@ module.exports = InventoryWindow = (function(_super) {
     textBox = div.children[1];
     if (textBox == null) {
       textBox = document.createElement('div');
-      textBox.setAttribute('style', 'position: absolute;');
+      textBox.setAttribute('style', 'position: absolute; text-shadow: 1px 1px #eee, -1px -1px #333;');
       div.appendChild(textBox);
     }
     if (textBox.textContent !== text) {
@@ -71581,7 +88590,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":842,"events":891,"ever":844,"ftooltip":847,"touchup":849}],842:[function(require,module,exports){
+},{"cube-icon":887,"events":936,"ever":889,"ftooltip":892,"touchup":894}],887:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -71648,21 +88657,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":843}],843:[function(require,module,exports){
+},{"cube-side-array":888}],888:[function(require,module,exports){
 module.exports=require(39)
-},{}],844:[function(require,module,exports){
+},{}],889:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":845,"./types.json":846,"events":891}],845:[function(require,module,exports){
+},{"./init.json":890,"./types.json":891,"events":936}],890:[function(require,module,exports){
 module.exports=require(16)
-},{}],846:[function(require,module,exports){
+},{}],891:[function(require,module,exports){
 module.exports=require(17)
-},{}],847:[function(require,module,exports){
+},{}],892:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":848}],848:[function(require,module,exports){
+},{"toarray":893}],893:[function(require,module,exports){
 module.exports=require(44)
-},{}],849:[function(require,module,exports){
+},{}],894:[function(require,module,exports){
 module.exports=require(45)
-},{}],850:[function(require,module,exports){
+},{}],895:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -71822,13 +88831,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":851,"events":891,"itempile":854}],851:[function(require,module,exports){
+},{"deep-equal":896,"events":936,"itempile":899}],896:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":852,"./lib/keys.js":853}],852:[function(require,module,exports){
+},{"./lib/is_arguments.js":897,"./lib/keys.js":898}],897:[function(require,module,exports){
 module.exports=require(23)
-},{}],853:[function(require,module,exports){
+},{}],898:[function(require,module,exports){
 module.exports=require(24)
-},{}],854:[function(require,module,exports){
+},{}],899:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -72010,15 +89019,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":855,"deep-equal":856}],855:[function(require,module,exports){
+},{"clone":900,"deep-equal":901}],900:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],856:[function(require,module,exports){
+},{"buffer":933}],901:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":857,"./lib/keys.js":858}],857:[function(require,module,exports){
+},{"./lib/is_arguments.js":902,"./lib/keys.js":903}],902:[function(require,module,exports){
 module.exports=require(23)
-},{}],858:[function(require,module,exports){
+},{}],903:[function(require,module,exports){
 module.exports=require(24)
-},{}],859:[function(require,module,exports){
+},{}],904:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -72200,25 +89209,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":860,"deep-equal":861}],860:[function(require,module,exports){
+},{"clone":905,"deep-equal":906}],905:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":888}],861:[function(require,module,exports){
+},{"buffer":933}],906:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":862,"./lib/keys.js":863}],862:[function(require,module,exports){
+},{"./lib/is_arguments.js":907,"./lib/keys.js":908}],907:[function(require,module,exports){
 module.exports=require(23)
-},{}],863:[function(require,module,exports){
+},{}],908:[function(require,module,exports){
 module.exports=require(24)
-},{}],864:[function(require,module,exports){
+},{}],909:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":865}],865:[function(require,module,exports){
+},{"voxel-modal":910}],910:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":866}],866:[function(require,module,exports){
+},{"ever":911}],911:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":867,"./types.json":868,"events":891}],867:[function(require,module,exports){
+},{"./init.json":912,"./types.json":913,"events":936}],912:[function(require,module,exports){
 module.exports=require(16)
-},{}],868:[function(require,module,exports){
+},{}],913:[function(require,module,exports){
 module.exports=require(17)
-},{}],869:[function(require,module,exports){
+},{}],914:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -72398,7 +89407,7 @@ WorkbenchDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":831,"inventory-window":822,"voxel-inventory-dialog":840}],870:[function(require,module,exports){
+},{"inventory":876,"inventory-window":867,"voxel-inventory-dialog":885}],915:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -72504,9 +89513,9 @@ ZenPlugin = (function() {
 })();
 
 
-},{}],871:[function(require,module,exports){
+},{}],916:[function(require,module,exports){
 
-},{}],872:[function(require,module,exports){
+},{}],917:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -72868,14 +89877,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":874}],873:[function(require,module,exports){
+},{"util/":919}],918:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],874:[function(require,module,exports){
+},{}],919:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -73465,7 +90474,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":873,"inherits":892,"q+64fw":894}],875:[function(require,module,exports){
+},{"./support/isBuffer":918,"inherits":937,"q+64fw":939}],920:[function(require,module,exports){
 'use strict';
 
 
@@ -73568,7 +90577,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],876:[function(require,module,exports){
+},{}],921:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -73601,7 +90610,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],877:[function(require,module,exports){
+},{}],922:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -73649,7 +90658,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],878:[function(require,module,exports){
+},{}],923:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -73691,7 +90700,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],879:[function(require,module,exports){
+},{}],924:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -75457,7 +92466,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":875,"./adler32":876,"./crc32":878,"./messages":883,"./trees":884}],880:[function(require,module,exports){
+},{"../utils/common":920,"./adler32":921,"./crc32":923,"./messages":928,"./trees":929}],925:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -75784,7 +92793,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],881:[function(require,module,exports){
+},{}],926:[function(require,module,exports){
 'use strict';
 
 
@@ -77288,7 +94297,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":875,"./adler32":876,"./crc32":878,"./inffast":880,"./inftrees":882}],882:[function(require,module,exports){
+},{"../utils/common":920,"./adler32":921,"./crc32":923,"./inffast":925,"./inftrees":927}],927:[function(require,module,exports){
 'use strict';
 
 
@@ -77615,7 +94624,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   opts.bits = root;
   return 0;
 };
-},{"../utils/common":875}],883:[function(require,module,exports){
+},{"../utils/common":920}],928:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -77629,7 +94638,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],884:[function(require,module,exports){
+},{}],929:[function(require,module,exports){
 'use strict';
 
 
@@ -78829,7 +95838,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":875}],885:[function(require,module,exports){
+},{"../utils/common":920}],930:[function(require,module,exports){
 'use strict';
 
 
@@ -78859,7 +95868,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],886:[function(require,module,exports){
+},{}],931:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -79099,7 +96108,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":888,"pako/lib/zlib/constants":877,"pako/lib/zlib/deflate.js":879,"pako/lib/zlib/inflate.js":881,"pako/lib/zlib/messages":883,"pako/lib/zlib/zstream":885,"q+64fw":894}],887:[function(require,module,exports){
+},{"buffer":933,"pako/lib/zlib/constants":922,"pako/lib/zlib/deflate.js":924,"pako/lib/zlib/inflate.js":926,"pako/lib/zlib/messages":928,"pako/lib/zlib/zstream":930,"q+64fw":939}],932:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -79713,7 +96722,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./binding":886,"_stream_transform":906,"assert":872,"buffer":888,"q+64fw":894,"util":910}],888:[function(require,module,exports){
+},{"./binding":931,"_stream_transform":951,"assert":917,"buffer":933,"q+64fw":939,"util":955}],933:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -80863,7 +97872,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":889,"ieee754":890}],889:[function(require,module,exports){
+},{"base64-js":934,"ieee754":935}],934:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -80986,7 +97995,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],890:[function(require,module,exports){
+},{}],935:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -81072,7 +98081,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],891:[function(require,module,exports){
+},{}],936:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -81377,9 +98386,9 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],892:[function(require,module,exports){
-module.exports=require(232)
-},{}],893:[function(require,module,exports){
+},{}],937:[function(require,module,exports){
+module.exports=require(277)
+},{}],938:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -81607,7 +98616,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":894}],894:[function(require,module,exports){
+},{"q+64fw":939}],939:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -81672,10 +98681,10 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],895:[function(require,module,exports){
+},{}],940:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":896}],896:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":941}],941:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -81768,7 +98777,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_readable":898,"./_stream_writable":900,"core-util-is":901,"inherits":892,"q+64fw":894}],897:[function(require,module,exports){
+},{"./_stream_readable":943,"./_stream_writable":945,"core-util-is":946,"inherits":937,"q+64fw":939}],942:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -81816,7 +98825,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":899,"core-util-is":901,"inherits":892}],898:[function(require,module,exports){
+},{"./_stream_transform":944,"core-util-is":946,"inherits":937}],943:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -82779,7 +99788,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("q+64fw"))
-},{"buffer":888,"core-util-is":901,"events":891,"inherits":892,"isarray":902,"q+64fw":894,"stream":908,"string_decoder/":903}],899:[function(require,module,exports){
+},{"buffer":933,"core-util-is":946,"events":936,"inherits":937,"isarray":947,"q+64fw":939,"stream":953,"string_decoder/":948}],944:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -82991,7 +100000,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":896,"core-util-is":901,"inherits":892}],900:[function(require,module,exports){
+},{"./_stream_duplex":941,"core-util-is":946,"inherits":937}],945:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -83382,7 +100391,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_duplex":896,"buffer":888,"core-util-is":901,"inherits":892,"q+64fw":894,"stream":908}],901:[function(require,module,exports){
+},{"./_stream_duplex":941,"buffer":933,"core-util-is":946,"inherits":937,"q+64fw":939,"stream":953}],946:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -83492,12 +100501,12 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":888}],902:[function(require,module,exports){
+},{"buffer":933}],947:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],903:[function(require,module,exports){
+},{}],948:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -83699,10 +100708,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":888}],904:[function(require,module,exports){
+},{"buffer":933}],949:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":897}],905:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":942}],950:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -83710,13 +100719,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":896,"./lib/_stream_passthrough.js":897,"./lib/_stream_readable.js":898,"./lib/_stream_transform.js":899,"./lib/_stream_writable.js":900}],906:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":941,"./lib/_stream_passthrough.js":942,"./lib/_stream_readable.js":943,"./lib/_stream_transform.js":944,"./lib/_stream_writable.js":945}],951:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":899}],907:[function(require,module,exports){
+},{"./lib/_stream_transform.js":944}],952:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":900}],908:[function(require,module,exports){
+},{"./lib/_stream_writable.js":945}],953:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -83845,11 +100854,11 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":891,"inherits":892,"readable-stream/duplex.js":895,"readable-stream/passthrough.js":904,"readable-stream/readable.js":905,"readable-stream/transform.js":906,"readable-stream/writable.js":907}],909:[function(require,module,exports){
-module.exports=require(873)
-},{}],910:[function(require,module,exports){
-module.exports=require(874)
-},{"./support/isBuffer":909,"inherits":892,"q+64fw":894}],911:[function(require,module,exports){
+},{"events":936,"inherits":937,"readable-stream/duplex.js":940,"readable-stream/passthrough.js":949,"readable-stream/readable.js":950,"readable-stream/transform.js":951,"readable-stream/writable.js":952}],954:[function(require,module,exports){
+module.exports=require(918)
+},{}],955:[function(require,module,exports){
+module.exports=require(919)
+},{"./support/isBuffer":954,"inherits":937,"q+64fw":939}],956:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -83989,7 +100998,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":912}],912:[function(require,module,exports){
+},{"indexof":957}],957:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
