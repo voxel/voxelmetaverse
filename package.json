@@ -65,7 +65,7 @@
     "voxel-land": "git://github.com/deathcap/voxel-land.git#33f9c6264fd57e438a42532aa10ea17d0d89edfa",
     "voxel-decorative": "git://github.com/deathcap/voxel-decorative.git#c9476268358819442ac4a7ad547e9f608bb5c1ff",
     "voxel-inventory-creative": "git://github.com/deathcap/voxel-inventory-creative.git#c16bd5d949f0eeec352845d25531056f06e7afd7",
-    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#db42c1ec0daf95646792bfe73a5bc0ce13725575",
+    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#dcc1a0cfcec12e268a73e700d01b9b025cdb5a41",
     "voxel-console": "git://github.com/deathcap/voxel-console.git#25a9137789405275ea6a9253205ef74596099ed8",
     "voxel-commands": "git://github.com/deathcap/voxel-commands.git#e8b6026be4d01b0a5a4a72e4572b68f96d27fd4b"
   },
