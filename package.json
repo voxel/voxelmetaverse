@@ -71,7 +71,7 @@
   },
   "devDependencies": {
     "coffeeify": "0.6.0",
-    "browserify": "4.2.0",
+    "browserify": "5.6.1",
     "beefy": "2.0.2"
   },
   "scripts": {
