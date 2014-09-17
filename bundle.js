@@ -55,8 +55,6 @@ require('voxel-fly');
 
 require('voxel-gamemode');
 
-require('voxel-walk');
-
 require('voxel-sprint');
 
 require('voxel-decals');
@@ -246,7 +244,7 @@ main = function() {
 main();
 
 
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":519,"voxel-fly":521,"voxel-food":522,"voxel-fullscreen":523,"voxel-furnace":524,"voxel-gamemode":577,"voxel-glass":592,"voxel-hammer":599,"voxel-harvest":600,"voxel-health":608,"voxel-health-bar":606,"voxel-health-fall":607,"voxel-inventory-crafting":610,"voxel-inventory-creative":663,"voxel-inventory-hotbar":716,"voxel-keys":729,"voxel-land":733,"voxel-measure":751,"voxel-mine":754,"voxel-outline":783,"voxel-pickaxe":790,"voxel-player":791,"voxel-plugins-ui":796,"voxel-pumpkin":803,"voxel-quarry":804,"voxel-reach":810,"voxel-recipes":817,"voxel-sfx":827,"voxel-skyhook":828,"voxel-sprint":829,"voxel-start":830,"voxel-use":831,"voxel-virus":833,"voxel-voila":834,"voxel-walk":835,"voxel-webview":837,"voxel-wireframe":864,"voxel-wool":866,"voxel-workbench":914,"voxel-zen":915}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":515,"voxel-fly":517,"voxel-food":518,"voxel-fullscreen":519,"voxel-furnace":520,"voxel-gamemode":573,"voxel-glass":588,"voxel-hammer":595,"voxel-harvest":596,"voxel-health":604,"voxel-health-bar":602,"voxel-health-fall":603,"voxel-inventory-crafting":606,"voxel-inventory-creative":659,"voxel-inventory-hotbar":712,"voxel-keys":725,"voxel-land":729,"voxel-measure":747,"voxel-mine":750,"voxel-outline":779,"voxel-pickaxe":786,"voxel-player":787,"voxel-plugins-ui":792,"voxel-pumpkin":799,"voxel-quarry":800,"voxel-reach":806,"voxel-recipes":813,"voxel-sfx":823,"voxel-skyhook":824,"voxel-sprint":825,"voxel-start":826,"voxel-use":827,"voxel-virus":829,"voxel-voila":830,"voxel-webview":832,"voxel-wireframe":861,"voxel-wool":863,"voxel-workbench":911,"voxel-zen":912}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5583,7 +5581,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":936}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":933}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6218,7 +6216,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933}],22:[function(require,module,exports){
+},{"buffer":930}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6512,7 +6510,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":28,"events":936,"itempile":31}],28:[function(require,module,exports){
+},{"deep-equal":28,"events":933,"itempile":31}],28:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6796,7 +6794,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":32,"deep-equal":33}],32:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],33:[function(require,module,exports){
+},{"buffer":930}],33:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":34,"./lib/keys.js":35}],34:[function(require,module,exports){
 module.exports=require(23)
@@ -7403,7 +7401,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":38,"events":936,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
+},{"cube-icon":38,"events":933,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -7547,7 +7545,7 @@ module.exports = expandName;
 
 },{}],40:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":41,"./types.json":42,"events":936}],41:[function(require,module,exports){
+},{"./init.json":41,"./types.json":42,"events":933}],41:[function(require,module,exports){
 module.exports=require(16)
 },{}],42:[function(require,module,exports){
 module.exports=require(17)
@@ -7949,7 +7947,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":47,"events":936,"itempile":50}],47:[function(require,module,exports){
+},{"deep-equal":47,"events":933,"itempile":50}],47:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":48,"./lib/keys.js":49}],48:[function(require,module,exports){
 module.exports=require(23)
@@ -8139,7 +8137,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":51,"deep-equal":52}],51:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],52:[function(require,module,exports){
+},{"buffer":930}],52:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":53,"./lib/keys.js":54}],53:[function(require,module,exports){
 module.exports=require(23)
@@ -8329,7 +8327,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":56,"deep-equal":57}],56:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],57:[function(require,module,exports){
+},{"buffer":930}],57:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":58,"./lib/keys.js":59}],58:[function(require,module,exports){
 module.exports=require(23)
@@ -8857,7 +8855,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":62,"events":936,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
+},{"cube-icon":62,"events":933,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -8928,7 +8926,7 @@ CubeIcon = (function() {
 module.exports=require(39)
 },{}],64:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":65,"./types.json":66,"events":936}],65:[function(require,module,exports){
+},{"./init.json":65,"./types.json":66,"events":933}],65:[function(require,module,exports){
 module.exports=require(16)
 },{}],66:[function(require,module,exports){
 module.exports=require(17)
@@ -9098,7 +9096,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":71,"events":936,"itempile":74}],71:[function(require,module,exports){
+},{"deep-equal":71,"events":933,"itempile":74}],71:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":72,"./lib/keys.js":73}],72:[function(require,module,exports){
 module.exports=require(23)
@@ -9288,7 +9286,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":75,"deep-equal":76}],75:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],76:[function(require,module,exports){
+},{"buffer":930}],76:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":77,"./lib/keys.js":78}],77:[function(require,module,exports){
 module.exports=require(23)
@@ -9478,7 +9476,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":80,"deep-equal":81}],80:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],81:[function(require,module,exports){
+},{"buffer":930}],81:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":82,"./lib/keys.js":83}],82:[function(require,module,exports){
 module.exports=require(23)
@@ -9490,7 +9488,7 @@ module.exports=require(13)
 module.exports=require(14)
 },{"ever":86}],86:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":87,"./types.json":88,"events":936}],87:[function(require,module,exports){
+},{"./init.json":87,"./types.json":88,"events":933}],87:[function(require,module,exports){
 module.exports=require(16)
 },{}],88:[function(require,module,exports){
 module.exports=require(17)
@@ -10222,6 +10220,8 @@ function Procedure() {
   this.shimArgs = []
   this.arrayArgs = []
   this.scalarArgs = []
+  this.offsetArgs = []
+  this.offsetArgIndex = []
   this.indexArgs = []
   this.shapeArgs = []
   this.funcName = ""
@@ -10244,47 +10244,47 @@ function compileCwise(user_args) {
   var proc_args = user_args.args.slice(0)
   proc.argTypes = proc_args
   for(var i=0; i<proc_args.length; ++i) {
-    switch(proc_args[i]) {
-      case "array":
-        proc.arrayArgs.push(i)
-        proc.shimArgs.push("array" + i)
-        if(i < proc.pre.args.length && proc.pre.args[i].count>0) {
-          throw new Error("cwise: pre() block may not reference array args")
-        }
-        if(i < proc.post.args.length && proc.post.args[i].count>0) {
-          throw new Error("cwise: post() block may not reference array args")
-        }
-      break
-      case "scalar":
-        proc.scalarArgs.push(i)
-        proc.shimArgs.push("scalar" + i)
-      break
-      case "index":
-        proc.indexArgs.push(i)
-        if(i < proc.pre.args.length && proc.pre.args[i].count > 0) {
-          throw new Error("cwise: pre() block may not reference array index")
-        }
-        if(i < proc.body.args.length && proc.body.args[i].lvalue) {
-          throw new Error("cwise: body() block may not write to array index")
-        }
-        if(i < proc.post.args.length && proc.post.args[i].count > 0) {
-          throw new Error("cwise: post() block may not reference array index")
-        }
-      break
-      case "shape":
-        proc.shapeArgs.push(i)
-        if(i < proc.pre.args.length && proc.pre.args[i].lvalue) {
-          throw new Error("cwise: pre() block may not write to array shape")
-        }
-        if(i < proc.body.args.length && proc.body.args[i].lvalue) {
-          throw new Error("cwise: body() block may not write to array shape")
-        }
-        if(i < proc.post.args.length && proc.post.args[i].lvalue) {
-          throw new Error("cwise: post() block may not write to array shape")
-        }
-      break
-      default:
-        throw new Error("cwise: Unknown argument type " + proc_args[i])
+    var arg_type = proc_args[i]
+    if(arg_type === "array") {
+      proc.arrayArgs.push(i)
+      proc.shimArgs.push("array" + i)
+      if(i < proc.pre.args.length && proc.pre.args[i].count>0) {
+        throw new Error("cwise: pre() block may not reference array args")
+      }
+      if(i < proc.post.args.length && proc.post.args[i].count>0) {
+        throw new Error("cwise: post() block may not reference array args")
+      }
+    } else if(arg_type === "scalar") {
+      proc.scalarArgs.push(i)
+      proc.shimArgs.push("scalar" + i)
+    } else if(arg_type === "index") {
+      proc.indexArgs.push(i)
+      if(i < proc.pre.args.length && proc.pre.args[i].count > 0) {
+        throw new Error("cwise: pre() block may not reference array index")
+      }
+      if(i < proc.body.args.length && proc.body.args[i].lvalue) {
+        throw new Error("cwise: body() block may not write to array index")
+      }
+      if(i < proc.post.args.length && proc.post.args[i].count > 0) {
+        throw new Error("cwise: post() block may not reference array index")
+      }
+    } else if(arg_type === "shape") {
+      proc.shapeArgs.push(i)
+      if(i < proc.pre.args.length && proc.pre.args[i].lvalue) {
+        throw new Error("cwise: pre() block may not write to array shape")
+      }
+      if(i < proc.body.args.length && proc.body.args[i].lvalue) {
+        throw new Error("cwise: body() block may not write to array shape")
+      }
+      if(i < proc.post.args.length && proc.post.args[i].lvalue) {
+        throw new Error("cwise: post() block may not write to array shape")
+      }
+    } else if(typeof arg_type === "object" && arg_type.offset) {
+      proc.argTypes[i] = "offset"
+      proc.offsetArgs.push({ array: arg_type.array, offset:arg_type.offset })
+      proc.offsetArgIndex.push(i)
+    } else {
+      throw new Error("cwise: Unknown argument type " + proc_args[i])
     }
   }
   
@@ -10339,9 +10339,9 @@ function innerFill(order, proc, body) {
       pidx = idx
       idx = order[i]
       if(i === 0) {
-        vars.push(["d",j,"s",i,"=t",j,"[",idx,"]"].join(""))
+        vars.push(["d",j,"s",i,"=t",j,"p",idx].join(""))
       } else {
-        vars.push(["d",j,"s",i,"=(t",j,"[",idx,"]-s",pidx,"*t",j,"[",pidx,"])"].join(""))
+        vars.push(["d",j,"s",i,"=(t",j,"p",idx,"-s",pidx,"*t",j,"p",pidx,")"].join(""))
       }
     }
   }
@@ -10395,7 +10395,7 @@ function outerFill(matched, order, proc, body) {
   for(var i=0; i<nargs; ++i) {
     var indexStr = ["offset"+i]
     for(var j=matched; j<dimension; ++j) {
-      indexStr.push(["j",j,"*t",i,"[",order[j],"]"].join(""))
+      indexStr.push(["j",j,"*t",i,"p",order[j]].join(""))
     }
     code.push(["p",i,"=(",indexStr.join("+"),")"].join(""))
   }
@@ -10431,32 +10431,41 @@ function processBlock(block, proc, dtypes) {
       continue
     }
     var re = new RegExp(carg.name, "g")
+    var ptrStr = ""
+    var arrNum = proc.arrayArgs.indexOf(i)
     switch(proc.argTypes[i]) {
+      case "offset":
+        var offArgIndex = proc.offsetArgIndex.indexOf(i)
+        var offArg = proc.offsetArgs[offArgIndex]
+        arrNum = offArg.array
+        ptrStr = "+q" + offArgIndex
       case "array":
-        var arrNum = proc.arrayArgs.indexOf(i)
+        ptrStr = "p" + arrNum + ptrStr
+        var localStr = "l" + i
+        var arrStr = "a" + arrNum
         if(carg.count === 1) {
           if(dtypes[arrNum] === "generic") {
             if(carg.lvalue) {
-              pre.push(["var l", arrNum, "=a", arrNum, ".get(p", arrNum, ")"].join(""))
-              code = code.replace(re, "l"+arrNum)
-              post.push(["a", arrNum, ".set(p", arrNum, ",l",arrNum,")"].join(""))
+              pre.push(["var ", localStr, "=", arrStr, ".get(", ptrStr, ")"].join(""))
+              code = code.replace(re, localStr)
+              post.push([arrStr, ".set(", ptrStr, ",", localStr,")"].join(""))
             } else {
-              code = code.replace(re, ["a", arrNum, ".get(p", arrNum, ")"].join(""))
+              code = code.replace(re, [arrStr, ".get(", ptrStr, ")"].join(""))
             }
           } else {
-            code = code.replace(re, ["a", arrNum, "[p", arrNum, "]"].join(""))
+            code = code.replace(re, [arrStr, "[", ptrStr, "]"].join(""))
           }
         } else if(dtypes[arrNum] === "generic") {
-          pre.push(["var l", arrNum, "=a", arrNum, ".get(p", arrNum, ")"].join(""))
-          code = code.replace(re, "l"+arrNum)
+          pre.push(["var ", localStr, "=", arrStr, ".get(", ptrStr, ")"].join(""))
+          code = code.replace(re, localStr)
           if(carg.lvalue) {
-            post.push(["a", arrNum, ".set(p", arrNum, ",l",arrNum,")"].join(""))
+            post.push([arrStr, ".set(", ptrStr, ",", localStr,")"].join(""))
           }
         } else {
-          pre.push(["var l", arrNum, "=a", arrNum, "[p", arrNum, "]"].join(""))
-          code = code.replace(re, "l"+arrNum)
+          pre.push(["var ", localStr, "=", arrStr, "[", ptrStr, "]"].join(""))
+          code = code.replace(re, localStr)
           if(carg.lvalue) {
-            post.push(["a", arrNum, "[p", arrNum, "]=l",arrNum].join(""))
+            post.push([arrStr, "[", ptrStr, "]=", localStr].join(""))
           }
         }
       break
@@ -10522,6 +10531,10 @@ function generateCWiseOp(proc, typesig) {
     arglist.push("p"+i)
     dtypes[i] = typesig[2*i]
     orders[i] = typesig[2*i+1]
+    
+    for(var j=0; j<dimension; ++j) {
+      vars.push(["t",i,"p",j,"=t",i,"[",j,"]"].join(""))
+    }
   }
   for(var i=0; i<proc.scalarArgs.length; ++i) {
     arglist.push("Y" + i)
@@ -10535,6 +10548,24 @@ function generateCWiseOp(proc, typesig) {
       zeros[i] = "0"
     }
     vars.push(["index=[", zeros.join(","), "]"].join(""))
+  }
+  for(var i=0; i<proc.offsetArgs.length; ++i) {
+    var off_arg = proc.offsetArgs[i]
+    var init_string = []
+    for(var j=0; j<off_arg.offset.length; ++j) {
+      if(off_arg.offset[j] === 0) {
+        continue
+      } else if(off_arg.offset[j] === 1) {
+        init_string.push(["t", off_arg.array, "p", j].join(""))      
+      } else {
+        init_string.push([off_arg.offset[j], "*t", off_arg.array, "p", j].join(""))
+      }
+    }
+    if(init_string.length === 0) {
+      vars.push("q" + i + "=0")
+    } else {
+      vars.push(["q", i, "=", init_string.join("+")].join(""))
+    }
   }
 
   //Prepare this variables
@@ -10667,7 +10698,7 @@ function unique_eq(list) {
 
 function unique(list, compare, sorted) {
   if(list.length === 0) {
-    return []
+    return list
   }
   if(compare) {
     if(!sorted) {
@@ -10682,10 +10713,9 @@ function unique(list, compare, sorted) {
 }
 
 module.exports = unique
+
 },{}],96:[function(require,module,exports){
 (function (Buffer){
-"use strict"
-
 var iota = require("iota-array")
 
 var arrayMethods = [
@@ -10703,6 +10733,9 @@ var arrayMethods = [
   "reduce",
   "reduceRight"
 ]
+
+var hasTypedArrays  = ((typeof Float64Array) !== "undefined")
+var hasBuffer       = ((typeof Buffer) !== "undefined")
 
 function compare1st(a, b) {
   return a[0] - b[0]
@@ -10788,15 +10821,15 @@ return function construct_"+className+"(a,b,c,d){return new "+className+"(a,d)}"
   var indices = iota(dimension)
   var args = indices.map(function(i) { return "i"+i })
   var index_str = "this.offset+" + indices.map(function(i) {
-        return ["this._stride", i, "*i",i].join("")
+        return "this._stride" + i + "*i" + i
       }).join("+")
   code.push("function "+className+"(a,"+
     indices.map(function(i) {
       return "b"+i
-    }).join(",")+","+
+    }).join(",") + "," +
     indices.map(function(i) {
       return "c"+i
-    }).join(",")+",d){this.data=a")
+    }).join(",") + ",d){this.data=a")
   for(var i=0; i<dimension; ++i) {
     code.push("this._shape"+i+"=b"+i+"|0")
   }
@@ -10827,24 +10860,24 @@ return function construct_"+className+"(a,b,c,d){return new "+className+"(a,d)}"
       "aproto.valueOf=aproto.toString=function " + arrayName + "_toString(){return [" + array_elements.join(",") + "].join()}")
     
     for(var i=0; i<dimension; ++i) {
-      code.push(["Object.defineProperty(aproto,", i, ",{get:function(){return this._v._", prop, i, "},set:function(v){return this._v._", prop, i, "=v|0},enumerable:true})"].join(""))
+      code.push("Object.defineProperty(aproto,"+i+",{get:function(){return this._v._"+prop+i+"},set:function(v){return this._v._"+prop+i+"=v|0},enumerable:true})")
     }
     for(var i=0; i<arrayMethods.length; ++i) {
       if(arrayMethods[i] in Array.prototype) {
-        code.push(["aproto.", arrayMethods[i], "=Array.prototype.", arrayMethods[i]].join(""))
+        code.push("aproto."+arrayMethods[i]+"=Array.prototype."+arrayMethods[i])
       }
     }
     code.push(["Object.defineProperty(proto,'",prop,"',{get:function ", arrayName, "_get(){return new ", arrayName, "(this)},set: function ", arrayName, "_set(v){"].join(""))
     for(var i=0; i<dimension; ++i) {
-      code.push(["this._", prop, i, "=v[", i, "]|0"].join(""))
+      code.push("this._"+prop+i+"=v["+i+"]|0")
     }
     code.push("return v}})")
   }
   
   //view.size:
-  code.push(["Object.defineProperty(proto,'size',{get:function ",className,"_size(){\
-return ", indices.map(function(i) { return ["this._shape", i].join("") }).join("*"),
-"}})"].join(""))
+  code.push("Object.defineProperty(proto,'size',{get:function "+className+"_size(){\
+return "+indices.map(function(i) { return "this._shape"+i }).join("*"),
+"}})")
 
   //view.order:
   if(dimension === 1) {
@@ -10852,7 +10885,7 @@ return ", indices.map(function(i) { return ["this._shape", i].join("") }).join("
   } else {
     code.push("Object.defineProperty(proto,'order',{get:")
     if(dimension < 4) {
-      code.push(["function ",className,"_order(){"].join(""))
+      code.push("function "+className+"_order(){")
       if(dimension === 2) {
         code.push("return (Math.abs(this._stride0)>Math.abs(this._stride1))?[1,0]:[0,1]}})")
       } else if(dimension === 3) {
@@ -10880,112 +10913,109 @@ return [0,2,1];\
   }
   
   //view.set(i0, ..., v):
-  code.push([
-"proto.set=function ",className,"_set(", args.join(","), ",v){"].join(""))
+  code.push(
+"proto.set=function "+className+"_set("+args.join(",")+",v){")
   if(useGetters) {
-    code.push(["return this.data.set(", index_str, ",v)}"].join(""))
+    code.push("return this.data.set("+index_str+",v)}")
   } else {
-    code.push(["return this.data[", index_str, "]=v}"].join(""))
+    code.push("return this.data["+index_str+"]=v}")
   }
   
   //view.get(i0, ...):
-  code.push(["proto.get=function ",className,"_get(", args.join(","), "){"].join(""))
+  code.push("proto.get=function "+className+"_get("+args.join(",")+"){")
   if(useGetters) {
-    code.push(["return this.data.get(", index_str, ")}"].join(""))
+    code.push("return this.data.get("+index_str+")}")
   } else {
-    code.push(["return this.data[", index_str, "]}"].join(""))
+    code.push("return this.data["+index_str+"]}")
   }
   
   //view.index:
-  code.push([
-    "proto.index=function ",
-      className,
-      "_index(", args.join(), "){return ", 
-      index_str, "}"].join(""))
+  code.push(
+    "proto.index=function "+className+"_index(", args.join(), "){return "+index_str+"}")
 
   //view.hi():
-  code.push(["proto.hi=function ",className,"_hi(",args.join(","),"){return new ", className, "(this.data,",
+  code.push("proto.hi=function "+className+"_hi("+args.join(",")+"){return new "+className+"(this.data,"+
     indices.map(function(i) {
       return ["(typeof i",i,"!=='number'||i",i,"<0)?this._shape", i, ":i", i,"|0"].join("")
-    }).join(","), ",",
+    }).join(",")+","+
     indices.map(function(i) {
       return "this._stride"+i
-    }).join(","), ",this.offset)}"].join(""))
+    }).join(",")+",this.offset)}")
   
   //view.lo():
   var a_vars = indices.map(function(i) { return "a"+i+"=this._shape"+i })
   var c_vars = indices.map(function(i) { return "c"+i+"=this._stride"+i })
-  code.push(["proto.lo=function ",className,"_lo(",args.join(","),"){var b=this.offset,d=0,", a_vars.join(","), ",", c_vars.join(",")].join(""))
+  code.push("proto.lo=function "+className+"_lo("+args.join(",")+"){var b=this.offset,d=0,"+a_vars.join(",")+","+c_vars.join(","))
   for(var i=0; i<dimension; ++i) {
-    code.push([
-"if(typeof i",i,"==='number'&&i",i,">=0){\
-d=i",i,"|0;\
-b+=c",i,"*d;\
-a",i,"-=d}"].join(""))
+    code.push(
+"if(typeof i"+i+"==='number'&&i"+i+">=0){\
+d=i"+i+"|0;\
+b+=c"+i+"*d;\
+a"+i+"-=d}")
   }
-  code.push(["return new ", className, "(this.data,",
+  code.push("return new "+className+"(this.data,"+
     indices.map(function(i) {
       return "a"+i
-    }).join(","),",",
+    }).join(",")+","+
     indices.map(function(i) {
       return "c"+i
-    }).join(","), ",b)}"].join(""))
+    }).join(",")+",b)}")
   
   //view.step():
-  code.push(["proto.step=function ",className,"_step(",args.join(","),"){var ",
+  code.push("proto.step=function "+className+"_step("+args.join(",")+"){var "+
     indices.map(function(i) {
       return "a"+i+"=this._shape"+i
-    }).join(","), ",",
+    }).join(",")+","+
     indices.map(function(i) {
       return "b"+i+"=this._stride"+i
-    }).join(","),",c=this.offset,d=0,ceil=Math.ceil"].join(""))
+    }).join(",")+",c=this.offset,d=0,ceil=Math.ceil")
   for(var i=0; i<dimension; ++i) {
-    code.push([
-"if(typeof i",i,"==='number'){\
-d=i",i,"|0;\
+    code.push(
+"if(typeof i"+i+"==='number'){\
+d=i"+i+"|0;\
 if(d<0){\
-c+=b",i,"*(a",i,"-1);\
-a",i,"=ceil(-a",i,"/d)\
+c+=b"+i+"*(a"+i+"-1);\
+a"+i+"=ceil(-a"+i+"/d)\
 }else{\
-a",i,"=ceil(a",i,"/d)\
+a"+i+"=ceil(a"+i+"/d)\
 }\
-b",i,"*=d\
-}"].join(""))
+b"+i+"*=d\
+}")
   }
-  code.push(["return new ", className, "(this.data,",
+  code.push("return new "+className+"(this.data,"+
     indices.map(function(i) {
       return "a" + i
-    }).join(","), ",",
+    }).join(",")+","+
     indices.map(function(i) {
       return "b" + i
-    }).join(","), ",c)}"].join(""))
+    }).join(",")+",c)}")
   
   //view.transpose():
   var tShape = new Array(dimension)
   var tStride = new Array(dimension)
   for(var i=0; i<dimension; ++i) {
-    tShape[i] = ["a[i", i, "]"].join("")
-    tStride[i] = ["b[i", i, "]"].join("")
+    tShape[i] = "a[i"+i+"]"
+    tStride[i] = "b[i"+i+"]"
   }
-  code.push(["proto.transpose=function ",className,"_transpose(",args,"){", 
+  code.push("proto.transpose=function "+className+"_transpose("+args+"){"+
     args.map(function(n,idx) { return n + "=(" + n + "===undefined?" + idx + ":" + n + "|0)"}).join(";"),
-    ";var a=this.shape,b=this.stride;return new ", className, "(this.data,", tShape.join(","), ",", tStride.join(","), ",this.offset)}"].join(""))
+    "var a=this.shape,b=this.stride;return new "+className+"(this.data,"+tShape.join(",")+","+tStride.join(",")+",this.offset)}")
   
   //view.pick():
-  code.push(["proto.pick=function ",className,"_pick(",args,"){var a=[],b=[],c=this.offset"].join(""))
+  code.push("proto.pick=function "+className+"_pick("+args+"){var a=[],b=[],c=this.offset")
   for(var i=0; i<dimension; ++i) {
-    code.push(["if(typeof i",i,"==='number'&&i",i,">=0){c=(c+this._stride",i,"*i",i,")|0}else{a.push(this._shape",i,");b.push(this._stride",i,")}"].join(""))
+    code.push("if(typeof i"+i+"==='number'&&i"+i+">=0){c=(c+this._stride"+i+"*i"+i+")|0}else{a.push(this._shape"+i+");b.push(this._stride"+i+")}")
   }
   code.push("var ctor=CTOR_LIST[a.length+1];return ctor(this.data,a,b,c)}")
     
   //Add return statement
-  code.push(["return function construct_",className,"(data,shape,stride,offset){return new ", className,"(data,",
+  code.push("return function construct_"+className+"(data,shape,stride,offset){return new "+className+"(data,"+
     indices.map(function(i) {
       return "shape["+i+"]"
-    }).join(","), ",",
+    }).join(",")+","+
     indices.map(function(i) {
       return "stride["+i+"]"
-    }).join(","), ",offset)}"].join(""))
+    }).join(",")+",offset)}")
 
   //Compile procedure
   var procedure = new Function("CTOR_LIST", "ORDER", code.join("\n"))
@@ -10993,27 +11023,34 @@ b",i,"*=d\
 }
 
 function arrayDType(data) {
-  if(data instanceof Float64Array) {
-    return "float64";
-  } else if(data instanceof Float32Array) {
-    return "float32"
-  } else if(data instanceof Int32Array) {
-    return "int32"
-  } else if(data instanceof Uint32Array) {
-    return "uint32"
-  } else if(data instanceof Uint8Array) {
-    return "uint8"
-  } else if(data instanceof Uint16Array) {
-    return "uint16"
-  } else if(data instanceof Int16Array) {
-    return "int16"
-  } else if(data instanceof Int8Array) {
-    return "int8"
-  } else if(data instanceof Uint8ClampedArray) {
-    return "uint8_clamped"
-  } else if((typeof Buffer !== "undefined") && (data instanceof Buffer)) {
-    return "buffer"
-  } else if(data instanceof Array) {
+  if(hasBuffer) {
+    if(Buffer.isBuffer(data)) {
+      return "buffer"
+    }
+  }
+  if(hasTypedArrays) {
+    switch(Object.prototype.toString.call(data)) {
+      case "[object Float64Array]":
+        return "float64"
+      case "[object Float32Array]":
+        return "float32"
+      case "[object Int8Array]":
+        return "int8"
+      case "[object Int16Array]":
+        return "int16"
+      case "[object Int32Array]":
+        return "int32"
+      case "[object Uint8Array]":
+        return "uint8"
+      case "[object Uint16Array]":
+        return "uint16"
+      case "[object Uint32Array]":
+        return "uint32"
+      case "[object Uint8ClampedArray]":
+        return "uint8_clamped"
+    }
+  }
+  if(Array.isArray(data)) {
     return "array"
   }
   return "generic"
@@ -11036,7 +11073,7 @@ var CACHED_CONSTRUCTORS = {
 
 ;(function() {
   for(var id in CACHED_CONSTRUCTORS) {
-    CACHED_CONSTRUCTORS[id] = [ compileConstructor(id, -1) ]
+    CACHED_CONSTRUCTORS[id].push(compileConstructor(id, -1))
   }
 });
 
@@ -11077,7 +11114,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"iota-array":97}],97:[function(require,module,exports){
+},{"buffer":930,"iota-array":97}],97:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -11347,8 +11384,6 @@ function dupe(count, value) {
 module.exports = dupe
 },{}],100:[function(require,module,exports){
 (function (global,Buffer){
-"use strict"
-
 var bits = require("bit-twiddle")
 var dup = require("dup")
 if(!global.__TYPEDARRAY_POOL) {
@@ -11366,6 +11401,7 @@ if(!global.__TYPEDARRAY_POOL) {
     , BUFFER  : dup([32, 0])
   }
 }
+var hasUint8C = (typeof Uint8ClampedArray) !== "undefined"
 var POOL = global.__TYPEDARRAY_POOL
 if(!POOL.UINT8C) {
   POOL.UINT8C = dup([32, 0])
@@ -11386,35 +11422,44 @@ var UINT8   = POOL.UINT8
   , BUFFER  = POOL.BUFFER
 
 exports.free = function free(array) {
-  if(array instanceof ArrayBuffer) {
-    var n = array.byteLength|0
-      , log_n = bits.log2(n)
-    DATA[log_n].push(array)
+  var n = array.length|0
+    , log_n = bits.log2(n)
+  if(Buffer.isBuffer(array)) {
+    BUFFER[log_n].push(array)
   } else {
-    var n = array.length|0
-      , log_n = bits.log2(n)
-    if(array instanceof Uint8Array) {
-      UINT8[log_n].push(array)
-    } else if(array instanceof Uint16Array) {
-      UINT16[log_n].push(array)
-    } else if(array instanceof Uint32Array) {
-      UINT32[log_n].push(array)
-    } else if(array instanceof Int8Array) {
-      INT8[log_n].push(array)
-    } else if(array instanceof Int16Array) {
-      INT16[log_n].push(array)
-    } else if(array instanceof Int32Array) {
-      INT32[log_n].push(array)
-    } else if(array instanceof Float32Array) {
-      FLOAT[log_n].push(array)
-    } else if(array instanceof Float64Array) {
-      DOUBLE[log_n].push(array)
-    } else if(array instanceof Uint8ClampedArray) {
-      UINT8C[log_n].push(array)
-    } else if(array instanceof Buffer) {
-      BUFFER[log_n].push(array)
-    } else {
-      throw new Error("typedarray-pool: Unspecified array type")
+    switch(Object.prototype.toString.call(array)) {
+      case "[object Uint8Array]":
+        UINT8[log_n].push(array)
+      break
+      case "[object Uint16Array]":
+        UINT16[log_n].push(array)
+      break
+      case "[object Uint32Array]":
+        UINT32[log_n].push(array)
+      break
+      case "[object Int8Array]":
+        INT8[log_n].push(array)
+      break
+      case "[object Int16Array]":
+        INT16[log_n].push(array)
+      break
+      case "[object Int32Array]":
+        INT32[log_n].push(array)
+      break
+      case "[object Uint8ClampedArray]":
+        UINT8C[log_n].push(array)
+      break
+      case "[object Float32Array]":
+        FLOAT[log_n].push(array)
+      break
+      case "[object Float64Array]":
+        DOUBLE[log_n].push(array)
+      break
+      case "[object ArrayBuffer]":
+        DATA[log_n].push(array)
+      break
+      default:
+        throw new Error("typedarray-pool: Unspecified array type")
     }
   }
 }
@@ -11455,8 +11500,12 @@ exports.freeArrayBuffer = function freeArrayBuffer(array) {
   DATA[bits.log2(array.length)].push(array)
 }
 
-exports.freeUint8Clamped = function freeUint8Clamped(array) {
-  UINT8C[bits.log2(array.length)].push(array)
+if(hasUint8C) {
+  exports.freeUint8Clamped = function freeUint8Clamped(array) {
+    UINT8C[bits.log2(array.length)].push(array)
+  }
+} else {
+  exports.freeUint8Clamped = exports.freeUint8
 }
 
 exports.freeBuffer = function freeBuffer(array) {
@@ -11466,7 +11515,7 @@ exports.freeBuffer = function freeBuffer(array) {
 exports.malloc = function malloc(n, dtype) {
   n = bits.nextPow2(n)
   var log_n = bits.log2(n)
-  if(dtype === undefined) {
+  if(dtype === undefined || dtype === "arraybuffer") {
     var d = DATA[log_n]
     if(d.length > 0) {
       var r = d[d.length-1]
@@ -11543,11 +11592,19 @@ exports.malloc = function malloc(n, dtype) {
       break
 
       case "uint8_clamped":
-        var u8c = UINT8C[log_n]
-        if(u8c.length > 0) {
-          return u8c.pop()
+        if(hasUint8C) {
+          var u8c = UINT8C[log_n]
+          if(u8c.length > 0) {
+            return u8c.pop()
+          }
+          return new Uint8ClampedArray(n)
+        } else {
+          var u8 = UINT8[log_n]
+          if(u8.length > 0) {
+            return u8.pop()
+          }
+          return new Uint8Array(n)
         }
-        return new Uint8ClampedArray(n)
       break
 
       case "buffer":
@@ -11655,14 +11712,18 @@ exports.mallocArrayBuffer = function mallocArrayBuffer(n) {
   return new ArrayBuffer(n)
 }
 
-exports.mallocUint8Clamped = function mallocUint8Clamped(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = UINT8C[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
+if(hasUint8C) {
+  exports.mallocUint8Clamped = function mallocUint8Clamped(n) {
+    n = bits.nextPow2(n)
+    var log_n = bits.log2(n)
+    var cache = UINT8C[log_n]
+    if(cache.length > 0) {
+      return cache.pop()
+    }
+    return new Uint8ClampedArray(n)
   }
-  return new Uint8ClampedArray(n)
+} else {
+  exports.mallocUint8Clamped = exports.mallocUint8
 }
 
 exports.mallocBuffer = function mallocBuffer(n) {
@@ -11690,9 +11751,8 @@ exports.clearCache = function clearCache() {
     BUFFER[i].length = 0
   }
 }
-
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":98,"buffer":933,"dup":99}],101:[function(require,module,exports){
+},{"bit-twiddle":98,"buffer":930,"dup":99}],101:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -12618,7 +12678,9 @@ function createShader(
   gl.shaderSource(vertShader, vertSource)
   gl.compileShader(vertShader)
   if(!gl.getShaderParameter(vertShader, gl.COMPILE_STATUS)) {
-    throw new Error("Error compiling vertex shader: " + gl.getShaderInfoLog(vertShader))
+    var errLog = gl.getShaderInfoLog(vertShader)
+    console.error("Error compling vertex shader:", errLog)
+    throw new Error("Error compiling vertex shader:" + errLog)
   }
   
   //Compile fragment shader
@@ -12626,7 +12688,9 @@ function createShader(
   gl.shaderSource(fragShader, fragSource)
   gl.compileShader(fragShader)
   if(!gl.getShaderParameter(fragShader, gl.COMPILE_STATUS)) {
-    throw new Error("Error compiling fragment shader: " + gl.getShaderInfoLog(fragShader))
+    var errLog = gl.getShaderInfoLog(fragShader)
+    console.error("Error compiling fragment shader:", errLog)
+    throw new Error("Error compiling fragment shader:" + errLog)
   }
   
   //Link program
@@ -12635,7 +12699,9 @@ function createShader(
   gl.attachShader(program, vertShader)
   gl.linkProgram(program)
   if(!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    throw new Error("Error linking shader program: " + gl.getProgramInfoLog (program))
+    var errLog = gl.getProgramInfoLog(program)
+    console.error("Error linking shader program:", errLog)
+    throw new Error("Error linking shader program:" + errLog)
   }
   
   //Return final linked shader object
@@ -12928,11 +12994,17 @@ ClientMC.prototype.enable = function() {
   });
 
   this.bot.on('chunkColumnLoad', function(point,column) {
-    self.console.log('CHUNK LOAD',point,column);
+    self.console.log('Chunk load ('+point.x+','+point.y+','+point.z+')');
 
     self.addColumn(point, column);
   });
 
+  this.bot.on('game', function() {
+    self.console.log('Spawn position: '+JSON.stringify(self.bot.spawnPoint));
+    self.game.controls.target().avatar.position.x = self.bot.spawnPoint.x;
+    self.game.controls.target().avatar.position.y = self.bot.spawnPoint.y+50; // give some space to fall while chunks load TODO: move after all chunks load instead
+    self.game.controls.target().avatar.position.z = self.bot.spawnPoint.z;
+  });
 
   var maxId = 255; // TODO: 4096?
 
@@ -13052,7 +13124,7 @@ ClientMC.prototype.addColumn = function(point, column) {
 
   var offset = 0;
   var size = 4096;
-  var s = this.game.chunkSize;
+  var s = this.game.chunkSize + this.game.chunkPad;
   var length = column.blockType.length;
   for (var chunkY = 0; chunkY < length; chunkY += 1) {
     var miniChunk = column.blockType[chunkY];
@@ -13074,12 +13146,10 @@ ClientMC.prototype.addColumn = function(point, column) {
     for (var x = 0; x < vChunk.shape[0]; x += 1) {
       for (var z = 0; z < vChunk.shape[1]; z += 1) {
         for (var y = 0; y < vChunk.shape[2]; y += 1) {
-          vChunk.set(z, y, x, miniChunk[x | z<<4 | y<<8]);
+          vChunk.set(z+2, y+2, x+2, miniChunk[x | z<<4 | y<<8]);
         }
       }
     }
-    var ss="";for(var k=0;k<vChunk.data.length;++k)ss+=vChunk.data[k]+",";
-    console.log(ss);
 
     // save TODO: avoid recreating array, mutate in-place?
     var key = [chunkX, chunkY, chunkZ].join('|');
@@ -13100,11 +13170,11 @@ ClientMC.prototype.missingChunk = function(pos) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"bit-twiddle":117,"buffer":933,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
+},{"bit-twiddle":117,"buffer":930,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
 module.exports=require(98)
 },{}],118:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":119,"./types.json":120,"events":936}],119:[function(require,module,exports){
+},{"./init.json":119,"./types.json":120,"events":933}],119:[function(require,module,exports){
 module.exports=require(16)
 },{}],120:[function(require,module,exports){
 module.exports=require(17)
@@ -13235,7 +13305,7 @@ Bot.prototype.end = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":933,"events":936,"minecraft-protocol":160,"path":938,"util":955,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
+},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":930,"events":933,"minecraft-protocol":160,"path":935,"util":952,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
 var biomes = require('./enums/biomes')
 
 module.exports = Biome;
@@ -13486,7 +13556,7 @@ ChatMessage.prototype.toString = function() {
 
 module.exports = ChatMessage;
 
-},{"util":955}],125:[function(require,module,exports){
+},{"util":952}],125:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13525,7 +13595,7 @@ Chest.prototype.items = function() {
   return this.window.chestItems();
 };
 
-},{"assert":917,"events":936,"util":955}],126:[function(require,module,exports){
+},{"assert":914,"events":933,"util":952}],126:[function(require,module,exports){
 var math = require('./math')
   , euclideanMod = math.euclideanMod
   , PI = Math.PI
@@ -13615,7 +13685,7 @@ Dispenser.prototype.items = function() {
   return this.window.dispenserItems();
 };
 
-},{"assert":917,"events":936,"util":955}],128:[function(require,module,exports){
+},{"assert":914,"events":933,"util":952}],128:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13652,7 +13722,7 @@ EnchantmentTable.prototype.putTargetItem = function() {
   assert.ok(false, "override");
 };
 
-},{"assert":917,"events":936,"util":955}],129:[function(require,module,exports){
+},{"assert":914,"events":933,"util":952}],129:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = Entity;
@@ -19781,7 +19851,7 @@ Furnace.prototype.outputItem = function() {
   return this.window.slots[2];
 }
 
-},{"assert":917,"events":936,"util":955}],137:[function(require,module,exports){
+},{"assert":914,"events":933,"util":952}],137:[function(require,module,exports){
 (function (Buffer){
 var items = require('./enums/items')
   , blocks = require('./enums/blocks')
@@ -19819,7 +19889,7 @@ Item.equal = function(item1, item2) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./enums/blocks":131,"./enums/items":133,"assert":917,"buffer":933}],138:[function(require,module,exports){
+},{"./enums/blocks":131,"./enums/items":133,"assert":914,"buffer":930}],138:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 var CHUNK_SIZE = new Vec3(16, 16, 16)
 
@@ -19911,7 +19981,7 @@ function inject(bot) {
   bot.sleep = sleep;
 }
 
-},{"assert":917}],142:[function(require,module,exports){
+},{"assert":914}],142:[function(require,module,exports){
 var instruments = require('../enums/instruments')
   , Vec3 = require('vec3').Vec3
 
@@ -20277,7 +20347,7 @@ function Column() {
 
 
 }).call(this,require("buffer").Buffer)
-},{"../block":123,"../location":138,"../painting":140,"assert":917,"buffer":933,"vec3":168,"zlib":932}],144:[function(require,module,exports){
+},{"../block":123,"../location":138,"../painting":140,"assert":914,"buffer":930,"vec3":168,"zlib":929}],144:[function(require,module,exports){
 var assert = require('assert')
   , quoteMeta = require('quotemeta')
   , ChatMessage = require('../chat_message')
@@ -20402,7 +20472,7 @@ function inject(bot) {
   };
 }
 
-},{"../chat_message":124,"assert":917,"quotemeta":167}],145:[function(require,module,exports){
+},{"../chat_message":124,"assert":914,"quotemeta":167}],145:[function(require,module,exports){
 var assert = require('assert');
 var toolMultipliers = require('../enums/materials');
 
@@ -20528,7 +20598,7 @@ function noop(err) {
   if (err) throw err;
 }
 
-},{"../enums/materials":134,"assert":917}],146:[function(require,module,exports){
+},{"../enums/materials":134,"assert":914}],146:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3
   , _ = require('lodash')
   , Entity = require('../entity')
@@ -21040,7 +21110,7 @@ function autoRespawn(bot) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933}],149:[function(require,module,exports){
+},{"buffer":930}],149:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot, options) {
@@ -22120,7 +22190,7 @@ function vectorToDirection(v) {
 }
 
 }).call(this,require("q+64fw"))
-},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"assert":917,"q+64fw":939}],151:[function(require,module,exports){
+},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"assert":914,"q+64fw":936}],151:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22487,7 +22557,7 @@ function inject(bot) {
   bot.on('end', cleanup);
 }
 
-},{"../conversions":126,"../math":139,"assert":917,"vec3":168}],153:[function(require,module,exports){
+},{"../conversions":126,"../math":139,"assert":914,"vec3":168}],153:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22562,7 +22632,7 @@ function extend(obj, src) {
   return obj;
 }
 
-},{"assert":917}],155:[function(require,module,exports){
+},{"assert":914}],155:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = inject;
@@ -23092,7 +23162,7 @@ util.inherits(BrewingStandWindow, Window);
 
 BrewingStandWindow.prototype.inventorySlotStart = 5;
 
-},{"./item":137,"assert":917,"util":955}],159:[function(require,module,exports){
+},{"./item":137,"assert":914,"util":952}],159:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -29931,7 +30001,7 @@ function createClient(options) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/client":161,"./lib/protocol":162,"assert":917,"buffer":933}],161:[function(require,module,exports){
+},{"./lib/client":161,"./lib/protocol":162,"assert":914,"buffer":930}],161:[function(require,module,exports){
 (function (Buffer){
 var net = require('net')
   , EventEmitter = require('events').EventEmitter
@@ -30109,7 +30179,7 @@ Client.prototype.writeRaw = function(buffer, shouldEncrypt) {
     this.socket.write(out);
 };
 }).call(this,require("buffer").Buffer)
-},{"./protocol":162,"buffer":933,"dns":916,"events":936,"net":916,"util":955,"websocket-stream":163}],162:[function(require,module,exports){
+},{"./protocol":162,"buffer":930,"dns":913,"events":933,"net":913,"util":952,"websocket-stream":163}],162:[function(require,module,exports){
 (function (process,Buffer){
 var assert = require('assert');
 var util = require('util');
@@ -31481,7 +31551,7 @@ module.exports = {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"assert":917,"buffer":933,"q+64fw":939,"util":955}],163:[function(require,module,exports){
+},{"assert":914,"buffer":930,"q+64fw":936,"util":952}],163:[function(require,module,exports){
 (function (process){
 var through = require('through')
 var isBuffer = require('isbuffer')
@@ -31577,7 +31647,7 @@ WebsocketStream.prototype.end = function(data) {
 }
 
 }).call(this,require("q+64fw"))
-},{"isbuffer":164,"q+64fw":939,"through":165,"ws":166}],164:[function(require,module,exports){
+},{"isbuffer":164,"q+64fw":936,"through":165,"ws":166}],164:[function(require,module,exports){
 var Buffer = require('buffer').Buffer;
 
 module.exports = isBuffer;
@@ -31587,7 +31657,7 @@ function isBuffer (o) {
     || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
 }
 
-},{"buffer":933}],165:[function(require,module,exports){
+},{"buffer":930}],165:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -31699,7 +31769,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":939,"stream":953}],166:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],166:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -31879,11 +31949,11 @@ function euclideanMod(numerator, denominator) {
 
 },{}],169:[function(require,module,exports){
 module.exports=require(163)
-},{"isbuffer":170,"q+64fw":939,"through":171,"ws":172}],170:[function(require,module,exports){
+},{"isbuffer":170,"q+64fw":936,"through":171,"ws":172}],170:[function(require,module,exports){
 module.exports=require(164)
-},{"buffer":933}],171:[function(require,module,exports){
+},{"buffer":930}],171:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],172:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],172:[function(require,module,exports){
 module.exports=require(166)
 },{}],173:[function(require,module,exports){
 (function (Buffer){
@@ -32280,7 +32350,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"iota-array":174}],174:[function(require,module,exports){
+},{"buffer":930,"iota-array":174}],174:[function(require,module,exports){
 module.exports=require(97)
 },{}],175:[function(require,module,exports){
 'use strict';
@@ -32871,7 +32941,7 @@ CommandsPlugin = (function() {
 
 },{"clone":179,"deep-equal":180}],179:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],180:[function(require,module,exports){
+},{"buffer":930}],180:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":181,"./lib/keys.js":182}],181:[function(require,module,exports){
 module.exports=require(23)
@@ -33248,13 +33318,13 @@ module.exports = function(opts) {
 };
 
 
-},{"events":936,"vkey":186}],186:[function(require,module,exports){
+},{"events":933,"vkey":186}],186:[function(require,module,exports){
 module.exports=require(10)
 },{}],187:[function(require,module,exports){
 module.exports=require(14)
 },{"ever":188}],188:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":189,"./types.json":190,"events":936}],189:[function(require,module,exports){
+},{"./init.json":189,"./types.json":190,"events":933}],189:[function(require,module,exports){
 module.exports=require(16)
 },{}],190:[function(require,module,exports){
 module.exports=require(17)
@@ -33598,7 +33668,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":936,"inherits":202}],196:[function(require,module,exports){
+},{"events":933,"inherits":202}],196:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -34745,7 +34815,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"iota-array":204}],204:[function(require,module,exports){
+},{"buffer":930,"iota-array":204}],204:[function(require,module,exports){
 module.exports=require(97)
 },{}],205:[function(require,module,exports){
 "use strict";
@@ -34912,1243 +34982,28 @@ DecalsPlugin.prototype.render = function() {
     }
 };
 },{"gl-buffer":206,"gl-matrix":219,"gl-vao":225,"glslify":227,"glslify/adapter.js":226}],206:[function(require,module,exports){
-arguments[4][90][0].apply(exports,arguments)
+module.exports=require(90)
 },{"ndarray":212,"ndarray-ops":207,"typedarray-pool":216,"webglew":218}],207:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
+module.exports=require(91)
 },{"cwise-compiler":208}],208:[function(require,module,exports){
-"use strict"
-
-var createThunk = require("./lib/thunk.js")
-
-function Procedure() {
-  this.argTypes = []
-  this.shimArgs = []
-  this.arrayArgs = []
-  this.scalarArgs = []
-  this.offsetArgs = []
-  this.offsetArgIndex = []
-  this.indexArgs = []
-  this.shapeArgs = []
-  this.funcName = ""
-  this.pre = null
-  this.body = null
-  this.post = null
-  this.debug = false
-}
-
-function compileCwise(user_args) {
-  //Create procedure
-  var proc = new Procedure()
-  
-  //Parse blocks
-  proc.pre    = user_args.pre
-  proc.body   = user_args.body
-  proc.post   = user_args.post
-
-  //Parse arguments
-  var proc_args = user_args.args.slice(0)
-  proc.argTypes = proc_args
-  for(var i=0; i<proc_args.length; ++i) {
-    var arg_type = proc_args[i]
-    if(arg_type === "array") {
-      proc.arrayArgs.push(i)
-      proc.shimArgs.push("array" + i)
-      if(i < proc.pre.args.length && proc.pre.args[i].count>0) {
-        throw new Error("cwise: pre() block may not reference array args")
-      }
-      if(i < proc.post.args.length && proc.post.args[i].count>0) {
-        throw new Error("cwise: post() block may not reference array args")
-      }
-    } else if(arg_type === "scalar") {
-      proc.scalarArgs.push(i)
-      proc.shimArgs.push("scalar" + i)
-    } else if(arg_type === "index") {
-      proc.indexArgs.push(i)
-      if(i < proc.pre.args.length && proc.pre.args[i].count > 0) {
-        throw new Error("cwise: pre() block may not reference array index")
-      }
-      if(i < proc.body.args.length && proc.body.args[i].lvalue) {
-        throw new Error("cwise: body() block may not write to array index")
-      }
-      if(i < proc.post.args.length && proc.post.args[i].count > 0) {
-        throw new Error("cwise: post() block may not reference array index")
-      }
-    } else if(arg_type === "shape") {
-      proc.shapeArgs.push(i)
-      if(i < proc.pre.args.length && proc.pre.args[i].lvalue) {
-        throw new Error("cwise: pre() block may not write to array shape")
-      }
-      if(i < proc.body.args.length && proc.body.args[i].lvalue) {
-        throw new Error("cwise: body() block may not write to array shape")
-      }
-      if(i < proc.post.args.length && proc.post.args[i].lvalue) {
-        throw new Error("cwise: post() block may not write to array shape")
-      }
-    } else if(typeof arg_type === "object" && arg_type.offset) {
-      proc.argTypes[i] = "offset"
-      proc.offsetArgs.push({ array: arg_type.array, offset:arg_type.offset })
-      proc.offsetArgIndex.push(i)
-    } else {
-      throw new Error("cwise: Unknown argument type " + proc_args[i])
-    }
-  }
-  
-  //Make sure at least one array argument was specified
-  if(proc.arrayArgs.length <= 0) {
-    throw new Error("cwise: No array arguments specified")
-  }
-  
-  //Make sure arguments are correct
-  if(proc.pre.args.length > proc_args.length) {
-    throw new Error("cwise: Too many arguments in pre() block")
-  }
-  if(proc.body.args.length > proc_args.length) {
-    throw new Error("cwise: Too many arguments in body() block")
-  }
-  if(proc.post.args.length > proc_args.length) {
-    throw new Error("cwise: Too many arguments in post() block")
-  }
-
-  //Check debug flag
-  proc.debug = !!user_args.printCode || !!user_args.debug
-  
-  //Retrieve name
-  proc.funcName = user_args.funcName || "cwise"
-  
-  //Read in block size
-  proc.blockSize = user_args.blockSize || 64
-
-  return createThunk(proc)
-}
-
-module.exports = compileCwise
-
+module.exports=require(92)
 },{"./lib/thunk.js":210}],209:[function(require,module,exports){
-"use strict"
-
-var uniq = require("uniq")
-
-function innerFill(order, proc, body) {
-  var dimension = order.length
-    , nargs = proc.arrayArgs.length
-    , has_index = proc.indexArgs.length>0
-    , code = []
-    , vars = []
-    , idx=0, pidx=0, i, j
-  for(i=0; i<dimension; ++i) {
-    vars.push(["i",i,"=0"].join(""))
-  }
-  //Compute scan deltas
-  for(j=0; j<nargs; ++j) {
-    for(i=0; i<dimension; ++i) {
-      pidx = idx
-      idx = order[i]
-      if(i === 0) {
-        vars.push(["d",j,"s",i,"=t",j,"p",idx].join(""))
-      } else {
-        vars.push(["d",j,"s",i,"=(t",j,"p",idx,"-s",pidx,"*t",j,"p",pidx,")"].join(""))
-      }
-    }
-  }
-  code.push("var " + vars.join(","))
-  //Scan loop
-  for(i=dimension-1; i>=0; --i) {
-    idx = order[i]
-    code.push(["for(i",i,"=0;i",i,"<s",idx,";++i",i,"){"].join(""))
-  }
-  //Push body of inner loop
-  code.push(body)
-  //Advance scan pointers
-  for(i=0; i<dimension; ++i) {
-    pidx = idx
-    idx = order[i]
-    for(j=0; j<nargs; ++j) {
-      code.push(["p",j,"+=d",j,"s",i].join(""))
-    }
-    if(has_index) {
-      if(i > 0) {
-        code.push(["index[",pidx,"]-=s",pidx].join(""))
-      }
-      code.push(["++index[",idx,"]"].join(""))
-    }
-    code.push("}")
-  }
-  return code.join("\n")
-}
-
-function outerFill(matched, order, proc, body) {
-  var dimension = order.length
-    , nargs = proc.arrayArgs.length
-    , blockSize = proc.blockSize
-    , has_index = proc.indexArgs.length > 0
-    , code = []
-  for(var i=0; i<nargs; ++i) {
-    code.push(["var offset",i,"=p",i].join(""))
-  }
-  //Generate matched loops
-  for(var i=matched; i<dimension; ++i) {
-    code.push(["for(var j"+i+"=SS[", order[i], "]|0;j", i, ">0;){"].join(""))
-    code.push(["if(j",i,"<",blockSize,"){"].join(""))
-    code.push(["s",order[i],"=j",i].join(""))
-    code.push(["j",i,"=0"].join(""))
-    code.push(["}else{s",order[i],"=",blockSize].join(""))
-    code.push(["j",i,"-=",blockSize,"}"].join(""))
-    if(has_index) {
-      code.push(["index[",order[i],"]=j",i].join(""))
-    }
-  }
-  for(var i=0; i<nargs; ++i) {
-    var indexStr = ["offset"+i]
-    for(var j=matched; j<dimension; ++j) {
-      indexStr.push(["j",j,"*t",i,"p",order[j]].join(""))
-    }
-    code.push(["p",i,"=(",indexStr.join("+"),")"].join(""))
-  }
-  code.push(innerFill(order, proc, body))
-  for(var i=matched; i<dimension; ++i) {
-    code.push("}")
-  }
-  return code.join("\n")
-}
-
-//Count the number of compatible inner orders
-function countMatches(orders) {
-  var matched = 0, dimension = orders[0].length
-  while(matched < dimension) {
-    for(var j=1; j<orders.length; ++j) {
-      if(orders[j][matched] !== orders[0][matched]) {
-        return matched
-      }
-    }
-    ++matched
-  }
-  return matched
-}
-
-//Processes a block according to the given data types
-function processBlock(block, proc, dtypes) {
-  var code = block.body
-  var pre = []
-  var post = []
-  for(var i=0; i<block.args.length; ++i) {
-    var carg = block.args[i]
-    if(carg.count <= 0) {
-      continue
-    }
-    var re = new RegExp(carg.name, "g")
-    var ptrStr = ""
-    var arrNum = proc.arrayArgs.indexOf(i)
-    switch(proc.argTypes[i]) {
-      case "offset":
-        var offArgIndex = proc.offsetArgIndex.indexOf(i)
-        var offArg = proc.offsetArgs[offArgIndex]
-        arrNum = offArg.array
-        ptrStr = "+q" + offArgIndex
-      case "array":
-        ptrStr = "p" + arrNum + ptrStr
-        var localStr = "l" + i
-        var arrStr = "a" + arrNum
-        if(carg.count === 1) {
-          if(dtypes[arrNum] === "generic") {
-            if(carg.lvalue) {
-              pre.push(["var ", localStr, "=", arrStr, ".get(", ptrStr, ")"].join(""))
-              code = code.replace(re, localStr)
-              post.push([arrStr, ".set(", ptrStr, ",", localStr,")"].join(""))
-            } else {
-              code = code.replace(re, [arrStr, ".get(", ptrStr, ")"].join(""))
-            }
-          } else {
-            code = code.replace(re, [arrStr, "[", ptrStr, "]"].join(""))
-          }
-        } else if(dtypes[arrNum] === "generic") {
-          pre.push(["var ", localStr, "=", arrStr, ".get(", ptrStr, ")"].join(""))
-          code = code.replace(re, localStr)
-          if(carg.lvalue) {
-            post.push([arrStr, ".set(", ptrStr, ",", localStr,")"].join(""))
-          }
-        } else {
-          pre.push(["var ", localStr, "=", arrStr, "[", ptrStr, "]"].join(""))
-          code = code.replace(re, localStr)
-          if(carg.lvalue) {
-            post.push([arrStr, "[", ptrStr, "]=", localStr].join(""))
-          }
-        }
-      break
-      case "scalar":
-        code = code.replace(re, "Y" + proc.scalarArgs.indexOf(i))
-      break
-      case "index":
-        code = code.replace(re, "index")
-      break
-      case "shape":
-        code = code.replace(re, "shape")
-      break
-    }
-  }
-  return [pre.join("\n"), code, post.join("\n")].join("\n").trim()
-}
-
-function typeSummary(dtypes) {
-  var summary = new Array(dtypes.length)
-  var allEqual = true
-  for(var i=0; i<dtypes.length; ++i) {
-    var t = dtypes[i]
-    var digits = t.match(/\d+/)
-    if(!digits) {
-      digits = ""
-    } else {
-      digits = digits[0]
-    }
-    if(t.charAt(0) === 0) {
-      summary[i] = "u" + t.charAt(1) + digits
-    } else {
-      summary[i] = t.charAt(0) + digits
-    }
-    if(i > 0) {
-      allEqual = allEqual && summary[i] === summary[i-1]
-    }
-  }
-  if(allEqual) {
-    return summary[0]
-  }
-  return summary.join("")
-}
-
-//Generates a cwise operator
-function generateCWiseOp(proc, typesig) {
-
-  //Compute dimension
-  var dimension = typesig[1].length|0
-  var orders = new Array(proc.arrayArgs.length)
-  var dtypes = new Array(proc.arrayArgs.length)
-
-  //First create arguments for procedure
-  var arglist = ["SS"]
-  var code = ["'use strict'"]
-  var vars = []
-  
-  for(var j=0; j<dimension; ++j) {
-    vars.push(["s", j, "=SS[", j, "]"].join(""))
-  }
-  for(var i=0; i<proc.arrayArgs.length; ++i) {
-    arglist.push("a"+i)
-    arglist.push("t"+i)
-    arglist.push("p"+i)
-    dtypes[i] = typesig[2*i]
-    orders[i] = typesig[2*i+1]
-    
-    for(var j=0; j<dimension; ++j) {
-      vars.push(["t",i,"p",j,"=t",i,"[",j,"]"].join(""))
-    }
-  }
-  for(var i=0; i<proc.scalarArgs.length; ++i) {
-    arglist.push("Y" + i)
-  }
-  if(proc.shapeArgs.length > 0) {
-    vars.push("shape=SS.slice(0)")
-  }
-  if(proc.indexArgs.length > 0) {
-    var zeros = new Array(dimension)
-    for(var i=0; i<dimension; ++i) {
-      zeros[i] = "0"
-    }
-    vars.push(["index=[", zeros.join(","), "]"].join(""))
-  }
-  for(var i=0; i<proc.offsetArgs.length; ++i) {
-    var off_arg = proc.offsetArgs[i]
-    var init_string = []
-    for(var j=0; j<off_arg.offset.length; ++j) {
-      if(off_arg.offset[j] === 0) {
-        continue
-      } else if(off_arg.offset[j] === 1) {
-        init_string.push(["t", off_arg.array, "p", j].join(""))      
-      } else {
-        init_string.push([off_arg.offset[j], "*t", off_arg.array, "p", j].join(""))
-      }
-    }
-    if(init_string.length === 0) {
-      vars.push("q" + i + "=0")
-    } else {
-      vars.push(["q", i, "=", init_string.join("+")].join(""))
-    }
-  }
-
-  //Prepare this variables
-  var thisVars = uniq([].concat(proc.pre.thisVars)
-                      .concat(proc.body.thisVars)
-                      .concat(proc.post.thisVars))
-  vars = vars.concat(thisVars)
-  code.push("var " + vars.join(","))
-  for(var i=0; i<proc.arrayArgs.length; ++i) {
-    code.push("p"+i+"|=0")
-  }
-  
-  //Inline prelude
-  if(proc.pre.body.length > 3) {
-    code.push(processBlock(proc.pre, proc, dtypes))
-  }
-
-  //Process body
-  var body = processBlock(proc.body, proc, dtypes)
-  var matched = countMatches(orders)
-  if(matched < dimension) {
-    code.push(outerFill(matched, orders[0], proc, body))
-  } else {
-    code.push(innerFill(orders[0], proc, body))
-  }
-
-  //Inline epilog
-  if(proc.post.body.length > 3) {
-    code.push(processBlock(proc.post, proc, dtypes))
-  }
-  
-  if(proc.debug) {
-    console.log("Generated cwise routine for ", typesig, ":\n\n", code.join("\n"))
-  }
-  
-  var loopName = [(proc.funcName||"unnamed"), "_cwise_loop_", orders[0].join("s"),"m",matched,typeSummary(dtypes)].join("")
-  var f = new Function(["function ",loopName,"(", arglist.join(","),"){", code.join("\n"),"} return ", loopName].join(""))
-  return f()
-}
-module.exports = generateCWiseOp
+module.exports=require(93)
 },{"uniq":211}],210:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
+module.exports=require(94)
 },{"./compile.js":209}],211:[function(require,module,exports){
-"use strict"
-
-function unique_pred(list, compare) {
-  var ptr = 1
-    , len = list.length
-    , a=list[0], b=list[0]
-  for(var i=1; i<len; ++i) {
-    b = a
-    a = list[i]
-    if(compare(a, b)) {
-      if(i === ptr) {
-        ptr++
-        continue
-      }
-      list[ptr++] = a
-    }
-  }
-  list.length = ptr
-  return list
-}
-
-function unique_eq(list) {
-  var ptr = 1
-    , len = list.length
-    , a=list[0], b = list[0]
-  for(var i=1; i<len; ++i, b=a) {
-    b = a
-    a = list[i]
-    if(a !== b) {
-      if(i === ptr) {
-        ptr++
-        continue
-      }
-      list[ptr++] = a
-    }
-  }
-  list.length = ptr
-  return list
-}
-
-function unique(list, compare, sorted) {
-  if(list.length === 0) {
-    return list
-  }
-  if(compare) {
-    if(!sorted) {
-      list.sort(compare)
-    }
-    return unique_pred(list, compare)
-  }
-  if(!sorted) {
-    list.sort()
-  }
-  return unique_eq(list)
-}
-
-module.exports = unique
-
+module.exports=require(95)
 },{}],212:[function(require,module,exports){
-(function (Buffer){
-var iota = require("iota-array")
-
-var arrayMethods = [
-  "concat",
-  "join",
-  "slice",
-  "toString",
-  "indexOf",
-  "lastIndexOf",
-  "forEach",
-  "every",
-  "some",
-  "filter",
-  "map",
-  "reduce",
-  "reduceRight"
-]
-
-var hasTypedArrays  = ((typeof Float64Array) !== "undefined")
-var hasBuffer       = ((typeof Buffer) !== "undefined")
-
-function compare1st(a, b) {
-  return a[0] - b[0]
-}
-
-function order() {
-  var stride = this.stride
-  var terms = new Array(stride.length)
-  var i
-  for(i=0; i<terms.length; ++i) {
-    terms[i] = [Math.abs(stride[i]), i]
-  }
-  terms.sort(compare1st)
-  var result = new Array(terms.length)
-  for(i=0; i<result.length; ++i) {
-    result[i] = terms[i][1]
-  }
-  return result
-}
-
-function compileConstructor(dtype, dimension) {
-  var className = ["View", dimension, "d", dtype].join("")
-  if(dimension < 0) {
-    className = "View_Nil" + dtype
-  }
-  var useGetters = (dtype === "generic")
-  
-  if(dimension === -1) {
-    //Special case for trivial arrays
-    var code = 
-      "function "+className+"(a){this.data=a;};\
-var proto="+className+".prototype;\
-proto.dtype='"+dtype+"';\
-proto.index=function(){return -1};\
-proto.size=0;\
-proto.dimension=-1;\
-proto.shape=proto.stride=proto.order=[];\
-proto.lo=proto.hi=proto.transpose=proto.step=\
-function(){return new "+className+"(this.data);};\
-proto.get=proto.set=function(){};\
-proto.pick=function(){return null};\
-return function construct_"+className+"(a){return new "+className+"(a);}"
-    var procedure = new Function(code)
-    return procedure()
-  } else if(dimension === 0) {
-    //Special case for 0d arrays
-    var code =
-      "function "+className+"(a,d) {\
-this.data = a;\
-this.offset = d\
-};\
-var proto="+className+".prototype;\
-proto.dtype='"+dtype+"';\
-proto.index=function(){return this.offset};\
-proto.dimension=0;\
-proto.size=1;\
-proto.shape=\
-proto.stride=\
-proto.order=[];\
-proto.lo=\
-proto.hi=\
-proto.transpose=\
-proto.step=function "+className+"_copy() {\
-return new "+className+"(this.data,this.offset)\
-};\
-proto.pick=function "+className+"_pick(){\
-return TrivialArray(this.data);\
-};\
-proto.valueOf=proto.get=function "+className+"_get(){\
-return "+(useGetters ? "this.data.get(this.offset)" : "this.data[this.offset]")+
-"};\
-proto.set=function "+className+"_set(v){\
-return "+(useGetters ? "this.data.set(this.offset,v)" : "this.data[this.offset]=v")+"\
-};\
-return function construct_"+className+"(a,b,c,d){return new "+className+"(a,d)}"
-    var procedure = new Function("TrivialArray", code)
-    return procedure(CACHED_CONSTRUCTORS[dtype][0])
-  }
-
-  var code = ["'use strict'"]
-    
-  //Create constructor for view
-  var indices = iota(dimension)
-  var args = indices.map(function(i) { return "i"+i })
-  var index_str = "this.offset+" + indices.map(function(i) {
-        return "this._stride" + i + "*i" + i
-      }).join("+")
-  code.push("function "+className+"(a,"+
-    indices.map(function(i) {
-      return "b"+i
-    }).join(",") + "," +
-    indices.map(function(i) {
-      return "c"+i
-    }).join(",") + ",d){this.data=a")
-  for(var i=0; i<dimension; ++i) {
-    code.push("this._shape"+i+"=b"+i+"|0")
-  }
-  for(var i=0; i<dimension; ++i) {
-    code.push("this._stride"+i+"=c"+i+"|0")
-  }
-  code.push("this.offset=d|0}",
-    "var proto="+className+".prototype",
-    "proto.dtype='"+dtype+"'",
-    "proto.dimension="+dimension)
-  
-  //view.stride and view.shape
-  var strideClassName = "VStride" + dimension + "d" + dtype
-  var shapeClassName = "VShape" + dimension + "d" + dtype
-  var props = {"stride":strideClassName, "shape":shapeClassName}
-  for(var prop in props) {
-    var arrayName = props[prop]
-    code.push(
-      "function " + arrayName + "(v) {this._v=v} var aproto=" + arrayName + ".prototype",
-      "aproto.length="+dimension)
-    
-    var array_elements = []
-    for(var i=0; i<dimension; ++i) {
-      array_elements.push(["this._v._", prop, i].join(""))
-    }
-    code.push(
-      "aproto.toJSON=function " + arrayName + "_toJSON(){return [" + array_elements.join(",") + "]}",
-      "aproto.valueOf=aproto.toString=function " + arrayName + "_toString(){return [" + array_elements.join(",") + "].join()}")
-    
-    for(var i=0; i<dimension; ++i) {
-      code.push("Object.defineProperty(aproto,"+i+",{get:function(){return this._v._"+prop+i+"},set:function(v){return this._v._"+prop+i+"=v|0},enumerable:true})")
-    }
-    for(var i=0; i<arrayMethods.length; ++i) {
-      if(arrayMethods[i] in Array.prototype) {
-        code.push("aproto."+arrayMethods[i]+"=Array.prototype."+arrayMethods[i])
-      }
-    }
-    code.push(["Object.defineProperty(proto,'",prop,"',{get:function ", arrayName, "_get(){return new ", arrayName, "(this)},set: function ", arrayName, "_set(v){"].join(""))
-    for(var i=0; i<dimension; ++i) {
-      code.push("this._"+prop+i+"=v["+i+"]|0")
-    }
-    code.push("return v}})")
-  }
-  
-  //view.size:
-  code.push("Object.defineProperty(proto,'size',{get:function "+className+"_size(){\
-return "+indices.map(function(i) { return "this._shape"+i }).join("*"),
-"}})")
-
-  //view.order:
-  if(dimension === 1) {
-    code.push("proto.order=[0]")
-  } else {
-    code.push("Object.defineProperty(proto,'order',{get:")
-    if(dimension < 4) {
-      code.push("function "+className+"_order(){")
-      if(dimension === 2) {
-        code.push("return (Math.abs(this._stride0)>Math.abs(this._stride1))?[1,0]:[0,1]}})")
-      } else if(dimension === 3) {
-        code.push(
-"var s0=Math.abs(this._stride0),s1=Math.abs(this._stride1),s2=Math.abs(this._stride2);\
-if(s0>s1){\
-if(s1>s2){\
-return [2,1,0];\
-}else if(s0>s2){\
-return [1,2,0];\
-}else{\
-return [1,0,2];\
-}\
-}else if(s0>s2){\
-return [2,0,1];\
-}else if(s2>s1){\
-return [0,1,2];\
-}else{\
-return [0,2,1];\
-}}})")
-      }
-    } else {
-      code.push("ORDER})")
-    }
-  }
-  
-  //view.set(i0, ..., v):
-  code.push(
-"proto.set=function "+className+"_set("+args.join(",")+",v){")
-  if(useGetters) {
-    code.push("return this.data.set("+index_str+",v)}")
-  } else {
-    code.push("return this.data["+index_str+"]=v}")
-  }
-  
-  //view.get(i0, ...):
-  code.push("proto.get=function "+className+"_get("+args.join(",")+"){")
-  if(useGetters) {
-    code.push("return this.data.get("+index_str+")}")
-  } else {
-    code.push("return this.data["+index_str+"]}")
-  }
-  
-  //view.index:
-  code.push(
-    "proto.index=function "+className+"_index(", args.join(), "){return "+index_str+"}")
-
-  //view.hi():
-  code.push("proto.hi=function "+className+"_hi("+args.join(",")+"){return new "+className+"(this.data,"+
-    indices.map(function(i) {
-      return ["(typeof i",i,"!=='number'||i",i,"<0)?this._shape", i, ":i", i,"|0"].join("")
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "this._stride"+i
-    }).join(",")+",this.offset)}")
-  
-  //view.lo():
-  var a_vars = indices.map(function(i) { return "a"+i+"=this._shape"+i })
-  var c_vars = indices.map(function(i) { return "c"+i+"=this._stride"+i })
-  code.push("proto.lo=function "+className+"_lo("+args.join(",")+"){var b=this.offset,d=0,"+a_vars.join(",")+","+c_vars.join(","))
-  for(var i=0; i<dimension; ++i) {
-    code.push(
-"if(typeof i"+i+"==='number'&&i"+i+">=0){\
-d=i"+i+"|0;\
-b+=c"+i+"*d;\
-a"+i+"-=d}")
-  }
-  code.push("return new "+className+"(this.data,"+
-    indices.map(function(i) {
-      return "a"+i
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "c"+i
-    }).join(",")+",b)}")
-  
-  //view.step():
-  code.push("proto.step=function "+className+"_step("+args.join(",")+"){var "+
-    indices.map(function(i) {
-      return "a"+i+"=this._shape"+i
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "b"+i+"=this._stride"+i
-    }).join(",")+",c=this.offset,d=0,ceil=Math.ceil")
-  for(var i=0; i<dimension; ++i) {
-    code.push(
-"if(typeof i"+i+"==='number'){\
-d=i"+i+"|0;\
-if(d<0){\
-c+=b"+i+"*(a"+i+"-1);\
-a"+i+"=ceil(-a"+i+"/d)\
-}else{\
-a"+i+"=ceil(a"+i+"/d)\
-}\
-b"+i+"*=d\
-}")
-  }
-  code.push("return new "+className+"(this.data,"+
-    indices.map(function(i) {
-      return "a" + i
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "b" + i
-    }).join(",")+",c)}")
-  
-  //view.transpose():
-  var tShape = new Array(dimension)
-  var tStride = new Array(dimension)
-  for(var i=0; i<dimension; ++i) {
-    tShape[i] = "a[i"+i+"]"
-    tStride[i] = "b[i"+i+"]"
-  }
-  code.push("proto.transpose=function "+className+"_transpose("+args+"){"+
-    args.map(function(n,idx) { return n + "=(" + n + "===undefined?" + idx + ":" + n + "|0)"}).join(";"),
-    "var a=this.shape,b=this.stride;return new "+className+"(this.data,"+tShape.join(",")+","+tStride.join(",")+",this.offset)}")
-  
-  //view.pick():
-  code.push("proto.pick=function "+className+"_pick("+args+"){var a=[],b=[],c=this.offset")
-  for(var i=0; i<dimension; ++i) {
-    code.push("if(typeof i"+i+"==='number'&&i"+i+">=0){c=(c+this._stride"+i+"*i"+i+")|0}else{a.push(this._shape"+i+");b.push(this._stride"+i+")}")
-  }
-  code.push("var ctor=CTOR_LIST[a.length+1];return ctor(this.data,a,b,c)}")
-    
-  //Add return statement
-  code.push("return function construct_"+className+"(data,shape,stride,offset){return new "+className+"(data,"+
-    indices.map(function(i) {
-      return "shape["+i+"]"
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "stride["+i+"]"
-    }).join(",")+",offset)}")
-
-  //Compile procedure
-  var procedure = new Function("CTOR_LIST", "ORDER", code.join("\n"))
-  return procedure(CACHED_CONSTRUCTORS[dtype], order)
-}
-
-function arrayDType(data) {
-  if(hasBuffer) {
-    if(Buffer.isBuffer(data)) {
-      return "buffer"
-    }
-  }
-  if(hasTypedArrays) {
-    switch(Object.prototype.toString.call(data)) {
-      case "[object Float64Array]":
-        return "float64"
-      case "[object Float32Array]":
-        return "float32"
-      case "[object Int8Array]":
-        return "int8"
-      case "[object Int16Array]":
-        return "int16"
-      case "[object Int32Array]":
-        return "int32"
-      case "[object Uint8Array]":
-        return "uint8"
-      case "[object Uint16Array]":
-        return "uint16"
-      case "[object Uint32Array]":
-        return "uint32"
-      case "[object Uint8ClampedArray]":
-        return "uint8_clamped"
-    }
-  }
-  if(Array.isArray(data)) {
-    return "array"
-  }
-  return "generic"
-}
-
-var CACHED_CONSTRUCTORS = {
-  "float32":[],
-  "float64":[],
-  "int8":[],
-  "int16":[],
-  "int32":[],
-  "uint8":[],
-  "uint16":[],
-  "uint32":[],
-  "array":[],
-  "uint8_clamped":[],
-  "buffer":[],
-  "generic":[]
-}
-
-;(function() {
-  for(var id in CACHED_CONSTRUCTORS) {
-    CACHED_CONSTRUCTORS[id].push(compileConstructor(id, -1))
-  }
-});
-
-function wrappedNDArrayCtor(data, shape, stride, offset) {
-  if(data === undefined) {
-    var ctor = CACHED_CONSTRUCTORS.array[0]
-    return ctor([])
-  } else if(typeof data === "number") {
-    data = [data]
-  }
-  if(shape === undefined) {
-    shape = [ data.length ]
-  }
-  var d = shape.length
-  if(stride === undefined) {
-    stride = new Array(d)
-    for(var i=d-1, sz=1; i>=0; --i) {
-      stride[i] = sz
-      sz *= shape[i]
-    }
-  }
-  if(offset === undefined) {
-    offset = 0
-    for(var i=0; i<d; ++i) {
-      if(stride[i] < 0) {
-        offset -= (shape[i]-1)*stride[i]
-      }
-    }
-  }
-  var dtype = arrayDType(data)
-  var ctor_list = CACHED_CONSTRUCTORS[dtype]
-  while(ctor_list.length <= d+1) {
-    ctor_list.push(compileConstructor(dtype, ctor_list.length-1))
-  }
-  var ctor = ctor_list[d+1]
-  return ctor(data, shape, stride, offset)
-}
-
-module.exports = wrappedNDArrayCtor
-}).call(this,require("buffer").Buffer)
-},{"buffer":933,"iota-array":213}],213:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":213}],213:[function(require,module,exports){
 module.exports=require(97)
 },{}],214:[function(require,module,exports){
 module.exports=require(98)
 },{}],215:[function(require,module,exports){
 module.exports=require(99)
 },{}],216:[function(require,module,exports){
-(function (global,Buffer){
-var bits = require("bit-twiddle")
-var dup = require("dup")
-if(!global.__TYPEDARRAY_POOL) {
-  global.__TYPEDARRAY_POOL = {
-      UINT8   : dup([32, 0])
-    , UINT16  : dup([32, 0])
-    , UINT32  : dup([32, 0])
-    , INT8    : dup([32, 0])
-    , INT16   : dup([32, 0])
-    , INT32   : dup([32, 0])
-    , FLOAT   : dup([32, 0])
-    , DOUBLE  : dup([32, 0])
-    , DATA    : dup([32, 0])
-    , UINT8C  : dup([32, 0])
-    , BUFFER  : dup([32, 0])
-  }
-}
-var hasUint8C = (typeof Uint8ClampedArray) !== "undefined"
-var POOL = global.__TYPEDARRAY_POOL
-if(!POOL.UINT8C) {
-  POOL.UINT8C = dup([32, 0])
-}
-if(!POOL.BUFFER) {
-  POOL.BUFFER = dup([32, 0])
-}
-var UINT8   = POOL.UINT8
-  , UINT16  = POOL.UINT16
-  , UINT32  = POOL.UINT32
-  , INT8    = POOL.INT8
-  , INT16   = POOL.INT16
-  , INT32   = POOL.INT32
-  , FLOAT   = POOL.FLOAT
-  , DOUBLE  = POOL.DOUBLE
-  , DATA    = POOL.DATA
-  , UINT8C  = POOL.UINT8C
-  , BUFFER  = POOL.BUFFER
-
-exports.free = function free(array) {
-  var n = array.length|0
-    , log_n = bits.log2(n)
-  if(Buffer.isBuffer(array)) {
-    BUFFER[log_n].push(array)
-  } else {
-    switch(Object.prototype.toString.call(array)) {
-      case "[object Uint8Array]":
-        UINT8[log_n].push(array)
-      break
-      case "[object Uint16Array]":
-        UINT16[log_n].push(array)
-      break
-      case "[object Uint32Array]":
-        UINT32[log_n].push(array)
-      break
-      case "[object Int8Array]":
-        INT8[log_n].push(array)
-      break
-      case "[object Int16Array]":
-        INT16[log_n].push(array)
-      break
-      case "[object Int32Array]":
-        INT32[log_n].push(array)
-      break
-      case "[object Uint8ClampedArray]":
-        UINT8C[log_n].push(array)
-      break
-      case "[object Float32Array]":
-        FLOAT[log_n].push(array)
-      break
-      case "[object Float64Array]":
-        DOUBLE[log_n].push(array)
-      break
-      case "[object ArrayBuffer]":
-        DATA[log_n].push(array)
-      break
-      default:
-        throw new Error("typedarray-pool: Unspecified array type")
-    }
-  }
-}
-
-exports.freeUint8 = function freeUint8(array) {
-  UINT8[bits.log2(array.length)].push(array)
-}
-
-exports.freeUint16 = function freeUint16(array) {
-  UINT16[bits.log2(array.length)].push(array)
-}
-
-exports.freeUint32 = function freeUint32(array) {
-  UINT32[bits.log2(array.length)].push(array)
-}
-
-exports.freeInt8 = function freeInt8(array) {
-  INT8[bits.log2(array.length)].push(array)
-}
-
-exports.freeInt16 = function freeInt16(array) {
-  INT16[bits.log2(array.length)].push(array)
-}
-
-exports.freeInt32 = function freeInt32(array) {
-  INT32[bits.log2(array.length)].push(array)
-}
-
-exports.freeFloat32 = exports.freeFloat = function freeFloat(array) {
-  FLOAT[bits.log2(array.length)].push(array)
-}
-
-exports.freeFloat64 = exports.freeDouble = function freeDouble(array) {
-  DOUBLE[bits.log2(array.length)].push(array)
-}
-
-exports.freeArrayBuffer = function freeArrayBuffer(array) {
-  DATA[bits.log2(array.length)].push(array)
-}
-
-if(hasUint8C) {
-  exports.freeUint8Clamped = function freeUint8Clamped(array) {
-    UINT8C[bits.log2(array.length)].push(array)
-  }
-} else {
-  exports.freeUint8Clamped = exports.freeUint8
-}
-
-exports.freeBuffer = function freeBuffer(array) {
-  BUFFER[bits.log2(array.length)].push(array)
-}
-
-exports.malloc = function malloc(n, dtype) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  if(dtype === undefined || dtype === "arraybuffer") {
-    var d = DATA[log_n]
-    if(d.length > 0) {
-      var r = d[d.length-1]
-      d.pop()
-      return r
-    }
-    return new ArrayBuffer(n)
-  } else {
-    switch(dtype) {
-      case "uint8":
-        var u8 = UINT8[log_n]
-        if(u8.length > 0) {
-          return u8.pop()
-        }
-        return new Uint8Array(n)
-      break
-
-      case "uint16":
-        var u16 = UINT16[log_n]
-        if(u16.length > 0) {
-          return u16.pop()
-        }
-        return new Uint16Array(n)
-      break
-
-      case "uint32":
-        var u32 = UINT32[log_n]
-        if(u32.length > 0) {
-          return u32.pop()
-        }
-        return new Uint32Array(n)
-      break
-
-      case "int8":
-        var i8 = INT8[log_n]
-        if(i8.length > 0) {
-          return i8.pop()
-        }
-        return new Int8Array(n)
-      break
-
-      case "int16":
-        var i16 = INT16[log_n]
-        if(i16.length > 0) {
-          return i16.pop()
-        }
-        return new Int16Array(n)
-      break
-
-      case "int32":
-        var i32 = INT32[log_n]
-        if(i32.length > 0) {
-          return i32.pop()
-        }
-        return new Int32Array(n)
-      break
-
-      case "float":
-      case "float32":
-        var f = FLOAT[log_n]
-        if(f.length > 0) {
-          return f.pop()
-        }
-        return new Float32Array(n)
-      break
-
-      case "double":
-      case "float64":
-        var dd = DOUBLE[log_n]
-        if(dd.length > 0) {
-          return dd.pop()
-        }
-        return new Float64Array(n)
-      break
-
-      case "uint8_clamped":
-        if(hasUint8C) {
-          var u8c = UINT8C[log_n]
-          if(u8c.length > 0) {
-            return u8c.pop()
-          }
-          return new Uint8ClampedArray(n)
-        } else {
-          var u8 = UINT8[log_n]
-          if(u8.length > 0) {
-            return u8.pop()
-          }
-          return new Uint8Array(n)
-        }
-      break
-
-      case "buffer":
-        var buf = BUFFER[log_n]
-        if(buf.length > 0) {
-          return buf.pop()
-        }
-        return new Buffer(n)
-      break
-
-      default:
-        return null
-    }
-  }
-  return null
-}
-
-exports.mallocUint8 = function mallocUint8(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = UINT8[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Uint8Array(n)
-}
-
-exports.mallocUint16 = function mallocUint16(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = UINT16[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Uint16Array(n)
-}
-
-exports.mallocUint32 = function mallocUint32(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = UINT32[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Uint32Array(n)
-}
-
-exports.mallocInt8 = function mallocInt8(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = INT8[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Int8Array(n)
-}
-
-exports.mallocInt16 = function mallocInt16(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = INT16[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Int16Array(n)
-}
-
-exports.mallocInt32 = function mallocInt32(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = INT32[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Int32Array(n)
-}
-
-exports.mallocFloat32 = exports.mallocFloat = function mallocFloat(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = FLOAT[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Float32Array(n)
-}
-
-exports.mallocFloat64 = exports.mallocDouble = function mallocDouble(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = DOUBLE[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Float64Array(n)
-}
-
-exports.mallocArrayBuffer = function mallocArrayBuffer(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = DATA[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new ArrayBuffer(n)
-}
-
-if(hasUint8C) {
-  exports.mallocUint8Clamped = function mallocUint8Clamped(n) {
-    n = bits.nextPow2(n)
-    var log_n = bits.log2(n)
-    var cache = UINT8C[log_n]
-    if(cache.length > 0) {
-      return cache.pop()
-    }
-    return new Uint8ClampedArray(n)
-  }
-} else {
-  exports.mallocUint8Clamped = exports.mallocUint8
-}
-
-exports.mallocBuffer = function mallocBuffer(n) {
-  n = bits.nextPow2(n)
-  var log_n = bits.log2(n)
-  var cache = BUFFER[log_n]
-  if(cache.length > 0) {
-    return cache.pop()
-  }
-  return new Buffer(n)
-}
-
-exports.clearCache = function clearCache() {
-  for(var i=0; i<32; ++i) {
-    UINT8[i].length = 0
-    UINT16[i].length = 0
-    UINT32[i].length = 0
-    INT8[i].length = 0
-    INT16[i].length = 0
-    INT32[i].length = 0
-    FLOAT[i].length = 0
-    DOUBLE[i].length = 0
-    DATA[i].length = 0
-    UINT8C[i].length = 0
-    BUFFER[i].length = 0
-  }
-}
-}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":214,"buffer":933,"dup":215}],217:[function(require,module,exports){
+module.exports=require(100)
+},{"bit-twiddle":214,"buffer":930,"dup":215}],217:[function(require,module,exports){
 module.exports=require(101)
 },{}],218:[function(require,module,exports){
 module.exports=require(102)
@@ -40415,7 +39270,7 @@ module.exports=require(102)
 },{"weakmap":223}],225:[function(require,module,exports){
 module.exports=require(108)
 },{"./lib/vao-emulated.js":221,"./lib/vao-native.js":222,"webglew":224}],226:[function(require,module,exports){
-module.exports=require(109)
+arguments[4][109][0].apply(exports,arguments)
 },{"gl-shader-core":232}],227:[function(require,module,exports){
 module.exports=require(110)
 },{}],228:[function(require,module,exports){
@@ -40427,7 +39282,123 @@ module.exports=require(113)
 },{}],231:[function(require,module,exports){
 module.exports=require(99)
 },{}],232:[function(require,module,exports){
-module.exports=require(115)
+"use strict"
+
+var createUniformWrapper = require("./lib/create-uniforms.js")
+var createAttributeWrapper = require("./lib/create-attributes.js")
+var makeReflect = require("./lib/reflect.js")
+
+//Shader object
+function Shader(gl, prog, vertShader, fragShader) {
+  this.gl = gl
+  this.handle = prog
+  this.attributes = null
+  this.uniforms = null
+  this.types = null
+  this.vertexShader = vertShader
+  this.fragmentShader = fragShader
+}
+
+//Binds the shader
+Shader.prototype.bind = function() {
+  this.gl.useProgram(this.handle)
+}
+
+//Destroy shader, release resources
+Shader.prototype.dispose = function() {
+  var gl = this.gl
+  gl.deleteShader(this.vertexShader)
+  gl.deleteShader(this.fragmentShader)
+  gl.deleteProgram(this.handle)
+}
+
+Shader.prototype.updateExports = function(uniforms, attributes) {
+  var locations = new Array(uniforms.length)
+  var program = this.handle
+  var gl = this.gl
+
+  var doLink = relinkUniforms.bind(void 0,
+    gl,
+    program,
+    locations,
+    uniforms
+  )
+  doLink()
+
+  this.types = {
+    uniforms: makeReflect(uniforms),
+    attributes: makeReflect(attributes)
+  }
+
+  this.attributes = createAttributeWrapper(
+    gl,
+    program,
+    attributes,
+    doLink
+  )
+
+  Object.defineProperty(this, "uniforms", createUniformWrapper(
+    gl,
+    program,
+    uniforms,
+    locations
+  ))
+}
+
+//Relinks all uniforms
+function relinkUniforms(gl, program, locations, uniforms) {
+  for(var i=0; i<uniforms.length; ++i) {
+    locations[i] = gl.getUniformLocation(program, uniforms[i].name)
+  }
+}
+
+//Compiles and links a shader program with the given attribute and vertex list
+function createShader(
+    gl
+  , vertSource
+  , fragSource
+  , uniforms
+  , attributes) {
+  
+  //Compile vertex shader
+  var vertShader = gl.createShader(gl.VERTEX_SHADER)
+  gl.shaderSource(vertShader, vertSource)
+  gl.compileShader(vertShader)
+  if(!gl.getShaderParameter(vertShader, gl.COMPILE_STATUS)) {
+    throw new Error("Error compiling vertex shader: " + gl.getShaderInfoLog(vertShader))
+  }
+  
+  //Compile fragment shader
+  var fragShader = gl.createShader(gl.FRAGMENT_SHADER)
+  gl.shaderSource(fragShader, fragSource)
+  gl.compileShader(fragShader)
+  if(!gl.getShaderParameter(fragShader, gl.COMPILE_STATUS)) {
+    throw new Error("Error compiling fragment shader: " + gl.getShaderInfoLog(fragShader))
+  }
+  
+  //Link program
+  var program = gl.createProgram()
+  gl.attachShader(program, fragShader)
+  gl.attachShader(program, vertShader)
+  gl.linkProgram(program)
+  if(!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    throw new Error("Error linking shader program: " + gl.getProgramInfoLog (program))
+  }
+  
+  //Return final linked shader object
+  var shader = new Shader(
+    gl,
+    program,
+    vertShader,
+    fragShader
+  )
+  shader.updateExports(uniforms, attributes)
+
+  return shader
+}
+
+module.exports = createShader
+
 },{"./lib/create-attributes.js":228,"./lib/create-uniforms.js":229,"./lib/reflect.js":230}],233:[function(require,module,exports){
 'use strict';
 
@@ -41033,7 +40004,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"fs":916,"module":916,"path":938,"q+64fw":939,"vm":956}],237:[function(require,module,exports){
+},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"fs":913,"module":913,"path":935,"q+64fw":936,"vm":953}],237:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -41289,7 +40260,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":939}],238:[function(require,module,exports){
+},{"q+64fw":936}],238:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -46104,7 +45075,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require("q+64fw"))
-},{"fs":916,"path":938,"q+64fw":939}],241:[function(require,module,exports){
+},{"fs":913,"path":935,"q+64fw":936}],241:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -46172,7 +45143,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":236,"./helpers":237,"child_process":916,"module":916,"path":938}],242:[function(require,module,exports){
+},{"./coffee-script":236,"./helpers":237,"child_process":913,"module":913,"path":935}],242:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -46962,7 +45933,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 },{}],245:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":246,"./types.json":247,"events":936}],246:[function(require,module,exports){
+},{"./init.json":246,"./types.json":247,"events":933}],246:[function(require,module,exports){
 module.exports=require(16)
 },{}],247:[function(require,module,exports){
 module.exports=require(17)
@@ -47080,7 +46051,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
+},{"buffer":930,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -47240,7 +46211,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":250,"events":936,"itempile":253}],250:[function(require,module,exports){
+},{"deep-equal":250,"events":933,"itempile":253}],250:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":251,"./lib/keys.js":252}],251:[function(require,module,exports){
 module.exports=require(23)
@@ -47430,7 +46401,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":254,"deep-equal":255}],254:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],255:[function(require,module,exports){
+},{"buffer":930}],255:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":256,"./lib/keys.js":257}],256:[function(require,module,exports){
 module.exports=require(23)
@@ -47620,7 +46591,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":259,"deep-equal":260}],259:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],260:[function(require,module,exports){
+},{"buffer":930}],260:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":261,"./lib/keys.js":262}],261:[function(require,module,exports){
 module.exports=require(23)
@@ -47796,7 +46767,7 @@ module.exports=require(24)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"node-int64":264,"zlib":932}],264:[function(require,module,exports){
+},{"buffer":930,"node-int64":264,"zlib":929}],264:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -48002,7 +46973,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933}],265:[function(require,module,exports){
+},{"buffer":930}],265:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -48865,7 +47836,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require("q+64fw"))
-},{"./lib/detector":267,"./lib/stats":268,"aabb-3d":269,"collide-3d-tilemap":271,"events":936,"extend":272,"game-shell-fps-camera":273,"gl-matrix":279,"gl-now":280,"inherits":293,"isndarray":294,"ndarray":295,"path":938,"pin-it":297,"q+64fw":939,"spatial-events":298,"tic":300,"voxel":510,"voxel-controls":301,"voxel-mesher":303,"voxel-physicals":339,"voxel-plugins":342,"voxel-raycast":343,"voxel-region-change":344,"voxel-registry":347,"voxel-shader":348,"voxel-stitch":508}],267:[function(require,module,exports){
+},{"./lib/detector":267,"./lib/stats":268,"aabb-3d":269,"collide-3d-tilemap":271,"events":933,"extend":272,"game-shell-fps-camera":273,"gl-matrix":279,"gl-now":280,"inherits":293,"isndarray":294,"ndarray":295,"path":935,"pin-it":297,"q+64fw":936,"spatial-events":298,"tic":300,"voxel":508,"voxel-controls":301,"voxel-mesher":303,"voxel-physicals":339,"voxel-plugins":342,"voxel-raycast":343,"voxel-region-change":344,"voxel-registry":347,"voxel-shader":348,"voxel-stitch":506}],267:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -49283,74 +48254,75 @@ module.exports = function(field, tilesize, dimensions, offset) {
 },{}],272:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
+var undefined;
 
-function isPlainObject(obj) {
-	if (!obj || toString.call(obj) !== '[object Object]' || obj.nodeType || obj.setInterval)
+var isPlainObject = function isPlainObject(obj) {
+	"use strict";
+	if (!obj || toString.call(obj) !== '[object Object]' || obj.nodeType || obj.setInterval) {
 		return false;
+	}
 
 	var has_own_constructor = hasOwn.call(obj, 'constructor');
-	var has_is_property_of_method = hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
+	var has_is_property_of_method = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
 	// Not own constructor property must be Object
-	if (obj.constructor && !has_own_constructor && !has_is_property_of_method)
+	if (obj.constructor && !has_own_constructor && !has_is_property_of_method) {
 		return false;
+	}
 
 	// Own properties are enumerated firstly, so to speed up,
 	// if last one is own, then all properties are own.
 	var key;
-	for ( key in obj ) {}
+	for (key in obj) {}
 
-	return key === undefined || hasOwn.call( obj, key );
+	return key === undefined || hasOwn.call(obj, key);
 };
 
 module.exports = function extend() {
+	"use strict";
 	var options, name, src, copy, copyIsArray, clone,
-	    target = arguments[0] || {},
-	    i = 1,
-	    length = arguments.length,
-	    deep = false;
+		target = arguments[0],
+		i = 1,
+		length = arguments.length,
+		deep = false;
 
 	// Handle a deep copy situation
-	if ( typeof target === "boolean" ) {
+	if (typeof target === "boolean") {
 		deep = target;
 		target = arguments[1] || {};
 		// skip the boolean and the target
 		i = 2;
+	} else if (typeof target !== "object" && typeof target !== "function" || target == undefined) {
+			target = {};
 	}
 
-	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && typeof target !== "function") {
-		target = {};
-	}
-
-	for ( ; i < length; i++ ) {
+	for (; i < length; ++i) {
 		// Only deal with non-null/undefined values
-		if ( (options = arguments[ i ]) != null ) {
+		if ((options = arguments[i]) != null) {
 			// Extend the base object
-			for ( name in options ) {
-				src = target[ name ];
-				copy = options[ name ];
+			for (name in options) {
+				src = target[name];
+				copy = options[name];
 
 				// Prevent never-ending loop
-				if ( target === copy ) {
+				if (target === copy) {
 					continue;
 				}
 
 				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( isPlainObject(copy) || (copyIsArray = Array.isArray(copy)) ) ) {
-					if ( copyIsArray ) {
+				if (deep && copy && (isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
+					if (copyIsArray) {
 						copyIsArray = false;
 						clone = src && Array.isArray(src) ? src : [];
-
 					} else {
 						clone = src && isPlainObject(src) ? src : {};
 					}
 
 					// Never move original objects, clone them
-					target[ name ] = extend( deep, clone, copy );
+					target[name] = extend(deep, clone, copy);
 
 				// Don't bring in undefined values
-				} else if ( copy !== undefined ) {
-					target[ name ] = copy;
+				} else if (copy !== undefined) {
+					target[name] = copy;
 				}
 			}
 		}
@@ -49359,6 +48331,7 @@ module.exports = function extend() {
 	// Return the modified object
 	return target;
 };
+
 
 },{}],273:[function(require,module,exports){
 'use strict';
@@ -49618,7 +48591,7 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":277,"stream":953}],279:[function(require,module,exports){
+},{"inherits":277,"stream":950}],279:[function(require,module,exports){
 module.exports=require(219)
 },{}],280:[function(require,module,exports){
 "use strict"
@@ -49974,7 +48947,7 @@ module.exports = invert
 },{}],287:[function(require,module,exports){
 module.exports=require(97)
 },{}],288:[function(require,module,exports){
-module.exports=require(211)
+module.exports=require(95)
 },{}],289:[function(require,module,exports){
 module.exports=require(10)
 },{}],290:[function(require,module,exports){
@@ -50697,7 +49670,7 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":281,"./lib/mousewheel-polyfill.js":282,"./lib/raf-polyfill.js":283,"binary-search-bounds":284,"domready":285,"events":936,"invert-hash":286,"iota-array":287,"uniq":288,"util":955,"vkey":289}],291:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":281,"./lib/mousewheel-polyfill.js":282,"./lib/raf-polyfill.js":283,"binary-search-bounds":284,"domready":285,"events":933,"invert-hash":286,"iota-array":287,"uniq":288,"util":952,"vkey":289}],291:[function(require,module,exports){
 module.exports=require(101)
 },{}],292:[function(require,module,exports){
 module.exports=require(102)
@@ -50712,8 +49685,8 @@ module.exports = function(arr) {
 }
 
 },{}],295:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":296}],296:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":296}],296:[function(require,module,exports){
 module.exports=require(97)
 },{}],297:[function(require,module,exports){
 module.exports = pin
@@ -51400,7 +50373,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":953}],302:[function(require,module,exports){
+},{"stream":950}],302:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -51597,7 +50570,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":302,"block-models":305,"events":936,"gl-buffer":310,"gl-vao":319,"inherits":326,"ndarray":332,"ndarray-ops":327}],304:[function(require,module,exports){
+},{"./mesh-buffer.js":302,"block-models":305,"events":933,"gl-buffer":310,"gl-vao":319,"inherits":326,"ndarray":332,"ndarray-ops":327}],304:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -52295,15 +51268,15 @@ module.exports = parseBlockModel;
 
 
 },{}],306:[function(require,module,exports){
-module.exports=require(208)
+module.exports=require(92)
 },{"./lib/thunk.js":308}],307:[function(require,module,exports){
-module.exports=require(209)
+module.exports=require(93)
 },{"uniq":309}],308:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
+module.exports=require(94)
 },{"./compile.js":307}],309:[function(require,module,exports){
-module.exports=require(211)
+module.exports=require(95)
 },{}],310:[function(require,module,exports){
-arguments[4][90][0].apply(exports,arguments)
+module.exports=require(90)
 },{"ndarray":332,"ndarray-ops":327,"typedarray-pool":336,"webglew":312}],311:[function(require,module,exports){
 module.exports=require(101)
 },{}],312:[function(require,module,exports){
@@ -52528,32 +51501,32 @@ module.exports=require(98)
 },{}],323:[function(require,module,exports){
 module.exports=require(99)
 },{}],324:[function(require,module,exports){
-module.exports=require(216)
-},{"bit-twiddle":322,"buffer":933,"dup":323}],325:[function(require,module,exports){
-module.exports=require(211)
+module.exports=require(100)
+},{"bit-twiddle":322,"buffer":930,"dup":323}],325:[function(require,module,exports){
+module.exports=require(95)
 },{}],326:[function(require,module,exports){
 module.exports=require(277)
 },{}],327:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
+module.exports=require(91)
 },{"cwise-compiler":328}],328:[function(require,module,exports){
-module.exports=require(208)
+module.exports=require(92)
 },{"./lib/thunk.js":330}],329:[function(require,module,exports){
-module.exports=require(209)
+module.exports=require(93)
 },{"uniq":331}],330:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
+module.exports=require(94)
 },{"./compile.js":329}],331:[function(require,module,exports){
-module.exports=require(211)
+module.exports=require(95)
 },{}],332:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":333}],333:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":333}],333:[function(require,module,exports){
 module.exports=require(97)
 },{}],334:[function(require,module,exports){
 module.exports=require(98)
 },{}],335:[function(require,module,exports){
 module.exports=require(99)
 },{}],336:[function(require,module,exports){
-module.exports=require(216)
-},{"bit-twiddle":334,"buffer":933,"dup":335}],337:[function(require,module,exports){
+module.exports=require(100)
+},{"bit-twiddle":334,"buffer":930,"dup":335}],337:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -52990,7 +51963,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":955}],342:[function(require,module,exports){
+},{"util":952}],342:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -53307,7 +52280,7 @@ Plugins.prototype.destroy = function(name) {
 inherits(Plugins, EventEmitter);
 
 }).call(this,require("q+64fw"))
-},{"events":936,"inherits":340,"q+64fw":939,"tsort":341}],343:[function(require,module,exports){
+},{"events":933,"inherits":340,"q+64fw":936,"tsort":341}],343:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -53557,7 +52530,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":345,"events":936}],345:[function(require,module,exports){
+},{"aabb-3d":345,"events":933}],345:[function(require,module,exports){
 arguments[4][337][0].apply(exports,arguments)
 },{"gl-matrix":346}],346:[function(require,module,exports){
 /**
@@ -57833,7 +56806,7 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"fs":916,"gl-matrix":349,"glslify":351,"glslify/adapter.js":350}],349:[function(require,module,exports){
+},{"fs":913,"gl-matrix":349,"glslify":351,"glslify/adapter.js":350}],349:[function(require,module,exports){
 module.exports=require(219)
 },{}],350:[function(require,module,exports){
 module.exports=require(109)
@@ -58333,7 +57306,7 @@ module.exports = function(opts) {
 };
 
 
-},{"binary-xhr":358,"events":936,"fs":916,"get-pixels":360,"graycolorize":373,"mcmeta":377,"path":938,"save-pixels":398,"zip":414}],358:[function(require,module,exports){
+},{"binary-xhr":358,"events":933,"fs":913,"get-pixels":360,"graycolorize":373,"mcmeta":377,"path":935,"save-pixels":398,"zip":414}],358:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -58486,7 +57459,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":367,"ndarray-pack":361,"omggif":369,"path":938,"ppm":371,"through":372}],361:[function(require,module,exports){
+},{"ndarray":367,"ndarray-pack":361,"omggif":369,"path":935,"ppm":371,"through":372}],361:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -58907,10 +57880,66 @@ module.exports = generateCWiseOp
 },{"uniq":366}],365:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
 },{"./compile.js":364}],366:[function(require,module,exports){
-module.exports=require(95)
+"use strict"
+
+function unique_pred(list, compare) {
+  var ptr = 1
+    , len = list.length
+    , a=list[0], b=list[0]
+  for(var i=1; i<len; ++i) {
+    b = a
+    a = list[i]
+    if(compare(a, b)) {
+      if(i === ptr) {
+        ptr++
+        continue
+      }
+      list[ptr++] = a
+    }
+  }
+  list.length = ptr
+  return list
+}
+
+function unique_eq(list) {
+  var ptr = 1
+    , len = list.length
+    , a=list[0], b = list[0]
+  for(var i=1; i<len; ++i, b=a) {
+    b = a
+    a = list[i]
+    if(a !== b) {
+      if(i === ptr) {
+        ptr++
+        continue
+      }
+      list[ptr++] = a
+    }
+  }
+  list.length = ptr
+  return list
+}
+
+function unique(list, compare, sorted) {
+  if(list.length === 0) {
+    return []
+  }
+  if(compare) {
+    if(!sorted) {
+      list.sort(compare)
+    }
+    return unique_pred(list, compare)
+  }
+  if(!sorted) {
+    list.sort()
+  }
+  return unique_eq(list)
+}
+
+module.exports = unique
 },{}],367:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":368}],368:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":368}],368:[function(require,module,exports){
 module.exports=require(97)
 },{}],369:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
@@ -59750,7 +58779,7 @@ function through (write, end) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":939,"stream":953}],371:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],371:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -60072,9 +59101,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":933,"q+64fw":939,"through":370}],372:[function(require,module,exports){
+},{"buffer":930,"q+64fw":936,"through":370}],372:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],373:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],373:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -60159,8 +59188,8 @@ module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
 },{"ndarray":374,"onecolor":376}],374:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":375}],375:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":375}],375:[function(require,module,exports){
 module.exports=require(97)
 },{}],376:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
@@ -61083,8 +60112,8 @@ module.exports = function getPixels(url, cb) {
 }
 
 },{"ndarray":379}],379:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":380}],380:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":380}],380:[function(require,module,exports){
 module.exports=require(97)
 },{}],381:[function(require,module,exports){
 (function (Buffer){
@@ -61288,7 +60317,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933,"stream":953,"util":955}],382:[function(require,module,exports){
+},{"buffer":930,"stream":950,"util":952}],382:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -61409,7 +60438,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":953,"util":955}],384:[function(require,module,exports){
+},{"stream":950,"util":952}],384:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -61727,7 +60756,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":381,"buffer":933,"util":955,"zlib":932}],385:[function(require,module,exports){
+},{"./chunkstream":381,"buffer":930,"util":952,"zlib":929}],385:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -61841,7 +60870,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":382,"./crc":383,"./filter":384,"buffer":933,"stream":953,"util":955,"zlib":932}],386:[function(require,module,exports){
+},{"./constants":382,"./crc":383,"./filter":384,"buffer":930,"stream":950,"util":952,"zlib":929}],386:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -62204,7 +61233,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":381,"./constants":382,"./crc":383,"./filter":384,"buffer":933,"util":955,"zlib":932}],387:[function(require,module,exports){
+},{"./chunkstream":381,"./constants":382,"./crc":383,"./filter":384,"buffer":930,"util":952,"zlib":929}],387:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -62355,9 +61384,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./packer":385,"./parser":386,"buffer":933,"q+64fw":939,"stream":953,"util":955}],388:[function(require,module,exports){
+},{"./packer":385,"./parser":386,"buffer":930,"q+64fw":936,"stream":950,"util":952}],388:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],389:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],389:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -62451,21 +61480,21 @@ module.exports = function savePixels(array, type) {
 
 },{"pngjs":387,"through":388}],390:[function(require,module,exports){
 module.exports=require(381)
-},{"buffer":933,"stream":953,"util":955}],391:[function(require,module,exports){
+},{"buffer":930,"stream":950,"util":952}],391:[function(require,module,exports){
 module.exports=require(382)
 },{}],392:[function(require,module,exports){
 module.exports=require(383)
-},{"stream":953,"util":955}],393:[function(require,module,exports){
+},{"stream":950,"util":952}],393:[function(require,module,exports){
 module.exports=require(384)
-},{"./chunkstream":390,"buffer":933,"util":955,"zlib":932}],394:[function(require,module,exports){
+},{"./chunkstream":390,"buffer":930,"util":952,"zlib":929}],394:[function(require,module,exports){
 module.exports=require(385)
-},{"./constants":391,"./crc":392,"./filter":393,"buffer":933,"stream":953,"util":955,"zlib":932}],395:[function(require,module,exports){
+},{"./constants":391,"./crc":392,"./filter":393,"buffer":930,"stream":950,"util":952,"zlib":929}],395:[function(require,module,exports){
 module.exports=require(386)
-},{"./chunkstream":390,"./constants":391,"./crc":392,"./filter":393,"buffer":933,"util":955,"zlib":932}],396:[function(require,module,exports){
+},{"./chunkstream":390,"./constants":391,"./crc":392,"./filter":393,"buffer":930,"util":952,"zlib":929}],396:[function(require,module,exports){
 module.exports=require(387)
-},{"./packer":394,"./parser":395,"buffer":933,"q+64fw":939,"stream":953,"util":955}],397:[function(require,module,exports){
+},{"./packer":394,"./parser":395,"buffer":930,"q+64fw":936,"stream":950,"util":952}],397:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],398:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],398:[function(require,module,exports){
 module.exports=require(389)
 },{"pngjs":396,"through":397}],399:[function(require,module,exports){
 
@@ -64412,12 +63441,12 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require("q+64fw"))
-},{"./inflate":400,"bops":401,"fs":916,"q+64fw":939}],415:[function(require,module,exports){
+},{"./inflate":400,"bops":401,"fs":913,"q+64fw":936}],415:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
  *
- * Copyright (c) 2013 Kyle Robinson Young
+ * Copyright (c) 2014 Kyle Robinson Young
  * Licensed under the MIT license.
  *
  * Based on Nick Welch's binpack: https://github.com/mackstann/binpack
@@ -64671,7 +63700,7 @@ Atlas.prototype._debug = function() {
 module.exports=require(39)
 },{}],417:[function(require,module,exports){
 module.exports=require(360)
-},{"ndarray":424,"ndarray-pack":418,"omggif":426,"path":938,"ppm":428,"through":429}],418:[function(require,module,exports){
+},{"ndarray":424,"ndarray-pack":418,"omggif":426,"path":935,"ppm":428,"through":429}],418:[function(require,module,exports){
 module.exports=require(361)
 },{"./doConvert.js":419,"ndarray":424}],419:[function(require,module,exports){
 module.exports=require(362)
@@ -64682,44 +63711,40 @@ module.exports=require(364)
 },{"uniq":423}],422:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
 },{"./compile.js":421}],423:[function(require,module,exports){
-module.exports=require(95)
+module.exports=require(366)
 },{}],424:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":425}],425:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":425}],425:[function(require,module,exports){
 module.exports=require(97)
 },{}],426:[function(require,module,exports){
 module.exports=require(369)
 },{}],427:[function(require,module,exports){
 module.exports=require(370)
-},{"q+64fw":939,"stream":953}],428:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],428:[function(require,module,exports){
 module.exports=require(371)
-},{"buffer":933,"q+64fw":939,"through":427}],429:[function(require,module,exports){
+},{"buffer":930,"q+64fw":936,"through":427}],429:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],430:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
+},{"q+64fw":936,"stream":950}],430:[function(require,module,exports){
+module.exports=require(91)
 },{"cwise-compiler":431}],431:[function(require,module,exports){
-module.exports=require(208)
+module.exports=require(92)
 },{"./lib/thunk.js":433}],432:[function(require,module,exports){
-module.exports=require(209)
+module.exports=require(93)
 },{"uniq":434}],433:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
+module.exports=require(94)
 },{"./compile.js":432}],434:[function(require,module,exports){
-module.exports=require(211)
+module.exports=require(95)
 },{}],435:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":436}],436:[function(require,module,exports){
-module.exports=require(97)
-},{}],437:[function(require,module,exports){
 module.exports=require(98)
-},{}],438:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 module.exports=require(99)
-},{}],439:[function(require,module,exports){
-module.exports=require(216)
-},{"bit-twiddle":437,"buffer":933,"dup":438}],440:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
+module.exports=require(100)
+},{"bit-twiddle":435,"buffer":930,"dup":436}],438:[function(require,module,exports){
 module.exports=require(101)
-},{}],441:[function(require,module,exports){
+},{}],439:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":440}],442:[function(require,module,exports){
+},{"weakmap":438}],440:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -64760,9 +63785,9 @@ var convertFloatToUint8 = function(out, inp) {
 function Texture2D(gl, handle, width, height, format, type) {
   this.gl = gl
   this.handle = handle
-  this.shape = [ height, width ]
   this.format = format
   this.type = type
+  this._shape = [height, width]
   this._mipLevels = [0]
   this._magFilter = gl.NEAREST
   this._minFilter = gl.NEAREST
@@ -64841,6 +63866,35 @@ Object.defineProperty(proto, "wrapT", {
   }
 })
 
+
+Object.defineProperty(proto, "wrap", {
+  get: function() {
+    return [this._wrapT, this._wrapS]
+  },
+  set: function(v) {
+    if(!Array.isArray(v)) {
+      v = [v,v]
+    }
+    if(v.length !== 2) {
+      throw new Error("gl-texture2d: Must specify wrap mode for rows and columns")
+    }
+    for(var i=0; i<2; ++i) {
+      if(wrapTypes.indexOf(v[i]) < 0) {
+        throw new Error("gl-texture2d: Unknown wrap mode " + v)
+      }
+    }
+    this._wrapT = v[0]
+    this._wrapS = v[1]
+
+    var gl = this.gl
+    this.bind()
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, this._wrapT)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, this._wrapS)
+
+    return v
+  }
+})
+
 Object.defineProperty(proto, "mipSamples", {
   get: function() {
     return this._anisoSamples
@@ -64855,6 +63909,36 @@ Object.defineProperty(proto, "mipSamples", {
       }
     }
     return this._anisoSamples
+  }
+})
+
+Object.defineProperty(proto, "shape", {
+  get: function() {
+    return this._shape
+  }, 
+  set: function(x) {
+    if(!Array.isArray(x)) {
+      x = [x|0,x|0]
+    } else {
+      if(x.length !== 2) {
+        throw new Error("gl-texture2d: Invalid texture shape")
+      }
+    }
+    var r = x[0]|0
+    var c = x[1]|0
+    if(this.height === r && this.width === c) {
+      return x
+    }
+    var gl = this.gl
+    var maxSize = gl.getParameter(gl.MAX_TEXTURE_SIZE)
+    if(c < 0 || c > maxSize || r < 0 || r > maxSize) {
+      throw new Error("gl-texture2d: Invalid texture size")
+    }
+    this._shape = [r, c]
+    this.bind()
+    gl.texImage2D(gl.TEXTURE_2D, 0, this.format, c, r, 0, this.format, this.type, null)
+    this._mipLevels = [0]
+    return x
   }
 })
 
@@ -64879,7 +63963,7 @@ proto.generateMipmap = function() {
   this.gl.generateMipmap(this.gl.TEXTURE_2D)
   
   //Update mip levels
-  var l = Math.min(this.shape[0], this.shape[1])
+  var l = Math.min(this._shape[0], this._shape[1])
   for(var i=0; l>0; ++i, l>>>=1) {
     if(this._mipLevels.indexOf(i) < 0) {
       this._mipLevels.push(i)
@@ -64890,8 +63974,14 @@ proto.generateMipmap = function() {
 proto.setPixels = function(data, x_off, y_off, mip_level) {
   var gl = this.gl
   this.bind()
-  x_off = x_off || 0
-  y_off = y_off || 0
+  if(Array.isArray(x_off)) {
+    mip_level = y_off
+    y_off = x_off[0]|0
+    x_off = x_off[1]|0
+  } else {
+    x_off = x_off || 0
+    y_off = y_off || 0
+  }
   mip_level = mip_level || 0
   if(data instanceof HTMLCanvasElement ||
      data instanceof ImageData ||
@@ -64906,20 +63996,20 @@ proto.setPixels = function(data, x_off, y_off, mip_level) {
     }
   } else if(data.shape && data.stride && data.data) {
     if(data.shape.length < 2 ||
-       x_off + data.shape[1] > this.shape[1]>>>mip_level ||
-       y_off + data.shape[0] > this.shape[0]>>>mip_level ||
+       x_off + data.shape[1] > this._shape[1]>>>mip_level ||
+       y_off + data.shape[0] > this._shape[0]>>>mip_level ||
        x_off < 0 ||
        y_off < 0) {
-      throw new Error("Texture dimensions are out of bounds")
-    }    
+      throw new Error("gl-texture2d: Texture dimensions are out of bounds")
+    }
     texSubImageArray(gl, x_off, y_off, mip_level, this.format, this.type, this._mipLevels, data)
   } else {
-    throw new Error("Unsupported data type")
+    throw new Error("gl-texture2d: Unsupported data type")
   }
 }
 
 function texSubImageArray(gl, x_off, y_off, mip_level, cformat, ctype, mipLevels, array) {
-  var dtype = array.dtype || ndarray.dtype(array)
+  var dtype = array.dtype
   var shape = array.shape
   var packed = isPacked(array)
   var type = 0, format = 0
@@ -64934,6 +64024,7 @@ function texSubImageArray(gl, x_off, y_off, mip_level, cformat, ctype, mipLevels
   } else {
     type = gl.UNSIGNED_BYTE
     packed = false
+    dtype = "uint8"
   }
   if(shape.length === 2) {
     format = gl.LUMINANCE
@@ -64947,10 +64038,10 @@ function texSubImageArray(gl, x_off, y_off, mip_level, cformat, ctype, mipLevels
     } else if(shape[2] === 4) {
       format = gl.RGBA
     } else {
-      throw new Error("Invalid shape for pixel coords")
+      throw new Error("gl-texture2d: Invalid shape for pixel coords")
     }
   } else {
-    throw new Error("Invalid shape for texture")
+    throw new Error("gl-texture2d: Invalid shape for texture")
   }
   //For 1-channel textures allow conversion between formats
   if((format  === gl.LUMINANCE || format  === gl.ALPHA) &&
@@ -64958,12 +64049,9 @@ function texSubImageArray(gl, x_off, y_off, mip_level, cformat, ctype, mipLevels
     format = cformat
   }
   if(format !== cformat) {
-    throw new Error("Incompatible texture format for setPixels")
+    throw new Error("gl-texture2d: Incompatible texture format for setPixels")
   }
   var size = array.size
-  if(typeof size !== "number") {
-    size = ndarray.size(array)
-  }
   var needsMip = mipLevels.indexOf(mip_level) < 0
   if(needsMip) {
     mipLevels.push(mip_level)
@@ -65021,6 +64109,10 @@ function initTexture(gl) {
 }
 
 function createTextureShape(gl, width, height, format, type) {
+  var maxTextureSize = gl.getParameter(gl.MAX_TEXTURE_SIZE)
+  if(width < 0 || width > maxTextureSize || height < 0 || height  > maxTextureSize) {
+    throw new Error("gl-texture2d: Invalid texture shape")
+  }
   var tex = initTexture(gl)
   gl.texImage2D(gl.TEXTURE_2D, 0, format, width, height, 0, format, type, null)
   return new Texture2D(gl, tex, width, height, format, type)
@@ -65047,8 +64139,13 @@ function isPacked(array) {
 
 //Creates a texture from an ndarray
 function createTextureArray(gl, array) {
-  var dtype = array.dtype || ndarray.dtype(array)
-  var shape = array.shape
+  var dtype = array.dtype
+  var shape = array.shape.slice()
+  var maxSize = gl.getParameter(gl.MAX_TEXTURE_SIZE)
+  if(shape[0] < 0 || shape[0] > maxSize || shape[1] < 0 || shape[1] > maxSize) {
+    throw new Error("gl-texture2d: Invalid texture size")
+  }
+
   var packed = isPacked(array)
   var type = 0
   if(dtype === "float32") {
@@ -65062,6 +64159,7 @@ function createTextureArray(gl, array) {
   } else {
     type = gl.UNSIGNED_BYTE
     packed = false
+    dtype = "uint8"
   }
   var format = 0
   if(shape.length === 2) {
@@ -65103,9 +64201,6 @@ function createTextureArray(gl, array) {
     buffer = buf_store.subarray(0, sz)
   } else {
     var array_size = array.size
-    if(typeof array_size !== "number") {
-      array_size = ndarray.size(array)
-    }
     buffer = array.data.subarray(array.offset, array.offset + array_size)
   }
   var tex = initTexture(gl)
@@ -65126,6 +64221,9 @@ function createTexture2D(gl) {
   if(typeof arguments[1] === "number") {
     return createTextureShape(gl, arguments[1], arguments[2], arguments[3]||gl.RGBA, arguments[4]||gl.UNSIGNED_BYTE)
   }
+  if(Array.isArray(arguments[1])) {
+    return createTextureShape(gl, arguments[1][1]|0, arguments[1][0]|0, arguments[2]||gl.RGBA, arguments[4]||gl.UNSIGNED_BYTE)
+  }
   if(typeof arguments[1] === "object") {
     var obj = arguments[1]
     if(obj instanceof HTMLCanvasElement ||
@@ -65141,9 +64239,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":435,"ndarray-ops":430,"typedarray-pool":439,"webglew":441}],443:[function(require,module,exports){
+},{"ndarray":445,"ndarray-ops":430,"typedarray-pool":437,"webglew":439}],441:[function(require,module,exports){
 module.exports=require(277)
-},{}],444:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -65168,15 +64266,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":445}],445:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":446}],446:[function(require,module,exports){
+},{"ndarray":443}],443:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":444}],444:[function(require,module,exports){
+module.exports=require(97)
+},{}],445:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":446}],446:[function(require,module,exports){
 module.exports=require(97)
 },{}],447:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":448}],448:[function(require,module,exports){
-module.exports=require(97)
-},{}],449:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -65292,7 +64390,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":495,"ndarray-downsample2x":450,"ndarray-ops":490}],450:[function(require,module,exports){
+},{"ndarray":493,"ndarray-downsample2x":448,"ndarray-ops":488}],448:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -65377,7 +64475,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":451,"ndarray-fft":459,"ndarray-ops":479,"ndarray-scratch":489}],451:[function(require,module,exports){
+},{"cwise":449,"ndarray-fft":457,"ndarray-ops":477,"ndarray-scratch":487}],449:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -65414,15 +64512,374 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":452,"cwise-parser":456}],452:[function(require,module,exports){
-module.exports=require(92)
-},{"./lib/thunk.js":454}],453:[function(require,module,exports){
-module.exports=require(93)
-},{"uniq":455}],454:[function(require,module,exports){
-module.exports=require(94)
-},{"./compile.js":453}],455:[function(require,module,exports){
-module.exports=require(95)
-},{}],456:[function(require,module,exports){
+},{"cwise-compiler":450,"cwise-parser":454}],450:[function(require,module,exports){
+"use strict"
+
+var createThunk = require("./lib/thunk.js")
+
+function Procedure() {
+  this.argTypes = []
+  this.shimArgs = []
+  this.arrayArgs = []
+  this.scalarArgs = []
+  this.indexArgs = []
+  this.shapeArgs = []
+  this.funcName = ""
+  this.pre = null
+  this.body = null
+  this.post = null
+  this.debug = false
+}
+
+function compileCwise(user_args) {
+  //Create procedure
+  var proc = new Procedure()
+  
+  //Parse blocks
+  proc.pre    = user_args.pre
+  proc.body   = user_args.body
+  proc.post   = user_args.post
+
+  //Parse arguments
+  var proc_args = user_args.args.slice(0)
+  proc.argTypes = proc_args
+  for(var i=0; i<proc_args.length; ++i) {
+    switch(proc_args[i]) {
+      case "array":
+        proc.arrayArgs.push(i)
+        proc.shimArgs.push("array" + i)
+        if(i < proc.pre.args.length && proc.pre.args[i].count>0) {
+          throw new Error("cwise: pre() block may not reference array args")
+        }
+        if(i < proc.post.args.length && proc.post.args[i].count>0) {
+          throw new Error("cwise: post() block may not reference array args")
+        }
+      break
+      case "scalar":
+        proc.scalarArgs.push(i)
+        proc.shimArgs.push("scalar" + i)
+      break
+      case "index":
+        proc.indexArgs.push(i)
+        if(i < proc.pre.args.length && proc.pre.args[i].count > 0) {
+          throw new Error("cwise: pre() block may not reference array index")
+        }
+        if(i < proc.body.args.length && proc.body.args[i].lvalue) {
+          throw new Error("cwise: body() block may not write to array index")
+        }
+        if(i < proc.post.args.length && proc.post.args[i].count > 0) {
+          throw new Error("cwise: post() block may not reference array index")
+        }
+      break
+      case "shape":
+        proc.shapeArgs.push(i)
+        if(i < proc.pre.args.length && proc.pre.args[i].lvalue) {
+          throw new Error("cwise: pre() block may not write to array shape")
+        }
+        if(i < proc.body.args.length && proc.body.args[i].lvalue) {
+          throw new Error("cwise: body() block may not write to array shape")
+        }
+        if(i < proc.post.args.length && proc.post.args[i].lvalue) {
+          throw new Error("cwise: post() block may not write to array shape")
+        }
+      break
+      default:
+        throw new Error("cwise: Unknown argument type " + proc_args[i])
+    }
+  }
+  
+  //Make sure at least one array argument was specified
+  if(proc.arrayArgs.length <= 0) {
+    throw new Error("cwise: No array arguments specified")
+  }
+  
+  //Make sure arguments are correct
+  if(proc.pre.args.length > proc_args.length) {
+    throw new Error("cwise: Too many arguments in pre() block")
+  }
+  if(proc.body.args.length > proc_args.length) {
+    throw new Error("cwise: Too many arguments in body() block")
+  }
+  if(proc.post.args.length > proc_args.length) {
+    throw new Error("cwise: Too many arguments in post() block")
+  }
+
+  //Check debug flag
+  proc.debug = !!user_args.printCode || !!user_args.debug
+  
+  //Retrieve name
+  proc.funcName = user_args.funcName || "cwise"
+  
+  //Read in block size
+  proc.blockSize = user_args.blockSize || 64
+
+  return createThunk(proc)
+}
+
+module.exports = compileCwise
+
+},{"./lib/thunk.js":452}],451:[function(require,module,exports){
+"use strict"
+
+var uniq = require("uniq")
+
+function innerFill(order, proc, body) {
+  var dimension = order.length
+    , nargs = proc.arrayArgs.length
+    , has_index = proc.indexArgs.length>0
+    , code = []
+    , vars = []
+    , idx=0, pidx=0, i, j
+  for(i=0; i<dimension; ++i) {
+    vars.push(["i",i,"=0"].join(""))
+  }
+  //Compute scan deltas
+  for(j=0; j<nargs; ++j) {
+    for(i=0; i<dimension; ++i) {
+      pidx = idx
+      idx = order[i]
+      if(i === 0) {
+        vars.push(["d",j,"s",i,"=t",j,"[",idx,"]"].join(""))
+      } else {
+        vars.push(["d",j,"s",i,"=(t",j,"[",idx,"]-s",pidx,"*t",j,"[",pidx,"])"].join(""))
+      }
+    }
+  }
+  code.push("var " + vars.join(","))
+  //Scan loop
+  for(i=dimension-1; i>=0; --i) {
+    idx = order[i]
+    code.push(["for(i",i,"=0;i",i,"<s",idx,";++i",i,"){"].join(""))
+  }
+  //Push body of inner loop
+  code.push(body)
+  //Advance scan pointers
+  for(i=0; i<dimension; ++i) {
+    pidx = idx
+    idx = order[i]
+    for(j=0; j<nargs; ++j) {
+      code.push(["p",j,"+=d",j,"s",i].join(""))
+    }
+    if(has_index) {
+      if(i > 0) {
+        code.push(["index[",pidx,"]-=s",pidx].join(""))
+      }
+      code.push(["++index[",idx,"]"].join(""))
+    }
+    code.push("}")
+  }
+  return code.join("\n")
+}
+
+function outerFill(matched, order, proc, body) {
+  var dimension = order.length
+    , nargs = proc.arrayArgs.length
+    , blockSize = proc.blockSize
+    , has_index = proc.indexArgs.length > 0
+    , code = []
+  for(var i=0; i<nargs; ++i) {
+    code.push(["var offset",i,"=p",i].join(""))
+  }
+  //Generate matched loops
+  for(var i=matched; i<dimension; ++i) {
+    code.push(["for(var j"+i+"=SS[", order[i], "]|0;j", i, ">0;){"].join(""))
+    code.push(["if(j",i,"<",blockSize,"){"].join(""))
+    code.push(["s",order[i],"=j",i].join(""))
+    code.push(["j",i,"=0"].join(""))
+    code.push(["}else{s",order[i],"=",blockSize].join(""))
+    code.push(["j",i,"-=",blockSize,"}"].join(""))
+    if(has_index) {
+      code.push(["index[",order[i],"]=j",i].join(""))
+    }
+  }
+  for(var i=0; i<nargs; ++i) {
+    var indexStr = ["offset"+i]
+    for(var j=matched; j<dimension; ++j) {
+      indexStr.push(["j",j,"*t",i,"[",order[j],"]"].join(""))
+    }
+    code.push(["p",i,"=(",indexStr.join("+"),")"].join(""))
+  }
+  code.push(innerFill(order, proc, body))
+  for(var i=matched; i<dimension; ++i) {
+    code.push("}")
+  }
+  return code.join("\n")
+}
+
+//Count the number of compatible inner orders
+function countMatches(orders) {
+  var matched = 0, dimension = orders[0].length
+  while(matched < dimension) {
+    for(var j=1; j<orders.length; ++j) {
+      if(orders[j][matched] !== orders[0][matched]) {
+        return matched
+      }
+    }
+    ++matched
+  }
+  return matched
+}
+
+//Processes a block according to the given data types
+function processBlock(block, proc, dtypes) {
+  var code = block.body
+  var pre = []
+  var post = []
+  for(var i=0; i<block.args.length; ++i) {
+    var carg = block.args[i]
+    if(carg.count <= 0) {
+      continue
+    }
+    var re = new RegExp(carg.name, "g")
+    switch(proc.argTypes[i]) {
+      case "array":
+        var arrNum = proc.arrayArgs.indexOf(i)
+        if(carg.count === 1) {
+          if(dtypes[arrNum] === "generic") {
+            if(carg.lvalue) {
+              pre.push(["var l", arrNum, "=a", arrNum, ".get(p", arrNum, ")"].join(""))
+              code = code.replace(re, "l"+arrNum)
+              post.push(["a", arrNum, ".set(p", arrNum, ",l",arrNum,")"].join(""))
+            } else {
+              code = code.replace(re, ["a", arrNum, ".get(p", arrNum, ")"].join(""))
+            }
+          } else {
+            code = code.replace(re, ["a", arrNum, "[p", arrNum, "]"].join(""))
+          }
+        } else if(dtypes[arrNum] === "generic") {
+          pre.push(["var l", arrNum, "=a", arrNum, ".get(p", arrNum, ")"].join(""))
+          code = code.replace(re, "l"+arrNum)
+          if(carg.lvalue) {
+            post.push(["a", arrNum, ".set(p", arrNum, ",l",arrNum,")"].join(""))
+          }
+        } else {
+          pre.push(["var l", arrNum, "=a", arrNum, "[p", arrNum, "]"].join(""))
+          code = code.replace(re, "l"+arrNum)
+          if(carg.lvalue) {
+            post.push(["a", arrNum, "[p", arrNum, "]=l",arrNum].join(""))
+          }
+        }
+      break
+      case "scalar":
+        code = code.replace(re, "Y" + proc.scalarArgs.indexOf(i))
+      break
+      case "index":
+        code = code.replace(re, "index")
+      break
+      case "shape":
+        code = code.replace(re, "shape")
+      break
+    }
+  }
+  return [pre.join("\n"), code, post.join("\n")].join("\n").trim()
+}
+
+function typeSummary(dtypes) {
+  var summary = new Array(dtypes.length)
+  var allEqual = true
+  for(var i=0; i<dtypes.length; ++i) {
+    var t = dtypes[i]
+    var digits = t.match(/\d+/)
+    if(!digits) {
+      digits = ""
+    } else {
+      digits = digits[0]
+    }
+    if(t.charAt(0) === 0) {
+      summary[i] = "u" + t.charAt(1) + digits
+    } else {
+      summary[i] = t.charAt(0) + digits
+    }
+    if(i > 0) {
+      allEqual = allEqual && summary[i] === summary[i-1]
+    }
+  }
+  if(allEqual) {
+    return summary[0]
+  }
+  return summary.join("")
+}
+
+//Generates a cwise operator
+function generateCWiseOp(proc, typesig) {
+
+  //Compute dimension
+  var dimension = typesig[1].length|0
+  var orders = new Array(proc.arrayArgs.length)
+  var dtypes = new Array(proc.arrayArgs.length)
+
+  //First create arguments for procedure
+  var arglist = ["SS"]
+  var code = ["'use strict'"]
+  var vars = []
+  
+  for(var j=0; j<dimension; ++j) {
+    vars.push(["s", j, "=SS[", j, "]"].join(""))
+  }
+  for(var i=0; i<proc.arrayArgs.length; ++i) {
+    arglist.push("a"+i)
+    arglist.push("t"+i)
+    arglist.push("p"+i)
+    dtypes[i] = typesig[2*i]
+    orders[i] = typesig[2*i+1]
+  }
+  for(var i=0; i<proc.scalarArgs.length; ++i) {
+    arglist.push("Y" + i)
+  }
+  if(proc.shapeArgs.length > 0) {
+    vars.push("shape=SS.slice(0)")
+  }
+  if(proc.indexArgs.length > 0) {
+    var zeros = new Array(dimension)
+    for(var i=0; i<dimension; ++i) {
+      zeros[i] = "0"
+    }
+    vars.push(["index=[", zeros.join(","), "]"].join(""))
+  }
+
+  //Prepare this variables
+  var thisVars = uniq([].concat(proc.pre.thisVars)
+                      .concat(proc.body.thisVars)
+                      .concat(proc.post.thisVars))
+  vars = vars.concat(thisVars)
+  code.push("var " + vars.join(","))
+  for(var i=0; i<proc.arrayArgs.length; ++i) {
+    code.push("p"+i+"|=0")
+  }
+  
+  //Inline prelude
+  if(proc.pre.body.length > 3) {
+    code.push(processBlock(proc.pre, proc, dtypes))
+  }
+
+  //Process body
+  var body = processBlock(proc.body, proc, dtypes)
+  var matched = countMatches(orders)
+  if(matched < dimension) {
+    code.push(outerFill(matched, orders[0], proc, body))
+  } else {
+    code.push(innerFill(orders[0], proc, body))
+  }
+
+  //Inline epilog
+  if(proc.post.body.length > 3) {
+    code.push(processBlock(proc.post, proc, dtypes))
+  }
+  
+  if(proc.debug) {
+    console.log("Generated cwise routine for ", typesig, ":\n\n", code.join("\n"))
+  }
+  
+  var loopName = [(proc.funcName||"unnamed"), "_cwise_loop_", orders[0].join("s"),"m",matched,typeSummary(dtypes)].join("")
+  var f = new Function(["function ",loopName,"(", arglist.join(","),"){", code.join("\n"),"} return ", loopName].join(""))
+  return f()
+}
+module.exports = generateCWiseOp
+},{"uniq":453}],452:[function(require,module,exports){
+arguments[4][94][0].apply(exports,arguments)
+},{"./compile.js":451}],453:[function(require,module,exports){
+module.exports=require(366)
+},{}],454:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -65618,7 +65075,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":457,"uniq":458}],457:[function(require,module,exports){
+},{"esprima":455,"uniq":456}],455:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -69528,9 +68985,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],458:[function(require,module,exports){
-module.exports=require(95)
-},{}],459:[function(require,module,exports){
+},{}],456:[function(require,module,exports){
+module.exports=require(366)
+},{}],457:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -69615,7 +69072,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":460,"cwise":462,"ndarray":475,"ndarray-ops":470,"typedarray-pool":478}],460:[function(require,module,exports){
+},{"./lib/fft-matrix.js":458,"cwise":460,"ndarray":473,"ndarray-ops":468,"typedarray-pool":476}],458:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -69834,25 +69291,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":461}],461:[function(require,module,exports){
+},{"bit-twiddle":459}],459:[function(require,module,exports){
 module.exports=require(98)
-},{}],462:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
+module.exports=require(449)
+},{"cwise-compiler":461,"cwise-parser":465}],461:[function(require,module,exports){
+module.exports=require(450)
+},{"./lib/thunk.js":463}],462:[function(require,module,exports){
 module.exports=require(451)
-},{"cwise-compiler":463,"cwise-parser":467}],463:[function(require,module,exports){
-module.exports=require(92)
-},{"./lib/thunk.js":465}],464:[function(require,module,exports){
-module.exports=require(93)
-},{"uniq":466}],465:[function(require,module,exports){
-module.exports=require(94)
-},{"./compile.js":464}],466:[function(require,module,exports){
-module.exports=require(95)
+},{"uniq":464}],463:[function(require,module,exports){
+arguments[4][94][0].apply(exports,arguments)
+},{"./compile.js":462}],464:[function(require,module,exports){
+module.exports=require(366)
+},{}],465:[function(require,module,exports){
+module.exports=require(454)
+},{"esprima":466,"uniq":467}],466:[function(require,module,exports){
+module.exports=require(455)
 },{}],467:[function(require,module,exports){
-module.exports=require(456)
-},{"esprima":468,"uniq":469}],468:[function(require,module,exports){
-module.exports=require(457)
-},{}],469:[function(require,module,exports){
-module.exports=require(95)
-},{}],470:[function(require,module,exports){
+module.exports=require(366)
+},{}],468:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -70301,21 +69758,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":471}],471:[function(require,module,exports){
-module.exports=require(92)
-},{"./lib/thunk.js":473}],472:[function(require,module,exports){
-module.exports=require(93)
-},{"uniq":474}],473:[function(require,module,exports){
-module.exports=require(94)
-},{"./compile.js":472}],474:[function(require,module,exports){
-module.exports=require(95)
-},{}],475:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":476}],476:[function(require,module,exports){
+},{"cwise-compiler":469}],469:[function(require,module,exports){
+module.exports=require(450)
+},{"./lib/thunk.js":471}],470:[function(require,module,exports){
+module.exports=require(451)
+},{"uniq":472}],471:[function(require,module,exports){
+arguments[4][94][0].apply(exports,arguments)
+},{"./compile.js":470}],472:[function(require,module,exports){
+module.exports=require(366)
+},{}],473:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":474}],474:[function(require,module,exports){
 module.exports=require(97)
-},{}],477:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
 module.exports=require(99)
-},{}],478:[function(require,module,exports){
+},{}],476:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -70600,27 +70057,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":461,"dup":477}],479:[function(require,module,exports){
-module.exports=require(470)
-},{"cwise-compiler":480}],480:[function(require,module,exports){
-module.exports=require(92)
-},{"./lib/thunk.js":482}],481:[function(require,module,exports){
-module.exports=require(93)
-},{"uniq":483}],482:[function(require,module,exports){
-module.exports=require(94)
-},{"./compile.js":481}],483:[function(require,module,exports){
-module.exports=require(95)
-},{}],484:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":485}],485:[function(require,module,exports){
+},{"bit-twiddle":459,"dup":475}],477:[function(require,module,exports){
+module.exports=require(468)
+},{"cwise-compiler":478}],478:[function(require,module,exports){
+module.exports=require(450)
+},{"./lib/thunk.js":480}],479:[function(require,module,exports){
+module.exports=require(451)
+},{"uniq":481}],480:[function(require,module,exports){
+arguments[4][94][0].apply(exports,arguments)
+},{"./compile.js":479}],481:[function(require,module,exports){
+module.exports=require(366)
+},{}],482:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":483}],483:[function(require,module,exports){
 module.exports=require(97)
-},{}],486:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
 module.exports=require(98)
-},{}],487:[function(require,module,exports){
+},{}],485:[function(require,module,exports){
 module.exports=require(99)
-},{}],488:[function(require,module,exports){
-module.exports=require(478)
-},{"bit-twiddle":486,"dup":487}],489:[function(require,module,exports){
+},{}],486:[function(require,module,exports){
+module.exports=require(476)
+},{"bit-twiddle":484,"dup":485}],487:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -70644,41 +70101,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":484,"typedarray-pool":488}],490:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":491}],491:[function(require,module,exports){
-module.exports=require(208)
-},{"./lib/thunk.js":493}],492:[function(require,module,exports){
-module.exports=require(209)
-},{"uniq":494}],493:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":492}],494:[function(require,module,exports){
-module.exports=require(211)
-},{}],495:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":496}],496:[function(require,module,exports){
+},{"ndarray":482,"typedarray-pool":486}],488:[function(require,module,exports){
+module.exports=require(91)
+},{"cwise-compiler":489}],489:[function(require,module,exports){
+module.exports=require(92)
+},{"./lib/thunk.js":491}],490:[function(require,module,exports){
+module.exports=require(93)
+},{"uniq":492}],491:[function(require,module,exports){
+module.exports=require(94)
+},{"./compile.js":490}],492:[function(require,module,exports){
+module.exports=require(95)
+},{}],493:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":494}],494:[function(require,module,exports){
 module.exports=require(97)
-},{}],497:[function(require,module,exports){
+},{}],495:[function(require,module,exports){
 module.exports=require(381)
-},{"buffer":933,"stream":953,"util":955}],498:[function(require,module,exports){
+},{"buffer":930,"stream":950,"util":952}],496:[function(require,module,exports){
 module.exports=require(382)
-},{}],499:[function(require,module,exports){
+},{}],497:[function(require,module,exports){
 module.exports=require(383)
-},{"stream":953,"util":955}],500:[function(require,module,exports){
+},{"stream":950,"util":952}],498:[function(require,module,exports){
 module.exports=require(384)
-},{"./chunkstream":497,"buffer":933,"util":955,"zlib":932}],501:[function(require,module,exports){
+},{"./chunkstream":495,"buffer":930,"util":952,"zlib":929}],499:[function(require,module,exports){
 module.exports=require(385)
-},{"./constants":498,"./crc":499,"./filter":500,"buffer":933,"stream":953,"util":955,"zlib":932}],502:[function(require,module,exports){
+},{"./constants":496,"./crc":497,"./filter":498,"buffer":930,"stream":950,"util":952,"zlib":929}],500:[function(require,module,exports){
 module.exports=require(386)
-},{"./chunkstream":497,"./constants":498,"./crc":499,"./filter":500,"buffer":933,"util":955,"zlib":932}],503:[function(require,module,exports){
+},{"./chunkstream":495,"./constants":496,"./crc":497,"./filter":498,"buffer":930,"util":952,"zlib":929}],501:[function(require,module,exports){
 module.exports=require(387)
-},{"./packer":501,"./parser":502,"buffer":933,"q+64fw":939,"stream":953,"util":955}],504:[function(require,module,exports){
+},{"./packer":499,"./parser":500,"buffer":930,"q+64fw":936,"stream":950,"util":952}],502:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":939,"stream":953}],505:[function(require,module,exports){
+},{"q+64fw":936,"stream":950}],503:[function(require,module,exports){
 module.exports=require(389)
-},{"pngjs":503,"through":504}],506:[function(require,module,exports){
+},{"pngjs":501,"through":502}],504:[function(require,module,exports){
 module.exports=require(44)
-},{}],507:[function(require,module,exports){
+},{}],505:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -70768,7 +70225,7 @@ module.exports=require(44)
 
 }).call(this);
 
-},{}],508:[function(require,module,exports){
+},{}],506:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -71055,27 +70512,23 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":357,"atlaspack":415,"cube-side-array":416,"events":936,"get-pixels":417,"gl-texture2d":442,"inherits":443,"ndarray":447,"ndarray-hash":444,"rect-mip-map":449,"save-pixels":505,"toarray":506,"touchup":507}],509:[function(require,module,exports){
+},{"artpacks":357,"atlaspack":415,"cube-side-array":416,"events":933,"get-pixels":417,"gl-texture2d":440,"inherits":441,"ndarray":445,"ndarray-hash":442,"rect-mip-map":447,"save-pixels":503,"toarray":504,"touchup":505}],507:[function(require,module,exports){
 module.exports=require(195)
-},{"events":936,"inherits":516}],510:[function(require,module,exports){
-module.exports=require(196)
-},{"./chunker":509,"./meshers/culled":511,"./meshers/greedy":512,"./meshers/monotone":513,"./meshers/stupid":514,"./meshers/transgreedy":515,"ndarray":517}],511:[function(require,module,exports){
+},{"events":933,"inherits":514}],508:[function(require,module,exports){
+arguments[4][196][0].apply(exports,arguments)
+},{"./chunker":507,"./meshers/culled":509,"./meshers/greedy":510,"./meshers/monotone":511,"./meshers/stupid":512,"./meshers/transgreedy":513,"ndarray":295}],509:[function(require,module,exports){
 module.exports=require(197)
-},{}],512:[function(require,module,exports){
+},{}],510:[function(require,module,exports){
 module.exports=require(198)
-},{}],513:[function(require,module,exports){
+},{}],511:[function(require,module,exports){
 module.exports=require(199)
-},{}],514:[function(require,module,exports){
+},{}],512:[function(require,module,exports){
 module.exports=require(200)
-},{}],515:[function(require,module,exports){
+},{}],513:[function(require,module,exports){
 module.exports=require(201)
-},{}],516:[function(require,module,exports){
+},{}],514:[function(require,module,exports){
 module.exports=require(202)
-},{}],517:[function(require,module,exports){
-module.exports=require(203)
-},{"buffer":933,"iota-array":518}],518:[function(require,module,exports){
-module.exports=require(97)
-},{}],519:[function(require,module,exports){
+},{}],515:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -71154,9 +70607,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":520}],520:[function(require,module,exports){
+},{"ucfirst":516}],516:[function(require,module,exports){
 module.exports=require(25)
-},{}],521:[function(require,module,exports){
+},{}],517:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -71254,7 +70707,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],522:[function(require,module,exports){
+},{}],518:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -71321,7 +70774,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],523:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -71455,7 +70908,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],524:[function(require,module,exports){
+},{}],520:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -71745,7 +71198,7 @@ FurnaceDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":534,"inventory-window":525,"itempile":543,"voxel-inventory-dialog":548}],525:[function(require,module,exports){
+},{"inventory":530,"inventory-window":521,"itempile":539,"voxel-inventory-dialog":544}],521:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -72191,7 +71644,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":526,"events":936,"ever":528,"ftooltip":531,"touchup":533}],526:[function(require,module,exports){
+},{"cube-icon":522,"events":933,"ever":524,"ftooltip":527,"touchup":529}],522:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -72258,21 +71711,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":527}],527:[function(require,module,exports){
+},{"cube-side-array":523}],523:[function(require,module,exports){
 module.exports=require(39)
-},{}],528:[function(require,module,exports){
+},{}],524:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":529,"./types.json":530,"events":936}],529:[function(require,module,exports){
+},{"./init.json":525,"./types.json":526,"events":933}],525:[function(require,module,exports){
 module.exports=require(16)
-},{}],530:[function(require,module,exports){
+},{}],526:[function(require,module,exports){
 module.exports=require(17)
-},{}],531:[function(require,module,exports){
+},{}],527:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":532}],532:[function(require,module,exports){
+},{"toarray":528}],528:[function(require,module,exports){
 module.exports=require(44)
-},{}],533:[function(require,module,exports){
+},{}],529:[function(require,module,exports){
 module.exports=require(45)
-},{}],534:[function(require,module,exports){
+},{}],530:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -72432,13 +71885,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":535,"events":936,"itempile":538}],535:[function(require,module,exports){
+},{"deep-equal":531,"events":933,"itempile":534}],531:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":536,"./lib/keys.js":537}],536:[function(require,module,exports){
+},{"./lib/is_arguments.js":532,"./lib/keys.js":533}],532:[function(require,module,exports){
 module.exports=require(23)
-},{}],537:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 module.exports=require(24)
+},{}],534:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":535,"deep-equal":536}],535:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],536:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":537,"./lib/keys.js":538}],537:[function(require,module,exports){
+module.exports=require(23)
 },{}],538:[function(require,module,exports){
+module.exports=require(24)
+},{}],539:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -72620,205 +72263,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":539,"deep-equal":540}],539:[function(require,module,exports){
+},{"clone":540,"deep-equal":541}],540:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],540:[function(require,module,exports){
+},{"buffer":930}],541:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":541,"./lib/keys.js":542}],541:[function(require,module,exports){
+},{"./lib/is_arguments.js":542,"./lib/keys.js":543}],542:[function(require,module,exports){
 module.exports=require(23)
-},{}],542:[function(require,module,exports){
-module.exports=require(24)
 },{}],543:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":544,"deep-equal":545}],544:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],545:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":546,"./lib/keys.js":547}],546:[function(require,module,exports){
-module.exports=require(23)
-},{}],547:[function(require,module,exports){
 module.exports=require(24)
-},{}],548:[function(require,module,exports){
+},{}],544:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -72894,7 +72347,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":558,"inventory-window":549,"itempile":567,"voxel-modal-dialog":572}],549:[function(require,module,exports){
+},{"inventory":554,"inventory-window":545,"itempile":563,"voxel-modal-dialog":568}],545:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -73340,7 +72793,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":550,"events":936,"ever":552,"ftooltip":555,"touchup":557}],550:[function(require,module,exports){
+},{"cube-icon":546,"events":933,"ever":548,"ftooltip":551,"touchup":553}],546:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -73407,21 +72860,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":551}],551:[function(require,module,exports){
+},{"cube-side-array":547}],547:[function(require,module,exports){
 module.exports=require(39)
-},{}],552:[function(require,module,exports){
+},{}],548:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":553,"./types.json":554,"events":936}],553:[function(require,module,exports){
+},{"./init.json":549,"./types.json":550,"events":933}],549:[function(require,module,exports){
 module.exports=require(16)
-},{}],554:[function(require,module,exports){
+},{}],550:[function(require,module,exports){
 module.exports=require(17)
-},{}],555:[function(require,module,exports){
+},{}],551:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":556}],556:[function(require,module,exports){
+},{"toarray":552}],552:[function(require,module,exports){
 module.exports=require(44)
-},{}],557:[function(require,module,exports){
+},{}],553:[function(require,module,exports){
 module.exports=require(45)
-},{}],558:[function(require,module,exports){
+},{}],554:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -73581,13 +73034,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":559,"events":936,"itempile":562}],559:[function(require,module,exports){
+},{"deep-equal":555,"events":933,"itempile":558}],555:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":560,"./lib/keys.js":561}],560:[function(require,module,exports){
+},{"./lib/is_arguments.js":556,"./lib/keys.js":557}],556:[function(require,module,exports){
 module.exports=require(23)
-},{}],561:[function(require,module,exports){
+},{}],557:[function(require,module,exports){
 module.exports=require(24)
+},{}],558:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":559,"deep-equal":560}],559:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],560:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":561,"./lib/keys.js":562}],561:[function(require,module,exports){
+module.exports=require(23)
 },{}],562:[function(require,module,exports){
+module.exports=require(24)
+},{}],563:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -73769,215 +73412,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":563,"deep-equal":564}],563:[function(require,module,exports){
+},{"clone":564,"deep-equal":565}],564:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],564:[function(require,module,exports){
+},{"buffer":930}],565:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":565,"./lib/keys.js":566}],565:[function(require,module,exports){
+},{"./lib/is_arguments.js":566,"./lib/keys.js":567}],566:[function(require,module,exports){
 module.exports=require(23)
-},{}],566:[function(require,module,exports){
-module.exports=require(24)
 },{}],567:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":568,"deep-equal":569}],568:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],569:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":570,"./lib/keys.js":571}],570:[function(require,module,exports){
-module.exports=require(23)
-},{}],571:[function(require,module,exports){
 module.exports=require(24)
-},{}],572:[function(require,module,exports){
+},{}],568:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":573}],573:[function(require,module,exports){
+},{"voxel-modal":569}],569:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":574}],574:[function(require,module,exports){
+},{"ever":570}],570:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":575,"./types.json":576,"events":936}],575:[function(require,module,exports){
+},{"./init.json":571,"./types.json":572,"events":933}],571:[function(require,module,exports){
 module.exports=require(16)
-},{}],576:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 module.exports=require(17)
-},{}],577:[function(require,module,exports){
+},{}],573:[function(require,module,exports){
 var Gamemode, Inventory, ItemPile;
 
 ItemPile = require('itempile');
@@ -74084,7 +73537,7 @@ Gamemode = (function() {
 })();
 
 
-},{"inventory":578,"itempile":587}],578:[function(require,module,exports){
+},{"inventory":574,"itempile":583}],574:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -74244,13 +73697,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":579,"events":936,"itempile":582}],579:[function(require,module,exports){
+},{"deep-equal":575,"events":933,"itempile":578}],575:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":580,"./lib/keys.js":581}],580:[function(require,module,exports){
+},{"./lib/is_arguments.js":576,"./lib/keys.js":577}],576:[function(require,module,exports){
 module.exports=require(23)
-},{}],581:[function(require,module,exports){
+},{}],577:[function(require,module,exports){
 module.exports=require(24)
+},{}],578:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],580:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":581,"./lib/keys.js":582}],581:[function(require,module,exports){
+module.exports=require(23)
 },{}],582:[function(require,module,exports){
+module.exports=require(24)
+},{}],583:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -74432,205 +74075,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":583,"deep-equal":584}],583:[function(require,module,exports){
+},{"clone":584,"deep-equal":585}],584:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],584:[function(require,module,exports){
+},{"buffer":930}],585:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":585,"./lib/keys.js":586}],585:[function(require,module,exports){
+},{"./lib/is_arguments.js":586,"./lib/keys.js":587}],586:[function(require,module,exports){
 module.exports=require(23)
-},{}],586:[function(require,module,exports){
-module.exports=require(24)
 },{}],587:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":588,"deep-equal":589}],588:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],589:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":590,"./lib/keys.js":591}],590:[function(require,module,exports){
-module.exports=require(23)
-},{}],591:[function(require,module,exports){
 module.exports=require(24)
-},{}],592:[function(require,module,exports){
+},{}],588:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -74758,7 +74211,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":593,"ucfirst":598}],593:[function(require,module,exports){
+},{"itempile":589,"ucfirst":594}],589:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -74937,7 +74390,7 @@ GlassPlugin.prototype.disable = function() {
 
 }).call(this);
 
-},{"clone":594,"deep-equal":595}],594:[function(require,module,exports){
+},{"clone":590,"deep-equal":591}],590:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -75069,15 +74522,15 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":933}],595:[function(require,module,exports){
+},{"buffer":930}],591:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":596,"./lib/keys.js":597}],596:[function(require,module,exports){
+},{"./lib/is_arguments.js":592,"./lib/keys.js":593}],592:[function(require,module,exports){
 module.exports=require(23)
-},{}],597:[function(require,module,exports){
+},{}],593:[function(require,module,exports){
 module.exports=require(24)
-},{}],598:[function(require,module,exports){
+},{}],594:[function(require,module,exports){
 module.exports=require(25)
-},{}],599:[function(require,module,exports){
+},{}],595:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -75151,7 +74604,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],600:[function(require,module,exports){
+},{}],596:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75299,7 +74752,7 @@ Harvest = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":936,"itempile":601}],601:[function(require,module,exports){
+},{"events":933,"itempile":597}],597:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -75481,15 +74934,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":602,"deep-equal":603}],602:[function(require,module,exports){
+},{"clone":598,"deep-equal":599}],598:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],603:[function(require,module,exports){
+},{"buffer":930}],599:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":604,"./lib/keys.js":605}],604:[function(require,module,exports){
+},{"./lib/is_arguments.js":600,"./lib/keys.js":601}],600:[function(require,module,exports){
 module.exports=require(23)
-},{}],605:[function(require,module,exports){
+},{}],601:[function(require,module,exports){
 module.exports=require(24)
-},{}],606:[function(require,module,exports){
+},{}],602:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -75560,7 +75013,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],607:[function(require,module,exports){
+},{}],603:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new HealthFallPlugin(game, opts);
@@ -75595,7 +75048,7 @@ HealthFallPlugin.prototype.disable = function() {
 };
 
 
-},{}],608:[function(require,module,exports){
+},{}],604:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -75683,9 +75136,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":936,"inherits":609}],609:[function(require,module,exports){
+},{"events":933,"inherits":605}],605:[function(require,module,exports){
 module.exports=require(277)
-},{}],610:[function(require,module,exports){
+},{}],606:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75804,7 +75257,7 @@ InventoryCrafting = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":620,"inventory-window":611,"itempile":629,"voxel-inventory-dialog":634}],611:[function(require,module,exports){
+},{"inventory":616,"inventory-window":607,"itempile":625,"voxel-inventory-dialog":630}],607:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -76250,7 +75703,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":612,"events":936,"ever":614,"ftooltip":617,"touchup":619}],612:[function(require,module,exports){
+},{"cube-icon":608,"events":933,"ever":610,"ftooltip":613,"touchup":615}],608:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -76317,21 +75770,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":613}],613:[function(require,module,exports){
+},{"cube-side-array":609}],609:[function(require,module,exports){
 module.exports=require(39)
-},{}],614:[function(require,module,exports){
+},{}],610:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":615,"./types.json":616,"events":936}],615:[function(require,module,exports){
+},{"./init.json":611,"./types.json":612,"events":933}],611:[function(require,module,exports){
 module.exports=require(16)
-},{}],616:[function(require,module,exports){
+},{}],612:[function(require,module,exports){
 module.exports=require(17)
-},{}],617:[function(require,module,exports){
+},{}],613:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":618}],618:[function(require,module,exports){
+},{"toarray":614}],614:[function(require,module,exports){
 module.exports=require(44)
-},{}],619:[function(require,module,exports){
+},{}],615:[function(require,module,exports){
 module.exports=require(45)
-},{}],620:[function(require,module,exports){
+},{}],616:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -76491,13 +75944,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":621,"events":936,"itempile":624}],621:[function(require,module,exports){
+},{"deep-equal":617,"events":933,"itempile":620}],617:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":622,"./lib/keys.js":623}],622:[function(require,module,exports){
+},{"./lib/is_arguments.js":618,"./lib/keys.js":619}],618:[function(require,module,exports){
 module.exports=require(23)
-},{}],623:[function(require,module,exports){
+},{}],619:[function(require,module,exports){
 module.exports=require(24)
+},{}],620:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":621,"deep-equal":622}],621:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],622:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":623,"./lib/keys.js":624}],623:[function(require,module,exports){
+module.exports=require(23)
 },{}],624:[function(require,module,exports){
+module.exports=require(24)
+},{}],625:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -76679,205 +76322,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":625,"deep-equal":626}],625:[function(require,module,exports){
+},{"clone":626,"deep-equal":627}],626:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],626:[function(require,module,exports){
+},{"buffer":930}],627:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":627,"./lib/keys.js":628}],627:[function(require,module,exports){
+},{"./lib/is_arguments.js":628,"./lib/keys.js":629}],628:[function(require,module,exports){
 module.exports=require(23)
-},{}],628:[function(require,module,exports){
-module.exports=require(24)
 },{}],629:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":630,"deep-equal":631}],630:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],631:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":632,"./lib/keys.js":633}],632:[function(require,module,exports){
-module.exports=require(23)
-},{}],633:[function(require,module,exports){
 module.exports=require(24)
-},{}],634:[function(require,module,exports){
+},{}],630:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -76953,7 +76406,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":644,"inventory-window":635,"itempile":653,"voxel-modal-dialog":658}],635:[function(require,module,exports){
+},{"inventory":640,"inventory-window":631,"itempile":649,"voxel-modal-dialog":654}],631:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -77399,7 +76852,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":636,"events":936,"ever":638,"ftooltip":641,"touchup":643}],636:[function(require,module,exports){
+},{"cube-icon":632,"events":933,"ever":634,"ftooltip":637,"touchup":639}],632:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -77466,21 +76919,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":637}],637:[function(require,module,exports){
+},{"cube-side-array":633}],633:[function(require,module,exports){
 module.exports=require(39)
-},{}],638:[function(require,module,exports){
+},{}],634:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":639,"./types.json":640,"events":936}],639:[function(require,module,exports){
+},{"./init.json":635,"./types.json":636,"events":933}],635:[function(require,module,exports){
 module.exports=require(16)
-},{}],640:[function(require,module,exports){
+},{}],636:[function(require,module,exports){
 module.exports=require(17)
-},{}],641:[function(require,module,exports){
+},{}],637:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":642}],642:[function(require,module,exports){
+},{"toarray":638}],638:[function(require,module,exports){
 module.exports=require(44)
-},{}],643:[function(require,module,exports){
+},{}],639:[function(require,module,exports){
 module.exports=require(45)
-},{}],644:[function(require,module,exports){
+},{}],640:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -77640,13 +77093,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":645,"events":936,"itempile":648}],645:[function(require,module,exports){
+},{"deep-equal":641,"events":933,"itempile":644}],641:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":646,"./lib/keys.js":647}],646:[function(require,module,exports){
+},{"./lib/is_arguments.js":642,"./lib/keys.js":643}],642:[function(require,module,exports){
 module.exports=require(23)
-},{}],647:[function(require,module,exports){
+},{}],643:[function(require,module,exports){
 module.exports=require(24)
+},{}],644:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":645,"deep-equal":646}],645:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],646:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":647,"./lib/keys.js":648}],647:[function(require,module,exports){
+module.exports=require(23)
 },{}],648:[function(require,module,exports){
+module.exports=require(24)
+},{}],649:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -77828,215 +77471,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":649,"deep-equal":650}],649:[function(require,module,exports){
+},{"clone":650,"deep-equal":651}],650:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],650:[function(require,module,exports){
+},{"buffer":930}],651:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":651,"./lib/keys.js":652}],651:[function(require,module,exports){
+},{"./lib/is_arguments.js":652,"./lib/keys.js":653}],652:[function(require,module,exports){
 module.exports=require(23)
-},{}],652:[function(require,module,exports){
-module.exports=require(24)
 },{}],653:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":654,"deep-equal":655}],654:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],655:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":656,"./lib/keys.js":657}],656:[function(require,module,exports){
-module.exports=require(23)
-},{}],657:[function(require,module,exports){
 module.exports=require(24)
-},{}],658:[function(require,module,exports){
+},{}],654:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":659}],659:[function(require,module,exports){
+},{"voxel-modal":655}],655:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":660}],660:[function(require,module,exports){
+},{"ever":656}],656:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":661,"./types.json":662,"events":936}],661:[function(require,module,exports){
+},{"./init.json":657,"./types.json":658,"events":933}],657:[function(require,module,exports){
 module.exports=require(16)
-},{}],662:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 module.exports=require(17)
-},{}],663:[function(require,module,exports){
+},{}],659:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78206,7 +77659,7 @@ CreativeInventoryPlugin = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":673,"inventory-window":664,"itempile":682,"voxel-inventory-dialog":687}],664:[function(require,module,exports){
+},{"inventory":669,"inventory-window":660,"itempile":678,"voxel-inventory-dialog":683}],660:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -78652,7 +78105,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":665,"events":936,"ever":667,"ftooltip":670,"touchup":672}],665:[function(require,module,exports){
+},{"cube-icon":661,"events":933,"ever":663,"ftooltip":666,"touchup":668}],661:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -78719,21 +78172,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":666}],666:[function(require,module,exports){
+},{"cube-side-array":662}],662:[function(require,module,exports){
 module.exports=require(39)
-},{}],667:[function(require,module,exports){
+},{}],663:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":668,"./types.json":669,"events":936}],668:[function(require,module,exports){
+},{"./init.json":664,"./types.json":665,"events":933}],664:[function(require,module,exports){
 module.exports=require(16)
-},{}],669:[function(require,module,exports){
+},{}],665:[function(require,module,exports){
 module.exports=require(17)
-},{}],670:[function(require,module,exports){
+},{}],666:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":671}],671:[function(require,module,exports){
+},{"toarray":667}],667:[function(require,module,exports){
 module.exports=require(44)
-},{}],672:[function(require,module,exports){
+},{}],668:[function(require,module,exports){
 module.exports=require(45)
-},{}],673:[function(require,module,exports){
+},{}],669:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78893,13 +78346,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":674,"events":936,"itempile":677}],674:[function(require,module,exports){
+},{"deep-equal":670,"events":933,"itempile":673}],670:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":675,"./lib/keys.js":676}],675:[function(require,module,exports){
+},{"./lib/is_arguments.js":671,"./lib/keys.js":672}],671:[function(require,module,exports){
 module.exports=require(23)
-},{}],676:[function(require,module,exports){
+},{}],672:[function(require,module,exports){
 module.exports=require(24)
+},{}],673:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":674,"deep-equal":675}],674:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],675:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":676,"./lib/keys.js":677}],676:[function(require,module,exports){
+module.exports=require(23)
 },{}],677:[function(require,module,exports){
+module.exports=require(24)
+},{}],678:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -79081,205 +78724,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":678,"deep-equal":679}],678:[function(require,module,exports){
+},{"clone":679,"deep-equal":680}],679:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],679:[function(require,module,exports){
+},{"buffer":930}],680:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":680,"./lib/keys.js":681}],680:[function(require,module,exports){
+},{"./lib/is_arguments.js":681,"./lib/keys.js":682}],681:[function(require,module,exports){
 module.exports=require(23)
-},{}],681:[function(require,module,exports){
-module.exports=require(24)
 },{}],682:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":683,"deep-equal":684}],683:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],684:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":685,"./lib/keys.js":686}],685:[function(require,module,exports){
-module.exports=require(23)
-},{}],686:[function(require,module,exports){
 module.exports=require(24)
-},{}],687:[function(require,module,exports){
+},{}],683:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -79355,7 +78808,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":697,"inventory-window":688,"itempile":706,"voxel-modal-dialog":711}],688:[function(require,module,exports){
+},{"inventory":693,"inventory-window":684,"itempile":702,"voxel-modal-dialog":707}],684:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -79801,7 +79254,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":689,"events":936,"ever":691,"ftooltip":694,"touchup":696}],689:[function(require,module,exports){
+},{"cube-icon":685,"events":933,"ever":687,"ftooltip":690,"touchup":692}],685:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -79868,21 +79321,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":690}],690:[function(require,module,exports){
+},{"cube-side-array":686}],686:[function(require,module,exports){
 module.exports=require(39)
-},{}],691:[function(require,module,exports){
+},{}],687:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":692,"./types.json":693,"events":936}],692:[function(require,module,exports){
+},{"./init.json":688,"./types.json":689,"events":933}],688:[function(require,module,exports){
 module.exports=require(16)
-},{}],693:[function(require,module,exports){
+},{}],689:[function(require,module,exports){
 module.exports=require(17)
-},{}],694:[function(require,module,exports){
+},{}],690:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":695}],695:[function(require,module,exports){
+},{"toarray":691}],691:[function(require,module,exports){
 module.exports=require(44)
-},{}],696:[function(require,module,exports){
+},{}],692:[function(require,module,exports){
 module.exports=require(45)
-},{}],697:[function(require,module,exports){
+},{}],693:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -80042,13 +79495,203 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":698,"events":936,"itempile":701}],698:[function(require,module,exports){
+},{"deep-equal":694,"events":933,"itempile":697}],694:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":699,"./lib/keys.js":700}],699:[function(require,module,exports){
+},{"./lib/is_arguments.js":695,"./lib/keys.js":696}],695:[function(require,module,exports){
 module.exports=require(23)
-},{}],700:[function(require,module,exports){
+},{}],696:[function(require,module,exports){
 module.exports=require(24)
+},{}],697:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":698,"deep-equal":699}],698:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":930}],699:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":700,"./lib/keys.js":701}],700:[function(require,module,exports){
+module.exports=require(23)
 },{}],701:[function(require,module,exports){
+module.exports=require(24)
+},{}],702:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -80230,215 +79873,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":702,"deep-equal":703}],702:[function(require,module,exports){
+},{"clone":703,"deep-equal":704}],703:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],703:[function(require,module,exports){
+},{"buffer":930}],704:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":704,"./lib/keys.js":705}],704:[function(require,module,exports){
+},{"./lib/is_arguments.js":705,"./lib/keys.js":706}],705:[function(require,module,exports){
 module.exports=require(23)
-},{}],705:[function(require,module,exports){
-module.exports=require(24)
 },{}],706:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":707,"deep-equal":708}],707:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":933}],708:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":709,"./lib/keys.js":710}],709:[function(require,module,exports){
-module.exports=require(23)
-},{}],710:[function(require,module,exports){
 module.exports=require(24)
-},{}],711:[function(require,module,exports){
+},{}],707:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":712}],712:[function(require,module,exports){
+},{"voxel-modal":708}],708:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":713}],713:[function(require,module,exports){
+},{"ever":709}],709:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":714,"./types.json":715,"events":936}],714:[function(require,module,exports){
+},{"./init.json":710,"./types.json":711,"events":933}],710:[function(require,module,exports){
 module.exports=require(16)
-},{}],715:[function(require,module,exports){
+},{}],711:[function(require,module,exports){
 module.exports=require(17)
-},{}],716:[function(require,module,exports){
+},{}],712:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -80652,13 +80105,13 @@ InventoryHotbarClient = (function(_super) {
 })(InventoryHotbarCommon);
 
 
-},{"events":936,"ever":717,"inventory-window":720}],717:[function(require,module,exports){
+},{"events":933,"ever":713,"inventory-window":716}],713:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":718,"./types.json":719,"events":936}],718:[function(require,module,exports){
+},{"./init.json":714,"./types.json":715,"events":933}],714:[function(require,module,exports){
 module.exports=require(16)
-},{}],719:[function(require,module,exports){
+},{}],715:[function(require,module,exports){
 module.exports=require(17)
-},{}],720:[function(require,module,exports){
+},{}],716:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -81104,7 +80557,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":721,"events":936,"ever":723,"ftooltip":726,"touchup":728}],721:[function(require,module,exports){
+},{"cube-icon":717,"events":933,"ever":719,"ftooltip":722,"touchup":724}],717:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -81171,21 +80624,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":722}],722:[function(require,module,exports){
+},{"cube-side-array":718}],718:[function(require,module,exports){
 module.exports=require(39)
-},{}],723:[function(require,module,exports){
+},{}],719:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":724,"./types.json":725,"events":936}],724:[function(require,module,exports){
+},{"./init.json":720,"./types.json":721,"events":933}],720:[function(require,module,exports){
 module.exports=require(16)
-},{}],725:[function(require,module,exports){
+},{}],721:[function(require,module,exports){
 module.exports=require(17)
-},{}],726:[function(require,module,exports){
+},{}],722:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":727}],727:[function(require,module,exports){
+},{"toarray":723}],723:[function(require,module,exports){
 module.exports=require(44)
-},{}],728:[function(require,module,exports){
+},{}],724:[function(require,module,exports){
 module.exports=require(45)
-},{}],729:[function(require,module,exports){
+},{}],725:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -81370,13 +80823,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":936,"inherits":730,"toarray":731,"vkey":732}],730:[function(require,module,exports){
+},{"events":933,"inherits":726,"toarray":727,"vkey":728}],726:[function(require,module,exports){
 module.exports=require(277)
-},{}],731:[function(require,module,exports){
+},{}],727:[function(require,module,exports){
 module.exports=require(44)
-},{}],732:[function(require,module,exports){
+},{}],728:[function(require,module,exports){
 module.exports=require(10)
-},{}],733:[function(require,module,exports){
+},{}],729:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -81529,7 +80982,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require("q+64fw"))
-},{"./worker.js":750,"ndarray":743,"q+64fw":939,"unworkify":746,"webworkify":749}],734:[function(require,module,exports){
+},{"./worker.js":746,"ndarray":739,"q+64fw":936,"unworkify":742,"webworkify":745}],730:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -81640,27 +81093,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],735:[function(require,module,exports){
+},{}],731:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":736,"./types.json":737,"events":936}],736:[function(require,module,exports){
+},{"./init.json":732,"./types.json":733,"events":933}],732:[function(require,module,exports){
 module.exports=require(16)
-},{}],737:[function(require,module,exports){
+},{}],733:[function(require,module,exports){
 module.exports=require(17)
-},{}],738:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":739}],739:[function(require,module,exports){
-module.exports=require(208)
-},{"./lib/thunk.js":741}],740:[function(require,module,exports){
-module.exports=require(209)
-},{"uniq":742}],741:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":740}],742:[function(require,module,exports){
-module.exports=require(211)
-},{}],743:[function(require,module,exports){
+},{}],734:[function(require,module,exports){
+module.exports=require(91)
+},{"cwise-compiler":735}],735:[function(require,module,exports){
+module.exports=require(92)
+},{"./lib/thunk.js":737}],736:[function(require,module,exports){
+module.exports=require(93)
+},{"uniq":738}],737:[function(require,module,exports){
+module.exports=require(94)
+},{"./compile.js":736}],738:[function(require,module,exports){
+module.exports=require(95)
+},{}],739:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":933,"iota-array":744}],744:[function(require,module,exports){
+},{"buffer":930,"iota-array":740}],740:[function(require,module,exports){
 module.exports=require(97)
-},{}],745:[function(require,module,exports){
+},{}],741:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -82109,7 +81562,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],746:[function(require,module,exports){
+},{}],742:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -82134,9 +81587,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":936,"inherits":747}],747:[function(require,module,exports){
+},{"events":933,"inherits":743}],743:[function(require,module,exports){
 module.exports=require(202)
-},{}],748:[function(require,module,exports){
+},{}],744:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -82146,8 +81599,8 @@ module.exports = function (opts) {
     if (opts.base === undefined) opts.base = opts.height / 3;
     if (opts.radius === undefined) opts.radius = opts.base;
     if (opts.treeType === undefined) opts.treeType = 'subspace';
-    if (opts.position === undefined) throw new Error('voxel-trees requires position option');
-    if (opts.setBlock === undefined) throw new Error('voxel-trees requires setBlock option');
+    if (opts.position === undefined) throw "voxel-trees requires position option";
+    if (opts.setBlock === undefined) throw "voxel-trees requires setBlock option";
 
     var set = opts.setBlock;
 
@@ -82317,7 +81770,7 @@ module.exports = function (opts) {
     }
     };
   
-    if (!generators[opts.treeType]) throw new Error('voxel-trees invalid treeType: ' + opts.treeType);
+    if (!generators[opts.treeType]) throw 'voxel-trees invalid treeType: ' + opts.treeType;
 
     generators[opts.treeType]();
 };
@@ -82345,9 +81798,9 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],749:[function(require,module,exports){
+},{}],745:[function(require,module,exports){
 module.exports=require(176)
-},{}],750:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -82649,7 +82102,7 @@ module.exports = function() {
 
 
 
-},{"alea":734,"ever":735,"ndarray":743,"ndarray-ops":738,"simplex-noise":745,"voxel-trees":748}],751:[function(require,module,exports){
+},{"alea":730,"ever":731,"ndarray":739,"ndarray-ops":734,"simplex-noise":741,"voxel-trees":744}],747:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -82718,7 +82171,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":752,"gl-matrix":753}],752:[function(require,module,exports){
+},{"asarray":748,"gl-matrix":749}],748:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -82732,9 +82185,9 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],753:[function(require,module,exports){
+},{}],749:[function(require,module,exports){
 module.exports=require(219)
-},{}],754:[function(require,module,exports){
+},{}],750:[function(require,module,exports){
 var EventEmitter, Mine,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -83094,63 +82547,63 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":936}],755:[function(require,module,exports){
-arguments[4][90][0].apply(exports,arguments)
-},{"ndarray":761,"ndarray-ops":756,"typedarray-pool":765,"webglew":767}],756:[function(require,module,exports){
-arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":757}],757:[function(require,module,exports){
-module.exports=require(208)
-},{"./lib/thunk.js":759}],758:[function(require,module,exports){
-module.exports=require(209)
-},{"uniq":760}],759:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":758}],760:[function(require,module,exports){
-module.exports=require(211)
-},{}],761:[function(require,module,exports){
-module.exports=require(212)
-},{"buffer":933,"iota-array":762}],762:[function(require,module,exports){
+},{"events":933}],751:[function(require,module,exports){
+module.exports=require(90)
+},{"ndarray":757,"ndarray-ops":752,"typedarray-pool":761,"webglew":763}],752:[function(require,module,exports){
+module.exports=require(91)
+},{"cwise-compiler":753}],753:[function(require,module,exports){
+module.exports=require(92)
+},{"./lib/thunk.js":755}],754:[function(require,module,exports){
+module.exports=require(93)
+},{"uniq":756}],755:[function(require,module,exports){
+module.exports=require(94)
+},{"./compile.js":754}],756:[function(require,module,exports){
+module.exports=require(95)
+},{}],757:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":758}],758:[function(require,module,exports){
 module.exports=require(97)
-},{}],763:[function(require,module,exports){
+},{}],759:[function(require,module,exports){
 module.exports=require(98)
-},{}],764:[function(require,module,exports){
+},{}],760:[function(require,module,exports){
 module.exports=require(99)
-},{}],765:[function(require,module,exports){
-module.exports=require(216)
-},{"bit-twiddle":763,"buffer":933,"dup":764}],766:[function(require,module,exports){
+},{}],761:[function(require,module,exports){
+module.exports=require(100)
+},{"bit-twiddle":759,"buffer":930,"dup":760}],762:[function(require,module,exports){
 module.exports=require(101)
-},{}],767:[function(require,module,exports){
+},{}],763:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":766}],768:[function(require,module,exports){
+},{"weakmap":762}],764:[function(require,module,exports){
 module.exports=require(219)
-},{}],769:[function(require,module,exports){
+},{}],765:[function(require,module,exports){
 module.exports=require(103)
-},{}],770:[function(require,module,exports){
+},{}],766:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":769}],771:[function(require,module,exports){
+},{"./do-bind.js":765}],767:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":769}],772:[function(require,module,exports){
+},{"./do-bind.js":765}],768:[function(require,module,exports){
 module.exports=require(101)
-},{}],773:[function(require,module,exports){
+},{}],769:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":772}],774:[function(require,module,exports){
+},{"weakmap":768}],770:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":770,"./lib/vao-native.js":771,"webglew":773}],775:[function(require,module,exports){
+},{"./lib/vao-emulated.js":766,"./lib/vao-native.js":767,"webglew":769}],771:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":781}],776:[function(require,module,exports){
+},{"gl-shader-core":777}],772:[function(require,module,exports){
 module.exports=require(110)
-},{}],777:[function(require,module,exports){
+},{}],773:[function(require,module,exports){
 module.exports=require(111)
-},{}],778:[function(require,module,exports){
+},{}],774:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":779,"dup":780}],779:[function(require,module,exports){
+},{"./reflect.js":775,"dup":776}],775:[function(require,module,exports){
 module.exports=require(113)
-},{}],780:[function(require,module,exports){
+},{}],776:[function(require,module,exports){
 module.exports=require(99)
-},{}],781:[function(require,module,exports){
+},{}],777:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":777,"./lib/create-uniforms.js":778,"./lib/reflect.js":779}],782:[function(require,module,exports){
+},{"./lib/create-attributes.js":773,"./lib/create-uniforms.js":774,"./lib/reflect.js":775}],778:[function(require,module,exports){
 module.exports=require(277)
-},{}],783:[function(require,module,exports){
+},{}],779:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -83266,7 +82719,7 @@ OutlinePlugin.prototype.shaderInit = function() {
     outlineVAO.length = outlineVertexCount;
     this.mesh = outlineVAO;
 };
-},{"events":936,"gl-buffer":755,"gl-matrix":768,"gl-vao":774,"glslify":776,"glslify/adapter.js":775,"inherits":782}],784:[function(require,module,exports){
+},{"events":933,"gl-buffer":751,"gl-matrix":764,"gl-vao":770,"glslify":772,"glslify/adapter.js":771,"inherits":778}],780:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -83573,7 +83026,7 @@ OutlinePlugin.prototype.shaderInit = function() {
 
 }).call(this);
 
-},{}],785:[function(require,module,exports){
+},{}],781:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -83755,15 +83208,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":786,"deep-equal":787}],786:[function(require,module,exports){
+},{"clone":782,"deep-equal":783}],782:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],787:[function(require,module,exports){
+},{"buffer":930}],783:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":788,"./lib/keys.js":789}],788:[function(require,module,exports){
+},{"./lib/is_arguments.js":784,"./lib/keys.js":785}],784:[function(require,module,exports){
 module.exports=require(23)
-},{}],789:[function(require,module,exports){
+},{}],785:[function(require,module,exports){
 module.exports=require(24)
-},{}],790:[function(require,module,exports){
+},{}],786:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -83978,7 +83431,7 @@ RepairRecipe = (function(_super) {
 })(Recipe);
 
 
-},{"craftingrecipes":784,"itempile":785}],791:[function(require,module,exports){
+},{"craftingrecipes":780,"itempile":781}],787:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -84119,7 +83572,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":792}],792:[function(require,module,exports){
+},{"minecraft-skin":788}],788:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -84509,13 +83962,13 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 
-},{}],793:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":794,"./vendor/dat.gui":795}],794:[function(require,module,exports){
+},{"./vendor/dat.color":790,"./vendor/dat.gui":791}],790:[function(require,module,exports){
 module.exports=require(4)
-},{}],795:[function(require,module,exports){
+},{}],791:[function(require,module,exports){
 module.exports=require(5)
-},{}],796:[function(require,module,exports){
+},{}],792:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -84582,7 +84035,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":793}],797:[function(require,module,exports){
+},{"dat-gui":789}],793:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -84764,17 +84217,17 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":798,"deep-equal":799}],798:[function(require,module,exports){
+},{"clone":794,"deep-equal":795}],794:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],799:[function(require,module,exports){
+},{"buffer":930}],795:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":800,"./lib/keys.js":801}],800:[function(require,module,exports){
+},{"./lib/is_arguments.js":796,"./lib/keys.js":797}],796:[function(require,module,exports){
 module.exports=require(23)
-},{}],801:[function(require,module,exports){
+},{}],797:[function(require,module,exports){
 module.exports=require(24)
-},{}],802:[function(require,module,exports){
+},{}],798:[function(require,module,exports){
 module.exports=require(25)
-},{}],803:[function(require,module,exports){
+},{}],799:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -84983,7 +84436,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":797,"ucfirst":802}],804:[function(require,module,exports){
+},{"itempile":793,"ucfirst":798}],800:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -85117,13 +84570,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],805:[function(require,module,exports){
+},{}],801:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":806,"./types.json":807,"events":936}],806:[function(require,module,exports){
+},{"./init.json":802,"./types.json":803,"events":933}],802:[function(require,module,exports){
 module.exports=require(16)
-},{}],807:[function(require,module,exports){
+},{}],803:[function(require,module,exports){
 module.exports=require(17)
-},{}],808:[function(require,module,exports){
+},{}],804:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -85132,9 +84585,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],809:[function(require,module,exports){
+},{}],805:[function(require,module,exports){
 module.exports=require(202)
-},{}],810:[function(require,module,exports){
+},{}],806:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -85318,9 +84771,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":936,"ever":805,"fract":808,"inherits":809}],811:[function(require,module,exports){
-module.exports=require(784)
-},{}],812:[function(require,module,exports){
+},{"events":933,"ever":801,"fract":804,"inherits":805}],807:[function(require,module,exports){
+module.exports=require(780)
+},{}],808:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -85495,15 +84948,15 @@ module.exports=require(784)
 
 }).call(this);
 
-},{"clone":813,"deep-equal":814}],813:[function(require,module,exports){
+},{"clone":809,"deep-equal":810}],809:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],814:[function(require,module,exports){
+},{"buffer":930}],810:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":815,"./lib/keys.js":816}],815:[function(require,module,exports){
+},{"./lib/is_arguments.js":811,"./lib/keys.js":812}],811:[function(require,module,exports){
 module.exports=require(23)
-},{}],816:[function(require,module,exports){
+},{}],812:[function(require,module,exports){
 module.exports=require(24)
-},{}],817:[function(require,module,exports){
+},{}],813:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -85552,10 +85005,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":811,"itempile":812}],818:[function(require,module,exports){
+},{"craftingrecipes":807,"itempile":808}],814:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":819}],819:[function(require,module,exports){
+},{"media":815}],815:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -85566,7 +85019,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":821}],820:[function(require,module,exports){
+},{"./lib/player":817}],816:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -85590,7 +85043,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],821:[function(require,module,exports){
+},{}],817:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -85667,7 +85120,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":822,"./src":823,"new-chain":826}],822:[function(require,module,exports){
+},{"./render":818,"./src":819,"new-chain":822}],818:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -85677,7 +85130,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":824,"domify":825}],823:[function(require,module,exports){
+},{"./templates":820,"domify":821}],819:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -85710,10 +85163,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":820}],824:[function(require,module,exports){
+},{"./mime":816}],820:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],825:[function(require,module,exports){
+},{}],821:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -85786,7 +85239,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],826:[function(require,module,exports){
+},{}],822:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -85843,7 +85296,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],827:[function(require,module,exports){
+},{}],823:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -85902,7 +85355,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":818}],828:[function(require,module,exports){
+},{"play-audio":814}],824:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -85954,7 +85407,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],829:[function(require,module,exports){
+},{}],825:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -86027,7 +85480,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],830:[function(require,module,exports){
+},{}],826:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new StartPlugin(game, opts);
 };
@@ -86070,7 +85523,7 @@ StartPlugin.prototype.disable = function() {
   delete self.icon;
 };
 
-},{}],831:[function(require,module,exports){
+},{}],827:[function(require,module,exports){
 var EventEmitter, Use,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -86188,7 +85641,7 @@ Use = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":936}],832:[function(require,module,exports){
+},{"events":933}],828:[function(require,module,exports){
 // Turns virus into water
 module.exports = function(water, material) {
   var old = {
@@ -86231,7 +85684,7 @@ module.exports = function(water, material) {
 
   return toNormal;
 };
-},{}],833:[function(require,module,exports){
+},{}],829:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -86340,7 +85793,7 @@ function defaultHow(block, level) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./example/water.js":832,"q+64fw":939}],834:[function(require,module,exports){
+},{"./example/water.js":828,"q+64fw":936}],830:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -86473,118 +85926,7 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":939}],835:[function(require,module,exports){
-
-module.exports = function(game, opts) {
-  return new Walk(game, opts)
-}
-
-module.exports.pluginInfo = {
-  loadAfter: ['voxel-player'], // for game.controls.target()
-  clientOnly: true
-}
-
-function Walk(game, opts) {
-  opts = opts || {}
-
-  this.game = game  // note: optional
-  this.controlsTarget = opts.controlsTarget
-  this.skin = opts.skin
-  this.walkSpeed = opts.walkSpeed || 1.0
-  this.startedWalking = 0.0
-  this.stoppedWalking = 0.0
-  this.walking = false
-  this.acceleration = opts.acceleration || 1.0
-  this.walkThreshold = opts.walkThreshold || 0.001
-
-  if (this.game) this.enable()
-}
-
-Walk.prototype.enable = function() {
-  if (!this.controlsTarget && this.game && this.game.controls) this.controlsTarget = this.game.controls.target()
-  if (!this.skin) this.skin = this.controlsTarget.playerSkin
-
-  if (!this.skin) throw new Error('voxel-walk could not find controlsTarget or skin')
-
-  var self = this
-
-  function tick() {
-     // TODO: rate-limit? see https://github.com/flyswatter/voxel-walk/issues/3
-     self.render()
-     if (self.shouldStopWalking()) {
-       self.stopWalking() 
-     } else {
-       self.startWalking()
-     }
-  }
-
-  this.game.on('tick', tick)
-  this.tick = tick
-}
-
-Walk.prototype.disable = function() {
-  this.game.removeListener('tick', this.tick);
-}
-
-Walk.prototype.shouldStopWalking = function() {
-  var vx = Math.abs(this.controlsTarget.velocity.x)
-  var vz = Math.abs(this.controlsTarget.velocity.z)
-  return vx > this.walkThreshold || vz > this.walkThreshold
-}
-
-Walk.prototype.render = function() {
-  var time = Date.now() / 1000
-
-  if (this.walking && time < this.startedWalking + this.acceleration) {
-    this.walkSpeed = (time - this.startedWalking) / this.acceleration
-  }
-  if (!this.walking && time < this.stoppedWalking + this.acceleration){
-    this.walkSpeed = -1 / this.acceleration * (time - this.stoppedWalking) + 1
-  }
-
-
-  this.skin.head.rotation.y = Math.sin(time * 1.5) / 3 * this.walkSpeed
-  this.skin.head.rotation.z = Math.sin(time) / 2 * this.walkSpeed
-  
-  this.skin.rightArm.rotation.z = 2 * Math.cos(0.6662 * time * 10 + Math.PI) * this.walkSpeed
-  this.skin.rightArm.rotation.x = 1 * (Math.cos(0.2812 * time * 10) - 1) * this.walkSpeed
-  this.skin.leftArm.rotation.z = 2 * Math.cos(0.6662 * time * 10) * this.walkSpeed
-  this.skin.leftArm.rotation.x = 1 * (Math.cos(0.2312 * time * 10) + 1) * this.walkSpeed
-  
-  this.skin.rightLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10) * this.walkSpeed
-  this.skin.leftLeg.rotation.z = 1.4 * Math.cos(0.6662 * time * 10 + Math.PI) * this.walkSpeed
-}
-
-Walk.prototype.startWalking = function(){
-  var now = Date.now() / 1000
-  this.walking = true
-  if (this.stoppedWalking + this.acceleration > now){
-    var progress = now - this.stoppedWalking
-    this.startedWalking = now - (this.stoppedWalking + this.acceleration - now)
-  } else {
-    this.startedWalking = Date.now() / 1000
-  }
-}
-
-Walk.prototype.stopWalking = function() {
-  var now = Date.now() / 1000
-  this.walking = false
-  if (this.startedWalking + this.acceleration > now){
-    this.stoppedWalking = now - (this.startedWalking + this.acceleration - now)
-  } else {
-    this.stoppedWalking = Date.now() / 1000
-  }
-}
-
-Walk.prototype.isWalking = function() {
-  return this.walking
-}
-
-Walk.prototype.setAcceleration = function(newA) {
-  this.acceleration = newA
-}
-
-},{}],836:[function(require,module,exports){
+},{"q+64fw":936}],831:[function(require,module,exports){
 // based on https://github.com/mrdoob/three.js/blob/219c07680da08c5254c1b05482eb40ea038234e0/examples/js/renderers/CSS3DRenderer.js
 // adapted for nodejs
 module.exports = function(THREE) {
@@ -86817,7 +86159,7 @@ THREE.CSS3DRenderer = function () {
 
 };
 
-},{}],837:[function(require,module,exports){
+},{}],832:[function(require,module,exports){
 'use strict';
 
 var loadCSS3DRenderer = require('./CSS3DRenderer.js');
@@ -86963,59 +86305,63 @@ WebviewPlugin.prototype.disable = function() {
 };
 
 
-},{"./CSS3DRenderer.js":836}],838:[function(require,module,exports){
+},{"./CSS3DRenderer.js":831}],833:[function(require,module,exports){
 module.exports=require(90)
-},{"ndarray":862,"ndarray-ops":857,"typedarray-pool":841,"webglew":843}],839:[function(require,module,exports){
-module.exports=require(98)
-},{}],840:[function(require,module,exports){
-module.exports=require(99)
-},{}],841:[function(require,module,exports){
-module.exports=require(100)
-},{"bit-twiddle":839,"buffer":933,"dup":840}],842:[function(require,module,exports){
-module.exports=require(101)
-},{}],843:[function(require,module,exports){
-module.exports=require(102)
-},{"weakmap":842}],844:[function(require,module,exports){
-module.exports=require(103)
-},{}],845:[function(require,module,exports){
-module.exports=require(104)
-},{"./do-bind.js":844}],846:[function(require,module,exports){
-module.exports=require(105)
-},{"./do-bind.js":844}],847:[function(require,module,exports){
-module.exports=require(101)
-},{}],848:[function(require,module,exports){
-module.exports=require(102)
-},{"weakmap":847}],849:[function(require,module,exports){
-module.exports=require(108)
-},{"./lib/vao-emulated.js":845,"./lib/vao-native.js":846,"webglew":848}],850:[function(require,module,exports){
-module.exports=require(109)
-},{"gl-shader-core":856}],851:[function(require,module,exports){
-module.exports=require(110)
-},{}],852:[function(require,module,exports){
-module.exports=require(111)
-},{}],853:[function(require,module,exports){
-module.exports=require(112)
-},{"./reflect.js":854,"dup":855}],854:[function(require,module,exports){
-module.exports=require(113)
-},{}],855:[function(require,module,exports){
-module.exports=require(99)
-},{}],856:[function(require,module,exports){
-module.exports=require(115)
-},{"./lib/create-attributes.js":852,"./lib/create-uniforms.js":853,"./lib/reflect.js":854}],857:[function(require,module,exports){
-module.exports=require(91)
-},{"cwise-compiler":858}],858:[function(require,module,exports){
-module.exports=require(92)
-},{"./lib/thunk.js":860}],859:[function(require,module,exports){
-module.exports=require(93)
-},{"uniq":861}],860:[function(require,module,exports){
-module.exports=require(94)
-},{"./compile.js":859}],861:[function(require,module,exports){
-module.exports=require(95)
-},{}],862:[function(require,module,exports){
+},{"ndarray":834,"ndarray-ops":854,"typedarray-pool":838,"webglew":840}],834:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":933,"iota-array":863}],863:[function(require,module,exports){
+},{"buffer":930,"iota-array":835}],835:[function(require,module,exports){
 module.exports=require(97)
-},{}],864:[function(require,module,exports){
+},{}],836:[function(require,module,exports){
+module.exports=require(98)
+},{}],837:[function(require,module,exports){
+module.exports=require(99)
+},{}],838:[function(require,module,exports){
+module.exports=require(100)
+},{"bit-twiddle":836,"buffer":930,"dup":837}],839:[function(require,module,exports){
+module.exports=require(101)
+},{}],840:[function(require,module,exports){
+module.exports=require(102)
+},{"weakmap":839}],841:[function(require,module,exports){
+module.exports=require(103)
+},{}],842:[function(require,module,exports){
+module.exports=require(104)
+},{"./do-bind.js":841}],843:[function(require,module,exports){
+module.exports=require(105)
+},{"./do-bind.js":841}],844:[function(require,module,exports){
+module.exports=require(101)
+},{}],845:[function(require,module,exports){
+module.exports=require(102)
+},{"weakmap":844}],846:[function(require,module,exports){
+module.exports=require(108)
+},{"./lib/vao-emulated.js":842,"./lib/vao-native.js":843,"webglew":845}],847:[function(require,module,exports){
+module.exports=require(109)
+},{"gl-shader-core":853}],848:[function(require,module,exports){
+module.exports=require(110)
+},{}],849:[function(require,module,exports){
+module.exports=require(111)
+},{}],850:[function(require,module,exports){
+module.exports=require(112)
+},{"./reflect.js":851,"dup":852}],851:[function(require,module,exports){
+module.exports=require(113)
+},{}],852:[function(require,module,exports){
+module.exports=require(99)
+},{}],853:[function(require,module,exports){
+module.exports=require(115)
+},{"./lib/create-attributes.js":849,"./lib/create-uniforms.js":850,"./lib/reflect.js":851}],854:[function(require,module,exports){
+module.exports=require(91)
+},{"cwise-compiler":855}],855:[function(require,module,exports){
+module.exports=require(92)
+},{"./lib/thunk.js":857}],856:[function(require,module,exports){
+module.exports=require(93)
+},{"uniq":858}],857:[function(require,module,exports){
+module.exports=require(94)
+},{"./compile.js":856}],858:[function(require,module,exports){
+module.exports=require(95)
+},{}],859:[function(require,module,exports){
+module.exports=require(96)
+},{"buffer":930,"iota-array":860}],860:[function(require,module,exports){
+module.exports=require(97)
+},{}],861:[function(require,module,exports){
 "use strict";
 var ndarray = require("ndarray");
 var ops = require("ndarray-ops");
@@ -87082,7 +86428,7 @@ WireframePlugin.prototype.shaderInit = function() {
 };
 
 WireframePlugin.prototype.toggle = function(ev) {
-    if (this.requireShift && !ev.shiftKey)
+    if (this.requireShift && ev && !ev.shiftKey)
         return;
 
     this.showWireframe = !this.showWireframe;
@@ -87133,9 +86479,9 @@ WireframePlugin.prototype.render = function() {
         }
     }
 };
-},{"gl-buffer":838,"gl-vao":849,"glslify":851,"glslify/adapter.js":850,"ndarray":862,"ndarray-ops":857}],865:[function(require,module,exports){
+},{"gl-buffer":833,"gl-vao":846,"glslify":848,"glslify/adapter.js":847,"ndarray":859,"ndarray-ops":854}],862:[function(require,module,exports){
 module.exports=require(25)
-},{}],866:[function(require,module,exports){
+},{}],863:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -87185,7 +86531,7 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":865}],867:[function(require,module,exports){
+},{"ucfirst":862}],864:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -87631,7 +86977,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":868,"events":936,"ever":870,"ftooltip":873,"touchup":875}],868:[function(require,module,exports){
+},{"cube-icon":865,"events":933,"ever":867,"ftooltip":870,"touchup":872}],865:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -87698,21 +87044,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":869}],869:[function(require,module,exports){
+},{"cube-side-array":866}],866:[function(require,module,exports){
 module.exports=require(39)
-},{}],870:[function(require,module,exports){
+},{}],867:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":871,"./types.json":872,"events":936}],871:[function(require,module,exports){
+},{"./init.json":868,"./types.json":869,"events":933}],868:[function(require,module,exports){
 module.exports=require(16)
-},{}],872:[function(require,module,exports){
+},{}],869:[function(require,module,exports){
 module.exports=require(17)
-},{}],873:[function(require,module,exports){
+},{}],870:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":874}],874:[function(require,module,exports){
+},{"toarray":871}],871:[function(require,module,exports){
 module.exports=require(44)
-},{}],875:[function(require,module,exports){
+},{}],872:[function(require,module,exports){
 module.exports=require(45)
-},{}],876:[function(require,module,exports){
+},{}],873:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -87872,13 +87218,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":877,"events":936,"itempile":880}],877:[function(require,module,exports){
+},{"deep-equal":874,"events":933,"itempile":877}],874:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":878,"./lib/keys.js":879}],878:[function(require,module,exports){
+},{"./lib/is_arguments.js":875,"./lib/keys.js":876}],875:[function(require,module,exports){
 module.exports=require(23)
-},{}],879:[function(require,module,exports){
+},{}],876:[function(require,module,exports){
 module.exports=require(24)
-},{}],880:[function(require,module,exports){
+},{}],877:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -88060,15 +87406,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":881,"deep-equal":882}],881:[function(require,module,exports){
+},{"clone":878,"deep-equal":879}],878:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],882:[function(require,module,exports){
+},{"buffer":930}],879:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":883,"./lib/keys.js":884}],883:[function(require,module,exports){
+},{"./lib/is_arguments.js":880,"./lib/keys.js":881}],880:[function(require,module,exports){
 module.exports=require(23)
-},{}],884:[function(require,module,exports){
+},{}],881:[function(require,module,exports){
 module.exports=require(24)
-},{}],885:[function(require,module,exports){
+},{}],882:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -88144,7 +87490,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":895,"inventory-window":886,"itempile":904,"voxel-modal-dialog":909}],886:[function(require,module,exports){
+},{"inventory":892,"inventory-window":883,"itempile":901,"voxel-modal-dialog":906}],883:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -88590,7 +87936,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":887,"events":936,"ever":889,"ftooltip":892,"touchup":894}],887:[function(require,module,exports){
+},{"cube-icon":884,"events":933,"ever":886,"ftooltip":889,"touchup":891}],884:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -88657,21 +88003,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":888}],888:[function(require,module,exports){
+},{"cube-side-array":885}],885:[function(require,module,exports){
 module.exports=require(39)
-},{}],889:[function(require,module,exports){
+},{}],886:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":890,"./types.json":891,"events":936}],890:[function(require,module,exports){
+},{"./init.json":887,"./types.json":888,"events":933}],887:[function(require,module,exports){
 module.exports=require(16)
-},{}],891:[function(require,module,exports){
+},{}],888:[function(require,module,exports){
 module.exports=require(17)
-},{}],892:[function(require,module,exports){
+},{}],889:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":893}],893:[function(require,module,exports){
+},{"toarray":890}],890:[function(require,module,exports){
 module.exports=require(44)
-},{}],894:[function(require,module,exports){
+},{}],891:[function(require,module,exports){
 module.exports=require(45)
-},{}],895:[function(require,module,exports){
+},{}],892:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -88831,13 +88177,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":896,"events":936,"itempile":899}],896:[function(require,module,exports){
+},{"deep-equal":893,"events":933,"itempile":896}],893:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":897,"./lib/keys.js":898}],897:[function(require,module,exports){
+},{"./lib/is_arguments.js":894,"./lib/keys.js":895}],894:[function(require,module,exports){
 module.exports=require(23)
-},{}],898:[function(require,module,exports){
+},{}],895:[function(require,module,exports){
 module.exports=require(24)
-},{}],899:[function(require,module,exports){
+},{}],896:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -89019,15 +88365,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":900,"deep-equal":901}],900:[function(require,module,exports){
+},{"clone":897,"deep-equal":898}],897:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],901:[function(require,module,exports){
+},{"buffer":930}],898:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":902,"./lib/keys.js":903}],902:[function(require,module,exports){
+},{"./lib/is_arguments.js":899,"./lib/keys.js":900}],899:[function(require,module,exports){
 module.exports=require(23)
-},{}],903:[function(require,module,exports){
+},{}],900:[function(require,module,exports){
 module.exports=require(24)
-},{}],904:[function(require,module,exports){
+},{}],901:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -89209,25 +88555,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":905,"deep-equal":906}],905:[function(require,module,exports){
+},{"clone":902,"deep-equal":903}],902:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":933}],906:[function(require,module,exports){
+},{"buffer":930}],903:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":907,"./lib/keys.js":908}],907:[function(require,module,exports){
+},{"./lib/is_arguments.js":904,"./lib/keys.js":905}],904:[function(require,module,exports){
 module.exports=require(23)
-},{}],908:[function(require,module,exports){
+},{}],905:[function(require,module,exports){
 module.exports=require(24)
-},{}],909:[function(require,module,exports){
+},{}],906:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":910}],910:[function(require,module,exports){
+},{"voxel-modal":907}],907:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":911}],911:[function(require,module,exports){
+},{"ever":908}],908:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":912,"./types.json":913,"events":936}],912:[function(require,module,exports){
+},{"./init.json":909,"./types.json":910,"events":933}],909:[function(require,module,exports){
 module.exports=require(16)
-},{}],913:[function(require,module,exports){
+},{}],910:[function(require,module,exports){
 module.exports=require(17)
-},{}],914:[function(require,module,exports){
+},{}],911:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -89407,7 +88753,7 @@ WorkbenchDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":876,"inventory-window":867,"voxel-inventory-dialog":885}],915:[function(require,module,exports){
+},{"inventory":873,"inventory-window":864,"voxel-inventory-dialog":882}],912:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -89513,9 +88859,9 @@ ZenPlugin = (function() {
 })();
 
 
-},{}],916:[function(require,module,exports){
+},{}],913:[function(require,module,exports){
 
-},{}],917:[function(require,module,exports){
+},{}],914:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -89877,14 +89223,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":919}],918:[function(require,module,exports){
+},{"util/":916}],915:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],919:[function(require,module,exports){
+},{}],916:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -90474,7 +89820,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":918,"inherits":937,"q+64fw":939}],920:[function(require,module,exports){
+},{"./support/isBuffer":915,"inherits":934,"q+64fw":936}],917:[function(require,module,exports){
 'use strict';
 
 
@@ -90577,7 +89923,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],921:[function(require,module,exports){
+},{}],918:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -90610,7 +89956,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],922:[function(require,module,exports){
+},{}],919:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -90658,7 +90004,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],923:[function(require,module,exports){
+},{}],920:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -90700,7 +90046,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],924:[function(require,module,exports){
+},{}],921:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -92466,7 +91812,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":920,"./adler32":921,"./crc32":923,"./messages":928,"./trees":929}],925:[function(require,module,exports){
+},{"../utils/common":917,"./adler32":918,"./crc32":920,"./messages":925,"./trees":926}],922:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -92793,7 +92139,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],926:[function(require,module,exports){
+},{}],923:[function(require,module,exports){
 'use strict';
 
 
@@ -94297,7 +93643,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":920,"./adler32":921,"./crc32":923,"./inffast":925,"./inftrees":927}],927:[function(require,module,exports){
+},{"../utils/common":917,"./adler32":918,"./crc32":920,"./inffast":922,"./inftrees":924}],924:[function(require,module,exports){
 'use strict';
 
 
@@ -94624,7 +93970,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   opts.bits = root;
   return 0;
 };
-},{"../utils/common":920}],928:[function(require,module,exports){
+},{"../utils/common":917}],925:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -94638,7 +93984,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],929:[function(require,module,exports){
+},{}],926:[function(require,module,exports){
 'use strict';
 
 
@@ -95838,7 +95184,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":920}],930:[function(require,module,exports){
+},{"../utils/common":917}],927:[function(require,module,exports){
 'use strict';
 
 
@@ -95868,7 +95214,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],931:[function(require,module,exports){
+},{}],928:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -96108,7 +95454,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":933,"pako/lib/zlib/constants":922,"pako/lib/zlib/deflate.js":924,"pako/lib/zlib/inflate.js":926,"pako/lib/zlib/messages":928,"pako/lib/zlib/zstream":930,"q+64fw":939}],932:[function(require,module,exports){
+},{"buffer":930,"pako/lib/zlib/constants":919,"pako/lib/zlib/deflate.js":921,"pako/lib/zlib/inflate.js":923,"pako/lib/zlib/messages":925,"pako/lib/zlib/zstream":927,"q+64fw":936}],929:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -96722,7 +96068,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./binding":931,"_stream_transform":951,"assert":917,"buffer":933,"q+64fw":939,"util":955}],933:[function(require,module,exports){
+},{"./binding":928,"_stream_transform":948,"assert":914,"buffer":930,"q+64fw":936,"util":952}],930:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -97872,7 +97218,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":934,"ieee754":935}],934:[function(require,module,exports){
+},{"base64-js":931,"ieee754":932}],931:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -97995,7 +97341,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],935:[function(require,module,exports){
+},{}],932:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -98081,7 +97427,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],936:[function(require,module,exports){
+},{}],933:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -98386,9 +97732,9 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],937:[function(require,module,exports){
+},{}],934:[function(require,module,exports){
 module.exports=require(277)
-},{}],938:[function(require,module,exports){
+},{}],935:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -98616,7 +97962,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":939}],939:[function(require,module,exports){
+},{"q+64fw":936}],936:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -98681,10 +98027,10 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],940:[function(require,module,exports){
+},{}],937:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":941}],941:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":938}],938:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -98777,7 +98123,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_readable":943,"./_stream_writable":945,"core-util-is":946,"inherits":937,"q+64fw":939}],942:[function(require,module,exports){
+},{"./_stream_readable":940,"./_stream_writable":942,"core-util-is":943,"inherits":934,"q+64fw":936}],939:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -98825,7 +98171,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":944,"core-util-is":946,"inherits":937}],943:[function(require,module,exports){
+},{"./_stream_transform":941,"core-util-is":943,"inherits":934}],940:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -99788,7 +99134,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("q+64fw"))
-},{"buffer":933,"core-util-is":946,"events":936,"inherits":937,"isarray":947,"q+64fw":939,"stream":953,"string_decoder/":948}],944:[function(require,module,exports){
+},{"buffer":930,"core-util-is":943,"events":933,"inherits":934,"isarray":944,"q+64fw":936,"stream":950,"string_decoder/":945}],941:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -100000,7 +99346,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":941,"core-util-is":946,"inherits":937}],945:[function(require,module,exports){
+},{"./_stream_duplex":938,"core-util-is":943,"inherits":934}],942:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -100391,7 +99737,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_duplex":941,"buffer":933,"core-util-is":946,"inherits":937,"q+64fw":939,"stream":953}],946:[function(require,module,exports){
+},{"./_stream_duplex":938,"buffer":930,"core-util-is":943,"inherits":934,"q+64fw":936,"stream":950}],943:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -100501,12 +99847,12 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":933}],947:[function(require,module,exports){
+},{"buffer":930}],944:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],948:[function(require,module,exports){
+},{}],945:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -100708,10 +100054,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":933}],949:[function(require,module,exports){
+},{"buffer":930}],946:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":942}],950:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":939}],947:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -100719,13 +100065,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":941,"./lib/_stream_passthrough.js":942,"./lib/_stream_readable.js":943,"./lib/_stream_transform.js":944,"./lib/_stream_writable.js":945}],951:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":938,"./lib/_stream_passthrough.js":939,"./lib/_stream_readable.js":940,"./lib/_stream_transform.js":941,"./lib/_stream_writable.js":942}],948:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":944}],952:[function(require,module,exports){
+},{"./lib/_stream_transform.js":941}],949:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":945}],953:[function(require,module,exports){
+},{"./lib/_stream_writable.js":942}],950:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -100854,11 +100200,11 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":936,"inherits":937,"readable-stream/duplex.js":940,"readable-stream/passthrough.js":949,"readable-stream/readable.js":950,"readable-stream/transform.js":951,"readable-stream/writable.js":952}],954:[function(require,module,exports){
-module.exports=require(918)
-},{}],955:[function(require,module,exports){
-module.exports=require(919)
-},{"./support/isBuffer":954,"inherits":937,"q+64fw":939}],956:[function(require,module,exports){
+},{"events":933,"inherits":934,"readable-stream/duplex.js":937,"readable-stream/passthrough.js":946,"readable-stream/readable.js":947,"readable-stream/transform.js":948,"readable-stream/writable.js":949}],951:[function(require,module,exports){
+module.exports=require(915)
+},{}],952:[function(require,module,exports){
+module.exports=require(916)
+},{"./support/isBuffer":951,"inherits":934,"q+64fw":936}],953:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -100998,7 +100344,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":957}],957:[function(require,module,exports){
+},{"indexof":954}],954:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
