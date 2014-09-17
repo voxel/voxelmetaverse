@@ -27,7 +27,6 @@ require 'voxel-food'
 require 'voxel-sfx'
 require 'voxel-fly'
 require 'voxel-gamemode'
-require 'voxel-walk'
 require 'voxel-sprint'
 require 'voxel-decals'
 require 'voxel-mine'
@@ -163,7 +162,6 @@ main = () ->
     'voxel-sfx': {}
     'voxel-fly': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
-    #'voxel-walk': {} # requires controls target
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
     'voxel-inventory-crafting': {}
