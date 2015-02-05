@@ -1,10 +1,10 @@
 {
-  "name": "voxpopuli",
+  "name": "voxelmetaverse",
   "description": "",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git@github.com:deathcap/voxpopuli.git"
+    "url": "git@github.com:deathcap/voxelmetaverse.git"
   },
   "dependencies": {
     "ever": "0.0.3",

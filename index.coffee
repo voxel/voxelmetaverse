@@ -58,7 +58,7 @@ require 'kb-bindings-ui'
 createEngine = require 'voxel-engine'
 
 main = () ->
-  console.log 'voxpopuli starting'
+  console.log 'voxelmetaverse starting'
 
   createEngine {require:require, exposeGlobal:true, pluginOpts:
     'voxel-engine':
