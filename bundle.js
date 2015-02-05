@@ -112,7 +112,7 @@ require('kb-bindings-ui');
 createEngine = require('voxel-engine');
 
 main = function() {
-  console.log('voxpopuli starting');
+  console.log('voxelmetaverse starting');
   return createEngine({
     require: require,
     exposeGlobal: true,
