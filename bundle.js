@@ -244,7 +244,7 @@ main = function() {
 main();
 
 
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":515,"voxel-fly":517,"voxel-food":518,"voxel-fullscreen":519,"voxel-furnace":520,"voxel-gamemode":573,"voxel-glass":588,"voxel-hammer":595,"voxel-harvest":596,"voxel-health":604,"voxel-health-bar":602,"voxel-health-fall":603,"voxel-inventory-crafting":606,"voxel-inventory-creative":659,"voxel-inventory-hotbar":712,"voxel-keys":725,"voxel-land":729,"voxel-measure":747,"voxel-mine":750,"voxel-outline":779,"voxel-pickaxe":786,"voxel-player":787,"voxel-plugins-ui":792,"voxel-pumpkin":799,"voxel-quarry":800,"voxel-reach":806,"voxel-recipes":813,"voxel-sfx":823,"voxel-skyhook":824,"voxel-sprint":825,"voxel-start":826,"voxel-use":827,"voxel-virus":829,"voxel-voila":830,"voxel-webview":832,"voxel-wireframe":861,"voxel-wool":863,"voxel-workbench":911,"voxel-zen":912}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":504,"voxel-fly":506,"voxel-food":507,"voxel-fullscreen":508,"voxel-furnace":509,"voxel-gamemode":562,"voxel-glass":577,"voxel-hammer":584,"voxel-harvest":585,"voxel-health":593,"voxel-health-bar":591,"voxel-health-fall":592,"voxel-inventory-crafting":595,"voxel-inventory-creative":648,"voxel-inventory-hotbar":701,"voxel-keys":714,"voxel-land":718,"voxel-measure":736,"voxel-mine":739,"voxel-outline":768,"voxel-pickaxe":775,"voxel-player":776,"voxel-plugins-ui":781,"voxel-pumpkin":788,"voxel-quarry":789,"voxel-reach":795,"voxel-recipes":802,"voxel-sfx":812,"voxel-skyhook":813,"voxel-sprint":814,"voxel-start":815,"voxel-use":816,"voxel-virus":818,"voxel-voila":819,"voxel-webview":821,"voxel-wireframe":850,"voxel-wool":852,"voxel-workbench":900,"voxel-zen":901}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5581,7 +5581,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":933}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":922}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6216,7 +6216,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930}],22:[function(require,module,exports){
+},{"buffer":919}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6510,7 +6510,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":28,"events":933,"itempile":31}],28:[function(require,module,exports){
+},{"deep-equal":28,"events":922,"itempile":31}],28:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6794,7 +6794,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":32,"deep-equal":33}],32:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],33:[function(require,module,exports){
+},{"buffer":919}],33:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":34,"./lib/keys.js":35}],34:[function(require,module,exports){
 module.exports=require(23)
@@ -7401,7 +7401,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":38,"events":933,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
+},{"cube-icon":38,"events":922,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -7545,7 +7545,7 @@ module.exports = expandName;
 
 },{}],40:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":41,"./types.json":42,"events":933}],41:[function(require,module,exports){
+},{"./init.json":41,"./types.json":42,"events":922}],41:[function(require,module,exports){
 module.exports=require(16)
 },{}],42:[function(require,module,exports){
 module.exports=require(17)
@@ -7947,7 +7947,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":47,"events":933,"itempile":50}],47:[function(require,module,exports){
+},{"deep-equal":47,"events":922,"itempile":50}],47:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":48,"./lib/keys.js":49}],48:[function(require,module,exports){
 module.exports=require(23)
@@ -8137,7 +8137,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":51,"deep-equal":52}],51:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],52:[function(require,module,exports){
+},{"buffer":919}],52:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":53,"./lib/keys.js":54}],53:[function(require,module,exports){
 module.exports=require(23)
@@ -8327,7 +8327,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":56,"deep-equal":57}],56:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],57:[function(require,module,exports){
+},{"buffer":919}],57:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":58,"./lib/keys.js":59}],58:[function(require,module,exports){
 module.exports=require(23)
@@ -8855,7 +8855,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":62,"events":933,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
+},{"cube-icon":62,"events":922,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -8926,7 +8926,7 @@ CubeIcon = (function() {
 module.exports=require(39)
 },{}],64:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":65,"./types.json":66,"events":933}],65:[function(require,module,exports){
+},{"./init.json":65,"./types.json":66,"events":922}],65:[function(require,module,exports){
 module.exports=require(16)
 },{}],66:[function(require,module,exports){
 module.exports=require(17)
@@ -9096,7 +9096,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":71,"events":933,"itempile":74}],71:[function(require,module,exports){
+},{"deep-equal":71,"events":922,"itempile":74}],71:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":72,"./lib/keys.js":73}],72:[function(require,module,exports){
 module.exports=require(23)
@@ -9286,7 +9286,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":75,"deep-equal":76}],75:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],76:[function(require,module,exports){
+},{"buffer":919}],76:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":77,"./lib/keys.js":78}],77:[function(require,module,exports){
 module.exports=require(23)
@@ -9476,7 +9476,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":80,"deep-equal":81}],80:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],81:[function(require,module,exports){
+},{"buffer":919}],81:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":82,"./lib/keys.js":83}],82:[function(require,module,exports){
 module.exports=require(23)
@@ -9488,7 +9488,7 @@ module.exports=require(13)
 module.exports=require(14)
 },{"ever":86}],86:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":87,"./types.json":88,"events":933}],87:[function(require,module,exports){
+},{"./init.json":87,"./types.json":88,"events":922}],87:[function(require,module,exports){
 module.exports=require(16)
 },{}],88:[function(require,module,exports){
 module.exports=require(17)
@@ -11114,7 +11114,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"iota-array":97}],97:[function(require,module,exports){
+},{"buffer":919,"iota-array":97}],97:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -11752,7 +11752,7 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":98,"buffer":930,"dup":99}],101:[function(require,module,exports){
+},{"bit-twiddle":98,"buffer":919,"dup":99}],101:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -13170,11 +13170,11 @@ ClientMC.prototype.missingChunk = function(pos) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"bit-twiddle":117,"buffer":930,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
+},{"bit-twiddle":117,"buffer":919,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
 module.exports=require(98)
 },{}],118:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":119,"./types.json":120,"events":933}],119:[function(require,module,exports){
+},{"./init.json":119,"./types.json":120,"events":922}],119:[function(require,module,exports){
 module.exports=require(16)
 },{}],120:[function(require,module,exports){
 module.exports=require(17)
@@ -13305,7 +13305,7 @@ Bot.prototype.end = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":930,"events":933,"minecraft-protocol":160,"path":935,"util":952,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
+},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":919,"events":922,"minecraft-protocol":160,"path":924,"util":941,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
 var biomes = require('./enums/biomes')
 
 module.exports = Biome;
@@ -13556,7 +13556,7 @@ ChatMessage.prototype.toString = function() {
 
 module.exports = ChatMessage;
 
-},{"util":952}],125:[function(require,module,exports){
+},{"util":941}],125:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13595,7 +13595,7 @@ Chest.prototype.items = function() {
   return this.window.chestItems();
 };
 
-},{"assert":914,"events":933,"util":952}],126:[function(require,module,exports){
+},{"assert":903,"events":922,"util":941}],126:[function(require,module,exports){
 var math = require('./math')
   , euclideanMod = math.euclideanMod
   , PI = Math.PI
@@ -13685,7 +13685,7 @@ Dispenser.prototype.items = function() {
   return this.window.dispenserItems();
 };
 
-},{"assert":914,"events":933,"util":952}],128:[function(require,module,exports){
+},{"assert":903,"events":922,"util":941}],128:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13722,7 +13722,7 @@ EnchantmentTable.prototype.putTargetItem = function() {
   assert.ok(false, "override");
 };
 
-},{"assert":914,"events":933,"util":952}],129:[function(require,module,exports){
+},{"assert":903,"events":922,"util":941}],129:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = Entity;
@@ -19851,7 +19851,7 @@ Furnace.prototype.outputItem = function() {
   return this.window.slots[2];
 }
 
-},{"assert":914,"events":933,"util":952}],137:[function(require,module,exports){
+},{"assert":903,"events":922,"util":941}],137:[function(require,module,exports){
 (function (Buffer){
 var items = require('./enums/items')
   , blocks = require('./enums/blocks')
@@ -19889,7 +19889,7 @@ Item.equal = function(item1, item2) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./enums/blocks":131,"./enums/items":133,"assert":914,"buffer":930}],138:[function(require,module,exports){
+},{"./enums/blocks":131,"./enums/items":133,"assert":903,"buffer":919}],138:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 var CHUNK_SIZE = new Vec3(16, 16, 16)
 
@@ -19981,7 +19981,7 @@ function inject(bot) {
   bot.sleep = sleep;
 }
 
-},{"assert":914}],142:[function(require,module,exports){
+},{"assert":903}],142:[function(require,module,exports){
 var instruments = require('../enums/instruments')
   , Vec3 = require('vec3').Vec3
 
@@ -20347,7 +20347,7 @@ function Column() {
 
 
 }).call(this,require("buffer").Buffer)
-},{"../block":123,"../location":138,"../painting":140,"assert":914,"buffer":930,"vec3":168,"zlib":929}],144:[function(require,module,exports){
+},{"../block":123,"../location":138,"../painting":140,"assert":903,"buffer":919,"vec3":168,"zlib":918}],144:[function(require,module,exports){
 var assert = require('assert')
   , quoteMeta = require('quotemeta')
   , ChatMessage = require('../chat_message')
@@ -20472,7 +20472,7 @@ function inject(bot) {
   };
 }
 
-},{"../chat_message":124,"assert":914,"quotemeta":167}],145:[function(require,module,exports){
+},{"../chat_message":124,"assert":903,"quotemeta":167}],145:[function(require,module,exports){
 var assert = require('assert');
 var toolMultipliers = require('../enums/materials');
 
@@ -20598,7 +20598,7 @@ function noop(err) {
   if (err) throw err;
 }
 
-},{"../enums/materials":134,"assert":914}],146:[function(require,module,exports){
+},{"../enums/materials":134,"assert":903}],146:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3
   , _ = require('lodash')
   , Entity = require('../entity')
@@ -21110,7 +21110,7 @@ function autoRespawn(bot) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930}],149:[function(require,module,exports){
+},{"buffer":919}],149:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot, options) {
@@ -22190,7 +22190,7 @@ function vectorToDirection(v) {
 }
 
 }).call(this,require("q+64fw"))
-},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"assert":914,"q+64fw":936}],151:[function(require,module,exports){
+},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"assert":903,"q+64fw":925}],151:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22557,7 +22557,7 @@ function inject(bot) {
   bot.on('end', cleanup);
 }
 
-},{"../conversions":126,"../math":139,"assert":914,"vec3":168}],153:[function(require,module,exports){
+},{"../conversions":126,"../math":139,"assert":903,"vec3":168}],153:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22632,7 +22632,7 @@ function extend(obj, src) {
   return obj;
 }
 
-},{"assert":914}],155:[function(require,module,exports){
+},{"assert":903}],155:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = inject;
@@ -23162,7 +23162,7 @@ util.inherits(BrewingStandWindow, Window);
 
 BrewingStandWindow.prototype.inventorySlotStart = 5;
 
-},{"./item":137,"assert":914,"util":952}],159:[function(require,module,exports){
+},{"./item":137,"assert":903,"util":941}],159:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -30001,7 +30001,7 @@ function createClient(options) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/client":161,"./lib/protocol":162,"assert":914,"buffer":930}],161:[function(require,module,exports){
+},{"./lib/client":161,"./lib/protocol":162,"assert":903,"buffer":919}],161:[function(require,module,exports){
 (function (Buffer){
 var net = require('net')
   , EventEmitter = require('events').EventEmitter
@@ -30179,7 +30179,7 @@ Client.prototype.writeRaw = function(buffer, shouldEncrypt) {
     this.socket.write(out);
 };
 }).call(this,require("buffer").Buffer)
-},{"./protocol":162,"buffer":930,"dns":913,"events":933,"net":913,"util":952,"websocket-stream":163}],162:[function(require,module,exports){
+},{"./protocol":162,"buffer":919,"dns":902,"events":922,"net":902,"util":941,"websocket-stream":163}],162:[function(require,module,exports){
 (function (process,Buffer){
 var assert = require('assert');
 var util = require('util');
@@ -31551,7 +31551,7 @@ module.exports = {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"assert":914,"buffer":930,"q+64fw":936,"util":952}],163:[function(require,module,exports){
+},{"assert":903,"buffer":919,"q+64fw":925,"util":941}],163:[function(require,module,exports){
 (function (process){
 var through = require('through')
 var isBuffer = require('isbuffer')
@@ -31647,7 +31647,7 @@ WebsocketStream.prototype.end = function(data) {
 }
 
 }).call(this,require("q+64fw"))
-},{"isbuffer":164,"q+64fw":936,"through":165,"ws":166}],164:[function(require,module,exports){
+},{"isbuffer":164,"q+64fw":925,"through":165,"ws":166}],164:[function(require,module,exports){
 var Buffer = require('buffer').Buffer;
 
 module.exports = isBuffer;
@@ -31657,7 +31657,7 @@ function isBuffer (o) {
     || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
 }
 
-},{"buffer":930}],165:[function(require,module,exports){
+},{"buffer":919}],165:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -31769,7 +31769,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":936,"stream":950}],166:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],166:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -31949,11 +31949,11 @@ function euclideanMod(numerator, denominator) {
 
 },{}],169:[function(require,module,exports){
 module.exports=require(163)
-},{"isbuffer":170,"q+64fw":936,"through":171,"ws":172}],170:[function(require,module,exports){
+},{"isbuffer":170,"q+64fw":925,"through":171,"ws":172}],170:[function(require,module,exports){
 module.exports=require(164)
-},{"buffer":930}],171:[function(require,module,exports){
+},{"buffer":919}],171:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":936,"stream":950}],172:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],172:[function(require,module,exports){
 module.exports=require(166)
 },{}],173:[function(require,module,exports){
 (function (Buffer){
@@ -32350,7 +32350,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"iota-array":174}],174:[function(require,module,exports){
+},{"buffer":919,"iota-array":174}],174:[function(require,module,exports){
 module.exports=require(97)
 },{}],175:[function(require,module,exports){
 'use strict';
@@ -32941,7 +32941,7 @@ CommandsPlugin = (function() {
 
 },{"clone":179,"deep-equal":180}],179:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],180:[function(require,module,exports){
+},{"buffer":919}],180:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":181,"./lib/keys.js":182}],181:[function(require,module,exports){
 module.exports=require(23)
@@ -33318,13 +33318,13 @@ module.exports = function(opts) {
 };
 
 
-},{"events":933,"vkey":186}],186:[function(require,module,exports){
+},{"events":922,"vkey":186}],186:[function(require,module,exports){
 module.exports=require(10)
 },{}],187:[function(require,module,exports){
 module.exports=require(14)
 },{"ever":188}],188:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":189,"./types.json":190,"events":933}],189:[function(require,module,exports){
+},{"./init.json":189,"./types.json":190,"events":922}],189:[function(require,module,exports){
 module.exports=require(16)
 },{}],190:[function(require,module,exports){
 module.exports=require(17)
@@ -33668,7 +33668,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":933,"inherits":202}],196:[function(require,module,exports){
+},{"events":922,"inherits":202}],196:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -34815,7 +34815,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"iota-array":204}],204:[function(require,module,exports){
+},{"buffer":919,"iota-array":204}],204:[function(require,module,exports){
 module.exports=require(97)
 },{}],205:[function(require,module,exports){
 "use strict";
@@ -34995,7 +34995,7 @@ module.exports=require(94)
 module.exports=require(95)
 },{}],212:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":213}],213:[function(require,module,exports){
+},{"buffer":919,"iota-array":213}],213:[function(require,module,exports){
 module.exports=require(97)
 },{}],214:[function(require,module,exports){
 module.exports=require(98)
@@ -35003,7 +35003,7 @@ module.exports=require(98)
 module.exports=require(99)
 },{}],216:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":214,"buffer":930,"dup":215}],217:[function(require,module,exports){
+},{"bit-twiddle":214,"buffer":919,"dup":215}],217:[function(require,module,exports){
 module.exports=require(101)
 },{}],218:[function(require,module,exports){
 module.exports=require(102)
@@ -40004,7 +40004,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"fs":913,"module":913,"path":935,"q+64fw":936,"vm":953}],237:[function(require,module,exports){
+},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"fs":902,"module":902,"path":924,"q+64fw":925,"vm":942}],237:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -40260,7 +40260,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":936}],238:[function(require,module,exports){
+},{"q+64fw":925}],238:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -45075,7 +45075,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require("q+64fw"))
-},{"fs":913,"path":935,"q+64fw":936}],241:[function(require,module,exports){
+},{"fs":902,"path":924,"q+64fw":925}],241:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -45143,7 +45143,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":236,"./helpers":237,"child_process":913,"module":913,"path":935}],242:[function(require,module,exports){
+},{"./coffee-script":236,"./helpers":237,"child_process":902,"module":902,"path":924}],242:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -45933,7 +45933,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 },{}],245:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":246,"./types.json":247,"events":933}],246:[function(require,module,exports){
+},{"./init.json":246,"./types.json":247,"events":922}],246:[function(require,module,exports){
 module.exports=require(16)
 },{}],247:[function(require,module,exports){
 module.exports=require(17)
@@ -46051,7 +46051,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
+},{"buffer":919,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -46211,7 +46211,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":250,"events":933,"itempile":253}],250:[function(require,module,exports){
+},{"deep-equal":250,"events":922,"itempile":253}],250:[function(require,module,exports){
 module.exports=require(28)
 },{"./lib/is_arguments.js":251,"./lib/keys.js":252}],251:[function(require,module,exports){
 module.exports=require(23)
@@ -46401,7 +46401,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":254,"deep-equal":255}],254:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],255:[function(require,module,exports){
+},{"buffer":919}],255:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":256,"./lib/keys.js":257}],256:[function(require,module,exports){
 module.exports=require(23)
@@ -46591,7 +46591,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":259,"deep-equal":260}],259:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],260:[function(require,module,exports){
+},{"buffer":919}],260:[function(require,module,exports){
 module.exports=require(22)
 },{"./lib/is_arguments.js":261,"./lib/keys.js":262}],261:[function(require,module,exports){
 module.exports=require(23)
@@ -46767,7 +46767,7 @@ module.exports=require(24)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"node-int64":264,"zlib":929}],264:[function(require,module,exports){
+},{"buffer":919,"node-int64":264,"zlib":918}],264:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -46973,7 +46973,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930}],265:[function(require,module,exports){
+},{"buffer":919}],265:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -47046,7 +47046,6 @@ var regionChange = require('voxel-region-change')
 var physical = require('voxel-physicals')
 var pin = require('pin-it')
 var tic = require('tic')()
-var createShell = require('gl-now')
 var ndarray = require('ndarray')
 var isndarray = require('isndarray')
 
@@ -47117,23 +47116,29 @@ function Game(opts) {
   // used to be a three.js PerspectiveCamera set by voxel-view; see also basic-camera but API not likely compatible (TODO: make it compatible?)
   Object.defineProperty(this, 'camera', {get:function() { throw new Error('voxel-engine "camera" property removed') }})
 
+
+
   // the game-shell
-  var shellOpts = shellOpts || {}
-  shellOpts.clearColor = [
-    (this.skyColor >> 16) / 255.0,
-    ((this.skyColor >> 8) & 0xff) / 255.0,
-    (this.skyColor & 0xff) / 255.0,
-    1.0]
-  shellOpts.pointerLock = opts.pointerLock !== undefined ? opts.pointerLock : true
-  shellOpts.element = this.createContainer(opts)
-  var shell = createShell(shellOpts)
-
-  shell.on('gl-error', function(err) {
-    // normally not reached; notCapable() checks for WebGL compatibility first
-    document.body.appendChild(document.createTextNode('Fatal WebGL error: ' + err))
-  })
-
-  this.shell = shell
+  if (this.isClient) /*GZ: Do not load on server, as document element is missing*/
+  {
+    var createShell = require('gl-now')
+    var shellOpts = shellOpts || {}
+    shellOpts.clearColor = [
+      (this.skyColor >> 16) / 255.0,
+      ((this.skyColor >> 8) & 0xff) / 255.0,
+      (this.skyColor & 0xff) / 255.0,
+      1.0]
+    shellOpts.pointerLock = opts.pointerLock !== undefined ? opts.pointerLock : true
+    shellOpts.element = this.createContainer(opts)
+    var shell = createShell(shellOpts)
+  
+    shell.on('gl-error', function(err) {
+      // normally not reached; notCapable() checks for WebGL compatibility first
+      document.body.appendChild(document.createTextNode('Fatal WebGL error: ' + err))
+    })
+  
+    this.shell = shell
+  }
 
   // setup plugins
   var plugins = createPlugins(this, {require: function(name) {
@@ -47180,8 +47185,7 @@ function Game(opts) {
   if (!this.isClient) return
 
   // materials
-  //this.materialNames = opts.materials || [['grass', 'dirt', 'grass_dirt'], 'brick', 'dirt']
-  this.materialNames = opts.materials
+  if ('materials' in opts) throw new Error('opts.materials replaced with voxel-registry registerBlock()') // TODO: bridge?
  
   //this.paused = true // TODO: should it start paused, then unpause when pointer lock is acquired?
 
@@ -47495,8 +47499,8 @@ Game.prototype.potentialCollisionSet = function() {
  */
 
 Game.prototype.playerPosition = function() {
-  if (!target) return this.cameraPosition()
   var target = this.controls.target()
+  if (!target) return this.cameraPosition()
   var position = target.avatar.position
   return [position.x, position.y, position.z]
 }
@@ -47836,7 +47840,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require("q+64fw"))
-},{"./lib/detector":267,"./lib/stats":268,"aabb-3d":269,"collide-3d-tilemap":271,"events":933,"extend":272,"game-shell-fps-camera":273,"gl-matrix":279,"gl-now":280,"inherits":293,"isndarray":294,"ndarray":295,"path":935,"pin-it":297,"q+64fw":936,"spatial-events":298,"tic":300,"voxel":508,"voxel-controls":301,"voxel-mesher":303,"voxel-physicals":339,"voxel-plugins":342,"voxel-raycast":343,"voxel-region-change":344,"voxel-registry":347,"voxel-shader":348,"voxel-stitch":506}],267:[function(require,module,exports){
+},{"./lib/detector":267,"./lib/stats":268,"aabb-3d":269,"collide-3d-tilemap":271,"events":922,"extend":272,"game-shell-fps-camera":273,"gl-matrix":279,"gl-now":280,"inherits":293,"isndarray":294,"ndarray":295,"path":924,"pin-it":297,"q+64fw":925,"spatial-events":298,"tic":300,"voxel":497,"voxel-controls":301,"voxel-mesher":303,"voxel-physicals":339,"voxel-plugins":342,"voxel-raycast":343,"voxel-region-change":344,"voxel-registry":347,"voxel-shader":348,"voxel-stitch":495}],267:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -48591,7 +48595,7 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":277,"stream":950}],279:[function(require,module,exports){
+},{"inherits":277,"stream":939}],279:[function(require,module,exports){
 module.exports=require(219)
 },{}],280:[function(require,module,exports){
 "use strict"
@@ -49670,7 +49674,7 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":281,"./lib/mousewheel-polyfill.js":282,"./lib/raf-polyfill.js":283,"binary-search-bounds":284,"domready":285,"events":933,"invert-hash":286,"iota-array":287,"uniq":288,"util":952,"vkey":289}],291:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":281,"./lib/mousewheel-polyfill.js":282,"./lib/raf-polyfill.js":283,"binary-search-bounds":284,"domready":285,"events":922,"invert-hash":286,"iota-array":287,"uniq":288,"util":941,"vkey":289}],291:[function(require,module,exports){
 module.exports=require(101)
 },{}],292:[function(require,module,exports){
 module.exports=require(102)
@@ -49686,7 +49690,7 @@ module.exports = function(arr) {
 
 },{}],295:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":296}],296:[function(require,module,exports){
+},{"buffer":919,"iota-array":296}],296:[function(require,module,exports){
 module.exports=require(97)
 },{}],297:[function(require,module,exports){
 module.exports = pin
@@ -50373,7 +50377,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":950}],302:[function(require,module,exports){
+},{"stream":939}],302:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -50570,7 +50574,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":302,"block-models":305,"events":933,"gl-buffer":310,"gl-vao":319,"inherits":326,"ndarray":332,"ndarray-ops":327}],304:[function(require,module,exports){
+},{"./mesh-buffer.js":302,"block-models":305,"events":922,"gl-buffer":310,"gl-vao":319,"inherits":326,"ndarray":332,"ndarray-ops":327}],304:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -51502,7 +51506,7 @@ module.exports=require(98)
 module.exports=require(99)
 },{}],324:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":322,"buffer":930,"dup":323}],325:[function(require,module,exports){
+},{"bit-twiddle":322,"buffer":919,"dup":323}],325:[function(require,module,exports){
 module.exports=require(95)
 },{}],326:[function(require,module,exports){
 module.exports=require(277)
@@ -51518,7 +51522,7 @@ module.exports=require(94)
 module.exports=require(95)
 },{}],332:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":333}],333:[function(require,module,exports){
+},{"buffer":919,"iota-array":333}],333:[function(require,module,exports){
 module.exports=require(97)
 },{}],334:[function(require,module,exports){
 module.exports=require(98)
@@ -51526,7 +51530,7 @@ module.exports=require(98)
 module.exports=require(99)
 },{}],336:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":334,"buffer":930,"dup":335}],337:[function(require,module,exports){
+},{"bit-twiddle":334,"buffer":919,"dup":335}],337:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -51963,7 +51967,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":952}],342:[function(require,module,exports){
+},{"util":941}],342:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -52280,7 +52284,7 @@ Plugins.prototype.destroy = function(name) {
 inherits(Plugins, EventEmitter);
 
 }).call(this,require("q+64fw"))
-},{"events":933,"inherits":340,"q+64fw":936,"tsort":341}],343:[function(require,module,exports){
+},{"events":922,"inherits":340,"q+64fw":925,"tsort":341}],343:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -52530,7 +52534,7 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":345,"events":933}],345:[function(require,module,exports){
+},{"aabb-3d":345,"events":922}],345:[function(require,module,exports){
 arguments[4][337][0].apply(exports,arguments)
 },{"gl-matrix":346}],346:[function(require,module,exports){
 /**
@@ -56806,7 +56810,7 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"fs":913,"gl-matrix":349,"glslify":351,"glslify/adapter.js":350}],349:[function(require,module,exports){
+},{"fs":902,"gl-matrix":349,"glslify":351,"glslify/adapter.js":350}],349:[function(require,module,exports){
 module.exports=require(219)
 },{}],350:[function(require,module,exports){
 module.exports=require(109)
@@ -57306,7 +57310,7 @@ module.exports = function(opts) {
 };
 
 
-},{"binary-xhr":358,"events":933,"fs":913,"get-pixels":360,"graycolorize":373,"mcmeta":377,"path":935,"save-pixels":398,"zip":414}],358:[function(require,module,exports){
+},{"binary-xhr":358,"events":922,"fs":902,"get-pixels":360,"graycolorize":373,"mcmeta":377,"path":924,"save-pixels":398,"zip":414}],358:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -57383,12 +57387,12 @@ function handleGIF(url, cb) {
       cb(err)
       return
     }
-    if(reader.numFrames > 0) {
-      var nshape = [reader.numFrames, reader.height, reader.width, 4]
+    if(reader.numFrames() > 0) {
+      var nshape = [reader.numFrames(), reader.height, reader.width, 4]
       var ndata = new Uint8Array(nshape[0] * nshape[1] * nshape[2] * nshape[3])
       var result = ndarray(ndata, nshape)
       try {
-        for(var i=0; i<reader.numFrames; ++i) {
+        for(var i=0; i<reader.numFrames(); ++i) {
           reader.decodeAndBlitFrameRGBA(i, ndata.subarray(
             result.index(i, 0, 0, 0),
             result.index(i+1, 0, 0, 0)))
@@ -57455,11 +57459,15 @@ module.exports = function getPixels(url, cb) {
       handlePPM(url, cb)
     break
     default:
-      defaultImage(url, cb)
+      if(url.indexOf('data:image/gif;') === 0) {
+        handleGIF(url, cb)
+      } else {
+        defaultImage(url, cb)
+      }
   }
 }
 
-},{"ndarray":367,"ndarray-pack":361,"omggif":369,"path":935,"ppm":371,"through":372}],361:[function(require,module,exports){
+},{"ndarray":367,"ndarray-pack":361,"omggif":369,"path":924,"ppm":371,"through":372}],361:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -57938,8 +57946,354 @@ function unique(list, compare, sorted) {
 
 module.exports = unique
 },{}],367:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":368}],368:[function(require,module,exports){
+(function (Buffer){
+var iota = require("iota-array")
+
+var hasTypedArrays  = ((typeof Float64Array) !== "undefined")
+var hasBuffer       = ((typeof Buffer) !== "undefined")
+
+function compare1st(a, b) {
+  return a[0] - b[0]
+}
+
+function order() {
+  var stride = this.stride
+  var terms = new Array(stride.length)
+  var i
+  for(i=0; i<terms.length; ++i) {
+    terms[i] = [Math.abs(stride[i]), i]
+  }
+  terms.sort(compare1st)
+  var result = new Array(terms.length)
+  for(i=0; i<result.length; ++i) {
+    result[i] = terms[i][1]
+  }
+  return result
+}
+
+function compileConstructor(dtype, dimension) {
+  var className = ["View", dimension, "d", dtype].join("")
+  if(dimension < 0) {
+    className = "View_Nil" + dtype
+  }
+  var useGetters = (dtype === "generic")
+  
+  if(dimension === -1) {
+    //Special case for trivial arrays
+    var code = 
+      "function "+className+"(a){this.data=a;};\
+var proto="+className+".prototype;\
+proto.dtype='"+dtype+"';\
+proto.index=function(){return -1};\
+proto.size=0;\
+proto.dimension=-1;\
+proto.shape=proto.stride=proto.order=[];\
+proto.lo=proto.hi=proto.transpose=proto.step=\
+function(){return new "+className+"(this.data);};\
+proto.get=proto.set=function(){};\
+proto.pick=function(){return null};\
+return function construct_"+className+"(a){return new "+className+"(a);}"
+    var procedure = new Function(code)
+    return procedure()
+  } else if(dimension === 0) {
+    //Special case for 0d arrays
+    var code =
+      "function "+className+"(a,d) {\
+this.data = a;\
+this.offset = d\
+};\
+var proto="+className+".prototype;\
+proto.dtype='"+dtype+"';\
+proto.index=function(){return this.offset};\
+proto.dimension=0;\
+proto.size=1;\
+proto.shape=\
+proto.stride=\
+proto.order=[];\
+proto.lo=\
+proto.hi=\
+proto.transpose=\
+proto.step=function "+className+"_copy() {\
+return new "+className+"(this.data,this.offset)\
+};\
+proto.pick=function "+className+"_pick(){\
+return TrivialArray(this.data);\
+};\
+proto.valueOf=proto.get=function "+className+"_get(){\
+return "+(useGetters ? "this.data.get(this.offset)" : "this.data[this.offset]")+
+"};\
+proto.set=function "+className+"_set(v){\
+return "+(useGetters ? "this.data.set(this.offset,v)" : "this.data[this.offset]=v")+"\
+};\
+return function construct_"+className+"(a,b,c,d){return new "+className+"(a,d)}"
+    var procedure = new Function("TrivialArray", code)
+    return procedure(CACHED_CONSTRUCTORS[dtype][0])
+  }
+
+  var code = ["'use strict'"]
+    
+  //Create constructor for view
+  var indices = iota(dimension)
+  var args = indices.map(function(i) { return "i"+i })
+  var index_str = "this.offset+" + indices.map(function(i) {
+        return "this.stride[" + i + "]*i" + i
+      }).join("+")
+  var shapeArg = indices.map(function(i) {
+      return "b"+i
+    }).join(",")
+  var strideArg = indices.map(function(i) {
+      return "c"+i
+    }).join(",")
+  code.push(
+    "function "+className+"(a," + shapeArg + "," + strideArg + ",d){this.data=a",
+      "this.shape=[" + shapeArg + "]",
+      "this.stride=[" + strideArg + "]",
+      "this.offset=d|0}",
+    "var proto="+className+".prototype",
+    "proto.dtype='"+dtype+"'",
+    "proto.dimension="+dimension)
+  
+  //view.size:
+  code.push("Object.defineProperty(proto,'size',{get:function "+className+"_size(){\
+return "+indices.map(function(i) { return "this.shape["+i+"]" }).join("*"),
+"}})")
+
+  //view.order:
+  if(dimension === 1) {
+    code.push("proto.order=[0]")
+  } else {
+    code.push("Object.defineProperty(proto,'order',{get:")
+    if(dimension < 4) {
+      code.push("function "+className+"_order(){")
+      if(dimension === 2) {
+        code.push("return (Math.abs(this.stride[0])>Math.abs(this.stride[1]))?[1,0]:[0,1]}})")
+      } else if(dimension === 3) {
+        code.push(
+"var s0=Math.abs(this.stride[0]),s1=Math.abs(this.stride[1]),s2=Math.abs(this.stride[2]);\
+if(s0>s1){\
+if(s1>s2){\
+return [2,1,0];\
+}else if(s0>s2){\
+return [1,2,0];\
+}else{\
+return [1,0,2];\
+}\
+}else if(s0>s2){\
+return [2,0,1];\
+}else if(s2>s1){\
+return [0,1,2];\
+}else{\
+return [0,2,1];\
+}}})")
+      }
+    } else {
+      code.push("ORDER})")
+    }
+  }
+  
+  //view.set(i0, ..., v):
+  code.push(
+"proto.set=function "+className+"_set("+args.join(",")+",v){")
+  if(useGetters) {
+    code.push("return this.data.set("+index_str+",v)}")
+  } else {
+    code.push("return this.data["+index_str+"]=v}")
+  }
+  
+  //view.get(i0, ...):
+  code.push("proto.get=function "+className+"_get("+args.join(",")+"){")
+  if(useGetters) {
+    code.push("return this.data.get("+index_str+")}")
+  } else {
+    code.push("return this.data["+index_str+"]}")
+  }
+  
+  //view.index:
+  code.push(
+    "proto.index=function "+className+"_index(", args.join(), "){return "+index_str+"}")
+
+  //view.hi():
+  code.push("proto.hi=function "+className+"_hi("+args.join(",")+"){return new "+className+"(this.data,"+
+    indices.map(function(i) {
+      return ["(typeof i",i,"!=='number'||i",i,"<0)?this.shape[", i, "]:i", i,"|0"].join("")
+    }).join(",")+","+
+    indices.map(function(i) {
+      return "this.stride["+i + "]"
+    }).join(",")+",this.offset)}")
+  
+  //view.lo():
+  var a_vars = indices.map(function(i) { return "a"+i+"=this.shape["+i+"]" })
+  var c_vars = indices.map(function(i) { return "c"+i+"=this.stride["+i+"]" })
+  code.push("proto.lo=function "+className+"_lo("+args.join(",")+"){var b=this.offset,d=0,"+a_vars.join(",")+","+c_vars.join(","))
+  for(var i=0; i<dimension; ++i) {
+    code.push(
+"if(typeof i"+i+"==='number'&&i"+i+">=0){\
+d=i"+i+"|0;\
+b+=c"+i+"*d;\
+a"+i+"-=d}")
+  }
+  code.push("return new "+className+"(this.data,"+
+    indices.map(function(i) {
+      return "a"+i
+    }).join(",")+","+
+    indices.map(function(i) {
+      return "c"+i
+    }).join(",")+",b)}")
+  
+  //view.step():
+  code.push("proto.step=function "+className+"_step("+args.join(",")+"){var "+
+    indices.map(function(i) {
+      return "a"+i+"=this.shape["+i+"]"
+    }).join(",")+","+
+    indices.map(function(i) {
+      return "b"+i+"=this.stride["+i+"]"
+    }).join(",")+",c=this.offset,d=0,ceil=Math.ceil")
+  for(var i=0; i<dimension; ++i) {
+    code.push(
+"if(typeof i"+i+"==='number'){\
+d=i"+i+"|0;\
+if(d<0){\
+c+=b"+i+"*(a"+i+"-1);\
+a"+i+"=ceil(-a"+i+"/d)\
+}else{\
+a"+i+"=ceil(a"+i+"/d)\
+}\
+b"+i+"*=d\
+}")
+  }
+  code.push("return new "+className+"(this.data,"+
+    indices.map(function(i) {
+      return "a" + i
+    }).join(",")+","+
+    indices.map(function(i) {
+      return "b" + i
+    }).join(",")+",c)}")
+  
+  //view.transpose():
+  var tShape = new Array(dimension)
+  var tStride = new Array(dimension)
+  for(var i=0; i<dimension; ++i) {
+    tShape[i] = "a[i"+i+"]"
+    tStride[i] = "b[i"+i+"]"
+  }
+  code.push("proto.transpose=function "+className+"_transpose("+args+"){"+
+    args.map(function(n,idx) { return n + "=(" + n + "===undefined?" + idx + ":" + n + "|0)"}).join(";"),
+    "var a=this.shape,b=this.stride;return new "+className+"(this.data,"+tShape.join(",")+","+tStride.join(",")+",this.offset)}")
+  
+  //view.pick():
+  code.push("proto.pick=function "+className+"_pick("+args+"){var a=[],b=[],c=this.offset")
+  for(var i=0; i<dimension; ++i) {
+    code.push("if(typeof i"+i+"==='number'&&i"+i+">=0){c=(c+this.stride["+i+"]*i"+i+")|0}else{a.push(this.shape["+i+"]);b.push(this.stride["+i+"])}")
+  }
+  code.push("var ctor=CTOR_LIST[a.length+1];return ctor(this.data,a,b,c)}")
+    
+  //Add return statement
+  code.push("return function construct_"+className+"(data,shape,stride,offset){return new "+className+"(data,"+
+    indices.map(function(i) {
+      return "shape["+i+"]"
+    }).join(",")+","+
+    indices.map(function(i) {
+      return "stride["+i+"]"
+    }).join(",")+",offset)}")
+
+  //Compile procedure
+  var procedure = new Function("CTOR_LIST", "ORDER", code.join("\n"))
+  return procedure(CACHED_CONSTRUCTORS[dtype], order)
+}
+
+function arrayDType(data) {
+  if(hasBuffer) {
+    if(Buffer.isBuffer(data)) {
+      return "buffer"
+    }
+  }
+  if(hasTypedArrays) {
+    switch(Object.prototype.toString.call(data)) {
+      case "[object Float64Array]":
+        return "float64"
+      case "[object Float32Array]":
+        return "float32"
+      case "[object Int8Array]":
+        return "int8"
+      case "[object Int16Array]":
+        return "int16"
+      case "[object Int32Array]":
+        return "int32"
+      case "[object Uint8Array]":
+        return "uint8"
+      case "[object Uint16Array]":
+        return "uint16"
+      case "[object Uint32Array]":
+        return "uint32"
+      case "[object Uint8ClampedArray]":
+        return "uint8_clamped"
+    }
+  }
+  if(Array.isArray(data)) {
+    return "array"
+  }
+  return "generic"
+}
+
+var CACHED_CONSTRUCTORS = {
+  "float32":[],
+  "float64":[],
+  "int8":[],
+  "int16":[],
+  "int32":[],
+  "uint8":[],
+  "uint16":[],
+  "uint32":[],
+  "array":[],
+  "uint8_clamped":[],
+  "buffer":[],
+  "generic":[]
+}
+
+;(function() {
+  for(var id in CACHED_CONSTRUCTORS) {
+    CACHED_CONSTRUCTORS[id].push(compileConstructor(id, -1))
+  }
+});
+
+function wrappedNDArrayCtor(data, shape, stride, offset) {
+  if(data === undefined) {
+    var ctor = CACHED_CONSTRUCTORS.array[0]
+    return ctor([])
+  } else if(typeof data === "number") {
+    data = [data]
+  }
+  if(shape === undefined) {
+    shape = [ data.length ]
+  }
+  var d = shape.length
+  if(stride === undefined) {
+    stride = new Array(d)
+    for(var i=d-1, sz=1; i>=0; --i) {
+      stride[i] = sz
+      sz *= shape[i]
+    }
+  }
+  if(offset === undefined) {
+    offset = 0
+    for(var i=0; i<d; ++i) {
+      if(stride[i] < 0) {
+        offset -= (shape[i]-1)*stride[i]
+      }
+    }
+  }
+  var dtype = arrayDType(data)
+  var ctor_list = CACHED_CONSTRUCTORS[dtype]
+  while(ctor_list.length <= d+1) {
+    ctor_list.push(compileConstructor(dtype, ctor_list.length-1))
+  }
+  var ctor = ctor_list[d+1]
+  return ctor(data, shape, stride, offset)
+}
+
+module.exports = wrappedNDArrayCtor
+}).call(this,require("buffer").Buffer)
+},{"buffer":919,"iota-array":368}],368:[function(require,module,exports){
 module.exports=require(97)
 },{}],369:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
@@ -58779,7 +59133,7 @@ function through (write, end) {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":936,"stream":950}],371:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],371:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -59101,9 +59455,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":930,"q+64fw":936,"through":370}],372:[function(require,module,exports){
+},{"buffer":919,"q+64fw":925,"through":370}],372:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":936,"stream":950}],373:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],373:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -59188,8 +59542,8 @@ module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
 },{"ndarray":374,"onecolor":376}],374:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":375}],375:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":375}],375:[function(require,module,exports){
 module.exports=require(97)
 },{}],376:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
@@ -60112,8 +60466,8 @@ module.exports = function getPixels(url, cb) {
 }
 
 },{"ndarray":379}],379:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":380}],380:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":380}],380:[function(require,module,exports){
 module.exports=require(97)
 },{}],381:[function(require,module,exports){
 (function (Buffer){
@@ -60317,7 +60671,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930,"stream":950,"util":952}],382:[function(require,module,exports){
+},{"buffer":919,"stream":939,"util":941}],382:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -60438,7 +60792,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":950,"util":952}],384:[function(require,module,exports){
+},{"stream":939,"util":941}],384:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -60756,7 +61110,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":381,"buffer":930,"util":952,"zlib":929}],385:[function(require,module,exports){
+},{"./chunkstream":381,"buffer":919,"util":941,"zlib":918}],385:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -60870,7 +61224,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":382,"./crc":383,"./filter":384,"buffer":930,"stream":950,"util":952,"zlib":929}],386:[function(require,module,exports){
+},{"./constants":382,"./crc":383,"./filter":384,"buffer":919,"stream":939,"util":941,"zlib":918}],386:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -61233,7 +61587,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":381,"./constants":382,"./crc":383,"./filter":384,"buffer":930,"util":952,"zlib":929}],387:[function(require,module,exports){
+},{"./chunkstream":381,"./constants":382,"./crc":383,"./filter":384,"buffer":919,"util":941,"zlib":918}],387:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -61384,9 +61738,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./packer":385,"./parser":386,"buffer":930,"q+64fw":936,"stream":950,"util":952}],388:[function(require,module,exports){
+},{"./packer":385,"./parser":386,"buffer":919,"q+64fw":925,"stream":939,"util":941}],388:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":936,"stream":950}],389:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],389:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -61480,21 +61834,21 @@ module.exports = function savePixels(array, type) {
 
 },{"pngjs":387,"through":388}],390:[function(require,module,exports){
 module.exports=require(381)
-},{"buffer":930,"stream":950,"util":952}],391:[function(require,module,exports){
+},{"buffer":919,"stream":939,"util":941}],391:[function(require,module,exports){
 module.exports=require(382)
 },{}],392:[function(require,module,exports){
 module.exports=require(383)
-},{"stream":950,"util":952}],393:[function(require,module,exports){
+},{"stream":939,"util":941}],393:[function(require,module,exports){
 module.exports=require(384)
-},{"./chunkstream":390,"buffer":930,"util":952,"zlib":929}],394:[function(require,module,exports){
+},{"./chunkstream":390,"buffer":919,"util":941,"zlib":918}],394:[function(require,module,exports){
 module.exports=require(385)
-},{"./constants":391,"./crc":392,"./filter":393,"buffer":930,"stream":950,"util":952,"zlib":929}],395:[function(require,module,exports){
+},{"./constants":391,"./crc":392,"./filter":393,"buffer":919,"stream":939,"util":941,"zlib":918}],395:[function(require,module,exports){
 module.exports=require(386)
-},{"./chunkstream":390,"./constants":391,"./crc":392,"./filter":393,"buffer":930,"util":952,"zlib":929}],396:[function(require,module,exports){
+},{"./chunkstream":390,"./constants":391,"./crc":392,"./filter":393,"buffer":919,"util":941,"zlib":918}],396:[function(require,module,exports){
 module.exports=require(387)
-},{"./packer":394,"./parser":395,"buffer":930,"q+64fw":936,"stream":950,"util":952}],397:[function(require,module,exports){
+},{"./packer":394,"./parser":395,"buffer":919,"q+64fw":925,"stream":939,"util":941}],397:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":936,"stream":950}],398:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],398:[function(require,module,exports){
 module.exports=require(389)
 },{"pngjs":396,"through":397}],399:[function(require,module,exports){
 
@@ -63441,7 +63795,9 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require("q+64fw"))
-},{"./inflate":400,"bops":401,"fs":913,"q+64fw":936}],415:[function(require,module,exports){
+},{"./inflate":400,"bops":401,"fs":902,"q+64fw":925}],415:[function(require,module,exports){
+(function (global){
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.atlaspack=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
  * atlaspack
  * https://github.com/shama/atlaspack
@@ -63696,55 +64052,38 @@ Atlas.prototype._debug = function() {
   });
 };
 
+},{}]},{},[1])
+(1)
+});;
+
+}).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],416:[function(require,module,exports){
 module.exports=require(39)
 },{}],417:[function(require,module,exports){
-module.exports=require(360)
-},{"ndarray":424,"ndarray-pack":418,"omggif":426,"path":935,"ppm":428,"through":429}],418:[function(require,module,exports){
-module.exports=require(361)
-},{"./doConvert.js":419,"ndarray":424}],419:[function(require,module,exports){
-module.exports=require(362)
-},{"cwise-compiler":420}],420:[function(require,module,exports){
-module.exports=require(363)
-},{"./lib/thunk.js":422}],421:[function(require,module,exports){
-module.exports=require(364)
-},{"uniq":423}],422:[function(require,module,exports){
-arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":421}],423:[function(require,module,exports){
-module.exports=require(366)
-},{}],424:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":425}],425:[function(require,module,exports){
-module.exports=require(97)
-},{}],426:[function(require,module,exports){
-module.exports=require(369)
-},{}],427:[function(require,module,exports){
-module.exports=require(370)
-},{"q+64fw":936,"stream":950}],428:[function(require,module,exports){
-module.exports=require(371)
-},{"buffer":930,"q+64fw":936,"through":427}],429:[function(require,module,exports){
-module.exports=require(165)
-},{"q+64fw":936,"stream":950}],430:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":431}],431:[function(require,module,exports){
+},{"cwise-compiler":418}],418:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":433}],432:[function(require,module,exports){
+},{"./lib/thunk.js":420}],419:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":434}],433:[function(require,module,exports){
+},{"uniq":421}],420:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":432}],434:[function(require,module,exports){
+},{"./compile.js":419}],421:[function(require,module,exports){
 module.exports=require(95)
-},{}],435:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":423}],423:[function(require,module,exports){
+module.exports=require(97)
+},{}],424:[function(require,module,exports){
 module.exports=require(98)
-},{}],436:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 module.exports=require(99)
-},{}],437:[function(require,module,exports){
+},{}],426:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":435,"buffer":930,"dup":436}],438:[function(require,module,exports){
+},{"bit-twiddle":424,"buffer":919,"dup":425}],427:[function(require,module,exports){
 module.exports=require(101)
-},{}],439:[function(require,module,exports){
+},{}],428:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":438}],440:[function(require,module,exports){
+},{"weakmap":427}],429:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -64239,9 +64578,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":445,"ndarray-ops":430,"typedarray-pool":437,"webglew":439}],441:[function(require,module,exports){
+},{"ndarray":422,"ndarray-ops":417,"typedarray-pool":426,"webglew":428}],430:[function(require,module,exports){
 module.exports=require(277)
-},{}],442:[function(require,module,exports){
+},{}],431:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -64266,15 +64605,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":443}],443:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":444}],444:[function(require,module,exports){
+},{"ndarray":432}],432:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":433}],433:[function(require,module,exports){
 module.exports=require(97)
-},{}],445:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":446}],446:[function(require,module,exports){
+},{}],434:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":435}],435:[function(require,module,exports){
 module.exports=require(97)
-},{}],447:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -64390,7 +64729,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":493,"ndarray-downsample2x":448,"ndarray-ops":488}],448:[function(require,module,exports){
+},{"ndarray":482,"ndarray-downsample2x":437,"ndarray-ops":477}],437:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -64475,7 +64814,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":449,"ndarray-fft":457,"ndarray-ops":477,"ndarray-scratch":487}],449:[function(require,module,exports){
+},{"cwise":438,"ndarray-fft":446,"ndarray-ops":466,"ndarray-scratch":476}],438:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -64512,7 +64851,7 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":450,"cwise-parser":454}],450:[function(require,module,exports){
+},{"cwise-compiler":439,"cwise-parser":443}],439:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -64618,7 +64957,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":452}],451:[function(require,module,exports){
+},{"./lib/thunk.js":441}],440:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -64875,11 +65214,11 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":453}],452:[function(require,module,exports){
+},{"uniq":442}],441:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":451}],453:[function(require,module,exports){
+},{"./compile.js":440}],442:[function(require,module,exports){
 module.exports=require(366)
-},{}],454:[function(require,module,exports){
+},{}],443:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -65075,7 +65414,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":455,"uniq":456}],455:[function(require,module,exports){
+},{"esprima":444,"uniq":445}],444:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -68985,9 +69324,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],456:[function(require,module,exports){
+},{}],445:[function(require,module,exports){
 module.exports=require(366)
-},{}],457:[function(require,module,exports){
+},{}],446:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -69072,7 +69411,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":458,"cwise":460,"ndarray":473,"ndarray-ops":468,"typedarray-pool":476}],458:[function(require,module,exports){
+},{"./lib/fft-matrix.js":447,"cwise":449,"ndarray":462,"ndarray-ops":457,"typedarray-pool":465}],447:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -69291,25 +69630,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":459}],459:[function(require,module,exports){
+},{"bit-twiddle":448}],448:[function(require,module,exports){
 module.exports=require(98)
-},{}],460:[function(require,module,exports){
-module.exports=require(449)
-},{"cwise-compiler":461,"cwise-parser":465}],461:[function(require,module,exports){
-module.exports=require(450)
-},{"./lib/thunk.js":463}],462:[function(require,module,exports){
-module.exports=require(451)
-},{"uniq":464}],463:[function(require,module,exports){
+},{}],449:[function(require,module,exports){
+module.exports=require(438)
+},{"cwise-compiler":450,"cwise-parser":454}],450:[function(require,module,exports){
+module.exports=require(439)
+},{"./lib/thunk.js":452}],451:[function(require,module,exports){
+module.exports=require(440)
+},{"uniq":453}],452:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":462}],464:[function(require,module,exports){
+},{"./compile.js":451}],453:[function(require,module,exports){
 module.exports=require(366)
-},{}],465:[function(require,module,exports){
-module.exports=require(454)
-},{"esprima":466,"uniq":467}],466:[function(require,module,exports){
-module.exports=require(455)
-},{}],467:[function(require,module,exports){
+},{}],454:[function(require,module,exports){
+module.exports=require(443)
+},{"esprima":455,"uniq":456}],455:[function(require,module,exports){
+module.exports=require(444)
+},{}],456:[function(require,module,exports){
 module.exports=require(366)
-},{}],468:[function(require,module,exports){
+},{}],457:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -69758,21 +70097,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":469}],469:[function(require,module,exports){
-module.exports=require(450)
-},{"./lib/thunk.js":471}],470:[function(require,module,exports){
-module.exports=require(451)
-},{"uniq":472}],471:[function(require,module,exports){
+},{"cwise-compiler":458}],458:[function(require,module,exports){
+module.exports=require(439)
+},{"./lib/thunk.js":460}],459:[function(require,module,exports){
+module.exports=require(440)
+},{"uniq":461}],460:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":470}],472:[function(require,module,exports){
+},{"./compile.js":459}],461:[function(require,module,exports){
 module.exports=require(366)
-},{}],473:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":474}],474:[function(require,module,exports){
+},{}],462:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":463}],463:[function(require,module,exports){
 module.exports=require(97)
-},{}],475:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 module.exports=require(99)
-},{}],476:[function(require,module,exports){
+},{}],465:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -70057,27 +70396,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":459,"dup":475}],477:[function(require,module,exports){
-module.exports=require(468)
-},{"cwise-compiler":478}],478:[function(require,module,exports){
-module.exports=require(450)
-},{"./lib/thunk.js":480}],479:[function(require,module,exports){
-module.exports=require(451)
-},{"uniq":481}],480:[function(require,module,exports){
+},{"bit-twiddle":448,"dup":464}],466:[function(require,module,exports){
+module.exports=require(457)
+},{"cwise-compiler":467}],467:[function(require,module,exports){
+module.exports=require(439)
+},{"./lib/thunk.js":469}],468:[function(require,module,exports){
+module.exports=require(440)
+},{"uniq":470}],469:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":479}],481:[function(require,module,exports){
+},{"./compile.js":468}],470:[function(require,module,exports){
 module.exports=require(366)
-},{}],482:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":483}],483:[function(require,module,exports){
+},{}],471:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":472}],472:[function(require,module,exports){
 module.exports=require(97)
-},{}],484:[function(require,module,exports){
+},{}],473:[function(require,module,exports){
 module.exports=require(98)
-},{}],485:[function(require,module,exports){
+},{}],474:[function(require,module,exports){
 module.exports=require(99)
-},{}],486:[function(require,module,exports){
-module.exports=require(476)
-},{"bit-twiddle":484,"dup":485}],487:[function(require,module,exports){
+},{}],475:[function(require,module,exports){
+module.exports=require(465)
+},{"bit-twiddle":473,"dup":474}],476:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -70101,41 +70440,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":482,"typedarray-pool":486}],488:[function(require,module,exports){
+},{"ndarray":471,"typedarray-pool":475}],477:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":489}],489:[function(require,module,exports){
+},{"cwise-compiler":478}],478:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":491}],490:[function(require,module,exports){
+},{"./lib/thunk.js":480}],479:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":492}],491:[function(require,module,exports){
+},{"uniq":481}],480:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":490}],492:[function(require,module,exports){
+},{"./compile.js":479}],481:[function(require,module,exports){
 module.exports=require(95)
-},{}],493:[function(require,module,exports){
-module.exports=require(96)
-},{"buffer":930,"iota-array":494}],494:[function(require,module,exports){
+},{}],482:[function(require,module,exports){
+module.exports=require(367)
+},{"buffer":919,"iota-array":483}],483:[function(require,module,exports){
 module.exports=require(97)
-},{}],495:[function(require,module,exports){
+},{}],484:[function(require,module,exports){
 module.exports=require(381)
-},{"buffer":930,"stream":950,"util":952}],496:[function(require,module,exports){
+},{"buffer":919,"stream":939,"util":941}],485:[function(require,module,exports){
 module.exports=require(382)
-},{}],497:[function(require,module,exports){
+},{}],486:[function(require,module,exports){
 module.exports=require(383)
-},{"stream":950,"util":952}],498:[function(require,module,exports){
+},{"stream":939,"util":941}],487:[function(require,module,exports){
 module.exports=require(384)
-},{"./chunkstream":495,"buffer":930,"util":952,"zlib":929}],499:[function(require,module,exports){
+},{"./chunkstream":484,"buffer":919,"util":941,"zlib":918}],488:[function(require,module,exports){
 module.exports=require(385)
-},{"./constants":496,"./crc":497,"./filter":498,"buffer":930,"stream":950,"util":952,"zlib":929}],500:[function(require,module,exports){
+},{"./constants":485,"./crc":486,"./filter":487,"buffer":919,"stream":939,"util":941,"zlib":918}],489:[function(require,module,exports){
 module.exports=require(386)
-},{"./chunkstream":495,"./constants":496,"./crc":497,"./filter":498,"buffer":930,"util":952,"zlib":929}],501:[function(require,module,exports){
+},{"./chunkstream":484,"./constants":485,"./crc":486,"./filter":487,"buffer":919,"util":941,"zlib":918}],490:[function(require,module,exports){
 module.exports=require(387)
-},{"./packer":499,"./parser":500,"buffer":930,"q+64fw":936,"stream":950,"util":952}],502:[function(require,module,exports){
+},{"./packer":488,"./parser":489,"buffer":919,"q+64fw":925,"stream":939,"util":941}],491:[function(require,module,exports){
 module.exports=require(165)
-},{"q+64fw":936,"stream":950}],503:[function(require,module,exports){
+},{"q+64fw":925,"stream":939}],492:[function(require,module,exports){
 module.exports=require(389)
-},{"pngjs":501,"through":502}],504:[function(require,module,exports){
+},{"pngjs":490,"through":491}],493:[function(require,module,exports){
 module.exports=require(44)
-},{}],505:[function(require,module,exports){
+},{}],494:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -70225,7 +70564,7 @@ module.exports=require(44)
 
 }).call(this);
 
-},{}],506:[function(require,module,exports){
+},{}],495:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -70239,7 +70578,6 @@ var createAtlas = require('atlaspack');
 var expandName = require('cube-side-array');
 
 var createTexture = require('gl-texture2d');
-var getPixels = require('get-pixels');
 var rectMipMap = require('rect-mip-map');
 var touchup = require('touchup');
 
@@ -70436,38 +70774,41 @@ StitchPlugin.prototype.createGLTexture = function(gl, cb) {
   var showLevels = this.debug;
   var self = this;
 
-  getPixels(this.atlas.canvas.toDataURL(), function(err, array) {
-    if (err) return cb(err);
+  // get pixel data (note: similar to get-pixels, but directly from the canvas, not a URL)
+  var context = atlas.canvas.getContext('2d'); // TODO: cache?
+  var s = this.atlasSize;
+  var pixels = context.getImageData(0, 0, s, s);
+  var array = ndarray(new Uint8Array(pixels.data), [s, s, 4], [4*s, 4, 1], 0);
 
-    var pyramid = rectMipMap(array, atlas);
-    if (self.verbose) console.log('pyramid=',pyramid);
 
-    if (showLevels) {
-      // add each mip level to the page for debugging TODO: refactor with rect-mip-map demo
-      pyramid.forEach(function(level, i) {
-        var img = new Image();
-        img.src = savePixels(level, 'canvas').toDataURL();
-        img.style.border = '1px dotted black';
-        document.body.appendChild(document.createElement('br'));
-        document.body.appendChild(img);
-        document.body.appendChild(document.createTextNode(' level #'+i+' ('+img.width+'x'+img.height+')'));
-      });
-    }
+  var pyramid = rectMipMap(array, atlas);
+  if (self.verbose) console.log('pyramid=',pyramid);
 
-    // TODO: multiple texture atlases, ref https://github.com/deathcap/voxel-texture-shader/issues/2
-    self.texture = createTexture(gl, pyramid[0]);
-    self.texture.generateMipmap(); // TODO: ?
+  if (showLevels) {
+    // add each mip level to the page for debugging TODO: refactor with rect-mip-map demo
+    pyramid.forEach(function(level, i) {
+      var img = new Image();
+      img.src = savePixels(level, 'canvas').toDataURL();
+      img.style.border = '1px dotted black';
+      document.body.appendChild(document.createElement('br'));
+      document.body.appendChild(img);
+      document.body.appendChild(document.createTextNode(' level #'+i+' ('+img.width+'x'+img.height+')'));
+    });
+  }
 
-    for (var i = 1; i < pyramid.length; ++i) {
-      self.texture.setPixels(pyramid[i], 0, 0, i);
-    }
+  // TODO: multiple texture atlases, ref https://github.com/deathcap/voxel-texture-shader/issues/2
+  self.texture = createTexture(gl, pyramid[0]);
+  self.texture.generateMipmap(); // TODO: ?
 
-    self.texture.magFilter = gl.NEAREST
-    self.texture.minFilter = gl.LINEAR_MIPMAP_LINEAR
-    self.texture.mipSamples = 4
+  for (var i = 1; i < pyramid.length; ++i) {
+    self.texture.setPixels(pyramid[i], 0, 0, i);
+  }
 
-    cb(null, self.texture);
-  });
+  self.texture.magFilter = gl.NEAREST
+  self.texture.minFilter = gl.LINEAR_MIPMAP_LINEAR
+  self.texture.mipSamples = 4
+
+  cb(null, self.texture);
 };
 
 StitchPlugin.prototype._addTextureName = function(name) {
@@ -70512,23 +70853,23 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":357,"atlaspack":415,"cube-side-array":416,"events":933,"get-pixels":417,"gl-texture2d":440,"inherits":441,"ndarray":445,"ndarray-hash":442,"rect-mip-map":447,"save-pixels":503,"toarray":504,"touchup":505}],507:[function(require,module,exports){
+},{"artpacks":357,"atlaspack":415,"cube-side-array":416,"events":922,"gl-texture2d":429,"inherits":430,"ndarray":434,"ndarray-hash":431,"rect-mip-map":436,"save-pixels":492,"toarray":493,"touchup":494}],496:[function(require,module,exports){
 module.exports=require(195)
-},{"events":933,"inherits":514}],508:[function(require,module,exports){
+},{"events":922,"inherits":503}],497:[function(require,module,exports){
 arguments[4][196][0].apply(exports,arguments)
-},{"./chunker":507,"./meshers/culled":509,"./meshers/greedy":510,"./meshers/monotone":511,"./meshers/stupid":512,"./meshers/transgreedy":513,"ndarray":295}],509:[function(require,module,exports){
+},{"./chunker":496,"./meshers/culled":498,"./meshers/greedy":499,"./meshers/monotone":500,"./meshers/stupid":501,"./meshers/transgreedy":502,"ndarray":295}],498:[function(require,module,exports){
 module.exports=require(197)
-},{}],510:[function(require,module,exports){
+},{}],499:[function(require,module,exports){
 module.exports=require(198)
-},{}],511:[function(require,module,exports){
+},{}],500:[function(require,module,exports){
 module.exports=require(199)
-},{}],512:[function(require,module,exports){
+},{}],501:[function(require,module,exports){
 module.exports=require(200)
-},{}],513:[function(require,module,exports){
+},{}],502:[function(require,module,exports){
 module.exports=require(201)
-},{}],514:[function(require,module,exports){
+},{}],503:[function(require,module,exports){
 module.exports=require(202)
-},{}],515:[function(require,module,exports){
+},{}],504:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -70607,9 +70948,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":516}],516:[function(require,module,exports){
+},{"ucfirst":505}],505:[function(require,module,exports){
 module.exports=require(25)
-},{}],517:[function(require,module,exports){
+},{}],506:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -70707,7 +71048,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],518:[function(require,module,exports){
+},{}],507:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -70774,7 +71115,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],519:[function(require,module,exports){
+},{}],508:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -70908,7 +71249,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],520:[function(require,module,exports){
+},{}],509:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -71198,7 +71539,7 @@ FurnaceDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":530,"inventory-window":521,"itempile":539,"voxel-inventory-dialog":544}],521:[function(require,module,exports){
+},{"inventory":519,"inventory-window":510,"itempile":528,"voxel-inventory-dialog":533}],510:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -71644,7 +71985,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":522,"events":933,"ever":524,"ftooltip":527,"touchup":529}],522:[function(require,module,exports){
+},{"cube-icon":511,"events":922,"ever":513,"ftooltip":516,"touchup":518}],511:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -71711,21 +72052,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":523}],523:[function(require,module,exports){
+},{"cube-side-array":512}],512:[function(require,module,exports){
 module.exports=require(39)
-},{}],524:[function(require,module,exports){
+},{}],513:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":525,"./types.json":526,"events":933}],525:[function(require,module,exports){
+},{"./init.json":514,"./types.json":515,"events":922}],514:[function(require,module,exports){
 module.exports=require(16)
-},{}],526:[function(require,module,exports){
+},{}],515:[function(require,module,exports){
 module.exports=require(17)
-},{}],527:[function(require,module,exports){
+},{}],516:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":528}],528:[function(require,module,exports){
+},{"toarray":517}],517:[function(require,module,exports){
 module.exports=require(44)
-},{}],529:[function(require,module,exports){
+},{}],518:[function(require,module,exports){
 module.exports=require(45)
-},{}],530:[function(require,module,exports){
+},{}],519:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -71885,393 +72226,393 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":531,"events":933,"itempile":534}],531:[function(require,module,exports){
+},{"deep-equal":520,"events":922,"itempile":523}],520:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":532,"./lib/keys.js":533}],532:[function(require,module,exports){
+},{"./lib/is_arguments.js":521,"./lib/keys.js":522}],521:[function(require,module,exports){
 module.exports=require(23)
+},{}],522:[function(require,module,exports){
+module.exports=require(24)
+},{}],523:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":524,"deep-equal":525}],524:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],525:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":526,"./lib/keys.js":527}],526:[function(require,module,exports){
+module.exports=require(23)
+},{}],527:[function(require,module,exports){
+module.exports=require(24)
+},{}],528:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":529,"deep-equal":530}],529:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],530:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":531,"./lib/keys.js":532}],531:[function(require,module,exports){
+module.exports=require(23)
+},{}],532:[function(require,module,exports){
+module.exports=require(24)
 },{}],533:[function(require,module,exports){
-module.exports=require(24)
-},{}],534:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":535,"deep-equal":536}],535:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],536:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":537,"./lib/keys.js":538}],537:[function(require,module,exports){
-module.exports=require(23)
-},{}],538:[function(require,module,exports){
-module.exports=require(24)
-},{}],539:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":540,"deep-equal":541}],540:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],541:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":542,"./lib/keys.js":543}],542:[function(require,module,exports){
-module.exports=require(23)
-},{}],543:[function(require,module,exports){
-module.exports=require(24)
-},{}],544:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -72347,7 +72688,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":554,"inventory-window":545,"itempile":563,"voxel-modal-dialog":568}],545:[function(require,module,exports){
+},{"inventory":543,"inventory-window":534,"itempile":552,"voxel-modal-dialog":557}],534:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -72793,7 +73134,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":546,"events":933,"ever":548,"ftooltip":551,"touchup":553}],546:[function(require,module,exports){
+},{"cube-icon":535,"events":922,"ever":537,"ftooltip":540,"touchup":542}],535:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -72860,21 +73201,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":547}],547:[function(require,module,exports){
+},{"cube-side-array":536}],536:[function(require,module,exports){
 module.exports=require(39)
-},{}],548:[function(require,module,exports){
+},{}],537:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":549,"./types.json":550,"events":933}],549:[function(require,module,exports){
+},{"./init.json":538,"./types.json":539,"events":922}],538:[function(require,module,exports){
 module.exports=require(16)
-},{}],550:[function(require,module,exports){
+},{}],539:[function(require,module,exports){
 module.exports=require(17)
-},{}],551:[function(require,module,exports){
+},{}],540:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":552}],552:[function(require,module,exports){
+},{"toarray":541}],541:[function(require,module,exports){
 module.exports=require(44)
-},{}],553:[function(require,module,exports){
+},{}],542:[function(require,module,exports){
 module.exports=require(45)
-},{}],554:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -73034,403 +73375,403 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":555,"events":933,"itempile":558}],555:[function(require,module,exports){
+},{"deep-equal":544,"events":922,"itempile":547}],544:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":556,"./lib/keys.js":557}],556:[function(require,module,exports){
+},{"./lib/is_arguments.js":545,"./lib/keys.js":546}],545:[function(require,module,exports){
 module.exports=require(23)
+},{}],546:[function(require,module,exports){
+module.exports=require(24)
+},{}],547:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":548,"deep-equal":549}],548:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],549:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":550,"./lib/keys.js":551}],550:[function(require,module,exports){
+module.exports=require(23)
+},{}],551:[function(require,module,exports){
+module.exports=require(24)
+},{}],552:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":553,"deep-equal":554}],553:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],554:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":555,"./lib/keys.js":556}],555:[function(require,module,exports){
+module.exports=require(23)
+},{}],556:[function(require,module,exports){
+module.exports=require(24)
 },{}],557:[function(require,module,exports){
-module.exports=require(24)
-},{}],558:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":559,"deep-equal":560}],559:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],560:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":561,"./lib/keys.js":562}],561:[function(require,module,exports){
-module.exports=require(23)
-},{}],562:[function(require,module,exports){
-module.exports=require(24)
-},{}],563:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":564,"deep-equal":565}],564:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],565:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":566,"./lib/keys.js":567}],566:[function(require,module,exports){
-module.exports=require(23)
-},{}],567:[function(require,module,exports){
-module.exports=require(24)
-},{}],568:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":569}],569:[function(require,module,exports){
+},{"voxel-modal":558}],558:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":570}],570:[function(require,module,exports){
+},{"ever":559}],559:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":571,"./types.json":572,"events":933}],571:[function(require,module,exports){
+},{"./init.json":560,"./types.json":561,"events":922}],560:[function(require,module,exports){
 module.exports=require(16)
-},{}],572:[function(require,module,exports){
+},{}],561:[function(require,module,exports){
 module.exports=require(17)
-},{}],573:[function(require,module,exports){
+},{}],562:[function(require,module,exports){
 var Gamemode, Inventory, ItemPile;
 
 ItemPile = require('itempile');
@@ -73537,7 +73878,7 @@ Gamemode = (function() {
 })();
 
 
-},{"inventory":574,"itempile":583}],574:[function(require,module,exports){
+},{"inventory":563,"itempile":572}],563:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -73697,393 +74038,393 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":575,"events":933,"itempile":578}],575:[function(require,module,exports){
+},{"deep-equal":564,"events":922,"itempile":567}],564:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":576,"./lib/keys.js":577}],576:[function(require,module,exports){
+},{"./lib/is_arguments.js":565,"./lib/keys.js":566}],565:[function(require,module,exports){
 module.exports=require(23)
+},{}],566:[function(require,module,exports){
+module.exports=require(24)
+},{}],567:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":568,"deep-equal":569}],568:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],569:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":570,"./lib/keys.js":571}],570:[function(require,module,exports){
+module.exports=require(23)
+},{}],571:[function(require,module,exports){
+module.exports=require(24)
+},{}],572:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":573,"deep-equal":574}],573:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],574:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":575,"./lib/keys.js":576}],575:[function(require,module,exports){
+module.exports=require(23)
+},{}],576:[function(require,module,exports){
+module.exports=require(24)
 },{}],577:[function(require,module,exports){
-module.exports=require(24)
-},{}],578:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],580:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":581,"./lib/keys.js":582}],581:[function(require,module,exports){
-module.exports=require(23)
-},{}],582:[function(require,module,exports){
-module.exports=require(24)
-},{}],583:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":584,"deep-equal":585}],584:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],585:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":586,"./lib/keys.js":587}],586:[function(require,module,exports){
-module.exports=require(23)
-},{}],587:[function(require,module,exports){
-module.exports=require(24)
-},{}],588:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -74211,7 +74552,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":589,"ucfirst":594}],589:[function(require,module,exports){
+},{"itempile":578,"ucfirst":583}],578:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -74390,7 +74731,7 @@ GlassPlugin.prototype.disable = function() {
 
 }).call(this);
 
-},{"clone":590,"deep-equal":591}],590:[function(require,module,exports){
+},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -74522,15 +74863,15 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":930}],591:[function(require,module,exports){
+},{"buffer":919}],580:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":592,"./lib/keys.js":593}],592:[function(require,module,exports){
+},{"./lib/is_arguments.js":581,"./lib/keys.js":582}],581:[function(require,module,exports){
 module.exports=require(23)
-},{}],593:[function(require,module,exports){
+},{}],582:[function(require,module,exports){
 module.exports=require(24)
-},{}],594:[function(require,module,exports){
+},{}],583:[function(require,module,exports){
 module.exports=require(25)
-},{}],595:[function(require,module,exports){
+},{}],584:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -74604,7 +74945,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],596:[function(require,module,exports){
+},{}],585:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -74752,7 +75093,7 @@ Harvest = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":933,"itempile":597}],597:[function(require,module,exports){
+},{"events":922,"itempile":586}],586:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -74934,15 +75275,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":598,"deep-equal":599}],598:[function(require,module,exports){
+},{"clone":587,"deep-equal":588}],587:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],599:[function(require,module,exports){
+},{"buffer":919}],588:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":600,"./lib/keys.js":601}],600:[function(require,module,exports){
+},{"./lib/is_arguments.js":589,"./lib/keys.js":590}],589:[function(require,module,exports){
 module.exports=require(23)
-},{}],601:[function(require,module,exports){
+},{}],590:[function(require,module,exports){
 module.exports=require(24)
-},{}],602:[function(require,module,exports){
+},{}],591:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -75013,7 +75354,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],603:[function(require,module,exports){
+},{}],592:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new HealthFallPlugin(game, opts);
@@ -75048,7 +75389,7 @@ HealthFallPlugin.prototype.disable = function() {
 };
 
 
-},{}],604:[function(require,module,exports){
+},{}],593:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -75136,9 +75477,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":933,"inherits":605}],605:[function(require,module,exports){
+},{"events":922,"inherits":594}],594:[function(require,module,exports){
 module.exports=require(277)
-},{}],606:[function(require,module,exports){
+},{}],595:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75257,7 +75598,7 @@ InventoryCrafting = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":616,"inventory-window":607,"itempile":625,"voxel-inventory-dialog":630}],607:[function(require,module,exports){
+},{"inventory":605,"inventory-window":596,"itempile":614,"voxel-inventory-dialog":619}],596:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -75703,7 +76044,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":608,"events":933,"ever":610,"ftooltip":613,"touchup":615}],608:[function(require,module,exports){
+},{"cube-icon":597,"events":922,"ever":599,"ftooltip":602,"touchup":604}],597:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -75770,21 +76111,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":609}],609:[function(require,module,exports){
+},{"cube-side-array":598}],598:[function(require,module,exports){
 module.exports=require(39)
-},{}],610:[function(require,module,exports){
+},{}],599:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":611,"./types.json":612,"events":933}],611:[function(require,module,exports){
+},{"./init.json":600,"./types.json":601,"events":922}],600:[function(require,module,exports){
 module.exports=require(16)
-},{}],612:[function(require,module,exports){
+},{}],601:[function(require,module,exports){
 module.exports=require(17)
-},{}],613:[function(require,module,exports){
+},{}],602:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":614}],614:[function(require,module,exports){
+},{"toarray":603}],603:[function(require,module,exports){
 module.exports=require(44)
-},{}],615:[function(require,module,exports){
+},{}],604:[function(require,module,exports){
 module.exports=require(45)
-},{}],616:[function(require,module,exports){
+},{}],605:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75944,393 +76285,393 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":617,"events":933,"itempile":620}],617:[function(require,module,exports){
+},{"deep-equal":606,"events":922,"itempile":609}],606:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":618,"./lib/keys.js":619}],618:[function(require,module,exports){
+},{"./lib/is_arguments.js":607,"./lib/keys.js":608}],607:[function(require,module,exports){
 module.exports=require(23)
+},{}],608:[function(require,module,exports){
+module.exports=require(24)
+},{}],609:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":610,"deep-equal":611}],610:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],611:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":612,"./lib/keys.js":613}],612:[function(require,module,exports){
+module.exports=require(23)
+},{}],613:[function(require,module,exports){
+module.exports=require(24)
+},{}],614:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":615,"deep-equal":616}],615:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],616:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":617,"./lib/keys.js":618}],617:[function(require,module,exports){
+module.exports=require(23)
+},{}],618:[function(require,module,exports){
+module.exports=require(24)
 },{}],619:[function(require,module,exports){
-module.exports=require(24)
-},{}],620:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":621,"deep-equal":622}],621:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],622:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":623,"./lib/keys.js":624}],623:[function(require,module,exports){
-module.exports=require(23)
-},{}],624:[function(require,module,exports){
-module.exports=require(24)
-},{}],625:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":626,"deep-equal":627}],626:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],627:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":628,"./lib/keys.js":629}],628:[function(require,module,exports){
-module.exports=require(23)
-},{}],629:[function(require,module,exports){
-module.exports=require(24)
-},{}],630:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -76406,7 +76747,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":640,"inventory-window":631,"itempile":649,"voxel-modal-dialog":654}],631:[function(require,module,exports){
+},{"inventory":629,"inventory-window":620,"itempile":638,"voxel-modal-dialog":643}],620:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -76852,7 +77193,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":632,"events":933,"ever":634,"ftooltip":637,"touchup":639}],632:[function(require,module,exports){
+},{"cube-icon":621,"events":922,"ever":623,"ftooltip":626,"touchup":628}],621:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -76919,21 +77260,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":633}],633:[function(require,module,exports){
+},{"cube-side-array":622}],622:[function(require,module,exports){
 module.exports=require(39)
-},{}],634:[function(require,module,exports){
+},{}],623:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":635,"./types.json":636,"events":933}],635:[function(require,module,exports){
+},{"./init.json":624,"./types.json":625,"events":922}],624:[function(require,module,exports){
 module.exports=require(16)
-},{}],636:[function(require,module,exports){
+},{}],625:[function(require,module,exports){
 module.exports=require(17)
-},{}],637:[function(require,module,exports){
+},{}],626:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":638}],638:[function(require,module,exports){
+},{"toarray":627}],627:[function(require,module,exports){
 module.exports=require(44)
-},{}],639:[function(require,module,exports){
+},{}],628:[function(require,module,exports){
 module.exports=require(45)
-},{}],640:[function(require,module,exports){
+},{}],629:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -77093,403 +77434,403 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":641,"events":933,"itempile":644}],641:[function(require,module,exports){
+},{"deep-equal":630,"events":922,"itempile":633}],630:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":642,"./lib/keys.js":643}],642:[function(require,module,exports){
+},{"./lib/is_arguments.js":631,"./lib/keys.js":632}],631:[function(require,module,exports){
 module.exports=require(23)
+},{}],632:[function(require,module,exports){
+module.exports=require(24)
+},{}],633:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":634,"deep-equal":635}],634:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],635:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":636,"./lib/keys.js":637}],636:[function(require,module,exports){
+module.exports=require(23)
+},{}],637:[function(require,module,exports){
+module.exports=require(24)
+},{}],638:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":639,"deep-equal":640}],639:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],640:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":641,"./lib/keys.js":642}],641:[function(require,module,exports){
+module.exports=require(23)
+},{}],642:[function(require,module,exports){
+module.exports=require(24)
 },{}],643:[function(require,module,exports){
-module.exports=require(24)
-},{}],644:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":645,"deep-equal":646}],645:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],646:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":647,"./lib/keys.js":648}],647:[function(require,module,exports){
-module.exports=require(23)
-},{}],648:[function(require,module,exports){
-module.exports=require(24)
-},{}],649:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":650,"deep-equal":651}],650:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],651:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":652,"./lib/keys.js":653}],652:[function(require,module,exports){
-module.exports=require(23)
-},{}],653:[function(require,module,exports){
-module.exports=require(24)
-},{}],654:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":655}],655:[function(require,module,exports){
+},{"voxel-modal":644}],644:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":656}],656:[function(require,module,exports){
+},{"ever":645}],645:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":657,"./types.json":658,"events":933}],657:[function(require,module,exports){
+},{"./init.json":646,"./types.json":647,"events":922}],646:[function(require,module,exports){
 module.exports=require(16)
-},{}],658:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 module.exports=require(17)
-},{}],659:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -77659,7 +78000,7 @@ CreativeInventoryPlugin = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":669,"inventory-window":660,"itempile":678,"voxel-inventory-dialog":683}],660:[function(require,module,exports){
+},{"inventory":658,"inventory-window":649,"itempile":667,"voxel-inventory-dialog":672}],649:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -78105,7 +78446,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":661,"events":933,"ever":663,"ftooltip":666,"touchup":668}],661:[function(require,module,exports){
+},{"cube-icon":650,"events":922,"ever":652,"ftooltip":655,"touchup":657}],650:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -78172,21 +78513,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":662}],662:[function(require,module,exports){
+},{"cube-side-array":651}],651:[function(require,module,exports){
 module.exports=require(39)
-},{}],663:[function(require,module,exports){
+},{}],652:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":664,"./types.json":665,"events":933}],664:[function(require,module,exports){
+},{"./init.json":653,"./types.json":654,"events":922}],653:[function(require,module,exports){
 module.exports=require(16)
-},{}],665:[function(require,module,exports){
+},{}],654:[function(require,module,exports){
 module.exports=require(17)
-},{}],666:[function(require,module,exports){
+},{}],655:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":667}],667:[function(require,module,exports){
+},{"toarray":656}],656:[function(require,module,exports){
 module.exports=require(44)
-},{}],668:[function(require,module,exports){
+},{}],657:[function(require,module,exports){
 module.exports=require(45)
-},{}],669:[function(require,module,exports){
+},{}],658:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78346,393 +78687,393 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":670,"events":933,"itempile":673}],670:[function(require,module,exports){
+},{"deep-equal":659,"events":922,"itempile":662}],659:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":671,"./lib/keys.js":672}],671:[function(require,module,exports){
+},{"./lib/is_arguments.js":660,"./lib/keys.js":661}],660:[function(require,module,exports){
 module.exports=require(23)
+},{}],661:[function(require,module,exports){
+module.exports=require(24)
+},{}],662:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":663,"deep-equal":664}],663:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],664:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":665,"./lib/keys.js":666}],665:[function(require,module,exports){
+module.exports=require(23)
+},{}],666:[function(require,module,exports){
+module.exports=require(24)
+},{}],667:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":668,"deep-equal":669}],668:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],669:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":670,"./lib/keys.js":671}],670:[function(require,module,exports){
+module.exports=require(23)
+},{}],671:[function(require,module,exports){
+module.exports=require(24)
 },{}],672:[function(require,module,exports){
-module.exports=require(24)
-},{}],673:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":674,"deep-equal":675}],674:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],675:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":676,"./lib/keys.js":677}],676:[function(require,module,exports){
-module.exports=require(23)
-},{}],677:[function(require,module,exports){
-module.exports=require(24)
-},{}],678:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":679,"deep-equal":680}],679:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],680:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":681,"./lib/keys.js":682}],681:[function(require,module,exports){
-module.exports=require(23)
-},{}],682:[function(require,module,exports){
-module.exports=require(24)
-},{}],683:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78808,7 +79149,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":693,"inventory-window":684,"itempile":702,"voxel-modal-dialog":707}],684:[function(require,module,exports){
+},{"inventory":682,"inventory-window":673,"itempile":691,"voxel-modal-dialog":696}],673:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -79254,7 +79595,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":685,"events":933,"ever":687,"ftooltip":690,"touchup":692}],685:[function(require,module,exports){
+},{"cube-icon":674,"events":922,"ever":676,"ftooltip":679,"touchup":681}],674:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -79321,21 +79662,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":686}],686:[function(require,module,exports){
+},{"cube-side-array":675}],675:[function(require,module,exports){
 module.exports=require(39)
-},{}],687:[function(require,module,exports){
+},{}],676:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":688,"./types.json":689,"events":933}],688:[function(require,module,exports){
+},{"./init.json":677,"./types.json":678,"events":922}],677:[function(require,module,exports){
 module.exports=require(16)
-},{}],689:[function(require,module,exports){
+},{}],678:[function(require,module,exports){
 module.exports=require(17)
-},{}],690:[function(require,module,exports){
+},{}],679:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":691}],691:[function(require,module,exports){
+},{"toarray":680}],680:[function(require,module,exports){
 module.exports=require(44)
-},{}],692:[function(require,module,exports){
+},{}],681:[function(require,module,exports){
 module.exports=require(45)
-},{}],693:[function(require,module,exports){
+},{}],682:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -79495,403 +79836,403 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":694,"events":933,"itempile":697}],694:[function(require,module,exports){
+},{"deep-equal":683,"events":922,"itempile":686}],683:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":695,"./lib/keys.js":696}],695:[function(require,module,exports){
+},{"./lib/is_arguments.js":684,"./lib/keys.js":685}],684:[function(require,module,exports){
 module.exports=require(23)
+},{}],685:[function(require,module,exports){
+module.exports=require(24)
+},{}],686:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":687,"deep-equal":688}],687:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],688:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":689,"./lib/keys.js":690}],689:[function(require,module,exports){
+module.exports=require(23)
+},{}],690:[function(require,module,exports){
+module.exports=require(24)
+},{}],691:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":692,"deep-equal":693}],692:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],693:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":694,"./lib/keys.js":695}],694:[function(require,module,exports){
+module.exports=require(23)
+},{}],695:[function(require,module,exports){
+module.exports=require(24)
 },{}],696:[function(require,module,exports){
-module.exports=require(24)
-},{}],697:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":698,"deep-equal":699}],698:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],699:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":700,"./lib/keys.js":701}],700:[function(require,module,exports){
-module.exports=require(23)
-},{}],701:[function(require,module,exports){
-module.exports=require(24)
-},{}],702:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":703,"deep-equal":704}],703:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],704:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":705,"./lib/keys.js":706}],705:[function(require,module,exports){
-module.exports=require(23)
-},{}],706:[function(require,module,exports){
-module.exports=require(24)
-},{}],707:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":708}],708:[function(require,module,exports){
+},{"voxel-modal":697}],697:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":709}],709:[function(require,module,exports){
+},{"ever":698}],698:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":710,"./types.json":711,"events":933}],710:[function(require,module,exports){
+},{"./init.json":699,"./types.json":700,"events":922}],699:[function(require,module,exports){
 module.exports=require(16)
-},{}],711:[function(require,module,exports){
+},{}],700:[function(require,module,exports){
 module.exports=require(17)
-},{}],712:[function(require,module,exports){
+},{}],701:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -80105,13 +80446,13 @@ InventoryHotbarClient = (function(_super) {
 })(InventoryHotbarCommon);
 
 
-},{"events":933,"ever":713,"inventory-window":716}],713:[function(require,module,exports){
+},{"events":922,"ever":702,"inventory-window":705}],702:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":714,"./types.json":715,"events":933}],714:[function(require,module,exports){
+},{"./init.json":703,"./types.json":704,"events":922}],703:[function(require,module,exports){
 module.exports=require(16)
-},{}],715:[function(require,module,exports){
+},{}],704:[function(require,module,exports){
 module.exports=require(17)
-},{}],716:[function(require,module,exports){
+},{}],705:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -80557,7 +80898,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":717,"events":933,"ever":719,"ftooltip":722,"touchup":724}],717:[function(require,module,exports){
+},{"cube-icon":706,"events":922,"ever":708,"ftooltip":711,"touchup":713}],706:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -80624,21 +80965,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":718}],718:[function(require,module,exports){
+},{"cube-side-array":707}],707:[function(require,module,exports){
 module.exports=require(39)
-},{}],719:[function(require,module,exports){
+},{}],708:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":720,"./types.json":721,"events":933}],720:[function(require,module,exports){
+},{"./init.json":709,"./types.json":710,"events":922}],709:[function(require,module,exports){
 module.exports=require(16)
-},{}],721:[function(require,module,exports){
+},{}],710:[function(require,module,exports){
 module.exports=require(17)
-},{}],722:[function(require,module,exports){
+},{}],711:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":723}],723:[function(require,module,exports){
+},{"toarray":712}],712:[function(require,module,exports){
 module.exports=require(44)
-},{}],724:[function(require,module,exports){
+},{}],713:[function(require,module,exports){
 module.exports=require(45)
-},{}],725:[function(require,module,exports){
+},{}],714:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -80823,13 +81164,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":933,"inherits":726,"toarray":727,"vkey":728}],726:[function(require,module,exports){
+},{"events":922,"inherits":715,"toarray":716,"vkey":717}],715:[function(require,module,exports){
 module.exports=require(277)
-},{}],727:[function(require,module,exports){
+},{}],716:[function(require,module,exports){
 module.exports=require(44)
-},{}],728:[function(require,module,exports){
+},{}],717:[function(require,module,exports){
 module.exports=require(10)
-},{}],729:[function(require,module,exports){
+},{}],718:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -80982,7 +81323,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require("q+64fw"))
-},{"./worker.js":746,"ndarray":739,"q+64fw":936,"unworkify":742,"webworkify":745}],730:[function(require,module,exports){
+},{"./worker.js":735,"ndarray":728,"q+64fw":925,"unworkify":731,"webworkify":734}],719:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -81093,27 +81434,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],731:[function(require,module,exports){
+},{}],720:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":732,"./types.json":733,"events":933}],732:[function(require,module,exports){
+},{"./init.json":721,"./types.json":722,"events":922}],721:[function(require,module,exports){
 module.exports=require(16)
-},{}],733:[function(require,module,exports){
+},{}],722:[function(require,module,exports){
 module.exports=require(17)
-},{}],734:[function(require,module,exports){
+},{}],723:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":735}],735:[function(require,module,exports){
+},{"cwise-compiler":724}],724:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":737}],736:[function(require,module,exports){
+},{"./lib/thunk.js":726}],725:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":738}],737:[function(require,module,exports){
+},{"uniq":727}],726:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":736}],738:[function(require,module,exports){
+},{"./compile.js":725}],727:[function(require,module,exports){
 module.exports=require(95)
-},{}],739:[function(require,module,exports){
+},{}],728:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":740}],740:[function(require,module,exports){
+},{"buffer":919,"iota-array":729}],729:[function(require,module,exports){
 module.exports=require(97)
-},{}],741:[function(require,module,exports){
+},{}],730:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -81562,7 +81903,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],742:[function(require,module,exports){
+},{}],731:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -81587,9 +81928,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":933,"inherits":743}],743:[function(require,module,exports){
+},{"events":922,"inherits":732}],732:[function(require,module,exports){
 module.exports=require(202)
-},{}],744:[function(require,module,exports){
+},{}],733:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -81798,9 +82139,9 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],745:[function(require,module,exports){
+},{}],734:[function(require,module,exports){
 module.exports=require(176)
-},{}],746:[function(require,module,exports){
+},{}],735:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -82102,7 +82443,7 @@ module.exports = function() {
 
 
 
-},{"alea":730,"ever":731,"ndarray":739,"ndarray-ops":734,"simplex-noise":741,"voxel-trees":744}],747:[function(require,module,exports){
+},{"alea":719,"ever":720,"ndarray":728,"ndarray-ops":723,"simplex-noise":730,"voxel-trees":733}],736:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -82171,7 +82512,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":748,"gl-matrix":749}],748:[function(require,module,exports){
+},{"asarray":737,"gl-matrix":738}],737:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -82185,9 +82526,9 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],749:[function(require,module,exports){
+},{}],738:[function(require,module,exports){
 module.exports=require(219)
-},{}],750:[function(require,module,exports){
+},{}],739:[function(require,module,exports){
 var EventEmitter, Mine,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -82547,63 +82888,63 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":933}],751:[function(require,module,exports){
+},{"events":922}],740:[function(require,module,exports){
 module.exports=require(90)
-},{"ndarray":757,"ndarray-ops":752,"typedarray-pool":761,"webglew":763}],752:[function(require,module,exports){
+},{"ndarray":746,"ndarray-ops":741,"typedarray-pool":750,"webglew":752}],741:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":753}],753:[function(require,module,exports){
+},{"cwise-compiler":742}],742:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":755}],754:[function(require,module,exports){
+},{"./lib/thunk.js":744}],743:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":756}],755:[function(require,module,exports){
+},{"uniq":745}],744:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":754}],756:[function(require,module,exports){
+},{"./compile.js":743}],745:[function(require,module,exports){
 module.exports=require(95)
-},{}],757:[function(require,module,exports){
+},{}],746:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":758}],758:[function(require,module,exports){
+},{"buffer":919,"iota-array":747}],747:[function(require,module,exports){
 module.exports=require(97)
-},{}],759:[function(require,module,exports){
+},{}],748:[function(require,module,exports){
 module.exports=require(98)
-},{}],760:[function(require,module,exports){
+},{}],749:[function(require,module,exports){
 module.exports=require(99)
-},{}],761:[function(require,module,exports){
+},{}],750:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":759,"buffer":930,"dup":760}],762:[function(require,module,exports){
+},{"bit-twiddle":748,"buffer":919,"dup":749}],751:[function(require,module,exports){
 module.exports=require(101)
-},{}],763:[function(require,module,exports){
+},{}],752:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":762}],764:[function(require,module,exports){
+},{"weakmap":751}],753:[function(require,module,exports){
 module.exports=require(219)
-},{}],765:[function(require,module,exports){
+},{}],754:[function(require,module,exports){
 module.exports=require(103)
-},{}],766:[function(require,module,exports){
+},{}],755:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":765}],767:[function(require,module,exports){
+},{"./do-bind.js":754}],756:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":765}],768:[function(require,module,exports){
+},{"./do-bind.js":754}],757:[function(require,module,exports){
 module.exports=require(101)
-},{}],769:[function(require,module,exports){
+},{}],758:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":768}],770:[function(require,module,exports){
+},{"weakmap":757}],759:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":766,"./lib/vao-native.js":767,"webglew":769}],771:[function(require,module,exports){
+},{"./lib/vao-emulated.js":755,"./lib/vao-native.js":756,"webglew":758}],760:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":777}],772:[function(require,module,exports){
+},{"gl-shader-core":766}],761:[function(require,module,exports){
 module.exports=require(110)
-},{}],773:[function(require,module,exports){
+},{}],762:[function(require,module,exports){
 module.exports=require(111)
-},{}],774:[function(require,module,exports){
+},{}],763:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":775,"dup":776}],775:[function(require,module,exports){
+},{"./reflect.js":764,"dup":765}],764:[function(require,module,exports){
 module.exports=require(113)
-},{}],776:[function(require,module,exports){
+},{}],765:[function(require,module,exports){
 module.exports=require(99)
-},{}],777:[function(require,module,exports){
+},{}],766:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":773,"./lib/create-uniforms.js":774,"./lib/reflect.js":775}],778:[function(require,module,exports){
+},{"./lib/create-attributes.js":762,"./lib/create-uniforms.js":763,"./lib/reflect.js":764}],767:[function(require,module,exports){
 module.exports=require(277)
-},{}],779:[function(require,module,exports){
+},{}],768:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -82719,7 +83060,7 @@ OutlinePlugin.prototype.shaderInit = function() {
     outlineVAO.length = outlineVertexCount;
     this.mesh = outlineVAO;
 };
-},{"events":933,"gl-buffer":751,"gl-matrix":764,"gl-vao":770,"glslify":772,"glslify/adapter.js":771,"inherits":778}],780:[function(require,module,exports){
+},{"events":922,"gl-buffer":740,"gl-matrix":753,"gl-vao":759,"glslify":761,"glslify/adapter.js":760,"inherits":767}],769:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
@@ -83026,7 +83367,7 @@ OutlinePlugin.prototype.shaderInit = function() {
 
 }).call(this);
 
-},{}],781:[function(require,module,exports){
+},{}],770:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -83208,15 +83549,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":782,"deep-equal":783}],782:[function(require,module,exports){
+},{"clone":771,"deep-equal":772}],771:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],783:[function(require,module,exports){
+},{"buffer":919}],772:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":784,"./lib/keys.js":785}],784:[function(require,module,exports){
+},{"./lib/is_arguments.js":773,"./lib/keys.js":774}],773:[function(require,module,exports){
 module.exports=require(23)
-},{}],785:[function(require,module,exports){
+},{}],774:[function(require,module,exports){
 module.exports=require(24)
-},{}],786:[function(require,module,exports){
+},{}],775:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -83431,7 +83772,7 @@ RepairRecipe = (function(_super) {
 })(Recipe);
 
 
-},{"craftingrecipes":780,"itempile":781}],787:[function(require,module,exports){
+},{"craftingrecipes":769,"itempile":770}],776:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -83572,7 +83913,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":788}],788:[function(require,module,exports){
+},{"minecraft-skin":777}],777:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -83962,13 +84303,13 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 
-},{}],789:[function(require,module,exports){
+},{}],778:[function(require,module,exports){
 module.exports=require(3)
-},{"./vendor/dat.color":790,"./vendor/dat.gui":791}],790:[function(require,module,exports){
+},{"./vendor/dat.color":779,"./vendor/dat.gui":780}],779:[function(require,module,exports){
 module.exports=require(4)
-},{}],791:[function(require,module,exports){
+},{}],780:[function(require,module,exports){
 module.exports=require(5)
-},{}],792:[function(require,module,exports){
+},{}],781:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -84035,7 +84376,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":789}],793:[function(require,module,exports){
+},{"dat-gui":778}],782:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -84217,17 +84558,17 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":794,"deep-equal":795}],794:[function(require,module,exports){
+},{"clone":783,"deep-equal":784}],783:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],795:[function(require,module,exports){
+},{"buffer":919}],784:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":796,"./lib/keys.js":797}],796:[function(require,module,exports){
+},{"./lib/is_arguments.js":785,"./lib/keys.js":786}],785:[function(require,module,exports){
 module.exports=require(23)
-},{}],797:[function(require,module,exports){
+},{}],786:[function(require,module,exports){
 module.exports=require(24)
-},{}],798:[function(require,module,exports){
+},{}],787:[function(require,module,exports){
 module.exports=require(25)
-},{}],799:[function(require,module,exports){
+},{}],788:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -84436,7 +84777,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":793,"ucfirst":798}],800:[function(require,module,exports){
+},{"itempile":782,"ucfirst":787}],789:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -84570,13 +84911,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],801:[function(require,module,exports){
+},{}],790:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":802,"./types.json":803,"events":933}],802:[function(require,module,exports){
+},{"./init.json":791,"./types.json":792,"events":922}],791:[function(require,module,exports){
 module.exports=require(16)
-},{}],803:[function(require,module,exports){
+},{}],792:[function(require,module,exports){
 module.exports=require(17)
-},{}],804:[function(require,module,exports){
+},{}],793:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -84585,9 +84926,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],805:[function(require,module,exports){
+},{}],794:[function(require,module,exports){
 module.exports=require(202)
-},{}],806:[function(require,module,exports){
+},{}],795:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -84771,9 +85112,9 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":933,"ever":801,"fract":804,"inherits":805}],807:[function(require,module,exports){
-module.exports=require(780)
-},{}],808:[function(require,module,exports){
+},{"events":922,"ever":790,"fract":793,"inherits":794}],796:[function(require,module,exports){
+module.exports=require(769)
+},{}],797:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -84948,15 +85289,15 @@ module.exports=require(780)
 
 }).call(this);
 
-},{"clone":809,"deep-equal":810}],809:[function(require,module,exports){
+},{"clone":798,"deep-equal":799}],798:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],810:[function(require,module,exports){
+},{"buffer":919}],799:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":811,"./lib/keys.js":812}],811:[function(require,module,exports){
+},{"./lib/is_arguments.js":800,"./lib/keys.js":801}],800:[function(require,module,exports){
 module.exports=require(23)
-},{}],812:[function(require,module,exports){
+},{}],801:[function(require,module,exports){
 module.exports=require(24)
-},{}],813:[function(require,module,exports){
+},{}],802:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -85005,10 +85346,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":807,"itempile":808}],814:[function(require,module,exports){
+},{"craftingrecipes":796,"itempile":797}],803:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":815}],815:[function(require,module,exports){
+},{"media":804}],804:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -85019,7 +85360,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":817}],816:[function(require,module,exports){
+},{"./lib/player":806}],805:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -85043,7 +85384,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],817:[function(require,module,exports){
+},{}],806:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -85120,7 +85461,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":818,"./src":819,"new-chain":822}],818:[function(require,module,exports){
+},{"./render":807,"./src":808,"new-chain":811}],807:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -85130,7 +85471,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":820,"domify":821}],819:[function(require,module,exports){
+},{"./templates":809,"domify":810}],808:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -85163,10 +85504,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":816}],820:[function(require,module,exports){
+},{"./mime":805}],809:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],821:[function(require,module,exports){
+},{}],810:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -85239,7 +85580,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],822:[function(require,module,exports){
+},{}],811:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -85296,7 +85637,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],823:[function(require,module,exports){
+},{}],812:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -85355,7 +85696,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":814}],824:[function(require,module,exports){
+},{"play-audio":803}],813:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -85407,7 +85748,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],825:[function(require,module,exports){
+},{}],814:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -85480,7 +85821,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],826:[function(require,module,exports){
+},{}],815:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new StartPlugin(game, opts);
 };
@@ -85523,7 +85864,7 @@ StartPlugin.prototype.disable = function() {
   delete self.icon;
 };
 
-},{}],827:[function(require,module,exports){
+},{}],816:[function(require,module,exports){
 var EventEmitter, Use,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -85641,7 +85982,7 @@ Use = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":933}],828:[function(require,module,exports){
+},{"events":922}],817:[function(require,module,exports){
 // Turns virus into water
 module.exports = function(water, material) {
   var old = {
@@ -85684,7 +86025,7 @@ module.exports = function(water, material) {
 
   return toNormal;
 };
-},{}],829:[function(require,module,exports){
+},{}],818:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -85793,7 +86134,7 @@ function defaultHow(block, level) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./example/water.js":828,"q+64fw":936}],830:[function(require,module,exports){
+},{"./example/water.js":817,"q+64fw":925}],819:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -85926,7 +86267,7 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":936}],831:[function(require,module,exports){
+},{"q+64fw":925}],820:[function(require,module,exports){
 // based on https://github.com/mrdoob/three.js/blob/219c07680da08c5254c1b05482eb40ea038234e0/examples/js/renderers/CSS3DRenderer.js
 // adapted for nodejs
 module.exports = function(THREE) {
@@ -86159,7 +86500,7 @@ THREE.CSS3DRenderer = function () {
 
 };
 
-},{}],832:[function(require,module,exports){
+},{}],821:[function(require,module,exports){
 'use strict';
 
 var loadCSS3DRenderer = require('./CSS3DRenderer.js');
@@ -86305,63 +86646,63 @@ WebviewPlugin.prototype.disable = function() {
 };
 
 
-},{"./CSS3DRenderer.js":831}],833:[function(require,module,exports){
+},{"./CSS3DRenderer.js":820}],822:[function(require,module,exports){
 module.exports=require(90)
-},{"ndarray":834,"ndarray-ops":854,"typedarray-pool":838,"webglew":840}],834:[function(require,module,exports){
+},{"ndarray":823,"ndarray-ops":843,"typedarray-pool":827,"webglew":829}],823:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":835}],835:[function(require,module,exports){
+},{"buffer":919,"iota-array":824}],824:[function(require,module,exports){
 module.exports=require(97)
-},{}],836:[function(require,module,exports){
+},{}],825:[function(require,module,exports){
 module.exports=require(98)
-},{}],837:[function(require,module,exports){
+},{}],826:[function(require,module,exports){
 module.exports=require(99)
-},{}],838:[function(require,module,exports){
+},{}],827:[function(require,module,exports){
 module.exports=require(100)
-},{"bit-twiddle":836,"buffer":930,"dup":837}],839:[function(require,module,exports){
+},{"bit-twiddle":825,"buffer":919,"dup":826}],828:[function(require,module,exports){
 module.exports=require(101)
-},{}],840:[function(require,module,exports){
+},{}],829:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":839}],841:[function(require,module,exports){
+},{"weakmap":828}],830:[function(require,module,exports){
 module.exports=require(103)
-},{}],842:[function(require,module,exports){
+},{}],831:[function(require,module,exports){
 module.exports=require(104)
-},{"./do-bind.js":841}],843:[function(require,module,exports){
+},{"./do-bind.js":830}],832:[function(require,module,exports){
 module.exports=require(105)
-},{"./do-bind.js":841}],844:[function(require,module,exports){
+},{"./do-bind.js":830}],833:[function(require,module,exports){
 module.exports=require(101)
-},{}],845:[function(require,module,exports){
+},{}],834:[function(require,module,exports){
 module.exports=require(102)
-},{"weakmap":844}],846:[function(require,module,exports){
+},{"weakmap":833}],835:[function(require,module,exports){
 module.exports=require(108)
-},{"./lib/vao-emulated.js":842,"./lib/vao-native.js":843,"webglew":845}],847:[function(require,module,exports){
+},{"./lib/vao-emulated.js":831,"./lib/vao-native.js":832,"webglew":834}],836:[function(require,module,exports){
 module.exports=require(109)
-},{"gl-shader-core":853}],848:[function(require,module,exports){
+},{"gl-shader-core":842}],837:[function(require,module,exports){
 module.exports=require(110)
-},{}],849:[function(require,module,exports){
+},{}],838:[function(require,module,exports){
 module.exports=require(111)
-},{}],850:[function(require,module,exports){
+},{}],839:[function(require,module,exports){
 module.exports=require(112)
-},{"./reflect.js":851,"dup":852}],851:[function(require,module,exports){
+},{"./reflect.js":840,"dup":841}],840:[function(require,module,exports){
 module.exports=require(113)
-},{}],852:[function(require,module,exports){
+},{}],841:[function(require,module,exports){
 module.exports=require(99)
-},{}],853:[function(require,module,exports){
+},{}],842:[function(require,module,exports){
 module.exports=require(115)
-},{"./lib/create-attributes.js":849,"./lib/create-uniforms.js":850,"./lib/reflect.js":851}],854:[function(require,module,exports){
+},{"./lib/create-attributes.js":838,"./lib/create-uniforms.js":839,"./lib/reflect.js":840}],843:[function(require,module,exports){
 module.exports=require(91)
-},{"cwise-compiler":855}],855:[function(require,module,exports){
+},{"cwise-compiler":844}],844:[function(require,module,exports){
 module.exports=require(92)
-},{"./lib/thunk.js":857}],856:[function(require,module,exports){
+},{"./lib/thunk.js":846}],845:[function(require,module,exports){
 module.exports=require(93)
-},{"uniq":858}],857:[function(require,module,exports){
+},{"uniq":847}],846:[function(require,module,exports){
 module.exports=require(94)
-},{"./compile.js":856}],858:[function(require,module,exports){
+},{"./compile.js":845}],847:[function(require,module,exports){
 module.exports=require(95)
-},{}],859:[function(require,module,exports){
+},{}],848:[function(require,module,exports){
 module.exports=require(96)
-},{"buffer":930,"iota-array":860}],860:[function(require,module,exports){
+},{"buffer":919,"iota-array":849}],849:[function(require,module,exports){
 module.exports=require(97)
-},{}],861:[function(require,module,exports){
+},{}],850:[function(require,module,exports){
 "use strict";
 var ndarray = require("ndarray");
 var ops = require("ndarray-ops");
@@ -86479,9 +86820,9 @@ WireframePlugin.prototype.render = function() {
         }
     }
 };
-},{"gl-buffer":833,"gl-vao":846,"glslify":848,"glslify/adapter.js":847,"ndarray":859,"ndarray-ops":854}],862:[function(require,module,exports){
+},{"gl-buffer":822,"gl-vao":835,"glslify":837,"glslify/adapter.js":836,"ndarray":848,"ndarray-ops":843}],851:[function(require,module,exports){
 module.exports=require(25)
-},{}],863:[function(require,module,exports){
+},{}],852:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -86531,7 +86872,7 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":862}],864:[function(require,module,exports){
+},{"ucfirst":851}],853:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -86977,7 +87318,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":865,"events":933,"ever":867,"ftooltip":870,"touchup":872}],865:[function(require,module,exports){
+},{"cube-icon":854,"events":922,"ever":856,"ftooltip":859,"touchup":861}],854:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -87044,21 +87385,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":866}],866:[function(require,module,exports){
+},{"cube-side-array":855}],855:[function(require,module,exports){
 module.exports=require(39)
-},{}],867:[function(require,module,exports){
+},{}],856:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":868,"./types.json":869,"events":933}],868:[function(require,module,exports){
+},{"./init.json":857,"./types.json":858,"events":922}],857:[function(require,module,exports){
 module.exports=require(16)
-},{}],869:[function(require,module,exports){
+},{}],858:[function(require,module,exports){
 module.exports=require(17)
-},{}],870:[function(require,module,exports){
+},{}],859:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":871}],871:[function(require,module,exports){
+},{"toarray":860}],860:[function(require,module,exports){
 module.exports=require(44)
-},{}],872:[function(require,module,exports){
+},{}],861:[function(require,module,exports){
 module.exports=require(45)
-},{}],873:[function(require,module,exports){
+},{}],862:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -87218,13 +87559,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":874,"events":933,"itempile":877}],874:[function(require,module,exports){
+},{"deep-equal":863,"events":922,"itempile":866}],863:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":875,"./lib/keys.js":876}],875:[function(require,module,exports){
+},{"./lib/is_arguments.js":864,"./lib/keys.js":865}],864:[function(require,module,exports){
 module.exports=require(23)
-},{}],876:[function(require,module,exports){
+},{}],865:[function(require,module,exports){
 module.exports=require(24)
-},{}],877:[function(require,module,exports){
+},{}],866:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -87406,15 +87747,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":878,"deep-equal":879}],878:[function(require,module,exports){
+},{"clone":867,"deep-equal":868}],867:[function(require,module,exports){
 module.exports=require(21)
-},{"buffer":930}],879:[function(require,module,exports){
+},{"buffer":919}],868:[function(require,module,exports){
 module.exports=require(22)
-},{"./lib/is_arguments.js":880,"./lib/keys.js":881}],880:[function(require,module,exports){
+},{"./lib/is_arguments.js":869,"./lib/keys.js":870}],869:[function(require,module,exports){
 module.exports=require(23)
-},{}],881:[function(require,module,exports){
+},{}],870:[function(require,module,exports){
 module.exports=require(24)
-},{}],882:[function(require,module,exports){
+},{}],871:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -87490,7 +87831,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":892,"inventory-window":883,"itempile":901,"voxel-modal-dialog":906}],883:[function(require,module,exports){
+},{"inventory":881,"inventory-window":872,"itempile":890,"voxel-modal-dialog":895}],872:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -87936,7 +88277,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":884,"events":933,"ever":886,"ftooltip":889,"touchup":891}],884:[function(require,module,exports){
+},{"cube-icon":873,"events":922,"ever":875,"ftooltip":878,"touchup":880}],873:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -88003,21 +88344,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":885}],885:[function(require,module,exports){
+},{"cube-side-array":874}],874:[function(require,module,exports){
 module.exports=require(39)
-},{}],886:[function(require,module,exports){
+},{}],875:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":887,"./types.json":888,"events":933}],887:[function(require,module,exports){
+},{"./init.json":876,"./types.json":877,"events":922}],876:[function(require,module,exports){
 module.exports=require(16)
-},{}],888:[function(require,module,exports){
+},{}],877:[function(require,module,exports){
 module.exports=require(17)
-},{}],889:[function(require,module,exports){
+},{}],878:[function(require,module,exports){
 module.exports=require(43)
-},{"toarray":890}],890:[function(require,module,exports){
+},{"toarray":879}],879:[function(require,module,exports){
 module.exports=require(44)
-},{}],891:[function(require,module,exports){
+},{}],880:[function(require,module,exports){
 module.exports=require(45)
-},{}],892:[function(require,module,exports){
+},{}],881:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -88177,403 +88518,403 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":893,"events":933,"itempile":896}],893:[function(require,module,exports){
+},{"deep-equal":882,"events":922,"itempile":885}],882:[function(require,module,exports){
 module.exports=require(28)
-},{"./lib/is_arguments.js":894,"./lib/keys.js":895}],894:[function(require,module,exports){
+},{"./lib/is_arguments.js":883,"./lib/keys.js":884}],883:[function(require,module,exports){
 module.exports=require(23)
+},{}],884:[function(require,module,exports){
+module.exports=require(24)
+},{}],885:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":886,"deep-equal":887}],886:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],887:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":888,"./lib/keys.js":889}],888:[function(require,module,exports){
+module.exports=require(23)
+},{}],889:[function(require,module,exports){
+module.exports=require(24)
+},{}],890:[function(require,module,exports){
+var ItemPile, clone, deepEqual;
+
+deepEqual = require('deep-equal');
+
+clone = require('clone');
+
+module.exports = ItemPile = (function() {
+  function ItemPile(item, count, tags) {
+    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
+    this.count = count != null ? count : 1;
+    this.tags = tags != null ? tags : {};
+  }
+
+  ItemPile.prototype.clone = function() {
+    return new ItemPile(this.item, this.count, clone(this.tags, false));
+  };
+
+  ItemPile.maxPileSize = 64;
+
+  ItemPile.itemFromString = function(s) {
+    if (s instanceof ItemPile) {
+      return s;
+    }
+    if (!s) {
+      return '';
+    } else {
+      return s;
+    }
+  };
+
+  ItemPile.itemToString = function(item) {
+    return '' + item;
+  };
+
+  ItemPile.prototype.hasTags = function() {
+    return Object.keys(this.tags).length !== 0;
+  };
+
+  ItemPile.prototype.matchesType = function(itemPile) {
+    return this.item === itemPile.item;
+  };
+
+  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
+    return this.item === itemPile.item && this.count === itemPile.count;
+  };
+
+  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
+    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.matchesAll = function(itemPile) {
+    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
+      strict: true
+    });
+  };
+
+  ItemPile.prototype.canPileWith = function(itemPile) {
+    if (itemPile.item !== this.item) {
+      return false;
+    }
+    if (itemPile.count === 0 || this.count === 0) {
+      return true;
+    }
+    if (itemPile.hasTags() || this.hasTags()) {
+      return false;
+    }
+    return true;
+  };
+
+  ItemPile.prototype.mergePile = function(itemPile) {
+    if (!this.canPileWith(itemPile)) {
+      return false;
+    }
+    return itemPile.count = this.increase(itemPile.count);
+  };
+
+  ItemPile.prototype.increase = function(n) {
+    var excessCount, newCount, _ref;
+    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
+    this.count = newCount;
+    return excessCount;
+  };
+
+  ItemPile.prototype.decrease = function(n) {
+    var remainingCount, removedCount, _ref;
+    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
+    this.count = remainingCount;
+    return removedCount;
+  };
+
+  ItemPile.prototype.tryAdding = function(n) {
+    var sum;
+    if (n === Infinity) {
+      return [Infinity, 0];
+    }
+    sum = this.count + n;
+    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
+      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
+    } else {
+      return [sum, 0];
+    }
+  };
+
+  ItemPile.prototype.trySubtracting = function(n) {
+    var difference;
+    difference = this.count - n;
+    if (difference < 0) {
+      return [this.count, n - this.count];
+    } else {
+      return [n, this.count - n];
+    }
+  };
+
+  ItemPile.prototype.splitPile = function(n) {
+    if (n === 0) {
+      return false;
+    }
+    if (n < 0) {
+      n = this.count + n;
+    } else if (n < 1) {
+      n = Math.ceil(this.count * n);
+    }
+    if (n > this.count) {
+      return false;
+    }
+    if (n !== Infinity) {
+      this.count -= n;
+    }
+    return new ItemPile(this.item, n, clone(this.tags, false));
+  };
+
+  ItemPile.prototype.toString = function() {
+    if (this.hasTags()) {
+      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
+    } else {
+      return "" + this.count + ":" + this.item;
+    }
+  };
+
+  ItemPile.fromString = function(s) {
+    var a, count, countStr, item, itemStr, tags, tagsStr, _;
+    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
+    if (!a) {
+      return void 0;
+    }
+    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
+    if (countStr === 'Infinity') {
+      count = Infinity;
+    } else {
+      count = parseInt(countStr, 10);
+    }
+    item = ItemPile.itemFromString(itemStr);
+    if (tagsStr && tagsStr.length) {
+      tags = JSON.parse(tagsStr);
+    } else {
+      tags = {};
+    }
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArray = function(a) {
+    var count, item, tags;
+    item = a[0], count = a[1], tags = a[2];
+    return new ItemPile(item, count, tags);
+  };
+
+  ItemPile.fromArrayIfArray = function(a) {
+    if (Array.isArray(a)) {
+      return ItemPile.fromArray(a);
+    } else {
+      return a;
+    }
+  };
+
+  return ItemPile;
+
+})();
+
+
+},{"clone":891,"deep-equal":892}],891:[function(require,module,exports){
+module.exports=require(21)
+},{"buffer":919}],892:[function(require,module,exports){
+module.exports=require(22)
+},{"./lib/is_arguments.js":893,"./lib/keys.js":894}],893:[function(require,module,exports){
+module.exports=require(23)
+},{}],894:[function(require,module,exports){
+module.exports=require(24)
 },{}],895:[function(require,module,exports){
-module.exports=require(24)
-},{}],896:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":897,"deep-equal":898}],897:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],898:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":899,"./lib/keys.js":900}],899:[function(require,module,exports){
-module.exports=require(23)
-},{}],900:[function(require,module,exports){
-module.exports=require(24)
-},{}],901:[function(require,module,exports){
-var ItemPile, clone, deepEqual;
-
-deepEqual = require('deep-equal');
-
-clone = require('clone');
-
-module.exports = ItemPile = (function() {
-  function ItemPile(item, count, tags) {
-    this.item = typeof item === 'string' ? ItemPile.itemFromString(item) : item;
-    this.count = count != null ? count : 1;
-    this.tags = tags != null ? tags : {};
-  }
-
-  ItemPile.prototype.clone = function() {
-    return new ItemPile(this.item, this.count, clone(this.tags, false));
-  };
-
-  ItemPile.maxPileSize = 64;
-
-  ItemPile.itemFromString = function(s) {
-    if (s instanceof ItemPile) {
-      return s;
-    }
-    if (!s) {
-      return '';
-    } else {
-      return s;
-    }
-  };
-
-  ItemPile.itemToString = function(item) {
-    return '' + item;
-  };
-
-  ItemPile.prototype.hasTags = function() {
-    return Object.keys(this.tags).length !== 0;
-  };
-
-  ItemPile.prototype.matchesType = function(itemPile) {
-    return this.item === itemPile.item;
-  };
-
-  ItemPile.prototype.matchesTypeAndCount = function(itemPile) {
-    return this.item === itemPile.item && this.count === itemPile.count;
-  };
-
-  ItemPile.prototype.matchesTypeAndTags = function(itemPile) {
-    return this.item === itemPile.item && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.matchesAll = function(itemPile) {
-    return this.matchesTypeAndCount(itemPile) && deepEqual(this.tags, itemPile.tags, {
-      strict: true
-    });
-  };
-
-  ItemPile.prototype.canPileWith = function(itemPile) {
-    if (itemPile.item !== this.item) {
-      return false;
-    }
-    if (itemPile.count === 0 || this.count === 0) {
-      return true;
-    }
-    if (itemPile.hasTags() || this.hasTags()) {
-      return false;
-    }
-    return true;
-  };
-
-  ItemPile.prototype.mergePile = function(itemPile) {
-    if (!this.canPileWith(itemPile)) {
-      return false;
-    }
-    return itemPile.count = this.increase(itemPile.count);
-  };
-
-  ItemPile.prototype.increase = function(n) {
-    var excessCount, newCount, _ref;
-    _ref = this.tryAdding(n), newCount = _ref[0], excessCount = _ref[1];
-    this.count = newCount;
-    return excessCount;
-  };
-
-  ItemPile.prototype.decrease = function(n) {
-    var remainingCount, removedCount, _ref;
-    _ref = this.trySubtracting(n), removedCount = _ref[0], remainingCount = _ref[1];
-    this.count = remainingCount;
-    return removedCount;
-  };
-
-  ItemPile.prototype.tryAdding = function(n) {
-    var sum;
-    if (n === Infinity) {
-      return [Infinity, 0];
-    }
-    sum = this.count + n;
-    if (sum > ItemPile.maxPileSize && this.count !== Infinity) {
-      return [ItemPile.maxPileSize, sum - ItemPile.maxPileSize];
-    } else {
-      return [sum, 0];
-    }
-  };
-
-  ItemPile.prototype.trySubtracting = function(n) {
-    var difference;
-    difference = this.count - n;
-    if (difference < 0) {
-      return [this.count, n - this.count];
-    } else {
-      return [n, this.count - n];
-    }
-  };
-
-  ItemPile.prototype.splitPile = function(n) {
-    if (n === 0) {
-      return false;
-    }
-    if (n < 0) {
-      n = this.count + n;
-    } else if (n < 1) {
-      n = Math.ceil(this.count * n);
-    }
-    if (n > this.count) {
-      return false;
-    }
-    if (n !== Infinity) {
-      this.count -= n;
-    }
-    return new ItemPile(this.item, n, clone(this.tags, false));
-  };
-
-  ItemPile.prototype.toString = function() {
-    if (this.hasTags()) {
-      return "" + this.count + ":" + this.item + " " + (JSON.stringify(this.tags));
-    } else {
-      return "" + this.count + ":" + this.item;
-    }
-  };
-
-  ItemPile.fromString = function(s) {
-    var a, count, countStr, item, itemStr, tags, tagsStr, _;
-    a = s.match(/^([^:]+):([^ ]+) ?(.*)/);
-    if (!a) {
-      return void 0;
-    }
-    _ = a[0], countStr = a[1], itemStr = a[2], tagsStr = a[3];
-    if (countStr === 'Infinity') {
-      count = Infinity;
-    } else {
-      count = parseInt(countStr, 10);
-    }
-    item = ItemPile.itemFromString(itemStr);
-    if (tagsStr && tagsStr.length) {
-      tags = JSON.parse(tagsStr);
-    } else {
-      tags = {};
-    }
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArray = function(a) {
-    var count, item, tags;
-    item = a[0], count = a[1], tags = a[2];
-    return new ItemPile(item, count, tags);
-  };
-
-  ItemPile.fromArrayIfArray = function(a) {
-    if (Array.isArray(a)) {
-      return ItemPile.fromArray(a);
-    } else {
-      return a;
-    }
-  };
-
-  return ItemPile;
-
-})();
-
-
-},{"clone":902,"deep-equal":903}],902:[function(require,module,exports){
-module.exports=require(21)
-},{"buffer":930}],903:[function(require,module,exports){
-module.exports=require(22)
-},{"./lib/is_arguments.js":904,"./lib/keys.js":905}],904:[function(require,module,exports){
-module.exports=require(23)
-},{}],905:[function(require,module,exports){
-module.exports=require(24)
-},{}],906:[function(require,module,exports){
 module.exports=require(13)
-},{"voxel-modal":907}],907:[function(require,module,exports){
+},{"voxel-modal":896}],896:[function(require,module,exports){
 module.exports=require(14)
-},{"ever":908}],908:[function(require,module,exports){
+},{"ever":897}],897:[function(require,module,exports){
 module.exports=require(15)
-},{"./init.json":909,"./types.json":910,"events":933}],909:[function(require,module,exports){
+},{"./init.json":898,"./types.json":899,"events":922}],898:[function(require,module,exports){
 module.exports=require(16)
-},{}],910:[function(require,module,exports){
+},{}],899:[function(require,module,exports){
 module.exports=require(17)
-},{}],911:[function(require,module,exports){
+},{}],900:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -88753,7 +89094,7 @@ WorkbenchDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":873,"inventory-window":864,"voxel-inventory-dialog":882}],912:[function(require,module,exports){
+},{"inventory":862,"inventory-window":853,"voxel-inventory-dialog":871}],901:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -88859,9 +89200,9 @@ ZenPlugin = (function() {
 })();
 
 
-},{}],913:[function(require,module,exports){
+},{}],902:[function(require,module,exports){
 
-},{}],914:[function(require,module,exports){
+},{}],903:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -89223,14 +89564,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":916}],915:[function(require,module,exports){
+},{"util/":905}],904:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],916:[function(require,module,exports){
+},{}],905:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -89820,7 +90161,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("q+64fw"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":915,"inherits":934,"q+64fw":936}],917:[function(require,module,exports){
+},{"./support/isBuffer":904,"inherits":923,"q+64fw":925}],906:[function(require,module,exports){
 'use strict';
 
 
@@ -89923,7 +90264,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],918:[function(require,module,exports){
+},{}],907:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -89956,7 +90297,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],919:[function(require,module,exports){
+},{}],908:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -90004,7 +90345,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],920:[function(require,module,exports){
+},{}],909:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -90046,7 +90387,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],921:[function(require,module,exports){
+},{}],910:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -91812,7 +92153,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":917,"./adler32":918,"./crc32":920,"./messages":925,"./trees":926}],922:[function(require,module,exports){
+},{"../utils/common":906,"./adler32":907,"./crc32":909,"./messages":914,"./trees":915}],911:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -92139,7 +92480,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],923:[function(require,module,exports){
+},{}],912:[function(require,module,exports){
 'use strict';
 
 
@@ -93643,7 +93984,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":917,"./adler32":918,"./crc32":920,"./inffast":922,"./inftrees":924}],924:[function(require,module,exports){
+},{"../utils/common":906,"./adler32":907,"./crc32":909,"./inffast":911,"./inftrees":913}],913:[function(require,module,exports){
 'use strict';
 
 
@@ -93970,7 +94311,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   opts.bits = root;
   return 0;
 };
-},{"../utils/common":917}],925:[function(require,module,exports){
+},{"../utils/common":906}],914:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -93984,7 +94325,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],926:[function(require,module,exports){
+},{}],915:[function(require,module,exports){
 'use strict';
 
 
@@ -95184,7 +95525,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":917}],927:[function(require,module,exports){
+},{"../utils/common":906}],916:[function(require,module,exports){
 'use strict';
 
 
@@ -95214,7 +95555,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],928:[function(require,module,exports){
+},{}],917:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -95454,7 +95795,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"buffer":930,"pako/lib/zlib/constants":919,"pako/lib/zlib/deflate.js":921,"pako/lib/zlib/inflate.js":923,"pako/lib/zlib/messages":925,"pako/lib/zlib/zstream":927,"q+64fw":936}],929:[function(require,module,exports){
+},{"buffer":919,"pako/lib/zlib/constants":908,"pako/lib/zlib/deflate.js":910,"pako/lib/zlib/inflate.js":912,"pako/lib/zlib/messages":914,"pako/lib/zlib/zstream":916,"q+64fw":925}],918:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -96068,7 +96409,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require("q+64fw"),require("buffer").Buffer)
-},{"./binding":928,"_stream_transform":948,"assert":914,"buffer":930,"q+64fw":936,"util":952}],930:[function(require,module,exports){
+},{"./binding":917,"_stream_transform":937,"assert":903,"buffer":919,"q+64fw":925,"util":941}],919:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -97218,7 +97559,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":931,"ieee754":932}],931:[function(require,module,exports){
+},{"base64-js":920,"ieee754":921}],920:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -97341,7 +97682,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],932:[function(require,module,exports){
+},{}],921:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -97427,7 +97768,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],933:[function(require,module,exports){
+},{}],922:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -97732,9 +98073,9 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],934:[function(require,module,exports){
+},{}],923:[function(require,module,exports){
 module.exports=require(277)
-},{}],935:[function(require,module,exports){
+},{}],924:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -97962,7 +98303,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("q+64fw"))
-},{"q+64fw":936}],936:[function(require,module,exports){
+},{"q+64fw":925}],925:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -98027,10 +98368,10 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],937:[function(require,module,exports){
+},{}],926:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":938}],938:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":927}],927:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -98123,7 +98464,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_readable":940,"./_stream_writable":942,"core-util-is":943,"inherits":934,"q+64fw":936}],939:[function(require,module,exports){
+},{"./_stream_readable":929,"./_stream_writable":931,"core-util-is":932,"inherits":923,"q+64fw":925}],928:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -98171,7 +98512,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":941,"core-util-is":943,"inherits":934}],940:[function(require,module,exports){
+},{"./_stream_transform":930,"core-util-is":932,"inherits":923}],929:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -99134,7 +99475,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("q+64fw"))
-},{"buffer":930,"core-util-is":943,"events":933,"inherits":934,"isarray":944,"q+64fw":936,"stream":950,"string_decoder/":945}],941:[function(require,module,exports){
+},{"buffer":919,"core-util-is":932,"events":922,"inherits":923,"isarray":933,"q+64fw":925,"stream":939,"string_decoder/":934}],930:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -99346,7 +99687,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":938,"core-util-is":943,"inherits":934}],942:[function(require,module,exports){
+},{"./_stream_duplex":927,"core-util-is":932,"inherits":923}],931:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -99737,7 +100078,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("q+64fw"))
-},{"./_stream_duplex":938,"buffer":930,"core-util-is":943,"inherits":934,"q+64fw":936,"stream":950}],943:[function(require,module,exports){
+},{"./_stream_duplex":927,"buffer":919,"core-util-is":932,"inherits":923,"q+64fw":925,"stream":939}],932:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -99847,12 +100188,12 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":930}],944:[function(require,module,exports){
+},{"buffer":919}],933:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],945:[function(require,module,exports){
+},{}],934:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -100054,10 +100395,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":930}],946:[function(require,module,exports){
+},{"buffer":919}],935:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":939}],947:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":928}],936:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -100065,13 +100406,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":938,"./lib/_stream_passthrough.js":939,"./lib/_stream_readable.js":940,"./lib/_stream_transform.js":941,"./lib/_stream_writable.js":942}],948:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":927,"./lib/_stream_passthrough.js":928,"./lib/_stream_readable.js":929,"./lib/_stream_transform.js":930,"./lib/_stream_writable.js":931}],937:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":941}],949:[function(require,module,exports){
+},{"./lib/_stream_transform.js":930}],938:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":942}],950:[function(require,module,exports){
+},{"./lib/_stream_writable.js":931}],939:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -100200,11 +100541,11 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":933,"inherits":934,"readable-stream/duplex.js":937,"readable-stream/passthrough.js":946,"readable-stream/readable.js":947,"readable-stream/transform.js":948,"readable-stream/writable.js":949}],951:[function(require,module,exports){
-module.exports=require(915)
-},{}],952:[function(require,module,exports){
-module.exports=require(916)
-},{"./support/isBuffer":951,"inherits":934,"q+64fw":936}],953:[function(require,module,exports){
+},{"events":922,"inherits":923,"readable-stream/duplex.js":926,"readable-stream/passthrough.js":935,"readable-stream/readable.js":936,"readable-stream/transform.js":937,"readable-stream/writable.js":938}],940:[function(require,module,exports){
+module.exports=require(904)
+},{}],941:[function(require,module,exports){
+module.exports=require(905)
+},{"./support/isBuffer":940,"inherits":923,"q+64fw":925}],942:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -100344,7 +100685,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":954}],954:[function(require,module,exports){
+},{"indexof":943}],943:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
