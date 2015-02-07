@@ -13,6 +13,7 @@ require 'voxel-recipes'
 require 'voxel-quarry'
 require 'voxel-measure'
 require 'voxel-webview'
+require 'voxel-vr'
 require 'voxel-workbench'
 require 'voxel-furnace'
 require 'voxel-chest'
@@ -127,6 +128,7 @@ main = () ->
     'voxel-quarry': {}
     'voxel-measure': {}
     'voxel-webview': {onDemand: true}  # disabled by default until https://github.com/deathcap/voxel-webview/issues/3
+    'voxel-vr': {onDemand: true} # has to be enabled after gl-init to replace renderer
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
