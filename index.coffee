@@ -117,7 +117,7 @@ main = () ->
       #cameraFOV: 110
 
     'voxel-mesher': {},
-    'game-shell-fps-camera': {},
+    #'game-shell-fps-camera': {},
 
 
     'voxel-artpacks': {}
@@ -162,7 +162,7 @@ main = () ->
     #'voxel-health-fall': {} # requires voxel-player
     'voxel-food': {}
     'voxel-sfx': {}
-    'voxel-fly': {flySpeed: 0.8, onDemand: true}
+    #'voxel-fly': {flySpeed: 0.8, onDemand: true} # TODO: update for voxel-physics-engine
     'voxel-gamemode': {}
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
@@ -184,7 +184,7 @@ main = () ->
 
     # the GUI window (built-in toggle with 'H')
     #'voxel-debug': {} # heavily three.js dependent
-    'camera-debug': {}
+    #'camera-debug': {} # TODO: port from game-shell-fps-camera
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
   }
