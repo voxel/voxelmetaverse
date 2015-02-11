@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#e98df9820a7c8b3907f3b627d77d7adea170952c",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#ae6aae278639fa30b7d55695d1a3f5996a1a4b0a",
     "voxel-artpacks": "^0.1.2",
     "voxel-wireframe": "^0.5.1",
     "voxel-chunkborder": "^0.4.2",
