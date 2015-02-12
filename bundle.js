@@ -166,6 +166,7 @@ main = function() {
         cameraFOV: 90
       },
       'voxel-mesher': {},
+      'game-shell-fps-camera': {},
       'voxel-artpacks': {},
       'voxel-wireframe': {},
       'voxel-chunkborder': {},
@@ -214,6 +215,10 @@ main = function() {
       'voxel-health-bar': {},
       'voxel-food': {},
       'voxel-sfx': {},
+      'voxel-fly': {
+        flySpeed: 0.8,
+        onDemand: true
+      },
       'voxel-gamemode': {},
       'voxel-sprint': {},
       'voxel-inventory-hotbar': {
@@ -234,6 +239,7 @@ main = function() {
       'voxel-voila': {},
       'voxel-fullscreen': {},
       'voxel-keys': {},
+      'camera-debug': {},
       'voxel-plugins-ui': {},
       'kb-bindings-ui': {}
     }
@@ -243,7 +249,7 @@ main = function() {
 main();
 
 
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":628,"voxel-fly":630,"voxel-food":631,"voxel-fullscreen":632,"voxel-furnace":633,"voxel-gamemode":686,"voxel-glass":701,"voxel-hammer":708,"voxel-harvest":709,"voxel-health":717,"voxel-health-bar":715,"voxel-health-fall":716,"voxel-inventory-crafting":719,"voxel-inventory-creative":772,"voxel-inventory-hotbar":825,"voxel-keys":838,"voxel-land":842,"voxel-measure":860,"voxel-mine":863,"voxel-outline":892,"voxel-pickaxe":899,"voxel-player":900,"voxel-plugins-ui":905,"voxel-pumpkin":912,"voxel-quarry":913,"voxel-reach":919,"voxel-recipes":926,"voxel-sfx":936,"voxel-skyhook":937,"voxel-sprint":938,"voxel-start":939,"voxel-use":940,"voxel-virus":942,"voxel-voila":943,"voxel-vr":976,"voxel-webview":1001,"voxel-wireframe":1030,"voxel-wool":1032,"voxel-workbench":1080,"voxel-zen":1081}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-debug":191,"voxel-decals":205,"voxel-decorative":233,"voxel-drop":235,"voxel-engine":266,"voxel-fluid":559,"voxel-fly":561,"voxel-food":562,"voxel-fullscreen":563,"voxel-furnace":564,"voxel-gamemode":617,"voxel-glass":632,"voxel-hammer":639,"voxel-harvest":640,"voxel-health":648,"voxel-health-bar":646,"voxel-health-fall":647,"voxel-inventory-crafting":650,"voxel-inventory-creative":703,"voxel-inventory-hotbar":756,"voxel-keys":769,"voxel-land":773,"voxel-measure":791,"voxel-mine":794,"voxel-outline":823,"voxel-pickaxe":830,"voxel-player":831,"voxel-plugins-ui":836,"voxel-pumpkin":843,"voxel-quarry":844,"voxel-reach":850,"voxel-recipes":857,"voxel-sfx":867,"voxel-skyhook":868,"voxel-sprint":869,"voxel-start":870,"voxel-use":871,"voxel-virus":873,"voxel-voila":874,"voxel-vr":907,"voxel-webview":932,"voxel-wireframe":961,"voxel-wool":963,"voxel-workbench":1011,"voxel-zen":1012}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5580,7 +5586,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":1101}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":1032}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6215,7 +6221,7 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097}],22:[function(require,module,exports){
+},{"buffer":1028}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6509,7 +6515,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":28,"events":1101,"itempile":31}],28:[function(require,module,exports){
+},{"deep-equal":28,"events":1032,"itempile":31}],28:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6793,7 +6799,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":32,"deep-equal":33}],32:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],33:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],33:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":34,"./lib/keys.js":35,"dup":22}],34:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -7400,7 +7406,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":38,"events":1101,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
+},{"cube-icon":38,"events":1032,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -7544,7 +7550,7 @@ module.exports = expandName;
 
 },{}],40:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":41,"./types.json":42,"dup":15,"events":1101}],41:[function(require,module,exports){
+},{"./init.json":41,"./types.json":42,"dup":15,"events":1032}],41:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],42:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -7946,7 +7952,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":47,"events":1101,"itempile":50}],47:[function(require,module,exports){
+},{"deep-equal":47,"events":1032,"itempile":50}],47:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":48,"./lib/keys.js":49,"dup":28}],48:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -8136,7 +8142,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":51,"deep-equal":52}],51:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],52:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],52:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":53,"./lib/keys.js":54,"dup":22}],53:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -8326,7 +8332,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":56,"deep-equal":57}],56:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],57:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],57:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":58,"./lib/keys.js":59,"dup":22}],58:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -8854,7 +8860,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":62,"events":1101,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
+},{"cube-icon":62,"events":1032,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -8925,7 +8931,7 @@ CubeIcon = (function() {
 arguments[4][39][0].apply(exports,arguments)
 },{"dup":39}],64:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":65,"./types.json":66,"dup":15,"events":1101}],65:[function(require,module,exports){
+},{"./init.json":65,"./types.json":66,"dup":15,"events":1032}],65:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],66:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -9095,7 +9101,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":71,"events":1101,"itempile":74}],71:[function(require,module,exports){
+},{"deep-equal":71,"events":1032,"itempile":74}],71:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":72,"./lib/keys.js":73,"dup":28}],72:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -9285,7 +9291,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":75,"deep-equal":76}],75:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],76:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],76:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":77,"./lib/keys.js":78,"dup":22}],77:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -9475,7 +9481,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":80,"deep-equal":81}],80:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],81:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],81:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":82,"./lib/keys.js":83,"dup":22}],82:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -9487,7 +9493,7 @@ arguments[4][13][0].apply(exports,arguments)
 arguments[4][14][0].apply(exports,arguments)
 },{"dup":14,"ever":86}],86:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":87,"./types.json":88,"dup":15,"events":1101}],87:[function(require,module,exports){
+},{"./init.json":87,"./types.json":88,"dup":15,"events":1032}],87:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],88:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -11113,7 +11119,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"iota-array":97}],97:[function(require,module,exports){
+},{"buffer":1028,"iota-array":97}],97:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -11751,7 +11757,7 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":98,"buffer":1097,"dup":99}],101:[function(require,module,exports){
+},{"bit-twiddle":98,"buffer":1028,"dup":99}],101:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -13169,11 +13175,11 @@ ClientMC.prototype.missingChunk = function(pos) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"bit-twiddle":117,"buffer":1097,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
+},{"bit-twiddle":117,"buffer":1028,"ever":118,"mineflayer":121,"ndarray":173,"tellraw2dom":175,"webworkify":176}],117:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
 },{"dup":98}],118:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":119,"./types.json":120,"dup":15,"events":1101}],119:[function(require,module,exports){
+},{"./init.json":119,"./types.json":120,"dup":15,"events":1032}],119:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],120:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -13304,7 +13310,7 @@ Bot.prototype.end = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":1097,"events":1101,"minecraft-protocol":160,"path":1104,"util":1120,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
+},{"./lib/biome":122,"./lib/block":123,"./lib/chest":125,"./lib/dispenser":127,"./lib/enchantment_table":128,"./lib/entity":129,"./lib/enums/biomes":130,"./lib/enums/blocks":131,"./lib/enums/instruments":132,"./lib/enums/items":133,"./lib/enums/materials":134,"./lib/enums/recipes":135,"./lib/furnace":136,"./lib/item":137,"./lib/location":138,"./lib/painting":140,"./lib/plugins/bed":141,"./lib/plugins/block_actions":142,"./lib/plugins/blocks":143,"./lib/plugins/chat":144,"./lib/plugins/digging":145,"./lib/plugins/entities":146,"./lib/plugins/experience":147,"./lib/plugins/game":148,"./lib/plugins/health":149,"./lib/plugins/inventory":150,"./lib/plugins/kick":151,"./lib/plugins/physics":152,"./lib/plugins/rain":153,"./lib/plugins/settings":154,"./lib/plugins/spawn_point":155,"./lib/plugins/time":156,"./lib/recipe":157,"./lib/windows":158,"buffer":1028,"events":1032,"minecraft-protocol":160,"path":1035,"util":1051,"vec3":168,"websocket-stream":169}],122:[function(require,module,exports){
 var biomes = require('./enums/biomes')
 
 module.exports = Biome;
@@ -13555,7 +13561,7 @@ ChatMessage.prototype.toString = function() {
 
 module.exports = ChatMessage;
 
-},{"util":1120}],125:[function(require,module,exports){
+},{"util":1051}],125:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13594,7 +13600,7 @@ Chest.prototype.items = function() {
   return this.window.chestItems();
 };
 
-},{"assert":1083,"events":1101,"util":1120}],126:[function(require,module,exports){
+},{"assert":1014,"events":1032,"util":1051}],126:[function(require,module,exports){
 var math = require('./math')
   , euclideanMod = math.euclideanMod
   , PI = Math.PI
@@ -13684,7 +13690,7 @@ Dispenser.prototype.items = function() {
   return this.window.dispenserItems();
 };
 
-},{"assert":1083,"events":1101,"util":1120}],128:[function(require,module,exports){
+},{"assert":1014,"events":1032,"util":1051}],128:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
   , util = require('util')
   , assert = require('assert')
@@ -13721,7 +13727,7 @@ EnchantmentTable.prototype.putTargetItem = function() {
   assert.ok(false, "override");
 };
 
-},{"assert":1083,"events":1101,"util":1120}],129:[function(require,module,exports){
+},{"assert":1014,"events":1032,"util":1051}],129:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = Entity;
@@ -19850,7 +19856,7 @@ Furnace.prototype.outputItem = function() {
   return this.window.slots[2];
 }
 
-},{"assert":1083,"events":1101,"util":1120}],137:[function(require,module,exports){
+},{"assert":1014,"events":1032,"util":1051}],137:[function(require,module,exports){
 (function (Buffer){
 var items = require('./enums/items')
   , blocks = require('./enums/blocks')
@@ -19888,7 +19894,7 @@ Item.equal = function(item1, item2) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./enums/blocks":131,"./enums/items":133,"assert":1083,"buffer":1097}],138:[function(require,module,exports){
+},{"./enums/blocks":131,"./enums/items":133,"assert":1014,"buffer":1028}],138:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 var CHUNK_SIZE = new Vec3(16, 16, 16)
 
@@ -19980,7 +19986,7 @@ function inject(bot) {
   bot.sleep = sleep;
 }
 
-},{"assert":1083}],142:[function(require,module,exports){
+},{"assert":1014}],142:[function(require,module,exports){
 var instruments = require('../enums/instruments')
   , Vec3 = require('vec3').Vec3
 
@@ -20346,7 +20352,7 @@ function Column() {
 
 
 }).call(this,require("buffer").Buffer)
-},{"../block":123,"../location":138,"../painting":140,"assert":1083,"buffer":1097,"vec3":168,"zlib":1096}],144:[function(require,module,exports){
+},{"../block":123,"../location":138,"../painting":140,"assert":1014,"buffer":1028,"vec3":168,"zlib":1027}],144:[function(require,module,exports){
 var assert = require('assert')
   , quoteMeta = require('quotemeta')
   , ChatMessage = require('../chat_message')
@@ -20471,7 +20477,7 @@ function inject(bot) {
   };
 }
 
-},{"../chat_message":124,"assert":1083,"quotemeta":167}],145:[function(require,module,exports){
+},{"../chat_message":124,"assert":1014,"quotemeta":167}],145:[function(require,module,exports){
 var assert = require('assert');
 var toolMultipliers = require('../enums/materials');
 
@@ -20597,7 +20603,7 @@ function noop(err) {
   if (err) throw err;
 }
 
-},{"../enums/materials":134,"assert":1083}],146:[function(require,module,exports){
+},{"../enums/materials":134,"assert":1014}],146:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3
   , _ = require('lodash')
   , Entity = require('../entity')
@@ -21109,7 +21115,7 @@ function autoRespawn(bot) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097}],149:[function(require,module,exports){
+},{"buffer":1028}],149:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot, options) {
@@ -22189,7 +22195,7 @@ function vectorToDirection(v) {
 }
 
 }).call(this,require('_process'))
-},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"_process":1105,"assert":1083}],151:[function(require,module,exports){
+},{"../chest":125,"../dispenser":127,"../enchantment_table":128,"../furnace":136,"../item":137,"../recipe":157,"../windows":158,"_process":1036,"assert":1014}],151:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22556,7 +22562,7 @@ function inject(bot) {
   bot.on('end', cleanup);
 }
 
-},{"../conversions":126,"../math":139,"assert":1083,"vec3":168}],153:[function(require,module,exports){
+},{"../conversions":126,"../math":139,"assert":1014,"vec3":168}],153:[function(require,module,exports){
 module.exports = inject;
 
 function inject(bot) {
@@ -22631,7 +22637,7 @@ function extend(obj, src) {
   return obj;
 }
 
-},{"assert":1083}],155:[function(require,module,exports){
+},{"assert":1014}],155:[function(require,module,exports){
 var Vec3 = require('vec3').Vec3;
 
 module.exports = inject;
@@ -23161,7 +23167,7 @@ util.inherits(BrewingStandWindow, Window);
 
 BrewingStandWindow.prototype.inventorySlotStart = 5;
 
-},{"./item":137,"assert":1083,"util":1120}],159:[function(require,module,exports){
+},{"./item":137,"assert":1014,"util":1051}],159:[function(require,module,exports){
 (function (global){
 /**
  * @license
@@ -30000,7 +30006,7 @@ function createClient(options) {
 
 
 }).call(this,require("buffer").Buffer)
-},{"./lib/client":161,"./lib/protocol":162,"assert":1083,"buffer":1097}],161:[function(require,module,exports){
+},{"./lib/client":161,"./lib/protocol":162,"assert":1014,"buffer":1028}],161:[function(require,module,exports){
 (function (Buffer){
 var net = require('net')
   , EventEmitter = require('events').EventEmitter
@@ -30178,7 +30184,7 @@ Client.prototype.writeRaw = function(buffer, shouldEncrypt) {
     this.socket.write(out);
 };
 }).call(this,require("buffer").Buffer)
-},{"./protocol":162,"buffer":1097,"dns":1082,"events":1101,"net":1082,"util":1120,"websocket-stream":163}],162:[function(require,module,exports){
+},{"./protocol":162,"buffer":1028,"dns":1013,"events":1032,"net":1013,"util":1051,"websocket-stream":163}],162:[function(require,module,exports){
 (function (process,Buffer){
 var assert = require('assert');
 var util = require('util');
@@ -31550,7 +31556,7 @@ module.exports = {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1105,"assert":1083,"buffer":1097,"util":1120}],163:[function(require,module,exports){
+},{"_process":1036,"assert":1014,"buffer":1028,"util":1051}],163:[function(require,module,exports){
 (function (process){
 var through = require('through')
 var isBuffer = require('isbuffer')
@@ -31646,7 +31652,7 @@ WebsocketStream.prototype.end = function(data) {
 }
 
 }).call(this,require('_process'))
-},{"_process":1105,"isbuffer":164,"through":165,"ws":166}],164:[function(require,module,exports){
+},{"_process":1036,"isbuffer":164,"through":165,"ws":166}],164:[function(require,module,exports){
 var Buffer = require('buffer').Buffer;
 
 module.exports = isBuffer;
@@ -31656,7 +31662,7 @@ function isBuffer (o) {
     || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
 }
 
-},{"buffer":1097}],165:[function(require,module,exports){
+},{"buffer":1028}],165:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -31768,7 +31774,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":1105,"stream":1117}],166:[function(require,module,exports){
+},{"_process":1036,"stream":1048}],166:[function(require,module,exports){
 
 /**
  * Module dependencies.
@@ -31948,11 +31954,11 @@ function euclideanMod(numerator, denominator) {
 
 },{}],169:[function(require,module,exports){
 arguments[4][163][0].apply(exports,arguments)
-},{"_process":1105,"dup":163,"isbuffer":170,"through":171,"ws":172}],170:[function(require,module,exports){
+},{"_process":1036,"dup":163,"isbuffer":170,"through":171,"ws":172}],170:[function(require,module,exports){
 arguments[4][164][0].apply(exports,arguments)
-},{"buffer":1097,"dup":164}],171:[function(require,module,exports){
+},{"buffer":1028,"dup":164}],171:[function(require,module,exports){
 arguments[4][165][0].apply(exports,arguments)
-},{"_process":1105,"dup":165,"stream":1117}],172:[function(require,module,exports){
+},{"_process":1036,"dup":165,"stream":1048}],172:[function(require,module,exports){
 arguments[4][166][0].apply(exports,arguments)
 },{"dup":166}],173:[function(require,module,exports){
 (function (Buffer){
@@ -32349,7 +32355,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"iota-array":174}],174:[function(require,module,exports){
+},{"buffer":1028,"iota-array":174}],174:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
 },{"dup":97}],175:[function(require,module,exports){
 'use strict';
@@ -32940,7 +32946,7 @@ CommandsPlugin = (function() {
 
 },{"clone":179,"deep-equal":180}],179:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],180:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],180:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":181,"./lib/keys.js":182,"dup":22}],181:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -33317,13 +33323,13 @@ module.exports = function(opts) {
 };
 
 
-},{"events":1101,"vkey":186}],186:[function(require,module,exports){
+},{"events":1032,"vkey":186}],186:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
 },{"dup":10}],187:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
 },{"dup":14,"ever":188}],188:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":189,"./types.json":190,"dup":15,"events":1101}],189:[function(require,module,exports){
+},{"./init.json":189,"./types.json":190,"dup":15,"events":1032}],189:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],190:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -33667,7 +33673,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":1101,"inherits":202}],196:[function(require,module,exports){
+},{"events":1032,"inherits":202}],196:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -34814,7 +34820,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"iota-array":204}],204:[function(require,module,exports){
+},{"buffer":1028,"iota-array":204}],204:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
 },{"dup":97}],205:[function(require,module,exports){
 "use strict";
@@ -34994,7 +35000,7 @@ arguments[4][94][0].apply(exports,arguments)
 arguments[4][95][0].apply(exports,arguments)
 },{"dup":95}],212:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":213}],213:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":213}],213:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
 },{"dup":97}],214:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
@@ -35002,7 +35008,7 @@ arguments[4][98][0].apply(exports,arguments)
 arguments[4][99][0].apply(exports,arguments)
 },{"dup":99}],216:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":214,"buffer":1097,"dup":100}],217:[function(require,module,exports){
+},{"bit-twiddle":214,"buffer":1028,"dup":100}],217:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
 },{"dup":101}],218:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
@@ -40003,7 +40009,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"_process":1105,"fs":1082,"module":1082,"path":1104,"vm":1121}],237:[function(require,module,exports){
+},{"./helpers":237,"./lexer":238,"./nodes":239,"./parser":240,"./register":241,"./sourcemap":244,"_process":1036,"fs":1013,"module":1013,"path":1035,"vm":1052}],237:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -40259,7 +40265,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'))
-},{"_process":1105}],238:[function(require,module,exports){
+},{"_process":1036}],238:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -45074,7 +45080,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require('_process'))
-},{"_process":1105,"fs":1082,"path":1104}],241:[function(require,module,exports){
+},{"_process":1036,"fs":1013,"path":1035}],241:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -45142,7 +45148,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":236,"./helpers":237,"child_process":1082,"module":1082,"path":1104}],242:[function(require,module,exports){
+},{"./coffee-script":236,"./helpers":237,"child_process":1013,"module":1013,"path":1035}],242:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -45932,7 +45938,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 },{}],245:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":246,"./types.json":247,"dup":15,"events":1101}],246:[function(require,module,exports){
+},{"./init.json":246,"./types.json":247,"dup":15,"events":1032}],246:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],247:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -46050,7 +46056,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
+},{"buffer":1028,"inventory":249,"itempile":258,"nbt":263}],249:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -46210,7 +46216,7 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":250,"events":1101,"itempile":253}],250:[function(require,module,exports){
+},{"deep-equal":250,"events":1032,"itempile":253}],250:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":251,"./lib/keys.js":252,"dup":28}],251:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -46400,7 +46406,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":254,"deep-equal":255}],254:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],255:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],255:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":256,"./lib/keys.js":257,"dup":22}],256:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -46590,7 +46596,7 @@ module.exports = ItemPile = (function() {
 
 },{"clone":259,"deep-equal":260}],259:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],260:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],260:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":261,"./lib/keys.js":262,"dup":22}],261:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -46766,7 +46772,7 @@ arguments[4][24][0].apply(exports,arguments)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"node-int64":264,"zlib":1096}],264:[function(require,module,exports){
+},{"buffer":1028,"node-int64":264,"zlib":1027}],264:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -46972,7 +46978,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097}],265:[function(require,module,exports){
+},{"buffer":1028}],265:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -47030,18 +47036,22 @@ if (!String.prototype.endsWith) {
 'use strict'
 var voxel = require('voxel')
 var ray = require('voxel-raycast')
-var createController = require('voxel-fps-controller')
+var control = require('voxel-controls')
+var Stats = require('./lib/stats')
+var Detector = require('./lib/detector')
 var inherits = require('inherits')
 var path = require('path')
 var EventEmitter = require('events').EventEmitter
+var collisions = require('collide-3d-tilemap')
 var aabb = require('aabb-3d')
-var vec3 = require('gl-vec3')
+var vector = require('gl-vec3')
 var SpatialEventEmitter = require('spatial-events')
 var regionChange = require('voxel-region-change')
+var physical = require('voxel-physicals')
 var tic = require('tic')()
 var ndarray = require('ndarray')
 var isndarray = require('isndarray')
-var throttle = require('underscore').throttle // TODO: remove underscore dependency
+var obsolete = require('obsolete')
 
 var createPlugins = require('voxel-plugins')
 var extend = require('extend')
@@ -47049,13 +47059,7 @@ require('voxel-registry')
 require('voxel-stitch')
 require('voxel-shader')
 require('voxel-mesher')
-var createBasicCamera = require('basic-camera')
-var createPhysEngine = require('voxel-physics-engine')
-
-var createInputs = require('./lib/inputs')
-var createContainer = require('./lib/container')
-var createRendering = require('./lib/rendering')
-var createEntity = require('./lib/entity')
+require('game-shell-fps-camera')
 
 module.exports = Game
 
@@ -47064,6 +47068,7 @@ var BUILTIN_PLUGIN_OPTS = {
   'voxel-stitch': {},
   'voxel-shader': {},
   'voxel-mesher': {},
+  'game-shell-fps-camera': {},
 }
 
 function Game(opts) {
@@ -47071,11 +47076,7 @@ function Game(opts) {
   var self = this
   if (!opts) opts = {}
   if (opts.pluginOpts && opts.pluginOpts['voxel-engine']) opts = extend(opts, opts.pluginOpts['voxel-engine'])
-
-  // create container submodule
-  this.container = createContainer( this, opts )
-  if (process.browser && this.container.notCapable(opts)) return
-
+  if (process.browser && this.notCapable(opts)) return
 
   // is this a client or a headless server
   this.isClient = Boolean( (typeof opts.isClient !== 'undefined') ? opts.isClient : process.browser )
@@ -47084,70 +47085,64 @@ function Game(opts) {
   this.generateChunks = opts.generateChunks
   this.setConfigurablePositions(opts)
   this.configureChunkLoading(opts)
-  Object.defineProperty(this, 'THREE', {get:function() { throw new Error('voxel-engine "THREE property removed') }})
-  Object.defineProperty(this, 'vector', {get:function() { throw new Error('voxel-engine "vector" property removed') }})
-  Object.defineProperty(this, 'glMatrix', {get:function() { throw new Error('voxel-engine "glMatrix" property removed') }})
-  this.vec3 = vec3
+  this.setDimensions(opts)
+  obsolete(this, 'THREE')
+  this.vector = vector
+  obsolete(this, 'glMatrix', 'use your own gl-matrix, gl-vec3, or gl-vec4')
   this.arrayType = opts.arrayType || {1:Uint8Array, 2:Uint16Array, 4:Uint32Array}[opts.arrayTypeSize] || Uint8Array
   this.cubeSize = 1 // backwards compat
   this.chunkSize = opts.chunkSize || 32
   this.chunkPad = opts.chunkPad || 4
-
+  
   // chunkDistance and removeDistance should not be set to the same thing
   // as it causes lag when you go back and forth on a chunk boundary
   this.chunkDistance = opts.chunkDistance || 2
   this.removeDistance = opts.removeDistance || this.chunkDistance + 1
-
-
-
-  // set up rendering
-  this.rendering = createRendering(this, opts)
-
-  // warn about many removed or NYI rendering properties:
-  Object.defineProperty(this, 'mesher', {get:function() { throw new Error('voxel-engine "mesher" property removed') }})
-  Object.defineProperty(this, 'scene', {get:function() { throw new Error('voxel-engine "scene" property removed') }})
-  Object.defineProperty(this, 'view', {get:function() { throw new Error('voxel-engine "view" property removed') }})
-  Object.defineProperty(this, 'camera', {get:function() { throw new Error('voxel-engine "camera" property removed') }})
-  Object.defineProperty(this, 'render', {get:function() { throw new Error('voxel-engine "render" method removed') }})
-  Object.defineProperty(this, 'addMarker', {get:function() { throw new Error('voxel-engine "addMarker" is NYI') }})
-  Object.defineProperty(this, 'addAABBMarker', {get:function() { throw new Error('voxel-engine "addAABBMarker" is NYI') }})
-  Object.defineProperty(this, 'addVoxelMarker', {get:function() { throw new Error('voxel-engine "addVoxelMarker" is NYI') }})
-  Object.defineProperty(this, 'skyColor', {get:function() { throw new Error('voxel-engine "skyColor" has moved into rendering module') }})
-  Object.defineProperty(this, 'antialias', {get:function() { throw new Error('voxel-engine "antialias" has moved into rendering module') }})
-  Object.defineProperty(this, 'meshType', {get:function() { throw new Error('voxel-engine "meshType" has moved into rendering module') }})
-
-  // redirects for game properties (TODO: remove/abstract these)
-  this.cameraPosition = this.rendering.cameraPosition.bind(this.rendering)
-  this.cameraVector = this.rendering.cameraVector.bind(this.rendering)
-  this.rendering.setCamera( createBasicCamera() )
-  this.getCamera = function() { return this.rendering.camera }
-
-
+  
+  this.skyColor = opts.skyColor || 0xBFD1E5
+  this.antialias = opts.antialias
   this.playerHeight = opts.playerHeight || 1.62
+  this.meshType = opts.meshType || 'surfaceMesh'
 
+  // was a 'voxel' module meshers object, now using voxel-mesher(ao-mesher)
+  obsolete(this, 'mesher', 'replaced by voxel-mesher')
 
-  // set up entities
-  this.entities = []
-
-  // voxel data
+  this.items = []
   this.voxels = voxel(this)
 
+  // was a three.js Scene instance, mainly used for scene.add(), objects, lights TODO: scene graph replacement? or can do without?
+  obsolete(this, 'scene')
 
-  // container/shell setup
-  this.container.createShell( opts )
+  // hooked up three.js Scene, created three.js PerspectiveCamera, added to element
+  // TODO: add this.view.cameraPosition(), this.view.cameraVector()? -> [x,y,z]  to game-shell-fps-camera, very useful
+  obsolete(this, 'view')
 
-  // reference to shell, hopefully can someday abstract this?
-  this.shell = this.container.getShell()
+  // used to be a three.js PerspectiveCamera set by voxel-view; see also basic-camera but API not likely compatible (TODO: make it compatible?)
+  obsolete(this, 'camera')
 
-  //  container-related removal warnings:
-  Object.defineProperty(this, 'setDimensions', {get:function() { throw new Error('voxel-engine "setDimensions" removed') }})
-  Object.defineProperty(this, 'createContainer', {get:function() { throw new Error('voxel-engine "createContainer" moved to container module') }})
-  Object.defineProperty(this, 'appendTo', {get:function() { throw new Error('voxel-engine "appendTo" moved to container module') }})
-  Object.defineProperty(this, 'notCapable', {get:function() { throw new Error('voxel-engine "notCapable" moved to container module') }})
-  Object.defineProperty(this, 'notCapableMessage', {get:function() { throw new Error('voxel-engine "notCapableMessage" moved to container module') }})
-  Object.defineProperty(this, 'height', {get:function() { throw new Error('voxel-engine "height" removed') }})
-  Object.defineProperty(this, 'width', {get:function() { throw new Error('voxel-engine "width" removed') }})
 
+
+  // the game-shell
+  if (this.isClient) /*GZ: Do not load on server, as document element is missing*/
+  {
+    var createShell = require('gl-now')
+    var shellOpts = shellOpts || {}
+    shellOpts.clearColor = [
+      (this.skyColor >> 16) / 255.0,
+      ((this.skyColor >> 8) & 0xff) / 255.0,
+      (this.skyColor & 0xff) / 255.0,
+      1.0]
+    shellOpts.pointerLock = opts.pointerLock !== undefined ? opts.pointerLock : true
+    shellOpts.element = this.createContainer(opts)
+    var shell = createShell(shellOpts)
+  
+    shell.on('gl-error', function(err) {
+      // normally not reached; notCapable() checks for WebGL compatibility first
+      document.body.appendChild(document.createTextNode('Fatal WebGL error: ' + err))
+    })
+  
+    this.shell = shell
+  }
 
   // setup plugins
   var plugins = createPlugins(this, {require: function(name) {
@@ -47160,11 +47155,17 @@ function Game(opts) {
     }
   }})
 
-
+  this.collideVoxels = collisions(
+    this.getBlock.bind(this),
+    1,
+    [Infinity, Infinity, Infinity],
+    [-Infinity, -Infinity, -Infinity]
+  )
+  
   this.timer = this.initializeTimer((opts.tickFPS || 16))
   this.paused = false
 
-  this.spatial = new SpatialEventEmitter()
+  this.spatial = new SpatialEventEmitter
   this.region = regionChange(this.spatial, aabb([0, 0, 0], [1, 1, 1]), this.chunkSize)
   this.voxelRegion = regionChange(this.spatial, 1)
   this.chunkRegion = regionChange(this.spatial, this.chunkSize)
@@ -47174,12 +47175,12 @@ function Game(opts) {
   this.chunksNeedsUpdate = {}
   // contains new chunks yet to be generated. Handled by game.loadPendingChunks
   this.pendingChunks = []
-
+  
   if (this.isClient) {
     if (opts.exposeGlobal) window.game = window.g = this
-      }
+  }
 
-
+ 
   self.chunkRegion.on('change', function(newChunk) {
     self.removeFarChunks()
   })
@@ -47190,42 +47191,9 @@ function Game(opts) {
   // materials
   if ('materials' in opts) throw new Error('opts.materials replaced with voxel-registry registerBlock()') // TODO: bridge?
  
-  // physics setup
-  var blockGetter = this.getBlock.bind(this)
-  this.physics = createPhysEngine(opts, blockGetter)
+  //this.paused = true // TODO: should it start paused, then unpause when pointer lock is acquired?
 
-
-
-  this.playerEntity = initPlayerEntity( this )
-
-  // accessors for player - TODO: reconsider?
-  this.playerPosition = function() {
-    return this.playerEntity.getPosition()
-  }
-
-
-  // input related setup 
-
-  this.inputs = createInputs(this,opts)
-  //  (hopefully temporary) redirects to input funcitons
-  this.onFire = throttle(function(state) { this.inputs.tempOnFire(state) }, opts.frequency || 100)
-  this.buttons = this.inputs.tempGetButtons()
-  // Input-related removal warnings:
-  Object.defineProperty(this, 'keybindings', {get:function() { throw new Error('voxel-engine "keybindings" property removed') }})
-
-
-
-  // hookup physics controls
-  this.controller = createController(opts, this.buttons)
-  this.controller.setTarget(this.playerEntity.body)
-  var c = this.rendering.camera
-  var camAccessor = {
-    getRotationXY: function() { return [ c.rotationX, c.rotationY ] },
-    setRotationXY: function(x,y) { c.rotationX = x; c.rotationY = y }
-  }
-  this.controller.setCameraAccessor(camAccessor)
-
-
+  this.initializeControls(opts)
 
   // setup plugins
   var pluginOpts = opts.pluginOpts || {}
@@ -47234,26 +47202,35 @@ function Game(opts) {
     pluginOpts[name] = pluginOpts[name] || BUILTIN_PLUGIN_OPTS[name]
   }
 
-  for (var name2 in pluginOpts) {
-    plugins.add(name2, pluginOpts[name2])
+  for (var name in pluginOpts) {
+    plugins.add(name, pluginOpts[name])
   }
   plugins.loadAll()
 
 
   // textures loaded, now can render chunks
+  this.stitcher = plugins.get('voxel-stitch')
+  this.stitcher.on('updatedSides', function() {
+    if (self.generateChunks) self.handleChunkGeneration()
+    self.showAllChunks()
 
+    // TODO: fix async chunk gen, loadPendingChunks() may load 1 even if this.pendingChunks empty
+    setTimeout(function() {
+      self.asyncChunkGeneration = 'asyncChunkGeneration' in opts ? opts.asyncChunkGeneration : true
+    }, 2000)
+  })
+  this.mesherPlugin = plugins.get('voxel-mesher')
 
-  this.rendering.setStitcherPlugin( plugins.get('voxel-stitch'), opts )
-  this.rendering.setMesherPlugin( plugins.get('voxel-mesher') )
-  // TODO: support other plugins implementing same API
+  this.cameraPlugin = plugins.get('game-shell-fps-camera') // TODO: support other plugins implementing same API
 
-  // rendering-related removal warnings..
-  Object.defineProperty(this, 'mesherPlugin', {get:function() { throw new Error('voxel-engine "mesherPlugin" property removed') }})
-  Object.defineProperty(this, 'stitcher', {get:function() { throw new Error('voxel-engine "stitcher" property removed') }})
 
 }
 
 inherits(Game, EventEmitter)
+
+Game.prototype.toString = function() {
+  return 'voxel-engine'
+}
 
 // # External API
 
@@ -47267,109 +47244,79 @@ Game.prototype.voxelPosition = function(gamePosition) {
   return v
 }
 
-
-
-
-/*
- *    ENTITY MANAGEMENT
-*/
-
-
-Game.prototype.addEntity = function(data, aabb, offset, mesh, tickFn) {
-  var body
-  if (aabb) {
-    body = this.physics.addBody( data, aabb )
+var _position = new Array(3)
+Game.prototype.cameraPosition = function() {
+  if (this.cameraPlugin) {
+    this.cameraPlugin.getPosition(_position)
   }
-  var e = createEntity(data, body, offset, mesh, tickFn)
-  this.entities.push(e)
-  return e
+
+  return _position
 }
 
-Game.prototype.removeEntity = function(e) {
-  var ix = this.entities.indexOf(e)
+var _cameraVector = vector.create()
+Game.prototype.cameraVector = function() {
+  if (this.cameraPlugin) {
+    this.cameraPlugin.getVector(_cameraVector)
+  }
+
+  return _cameraVector
+}
+
+Game.prototype.makePhysical = function(target, envelope, blocksCreation) {
+  var vel = this.terminalVelocity
+  envelope = envelope || [2/3, 1.5, 2/3]
+  var obj = physical(target, this.potentialCollisionSet(), envelope, {x: vel[0], y: vel[1], z: vel[2]})
+  obj.blocksCreation = !!blocksCreation
+  return obj
+}
+
+Game.prototype.addItem = function(item) {
+  if (!item.tick) {
+    var newItem = physical(
+      item.mesh,
+      this.potentialCollisionSet(),
+      [item.size, item.size, item.size]
+    )
+    
+    if (item.velocity) {
+      newItem.velocity.copy(item.velocity)
+      newItem.subjectTo(this.gravity)
+    }
+    
+    newItem.repr = function() { return 'debris' }
+    newItem.mesh = item.mesh
+    newItem.blocksCreation = item.blocksCreation
+    
+    item = newItem
+  }
+  
+  this.items.push(item)
+  if (item.mesh) this.scene.add(item.mesh)
+  return this.items[this.items.length - 1]
+}
+
+Game.prototype.removeItem = function(item) {
+  var ix = this.items.indexOf(item)
   if (ix < 0) return
-  if (e.body) this.physics.removeBody(e.body)
-  this.entities.splice(ix, 1)
+  this.items.splice(ix, 1)
+  if (item.mesh) this.scene.remove(item.mesh)
 }
-
-
-
-// player entity creation
-
-function initPlayerEntity(game) {
-  // options ad-hoc for now..
-  var playerW = 0.7
-  var playerH = 1.6
-  var paabb = new aabb( [ 0, 20, 0], [ playerW, playerH, playerW ] )
-  var offset = vec3.fromValues( playerW/2, 0, playerW/2 )
-
-  // create an avatar with references to the camera..
-  var data = {
-    cam: game.rendering.camera,
-    camOffset: vec3.fromValues( playerW/2, playerH, playerW/2 )
-  }
-
-  // tick function references game's camera object and updates it
-  var tick = function(dt) {
-    var camPos = vec3.create()
-    vec3.add( camPos, this.body.aabb.base, this.data.camOffset )
-    // basic-camera uses inverse coords for some reason
-    vec3.scale( camPos, camPos, -1 )
-    this.data.cam.position = camPos
-  }
-
-  return game.addEntity( data, paabb, offset, null, tick )
-
-
-  //  var body = this.physics.addBody( avatar, paabb, true )
-  //  
-  //  // entity (item) to house player values, tick function
-  //  var p = {
-  //    body: body,
-  //    cam: this.rendering.camera,
-  //    posOffset: vec3.fromValues( playerW/2, 0, playerW/2 ),
-  //    camOffset: vec3.fromValues( playerW/2, playerH, playerW/2 )
-  //  }
-  //  p.getPosition = function() {
-  //    var pos = vec3.create()
-  //    return vec3.add( pos, this.body.aabb.base, this.posOffset )
-  //  }
-  //  p.getCamPosition = function() {
-  //    var pos = vec3.create()
-  //    return vec3.add( pos, this.body.aabb.base, this.camOffset )
-  //  }
-  //  p.tick = function(dt) {
-  //    var cpos = this.getCamPosition()
-  //    vec3.scale( cpos, cpos, -1 ) // camera uses inverse coords for some reason
-  //    this.cam.position = cpos
-  //  }
-  //  this.addItem(p)
-}
-
-
-
-
-
-
-
-
 
 // only intersects voxels, not items (for now)
 Game.prototype.raycast = // backwards compat
-  Game.prototype.raycastVoxels = function(start, direction, maxDistance, epilson) {
-  if (!start) return this.raycastVoxels(this.rendering.cameraPosition(), 
-                                        this.rendering.cameraVector(), 10)
-
+Game.prototype.raycastVoxels = function(start, direction, maxDistance, epilson) {
+  if (!start) return this.raycastVoxels(this.cameraPosition(), this.cameraVector(), 10)
+  
   var hitNormal = [0, 0, 0]
   var hitPosition = [0, 0, 0]
-  var cp = start || this.rendering.cameraPosition()
-  var cv = direction || this.rendering.cameraVector()
+  var cp = start || this.cameraPosition()
+  var cv = direction || this.cameraVector()
   var hitBlock = ray(this, cp, cv, maxDistance || 10.0, hitPosition, hitNormal, epilson || this.epilson)
   if (hitBlock <= 0) return false
   var adjacentPosition = [0, 0, 0]
   var voxelPosition = this.voxelPosition(hitPosition)
-  vec3.add(adjacentPosition, voxelPosition, hitNormal)
-
+  vector.add(adjacentPosition, voxelPosition, hitNormal)
+  
   return {
     position: hitPosition,
     voxel: voxelPosition,
@@ -47384,12 +47331,12 @@ Game.prototype.canCreateBlock = function(pos) {
   pos = this.parseVectorArguments(arguments)
   var floored = pos.map(function(i) { return Math.floor(i) })
   var bbox = aabb(floored, [1, 1, 1])
-
-  //  for (var i = 0, len = this.items.length; i < len; ++i) {
-  //    var item = this.items[i]
-  //    var itemInTheWay = item.blocksCreation && item.aabb && bbox.intersects(item.aabb())
-  //    if (itemInTheWay) return false
-  //  }
+  
+  for (var i = 0, len = this.items.length; i < len; ++i) {
+    var item = this.items[i]
+    var itemInTheWay = item.blocksCreation && item.aabb && bbox.intersects(item.aabb())
+    if (itemInTheWay) return false
+  }
 
   return true
 }
@@ -47428,25 +47375,49 @@ Game.prototype.blockPosition = function(pos) {
 Game.prototype.blocks = function(low, high, iterator) {
   var l = low, h = high
   var d = [ h[0]-l[0], h[1]-l[1], h[2]-l[2] ]
-  var voxels
-  if (!iterator) voxels = new this.arrayType(d[0]*d[1]*d[2])
+  if (!iterator) var voxels = new this.arrayType(d[0]*d[1]*d[2])
   var i = 0
   for(var z=l[2]; z<h[2]; ++z)
-    for(var y=l[1]; y<h[1]; ++y)
-      for(var x=l[0]; x<h[0]; ++x, ++i) {
-        if (iterator) iterator(x, y, z, i)
-        else voxels[i] = this.voxels.voxelAtPosition([x, y, z])
-          }
+  for(var y=l[1]; y<h[1]; ++y)
+  for(var x=l[0]; x<h[0]; ++x, ++i) {
+    if (iterator) iterator(x, y, z, i)
+    else voxels[i] = this.voxels.voxelAtPosition([x, y, z])
+  }
   if (!iterator) return {voxels: voxels, dims: d}
-    }
+}
 
 // backwards compat
 Game.prototype.createAdjacent = function(hit, val) {
   this.createBlock(hit.adjacent, val)
 }
 
+Game.prototype.appendTo = function (element) {
+  // no-op; game-shell to append itself
+}
+
 // # Defaults/options parsing
 
+Game.prototype.gravity = [0, -0.0000036, 0]
+Game.prototype.friction = 0.3
+Game.prototype.epilson = 1e-8
+Game.prototype.terminalVelocity = [0.9, 0.1, 0.9]
+
+Game.prototype.defaultButtons = {
+  'W': 'forward'
+, 'A': 'left'
+, 'S': 'backward'
+, 'D': 'right'
+, '<up>': 'forward'
+, '<left>': 'left'
+, '<down>': 'backward'
+, '<right>': 'right'
+, '<mouse 1>': 'fire'
+, '<mouse 3>': 'firealt'
+, '<space>': 'jump'
+, '<shift>': 'crouch'
+, '<control>': 'alt'
+, '<tab>': 'sprint'
+}
 
 // used in methods that have identity function(pos) {}
 Game.prototype.parseVectorArguments = function(args) {
@@ -47462,7 +47433,70 @@ Game.prototype.setConfigurablePositions = function(opts) {
   this.worldOrigin = wo || [0, 0, 0]
 }
 
+Game.prototype.createContainer = function(opts) {
+  if (opts.container) return opts.container
 
+  // based on game-shell makeDefaultContainer()
+  var container = document.createElement("div")
+  container.tabindex = 1
+  container.style.position = "absolute"
+  container.style.left = "0px"
+  container.style.right = "0px"
+  container.style.top = "0px"
+  container.style.bottom = "0px"
+  container.style.height = "100%"
+  container.style.overflow = "hidden"
+  document.body.appendChild(container)
+  document.body.style.overflow = "hidden" //Prevent bounce
+  document.body.style.height = "100%"
+  return container
+}
+
+Game.prototype.setDimensions = function(opts) {
+  if (opts.container) this.container = opts.container
+  if (opts.container && opts.container.clientHeight) {
+    this.height = opts.container.clientHeight
+  } else {
+    this.height = typeof window === "undefined" ? 1 : window.innerHeight
+  }
+  if (opts.container && opts.container.clientWidth) {
+    this.width = opts.container.clientWidth
+  } else {
+    this.width = typeof window === "undefined" ? 1 : window.innerWidth
+  }
+}
+
+Game.prototype.notCapable = function(opts) {
+  var self = this
+  if( !Detector().webgl ) {
+    if (!this.reportedNotCapable) document.body.appendChild(self.notCapableMessage())
+    this.reportedNotCapable = true // only once
+    return true
+  }
+  return false
+}
+
+Game.prototype.notCapableMessage = function() {
+  var wrapper = document.createElement('div')
+  wrapper.className = "errorMessage"
+  var a = document.createElement('a')
+  a.title = "You need WebGL and Pointer Lock (Chrome 23/Firefox 14) to play this game. Click here for more information."
+  a.innerHTML = a.title
+  a.href = "http://get.webgl.org"
+  wrapper.appendChild(a)
+  return wrapper
+}
+
+// # Physics/collision related methods
+
+Game.prototype.control = function(target) {
+  this.controlling = target
+  return this.controls.target(target)
+}
+
+Game.prototype.potentialCollisionSet = function() {
+  return [{ collide: this.collideTerrain.bind(this) }]
+}
 
 /**
  * Get the position of the player under control.
@@ -47473,24 +47507,43 @@ Game.prototype.setConfigurablePositions = function(opts) {
  */
 
 Game.prototype.playerPosition = function() {
-  return this.getPlayerPosition()
-  //  var target = this.controls.target()
-  //  if (!target) return this.rendering.cameraPosition()
-  //  var position = target.avatar.position
-  //  return [position.x, position.y, position.z]
+  var target = this.controls.target()
+  if (!target) return this.cameraPosition()
+  var position = target.avatar.position
+  return [position.x, position.y, position.z]
 }
 
-//Game.prototype.playerAABB = function(position) {
-//  var pos = position || this.playerPosition()
-//  var lower = []
-//  var upper = [1/2, this.playerHeight, 1/2]
-//  var playerBottom = [1/4, this.playerHeight, 1/4]
-//  vec3.subtract(lower, pos, playerBottom)
-//  var bbox = aabb(lower, upper)
-//  return bbox
-//}
+Game.prototype.playerAABB = function(position) {
+  var pos = position || this.playerPosition()
+  var lower = []
+  var upper = [1/2, this.playerHeight, 1/2]
+  var playerBottom = [1/4, this.playerHeight, 1/4]
+  vector.subtract(lower, pos, playerBottom)
+  var bbox = aabb(lower, upper)
+  return bbox
+}
 
+Game.prototype.collideTerrain = function(other, bbox, vec, resting) {
+  var self = this
+  this.collideVoxels(bbox, vec, function hit(axis, tile, coords, dir, edge) {
+    if (!tile) return
+    if (Math.abs(vec[axis]) < Math.abs(edge)) return
+    vec[axis] = edge
+    other.acceleration[axis] = 0
+    resting[['x','y','z'][axis]] = dir // TODO: change to glm vec3 array?
+    other.friction[(axis + 1) % 3] = other.friction[(axis + 2) % 3] = axis === 1 ? self.friction  : 1
+    return true
+  })
+}
 
+// # Three.js specific methods
+
+Game.prototype.addStats = function() {
+  stats = new Stats()
+  stats.domElement.style.position  = 'absolute'
+  stats.domElement.style.bottom  = '0px'
+  document.body.appendChild( stats.domElement )
+}
 
 // # Chunk related methods
 
@@ -47581,10 +47634,10 @@ Game.prototype.loadPendingChunks = function(count) {
     var chunk = this.voxels.generateChunk(chunkPos[0]|0, chunkPos[1]|0, chunkPos[2]|0)
 
     if (this.isClient) this.showChunk(chunk)
-      }
+  }
 
   if (count) pendingChunks.splice(0, count)
-    }
+}
 
 Game.prototype.getChunkAtPosition = function(pos) {
   var chunkID = this.voxels.chunkAtPosition(pos).join('|')
@@ -47610,8 +47663,8 @@ var chunkDensity = function(chunk) {
   }
 
   var densities = {}
-  for (var val2 in counts) {
-    densities[val2] = counts[val2] / length
+  for (var val in counts) {
+    densities[val] = counts[val] / length
   }
   return densities
 }
@@ -47624,8 +47677,7 @@ Game.prototype.showChunk = function(chunk, optionalPosition) {
   //console.log('showChunk',chunkIndex,'density=',JSON.stringify(chunkDensity(chunk)))
 
   var voxelArray = isndarray(chunk) ? chunk : ndarray(chunk.voxels, chunk.dims)
-  var mesh = this.rendering.stitchVoxelMesh( this.shell.gl, voxelArray, chunk.position, this.chunkPad)
-  // TODO: should the above API be on game.renderer or with data management?
+  var mesh = this.mesherPlugin.createVoxelMesh(this.shell.gl, voxelArray, this.stitcher.voxelSideTextureIDs, this.stitcher.voxelSideTextureSizes, chunk.position, this.chunkPad)
 
   if (!mesh) {
     // no voxels
@@ -47643,46 +47695,52 @@ Game.prototype.showChunk = function(chunk, optionalPosition) {
   return mesh
 }
 
+// # Debugging methods
+
+Game.prototype.addMarker = function(position) {
+  throw new Error('voxel-engine addMarker not yet implemented TODO: figure out how to fit this into the rendering pipeline')
+}
+
+Game.prototype.addAABBMarker = function(aabb, color) {
+  throw new Error('voxel-engine addAABBMarker not yet implemented TODO')
+}
+
+Game.prototype.addVoxelMarker = function(x, y, z, color) {
+  var bbox = aabb([x, y, z], [1, 1, 1])
+  return this.addAABBMarker(bbox, color)
+}
+
 // # Misc internal methods
+
+Game.prototype.onFire = function(state) {
+  this.emit('fire', this.controlling, state)
+}
 
 Game.prototype.setInterval = tic.interval.bind(tic)
 Game.prototype.setTimeout = tic.timeout.bind(tic)
 
 Game.prototype.tick = function(delta) {
-
-  // TODO: revisit timing
-  // for now, highly variable timesteps are Considered Harmful
-  if (delta > 200) delta = 200
-
-  this.controller.tick(delta)
-
-  this.physics.tick(delta)
-
-  // tick entities
-  for(var i=0; i<this.entities.length; ++i) {
-    if (this.entities[i].tick) {
-      this.entities[i].tick()
-    }
+  for(var i = 0, len = this.items.length; i < len; ++i) {
+    this.items[i].tick(delta)
   }
-
+  
   //if (this.materials) this.materials.tick(delta)
 
   if (this.pendingChunks.length) this.loadPendingChunks()
   if (Object.keys(this.chunksNeedsUpdate).length > 0) this.updateDirtyChunks()
-
+  
   tic.tick(delta)
 
-  // continuously emit 'fire' events when buttons are held down (limited to opts.frequency)
-  // TODO: revisit
-  if (this.buttons.fire || this.buttons.firealt)
-    this.onFire(this.buttons)
-
   this.emit('tick', delta)
-
+  
+  //if (!this.controls) return // this.controls removed; still load chunks
   var playerPos = this.playerPosition()
   this.spatial.emit('position', playerPos, playerPos)
 }
 
+Game.prototype.render = function(delta) {
+  this.view.render(this.scene)
+}
 
 // TODO: merge with game-shell render loop?
 Game.prototype.initializeTimer = function(rate) {
@@ -47692,11 +47750,11 @@ Game.prototype.initializeTimer = function(rate) {
   var last = null
   var dt = 0
   var wholeTick
-
+  
   self.frameUpdated = true
   self.interval = setInterval(timer, 0)
   return self.interval
-
+  
   function timer() {
     if (self.paused) {
       last = Date.now()
@@ -47711,14 +47769,67 @@ Game.prototype.initializeTimer = function(rate) {
     wholeTick = ((accum / rate)|0)
     if (wholeTick <= 0) return
     wholeTick *= rate
-
+    
     self.tick(wholeTick)
     accum -= wholeTick
-
+    
     self.frameUpdated = true
   }
 }
 
+// Create the buttons state object (binding => state), proxying to game-shell .wasDown(binding)
+Game.prototype.proxyButtons = function() {
+  var self = this
+
+  self.buttons = {}
+
+  Object.keys(this.shell.bindings).forEach(function(name) {
+    Object.defineProperty(self.buttons, name, {get:
+      function() {
+        return self.shell.pointerLock && self.shell.wasDown(name)
+      }
+    })
+  })
+}
+
+// cleanup key name - based on https://github.com/mikolalysenko/game-shell/blob/master/shell.js
+var filtered_vkey = function(k) {
+  if(k.charAt(0) === '<' && k.charAt(k.length-1) === '>') {
+    k = k.substring(1, k.length-1)
+  }
+  k = k.replace(/\s/g, "-")
+  return k
+}
+
+Game.prototype.initializeControls = function(opts) {
+  // player control - game-shell handles most controls now
+
+  // initial keybindings passed in from options
+  obsolete(this, 'keybindings')
+  var keybindings = opts.keybindings || this.defaultButtons
+  for (var key in keybindings) {
+    var name = keybindings[key]
+
+    // translate name for game-shell
+    key = filtered_vkey(key)
+
+    this.shell.bind(name, key)
+  }
+
+  obsolete(this, 'interact')
+
+  this.proxyButtons() // sets this.buttons TODO: refresh when shell.bindings changes (bind/unbind)
+  this.hookupControls(this.buttons, opts)
+}
+
+Game.prototype.hookupControls = function(buttons, opts) {
+  opts = opts || {}
+  opts.controls = opts.controls || {}
+  opts.controls.onfire = this.onFire.bind(this)
+  this.controls = control(buttons, opts.controls)
+  this.items.push(this.controls)
+  this.controlling = null
+}
 
 Game.prototype.handleChunkGeneration = function() {
   var self = this
@@ -47735,149 +47846,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require('_process'))
-},{"./lib/container":267,"./lib/entity":269,"./lib/inputs":270,"./lib/rendering":271,"_process":1105,"aabb-3d":273,"basic-camera":275,"events":1101,"extend":277,"gl-vec3":302,"inherits":324,"isndarray":325,"ndarray":326,"path":1104,"spatial-events":328,"tic":330,"underscore":331,"voxel":621,"voxel-fps-controller":332,"voxel-mesher":368,"voxel-physics-engine":402,"voxel-plugins":443,"voxel-raycast":444,"voxel-region-change":445,"voxel-registry":448,"voxel-shader":449,"voxel-stitch":619}],267:[function(require,module,exports){
-'use strict';
-
-var Stats = require('./stats')
-var Detector = require('./detector')
-var createShell = require('gl-now')
-
-module.exports = function(game, opts) {
-  return new Container(game, opts)
-}
-
-
-var _game
-, _container
-, _shell
-, _stats
-, foundNotCapable = false
-
-
-
-
-function Container(game, opts) {
-  _game = game
-  _container = createContainerDiv(opts)
-}
-
-
-// TODO: abstract/remove these if possible?
-Container.prototype.getContainer = function() {
-  return _container
-}
-Container.prototype.getShell = function() {
-  return _shell
-}
-
-
-
-// exposed APIs:
-
-
-Container.prototype.appendTo = function(el) {
-  _container.appendChild( el )
-}
-
-
-Container.prototype.createShell = function( opts ) {
-  var shellOpts = opts.shellOpts || {}
-  shellOpts.element = _container
-  var sky = opts.skyColor || 0xBFD1E5
-  shellOpts.clearColor = [
-    (sky >> 16) / 255.0,
-    ((sky >> 8) & 0xff) / 255.0,
-    (sky & 0xff) / 255.0,
-    1.0
-  ]
-  shellOpts.pointerLock = opts.pointerLock !== undefined ? opts.pointerLock : true
-  _shell = createShell(shellOpts)
-  
-  // should not be reached; notCapable() checked for WebGL compatibility first
-  _shell.on('gl-error', function(err) {
-    document.body.appendChild(document.createTextNode('Fatal WebGL error: ' + err))
-  })
-
-}
-
-
-Container.prototype.notCapable = function(opts) {
-  if (foundNotCapable) return true // write error message only once
-  if( !Detector().webgl ) {
-    foundNotCapable = true
-    this.appendTo( createNotCapableMessage() )
-    return true
-  }
-  return false
-}
-
-function createNotCapableMessage() {
-  var wrapper = document.createElement('div')
-  wrapper.className = "errorMessage"
-  var a = document.createElement('a')
-  a.title = "You need WebGL and Pointer Lock (Chrome 23/Firefox 14) to play this game. Click here for more information."
-  a.innerHTML = a.title
-  a.href = "http://get.webgl.org"
-  wrapper.appendChild(a)
-  return wrapper
-}
-
-
-
-
-Container.prototype.addStats = function() {
-  // not useful until somebody hooks up the result to a tick function..
-  var stats = new Stats()
-  stats.domElement.style.position  = 'absolute'
-  stats.domElement.style.bottom  = '0px'
-  this.appendTo( stats.domElement )
-  return stats
-}
-
-
-
-function createContainerDiv(opts) {
-  if (opts.container) return opts.container
-
-  // based on game-shell makeDefaultContainer()
-  var container = document.createElement("div")
-  container.tabindex = 1
-  container.style.position = "absolute"
-  container.style.left = "0px"
-  container.style.right = "0px"
-  container.style.top = "0px"
-  container.style.bottom = "0px"
-  container.style.height = "100%"
-  container.style.overflow = "hidden"
-  document.body.appendChild(container)
-  document.body.style.overflow = "hidden" //Prevent bounce
-  document.body.style.height = "100%"
-  return container
-}
-
-
-// this function not edited yet...
-Container.prototype.setDimensions = function(opts) {
-  if (opts.container) this.container = opts.container
-  if (opts.container && opts.container.clientHeight) {
-    this.height = opts.container.clientHeight
-  } else {
-    this.height = typeof window === "undefined" ? 1 : window.innerHeight
-  }
-  if (opts.container && opts.container.clientWidth) {
-    this.width = opts.container.clientWidth
-  } else {
-    this.width = typeof window === "undefined" ? 1 : window.innerWidth
-  }
-}
-
-
-
-
-
-
-
-},{"./detector":268,"./stats":272,"gl-now":278}],268:[function(require,module,exports){
+},{"./lib/detector":267,"./lib/stats":268,"_process":1036,"aabb-3d":269,"collide-3d-tilemap":271,"events":1032,"extend":272,"game-shell-fps-camera":273,"gl-now":279,"gl-vec3":303,"inherits":325,"isndarray":326,"ndarray":327,"obsolete":329,"path":1035,"spatial-events":330,"tic":332,"voxel":552,"voxel-controls":333,"voxel-mesher":335,"voxel-physicals":371,"voxel-plugins":374,"voxel-raycast":375,"voxel-region-change":376,"voxel-registry":379,"voxel-shader":380,"voxel-stitch":550}],267:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -47938,227 +47907,7 @@ module.exports = function() {
   };
 }
 
-},{}],269:[function(require,module,exports){
-'use strict';
-
-var vec3 = require('gl-vec3')
-
-module.exports = function(data, body, offset, mesh, tickFn) {
-  return new Entity(data, body, offset, mesh, tickFn)
-}
-
-
-/*
- *  data:     data object for use by consumer
- *  body:     rigid body (from physics engine), with an aabb
- *  offset:   vec3 of offset from entity's AABB to its 'center'
- *  mesh:     TBD
- *  tickFn:   tick function (called by Game if present)
-*/
-
-function Entity(data, body, offset, mesh, tickFn) {
-  this.data = data || {}
-  this.body = body || undefined
-  this.offset = offset || undefined
-  this.mesh = mesh || undefined
-  this.tick = tickFn || undefined
-}
-
-Entity.prototype.getPosition = function() {
-  var p = vec3.create()
-  vec3.copy( p, this.body.aabb.base )
-  if (this.offset) vec3.add( p, p, this.offset )
-  return p
-}
-
-
-
-
-
-
-},{"gl-vec3":302}],270:[function(require,module,exports){
-'use strict';
-
-
-module.exports = function(game, opts) {
-  return new Inputs(game, opts)
-}
-
-
-var _game
-, _buttons
-
-, defaultButtons = {
-  'W': 'forward'
-  , 'A': 'left'
-  , 'S': 'backward'
-  , 'D': 'right'
-  , '<up>': 'forward'
-  , '<left>': 'left'
-  , '<down>': 'backward'
-  , '<right>': 'right'
-  , '<mouse 1>': 'fire'
-  , '<mouse 3>': 'firealt'
-  , '<space>': 'jump'
-  , '<shift>': 'crouch'
-  , '<control>': 'alt'
-  , '<tab>': 'sprint'
-}
-
-
-function Inputs(game, opts) {
-  _game = game
-
-
-  var keybindings = opts.keybindings || defaultButtons
-  for (var key in keybindings) {
-    var name = keybindings[key]
-
-    // translate name for game-shell
-    key = filtered_vkey(key)
-
-    // TODO: rethink this dependency on game shell when I abstract Container
-    _game.shell.bind(name, key)
-  }
-
-  // proxy buttons - sets this.buttons TODO: refresh when shell.bindings changes (bind/unbind)
-
-  // Create the buttons state object (binding => state), proxying to game-shell .wasDown(binding)
-  _buttons = {}
-
-  Object.keys(_game.shell.bindings).forEach(function(name) {
-    Object.defineProperty( _buttons, name, {get: function() {
-      return _game.shell.pointerLock && _game.shell.wasDown(name)
-    }})
-  })
-  Object.defineProperty( _buttons, "dx", {get: function() {
-    return _game.shell.pointerLock ? _game.shell.mouseX - _game.shell.prevMouseX : 0
-  }})
-  Object.defineProperty( _buttons, "dy", {get: function() {
-    return _game.shell.pointerLock ? _game.shell.mouseY - _game.shell.prevMouseY : 0
-  }})
-
-
-}
-
-// temporary accessors for Game object
-
-Inputs.prototype.tempOnFire = function(state) {
-  _game.emit('fire', _game.controlling, state)
-}
-Inputs.prototype.tempGetButtons = function() {
-  return _buttons
-}
-
-
-
-// cleanup key name - based on https://github.com/mikolalysenko/game-shell/blob/master/shell.js
-function filtered_vkey (k) {
-  if(k.charAt(0) === '<' && k.charAt(k.length-1) === '>') {
-    k = k.substring(1, k.length-1)
-  }
-  k = k.replace(/\s/g, "-")
-  return k
-}
-
-
-
-},{}],271:[function(require,module,exports){
-'use strict';
-
-var vec3 = require('gl-vec3')
-
-module.exports = function(game, opts) {
-  return new Rendering(game, opts)
-}
-
-
-var _game
-, _camera
-, _mesher
-, _stitcher
-, _antialias
-, _meshType
-, _materialNames
-
-function Rendering(game, opts) {
-  _game = game
-  this.camera = null
-  
-  // the following appear to be unused, may be used in future
-  _antialias = opts.antialias
-  _meshType = opts.meshType || 'surfaceMesh'
-  _materialNames = opts.materials
-  
-}
-
-
-// TODO: abstract/remove these if possible?
-
-// exposed APIs:
-
-Rendering.prototype.setCameraPlugin = function(plugin) {
-  _camera = plugin
-}
-Rendering.prototype.setCamera = function(cam) {
-  this.camera = cam
-}
-
-Rendering.prototype.setMesherPlugin = function(plugin) {
-  _mesher = plugin
-}
-
-Rendering.prototype.setStitcherPlugin = function(plugin, opts) {
-  _stitcher = plugin
-  
-  var async = 'asyncChunkGeneration' in opts ? opts.asyncChunkGeneration : true
-  _stitcher.on('updatedSides', function() {
-    if (_game.generateChunks) _game.handleChunkGeneration()
-    _game.showAllChunks()
-    
-    // TODO: fix async chunk gen, loadPendingChunks() may load 1 even if this.pendingChunks empty
-    // TODO also: why is this here?
-    setTimeout(function() {
-      _game.asyncChunkGeneration = !!async
-    }, 2000)
-  })
-
-}
-
-
-Rendering.prototype.stitchVoxelMesh = function( gl, voxelArray, chunkPosition, chunkPad) {
-  return _mesher.createVoxelMesh( 
-    gl, voxelArray, _stitcher.voxelSideTextureIDs, 
-    _stitcher.voxelSideTextureSizes, chunkPosition, chunkPad
-  )
-}
-
-
-
-var _camPos = new Array(3)
-Rendering.prototype.cameraPosition = function() {
-  // Negate since basic-camera considers -Y up (etc.), but we use +Y for up
-  _camPos[0] = -this.camera.position[0]
-  _camPos[1] = -this.camera.position[1]
-  _camPos[2] = -this.camera.position[2]
-  return _camPos
-}
-
-var _camVec3 = new Array(3)
-Rendering.prototype.cameraVector = function() {
-  this.camera.getCameraVector(_camVec3)
-  _camVec3[0] = -_camVec3[0]
-  _camVec3[1] = -_camVec3[1]
-  _camVec3[2] = -_camVec3[2]
-  return _camVec3
-}
-
-
-
-
-
-
-},{"gl-vec3":302}],272:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -48304,7 +48053,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],273:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -48421,72 +48170,98 @@ proto.union = function(aabb) {
 
 
 
-},{"gl-matrix":274}],274:[function(require,module,exports){
+},{"gl-matrix":270}],270:[function(require,module,exports){
 arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],275:[function(require,module,exports){
-var glm = require('gl-matrix')
-var vec3 = glm.vec3
-var mat4 = glm.mat4
+},{"dup":219}],271:[function(require,module,exports){
+module.exports = function(field, tilesize, dimensions, offset) {
+  dimensions = dimensions || [ 
+    Math.sqrt(field.length) >> 0
+  , Math.sqrt(field.length) >> 0
+  , Math.sqrt(field.length) >> 0
+  ] 
 
-module.exports = noclip
+  offset = offset || [
+    0
+  , 0
+  , 0
+  ]
 
-var scratch0 = mat4.create()
+  field = typeof field === 'function' ? field : function(x, y, z) {
+    return this[x + y * dimensions[1] + (z * dimensions[1] * dimensions[2])]
+  }.bind(field) 
 
-function noclip(position) {
-  if (!(this instanceof noclip)) return new noclip(position)
+  var coords
 
-  this.position = position || vec3.create()
-  this.rotationX = this.rotationY = this.rotationZ = 0.0
+  coords = [0, 0, 0]
+
+  return collide
+
+  function collide(box, vec, oncollision) {
+    if(vec[0] === 0 && vec[1] === 0 && vec[2] === 0) return
+
+    // collide x, then y
+    collideaxis(0)
+    collideaxis(1)
+    collideaxis(2)
+
+    function collideaxis(i_axis) {
+      var j_axis = (i_axis + 1) % 3
+        , k_axis = (i_axis + 2) % 3 
+        , posi = vec[i_axis] > 0
+        , leading = box[posi ? 'max' : 'base'][i_axis] 
+        , dir = posi ? 1 : -1
+        , i_start = Math.floor(leading / tilesize)
+        , i_end = (Math.floor((leading + vec[i_axis]) / tilesize)) + dir
+        , j_start = Math.floor(box.base[j_axis] / tilesize)
+        , j_end = Math.ceil(box.max[j_axis] / tilesize)
+        , k_start = Math.floor(box.base[k_axis] / tilesize) 
+        , k_end = Math.ceil(box.max[k_axis] / tilesize)
+        , done = false
+        , edge_vector
+        , edge
+        , tile
+
+      // loop from the current tile coord to the dest tile coord
+      //    -> loop on the opposite axis to get the other candidates
+      //      -> if `oncollision` return `true` we've hit something and
+      //         should break out of the loops entirely.
+      //         NB: `oncollision` is where the client gets the chance
+      //         to modify the `vec` in-flight.
+      // once we're done translate the box to the vec results
+
+      var step = 0
+      for(var i = i_start; !done && i !== i_end; ++step, i += dir) {
+        if(i < offset[i_axis] || i >= dimensions[i_axis]) continue
+        for(var j = j_start; !done && j !== j_end; ++j) {
+          if(j < offset[j_axis] || j >= dimensions[j_axis]) continue
+          for(var k = k_start; k !== k_end; ++k) {
+            if(k < offset[k_axis] || k >= dimensions[k_axis]) continue
+            coords[i_axis] = i
+            coords[j_axis] = j
+            coords[k_axis] = k
+            tile = field.apply(field, coords)
+
+            if(tile === undefined) continue
+
+            edge = dir > 0 ? i * tilesize : (i + 1) * tilesize
+            edge_vector = edge - leading
+
+            if(oncollision(i_axis, tile, coords, dir, edge_vector)) {
+              done = true
+              break
+            }
+          } 
+        }
+      }
+
+      coords[0] = coords[1] = coords[2] = 0
+      coords[i_axis] = vec[i_axis]
+      box.translate(coords)
+    }
+  }  
 }
 
-// camera direction vector cache
-var dirX = 0.0, dirY = 0.0, dirZ = 0.0
-
-noclip.prototype.view = function(output) {
-  if (!output) output = mat4.create()
-
-  mat4.identity(scratch0)
-  mat4.rotateX(scratch0, scratch0, this.rotationX)
-  mat4.rotateY(scratch0, scratch0, this.rotationY)
-  mat4.rotateZ(scratch0, scratch0, this.rotationZ)
-
-  dirX = scratch0[2]
-  dirY = scratch0[6]
-  dirZ = scratch0[10]
-
-  mat4.translate(output
-    , scratch0
-    , this.position
-  )
-
-  return output
-}
-
-noclip.prototype.getCameraVector = function(v) {
-  v[0] = dirX
-  v[1] = dirY
-  v[2] = dirZ
-  return v
-}
-
-noclip.prototype.rotateX   = function(angle) {
-  this.rotationX += angle
-  return this
-}
-
-noclip.prototype.rotateY   = function(angle) {
-  this.rotationY += angle
-  return this
-}
-
-noclip.prototype.rotateZ   = function(angle) {
-  this.rotationZ += angle
-  return this
-}
-
-},{"gl-matrix":276}],276:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],277:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -48568,7 +48343,270 @@ module.exports = function extend() {
 };
 
 
+},{}],273:[function(require,module,exports){
+'use strict';
+
+var glm = require('gl-matrix');
+var vec3 = glm.vec3;
+var quat = glm.quat;
+var createBasicCamera = require('basic-camera');
+var PointerStream = require('./pointer-stream.js');
+var inherits = require('inherits');
+var EventEmitter = require('events').EventEmitter;
+
+module.exports = function(game, opts) {
+  return new CameraPlugin(game, opts);
+}
+module.exports.pluginInfo = {
+  //clientOnly: true // TODO: server-side support for storing camera location, without rendering?
+};
+
+function CameraPlugin(game, opts) {
+  this.game = game;
+  this.shell = game.shell;
+
+  opts = opts || {};
+  this.enableFlight = opts.enableFlight !== undefined ? opts.enableFlight : true;
+
+  this.camera = createBasicCamera();
+  this.camera.lookAt = function(eye, center, up) { console.log(eye, center, up); }; // TODO: add to basic-camera, as in orbit-camera (https://github.com/hughsk/basic-camera/issues/5)
+  this.camera.position.set(opts.position || [0,-30,0]);
+  this.camera.rotationX = opts.rotationX || 0.0;
+  this.camera.rotationY = opts.rotationY || 0.0;
+  this.camera.rotationZ = opts.rotationZ || 0.0;
+
+  this.cameraVector = vec3.create();
+  var camera = this.camera;
+
+  var q = this.q = quat.create();
+  var axis = vec3.create();
+
+  var translateOnAxis = function(x, y, z, distance) {
+    vec3.set(axis, x, y, z);
+    vec3.transformQuat(axis, axis, q);
+    vec3.scaleAndAdd(camera.position, camera.position, axis, distance);
+  };
+
+  // three.js-like object for voxel-physical target
+  this.player = {
+    position: {},
+    rotation: {},
+
+    translateX: translateOnAxis.bind(null, -1, 0, 0),
+    translateY: translateOnAxis.bind(null, 0, -1, 0),
+    translateZ: translateOnAxis.bind(null, 0, 0, -1),
+  };
+
+  var offset = 1.5; // distance between camera pos (eyes) and player pos (feet), voxel-engine makePhysical envelope y TODO: stop hardcoding here..
+  Object.defineProperty(this.player.position, 'x', { get:function() { return -camera.position[0]; }, set:function(v) { camera.position[0] = -v; }});
+  Object.defineProperty(this.player.position, 'y', { get:function() { return -camera.position[1]-offset; }, set:function(v) { camera.position[1] = -v-offset; }});
+  Object.defineProperty(this.player.position, 'z', { get:function() { return -camera.position[2]; }, set:function(v) { camera.position[2] = -v; }});
+
+  var updateRotation = function() {
+    // update Euler angles (order YXZ) to quaternion
+    quat.identity(q);
+    quat.rotateY(q, q, -camera.rotationY); // yaw
+    //quat.rotateZ(q, q, camera.rotationZ); // roll always zero for now
+    //quat.rotateX(q, q, camera.rotationX); // pitch should have no effect on WASD movement (otherwise, will bounce up when looking around and walking)
+  };
+
+  Object.defineProperty(this.player.rotation, 'x', { get:function() { return camera.rotationX; }, set:function(v) { camera.rotationX = v; updateRotation(); }});
+  Object.defineProperty(this.player.rotation, 'y', { get:function() { return camera.rotationY; }, set:function(v) { camera.rotationY = v; updateRotation(); }});
+  Object.defineProperty(this.player.rotation, 'z', { get:function() { return camera.rotationZ; }, set:function(v) { camera.rotationZ = v; updateRotation(); }});
+
+  this.enable();
+}
+inherits(CameraPlugin, EventEmitter);
+
+CameraPlugin.prototype.enable = function() {
+  this.shell.bind('left', 'left', 'A');
+  this.shell.bind('right', 'right', 'D');
+  this.shell.bind('forward', 'up', 'W');
+  this.shell.bind('backward', 'down', 'S');
+  this.shell.bind('jump', 'space');
+  this.shell.bind('crouch', 'shift');
+
+  this.physics = this.game.makePhysical(this.player); // voxel-physical
+  this.game.addItem(this.physics);
+  this.physics.yaw = this.player;
+  this.physics.pitch = this.player;//.head; TODO
+  //this.physics.roll = this.player; // TODO: advanced rolling controls? (aircraft, flight?)
+  this.physics.subjectTo(this.game.gravity);
+  this.physics.blocksCreation = true;
+
+  this.game.control(this.physics);
+
+  this.pointerStream = new PointerStream({shell:this.shell});
+  this.pointerStream.pipe(this.game.controls.createWriteRotationStream());
+};
+
+CameraPlugin.prototype.disable = function() {
+  this.pointerStream.disable();
+  this.shell.unbind('left');
+  this.shell.unbind('right');
+  this.shell.unbind('forward');
+  this.shell.unbind('backward');
+  this.shell.unbind('jump');
+  this.shell.unbind('crouch');
+};
+
+CameraPlugin.prototype.view = function(out) {
+  this.camera.view(out); // (note: returns out)
+  // Allow other plugins to adjust the view matrix
+  this.emit('view', out);
+  return out;
+};
+
+CameraPlugin.prototype.getPosition = function(out) {
+  // Negate since basic-camera considers -Y up (etc.), but we use +Y for up
+  out[0] = -this.camera.position[0];
+  out[1] = -this.camera.position[1];
+  out[2] = -this.camera.position[2];
+};
+
+var _scratch1 = [0,0,0];
+CameraPlugin.prototype.getVector = function(out) {
+  this.camera.getCameraVector(_scratch1);
+  out[0] = -_scratch1[0];
+  out[1] = -_scratch1[1];
+  out[2] = -_scratch1[2];
+};
+
+},{"./pointer-stream.js":278,"basic-camera":274,"events":1032,"gl-matrix":276,"inherits":277}],274:[function(require,module,exports){
+var glm = require('gl-matrix')
+var vec3 = glm.vec3
+var mat4 = glm.mat4
+
+module.exports = noclip
+
+var scratch0 = mat4.create()
+
+function noclip(position) {
+  if (!(this instanceof noclip)) return new noclip(position)
+
+  this.position = position || vec3.create()
+  this.rotationX = this.rotationY = this.rotationZ = 0.0
+}
+
+// camera direction vector cache
+var dirX = 0.0, dirY = 0.0, dirZ = 0.0
+
+noclip.prototype.view = function(output) {
+  if (!output) output = mat4.create()
+
+  mat4.identity(scratch0)
+  mat4.rotateX(scratch0, scratch0, this.rotationX)
+  mat4.rotateY(scratch0, scratch0, this.rotationY)
+  mat4.rotateZ(scratch0, scratch0, this.rotationZ)
+
+  dirX = scratch0[2]
+  dirY = scratch0[6]
+  dirZ = scratch0[10]
+
+  mat4.translate(output
+    , scratch0
+    , this.position
+  )
+
+  return output
+}
+
+noclip.prototype.getCameraVector = function(v) {
+  v[0] = dirX
+  v[1] = dirY
+  v[2] = dirZ
+  return v
+}
+
+noclip.prototype.rotateX   = function(angle) {
+  this.rotationX += angle
+  return this
+}
+
+noclip.prototype.rotateY   = function(angle) {
+  this.rotationY += angle
+  return this
+}
+
+noclip.prototype.rotateZ   = function(angle) {
+  this.rotationZ += angle
+  return this
+}
+
+},{"gl-matrix":275}],275:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],276:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],277:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
 },{}],278:[function(require,module,exports){
+'use strict';
+
+var Readable = require('stream').Readable;
+var inherits = require('inherits');
+
+function PointerStream(opts) {
+  opts.objectMode = true;
+  Readable.call(this, opts);
+  this.shell = opts.shell;
+  if (!this.shell) throw new Error('PointerStream requires shell option set to game-shell instance');
+
+  this.enable();
+}
+
+inherits(PointerStream, Readable);
+
+PointerStream.prototype.enable = function() {
+  this.shell.on('tick', this.onTick = this.tick.bind(this));
+};
+
+PointerStream.prototype.disable = function() {
+  this.shell.removeListener('tick', this.onTick);
+};
+
+
+PointerStream.prototype.tick = function() {
+  if (!this.shell.pointerLock) {
+    return;
+  }
+
+  var dx = this.shell.prevMouseX - this.shell.mouseX;
+  var dy = this.shell.prevMouseY - this.shell.mouseY;
+  var dt = Date.now() - this.shell.startTime;
+
+  this.push({dx:dx, dy:dy, dt:dt});
+};
+
+PointerStream.prototype._read = function() {
+  // must implement, but don't add any updates on-demand
+};
+
+module.exports = PointerStream;
+
+},{"inherits":277,"stream":1048}],279:[function(require,module,exports){
 "use strict"
 
 var makeGameShell = require("game-shell")
@@ -48710,7 +48748,7 @@ function createGLShell(options) {
 
 module.exports = createGLShell
 
-},{"game-shell":288,"webglew":290}],279:[function(require,module,exports){
+},{"game-shell":289,"webglew":291}],280:[function(require,module,exports){
 if(typeof window.performance === "object") {
   if(window.performance.now) {
     module.exports = function() { return window.performance.now() }
@@ -48723,7 +48761,7 @@ if(typeof window.performance === "object") {
   module.exports = function() { return (new Date()).getTime() }
 }
 
-},{}],280:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
 //Adapted from here: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel?redirectlocale=en-US&redirectslug=DOM%2FMozilla_event_reference%2Fwheel
 
 var prefix = "", _addEventListener, onwheel, support;
@@ -48783,7 +48821,7 @@ module.exports = function( elem, callback, useCapture ) {
     _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
   }
 };
-},{}],281:[function(require,module,exports){
+},{}],282:[function(require,module,exports){
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
  
@@ -48813,7 +48851,7 @@ if (!window.cancelAnimationFrame)
         clearTimeout(id);
     };
 
-},{}],282:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 "use strict"
 
 function compileSearch(funcName, predicate, reversed, extraArgs, useNdarray, earlyOut) {
@@ -48875,7 +48913,7 @@ module.exports = {
   eq: compileBoundsSearch("-", true, "EQ", true)
 }
 
-},{}],283:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -48905,7 +48943,7 @@ module.exports = {
 
 });
 
-},{}],284:[function(require,module,exports){
+},{}],285:[function(require,module,exports){
 "use strict"
 
 function invert(hash) {
@@ -48919,13 +48957,13 @@ function invert(hash) {
 }
 
 module.exports = invert
-},{}],285:[function(require,module,exports){
+},{}],286:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],286:[function(require,module,exports){
+},{"dup":97}],287:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],287:[function(require,module,exports){
+},{"dup":95}],288:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],288:[function(require,module,exports){
+},{"dup":10}],289:[function(require,module,exports){
 "use strict"
 
 var EventEmitter = require("events").EventEmitter
@@ -49645,11 +49683,11 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":279,"./lib/mousewheel-polyfill.js":280,"./lib/raf-polyfill.js":281,"binary-search-bounds":282,"domready":283,"events":1101,"invert-hash":284,"iota-array":285,"uniq":286,"util":1120,"vkey":287}],289:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":280,"./lib/mousewheel-polyfill.js":281,"./lib/raf-polyfill.js":282,"binary-search-bounds":283,"domready":284,"events":1032,"invert-hash":285,"iota-array":286,"uniq":287,"util":1051,"vkey":288}],290:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],290:[function(require,module,exports){
+},{"dup":101}],291:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":289}],291:[function(require,module,exports){
+},{"dup":102,"weakmap":290}],292:[function(require,module,exports){
 module.exports = add;
 
 /**
@@ -49666,7 +49704,7 @@ function add(out, a, b) {
     out[2] = a[2] + b[2]
     return out
 }
-},{}],292:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 module.exports = angle
 
 var fromValues = require('./fromValues')
@@ -49695,7 +49733,7 @@ function angle(a, b) {
     }     
 }
 
-},{"./dot":299,"./fromValues":301,"./normalize":310}],293:[function(require,module,exports){
+},{"./dot":300,"./fromValues":302,"./normalize":311}],294:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -49711,7 +49749,7 @@ function clone(a) {
     out[2] = a[2]
     return out
 }
-},{}],294:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -49727,7 +49765,7 @@ function copy(out, a) {
     out[2] = a[2]
     return out
 }
-},{}],295:[function(require,module,exports){
+},{}],296:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -49742,7 +49780,7 @@ function create() {
     out[2] = 0
     return out
 }
-},{}],296:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 module.exports = cross;
 
 /**
@@ -49762,7 +49800,7 @@ function cross(out, a, b) {
     out[2] = ax * by - ay * bx
     return out
 }
-},{}],297:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 module.exports = distance;
 
 /**
@@ -49778,7 +49816,7 @@ function distance(a, b) {
         z = b[2] - a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],298:[function(require,module,exports){
+},{}],299:[function(require,module,exports){
 module.exports = divide;
 
 /**
@@ -49795,7 +49833,7 @@ function divide(out, a, b) {
     out[2] = a[2] / b[2]
     return out
 }
-},{}],299:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 module.exports = dot;
 
 /**
@@ -49808,7 +49846,7 @@ module.exports = dot;
 function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 }
-},{}],300:[function(require,module,exports){
+},{}],301:[function(require,module,exports){
 module.exports = forEach;
 
 var vec = require('./create')()
@@ -49853,7 +49891,7 @@ function forEach(a, stride, offset, count, fn, arg) {
         
         return a
 }
-},{"./create":295}],301:[function(require,module,exports){
+},{"./create":296}],302:[function(require,module,exports){
 module.exports = fromValues;
 
 /**
@@ -49871,7 +49909,7 @@ function fromValues(x, y, z) {
     out[2] = z
     return out
 }
-},{}],302:[function(require,module,exports){
+},{}],303:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -49906,7 +49944,7 @@ module.exports = {
   , rotateZ: require('./rotateZ')
   , forEach: require('./forEach')
 }
-},{"./add":291,"./angle":292,"./clone":293,"./copy":294,"./create":295,"./cross":296,"./distance":297,"./divide":298,"./dot":299,"./forEach":300,"./fromValues":301,"./inverse":303,"./length":304,"./lerp":305,"./max":306,"./min":307,"./multiply":308,"./negate":309,"./normalize":310,"./random":311,"./rotateX":312,"./rotateY":313,"./rotateZ":314,"./scale":315,"./scaleAndAdd":316,"./set":317,"./squaredDistance":318,"./squaredLength":319,"./subtract":320,"./transformMat3":321,"./transformMat4":322,"./transformQuat":323}],303:[function(require,module,exports){
+},{"./add":292,"./angle":293,"./clone":294,"./copy":295,"./create":296,"./cross":297,"./distance":298,"./divide":299,"./dot":300,"./forEach":301,"./fromValues":302,"./inverse":304,"./length":305,"./lerp":306,"./max":307,"./min":308,"./multiply":309,"./negate":310,"./normalize":311,"./random":312,"./rotateX":313,"./rotateY":314,"./rotateZ":315,"./scale":316,"./scaleAndAdd":317,"./set":318,"./squaredDistance":319,"./squaredLength":320,"./subtract":321,"./transformMat3":322,"./transformMat4":323,"./transformQuat":324}],304:[function(require,module,exports){
 module.exports = inverse;
 
 /**
@@ -49922,7 +49960,7 @@ function inverse(out, a) {
   out[2] = 1.0 / a[2]
   return out
 }
-},{}],304:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 module.exports = length;
 
 /**
@@ -49937,7 +49975,7 @@ function length(a) {
         z = a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],305:[function(require,module,exports){
+},{}],306:[function(require,module,exports){
 module.exports = lerp;
 
 /**
@@ -49958,7 +49996,7 @@ function lerp(out, a, b, t) {
     out[2] = az + t * (b[2] - az)
     return out
 }
-},{}],306:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 module.exports = max;
 
 /**
@@ -49975,7 +50013,7 @@ function max(out, a, b) {
     out[2] = Math.max(a[2], b[2])
     return out
 }
-},{}],307:[function(require,module,exports){
+},{}],308:[function(require,module,exports){
 module.exports = min;
 
 /**
@@ -49992,7 +50030,7 @@ function min(out, a, b) {
     out[2] = Math.min(a[2], b[2])
     return out
 }
-},{}],308:[function(require,module,exports){
+},{}],309:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -50009,7 +50047,7 @@ function multiply(out, a, b) {
     out[2] = a[2] * b[2]
     return out
 }
-},{}],309:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 module.exports = negate;
 
 /**
@@ -50025,7 +50063,7 @@ function negate(out, a) {
     out[2] = -a[2]
     return out
 }
-},{}],310:[function(require,module,exports){
+},{}],311:[function(require,module,exports){
 module.exports = normalize;
 
 /**
@@ -50049,7 +50087,7 @@ function normalize(out, a) {
     }
     return out
 }
-},{}],311:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 module.exports = random;
 
 /**
@@ -50071,7 +50109,7 @@ function random(out, scale) {
     out[2] = z * scale
     return out
 }
-},{}],312:[function(require,module,exports){
+},{}],313:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -50101,7 +50139,7 @@ function rotateX(out, a, b, c){
 
     return out
 }
-},{}],313:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -50131,7 +50169,7 @@ function rotateY(out, a, b, c){
   
     return out
 }
-},{}],314:[function(require,module,exports){
+},{}],315:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -50161,7 +50199,7 @@ function rotateZ(out, a, b, c){
   
     return out
 }
-},{}],315:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -50178,7 +50216,7 @@ function scale(out, a, b) {
     out[2] = a[2] * b
     return out
 }
-},{}],316:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 module.exports = scaleAndAdd;
 
 /**
@@ -50196,7 +50234,7 @@ function scaleAndAdd(out, a, b, scale) {
     out[2] = a[2] + (b[2] * scale)
     return out
 }
-},{}],317:[function(require,module,exports){
+},{}],318:[function(require,module,exports){
 module.exports = set;
 
 /**
@@ -50214,7 +50252,7 @@ function set(out, x, y, z) {
     out[2] = z
     return out
 }
-},{}],318:[function(require,module,exports){
+},{}],319:[function(require,module,exports){
 module.exports = squaredDistance;
 
 /**
@@ -50230,7 +50268,7 @@ function squaredDistance(a, b) {
         z = b[2] - a[2]
     return x*x + y*y + z*z
 }
-},{}],319:[function(require,module,exports){
+},{}],320:[function(require,module,exports){
 module.exports = squaredLength;
 
 /**
@@ -50245,7 +50283,7 @@ function squaredLength(a) {
         z = a[2]
     return x*x + y*y + z*z
 }
-},{}],320:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 module.exports = subtract;
 
 /**
@@ -50262,7 +50300,7 @@ function subtract(out, a, b) {
     out[2] = a[2] - b[2]
     return out
 }
-},{}],321:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 module.exports = transformMat3;
 
 /**
@@ -50280,7 +50318,7 @@ function transformMat3(out, a, m) {
     out[2] = x * m[2] + y * m[5] + z * m[8]
     return out
 }
-},{}],322:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 module.exports = transformMat4;
 
 /**
@@ -50301,7 +50339,7 @@ function transformMat4(out, a, m) {
     out[2] = (m[2] * x + m[6] * y + m[10] * z + m[14]) / w
     return out
 }
-},{}],323:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
 module.exports = transformQuat;
 
 /**
@@ -50330,32 +50368,9 @@ function transformQuat(out, a, q) {
     out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx
     return out
 }
-},{}],324:[function(require,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
 },{}],325:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],326:[function(require,module,exports){
 module.exports = function(arr) {
   if (!arr) return false
   if (!arr.dtype) return false
@@ -50363,11 +50378,27 @@ module.exports = function(arr) {
   return re.test(String(arr.constructor))
 }
 
-},{}],326:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":327}],327:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":328}],328:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],328:[function(require,module,exports){
+},{"dup":97}],329:[function(require,module,exports){
+'use strict';
+
+var obsolete = function(object, property, reason) {
+  var message = 'obsolete property "'+property+'" of '+object+' removed';
+  if (reason) message += ': ' + reason; 
+  Object.defineProperty(object,
+      property,
+      {
+        get:function() { throw new Error(message); },
+        set:function() { throw new Error(message); }
+      });
+};
+
+module.exports = obsolete;
+
+},{}],330:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -50503,7 +50534,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":329,"aabb-3d":273}],329:[function(require,module,exports){
+},{"./tree":331,"aabb-3d":269}],331:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -50629,7 +50660,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":273}],330:[function(require,module,exports){
+},{"aabb-3d":269}],332:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -50676,1627 +50707,153 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],331:[function(require,module,exports){
-//     Underscore.js 1.7.0
-//     http://underscorejs.org
-//     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-//     Underscore may be freely distributed under the MIT license.
+},{}],333:[function(require,module,exports){
+module.exports = control
 
-(function() {
+var Stream = require('stream').Stream
 
-  // Baseline setup
-  // --------------
-
-  // Establish the root object, `window` in the browser, or `exports` on the server.
-  var root = this;
-
-  // Save the previous value of the `_` variable.
-  var previousUnderscore = root._;
-
-  // Save bytes in the minified (but not gzipped) version:
-  var ArrayProto = Array.prototype, ObjProto = Object.prototype, FuncProto = Function.prototype;
-
-  // Create quick reference variables for speed access to core prototypes.
-  var
-    push             = ArrayProto.push,
-    slice            = ArrayProto.slice,
-    concat           = ArrayProto.concat,
-    toString         = ObjProto.toString,
-    hasOwnProperty   = ObjProto.hasOwnProperty;
-
-  // All **ECMAScript 5** native function implementations that we hope to use
-  // are declared here.
-  var
-    nativeIsArray      = Array.isArray,
-    nativeKeys         = Object.keys,
-    nativeBind         = FuncProto.bind;
-
-  // Create a safe reference to the Underscore object for use below.
-  var _ = function(obj) {
-    if (obj instanceof _) return obj;
-    if (!(this instanceof _)) return new _(obj);
-    this._wrapped = obj;
-  };
-
-  // Export the Underscore object for **Node.js**, with
-  // backwards-compatibility for the old `require()` API. If we're in
-  // the browser, add `_` as a global object.
-  if (typeof exports !== 'undefined') {
-    if (typeof module !== 'undefined' && module.exports) {
-      exports = module.exports = _;
-    }
-    exports._ = _;
-  } else {
-    root._ = _;
-  }
-
-  // Current version.
-  _.VERSION = '1.7.0';
-
-  // Internal function that returns an efficient (for current engines) version
-  // of the passed-in callback, to be repeatedly applied in other Underscore
-  // functions.
-  var createCallback = function(func, context, argCount) {
-    if (context === void 0) return func;
-    switch (argCount == null ? 3 : argCount) {
-      case 1: return function(value) {
-        return func.call(context, value);
-      };
-      case 2: return function(value, other) {
-        return func.call(context, value, other);
-      };
-      case 3: return function(value, index, collection) {
-        return func.call(context, value, index, collection);
-      };
-      case 4: return function(accumulator, value, index, collection) {
-        return func.call(context, accumulator, value, index, collection);
-      };
-    }
-    return function() {
-      return func.apply(context, arguments);
-    };
-  };
-
-  // A mostly-internal function to generate callbacks that can be applied
-  // to each element in a collection, returning the desired result — either
-  // identity, an arbitrary callback, a property matcher, or a property accessor.
-  _.iteratee = function(value, context, argCount) {
-    if (value == null) return _.identity;
-    if (_.isFunction(value)) return createCallback(value, context, argCount);
-    if (_.isObject(value)) return _.matches(value);
-    return _.property(value);
-  };
-
-  // Collection Functions
-  // --------------------
-
-  // The cornerstone, an `each` implementation, aka `forEach`.
-  // Handles raw objects in addition to array-likes. Treats all
-  // sparse array-likes as if they were dense.
-  _.each = _.forEach = function(obj, iteratee, context) {
-    if (obj == null) return obj;
-    iteratee = createCallback(iteratee, context);
-    var i, length = obj.length;
-    if (length === +length) {
-      for (i = 0; i < length; i++) {
-        iteratee(obj[i], i, obj);
-      }
-    } else {
-      var keys = _.keys(obj);
-      for (i = 0, length = keys.length; i < length; i++) {
-        iteratee(obj[keys[i]], keys[i], obj);
-      }
-    }
-    return obj;
-  };
-
-  // Return the results of applying the iteratee to each element.
-  _.map = _.collect = function(obj, iteratee, context) {
-    if (obj == null) return [];
-    iteratee = _.iteratee(iteratee, context);
-    var keys = obj.length !== +obj.length && _.keys(obj),
-        length = (keys || obj).length,
-        results = Array(length),
-        currentKey;
-    for (var index = 0; index < length; index++) {
-      currentKey = keys ? keys[index] : index;
-      results[index] = iteratee(obj[currentKey], currentKey, obj);
-    }
-    return results;
-  };
-
-  var reduceError = 'Reduce of empty array with no initial value';
-
-  // **Reduce** builds up a single result from a list of values, aka `inject`,
-  // or `foldl`.
-  _.reduce = _.foldl = _.inject = function(obj, iteratee, memo, context) {
-    if (obj == null) obj = [];
-    iteratee = createCallback(iteratee, context, 4);
-    var keys = obj.length !== +obj.length && _.keys(obj),
-        length = (keys || obj).length,
-        index = 0, currentKey;
-    if (arguments.length < 3) {
-      if (!length) throw new TypeError(reduceError);
-      memo = obj[keys ? keys[index++] : index++];
-    }
-    for (; index < length; index++) {
-      currentKey = keys ? keys[index] : index;
-      memo = iteratee(memo, obj[currentKey], currentKey, obj);
-    }
-    return memo;
-  };
-
-  // The right-associative version of reduce, also known as `foldr`.
-  _.reduceRight = _.foldr = function(obj, iteratee, memo, context) {
-    if (obj == null) obj = [];
-    iteratee = createCallback(iteratee, context, 4);
-    var keys = obj.length !== + obj.length && _.keys(obj),
-        index = (keys || obj).length,
-        currentKey;
-    if (arguments.length < 3) {
-      if (!index) throw new TypeError(reduceError);
-      memo = obj[keys ? keys[--index] : --index];
-    }
-    while (index--) {
-      currentKey = keys ? keys[index] : index;
-      memo = iteratee(memo, obj[currentKey], currentKey, obj);
-    }
-    return memo;
-  };
-
-  // Return the first value which passes a truth test. Aliased as `detect`.
-  _.find = _.detect = function(obj, predicate, context) {
-    var result;
-    predicate = _.iteratee(predicate, context);
-    _.some(obj, function(value, index, list) {
-      if (predicate(value, index, list)) {
-        result = value;
-        return true;
-      }
-    });
-    return result;
-  };
-
-  // Return all the elements that pass a truth test.
-  // Aliased as `select`.
-  _.filter = _.select = function(obj, predicate, context) {
-    var results = [];
-    if (obj == null) return results;
-    predicate = _.iteratee(predicate, context);
-    _.each(obj, function(value, index, list) {
-      if (predicate(value, index, list)) results.push(value);
-    });
-    return results;
-  };
-
-  // Return all the elements for which a truth test fails.
-  _.reject = function(obj, predicate, context) {
-    return _.filter(obj, _.negate(_.iteratee(predicate)), context);
-  };
-
-  // Determine whether all of the elements match a truth test.
-  // Aliased as `all`.
-  _.every = _.all = function(obj, predicate, context) {
-    if (obj == null) return true;
-    predicate = _.iteratee(predicate, context);
-    var keys = obj.length !== +obj.length && _.keys(obj),
-        length = (keys || obj).length,
-        index, currentKey;
-    for (index = 0; index < length; index++) {
-      currentKey = keys ? keys[index] : index;
-      if (!predicate(obj[currentKey], currentKey, obj)) return false;
-    }
-    return true;
-  };
-
-  // Determine if at least one element in the object matches a truth test.
-  // Aliased as `any`.
-  _.some = _.any = function(obj, predicate, context) {
-    if (obj == null) return false;
-    predicate = _.iteratee(predicate, context);
-    var keys = obj.length !== +obj.length && _.keys(obj),
-        length = (keys || obj).length,
-        index, currentKey;
-    for (index = 0; index < length; index++) {
-      currentKey = keys ? keys[index] : index;
-      if (predicate(obj[currentKey], currentKey, obj)) return true;
-    }
-    return false;
-  };
-
-  // Determine if the array or object contains a given value (using `===`).
-  // Aliased as `include`.
-  _.contains = _.include = function(obj, target) {
-    if (obj == null) return false;
-    if (obj.length !== +obj.length) obj = _.values(obj);
-    return _.indexOf(obj, target) >= 0;
-  };
-
-  // Invoke a method (with arguments) on every item in a collection.
-  _.invoke = function(obj, method) {
-    var args = slice.call(arguments, 2);
-    var isFunc = _.isFunction(method);
-    return _.map(obj, function(value) {
-      return (isFunc ? method : value[method]).apply(value, args);
-    });
-  };
-
-  // Convenience version of a common use case of `map`: fetching a property.
-  _.pluck = function(obj, key) {
-    return _.map(obj, _.property(key));
-  };
-
-  // Convenience version of a common use case of `filter`: selecting only objects
-  // containing specific `key:value` pairs.
-  _.where = function(obj, attrs) {
-    return _.filter(obj, _.matches(attrs));
-  };
-
-  // Convenience version of a common use case of `find`: getting the first object
-  // containing specific `key:value` pairs.
-  _.findWhere = function(obj, attrs) {
-    return _.find(obj, _.matches(attrs));
-  };
-
-  // Return the maximum element (or element-based computation).
-  _.max = function(obj, iteratee, context) {
-    var result = -Infinity, lastComputed = -Infinity,
-        value, computed;
-    if (iteratee == null && obj != null) {
-      obj = obj.length === +obj.length ? obj : _.values(obj);
-      for (var i = 0, length = obj.length; i < length; i++) {
-        value = obj[i];
-        if (value > result) {
-          result = value;
-        }
-      }
-    } else {
-      iteratee = _.iteratee(iteratee, context);
-      _.each(obj, function(value, index, list) {
-        computed = iteratee(value, index, list);
-        if (computed > lastComputed || computed === -Infinity && result === -Infinity) {
-          result = value;
-          lastComputed = computed;
-        }
-      });
-    }
-    return result;
-  };
-
-  // Return the minimum element (or element-based computation).
-  _.min = function(obj, iteratee, context) {
-    var result = Infinity, lastComputed = Infinity,
-        value, computed;
-    if (iteratee == null && obj != null) {
-      obj = obj.length === +obj.length ? obj : _.values(obj);
-      for (var i = 0, length = obj.length; i < length; i++) {
-        value = obj[i];
-        if (value < result) {
-          result = value;
-        }
-      }
-    } else {
-      iteratee = _.iteratee(iteratee, context);
-      _.each(obj, function(value, index, list) {
-        computed = iteratee(value, index, list);
-        if (computed < lastComputed || computed === Infinity && result === Infinity) {
-          result = value;
-          lastComputed = computed;
-        }
-      });
-    }
-    return result;
-  };
-
-  // Shuffle a collection, using the modern version of the
-  // [Fisher-Yates shuffle](http://en.wikipedia.org/wiki/Fisher–Yates_shuffle).
-  _.shuffle = function(obj) {
-    var set = obj && obj.length === +obj.length ? obj : _.values(obj);
-    var length = set.length;
-    var shuffled = Array(length);
-    for (var index = 0, rand; index < length; index++) {
-      rand = _.random(0, index);
-      if (rand !== index) shuffled[index] = shuffled[rand];
-      shuffled[rand] = set[index];
-    }
-    return shuffled;
-  };
-
-  // Sample **n** random values from a collection.
-  // If **n** is not specified, returns a single random element.
-  // The internal `guard` argument allows it to work with `map`.
-  _.sample = function(obj, n, guard) {
-    if (n == null || guard) {
-      if (obj.length !== +obj.length) obj = _.values(obj);
-      return obj[_.random(obj.length - 1)];
-    }
-    return _.shuffle(obj).slice(0, Math.max(0, n));
-  };
-
-  // Sort the object's values by a criterion produced by an iteratee.
-  _.sortBy = function(obj, iteratee, context) {
-    iteratee = _.iteratee(iteratee, context);
-    return _.pluck(_.map(obj, function(value, index, list) {
-      return {
-        value: value,
-        index: index,
-        criteria: iteratee(value, index, list)
-      };
-    }).sort(function(left, right) {
-      var a = left.criteria;
-      var b = right.criteria;
-      if (a !== b) {
-        if (a > b || a === void 0) return 1;
-        if (a < b || b === void 0) return -1;
-      }
-      return left.index - right.index;
-    }), 'value');
-  };
-
-  // An internal function used for aggregate "group by" operations.
-  var group = function(behavior) {
-    return function(obj, iteratee, context) {
-      var result = {};
-      iteratee = _.iteratee(iteratee, context);
-      _.each(obj, function(value, index) {
-        var key = iteratee(value, index, obj);
-        behavior(result, value, key);
-      });
-      return result;
-    };
-  };
-
-  // Groups the object's values by a criterion. Pass either a string attribute
-  // to group by, or a function that returns the criterion.
-  _.groupBy = group(function(result, value, key) {
-    if (_.has(result, key)) result[key].push(value); else result[key] = [value];
-  });
-
-  // Indexes the object's values by a criterion, similar to `groupBy`, but for
-  // when you know that your index values will be unique.
-  _.indexBy = group(function(result, value, key) {
-    result[key] = value;
-  });
-
-  // Counts instances of an object that group by a certain criterion. Pass
-  // either a string attribute to count by, or a function that returns the
-  // criterion.
-  _.countBy = group(function(result, value, key) {
-    if (_.has(result, key)) result[key]++; else result[key] = 1;
-  });
-
-  // Use a comparator function to figure out the smallest index at which
-  // an object should be inserted so as to maintain order. Uses binary search.
-  _.sortedIndex = function(array, obj, iteratee, context) {
-    iteratee = _.iteratee(iteratee, context, 1);
-    var value = iteratee(obj);
-    var low = 0, high = array.length;
-    while (low < high) {
-      var mid = low + high >>> 1;
-      if (iteratee(array[mid]) < value) low = mid + 1; else high = mid;
-    }
-    return low;
-  };
-
-  // Safely create a real, live array from anything iterable.
-  _.toArray = function(obj) {
-    if (!obj) return [];
-    if (_.isArray(obj)) return slice.call(obj);
-    if (obj.length === +obj.length) return _.map(obj, _.identity);
-    return _.values(obj);
-  };
-
-  // Return the number of elements in an object.
-  _.size = function(obj) {
-    if (obj == null) return 0;
-    return obj.length === +obj.length ? obj.length : _.keys(obj).length;
-  };
-
-  // Split a collection into two arrays: one whose elements all satisfy the given
-  // predicate, and one whose elements all do not satisfy the predicate.
-  _.partition = function(obj, predicate, context) {
-    predicate = _.iteratee(predicate, context);
-    var pass = [], fail = [];
-    _.each(obj, function(value, key, obj) {
-      (predicate(value, key, obj) ? pass : fail).push(value);
-    });
-    return [pass, fail];
-  };
-
-  // Array Functions
-  // ---------------
-
-  // Get the first element of an array. Passing **n** will return the first N
-  // values in the array. Aliased as `head` and `take`. The **guard** check
-  // allows it to work with `_.map`.
-  _.first = _.head = _.take = function(array, n, guard) {
-    if (array == null) return void 0;
-    if (n == null || guard) return array[0];
-    if (n < 0) return [];
-    return slice.call(array, 0, n);
-  };
-
-  // Returns everything but the last entry of the array. Especially useful on
-  // the arguments object. Passing **n** will return all the values in
-  // the array, excluding the last N. The **guard** check allows it to work with
-  // `_.map`.
-  _.initial = function(array, n, guard) {
-    return slice.call(array, 0, Math.max(0, array.length - (n == null || guard ? 1 : n)));
-  };
-
-  // Get the last element of an array. Passing **n** will return the last N
-  // values in the array. The **guard** check allows it to work with `_.map`.
-  _.last = function(array, n, guard) {
-    if (array == null) return void 0;
-    if (n == null || guard) return array[array.length - 1];
-    return slice.call(array, Math.max(array.length - n, 0));
-  };
-
-  // Returns everything but the first entry of the array. Aliased as `tail` and `drop`.
-  // Especially useful on the arguments object. Passing an **n** will return
-  // the rest N values in the array. The **guard**
-  // check allows it to work with `_.map`.
-  _.rest = _.tail = _.drop = function(array, n, guard) {
-    return slice.call(array, n == null || guard ? 1 : n);
-  };
-
-  // Trim out all falsy values from an array.
-  _.compact = function(array) {
-    return _.filter(array, _.identity);
-  };
-
-  // Internal implementation of a recursive `flatten` function.
-  var flatten = function(input, shallow, strict, output) {
-    if (shallow && _.every(input, _.isArray)) {
-      return concat.apply(output, input);
-    }
-    for (var i = 0, length = input.length; i < length; i++) {
-      var value = input[i];
-      if (!_.isArray(value) && !_.isArguments(value)) {
-        if (!strict) output.push(value);
-      } else if (shallow) {
-        push.apply(output, value);
-      } else {
-        flatten(value, shallow, strict, output);
-      }
-    }
-    return output;
-  };
-
-  // Flatten out an array, either recursively (by default), or just one level.
-  _.flatten = function(array, shallow) {
-    return flatten(array, shallow, false, []);
-  };
-
-  // Return a version of the array that does not contain the specified value(s).
-  _.without = function(array) {
-    return _.difference(array, slice.call(arguments, 1));
-  };
-
-  // Produce a duplicate-free version of the array. If the array has already
-  // been sorted, you have the option of using a faster algorithm.
-  // Aliased as `unique`.
-  _.uniq = _.unique = function(array, isSorted, iteratee, context) {
-    if (array == null) return [];
-    if (!_.isBoolean(isSorted)) {
-      context = iteratee;
-      iteratee = isSorted;
-      isSorted = false;
-    }
-    if (iteratee != null) iteratee = _.iteratee(iteratee, context);
-    var result = [];
-    var seen = [];
-    for (var i = 0, length = array.length; i < length; i++) {
-      var value = array[i];
-      if (isSorted) {
-        if (!i || seen !== value) result.push(value);
-        seen = value;
-      } else if (iteratee) {
-        var computed = iteratee(value, i, array);
-        if (_.indexOf(seen, computed) < 0) {
-          seen.push(computed);
-          result.push(value);
-        }
-      } else if (_.indexOf(result, value) < 0) {
-        result.push(value);
-      }
-    }
-    return result;
-  };
-
-  // Produce an array that contains the union: each distinct element from all of
-  // the passed-in arrays.
-  _.union = function() {
-    return _.uniq(flatten(arguments, true, true, []));
-  };
-
-  // Produce an array that contains every item shared between all the
-  // passed-in arrays.
-  _.intersection = function(array) {
-    if (array == null) return [];
-    var result = [];
-    var argsLength = arguments.length;
-    for (var i = 0, length = array.length; i < length; i++) {
-      var item = array[i];
-      if (_.contains(result, item)) continue;
-      for (var j = 1; j < argsLength; j++) {
-        if (!_.contains(arguments[j], item)) break;
-      }
-      if (j === argsLength) result.push(item);
-    }
-    return result;
-  };
-
-  // Take the difference between one array and a number of other arrays.
-  // Only the elements present in just the first array will remain.
-  _.difference = function(array) {
-    var rest = flatten(slice.call(arguments, 1), true, true, []);
-    return _.filter(array, function(value){
-      return !_.contains(rest, value);
-    });
-  };
-
-  // Zip together multiple lists into a single array -- elements that share
-  // an index go together.
-  _.zip = function(array) {
-    if (array == null) return [];
-    var length = _.max(arguments, 'length').length;
-    var results = Array(length);
-    for (var i = 0; i < length; i++) {
-      results[i] = _.pluck(arguments, i);
-    }
-    return results;
-  };
-
-  // Converts lists into objects. Pass either a single array of `[key, value]`
-  // pairs, or two parallel arrays of the same length -- one of keys, and one of
-  // the corresponding values.
-  _.object = function(list, values) {
-    if (list == null) return {};
-    var result = {};
-    for (var i = 0, length = list.length; i < length; i++) {
-      if (values) {
-        result[list[i]] = values[i];
-      } else {
-        result[list[i][0]] = list[i][1];
-      }
-    }
-    return result;
-  };
-
-  // Return the position of the first occurrence of an item in an array,
-  // or -1 if the item is not included in the array.
-  // If the array is large and already in sort order, pass `true`
-  // for **isSorted** to use binary search.
-  _.indexOf = function(array, item, isSorted) {
-    if (array == null) return -1;
-    var i = 0, length = array.length;
-    if (isSorted) {
-      if (typeof isSorted == 'number') {
-        i = isSorted < 0 ? Math.max(0, length + isSorted) : isSorted;
-      } else {
-        i = _.sortedIndex(array, item);
-        return array[i] === item ? i : -1;
-      }
-    }
-    for (; i < length; i++) if (array[i] === item) return i;
-    return -1;
-  };
-
-  _.lastIndexOf = function(array, item, from) {
-    if (array == null) return -1;
-    var idx = array.length;
-    if (typeof from == 'number') {
-      idx = from < 0 ? idx + from + 1 : Math.min(idx, from + 1);
-    }
-    while (--idx >= 0) if (array[idx] === item) return idx;
-    return -1;
-  };
-
-  // Generate an integer Array containing an arithmetic progression. A port of
-  // the native Python `range()` function. See
-  // [the Python documentation](http://docs.python.org/library/functions.html#range).
-  _.range = function(start, stop, step) {
-    if (arguments.length <= 1) {
-      stop = start || 0;
-      start = 0;
-    }
-    step = step || 1;
-
-    var length = Math.max(Math.ceil((stop - start) / step), 0);
-    var range = Array(length);
-
-    for (var idx = 0; idx < length; idx++, start += step) {
-      range[idx] = start;
-    }
-
-    return range;
-  };
-
-  // Function (ahem) Functions
-  // ------------------
-
-  // Reusable constructor function for prototype setting.
-  var Ctor = function(){};
-
-  // Create a function bound to a given object (assigning `this`, and arguments,
-  // optionally). Delegates to **ECMAScript 5**'s native `Function.bind` if
-  // available.
-  _.bind = function(func, context) {
-    var args, bound;
-    if (nativeBind && func.bind === nativeBind) return nativeBind.apply(func, slice.call(arguments, 1));
-    if (!_.isFunction(func)) throw new TypeError('Bind must be called on a function');
-    args = slice.call(arguments, 2);
-    bound = function() {
-      if (!(this instanceof bound)) return func.apply(context, args.concat(slice.call(arguments)));
-      Ctor.prototype = func.prototype;
-      var self = new Ctor;
-      Ctor.prototype = null;
-      var result = func.apply(self, args.concat(slice.call(arguments)));
-      if (_.isObject(result)) return result;
-      return self;
-    };
-    return bound;
-  };
-
-  // Partially apply a function by creating a version that has had some of its
-  // arguments pre-filled, without changing its dynamic `this` context. _ acts
-  // as a placeholder, allowing any combination of arguments to be pre-filled.
-  _.partial = function(func) {
-    var boundArgs = slice.call(arguments, 1);
-    return function() {
-      var position = 0;
-      var args = boundArgs.slice();
-      for (var i = 0, length = args.length; i < length; i++) {
-        if (args[i] === _) args[i] = arguments[position++];
-      }
-      while (position < arguments.length) args.push(arguments[position++]);
-      return func.apply(this, args);
-    };
-  };
-
-  // Bind a number of an object's methods to that object. Remaining arguments
-  // are the method names to be bound. Useful for ensuring that all callbacks
-  // defined on an object belong to it.
-  _.bindAll = function(obj) {
-    var i, length = arguments.length, key;
-    if (length <= 1) throw new Error('bindAll must be passed function names');
-    for (i = 1; i < length; i++) {
-      key = arguments[i];
-      obj[key] = _.bind(obj[key], obj);
-    }
-    return obj;
-  };
-
-  // Memoize an expensive function by storing its results.
-  _.memoize = function(func, hasher) {
-    var memoize = function(key) {
-      var cache = memoize.cache;
-      var address = hasher ? hasher.apply(this, arguments) : key;
-      if (!_.has(cache, address)) cache[address] = func.apply(this, arguments);
-      return cache[address];
-    };
-    memoize.cache = {};
-    return memoize;
-  };
-
-  // Delays a function for the given number of milliseconds, and then calls
-  // it with the arguments supplied.
-  _.delay = function(func, wait) {
-    var args = slice.call(arguments, 2);
-    return setTimeout(function(){
-      return func.apply(null, args);
-    }, wait);
-  };
-
-  // Defers a function, scheduling it to run after the current call stack has
-  // cleared.
-  _.defer = function(func) {
-    return _.delay.apply(_, [func, 1].concat(slice.call(arguments, 1)));
-  };
-
-  // Returns a function, that, when invoked, will only be triggered at most once
-  // during a given window of time. Normally, the throttled function will run
-  // as much as it can, without ever going more than once per `wait` duration;
-  // but if you'd like to disable the execution on the leading edge, pass
-  // `{leading: false}`. To disable execution on the trailing edge, ditto.
-  _.throttle = function(func, wait, options) {
-    var context, args, result;
-    var timeout = null;
-    var previous = 0;
-    if (!options) options = {};
-    var later = function() {
-      previous = options.leading === false ? 0 : _.now();
-      timeout = null;
-      result = func.apply(context, args);
-      if (!timeout) context = args = null;
-    };
-    return function() {
-      var now = _.now();
-      if (!previous && options.leading === false) previous = now;
-      var remaining = wait - (now - previous);
-      context = this;
-      args = arguments;
-      if (remaining <= 0 || remaining > wait) {
-        clearTimeout(timeout);
-        timeout = null;
-        previous = now;
-        result = func.apply(context, args);
-        if (!timeout) context = args = null;
-      } else if (!timeout && options.trailing !== false) {
-        timeout = setTimeout(later, remaining);
-      }
-      return result;
-    };
-  };
-
-  // Returns a function, that, as long as it continues to be invoked, will not
-  // be triggered. The function will be called after it stops being called for
-  // N milliseconds. If `immediate` is passed, trigger the function on the
-  // leading edge, instead of the trailing.
-  _.debounce = function(func, wait, immediate) {
-    var timeout, args, context, timestamp, result;
-
-    var later = function() {
-      var last = _.now() - timestamp;
-
-      if (last < wait && last > 0) {
-        timeout = setTimeout(later, wait - last);
-      } else {
-        timeout = null;
-        if (!immediate) {
-          result = func.apply(context, args);
-          if (!timeout) context = args = null;
-        }
-      }
-    };
-
-    return function() {
-      context = this;
-      args = arguments;
-      timestamp = _.now();
-      var callNow = immediate && !timeout;
-      if (!timeout) timeout = setTimeout(later, wait);
-      if (callNow) {
-        result = func.apply(context, args);
-        context = args = null;
-      }
-
-      return result;
-    };
-  };
-
-  // Returns the first function passed as an argument to the second,
-  // allowing you to adjust arguments, run code before and after, and
-  // conditionally execute the original function.
-  _.wrap = function(func, wrapper) {
-    return _.partial(wrapper, func);
-  };
-
-  // Returns a negated version of the passed-in predicate.
-  _.negate = function(predicate) {
-    return function() {
-      return !predicate.apply(this, arguments);
-    };
-  };
-
-  // Returns a function that is the composition of a list of functions, each
-  // consuming the return value of the function that follows.
-  _.compose = function() {
-    var args = arguments;
-    var start = args.length - 1;
-    return function() {
-      var i = start;
-      var result = args[start].apply(this, arguments);
-      while (i--) result = args[i].call(this, result);
-      return result;
-    };
-  };
-
-  // Returns a function that will only be executed after being called N times.
-  _.after = function(times, func) {
-    return function() {
-      if (--times < 1) {
-        return func.apply(this, arguments);
-      }
-    };
-  };
-
-  // Returns a function that will only be executed before being called N times.
-  _.before = function(times, func) {
-    var memo;
-    return function() {
-      if (--times > 0) {
-        memo = func.apply(this, arguments);
-      } else {
-        func = null;
-      }
-      return memo;
-    };
-  };
-
-  // Returns a function that will be executed at most one time, no matter how
-  // often you call it. Useful for lazy initialization.
-  _.once = _.partial(_.before, 2);
-
-  // Object Functions
-  // ----------------
-
-  // Retrieve the names of an object's properties.
-  // Delegates to **ECMAScript 5**'s native `Object.keys`
-  _.keys = function(obj) {
-    if (!_.isObject(obj)) return [];
-    if (nativeKeys) return nativeKeys(obj);
-    var keys = [];
-    for (var key in obj) if (_.has(obj, key)) keys.push(key);
-    return keys;
-  };
-
-  // Retrieve the values of an object's properties.
-  _.values = function(obj) {
-    var keys = _.keys(obj);
-    var length = keys.length;
-    var values = Array(length);
-    for (var i = 0; i < length; i++) {
-      values[i] = obj[keys[i]];
-    }
-    return values;
-  };
-
-  // Convert an object into a list of `[key, value]` pairs.
-  _.pairs = function(obj) {
-    var keys = _.keys(obj);
-    var length = keys.length;
-    var pairs = Array(length);
-    for (var i = 0; i < length; i++) {
-      pairs[i] = [keys[i], obj[keys[i]]];
-    }
-    return pairs;
-  };
-
-  // Invert the keys and values of an object. The values must be serializable.
-  _.invert = function(obj) {
-    var result = {};
-    var keys = _.keys(obj);
-    for (var i = 0, length = keys.length; i < length; i++) {
-      result[obj[keys[i]]] = keys[i];
-    }
-    return result;
-  };
-
-  // Return a sorted list of the function names available on the object.
-  // Aliased as `methods`
-  _.functions = _.methods = function(obj) {
-    var names = [];
-    for (var key in obj) {
-      if (_.isFunction(obj[key])) names.push(key);
-    }
-    return names.sort();
-  };
-
-  // Extend a given object with all the properties in passed-in object(s).
-  _.extend = function(obj) {
-    if (!_.isObject(obj)) return obj;
-    var source, prop;
-    for (var i = 1, length = arguments.length; i < length; i++) {
-      source = arguments[i];
-      for (prop in source) {
-        if (hasOwnProperty.call(source, prop)) {
-            obj[prop] = source[prop];
-        }
-      }
-    }
-    return obj;
-  };
-
-  // Return a copy of the object only containing the whitelisted properties.
-  _.pick = function(obj, iteratee, context) {
-    var result = {}, key;
-    if (obj == null) return result;
-    if (_.isFunction(iteratee)) {
-      iteratee = createCallback(iteratee, context);
-      for (key in obj) {
-        var value = obj[key];
-        if (iteratee(value, key, obj)) result[key] = value;
-      }
-    } else {
-      var keys = concat.apply([], slice.call(arguments, 1));
-      obj = new Object(obj);
-      for (var i = 0, length = keys.length; i < length; i++) {
-        key = keys[i];
-        if (key in obj) result[key] = obj[key];
-      }
-    }
-    return result;
-  };
-
-   // Return a copy of the object without the blacklisted properties.
-  _.omit = function(obj, iteratee, context) {
-    if (_.isFunction(iteratee)) {
-      iteratee = _.negate(iteratee);
-    } else {
-      var keys = _.map(concat.apply([], slice.call(arguments, 1)), String);
-      iteratee = function(value, key) {
-        return !_.contains(keys, key);
-      };
-    }
-    return _.pick(obj, iteratee, context);
-  };
-
-  // Fill in a given object with default properties.
-  _.defaults = function(obj) {
-    if (!_.isObject(obj)) return obj;
-    for (var i = 1, length = arguments.length; i < length; i++) {
-      var source = arguments[i];
-      for (var prop in source) {
-        if (obj[prop] === void 0) obj[prop] = source[prop];
-      }
-    }
-    return obj;
-  };
-
-  // Create a (shallow-cloned) duplicate of an object.
-  _.clone = function(obj) {
-    if (!_.isObject(obj)) return obj;
-    return _.isArray(obj) ? obj.slice() : _.extend({}, obj);
-  };
-
-  // Invokes interceptor with the obj, and then returns obj.
-  // The primary purpose of this method is to "tap into" a method chain, in
-  // order to perform operations on intermediate results within the chain.
-  _.tap = function(obj, interceptor) {
-    interceptor(obj);
-    return obj;
-  };
-
-  // Internal recursive comparison function for `isEqual`.
-  var eq = function(a, b, aStack, bStack) {
-    // Identical objects are equal. `0 === -0`, but they aren't identical.
-    // See the [Harmony `egal` proposal](http://wiki.ecmascript.org/doku.php?id=harmony:egal).
-    if (a === b) return a !== 0 || 1 / a === 1 / b;
-    // A strict comparison is necessary because `null == undefined`.
-    if (a == null || b == null) return a === b;
-    // Unwrap any wrapped objects.
-    if (a instanceof _) a = a._wrapped;
-    if (b instanceof _) b = b._wrapped;
-    // Compare `[[Class]]` names.
-    var className = toString.call(a);
-    if (className !== toString.call(b)) return false;
-    switch (className) {
-      // Strings, numbers, regular expressions, dates, and booleans are compared by value.
-      case '[object RegExp]':
-      // RegExps are coerced to strings for comparison (Note: '' + /a/i === '/a/i')
-      case '[object String]':
-        // Primitives and their corresponding object wrappers are equivalent; thus, `"5"` is
-        // equivalent to `new String("5")`.
-        return '' + a === '' + b;
-      case '[object Number]':
-        // `NaN`s are equivalent, but non-reflexive.
-        // Object(NaN) is equivalent to NaN
-        if (+a !== +a) return +b !== +b;
-        // An `egal` comparison is performed for other numeric values.
-        return +a === 0 ? 1 / +a === 1 / b : +a === +b;
-      case '[object Date]':
-      case '[object Boolean]':
-        // Coerce dates and booleans to numeric primitive values. Dates are compared by their
-        // millisecond representations. Note that invalid dates with millisecond representations
-        // of `NaN` are not equivalent.
-        return +a === +b;
-    }
-    if (typeof a != 'object' || typeof b != 'object') return false;
-    // Assume equality for cyclic structures. The algorithm for detecting cyclic
-    // structures is adapted from ES 5.1 section 15.12.3, abstract operation `JO`.
-    var length = aStack.length;
-    while (length--) {
-      // Linear search. Performance is inversely proportional to the number of
-      // unique nested structures.
-      if (aStack[length] === a) return bStack[length] === b;
-    }
-    // Objects with different constructors are not equivalent, but `Object`s
-    // from different frames are.
-    var aCtor = a.constructor, bCtor = b.constructor;
-    if (
-      aCtor !== bCtor &&
-      // Handle Object.create(x) cases
-      'constructor' in a && 'constructor' in b &&
-      !(_.isFunction(aCtor) && aCtor instanceof aCtor &&
-        _.isFunction(bCtor) && bCtor instanceof bCtor)
-    ) {
-      return false;
-    }
-    // Add the first object to the stack of traversed objects.
-    aStack.push(a);
-    bStack.push(b);
-    var size, result;
-    // Recursively compare objects and arrays.
-    if (className === '[object Array]') {
-      // Compare array lengths to determine if a deep comparison is necessary.
-      size = a.length;
-      result = size === b.length;
-      if (result) {
-        // Deep compare the contents, ignoring non-numeric properties.
-        while (size--) {
-          if (!(result = eq(a[size], b[size], aStack, bStack))) break;
-        }
-      }
-    } else {
-      // Deep compare objects.
-      var keys = _.keys(a), key;
-      size = keys.length;
-      // Ensure that both objects contain the same number of properties before comparing deep equality.
-      result = _.keys(b).length === size;
-      if (result) {
-        while (size--) {
-          // Deep compare each member
-          key = keys[size];
-          if (!(result = _.has(b, key) && eq(a[key], b[key], aStack, bStack))) break;
-        }
-      }
-    }
-    // Remove the first object from the stack of traversed objects.
-    aStack.pop();
-    bStack.pop();
-    return result;
-  };
-
-  // Perform a deep comparison to check if two objects are equal.
-  _.isEqual = function(a, b) {
-    return eq(a, b, [], []);
-  };
-
-  // Is a given array, string, or object empty?
-  // An "empty" object has no enumerable own-properties.
-  _.isEmpty = function(obj) {
-    if (obj == null) return true;
-    if (_.isArray(obj) || _.isString(obj) || _.isArguments(obj)) return obj.length === 0;
-    for (var key in obj) if (_.has(obj, key)) return false;
-    return true;
-  };
-
-  // Is a given value a DOM element?
-  _.isElement = function(obj) {
-    return !!(obj && obj.nodeType === 1);
-  };
-
-  // Is a given value an array?
-  // Delegates to ECMA5's native Array.isArray
-  _.isArray = nativeIsArray || function(obj) {
-    return toString.call(obj) === '[object Array]';
-  };
-
-  // Is a given variable an object?
-  _.isObject = function(obj) {
-    var type = typeof obj;
-    return type === 'function' || type === 'object' && !!obj;
-  };
-
-  // Add some isType methods: isArguments, isFunction, isString, isNumber, isDate, isRegExp.
-  _.each(['Arguments', 'Function', 'String', 'Number', 'Date', 'RegExp'], function(name) {
-    _['is' + name] = function(obj) {
-      return toString.call(obj) === '[object ' + name + ']';
-    };
-  });
-
-  // Define a fallback version of the method in browsers (ahem, IE), where
-  // there isn't any inspectable "Arguments" type.
-  if (!_.isArguments(arguments)) {
-    _.isArguments = function(obj) {
-      return _.has(obj, 'callee');
-    };
-  }
-
-  // Optimize `isFunction` if appropriate. Work around an IE 11 bug.
-  if (typeof /./ !== 'function') {
-    _.isFunction = function(obj) {
-      return typeof obj == 'function' || false;
-    };
-  }
-
-  // Is a given object a finite number?
-  _.isFinite = function(obj) {
-    return isFinite(obj) && !isNaN(parseFloat(obj));
-  };
-
-  // Is the given value `NaN`? (NaN is the only number which does not equal itself).
-  _.isNaN = function(obj) {
-    return _.isNumber(obj) && obj !== +obj;
-  };
-
-  // Is a given value a boolean?
-  _.isBoolean = function(obj) {
-    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
-  };
-
-  // Is a given value equal to null?
-  _.isNull = function(obj) {
-    return obj === null;
-  };
-
-  // Is a given variable undefined?
-  _.isUndefined = function(obj) {
-    return obj === void 0;
-  };
-
-  // Shortcut function for checking if an object has a given property directly
-  // on itself (in other words, not on a prototype).
-  _.has = function(obj, key) {
-    return obj != null && hasOwnProperty.call(obj, key);
-  };
-
-  // Utility Functions
-  // -----------------
-
-  // Run Underscore.js in *noConflict* mode, returning the `_` variable to its
-  // previous owner. Returns a reference to the Underscore object.
-  _.noConflict = function() {
-    root._ = previousUnderscore;
-    return this;
-  };
-
-  // Keep the identity function around for default iteratees.
-  _.identity = function(value) {
-    return value;
-  };
-
-  _.constant = function(value) {
-    return function() {
-      return value;
-    };
-  };
-
-  _.noop = function(){};
-
-  _.property = function(key) {
-    return function(obj) {
-      return obj[key];
-    };
-  };
-
-  // Returns a predicate for checking whether an object has a given set of `key:value` pairs.
-  _.matches = function(attrs) {
-    var pairs = _.pairs(attrs), length = pairs.length;
-    return function(obj) {
-      if (obj == null) return !length;
-      obj = new Object(obj);
-      for (var i = 0; i < length; i++) {
-        var pair = pairs[i], key = pair[0];
-        if (pair[1] !== obj[key] || !(key in obj)) return false;
-      }
-      return true;
-    };
-  };
-
-  // Run a function **n** times.
-  _.times = function(n, iteratee, context) {
-    var accum = Array(Math.max(0, n));
-    iteratee = createCallback(iteratee, context, 1);
-    for (var i = 0; i < n; i++) accum[i] = iteratee(i);
-    return accum;
-  };
-
-  // Return a random integer between min and max (inclusive).
-  _.random = function(min, max) {
-    if (max == null) {
-      max = min;
-      min = 0;
-    }
-    return min + Math.floor(Math.random() * (max - min + 1));
-  };
-
-  // A (possibly faster) way to get the current timestamp as an integer.
-  _.now = Date.now || function() {
-    return new Date().getTime();
-  };
-
-   // List of HTML entities for escaping.
-  var escapeMap = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#x27;',
-    '`': '&#x60;'
-  };
-  var unescapeMap = _.invert(escapeMap);
-
-  // Functions for escaping and unescaping strings to/from HTML interpolation.
-  var createEscaper = function(map) {
-    var escaper = function(match) {
-      return map[match];
-    };
-    // Regexes for identifying a key that needs to be escaped
-    var source = '(?:' + _.keys(map).join('|') + ')';
-    var testRegexp = RegExp(source);
-    var replaceRegexp = RegExp(source, 'g');
-    return function(string) {
-      string = string == null ? '' : '' + string;
-      return testRegexp.test(string) ? string.replace(replaceRegexp, escaper) : string;
-    };
-  };
-  _.escape = createEscaper(escapeMap);
-  _.unescape = createEscaper(unescapeMap);
-
-  // If the value of the named `property` is a function then invoke it with the
-  // `object` as context; otherwise, return it.
-  _.result = function(object, property) {
-    if (object == null) return void 0;
-    var value = object[property];
-    return _.isFunction(value) ? object[property]() : value;
-  };
-
-  // Generate a unique integer id (unique within the entire client session).
-  // Useful for temporary DOM ids.
-  var idCounter = 0;
-  _.uniqueId = function(prefix) {
-    var id = ++idCounter + '';
-    return prefix ? prefix + id : id;
-  };
-
-  // By default, Underscore uses ERB-style template delimiters, change the
-  // following template settings to use alternative delimiters.
-  _.templateSettings = {
-    evaluate    : /<%([\s\S]+?)%>/g,
-    interpolate : /<%=([\s\S]+?)%>/g,
-    escape      : /<%-([\s\S]+?)%>/g
-  };
-
-  // When customizing `templateSettings`, if you don't want to define an
-  // interpolation, evaluation or escaping regex, we need one that is
-  // guaranteed not to match.
-  var noMatch = /(.)^/;
-
-  // Certain characters need to be escaped so that they can be put into a
-  // string literal.
-  var escapes = {
-    "'":      "'",
-    '\\':     '\\',
-    '\r':     'r',
-    '\n':     'n',
-    '\u2028': 'u2028',
-    '\u2029': 'u2029'
-  };
-
-  var escaper = /\\|'|\r|\n|\u2028|\u2029/g;
-
-  var escapeChar = function(match) {
-    return '\\' + escapes[match];
-  };
-
-  // JavaScript micro-templating, similar to John Resig's implementation.
-  // Underscore templating handles arbitrary delimiters, preserves whitespace,
-  // and correctly escapes quotes within interpolated code.
-  // NB: `oldSettings` only exists for backwards compatibility.
-  _.template = function(text, settings, oldSettings) {
-    if (!settings && oldSettings) settings = oldSettings;
-    settings = _.defaults({}, settings, _.templateSettings);
-
-    // Combine delimiters into one regular expression via alternation.
-    var matcher = RegExp([
-      (settings.escape || noMatch).source,
-      (settings.interpolate || noMatch).source,
-      (settings.evaluate || noMatch).source
-    ].join('|') + '|$', 'g');
-
-    // Compile the template source, escaping string literals appropriately.
-    var index = 0;
-    var source = "__p+='";
-    text.replace(matcher, function(match, escape, interpolate, evaluate, offset) {
-      source += text.slice(index, offset).replace(escaper, escapeChar);
-      index = offset + match.length;
-
-      if (escape) {
-        source += "'+\n((__t=(" + escape + "))==null?'':_.escape(__t))+\n'";
-      } else if (interpolate) {
-        source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
-      } else if (evaluate) {
-        source += "';\n" + evaluate + "\n__p+='";
-      }
-
-      // Adobe VMs need the match returned to produce the correct offest.
-      return match;
-    });
-    source += "';\n";
-
-    // If a variable is not specified, place data values in local scope.
-    if (!settings.variable) source = 'with(obj||{}){\n' + source + '}\n';
-
-    source = "var __t,__p='',__j=Array.prototype.join," +
-      "print=function(){__p+=__j.call(arguments,'');};\n" +
-      source + 'return __p;\n';
-
-    try {
-      var render = new Function(settings.variable || 'obj', '_', source);
-    } catch (e) {
-      e.source = source;
-      throw e;
-    }
-
-    var template = function(data) {
-      return render.call(this, data, _);
-    };
-
-    // Provide the compiled source as a convenience for precompilation.
-    var argument = settings.variable || 'obj';
-    template.source = 'function(' + argument + '){\n' + source + '}';
-
-    return template;
-  };
-
-  // Add a "chain" function. Start chaining a wrapped Underscore object.
-  _.chain = function(obj) {
-    var instance = _(obj);
-    instance._chain = true;
-    return instance;
-  };
-
-  // OOP
-  // ---------------
-  // If Underscore is called as a function, it returns a wrapped object that
-  // can be used OO-style. This wrapper holds altered versions of all the
-  // underscore functions. Wrapped objects may be chained.
-
-  // Helper function to continue chaining intermediate results.
-  var result = function(obj) {
-    return this._chain ? _(obj).chain() : obj;
-  };
-
-  // Add your own custom functions to the Underscore object.
-  _.mixin = function(obj) {
-    _.each(_.functions(obj), function(name) {
-      var func = _[name] = obj[name];
-      _.prototype[name] = function() {
-        var args = [this._wrapped];
-        push.apply(args, arguments);
-        return result.call(this, func.apply(_, args));
-      };
-    });
-  };
-
-  // Add all of the Underscore functions to the wrapper object.
-  _.mixin(_);
-
-  // Add all mutator Array functions to the wrapper.
-  _.each(['pop', 'push', 'reverse', 'shift', 'sort', 'splice', 'unshift'], function(name) {
-    var method = ArrayProto[name];
-    _.prototype[name] = function() {
-      var obj = this._wrapped;
-      method.apply(obj, arguments);
-      if ((name === 'shift' || name === 'splice') && obj.length === 0) delete obj[0];
-      return result.call(this, obj);
-    };
-  });
-
-  // Add all accessor Array functions to the wrapper.
-  _.each(['concat', 'join', 'slice'], function(name) {
-    var method = ArrayProto[name];
-    _.prototype[name] = function() {
-      return result.call(this, method.apply(this._wrapped, arguments));
-    };
-  });
-
-  // Extracts the result from a wrapped and chained object.
-  _.prototype.value = function() {
-    return this._wrapped;
-  };
-
-  // AMD registration happens at the end for compatibility with AMD loaders
-  // that may not enforce next-turn semantics on modules. Even though general
-  // practice for AMD registration is to be anonymous, underscore registers
-  // as a named module because, like jQuery, it is a base library that is
-  // popular enough to be bundled in a third party lib, but not be part of
-  // an AMD load request. Those cases could generate an error when an
-  // anonymous define() is called outside of a loader request.
-  if (typeof define === 'function' && define.amd) {
-    define('underscore', [], function() {
-      return _;
-    });
-  }
-}.call(this));
-
-},{}],332:[function(require,module,exports){
-'use strict';
-
-var vec3 = require('gl-vec3')
-, extend = require('extend')
-
-
-module.exports = function(opts, control_state) {
-  return new FPSController(opts, control_state)
+function control(control_state, opts) {
+  return new Control(control_state, opts)
 }
 
+function Control(state, opts) {
+  Stream.call(this)
 
-var twopi =  Math.PI * 2,
-    halfpi = Math.PI / 2
+  opts = opts || {}
 
-var defaults = {
-  maxSpeed: 7
-  , moveForce: 25
-  , responsiveness: 20
-  , runningFriction: 0
-  , standingFriction: 20
-
-  , airMoveMult: 0.3
-  , jumpImpulse: 8
-  , jumpForce: 11
-  , jumpTime: 350 // ms
-  , airJumps: 1
-
-  , crouchMoveMult: 0.6
-  , sprintMoveMult: 1.3
-  , inverseY: false
-  , rotationScale: 0.005
-  
-  , babylonCamera: false
-}
-
-
-/* 
- *    CONSTRUCTOR - the controller
-*/
-function FPSController(opts, stateObj) {
+  this.state = state
+  this._pitch_target = 
+  this._yaw_target =
+  this._roll_target =
   this._target = null
-  this._camAccess = null
-  
-  // inputs state - obj with boolean properties like "jump" etc.
-  this.state = stateObj
+  this.speed = opts.speed || 0.0032
+  this.walk_max_speed = opts.walkMaxSpeed || 0.0056
+  this.run_max_speed = opts.runMaxSpeed || 0.0112
+  this.sneak_max_speed = opts.sneakMaxSpeed || 0.0014
+  this.jump_max_speed = opts.jumpMaxSpeed || 0.016
+  this.jump_max_timer = opts.jumpTimer || 200
+  this.jump_speed = opts.jumpSpeed || 0.004
+  this.jump_speed_move = opts.jumpSpeedMove || 0.1
+  this.jump_timer = 0
+  this.jumping = false
+  this.acceleration = opts.accelerationCurve || this.acceleration
 
-  // engine setup
-  opts = extend( {}, defaults, opts )
-  this.moveForce       = opts.moveForce
-  this.responsiveness  = opts.responsiveness
-  this.jumpImpulse     = opts.jumpImpulse
-  this.jumpForce       = opts.jumpForce
-  this.jumpTime        = opts.jumpTime
-  this.airJumps        = opts.airJumps
-  this.airMoveMult     = opts.airMoveMult
-  this.crouchMoveMult  = opts.crouchMoveMult
-  this.sprintMoveMult  = opts.sprintMoveMult
-  this.inverseY        = opts.inverseY
-  this.rotationScale   = opts.rotationScale
-  this.standingFriction= opts.standingFriction
-  this.runningFriction = opts.runningFriction
-  this.maxSpeed        = opts.maxSpeed
-  this.babylonCamera   = opts.babylonCamera
-  
-  this._jumping = false
-  this._airjumps = 0
-  this._currjumptime = 0
-  
+  this.fire_rate = opts.fireRate || 0
+  this.needs_discrete_fire = opts.discreteFire || false
+  this.onfire = opts.onfire || this.onfire
+  this.firing = 0
+
+  this.x_rotation_per_ms = opts.rotationXMax || opts.rotationMax || 33
+  this.y_rotation_per_ms = opts.rotationYMax || opts.rotationMax || 33
+  this.z_rotation_per_ms = opts.rotationZMax || opts.rotationMax || 33
+
+  this.x_rotation_clamp = opts.rotationXClamp || Math.PI / 2
+  this.y_rotation_clamp = opts.rotationYClamp || Infinity
+  this.z_rotation_clamp = opts.rotationZClamp || 0
+
+  this.rotation_scale = opts.rotationScale || 0.002
+
+  this.air_control = 'airControl' in opts ? opts.airControl : true
+
+  this.state.x_rotation_accum =
+  this.state.y_rotation_accum = 
+  this.state.z_rotation_accum = 0.0
+
+  this.accel_max_timer = opts.accelTimer || 200
+  this.x_accel_timer = this.accel_max_timer+0
+  this.z_accel_timer = this.accel_max_timer+0
+
+  this.readable =
+  this.writable = true
+
+  this.buffer = []
+  this.paused = false
 }
 
+var cons = Control
+  , proto = cons.prototype = new Stream
 
+proto.constructor = cons
 
-var proto = FPSController.prototype
-
-// sets target object - expected to be a physics rigid body,
-//    such as you'd get from voxel-physics-engine#addBody
-proto.setTarget = function(target) {
-  if(target) this._target = target
-  return this._target
-}
-
-// camera accessor - expects an object with two methods:
-//    getRotationXY()  // returns [xrot,yrot]
-//    setRotationXY( xrot, yrot )
-proto.setCameraAccessor = function(camAccess) {
-  if(camAccess) this._camAccess = camAccess
-  return this._camAccess
-}
-
-
-
-
-var state, target, onGround
-, dx, dy, rotX, rotY, speed
-, m    = vec3.create()
-, push = vec3.create()
-, pushLen, canPush, pushAmt
-
+var max = Math.max
+  , min = Math.min
+  , sin = Math.sin
+  , abs = Math.abs
+  , floor = Math.floor
+  , PI = Math.PI
 
 proto.tick = function(dt) {
-  if(!this._target || !this._camAccess) return
-
-  state = this.state
-  target = this._target
-  onGround = (target.atRestY() < 0)
-
-
-  // Rotation: translate dx/dy inputs into y/x axis camera angle changes
-  dx = this.rotationScale * state.dy * ((this.inverseY) ? -1 : 1)
-  dy = this.rotationScale * state.dx
-  // normalize/clamp/update
-  var camrot = this._camAccess.getRotationXY() // [x,y]
-  rotX = clamp( camrot[0] + dx, halfpi )
-  rotY = clamp( camrot[1] + dy) % twopi
-  this._camAccess.setRotationXY( rotX, rotY )
-
-  // jumping
-  var canjump = (onGround || this._airjumps < this.airJumps)
-  if (onGround) {
-    this._jumping = false
-    this._airjumps = 0
+  if(!this._target) {
+    return
   }
-  if (state.jump) {
-    if (this._jumping) { // continue previous jump
-      if (this._currjumptime > 0) {
-        var jf = this.jumpForce
-        if (this._currjumptime < dt) jf *= this._currjumptime/dt
-        target.applyForce( [0, jf, 0] )
-        this._currjumptime -= dt
+  var state = this.state
+    , target = this._target
+    , speed = this.speed
+    , jump_speed = this.jump_speed
+    , jump_speed_move = this.jump_speed_move
+    , max_speed = this.state.sprint ? this.run_max_speed : (this.state.crouch ? this.sneak_max_speed : this.walk_max_speed)
+    , okay_z = abs(target.velocity[2]) < max_speed
+    , okay_x = abs(target.velocity[0]) < max_speed
+    , at_rest = target.atRestY()
+
+  if(!this._target) return
+  var move_speed = speed
+  if (target.velocity[1] !== 0) move_speed = move_speed * jump_speed_move
+
+  if(state.forward || state.backward) {
+    this.z_accel_timer = max(0, this.z_accel_timer - dt)
+  }
+  if(state.backward) {
+    if(target.velocity[2] < max_speed)
+      target.velocity[2] = max(min(max_speed, move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity[2])
+  } else if(state.forward) {
+    if(target.velocity[2] > -max_speed)
+      target.velocity[2] = min(max(-max_speed, -move_speed * dt * this.acceleration(this.z_accel_timer, this.accel_max_timer)), target.velocity[2])
+  } else {
+    this.z_accel_timer = this.accel_max_timer
+
+  }
+ 
+
+  if(state.left || state.right) {
+    this.x_accel_timer = max(0, this.x_accel_timer - dt)
+  }
+
+  if(state.right) {
+    if(target.velocity[0] < max_speed)
+      target.velocity[0] = max(min(max_speed, move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity[0])
+  } else if(state.left) {
+    if(target.velocity[0] > -max_speed)
+      target.velocity[0] = min(max(-max_speed, -move_speed * dt * this.acceleration(this.x_accel_timer, this.accel_max_timer)), target.velocity[0])
+  } else {
+    this.x_accel_timer = this.accel_max_timer
+  }
+
+  if(state.jump) {
+    if(!this.jumping && !at_rest) {
+      // we're falling, we can't jump
+    } else if(at_rest > 0) {
+      // we hit our head
+      this.jumping = false
+    } else {
+      this.jumping = true
+      if(this.jump_timer > 0) {
+        target.velocity[1] = min(target.velocity[1] + jump_speed * min(dt, this.jump_timer), this.jump_max_speed)
       }
-    } else if (canjump) { // start new jump
-      this._jumping = true
-      if (!onGround) this._airjumps++
-      this._currjumptime = this.jumpTime
-      target.applyImpulse( [0, this.jumpImpulse, 0] )
-      // clear downward velocity on airjump
-      if (!onGround && target.velocity[1]<0) target.velocity[1] = 0
+      this.jump_timer = max(this.jump_timer - dt, 0)
     }
   } else {
-    this._jumping = false
+    this.jumping = false
   }
+  this.jump_timer = at_rest < 0 ? this.jump_max_timer : this.jump_timer
 
-  // Movement: determine local direction of desired movement
-  vec3.set( m, 0, 0, 0 )
-  if (state.backward) m[2] += 1
-  if (state.forward)  m[2] -= 1
-  if (state.right)    m[0] += 1
-  if (state.left)     m[0] -= 1
-  vec3.normalize( m, m )
-  
-  // not sure of an elegant way to fix this, but babylon.js 
-  // camera controls differently from that of voxel.js#gl-ndarray
-  if (this.babylonCamera) {
-    m[2] *= -1
-    rotY *= -1
-  }
-
-  if (m[0] !== 0 || m[2] !== 0) {
-    // convert to world coords and scale to desired movement vector
-    vec3.rotateY( m, m, [0,0,0], -rotY )
-    speed = this.maxSpeed
-    if (state.sprint)  speed *= this.sprintMoveMult
-    if (state.crouch)  speed *= this.crouchMoveMult
-    vec3.scale( m, m, speed )
-
-    // push vector to achieve desired speed & dir
-    // following code to adjust 2D velocity to desired amount is patterned on Quake: 
-    // https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/bg_pmove.c#L275
-    vec3.subtract( push, m, target.velocity )
-    push[1] = 0
-    pushLen = vec3.length(push)
-    vec3.normalize(push, push)
-
-    if (pushLen > 0) {
-      // pushing force vector
-      canPush = this.moveForce
-      if (!onGround)  canPush *= this.airMoveMult
-
-      // apply final force
-      pushAmt = this.responsiveness * pushLen
-      if (canPush > pushAmt) canPush = pushAmt
-
-      vec3.scale( push, push, canPush )
-      target.applyForce( push )
-
-    }
-
-    // different friction when not moving
-    // idea from Sonic: http://info.sonicretro.org/SPG:Running
-    target.friction = this.runningFriction
-  } else {
-    target.friction = this.standingFriction
-  }
-
-  // handle firing - haven't looked at this yet
   var can_fire = true
 
   if(state.fire || state.firealt) {
     if(this.firing && this.needs_discrete_fire) {
       this.firing += dt
     } else {
-      if(!this.fire_rate || 
-         Math.floor(this.firing / this.fire_rate) !== Math.floor((this.firing + dt) / this.fire_rate)) {
+      if(!this.fire_rate || floor(this.firing / this.fire_rate) !== floor((this.firing + dt) / this.fire_rate)) {
         this.onfire(state)
       }
       this.firing += dt
@@ -52305,170 +50862,146 @@ proto.tick = function(dt) {
     this.firing = 0
   }
 
+  var x_rotation = this.state.x_rotation_accum * this.rotation_scale
+    , y_rotation = this.state.y_rotation_accum * this.rotation_scale
+    , z_rotation = this.state.z_rotation_accum * this.rotation_scale
+    , pitch_target = this._pitch_target
+    , yaw_target = this._yaw_target
+    , roll_target = this._roll_target
+    
+  if (pitch_target === yaw_target && yaw_target === roll_target) {
+    pitch_target.eulerOrder = 'YXZ'
+  }
+
+  pitch_target.rotation.x = clamp(pitch_target.rotation.x + clamp(x_rotation, this.x_rotation_per_ms), this.x_rotation_clamp)
+  yaw_target.rotation.y = clamp(yaw_target.rotation.y + clamp(y_rotation, this.y_rotation_per_ms), this.y_rotation_clamp)
+  roll_target.rotation.z = clamp(roll_target.rotation.z + clamp(z_rotation, this.z_rotation_per_ms), this.z_rotation_clamp)
+
+  if(this.listeners('data').length) {
+    this.emitUpdate()
+  }
+
+  this.state.x_rotation_accum =
+  this.state.y_rotation_accum =
+  this.state.z_rotation_accum = 0
 }
 
+proto.write = function(changes) {
+  for(var key in changes) {
+    this.state[key] = changes[key]
+  }
+}
 
+proto.end = function(deltas) {
+  if(deltas) {
+    this.write(deltas)
+  }
+}
 
+proto.createWriteRotationStream = function() {
+  var state = this.state
+    , stream = new Stream
 
+  state.x_rotation_accum =
+  state.y_rotation_accum =
+  state.z_rotation_accum = 0
+
+  stream.writable = true
+  stream.write = write
+  stream.end = end
+
+  return stream
+
+  function write(changes) {
+    state.x_rotation_accum -= changes.dy || 0
+    state.y_rotation_accum -= changes.dx || 0
+    state.z_rotation_accum += changes.dz || 0
+  }
+
+  function end(deltas) {
+    if(deltas) {
+      stream.write(deltas)
+    }
+  }
+}
+
+proto.emitUpdate = function() {
+  return this.queue({
+      x_rotation_accum: this.state.x_rotation_accum
+    , y_rotation_accum: this.state.y_rotation_accum
+    , z_rotation_accum: this.state.z_rotation_accum
+    , forward: this.state.forward
+    , backward: this.state.backward
+    , left: this.state.left
+    , right: this.state.right
+    , fire: this.state.fire
+    , firealt: this.state.firealt
+    , jump: this.state.jump
+  })
+}
+
+proto.drain = function() {
+  var buf = this.buffer
+    , data
+
+  while(buf.length && !this.paused) {
+    data = buf.shift()
+    if(null === data) {
+      return this.emit('end')
+    }
+    this.emit('data', data)
+  }
+}
+
+proto.resume = function() {
+  this.paused = false
+  this.drain()
+
+  if(!this.paused) {
+    this.emit('drain')
+  }
+  return this
+}
+
+proto.pause = function() {
+  if(this.paused) return
+
+  this.paused = true
+  this.emit('pause')
+  return this
+}
+
+proto.queue = function(data) {
+  this.buffer.push(data)
+  this.drain()
+  return this
+}
+
+proto.acceleration = function(current, max) {
+  // max -> 0
+  var pct = (max - current) / max
+  return sin(PI/2*pct)
+}
+
+proto.target = function(target) {
+  if(target) {
+    this._target = target
+    this._yaw_target = target.yaw || target
+    this._pitch_target = target.pitch || target
+    this._roll_target = target.roll || target
+  }
+  return this._target
+}
 
 proto.onfire = function(_) {
 
 }
 
 function clamp(value, to) {
-  return isFinite(to) ? Math.max(Math.min(value, to), -to) : value
+  return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"extend":333,"gl-vec3":345}],333:[function(require,module,exports){
-var hasOwn = Object.prototype.hasOwnProperty;
-var toString = Object.prototype.toString;
-var undefined;
-
-var isPlainObject = function isPlainObject(obj) {
-	'use strict';
-	if (!obj || toString.call(obj) !== '[object Object]') {
-		return false;
-	}
-
-	var has_own_constructor = hasOwn.call(obj, 'constructor');
-	var has_is_property_of_method = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, 'isPrototypeOf');
-	// Not own constructor property must be Object
-	if (obj.constructor && !has_own_constructor && !has_is_property_of_method) {
-		return false;
-	}
-
-	// Own properties are enumerated firstly, so to speed up,
-	// if last one is own, then all properties are own.
-	var key;
-	for (key in obj) {}
-
-	return key === undefined || hasOwn.call(obj, key);
-};
-
-module.exports = function extend() {
-	'use strict';
-	var options, name, src, copy, copyIsArray, clone,
-		target = arguments[0],
-		i = 1,
-		length = arguments.length,
-		deep = false;
-
-	// Handle a deep copy situation
-	if (typeof target === 'boolean') {
-		deep = target;
-		target = arguments[1] || {};
-		// skip the boolean and the target
-		i = 2;
-	} else if ((typeof target !== 'object' && typeof target !== 'function') || target == null) {
-		target = {};
-	}
-
-	for (; i < length; ++i) {
-		options = arguments[i];
-		// Only deal with non-null/undefined values
-		if (options != null) {
-			// Extend the base object
-			for (name in options) {
-				src = target[name];
-				copy = options[name];
-
-				// Prevent never-ending loop
-				if (target === copy) {
-					continue;
-				}
-
-				// Recurse if we're merging plain objects or arrays
-				if (deep && copy && (isPlainObject(copy) || (copyIsArray = Array.isArray(copy)))) {
-					if (copyIsArray) {
-						copyIsArray = false;
-						clone = src && Array.isArray(src) ? src : [];
-					} else {
-						clone = src && isPlainObject(src) ? src : {};
-					}
-
-					// Never move original objects, clone them
-					target[name] = extend(deep, clone, copy);
-
-				// Don't bring in undefined values
-				} else if (copy !== undefined) {
-					target[name] = copy;
-				}
-			}
-		}
-	}
-
-	// Return the modified object
-	return target;
-};
-
-
-},{}],334:[function(require,module,exports){
-arguments[4][291][0].apply(exports,arguments)
-},{"dup":291}],335:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"./dot":342,"./fromValues":344,"./normalize":353,"dup":292}],336:[function(require,module,exports){
-arguments[4][293][0].apply(exports,arguments)
-},{"dup":293}],337:[function(require,module,exports){
-arguments[4][294][0].apply(exports,arguments)
-},{"dup":294}],338:[function(require,module,exports){
-arguments[4][295][0].apply(exports,arguments)
-},{"dup":295}],339:[function(require,module,exports){
-arguments[4][296][0].apply(exports,arguments)
-},{"dup":296}],340:[function(require,module,exports){
-arguments[4][297][0].apply(exports,arguments)
-},{"dup":297}],341:[function(require,module,exports){
-arguments[4][298][0].apply(exports,arguments)
-},{"dup":298}],342:[function(require,module,exports){
-arguments[4][299][0].apply(exports,arguments)
-},{"dup":299}],343:[function(require,module,exports){
-arguments[4][300][0].apply(exports,arguments)
-},{"./create":338,"dup":300}],344:[function(require,module,exports){
-arguments[4][301][0].apply(exports,arguments)
-},{"dup":301}],345:[function(require,module,exports){
-arguments[4][302][0].apply(exports,arguments)
-},{"./add":334,"./angle":335,"./clone":336,"./copy":337,"./create":338,"./cross":339,"./distance":340,"./divide":341,"./dot":342,"./forEach":343,"./fromValues":344,"./inverse":346,"./length":347,"./lerp":348,"./max":349,"./min":350,"./multiply":351,"./negate":352,"./normalize":353,"./random":354,"./rotateX":355,"./rotateY":356,"./rotateZ":357,"./scale":358,"./scaleAndAdd":359,"./set":360,"./squaredDistance":361,"./squaredLength":362,"./subtract":363,"./transformMat3":364,"./transformMat4":365,"./transformQuat":366,"dup":302}],346:[function(require,module,exports){
-arguments[4][303][0].apply(exports,arguments)
-},{"dup":303}],347:[function(require,module,exports){
-arguments[4][304][0].apply(exports,arguments)
-},{"dup":304}],348:[function(require,module,exports){
-arguments[4][305][0].apply(exports,arguments)
-},{"dup":305}],349:[function(require,module,exports){
-arguments[4][306][0].apply(exports,arguments)
-},{"dup":306}],350:[function(require,module,exports){
-arguments[4][307][0].apply(exports,arguments)
-},{"dup":307}],351:[function(require,module,exports){
-arguments[4][308][0].apply(exports,arguments)
-},{"dup":308}],352:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"dup":309}],353:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310}],354:[function(require,module,exports){
-arguments[4][311][0].apply(exports,arguments)
-},{"dup":311}],355:[function(require,module,exports){
-arguments[4][312][0].apply(exports,arguments)
-},{"dup":312}],356:[function(require,module,exports){
-arguments[4][313][0].apply(exports,arguments)
-},{"dup":313}],357:[function(require,module,exports){
-arguments[4][314][0].apply(exports,arguments)
-},{"dup":314}],358:[function(require,module,exports){
-arguments[4][315][0].apply(exports,arguments)
-},{"dup":315}],359:[function(require,module,exports){
-arguments[4][316][0].apply(exports,arguments)
-},{"dup":316}],360:[function(require,module,exports){
-arguments[4][317][0].apply(exports,arguments)
-},{"dup":317}],361:[function(require,module,exports){
-arguments[4][318][0].apply(exports,arguments)
-},{"dup":318}],362:[function(require,module,exports){
-arguments[4][319][0].apply(exports,arguments)
-},{"dup":319}],363:[function(require,module,exports){
-arguments[4][320][0].apply(exports,arguments)
-},{"dup":320}],364:[function(require,module,exports){
-arguments[4][321][0].apply(exports,arguments)
-},{"dup":321}],365:[function(require,module,exports){
-arguments[4][322][0].apply(exports,arguments)
-},{"dup":322}],366:[function(require,module,exports){
-arguments[4][323][0].apply(exports,arguments)
-},{"dup":323}],367:[function(require,module,exports){
+},{"stream":1048}],334:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -52536,7 +51069,7 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
 
 module.exports = createVoxelMesh
 
-},{"./mesh.js":369,"gl-buffer":375,"gl-matrix":378,"gl-vao":384,"ndarray":397,"ndarray-ops":392}],368:[function(require,module,exports){
+},{"./mesh.js":336,"gl-buffer":342,"gl-matrix":345,"gl-vao":351,"ndarray":364,"ndarray-ops":359}],335:[function(require,module,exports){
 'use strict';
 
 var createVoxelMesh = require('./mesh-buffer.js');
@@ -52665,7 +51198,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":367,"block-models":370,"events":1101,"gl-buffer":375,"gl-vao":384,"inherits":391,"ndarray":397,"ndarray-ops":392}],369:[function(require,module,exports){
+},{"./mesh-buffer.js":334,"block-models":337,"events":1032,"gl-buffer":342,"gl-vao":351,"inherits":358,"ndarray":364,"ndarray-ops":359}],336:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -53216,7 +51749,7 @@ function computeMesh(array, voxelSideTextureIDs, voxelSideTextureSizes) {
 
 module.exports = computeMesh
 
-},{"cwise-compiler":371,"greedy-mesher":385,"ndarray":397,"typedarray-pool":401}],370:[function(require,module,exports){
+},{"cwise-compiler":338,"greedy-mesher":352,"ndarray":364,"typedarray-pool":368}],337:[function(require,module,exports){
 'use strict';
 
 // get all coordinates for a cube ranging from vertex a to b
@@ -53362,35 +51895,35 @@ var parseBlockModel = function(elements, getTextureUV, x, y, z) {
 module.exports = parseBlockModel;
 
 
-},{}],371:[function(require,module,exports){
+},{}],338:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":373,"dup":92}],372:[function(require,module,exports){
+},{"./lib/thunk.js":340,"dup":92}],339:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":374}],373:[function(require,module,exports){
+},{"dup":93,"uniq":341}],340:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":372,"dup":94}],374:[function(require,module,exports){
+},{"./compile.js":339,"dup":94}],341:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],375:[function(require,module,exports){
+},{"dup":95}],342:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":397,"ndarray-ops":392,"typedarray-pool":401,"webglew":377}],376:[function(require,module,exports){
+},{"dup":90,"ndarray":364,"ndarray-ops":359,"typedarray-pool":368,"webglew":344}],343:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],377:[function(require,module,exports){
+},{"dup":101}],344:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":376}],378:[function(require,module,exports){
+},{"dup":102,"weakmap":343}],345:[function(require,module,exports){
 arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],379:[function(require,module,exports){
+},{"dup":219}],346:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],380:[function(require,module,exports){
+},{"dup":103}],347:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":379,"dup":104}],381:[function(require,module,exports){
+},{"./do-bind.js":346,"dup":104}],348:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":379,"dup":105}],382:[function(require,module,exports){
+},{"./do-bind.js":346,"dup":105}],349:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],383:[function(require,module,exports){
+},{"dup":101}],350:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":382}],384:[function(require,module,exports){
+},{"dup":102,"weakmap":349}],351:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":380,"./lib/vao-native.js":381,"dup":108,"webglew":383}],385:[function(require,module,exports){
+},{"./lib/vao-emulated.js":347,"./lib/vao-native.js":348,"dup":108,"webglew":350}],352:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -53589,189 +52122,1045 @@ function compileMesher(options) {
 }
 module.exports = compileMesher
 
-},{"iota-array":386,"typedarray-pool":389,"uniq":390}],386:[function(require,module,exports){
+},{"iota-array":353,"typedarray-pool":356,"uniq":357}],353:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],387:[function(require,module,exports){
+},{"dup":97}],354:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],388:[function(require,module,exports){
+},{"dup":98}],355:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],389:[function(require,module,exports){
+},{"dup":99}],356:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":387,"buffer":1097,"dup":100}],390:[function(require,module,exports){
+},{"bit-twiddle":354,"buffer":1028,"dup":100}],357:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],391:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],392:[function(require,module,exports){
+},{"dup":95}],358:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],359:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":393,"dup":91}],393:[function(require,module,exports){
+},{"cwise-compiler":360,"dup":91}],360:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":395,"dup":92}],394:[function(require,module,exports){
+},{"./lib/thunk.js":362,"dup":92}],361:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":396}],395:[function(require,module,exports){
+},{"dup":93,"uniq":363}],362:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":394,"dup":94}],396:[function(require,module,exports){
+},{"./compile.js":361,"dup":94}],363:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],397:[function(require,module,exports){
+},{"dup":95}],364:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":398}],398:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":365}],365:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],399:[function(require,module,exports){
+},{"dup":97}],366:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],400:[function(require,module,exports){
+},{"dup":98}],367:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],401:[function(require,module,exports){
+},{"dup":99}],368:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":399,"buffer":1097,"dup":100}],402:[function(require,module,exports){
-'use strict';
+},{"bit-twiddle":366,"buffer":1028,"dup":100}],369:[function(require,module,exports){
+module.exports = AABB
 
-var collisions = require('collide-3d-tilemap')
-,   extend = require('extend')
-,   aabb = require('aabb-3d')
-,   vec3 = require('gl-vec3')
+var vec3 = require('gl-matrix').vec3
 
-var RigidBody = require('./rigidBody')
+function AABB(pos, vec) {
+  if(!(this instanceof AABB)) {
+    return new AABB(pos, vec)
+  }
 
-module.exports = function(game, opts) {
-  return new Physics(game, opts)
+  this.base = pos
+  this.vec = vec
+
+  this.mag = vec3.length(this.vec)
+
+  this.max = vec3.create()
+  vec3.add(this.max, this.base, this.vec)
 }
 
-var _game
-var defaults = {
-  gravity: [0, -18, 0]
-  , airFriction: 0.995
+var cons = AABB
+  , proto = cons.prototype
 
+proto.width = function() {
+  return this.vec[0]
 }
 
+proto.height = function() {
+  return this.vec[1]
+}
 
-/* 
- *    CONSTRUCTOR - represents a world of rigid bodies.
- * 
- *  Takes in a getBlock(x,y,z) function to query block solidity.
-*/
-function Physics(opts, getBlock) {
-  opts = extend( {}, defaults, opts )
+proto.depth = function() {
+  return this.vec[2]
+}
 
-  this.gravity = opts.gravity
-  this.airFriction = opts.airFriction
-  this.bodies = []
+proto.x0 = function() {
+  return this.base[0]
+}
 
-  // collision function - TODO: abstract this into a setter?
-  this.collideWorld = collisions(
-    getBlock,
-    1,
-    [Infinity, Infinity, Infinity],
-    [-Infinity, -Infinity, -Infinity]
+proto.y0 = function() {
+  return this.base[1]
+}
+
+proto.z0 = function() {
+  return this.base[2]
+}
+
+proto.x1 = function() {
+  return this.max[0]
+}
+
+proto.y1 = function() {
+  return this.max[1]
+}
+
+proto.z1 = function() {
+  return this.max[2]
+}
+
+proto.translate = function(by) {
+  vec3.add(this.max, this.max, by)
+  vec3.add(this.base, this.base, by)
+  return this
+}
+
+proto.expand = function(aabb) {
+  var max = vec3.create()
+    , min = vec3.create()
+
+  vec3.max(max, aabb.max, this.max)
+  vec3.min(min, aabb.base, this.base)
+  vec3.sub(max, max, min)
+
+  return new AABB(min, max)
+}
+
+proto.intersects = function(aabb) {
+  if(aabb.base[0] > this.max[0]) return false
+  if(aabb.base[1] > this.max[1]) return false
+  if(aabb.base[2] > this.max[2]) return false
+  if(aabb.max[0] < this.base[0]) return false
+  if(aabb.max[1] < this.base[1]) return false
+  if(aabb.max[2] < this.base[2]) return false
+
+  return true
+}
+
+proto.union = function(aabb) {
+  if(!this.intersects(aabb)) return null
+
+  var base_x = Math.max(aabb.base[0], this.base[0])
+    , base_y = Math.max(aabb.base[1], this.base[1])
+    , base_z = Math.max(aabb.base[2], this.base[2])
+    , max_x = Math.min(aabb.max[0], this.max[0])
+    , max_y = Math.min(aabb.max[1], this.max[1])
+    , max_z = Math.min(aabb.max[2], this.max[2])
+
+  return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
+}
+
+},{"gl-matrix":370}],370:[function(require,module,exports){
+arguments[4][219][0].apply(exports,arguments)
+},{"dup":219}],371:[function(require,module,exports){
+module.exports = physical
+
+var aabb = require('aabb-3d')
+  , glm = require('gl-matrix')
+  , vec3 = glm.vec3
+
+function physical(avatar, collidables, dimensions, terminal) {
+  return new Physical(avatar, collidables, dimensions, terminal)
+}
+
+function Physical(avatar, collidables, dimensions, terminal) {
+  this.avatar = avatar
+
+  if (terminal) {
+    if ('x' in terminal) {
+      // three.js Vector3 format
+      this.terminal = vec3.fromValues(terminal.x, terminal.y, terminal.z)
+    } else {
+      this.terminal = terminal
+    }
+  } else {
+    this.terminal = vec3.fromValues(0.9, 0.1, 0.9)
+  }
+
+  this.dimensions = dimensions = dimensions || [1, 1, 1]
+  this._aabb = aabb([0, 0, 0], dimensions)
+  this.resting = {x: false, y: false, z: false}
+  this.old_resting_y = 0
+  this.last_rest_y = NaN
+
+  this.collidables = collidables
+  this.friction = vec3.fromValues(1, 1, 1)
+
+  this.rotation = this.avatar.rotation
+  this.default_friction = 1
+
+  // default yaw/pitch/roll controls to the avatar
+  this.yaw =
+  this.pitch =
+  this.roll = avatar
+
+  this.forces = vec3.create()
+  this.attractors = []
+  this.acceleration = vec3.create()
+  this.velocity = vec3.create()
+}
+
+var cons = Physical
+  , proto = cons.prototype
+  , axes = ['x', 'y', 'z']
+  , abs = Math.abs
+
+// make these *once*, so we're not generating
+// garbage for every object in the game.
+var WORLD_DESIRED = vec3.create()
+  , DESIRED = vec3.create()
+  , START = vec3.create()
+  , END = vec3.create()
+  , DIRECTION = vec3.create()
+  , LOCAL_ATTRACTOR = vec3.create()
+  , TOTAL_FORCES = vec3.create()
+
+proto.applyWorldAcceleration = applyTo('acceleration')
+proto.applyWorldVelocity = applyTo('velocity')
+
+function applyTo(which) {
+  return function(world) {
+    var local = this.avatar.worldToLocal(world)
+    this[which].x += local.x
+    this[which].y += local.y
+    this[which].z += local.z
+  }
+}
+
+var _POSITION = vec3.create()
+// get avatar position in as gl-matrix vec3
+proto.avatarPosition = function() {
+  _POSITION[0] = this.avatar.position.x
+  _POSITION[1] = this.avatar.position.y
+  _POSITION[2] = this.avatar.position.z
+  return _POSITION
+}
+
+proto.tick = function(dt) {
+  var forces = this.forces
+    , acceleration = this.acceleration
+    , velocity = this.velocity
+    , terminal = this.terminal
+    , friction = this.friction
+    , desired = DESIRED
+    , world_desired = WORLD_DESIRED
+    , bbox
+    , pcs
+  vec3.set(TOTAL_FORCES, 0, 0, 0)
+  vec3.set(desired, 0, 0, 0)
+  vec3.set(world_desired, 0, 0, 0)
+
+  for(var i = 0; i < this.attractors.length; i++) {
+    var distance_factor = vec3.squaredDistance(this.avatarPosition(), this.attractors[i])
+
+    vec3.copy(LOCAL_ATTRACTOR, this.attractors[i])
+    //LOCAL_ATTRACTOR = this.avatar.worldToLocal(LOCAL_ATTRACTOR)
+    var tmp = this.avatar.worldToLocal(LOCAL_ATTRACTOR)
+    vec3.set(LOCAL_ATTRACTOR, tmp.x, tmp.y, tmp.z)
+
+    vec3.sub(DIRECTION, LOCAL_ATTRACTOR, this.avatarPosition())
+
+    vec3.scale(DIRECTION, this.attractors[i].mass / (DIRECTION.length() * distance_factor))
+
+    vec3.add(TOTAL_FORCES, TOTAL_FORCES, DIRECTION)
+  }
+  
+  if(!this.resting.x) {
+    acceleration[0] /= 8 * dt
+    acceleration[0] += TOTAL_FORCES[0] * dt
+    acceleration[0] += forces[0] * dt
+
+    velocity[0] += acceleration[0] * dt
+    velocity[0] *= friction[0]
+
+    if(abs(velocity[0]) < terminal[0]) {
+      desired[0] = (velocity[0] * dt)
+    } else if(velocity[0] !== 0) {
+      desired[0] = (velocity[0] / abs(velocity[0])) * terminal[0]
+    }
+  } else {
+    acceleration[0] = velocity[0] = 0
+  }
+  if(!this.resting.y) {
+    acceleration[1] /= 8 * dt
+    acceleration[1] += TOTAL_FORCES[1] * dt
+    acceleration[1] += forces[1] * dt
+
+    velocity[1] += acceleration[1] * dt
+    velocity[1] *= friction[1]
+
+    if(abs(velocity[1]) < terminal[1]) {
+      desired[1] = (velocity[1] * dt)
+    } else if(velocity[1] !== 0) {
+      desired[1] = (velocity[1] / abs(velocity[1])) * terminal[1]
+    }
+  } else {
+    acceleration[1] = velocity[1] = 0
+  }
+  if(!this.resting.z) {
+    acceleration[2] /= 8 * dt
+    acceleration[2] += TOTAL_FORCES[2] * dt
+    acceleration[2] += forces[2] * dt
+
+    velocity[2] += acceleration[2] * dt
+    velocity[2] *= friction[2]
+
+    if(abs(velocity[2]) < terminal[2]) {
+      desired[2] = (velocity[2] * dt)
+    } else if(velocity[2] !== 0) {
+      desired[2] = (velocity[2] / abs(velocity[2])) * terminal[2]
+    }
+  } else {
+    acceleration[2] = velocity[2] = 0
+  }
+
+  vec3.copy(START, this.avatarPosition())
+  this.avatar.translateX(desired[0])
+  this.avatar.translateY(desired[1])
+  this.avatar.translateZ(desired[2])
+  vec3.copy(END, this.avatarPosition())
+  this.avatar.position.x = START[0]
+  this.avatar.position.y = START[1]
+  this.avatar.position.z = START[2]
+  vec3.sub(world_desired, END, START)
+  this.friction[0] =
+  this.friction[1] =
+  this.friction[2] = this.default_friction
+
+  // save old copies, since when normally on the
+  // ground, this.resting.y alternates (false,-1)
+  this.old_resting_y = (this.old_resting_y << 1) >>> 0
+  this.old_resting_y |= !!this.resting.y | 0
+
+  // run collisions
+  this.resting.x =
+  this.resting.y =
+  this.resting.z = false
+
+  bbox = this.aabb()
+  pcs = this.collidables
+
+  for(var i = 0, len = pcs.length; i < len; ++i) {
+    if(pcs[i] !== this) {
+      pcs[i].collide(this, bbox, world_desired, this.resting)
+    }
+  }
+
+  // fall distance
+  if(!!(this.old_resting_y & 0x4) !== !!this.resting.y) {
+    if(!this.resting.y) {
+      this.last_rest_y = this.avatar.position.y
+    } else if(!isNaN(this.last_rest_y)) {
+      this.fell(this.last_rest_y - this.avatar.position.y)
+      this.last_rest_y = NaN
+    }
+  }
+
+  // apply translation
+  this.avatar.position.x += world_desired[0]
+  this.avatar.position.y += world_desired[1]
+  this.avatar.position.z += world_desired[2]
+}
+
+proto.subjectTo = function(force) {
+  vec3.add(this.forces, this.forces, force)
+  return this
+}
+
+proto.removeForce = function(force) {
+  vec3.sub(this.forces, this.forces, force)
+  return this
+}
+
+proto.attractTo = function(vector, mass) {
+  if ('x' in mass) {
+    // if needed, convert from three.js Vector to gl-matrix vec3
+    mass = vec3.fromValues(mass.x, mass.y, mass.z)
+  }
+
+  vector.mass = mass
+  this.attractors.push(vector)
+}
+
+proto.aabb = function() {
+  var pos = this.avatar.position
+  var d = this.dimensions
+  return aabb(
+    [pos.x - (d[0]/2), pos.y, pos.z - (d[2]/2)],
+    this.dimensions
   )
 }
 
-
-
-/*
- *    ADDING AND REMOVING RIGID BODIES
-*/
-
-Physics.prototype.addBody = function(avatar, _aabb) {
-  // for backwards compatibility, right new default dims to player size
-  _aabb = _aabb || new aabb( [0,22,0], [2/3, 1.5, 2/3] )
-  var b = new RigidBody(avatar, _aabb)
-  this.bodies.push(b)
-  return b
+// no object -> object collisions for now, thanks
+proto.collide = function(other, bbox, world_vec, resting) {
+  return
 }
 
-Physics.prototype.removeBody = function(b) {
-  var i = this.bodies.indexOf(b)
-  if (i < 0) return undefined
-  this.bodies.splice(i, 1)
+proto.atRestX = function() {
+  return this.resting.x
 }
 
+proto.atRestY = function() {
+  return this.resting.y
+}
 
+proto.atRestZ = function() {
+  return this.resting.z
+}
 
+proto.fell = function(distance) {
+  return
+}
 
-/*
- *    PHYSICS AND COLLISIONS
-*/
+},{"aabb-3d":369,"gl-matrix":370}],372:[function(require,module,exports){
+arguments[4][202][0].apply(exports,arguments)
+},{"dup":202}],373:[function(require,module,exports){
+var util = require('util');
 
-var b, i, len
-var world_x0 = vec3.create()
-,  world_x1 = vec3.create()
-,  world_dx = vec3.create()
-,  friction = vec3.create()
-,  a = vec3.create()
-,  dv = vec3.create()
-,  dx = vec3.create()
+module.exports = function tsort(initial) {
+  var graph = new Graph();
 
-Physics.prototype.tick = function(dt) {
-  // convert dt to seconds
-  dt = dt/1000
-  for(i=0, len=this.bodies.length; i<len; ++i) {
-    b = this.bodies[i]
-    var onGround = (b.resting[1] < 0)
-    b.resting = [0,0,0]
-
-    // semi-implicit Euler integration
-
-    // a = f/m + gravity
-    vec3.scale( a, b._forces, 1/b._mass )
-    vec3.add  ( a, a, this.gravity )
-
-    // v1 = v0 + i/m + a*dt
-    vec3.scale( dv, b._impulses, 1/b._mass )
-    vec3.add  ( b.velocity, b.velocity, dv )
-    vec3.scale( dv, a, dt )
-    vec3.add  ( b.velocity, b.velocity, dv )
-
-    // friction
-    if (onGround) { // friction force <= - u |vel|
-      // max friction impulse = (F/m)*dt = (mg)/m*dt = u*g*dt = dt*b.friction
-      var fMax = dt * b.friction
-      // friction direction - inversed horizontal velocity
-      vec3.scale( friction, b.velocity, -1 )
-      friction[1] = 0
-      var vAmt = vec3.length(friction)
-      if (vAmt > fMax) { // slow down
-        vec3.scale( friction, friction, fMax/vAmt )
-        vec3.add( b.velocity, b.velocity, friction )
-      } else { // stop
-        b.velocity[0] = b.velocity[2] = 0
-      }
-    } else {
-      // air resistance
-      vec3.scale( b.velocity, b.velocity, this.airFriction )
-    }
-
-    // x1-x0 = v1*dt
-    vec3.scale( dx, b.velocity, dt )
-
-    // clear forces and impulses for next timestep
-    vec3.set( b._forces, 0, 0, 0 )
-    vec3.set( b._impulses, 0, 0, 0 )
-
-    // collisions
-    this.collideWorld( b.aabb, dx, function hit(axis, tile, coords, dir, edge) {
-      if (!tile) return false
-      if (Math.abs(dx[axis]) < Math.abs(edge)) {
-        throw new Error('a')
-        return
-      }
-      dx[axis] = edge
-      b.velocity[axis] = 0
-      b.resting[axis] = dir
-      // TODO: emit collision event (on body?) with impulse amount
-      return true
-    })
-
-    // the collide function updates b.aabb, so we're done
+  if (initial) {
+    initial.forEach(function(entry) {
+      Graph.prototype.add.apply(graph, entry);
+    });
   }
 
+  return graph;
 }
 
+function Graph() {
+  this.nodes = {};
+}
+
+// Add sorted items to the graph
+Graph.prototype.add = function() {
+  var self = this;
+  var items = [].slice.call(arguments);
+
+  if (items.length == 1 && util.isArray(items[0]))
+    items = items[0];
+
+  items.forEach(function(item) {
+    if (!self.nodes[item])
+      self.nodes[item] = [];
+  });
+
+  for (var i = 1; i < items.length; i++) {
+    var from = items[i];
+    var to = items[i - 1];
+
+    self.nodes[from].push(to);
+  }
+
+  return self;
+};
+
+// Depth first search
+// As given in http://en.wikipedia.org/wiki/Topological_sorting
+Graph.prototype.sort = function() {
+  var self = this;
+  var nodes = Object.keys(this.nodes);
+
+  var sorted = [];
+  var marks = {};
+
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+
+    if (!marks[node])
+      visit(node);
+  }
+
+  return sorted;
+
+  function visit(node) {
+    if (marks[node] === 'temp')
+      throw new Error("There is a cycle in the graph. It is not possible to derive a topological sort.");
+    else if (marks[node])
+      return;
+
+    marks[node] = 'temp';
+    self.nodes[node].forEach(visit);
+    marks[node] = 'perm';
+
+    sorted.push(node);
+  }
+};
+
+},{"util":1051}],374:[function(require,module,exports){
+(function (process){
+'use strict';
+var EventEmitter = require('events').EventEmitter;
+var inherits = require('inherits');
+var tsort = require('tsort');
+
+module.exports = function(game, opts) {
+  return new Plugins(game, opts);
+};
+
+function Plugins(game, opts) {
+  this.game = game;
+  if (this.game) this.game.plugins = this;
+
+  opts = opts || {};
+  this.require = opts.require || require;
+  this.catchExceptions = false;
+  this.masterPluginName = opts.masterPluginName || 'voxel-engine'; // synthetic 'plugin' created as parent of all
+
+  // map plugin name to instances
+  this.all = {};
+
+  this.savedOpts = {};
+  this.graph = tsort();
+}
+
+Plugins.prototype.wrapExceptions = function(f) {
+  var ret;
+
+  if (!this.catchExceptions) {
+    ret = f();
+    return ret === undefined ? true : ret; // undefined ok
+  }
+
+  try {
+    ret = f();
+  } catch (e) {
+    console.log('caught exception:',e,'calling',f);
+    console.trace();
+    return false;
+  }
+  return ret === undefined ? true : ret;
+}
+
+// Require the plugin module and return its factory constructor
+// This does not construct the plugin instance, for that see instantiate()
+Plugins.prototype.scan = function(name) {
+  var createPlugin = this.require(name);   // factory for constructor
+
+  return createPlugin;
+};
+
+// Scan then instantiate a plugin by name, creating its instance (starts out enabled)
+Plugins.prototype.scanAndInstantiate = function(name, opts) {
+  if (this.get(name)) {
+    console.log("plugin already instantiated: ", name);
+    return false;
+  }
+
+  opts = opts || {};
+ 
+  var createPlugin = this.scan(name);
+
+  if (createPlugin.pluginInfo && createPlugin.pluginInfo.clientOnly) {
+    if (!this.game.isClient) {
+      console.log("Skipping client-only plugin ("+name+"), in non-client environment");
+      return false;
+    }
+  }
+
+  if (this.game && this.masterPluginName === name) {
+    console.log("Skipping already-loaded master plugin: " + this.masterPluginName);
+    return false;
+  }
+
+  if (!createPlugin) {
+    console.log("plugin not found: ",name);
+    return false;
+  }
+
+  var self = this;
+  if (!this.wrapExceptions(function() {
+    return self.instantiate(createPlugin, name, opts);
+  })) {
+    console.log("failed to instantiate ",name);
+  }
+
+  return true;
+};
+
+// Instantiate a plugin given factory constructor, creating its instance (starts out enabled)
+Plugins.prototype.instantiate = function(createPlugin, name, opts) {
+  var plugin;
+  if (!this.game && name === this.masterPluginName) {
+    // the 'master' plugin is the game object itself
+    this.game = plugin = createPlugin(opts);
+    this.game.plugins = this;
+    if (process.browser && this.game.notCapable()) {
+      if (window.document) window.document.body.appendChild(this.game.notCapableMessage()); // TODO: find out why notCapable() isn't showing up
+      throw new Error('[voxel-plugins] fatal error: your system is not capable of running voxel-engine (game.notCapable)');
+    }
+  } else {
+    plugin = createPlugin(this.game, opts); // requires (game, opts) convention
+    if (!plugin) {
+      console.log("create plugin failed:",name,createPlugin,plugin);
+      return false;
+    }
+  }
+
+  plugin.pluginName = name;
+  this.emit('new plugin', name);
+
+  // plugins are enabled on instantiation -- assumed constructor calls its own enable() method (if present)
+  plugin.pluginEnabled = true;
+  this.emit('plugin enabled', name);
+
+  this.all[name] = plugin;
+
+  //console.log("Instantiated plugin:",name,plugin);
+  console.log("Instantiated plugin:",name);
 
 
+  return plugin;
+};
+
+// Mark a plugin for on-demand loading in enable(), with given preconfigured options
+// (The plugin does not have to exist yet)
+// The saved configuration is also used in add(), if available
+Plugins.prototype.preconfigure = function(name, opts) {
+  this.savedOpts[name] = opts;
+  
+  if (!this.get(name)) 
+    this.emit('new plugin', name);
+};
+
+// Add a plugin for loading: scan for ordered loading and preconfigure with given options
+// Special case: if the 'onDemand' option is set, the plugin won't be scanned at all, instead the pass configuration will be saved
+Plugins.prototype.add = function(name, opts) {
+  if (!opts && !this.savedOpts[name]) throw new Error('voxel-plugins preload('+name+'): missing required options and not preconfigured');
+  if (opts.onDemand) return this.preconfigure(name, opts);
+
+  var createPlugin = this.scan(name);
+  if (!createPlugin)
+    return false;
+
+  this.buildGraph(createPlugin, name);
+
+  // save options to load with
+  this.preconfigure(name, opts);
+};
+
+Plugins.prototype.buildGraph = function(createPlugin, name) {
+  var loadAfter = [];
+
+  if (createPlugin.pluginInfo) {
+    loadAfter = createPlugin.pluginInfo.loadAfter;
+
+    if (!loadAfter) loadAfter = [];
+  }
+
+  // special master plugin, everything always loads after
+  // (mainly added so all plugins are in the graph, even with empty loadAfter)
+  if (name !== this.masterPluginName) loadAfter.unshift(this.masterPluginName);
+
+  // add edges for each plugin required to load before us
+  for (var i = 0; i < loadAfter.length; ++i)
+    this.graph.add(loadAfter[i], name);
+};
+
+// Load add()'d plugins in order sorted by pluginInfo
+Plugins.prototype.loadAll = function() {
+  // topological sort by loadAfter dependency order
+  var sortedPluginNames = this.graph.sort();
+
+  console.log('sortedPluginNames:'+JSON.stringify(sortedPluginNames));
+  for (var i = 0; i < sortedPluginNames.length; ++i) {
+    var name = sortedPluginNames[i];
+
+    if (!this.isEnabled(name))
+      this.enable(name); // will instantiate() since preconfigured
+  }
+};
 
 
-},{"./rigidBody":440,"aabb-3d":403,"collide-3d-tilemap":405,"extend":406,"gl-vec3":418}],403:[function(require,module,exports){
-arguments[4][273][0].apply(exports,arguments)
-},{"dup":273,"gl-matrix":404}],404:[function(require,module,exports){
+// Get an instantiated plugin instance by name or instance
+Plugins.prototype.get = function(name) {
+  if (typeof name === "string")
+    return this.all[name];
+  else
+    // assume it is a plugin instance already, return as-is
+    return name;
+};
+
+Plugins.prototype.isEnabled = function(name) {
+  var plugin = this.get(name);
+
+  return !!(plugin && plugin.pluginEnabled);
+};
+
+Plugins.prototype.isLoaded = function(name) {
+  var plugin = this.get(name);
+
+  return !!(plugin && plugin.pluginName && this.all[plugin.pluginName]);
+};
+
+// Get list of enabled plugins
+Plugins.prototype.list = function() {
+  return this.listAll().filter(this.isEnabled.bind(this));
+};
+
+// Get list of all plugins
+Plugins.prototype.listAll = function() {
+  var loaded = Object.keys(this.all);
+  var unloaded = Object.keys(this.savedOpts).filter(function(x) {
+    return loaded.indexOf(x) == -1;
+  });
+
+  return loaded.concat(unloaded);
+};
+
+
+Plugins.prototype.enable = function(name) {
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    if (this.savedOpts[name]) {
+      // on-demand instantiation, with prespecified options
+      return this.scanAndInstantiate(name, this.savedOpts[name]);
+    } else {
+      if (name !== this.masterPluginName) // ignore missing master plugin, as it is optional
+        console.log("no such plugin loaded to enable: ",plugin,name);
+    }
+
+    return false;
+  } else {
+    if (plugin.pluginEnabled) {
+      console.log("already enabled: ",plugin,name);
+      return false;
+    }
+
+    if (plugin.enable) {
+      if (!this.wrapExceptions(function() {
+        plugin.enable();
+      })) {
+        console.log("failed to enable:",plugin,name);
+        return false;
+      }
+    }
+    plugin.pluginEnabled = true;
+    this.emit('plugin enabled', name);
+  }
+  return true;
+};
+
+Plugins.prototype.disable = function(name) {
+  console.log("disabling plugin ",name);
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    console.log("no such plugin loaded to disable: ",plugin,name);
+    return false;
+  }
+  if (!this.isEnabled(plugin)) {
+    console.log("already disabled: ",plugin,name);
+    return false;
+  }
+
+  if (plugin.disable) {
+    if (!this.wrapExceptions(function() {
+      plugin.disable(); 
+    })) {
+      console.log("failed to disable:",plugin,name);
+      return false;
+    }
+  }
+
+  plugin.pluginEnabled = false;
+  this.emit('plugin disabled', name);
+
+  // TODO: recursively disable dependants? or refuse to disable if has enabled dependants?
+  return true;
+};
+
+Plugins.prototype.toggle = function(name) {
+  if (this.isEnabled(name)) {
+    return this.disable(name);
+  } else {
+    return this.enable(name);
+  }
+};
+
+Plugins.prototype.destroy = function(name) {
+  var plugin = this.get(name);
+
+  if (!plugin) {
+    console.log("no plugin",plugin,name);
+    return false;
+  }
+
+  if (!this.all[plugin.pluginName]) {
+    console.log("no such plugin to destroy: ",plugin);
+    return false;
+  }
+
+  if (this.isEnabled(plugin))
+    this.disable(plugin);
+
+  delete this.all[plugin.pluginName];
+  console.log("destroyed  ",plugin);
+
+  return true;
+};
+
+inherits(Plugins, EventEmitter);
+
+}).call(this,require('_process'))
+},{"_process":1036,"events":1032,"inherits":372,"tsort":373}],375:[function(require,module,exports){
+"use strict"
+
+function traceRay_impl(
+  voxels,
+  px, py, pz,
+  dx, dy, dz,
+  max_d,
+  hit_pos,
+  hit_norm,
+  EPSILON) {
+  var t = 0.0
+    , nx=0, ny=0, nz=0
+    , ix, iy, iz
+    , fx, fy, fz
+    , ox, oy, oz
+    , ex, ey, ez
+    , b, step, min_step
+    , floor = Math.floor
+  //Step block-by-block along ray
+  while(t <= max_d) {
+    ox = px + t * dx
+    oy = py + t * dy
+    oz = pz + t * dz
+    ix = floor(ox)|0
+    iy = floor(oy)|0
+    iz = floor(oz)|0
+    fx = ox - ix
+    fy = oy - iy
+    fz = oz - iz
+    b = voxels.getBlock(ix, iy, iz)
+    if(b) {
+      if(hit_pos) {
+        //Clamp to face on hit
+        hit_pos[0] = fx < EPSILON ? +ix : (fx > 1.0-EPSILON ? ix+1.0-EPSILON : ox)
+        hit_pos[1] = fy < EPSILON ? +iy : (fy > 1.0-EPSILON ? iy+1.0-EPSILON : oy)
+        hit_pos[2] = fz < EPSILON ? +iz : (fz > 1.0-EPSILON ? iz+1.0-EPSILON : oz)
+      }
+      if(hit_norm) {
+        hit_norm[0] = nx
+        hit_norm[1] = ny
+        hit_norm[2] = nz
+      }
+      return b
+    }
+    //Check edge cases
+    min_step = +(EPSILON * (1.0 + t))
+    if(t > min_step) {
+      ex = nx < 0 ? fx <= min_step : fx >= 1.0 - min_step
+      ey = ny < 0 ? fy <= min_step : fy >= 1.0 - min_step
+      ez = nz < 0 ? fz <= min_step : fz >= 1.0 - min_step
+      if(ex && ey && ez) {
+        b = voxels.getBlock(ix+nx, iy+ny, iz) ||
+            voxels.getBlock(ix, iy+ny, iz+nz) ||
+            voxels.getBlock(ix+nx, iy, iz+nz)
+        if(b) {
+          if(hit_pos) {
+            hit_pos[0] = nx < 0 ? ix-EPSILON : ix + 1.0-EPSILON
+            hit_pos[1] = ny < 0 ? iy-EPSILON : iy + 1.0-EPSILON
+            hit_pos[2] = nz < 0 ? iz-EPSILON : iz + 1.0-EPSILON
+          }
+          if(hit_norm) {
+            hit_norm[0] = nx
+            hit_norm[1] = ny
+            hit_norm[2] = nz
+          }
+          return b
+        }
+      }
+      if(ex && (ey || ez)) {
+        b = voxels.getBlock(ix+nx, iy, iz)
+        if(b) {
+          if(hit_pos) {
+            hit_pos[0] = nx < 0 ? ix-EPSILON : ix + 1.0-EPSILON
+            hit_pos[1] = fy < EPSILON ? +iy : oy
+            hit_pos[2] = fz < EPSILON ? +iz : oz
+          }
+          if(hit_norm) {
+            hit_norm[0] = nx
+            hit_norm[1] = ny
+            hit_norm[2] = nz
+          }
+          return b
+        }
+      }
+      if(ey && (ex || ez)) {
+        b = voxels.getBlock(ix, iy+ny, iz)
+        if(b) {
+          if(hit_pos) {
+            hit_pos[0] = fx < EPSILON ? +ix : ox
+            hit_pos[1] = ny < 0 ? iy-EPSILON : iy + 1.0-EPSILON
+            hit_pos[2] = fz < EPSILON ? +iz : oz
+          }
+          if(hit_norm) {
+            hit_norm[0] = nx
+            hit_norm[1] = ny
+            hit_norm[2] = nz
+          }
+          return b
+        }
+      }
+      if(ez && (ex || ey)) {
+        b = voxels.getBlock(ix, iy, iz+nz)
+        if(b) {
+          if(hit_pos) {
+            hit_pos[0] = fx < EPSILON ? +ix : ox
+            hit_pos[1] = fy < EPSILON ? +iy : oy
+            hit_pos[2] = nz < 0 ? iz-EPSILON : iz + 1.0-EPSILON
+          }
+          if(hit_norm) {
+            hit_norm[0] = nx
+            hit_norm[1] = ny
+            hit_norm[2] = nz
+          }
+          return b
+        }
+      }
+    }
+    //Walk to next face of cube along ray
+    nx = ny = nz = 0
+    step = 2.0
+    if(dx < -EPSILON) {
+      var s = -fx/dx
+      nx = 1
+      step = s
+    }
+    if(dx > EPSILON) {
+      var s = (1.0-fx)/dx
+      nx = -1
+      step = s
+    }
+    if(dy < -EPSILON) {
+      var s = -fy/dy
+      if(s < step-min_step) {
+        nx = 0
+        ny = 1
+        step = s
+      } else if(s < step+min_step) {
+        ny = 1
+      }
+    }
+    if(dy > EPSILON) {
+      var s = (1.0-fy)/dy
+      if(s < step-min_step) {
+        nx = 0
+        ny = -1
+        step = s
+      } else if(s < step+min_step) {
+        ny = -1
+      }
+    }
+    if(dz < -EPSILON) {
+      var s = -fz/dz
+      if(s < step-min_step) {
+        nx = ny = 0
+        nz = 1
+        step = s
+      } else if(s < step+min_step) {
+        nz = 1
+      }
+    }
+    if(dz > EPSILON) {
+      var s = (1.0-fz)/dz
+      if(s < step-min_step) {
+        nx = ny = 0
+        nz = -1
+        step = s
+      } else if(s < step+min_step) {
+        nz = -1
+      }
+    }
+    if(step > max_d - t) {
+      step = max_d - t - min_step
+    }
+    if(step < min_step) {
+      step = min_step
+    }
+    t += step
+  }
+  if(hit_pos) {
+    hit_pos[0] = ox;
+    hit_pos[1] = oy;
+    hit_pos[2] = oz;
+  }
+  if(hit_norm) {
+    hit_norm[0] = hit_norm[1] = hit_norm[2] = 0;
+  }
+  return 0
+}
+
+function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) {
+  var px = +origin[0]
+    , py = +origin[1]
+    , pz = +origin[2]
+    , dx = +direction[0]
+    , dy = +direction[1]
+    , dz = +direction[2]
+    , ds = Math.sqrt(dx*dx + dy*dy + dz*dz)
+  if(typeof(EPSILON) === "undefined") {
+    EPSILON = 1e-8
+  }
+  if(ds < EPSILON) {
+    if(hit_pos) {
+      hit_pos[0] = hit_pos[1] = hit_pos[2]
+    }
+    if(hit_norm) {
+      hit_norm[0] = hit_norm[1] = hit_norm[2]
+    }
+    return 0;
+  }
+  dx /= ds
+  dy /= ds
+  dz /= ds
+  if(typeof(max_d) === "undefined") {
+    max_d = 64.0
+  } else {
+    max_d = +max_d
+  }
+  return traceRay_impl(voxels, px, py, pz, dx, dy, dz, max_d, hit_pos, hit_norm, EPSILON)
+}
+
+module.exports = traceRay
+},{}],376:[function(require,module,exports){
+module.exports = coordinates
+
+var aabb = require('aabb-3d')
+var events = require('events')
+
+function coordinates(spatial, box, regionWidth) {
+  var emitter = new events.EventEmitter()
+  var lastRegion = [NaN, NaN, NaN]
+  var thisRegion
+
+  if (arguments.length === 2) {
+    regionWidth = box
+    box = aabb([-Infinity, -Infinity, -Infinity], [Infinity, Infinity, Infinity])
+  }
+
+  spatial.on('position', box, updateRegion)
+  
+  function updateRegion(pos) {
+    thisRegion = [Math.floor(pos[0] / regionWidth), Math.floor(pos[1] / regionWidth), Math.floor(pos[2] / regionWidth)]
+    if (thisRegion[0] !== lastRegion[0] || thisRegion[1] !== lastRegion[1] || thisRegion[2] !== lastRegion[2]) {
+      emitter.emit('change', thisRegion)
+    }
+    lastRegion = thisRegion
+  }
+ 
+  return emitter
+}
+},{"aabb-3d":377,"events":1032}],377:[function(require,module,exports){
+arguments[4][369][0].apply(exports,arguments)
+},{"dup":369,"gl-matrix":378}],378:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -57644,961 +57033,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],405:[function(require,module,exports){
-module.exports = function(field, tilesize, dimensions, offset) {
-  dimensions = dimensions || [ 
-    Math.sqrt(field.length) >> 0
-  , Math.sqrt(field.length) >> 0
-  , Math.sqrt(field.length) >> 0
-  ] 
-
-  offset = offset || [
-    0
-  , 0
-  , 0
-  ]
-
-  field = typeof field === 'function' ? field : function(x, y, z) {
-    return this[x + y * dimensions[1] + (z * dimensions[1] * dimensions[2])]
-  }.bind(field) 
-
-  var coords
-
-  coords = [0, 0, 0]
-
-  return collide
-
-  function collide(box, vec, oncollision) {
-
-    // collide x, then y - if vector has a nonzero component
-    if(vec[0] !== 0) collideaxis(0)
-    if(vec[1] !== 0) collideaxis(1)
-    if(vec[2] !== 0) collideaxis(2)
-
-    function collideaxis(i_axis) {
-      var j_axis = (i_axis + 1) % 3
-        , k_axis = (i_axis + 2) % 3 
-        , posi = vec[i_axis] > 0
-        , leading = box[posi ? 'max' : 'base'][i_axis] 
-        , dir = posi ? 1 : -1
-        , i_start = Math.floor(leading / tilesize)
-        , i_end = (Math.floor((leading + vec[i_axis]) / tilesize)) + dir
-        , j_start = Math.floor(box.base[j_axis] / tilesize)
-        , j_end = Math.ceil(box.max[j_axis] / tilesize)
-        , k_start = Math.floor(box.base[k_axis] / tilesize) 
-        , k_end = Math.ceil(box.max[k_axis] / tilesize)
-        , done = false
-        , edge_vector
-        , edge
-        , tile
-
-      // loop from the current tile coord to the dest tile coord
-      //    -> loop on the opposite axis to get the other candidates
-      //      -> if `oncollision` return `true` we've hit something and
-      //         should break out of the loops entirely.
-      //         NB: `oncollision` is where the client gets the chance
-      //         to modify the `vec` in-flight.
-      // once we're done translate the box to the vec results
-
-      var step = 0
-      for(var i = i_start; !done && i !== i_end; ++step, i += dir) {
-        if(i < offset[i_axis] || i >= dimensions[i_axis]) continue
-        for(var j = j_start; !done && j !== j_end; ++j) {
-          if(j < offset[j_axis] || j >= dimensions[j_axis]) continue
-          for(var k = k_start; k !== k_end; ++k) {
-            if(k < offset[k_axis] || k >= dimensions[k_axis]) continue
-            coords[i_axis] = i
-            coords[j_axis] = j
-            coords[k_axis] = k
-            tile = field.apply(field, coords)
-
-            if(tile === undefined) continue
-
-            edge = dir > 0 ? i * tilesize : (i + 1) * tilesize
-            edge_vector = edge - leading
-
-            if(oncollision(i_axis, tile, coords, dir, edge_vector)) {
-              done = true
-              break
-            }
-          } 
-        }
-      }
-
-      coords[0] = coords[1] = coords[2] = 0
-      coords[i_axis] = vec[i_axis]
-      box.translate(coords)
-    }
-  }  
-}
-
-},{}],406:[function(require,module,exports){
-arguments[4][333][0].apply(exports,arguments)
-},{"dup":333}],407:[function(require,module,exports){
-arguments[4][291][0].apply(exports,arguments)
-},{"dup":291}],408:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"./dot":415,"./fromValues":417,"./normalize":426,"dup":292}],409:[function(require,module,exports){
-arguments[4][293][0].apply(exports,arguments)
-},{"dup":293}],410:[function(require,module,exports){
-arguments[4][294][0].apply(exports,arguments)
-},{"dup":294}],411:[function(require,module,exports){
-arguments[4][295][0].apply(exports,arguments)
-},{"dup":295}],412:[function(require,module,exports){
-arguments[4][296][0].apply(exports,arguments)
-},{"dup":296}],413:[function(require,module,exports){
-arguments[4][297][0].apply(exports,arguments)
-},{"dup":297}],414:[function(require,module,exports){
-arguments[4][298][0].apply(exports,arguments)
-},{"dup":298}],415:[function(require,module,exports){
-arguments[4][299][0].apply(exports,arguments)
-},{"dup":299}],416:[function(require,module,exports){
-arguments[4][300][0].apply(exports,arguments)
-},{"./create":411,"dup":300}],417:[function(require,module,exports){
-arguments[4][301][0].apply(exports,arguments)
-},{"dup":301}],418:[function(require,module,exports){
-arguments[4][302][0].apply(exports,arguments)
-},{"./add":407,"./angle":408,"./clone":409,"./copy":410,"./create":411,"./cross":412,"./distance":413,"./divide":414,"./dot":415,"./forEach":416,"./fromValues":417,"./inverse":419,"./length":420,"./lerp":421,"./max":422,"./min":423,"./multiply":424,"./negate":425,"./normalize":426,"./random":427,"./rotateX":428,"./rotateY":429,"./rotateZ":430,"./scale":431,"./scaleAndAdd":432,"./set":433,"./squaredDistance":434,"./squaredLength":435,"./subtract":436,"./transformMat3":437,"./transformMat4":438,"./transformQuat":439,"dup":302}],419:[function(require,module,exports){
-arguments[4][303][0].apply(exports,arguments)
-},{"dup":303}],420:[function(require,module,exports){
-arguments[4][304][0].apply(exports,arguments)
-},{"dup":304}],421:[function(require,module,exports){
-arguments[4][305][0].apply(exports,arguments)
-},{"dup":305}],422:[function(require,module,exports){
-arguments[4][306][0].apply(exports,arguments)
-},{"dup":306}],423:[function(require,module,exports){
-arguments[4][307][0].apply(exports,arguments)
-},{"dup":307}],424:[function(require,module,exports){
-arguments[4][308][0].apply(exports,arguments)
-},{"dup":308}],425:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"dup":309}],426:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310}],427:[function(require,module,exports){
-arguments[4][311][0].apply(exports,arguments)
-},{"dup":311}],428:[function(require,module,exports){
-arguments[4][312][0].apply(exports,arguments)
-},{"dup":312}],429:[function(require,module,exports){
-arguments[4][313][0].apply(exports,arguments)
-},{"dup":313}],430:[function(require,module,exports){
-arguments[4][314][0].apply(exports,arguments)
-},{"dup":314}],431:[function(require,module,exports){
-arguments[4][315][0].apply(exports,arguments)
-},{"dup":315}],432:[function(require,module,exports){
-arguments[4][316][0].apply(exports,arguments)
-},{"dup":316}],433:[function(require,module,exports){
-arguments[4][317][0].apply(exports,arguments)
-},{"dup":317}],434:[function(require,module,exports){
-arguments[4][318][0].apply(exports,arguments)
-},{"dup":318}],435:[function(require,module,exports){
-arguments[4][319][0].apply(exports,arguments)
-},{"dup":319}],436:[function(require,module,exports){
-arguments[4][320][0].apply(exports,arguments)
-},{"dup":320}],437:[function(require,module,exports){
-arguments[4][321][0].apply(exports,arguments)
-},{"dup":321}],438:[function(require,module,exports){
-arguments[4][322][0].apply(exports,arguments)
-},{"dup":322}],439:[function(require,module,exports){
-arguments[4][323][0].apply(exports,arguments)
-},{"dup":323}],440:[function(require,module,exports){
-
-var aabb = require('aabb-3d')
-,   vec3 = require('gl-vec3')
-
-
-module.exports = RigidBody
-  
-
-/*
- *    RIGID BODY - internal data structure
- *
- * Only AABB bodies right now. Someday will likely need spheres?
-*/
-
-
-function RigidBody(avatar, _aabb) {
-  this.avatar = avatar
-  this.aabb = new aabb(_aabb.base, _aabb.vec) // clone
-  this.velocity = vec3.create()
-  this.resting = [ false, false, false ]
-  // max friction force - i.e. friction coefficient times gravity
-  this.friction = 1
-  // TODO: make engine use these:
-  this.restitution = .5
-  // internals
-  this._forces = vec3.create()
-  this._impulses = vec3.create()
-  this._mass = 1
-}
-
-RigidBody.prototype.setPosition = function(p) {
-  vec3.subtract(p,p,this.aabb.base)
-  this.aabb.translate(p)
-}
-RigidBody.prototype.getPosition = function() {
-  return Array.prototype.slice.call( this.aabb.base ) 
-}
-RigidBody.prototype.applyForce = function(f) {
-  vec3.add( this._forces, this._forces, f )
-}
-RigidBody.prototype.applyImpulse = function(i) {
-  vec3.add( this._impulses, this._impulses, i )
-}
-
-
-// temp
-RigidBody.prototype.subjectTo = function() { /* NOP - TODO: remove? */ }
-RigidBody.prototype.tick =      function() { /* NOP - TODO: remove? */ }
-RigidBody.prototype.atRestX = function() { return this.resting[0] }
-RigidBody.prototype.atRestY = function() { return this.resting[1] }
-RigidBody.prototype.atRestZ = function() { return this.resting[2] }
-
-
-},{"aabb-3d":403,"gl-vec3":418}],441:[function(require,module,exports){
-arguments[4][202][0].apply(exports,arguments)
-},{"dup":202}],442:[function(require,module,exports){
-var util = require('util');
-
-module.exports = function tsort(initial) {
-  var graph = new Graph();
-
-  if (initial) {
-    initial.forEach(function(entry) {
-      Graph.prototype.add.apply(graph, entry);
-    });
-  }
-
-  return graph;
-}
-
-function Graph() {
-  this.nodes = {};
-}
-
-// Add sorted items to the graph
-Graph.prototype.add = function() {
-  var self = this;
-  var items = [].slice.call(arguments);
-
-  if (items.length == 1 && util.isArray(items[0]))
-    items = items[0];
-
-  items.forEach(function(item) {
-    if (!self.nodes[item])
-      self.nodes[item] = [];
-  });
-
-  for (var i = 1; i < items.length; i++) {
-    var from = items[i];
-    var to = items[i - 1];
-
-    self.nodes[from].push(to);
-  }
-
-  return self;
-};
-
-// Depth first search
-// As given in http://en.wikipedia.org/wiki/Topological_sorting
-Graph.prototype.sort = function() {
-  var self = this;
-  var nodes = Object.keys(this.nodes);
-
-  var sorted = [];
-  var marks = {};
-
-  for (var i = 0; i < nodes.length; i++) {
-    var node = nodes[i];
-
-    if (!marks[node])
-      visit(node);
-  }
-
-  return sorted;
-
-  function visit(node) {
-    if (marks[node] === 'temp')
-      throw new Error("There is a cycle in the graph. It is not possible to derive a topological sort.");
-    else if (marks[node])
-      return;
-
-    marks[node] = 'temp';
-    self.nodes[node].forEach(visit);
-    marks[node] = 'perm';
-
-    sorted.push(node);
-  }
-};
-
-},{"util":1120}],443:[function(require,module,exports){
-(function (process){
-'use strict';
-var EventEmitter = require('events').EventEmitter;
-var inherits = require('inherits');
-var tsort = require('tsort');
-
-module.exports = function(game, opts) {
-  return new Plugins(game, opts);
-};
-
-function Plugins(game, opts) {
-  this.game = game;
-  if (this.game) this.game.plugins = this;
-
-  opts = opts || {};
-  this.require = opts.require || require;
-  this.catchExceptions = false;
-  this.masterPluginName = opts.masterPluginName || 'voxel-engine'; // synthetic 'plugin' created as parent of all
-
-  // map plugin name to instances
-  this.all = {};
-
-  this.savedOpts = {};
-  this.graph = tsort();
-}
-
-Plugins.prototype.wrapExceptions = function(f) {
-  var ret;
-
-  if (!this.catchExceptions) {
-    ret = f();
-    return ret === undefined ? true : ret; // undefined ok
-  }
-
-  try {
-    ret = f();
-  } catch (e) {
-    console.log('caught exception:',e,'calling',f);
-    console.trace();
-    return false;
-  }
-  return ret === undefined ? true : ret;
-}
-
-// Require the plugin module and return its factory constructor
-// This does not construct the plugin instance, for that see instantiate()
-Plugins.prototype.scan = function(name) {
-  var createPlugin = this.require(name);   // factory for constructor
-
-  return createPlugin;
-};
-
-// Scan then instantiate a plugin by name, creating its instance (starts out enabled)
-Plugins.prototype.scanAndInstantiate = function(name, opts) {
-  if (this.get(name)) {
-    console.log("plugin already instantiated: ", name);
-    return false;
-  }
-
-  opts = opts || {};
- 
-  var createPlugin = this.scan(name);
-
-  if (createPlugin.pluginInfo && createPlugin.pluginInfo.clientOnly) {
-    if (!this.game.isClient) {
-      console.log("Skipping client-only plugin ("+name+"), in non-client environment");
-      return false;
-    }
-  }
-
-  if (this.game && this.masterPluginName === name) {
-    console.log("Skipping already-loaded master plugin: " + this.masterPluginName);
-    return false;
-  }
-
-  if (!createPlugin) {
-    console.log("plugin not found: ",name);
-    return false;
-  }
-
-  var self = this;
-  if (!this.wrapExceptions(function() {
-    return self.instantiate(createPlugin, name, opts);
-  })) {
-    console.log("failed to instantiate ",name);
-  }
-
-  return true;
-};
-
-// Instantiate a plugin given factory constructor, creating its instance (starts out enabled)
-Plugins.prototype.instantiate = function(createPlugin, name, opts) {
-  var plugin;
-  if (!this.game && name === this.masterPluginName) {
-    // the 'master' plugin is the game object itself
-    this.game = plugin = createPlugin(opts);
-    this.game.plugins = this;
-    if (process.browser && this.game.notCapable()) {
-      if (window.document) window.document.body.appendChild(this.game.notCapableMessage()); // TODO: find out why notCapable() isn't showing up
-      throw new Error('[voxel-plugins] fatal error: your system is not capable of running voxel-engine (game.notCapable)');
-    }
-  } else {
-    plugin = createPlugin(this.game, opts); // requires (game, opts) convention
-    if (!plugin) {
-      console.log("create plugin failed:",name,createPlugin,plugin);
-      return false;
-    }
-  }
-
-  plugin.pluginName = name;
-  this.emit('new plugin', name);
-
-  // plugins are enabled on instantiation -- assumed constructor calls its own enable() method (if present)
-  plugin.pluginEnabled = true;
-  this.emit('plugin enabled', name);
-
-  this.all[name] = plugin;
-
-  //console.log("Instantiated plugin:",name,plugin);
-  console.log("Instantiated plugin:",name);
-
-
-  return plugin;
-};
-
-// Mark a plugin for on-demand loading in enable(), with given preconfigured options
-// (The plugin does not have to exist yet)
-// The saved configuration is also used in add(), if available
-Plugins.prototype.preconfigure = function(name, opts) {
-  this.savedOpts[name] = opts;
-  
-  if (!this.get(name)) 
-    this.emit('new plugin', name);
-};
-
-// Add a plugin for loading: scan for ordered loading and preconfigure with given options
-// Special case: if the 'onDemand' option is set, the plugin won't be scanned at all, instead the pass configuration will be saved
-Plugins.prototype.add = function(name, opts) {
-  if (!opts && !this.savedOpts[name]) throw new Error('voxel-plugins preload('+name+'): missing required options and not preconfigured');
-  if (opts.onDemand) return this.preconfigure(name, opts);
-
-  var createPlugin = this.scan(name);
-  if (!createPlugin)
-    return false;
-
-  this.buildGraph(createPlugin, name);
-
-  // save options to load with
-  this.preconfigure(name, opts);
-};
-
-Plugins.prototype.buildGraph = function(createPlugin, name) {
-  var loadAfter = [];
-
-  if (createPlugin.pluginInfo) {
-    loadAfter = createPlugin.pluginInfo.loadAfter;
-
-    if (!loadAfter) loadAfter = [];
-  }
-
-  // special master plugin, everything always loads after
-  // (mainly added so all plugins are in the graph, even with empty loadAfter)
-  if (name !== this.masterPluginName) loadAfter.unshift(this.masterPluginName);
-
-  // add edges for each plugin required to load before us
-  for (var i = 0; i < loadAfter.length; ++i)
-    this.graph.add(loadAfter[i], name);
-};
-
-// Load add()'d plugins in order sorted by pluginInfo
-Plugins.prototype.loadAll = function() {
-  // topological sort by loadAfter dependency order
-  var sortedPluginNames = this.graph.sort();
-
-  console.log('sortedPluginNames:'+JSON.stringify(sortedPluginNames));
-  for (var i = 0; i < sortedPluginNames.length; ++i) {
-    var name = sortedPluginNames[i];
-
-    if (!this.isEnabled(name))
-      this.enable(name); // will instantiate() since preconfigured
-  }
-};
-
-
-// Get an instantiated plugin instance by name or instance
-Plugins.prototype.get = function(name) {
-  if (typeof name === "string")
-    return this.all[name];
-  else
-    // assume it is a plugin instance already, return as-is
-    return name;
-};
-
-Plugins.prototype.isEnabled = function(name) {
-  var plugin = this.get(name);
-
-  return !!(plugin && plugin.pluginEnabled);
-};
-
-Plugins.prototype.isLoaded = function(name) {
-  var plugin = this.get(name);
-
-  return !!(plugin && plugin.pluginName && this.all[plugin.pluginName]);
-};
-
-// Get list of enabled plugins
-Plugins.prototype.list = function() {
-  return this.listAll().filter(this.isEnabled.bind(this));
-};
-
-// Get list of all plugins
-Plugins.prototype.listAll = function() {
-  var loaded = Object.keys(this.all);
-  var unloaded = Object.keys(this.savedOpts).filter(function(x) {
-    return loaded.indexOf(x) == -1;
-  });
-
-  return loaded.concat(unloaded);
-};
-
-
-Plugins.prototype.enable = function(name) {
-  var plugin = this.get(name);
-
-  if (!plugin) {
-    if (this.savedOpts[name]) {
-      // on-demand instantiation, with prespecified options
-      return this.scanAndInstantiate(name, this.savedOpts[name]);
-    } else {
-      if (name !== this.masterPluginName) // ignore missing master plugin, as it is optional
-        console.log("no such plugin loaded to enable: ",plugin,name);
-    }
-
-    return false;
-  } else {
-    if (plugin.pluginEnabled) {
-      console.log("already enabled: ",plugin,name);
-      return false;
-    }
-
-    if (plugin.enable) {
-      if (!this.wrapExceptions(function() {
-        plugin.enable();
-      })) {
-        console.log("failed to enable:",plugin,name);
-        return false;
-      }
-    }
-    plugin.pluginEnabled = true;
-    this.emit('plugin enabled', name);
-  }
-  return true;
-};
-
-Plugins.prototype.disable = function(name) {
-  console.log("disabling plugin ",name);
-  var plugin = this.get(name);
-
-  if (!plugin) {
-    console.log("no such plugin loaded to disable: ",plugin,name);
-    return false;
-  }
-  if (!this.isEnabled(plugin)) {
-    console.log("already disabled: ",plugin,name);
-    return false;
-  }
-
-  if (plugin.disable) {
-    if (!this.wrapExceptions(function() {
-      plugin.disable(); 
-    })) {
-      console.log("failed to disable:",plugin,name);
-      return false;
-    }
-  }
-
-  plugin.pluginEnabled = false;
-  this.emit('plugin disabled', name);
-
-  // TODO: recursively disable dependants? or refuse to disable if has enabled dependants?
-  return true;
-};
-
-Plugins.prototype.toggle = function(name) {
-  if (this.isEnabled(name)) {
-    return this.disable(name);
-  } else {
-    return this.enable(name);
-  }
-};
-
-Plugins.prototype.destroy = function(name) {
-  var plugin = this.get(name);
-
-  if (!plugin) {
-    console.log("no plugin",plugin,name);
-    return false;
-  }
-
-  if (!this.all[plugin.pluginName]) {
-    console.log("no such plugin to destroy: ",plugin);
-    return false;
-  }
-
-  if (this.isEnabled(plugin))
-    this.disable(plugin);
-
-  delete this.all[plugin.pluginName];
-  console.log("destroyed  ",plugin);
-
-  return true;
-};
-
-inherits(Plugins, EventEmitter);
-
-}).call(this,require('_process'))
-},{"_process":1105,"events":1101,"inherits":441,"tsort":442}],444:[function(require,module,exports){
-"use strict"
-
-function traceRay_impl(
-  voxels,
-  px, py, pz,
-  dx, dy, dz,
-  max_d,
-  hit_pos,
-  hit_norm,
-  EPSILON) {
-  var t = 0.0
-    , nx=0, ny=0, nz=0
-    , ix, iy, iz
-    , fx, fy, fz
-    , ox, oy, oz
-    , ex, ey, ez
-    , b, step, min_step
-    , floor = Math.floor
-  //Step block-by-block along ray
-  while(t <= max_d) {
-    ox = px + t * dx
-    oy = py + t * dy
-    oz = pz + t * dz
-    ix = floor(ox)|0
-    iy = floor(oy)|0
-    iz = floor(oz)|0
-    fx = ox - ix
-    fy = oy - iy
-    fz = oz - iz
-    b = voxels.getBlock(ix, iy, iz)
-    if(b) {
-      if(hit_pos) {
-        //Clamp to face on hit
-        hit_pos[0] = fx < EPSILON ? +ix : (fx > 1.0-EPSILON ? ix+1.0-EPSILON : ox)
-        hit_pos[1] = fy < EPSILON ? +iy : (fy > 1.0-EPSILON ? iy+1.0-EPSILON : oy)
-        hit_pos[2] = fz < EPSILON ? +iz : (fz > 1.0-EPSILON ? iz+1.0-EPSILON : oz)
-      }
-      if(hit_norm) {
-        hit_norm[0] = nx
-        hit_norm[1] = ny
-        hit_norm[2] = nz
-      }
-      return b
-    }
-    //Check edge cases
-    min_step = +(EPSILON * (1.0 + t))
-    if(t > min_step) {
-      ex = nx < 0 ? fx <= min_step : fx >= 1.0 - min_step
-      ey = ny < 0 ? fy <= min_step : fy >= 1.0 - min_step
-      ez = nz < 0 ? fz <= min_step : fz >= 1.0 - min_step
-      if(ex && ey && ez) {
-        b = voxels.getBlock(ix+nx, iy+ny, iz) ||
-            voxels.getBlock(ix, iy+ny, iz+nz) ||
-            voxels.getBlock(ix+nx, iy, iz+nz)
-        if(b) {
-          if(hit_pos) {
-            hit_pos[0] = nx < 0 ? ix-EPSILON : ix + 1.0-EPSILON
-            hit_pos[1] = ny < 0 ? iy-EPSILON : iy + 1.0-EPSILON
-            hit_pos[2] = nz < 0 ? iz-EPSILON : iz + 1.0-EPSILON
-          }
-          if(hit_norm) {
-            hit_norm[0] = nx
-            hit_norm[1] = ny
-            hit_norm[2] = nz
-          }
-          return b
-        }
-      }
-      if(ex && (ey || ez)) {
-        b = voxels.getBlock(ix+nx, iy, iz)
-        if(b) {
-          if(hit_pos) {
-            hit_pos[0] = nx < 0 ? ix-EPSILON : ix + 1.0-EPSILON
-            hit_pos[1] = fy < EPSILON ? +iy : oy
-            hit_pos[2] = fz < EPSILON ? +iz : oz
-          }
-          if(hit_norm) {
-            hit_norm[0] = nx
-            hit_norm[1] = ny
-            hit_norm[2] = nz
-          }
-          return b
-        }
-      }
-      if(ey && (ex || ez)) {
-        b = voxels.getBlock(ix, iy+ny, iz)
-        if(b) {
-          if(hit_pos) {
-            hit_pos[0] = fx < EPSILON ? +ix : ox
-            hit_pos[1] = ny < 0 ? iy-EPSILON : iy + 1.0-EPSILON
-            hit_pos[2] = fz < EPSILON ? +iz : oz
-          }
-          if(hit_norm) {
-            hit_norm[0] = nx
-            hit_norm[1] = ny
-            hit_norm[2] = nz
-          }
-          return b
-        }
-      }
-      if(ez && (ex || ey)) {
-        b = voxels.getBlock(ix, iy, iz+nz)
-        if(b) {
-          if(hit_pos) {
-            hit_pos[0] = fx < EPSILON ? +ix : ox
-            hit_pos[1] = fy < EPSILON ? +iy : oy
-            hit_pos[2] = nz < 0 ? iz-EPSILON : iz + 1.0-EPSILON
-          }
-          if(hit_norm) {
-            hit_norm[0] = nx
-            hit_norm[1] = ny
-            hit_norm[2] = nz
-          }
-          return b
-        }
-      }
-    }
-    //Walk to next face of cube along ray
-    nx = ny = nz = 0
-    step = 2.0
-    if(dx < -EPSILON) {
-      var s = -fx/dx
-      nx = 1
-      step = s
-    }
-    if(dx > EPSILON) {
-      var s = (1.0-fx)/dx
-      nx = -1
-      step = s
-    }
-    if(dy < -EPSILON) {
-      var s = -fy/dy
-      if(s < step-min_step) {
-        nx = 0
-        ny = 1
-        step = s
-      } else if(s < step+min_step) {
-        ny = 1
-      }
-    }
-    if(dy > EPSILON) {
-      var s = (1.0-fy)/dy
-      if(s < step-min_step) {
-        nx = 0
-        ny = -1
-        step = s
-      } else if(s < step+min_step) {
-        ny = -1
-      }
-    }
-    if(dz < -EPSILON) {
-      var s = -fz/dz
-      if(s < step-min_step) {
-        nx = ny = 0
-        nz = 1
-        step = s
-      } else if(s < step+min_step) {
-        nz = 1
-      }
-    }
-    if(dz > EPSILON) {
-      var s = (1.0-fz)/dz
-      if(s < step-min_step) {
-        nx = ny = 0
-        nz = -1
-        step = s
-      } else if(s < step+min_step) {
-        nz = -1
-      }
-    }
-    if(step > max_d - t) {
-      step = max_d - t - min_step
-    }
-    if(step < min_step) {
-      step = min_step
-    }
-    t += step
-  }
-  if(hit_pos) {
-    hit_pos[0] = ox;
-    hit_pos[1] = oy;
-    hit_pos[2] = oz;
-  }
-  if(hit_norm) {
-    hit_norm[0] = hit_norm[1] = hit_norm[2] = 0;
-  }
-  return 0
-}
-
-function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) {
-  var px = +origin[0]
-    , py = +origin[1]
-    , pz = +origin[2]
-    , dx = +direction[0]
-    , dy = +direction[1]
-    , dz = +direction[2]
-    , ds = Math.sqrt(dx*dx + dy*dy + dz*dz)
-  if(typeof(EPSILON) === "undefined") {
-    EPSILON = 1e-8
-  }
-  if(ds < EPSILON) {
-    if(hit_pos) {
-      hit_pos[0] = hit_pos[1] = hit_pos[2]
-    }
-    if(hit_norm) {
-      hit_norm[0] = hit_norm[1] = hit_norm[2]
-    }
-    return 0;
-  }
-  dx /= ds
-  dy /= ds
-  dz /= ds
-  if(typeof(max_d) === "undefined") {
-    max_d = 64.0
-  } else {
-    max_d = +max_d
-  }
-  return traceRay_impl(voxels, px, py, pz, dx, dy, dz, max_d, hit_pos, hit_norm, EPSILON)
-}
-
-module.exports = traceRay
-},{}],445:[function(require,module,exports){
-module.exports = coordinates
-
-var aabb = require('aabb-3d')
-var events = require('events')
-
-function coordinates(spatial, box, regionWidth) {
-  var emitter = new events.EventEmitter()
-  var lastRegion = [NaN, NaN, NaN]
-  var thisRegion
-
-  if (arguments.length === 2) {
-    regionWidth = box
-    box = aabb([-Infinity, -Infinity, -Infinity], [Infinity, Infinity, Infinity])
-  }
-
-  spatial.on('position', box, updateRegion)
-  
-  function updateRegion(pos) {
-    thisRegion = [Math.floor(pos[0] / regionWidth), Math.floor(pos[1] / regionWidth), Math.floor(pos[2] / regionWidth)]
-    if (thisRegion[0] !== lastRegion[0] || thisRegion[1] !== lastRegion[1] || thisRegion[2] !== lastRegion[2]) {
-      emitter.emit('change', thisRegion)
-    }
-    lastRegion = thisRegion
-  }
- 
-  return emitter
-}
-},{"aabb-3d":446,"events":1101}],446:[function(require,module,exports){
-module.exports = AABB
-
-var vec3 = require('gl-matrix').vec3
-
-function AABB(pos, vec) {
-  if(!(this instanceof AABB)) {
-    return new AABB(pos, vec)
-  }
-
-  this.base = pos
-  this.vec = vec
-
-  this.mag = vec3.length(this.vec)
-
-  this.max = vec3.create()
-  vec3.add(this.max, this.base, this.vec)
-}
-
-var cons = AABB
-  , proto = cons.prototype
-
-proto.width = function() {
-  return this.vec[0]
-}
-
-proto.height = function() {
-  return this.vec[1]
-}
-
-proto.depth = function() {
-  return this.vec[2]
-}
-
-proto.x0 = function() {
-  return this.base[0]
-}
-
-proto.y0 = function() {
-  return this.base[1]
-}
-
-proto.z0 = function() {
-  return this.base[2]
-}
-
-proto.x1 = function() {
-  return this.max[0]
-}
-
-proto.y1 = function() {
-  return this.max[1]
-}
-
-proto.z1 = function() {
-  return this.max[2]
-}
-
-proto.translate = function(by) {
-  vec3.add(this.max, this.max, by)
-  vec3.add(this.base, this.base, by)
-  return this
-}
-
-proto.expand = function(aabb) {
-  var max = vec3.create()
-    , min = vec3.create()
-
-  vec3.max(max, aabb.max, this.max)
-  vec3.min(min, aabb.base, this.base)
-  vec3.sub(max, max, min)
-
-  return new AABB(min, max)
-}
-
-proto.intersects = function(aabb) {
-  if(aabb.base[0] > this.max[0]) return false
-  if(aabb.base[1] > this.max[1]) return false
-  if(aabb.base[2] > this.max[2]) return false
-  if(aabb.max[0] < this.base[0]) return false
-  if(aabb.max[1] < this.base[1]) return false
-  if(aabb.max[2] < this.base[2]) return false
-
-  return true
-}
-
-proto.union = function(aabb) {
-  if(!this.intersects(aabb)) return null
-
-  var base_x = Math.max(aabb.base[0], this.base[0])
-    , base_y = Math.max(aabb.base[1], this.base[1])
-    , base_z = Math.max(aabb.base[2], this.base[2])
-    , max_x = Math.min(aabb.max[0], this.max[0])
-    , max_y = Math.min(aabb.max[1], this.max[1])
-    , max_z = Math.min(aabb.max[2], this.max[2])
-
-  return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
-}
-
-},{"gl-matrix":447}],447:[function(require,module,exports){
-arguments[4][404][0].apply(exports,arguments)
-},{"dup":404}],448:[function(require,module,exports){
+},{}],379:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -58856,7 +57291,7 @@ Registry.prototype.getTextureURL = function(name) {
 
 
 
-},{}],449:[function(require,module,exports){
+},{}],380:[function(require,module,exports){
 var glslify = require("glslify");
 var fs = require("fs");
 var mat4 = require("gl-mat4");
@@ -59015,7 +57450,7 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"events":1101,"fs":1082,"gl-mat4":459,"glslify":474,"glslify/adapter.js":473,"inherits":480}],450:[function(require,module,exports){
+},{"events":1032,"fs":1013,"gl-mat4":390,"glslify":405,"glslify/adapter.js":404,"inherits":411}],381:[function(require,module,exports){
 module.exports = adjoint;
 
 /**
@@ -59049,7 +57484,7 @@ function adjoint(out, a) {
     out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
-},{}],451:[function(require,module,exports){
+},{}],382:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -59078,7 +57513,7 @@ function clone(a) {
     out[15] = a[15];
     return out;
 };
-},{}],452:[function(require,module,exports){
+},{}],383:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -59107,7 +57542,7 @@ function copy(out, a) {
     out[15] = a[15];
     return out;
 };
-},{}],453:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -59135,7 +57570,7 @@ function create() {
     out[15] = 1;
     return out;
 };
-},{}],454:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 module.exports = determinant;
 
 /**
@@ -59166,7 +57601,7 @@ function determinant(a) {
     // Calculate the determinant
     return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
-},{}],455:[function(require,module,exports){
+},{}],386:[function(require,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -59214,7 +57649,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],456:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
 module.exports = fromRotationTranslation;
 
 /**
@@ -59268,7 +57703,7 @@ function fromRotationTranslation(out, q, v) {
     
     return out;
 };
-},{}],457:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 module.exports = frustum;
 
 /**
@@ -59305,7 +57740,7 @@ function frustum(out, left, right, bottom, top, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],458:[function(require,module,exports){
+},{}],389:[function(require,module,exports){
 module.exports = identity;
 
 /**
@@ -59333,7 +57768,7 @@ function identity(out) {
     out[15] = 1;
     return out;
 };
-},{}],459:[function(require,module,exports){
+},{}],390:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -59358,7 +57793,7 @@ module.exports = {
   , lookAt: require('./lookAt')
   , str: require('./str')
 }
-},{"./adjoint":450,"./clone":451,"./copy":452,"./create":453,"./determinant":454,"./fromQuat":455,"./fromRotationTranslation":456,"./frustum":457,"./identity":458,"./invert":460,"./lookAt":461,"./multiply":462,"./ortho":463,"./perspective":464,"./rotate":465,"./rotateX":466,"./rotateY":467,"./rotateZ":468,"./scale":469,"./str":470,"./translate":471,"./transpose":472}],460:[function(require,module,exports){
+},{"./adjoint":381,"./clone":382,"./copy":383,"./create":384,"./determinant":385,"./fromQuat":386,"./fromRotationTranslation":387,"./frustum":388,"./identity":389,"./invert":391,"./lookAt":392,"./multiply":393,"./ortho":394,"./perspective":395,"./rotate":396,"./rotateX":397,"./rotateY":398,"./rotateZ":399,"./scale":400,"./str":401,"./translate":402,"./transpose":403}],391:[function(require,module,exports){
 module.exports = invert;
 
 /**
@@ -59414,7 +57849,7 @@ function invert(out, a) {
 
     return out;
 };
-},{}],461:[function(require,module,exports){
+},{}],392:[function(require,module,exports){
 var identity = require('./identity');
 
 module.exports = lookAt;
@@ -59505,7 +57940,7 @@ function lookAt(out, eye, center, up) {
 
     return out;
 };
-},{"./identity":458}],462:[function(require,module,exports){
+},{"./identity":389}],393:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -59548,7 +57983,7 @@ function multiply(out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
-},{}],463:[function(require,module,exports){
+},{}],394:[function(require,module,exports){
 module.exports = ortho;
 
 /**
@@ -59585,7 +58020,7 @@ function ortho(out, left, right, bottom, top, near, far) {
     out[15] = 1;
     return out;
 };
-},{}],464:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 module.exports = perspective;
 
 /**
@@ -59619,7 +58054,7 @@ function perspective(out, fovy, aspect, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],465:[function(require,module,exports){
+},{}],396:[function(require,module,exports){
 module.exports = rotate;
 
 /**
@@ -59684,7 +58119,7 @@ function rotate(out, a, rad, axis) {
     }
     return out;
 };
-},{}],466:[function(require,module,exports){
+},{}],397:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -59729,7 +58164,7 @@ function rotateX(out, a, rad) {
     out[11] = a23 * c - a13 * s;
     return out;
 };
-},{}],467:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -59774,7 +58209,7 @@ function rotateY(out, a, rad) {
     out[11] = a03 * s + a23 * c;
     return out;
 };
-},{}],468:[function(require,module,exports){
+},{}],399:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -59819,7 +58254,7 @@ function rotateZ(out, a, rad) {
     out[7] = a13 * c - a03 * s;
     return out;
 };
-},{}],469:[function(require,module,exports){
+},{}],400:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -59851,7 +58286,7 @@ function scale(out, a, v) {
     out[15] = a[15];
     return out;
 };
-},{}],470:[function(require,module,exports){
+},{}],401:[function(require,module,exports){
 module.exports = str;
 
 /**
@@ -59866,7 +58301,7 @@ function str(a) {
                     a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
-},{}],471:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 module.exports = translate;
 
 /**
@@ -59905,7 +58340,7 @@ function translate(out, a, v) {
 
     return out;
 };
-},{}],472:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 module.exports = transpose;
 
 /**
@@ -59955,23 +58390,23 @@ function transpose(out, a) {
     
     return out;
 };
-},{}],473:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 arguments[4][109][0].apply(exports,arguments)
-},{"dup":109,"gl-shader-core":479}],474:[function(require,module,exports){
+},{"dup":109,"gl-shader-core":410}],405:[function(require,module,exports){
 arguments[4][110][0].apply(exports,arguments)
-},{"dup":110}],475:[function(require,module,exports){
+},{"dup":110}],406:[function(require,module,exports){
 arguments[4][111][0].apply(exports,arguments)
-},{"dup":111}],476:[function(require,module,exports){
+},{"dup":111}],407:[function(require,module,exports){
 arguments[4][112][0].apply(exports,arguments)
-},{"./reflect.js":477,"dup":112}],477:[function(require,module,exports){
+},{"./reflect.js":408,"dup":112}],408:[function(require,module,exports){
 arguments[4][113][0].apply(exports,arguments)
-},{"dup":113}],478:[function(require,module,exports){
+},{"dup":113}],409:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],479:[function(require,module,exports){
+},{"dup":99}],410:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"./lib/create-attributes.js":475,"./lib/create-uniforms.js":476,"./lib/reflect.js":477,"dup":115}],480:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],481:[function(require,module,exports){
+},{"./lib/create-attributes.js":406,"./lib/create-uniforms.js":407,"./lib/reflect.js":408,"dup":115}],411:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],412:[function(require,module,exports){
 var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -60455,7 +58890,7 @@ module.exports = function(opts) {
 };
 
 
-},{"binary-xhr":482,"events":1101,"fs":1082,"get-pixels":484,"graycolorize":497,"mcmeta":501,"path":1104,"save-pixels":522,"zip":538}],482:[function(require,module,exports){
+},{"binary-xhr":413,"events":1032,"fs":1013,"get-pixels":415,"graycolorize":428,"mcmeta":432,"path":1035,"save-pixels":453,"zip":469}],413:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -60483,9 +58918,9 @@ function BinaryXHR(url, cb) {
   xhr.send(null)
 }
 
-},{"inherits":483}],483:[function(require,module,exports){
+},{"inherits":414}],414:[function(require,module,exports){
 arguments[4][202][0].apply(exports,arguments)
-},{"dup":202}],484:[function(require,module,exports){
+},{"dup":202}],415:[function(require,module,exports){
 "use strict"
 
 var path = require("path")
@@ -60612,7 +59047,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":491,"ndarray-pack":485,"omggif":493,"path":1104,"ppm":495,"through":496}],485:[function(require,module,exports){
+},{"ndarray":422,"ndarray-pack":416,"omggif":424,"path":1035,"ppm":426,"through":427}],416:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -60635,10 +59070,10 @@ module.exports = function convert(arr, result) {
   return result
 }
 
-},{"./doConvert.js":486,"ndarray":491}],486:[function(require,module,exports){
+},{"./doConvert.js":417,"ndarray":422}],417:[function(require,module,exports){
 module.exports=require('cwise-compiler')({"args":["array","scalar","index"],"pre":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"body":{"body":"{\nvar _inline_1_v=_inline_1_arg1_,_inline_1_i\nfor(_inline_1_i=0;_inline_1_i<_inline_1_arg2_.length-1;++_inline_1_i) {\n_inline_1_v=_inline_1_v[_inline_1_arg2_[_inline_1_i]]\n}\n_inline_1_arg0_=_inline_1_v[_inline_1_arg2_[_inline_1_arg2_.length-1]]\n}","args":[{"name":"_inline_1_arg0_","lvalue":true,"rvalue":false,"count":1},{"name":"_inline_1_arg1_","lvalue":false,"rvalue":true,"count":1},{"name":"_inline_1_arg2_","lvalue":false,"rvalue":true,"count":4}],"thisVars":[],"localVars":["_inline_1_i","_inline_1_v"]},"post":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"funcName":"convert","blockSize":64})
 
-},{"cwise-compiler":487}],487:[function(require,module,exports){
+},{"cwise-compiler":418}],418:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -60746,7 +59181,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":489}],488:[function(require,module,exports){
+},{"./lib/thunk.js":420}],419:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -61030,9 +59465,9 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":490}],489:[function(require,module,exports){
+},{"uniq":421}],420:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":488,"dup":94}],490:[function(require,module,exports){
+},{"./compile.js":419,"dup":94}],421:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -61090,7 +59525,7 @@ function unique(list, compare, sorted) {
 }
 
 module.exports = unique
-},{}],491:[function(require,module,exports){
+},{}],422:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -61438,9 +59873,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"iota-array":492}],492:[function(require,module,exports){
+},{"buffer":1028,"iota-array":423}],423:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],493:[function(require,module,exports){
+},{"dup":97}],424:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -62171,7 +60606,7 @@ function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
 
 try { exports.GifWriter = GifWriter; exports.GifReader = GifReader } catch(e) { }  // CommonJS.
 
-},{}],494:[function(require,module,exports){
+},{}],425:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -62278,7 +60713,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":1105,"stream":1117}],495:[function(require,module,exports){
+},{"_process":1036,"stream":1048}],426:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -62600,9 +61035,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1105,"buffer":1097,"through":494}],496:[function(require,module,exports){
+},{"_process":1036,"buffer":1028,"through":425}],427:[function(require,module,exports){
 arguments[4][165][0].apply(exports,arguments)
-},{"_process":1105,"dup":165,"stream":1117}],497:[function(require,module,exports){
+},{"_process":1036,"dup":165,"stream":1048}],428:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -62686,11 +61121,11 @@ var graycolorize = function(pixels, colors) {
 module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
-},{"ndarray":498,"onecolor":500}],498:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":499}],499:[function(require,module,exports){
+},{"ndarray":429,"onecolor":431}],429:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":430}],430:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],500:[function(require,module,exports){
+},{"dup":97}],431:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
 /*global define*/
 var installedColorSpaces = [],
@@ -63446,7 +61881,7 @@ ONECOLOR.installMethod('toAlpha', function (color) {
 // Convenience functions
 
 
-},{}],501:[function(require,module,exports){
+},{}],432:[function(require,module,exports){
 'use strict';
 
 var getPixels = require('get-pixels');
@@ -63588,7 +62023,7 @@ module.exports.getFrames = getFrames;
 module.exports.parseFramesInfo = parseFramesInfo;
 module.exports.splitTiles = splitTiles;
 
-},{"get-pixels":502,"save-pixels":513}],502:[function(require,module,exports){
+},{"get-pixels":433,"save-pixels":444}],433:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -63610,11 +62045,11 @@ module.exports = function getPixels(url, cb) {
   img.src = url
 }
 
-},{"ndarray":503}],503:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":504}],504:[function(require,module,exports){
+},{"ndarray":434}],434:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":435}],435:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],505:[function(require,module,exports){
+},{"dup":97}],436:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -63816,7 +62251,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097,"stream":1117,"util":1120}],506:[function(require,module,exports){
+},{"buffer":1028,"stream":1048,"util":1051}],437:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63856,7 +62291,7 @@ module.exports = {
     COLOR_ALPHA: 4
 };
 
-},{}],507:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -63937,7 +62372,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":1117,"util":1120}],508:[function(require,module,exports){
+},{"stream":1048,"util":1051}],439:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64255,7 +62690,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":505,"buffer":1097,"util":1120,"zlib":1096}],509:[function(require,module,exports){
+},{"./chunkstream":436,"buffer":1028,"util":1051,"zlib":1027}],440:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64369,7 +62804,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":506,"./crc":507,"./filter":508,"buffer":1097,"stream":1117,"util":1120,"zlib":1096}],510:[function(require,module,exports){
+},{"./constants":437,"./crc":438,"./filter":439,"buffer":1028,"stream":1048,"util":1051,"zlib":1027}],441:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64732,7 +63167,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":505,"./constants":506,"./crc":507,"./filter":508,"buffer":1097,"util":1120,"zlib":1096}],511:[function(require,module,exports){
+},{"./chunkstream":436,"./constants":437,"./crc":438,"./filter":439,"buffer":1028,"util":1051,"zlib":1027}],442:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64883,9 +63318,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"./packer":509,"./parser":510,"_process":1105,"buffer":1097,"stream":1117,"util":1120}],512:[function(require,module,exports){
+},{"./packer":440,"./parser":441,"_process":1036,"buffer":1028,"stream":1048,"util":1051}],443:[function(require,module,exports){
 arguments[4][165][0].apply(exports,arguments)
-},{"_process":1105,"dup":165,"stream":1117}],513:[function(require,module,exports){
+},{"_process":1036,"dup":165,"stream":1048}],444:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -64977,25 +63412,25 @@ module.exports = function savePixels(array, type) {
   }
 }
 
-},{"pngjs":511,"through":512}],514:[function(require,module,exports){
-arguments[4][505][0].apply(exports,arguments)
-},{"buffer":1097,"dup":505,"stream":1117,"util":1120}],515:[function(require,module,exports){
-arguments[4][506][0].apply(exports,arguments)
-},{"dup":506}],516:[function(require,module,exports){
-arguments[4][507][0].apply(exports,arguments)
-},{"dup":507,"stream":1117,"util":1120}],517:[function(require,module,exports){
-arguments[4][508][0].apply(exports,arguments)
-},{"./chunkstream":514,"buffer":1097,"dup":508,"util":1120,"zlib":1096}],518:[function(require,module,exports){
-arguments[4][509][0].apply(exports,arguments)
-},{"./constants":515,"./crc":516,"./filter":517,"buffer":1097,"dup":509,"stream":1117,"util":1120,"zlib":1096}],519:[function(require,module,exports){
-arguments[4][510][0].apply(exports,arguments)
-},{"./chunkstream":514,"./constants":515,"./crc":516,"./filter":517,"buffer":1097,"dup":510,"util":1120,"zlib":1096}],520:[function(require,module,exports){
-arguments[4][511][0].apply(exports,arguments)
-},{"./packer":518,"./parser":519,"_process":1105,"buffer":1097,"dup":511,"stream":1117,"util":1120}],521:[function(require,module,exports){
+},{"pngjs":442,"through":443}],445:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"buffer":1028,"dup":436,"stream":1048,"util":1051}],446:[function(require,module,exports){
+arguments[4][437][0].apply(exports,arguments)
+},{"dup":437}],447:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"stream":1048,"util":1051}],448:[function(require,module,exports){
+arguments[4][439][0].apply(exports,arguments)
+},{"./chunkstream":445,"buffer":1028,"dup":439,"util":1051,"zlib":1027}],449:[function(require,module,exports){
+arguments[4][440][0].apply(exports,arguments)
+},{"./constants":446,"./crc":447,"./filter":448,"buffer":1028,"dup":440,"stream":1048,"util":1051,"zlib":1027}],450:[function(require,module,exports){
+arguments[4][441][0].apply(exports,arguments)
+},{"./chunkstream":445,"./constants":446,"./crc":447,"./filter":448,"buffer":1028,"dup":441,"util":1051,"zlib":1027}],451:[function(require,module,exports){
+arguments[4][442][0].apply(exports,arguments)
+},{"./packer":449,"./parser":450,"_process":1036,"buffer":1028,"dup":442,"stream":1048,"util":1051}],452:[function(require,module,exports){
 arguments[4][165][0].apply(exports,arguments)
-},{"_process":1105,"dup":165,"stream":1117}],522:[function(require,module,exports){
-arguments[4][513][0].apply(exports,arguments)
-},{"dup":513,"pngjs":520,"through":521}],523:[function(require,module,exports){
+},{"_process":1036,"dup":165,"stream":1048}],453:[function(require,module,exports){
+arguments[4][444][0].apply(exports,arguments)
+},{"dup":444,"pngjs":451,"through":452}],454:[function(require,module,exports){
 
 var bops = require("bops");
 
@@ -65054,7 +63489,7 @@ function consolidate(buffers) {
 }
 
 
-},{"bops":525}],524:[function(require,module,exports){
+},{"bops":456}],455:[function(require,module,exports){
 /* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
  * Version: 1.0.0.1
  * LastModified: Dec 25 1999
@@ -65810,7 +64245,7 @@ exports.inflate = function (input) {
 };
 
 
-},{"./buffer-io":523,"bops":525}],525:[function(require,module,exports){
+},{"./buffer-io":454,"bops":456}],456:[function(require,module,exports){
 var proto = {}
 module.exports = proto
 
@@ -65831,7 +64266,7 @@ function mix(from, into) {
   }
 }
 
-},{"./copy.js":528,"./create.js":529,"./from.js":530,"./is.js":531,"./join.js":532,"./read.js":534,"./subarray.js":535,"./to.js":536,"./write.js":537}],526:[function(require,module,exports){
+},{"./copy.js":459,"./create.js":460,"./from.js":461,"./is.js":462,"./join.js":463,"./read.js":465,"./subarray.js":466,"./to.js":467,"./write.js":468}],457:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -65917,7 +64352,7 @@ function mix(from, into) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],527:[function(require,module,exports){
+},{}],458:[function(require,module,exports){
 module.exports = to_utf8
 
 var out = []
@@ -65992,7 +64427,7 @@ function reduced(list) {
   return out
 }
 
-},{}],528:[function(require,module,exports){
+},{}],459:[function(require,module,exports){
 module.exports = copy
 
 var slice = [].slice
@@ -66046,12 +64481,12 @@ function slow_copy(from, to, j, i, jend) {
   }
 }
 
-},{}],529:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 module.exports = function(size) {
   return new Uint8Array(size)
 }
 
-},{}],530:[function(require,module,exports){
+},{}],461:[function(require,module,exports){
 module.exports = from
 
 var base64 = require('base64-js')
@@ -66187,13 +64622,13 @@ function from_base64(str) {
   return new Uint8Array(base64.toByteArray(str)) 
 }
 
-},{"base64-js":526}],531:[function(require,module,exports){
+},{"base64-js":457}],462:[function(require,module,exports){
 
 module.exports = function(buffer) {
   return buffer instanceof Uint8Array;
 }
 
-},{}],532:[function(require,module,exports){
+},{}],463:[function(require,module,exports){
 module.exports = join
 
 function join(targets, hint) {
@@ -66231,7 +64666,7 @@ function get_length(targets) {
   return size
 }
 
-},{}],533:[function(require,module,exports){
+},{}],464:[function(require,module,exports){
 var proto
   , map
 
@@ -66253,7 +64688,7 @@ function get(target) {
   return out
 }
 
-},{}],534:[function(require,module,exports){
+},{}],465:[function(require,module,exports){
 module.exports = {
     readUInt8:      read_uint8
   , readInt8:       read_int8
@@ -66342,14 +64777,14 @@ function read_double_be(target, at) {
   return dv.getFloat64(at + target.byteOffset, false)
 }
 
-},{"./mapped.js":533}],535:[function(require,module,exports){
+},{"./mapped.js":464}],466:[function(require,module,exports){
 module.exports = subarray
 
 function subarray(buf, from, to) {
   return buf.subarray(from || 0, to || buf.length)
 }
 
-},{}],536:[function(require,module,exports){
+},{}],467:[function(require,module,exports){
 module.exports = to
 
 var base64 = require('base64-js')
@@ -66387,7 +64822,7 @@ function to_base64(buf) {
 }
 
 
-},{"base64-js":526,"to-utf8":527}],537:[function(require,module,exports){
+},{"base64-js":457,"to-utf8":458}],468:[function(require,module,exports){
 module.exports = {
     writeUInt8:      write_uint8
   , writeInt8:       write_int8
@@ -66475,7 +64910,7 @@ function write_double_be(target, value, at) {
   return dv.setFloat64(at + target.byteOffset, value, false)
 }
 
-},{"./mapped.js":533}],538:[function(require,module,exports){
+},{"./mapped.js":464}],469:[function(require,module,exports){
 (function (process){
 // Tom Robinson
 // Kris Kowal
@@ -66940,7 +65375,7 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require('_process'))
-},{"./inflate":524,"_process":1105,"bops":525,"fs":1082}],539:[function(require,module,exports){
+},{"./inflate":455,"_process":1036,"bops":456,"fs":1013}],470:[function(require,module,exports){
 (function (global){
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.atlaspack=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
@@ -67202,33 +65637,33 @@ Atlas.prototype._debug = function() {
 });;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],540:[function(require,module,exports){
+},{}],471:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],541:[function(require,module,exports){
+},{"dup":39}],472:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":542,"dup":91}],542:[function(require,module,exports){
+},{"cwise-compiler":473,"dup":91}],473:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":544,"dup":92}],543:[function(require,module,exports){
+},{"./lib/thunk.js":475,"dup":92}],474:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":545}],544:[function(require,module,exports){
+},{"dup":93,"uniq":476}],475:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":543,"dup":94}],545:[function(require,module,exports){
+},{"./compile.js":474,"dup":94}],476:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],546:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":547}],547:[function(require,module,exports){
+},{"dup":95}],477:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":478}],478:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],548:[function(require,module,exports){
+},{"dup":97}],479:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],549:[function(require,module,exports){
+},{"dup":98}],480:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],550:[function(require,module,exports){
+},{"dup":99}],481:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":548,"buffer":1097,"dup":100}],551:[function(require,module,exports){
+},{"bit-twiddle":479,"buffer":1028,"dup":100}],482:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],552:[function(require,module,exports){
+},{"dup":101}],483:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":551}],553:[function(require,module,exports){
+},{"dup":102,"weakmap":482}],484:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -67723,9 +66158,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":546,"ndarray-ops":541,"typedarray-pool":550,"webglew":552}],554:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],555:[function(require,module,exports){
+},{"ndarray":477,"ndarray-ops":472,"typedarray-pool":481,"webglew":483}],485:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],486:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -67750,15 +66185,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":556}],556:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":557}],557:[function(require,module,exports){
+},{"ndarray":487}],487:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":488}],488:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],558:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":559}],559:[function(require,module,exports){
+},{"dup":97}],489:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":490}],490:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],560:[function(require,module,exports){
+},{"dup":97}],491:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -67874,7 +66309,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":606,"ndarray-downsample2x":561,"ndarray-ops":601}],561:[function(require,module,exports){
+},{"ndarray":537,"ndarray-downsample2x":492,"ndarray-ops":532}],492:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -67959,7 +66394,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":562,"ndarray-fft":570,"ndarray-ops":590,"ndarray-scratch":600}],562:[function(require,module,exports){
+},{"cwise":493,"ndarray-fft":501,"ndarray-ops":521,"ndarray-scratch":531}],493:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -67996,7 +66431,7 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":563,"cwise-parser":567}],563:[function(require,module,exports){
+},{"cwise-compiler":494,"cwise-parser":498}],494:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -68102,7 +66537,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":565}],564:[function(require,module,exports){
+},{"./lib/thunk.js":496}],495:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -68359,11 +66794,11 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":566}],565:[function(require,module,exports){
+},{"uniq":497}],496:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":564,"dup":94}],566:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],567:[function(require,module,exports){
+},{"./compile.js":495,"dup":94}],497:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],498:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -68559,7 +66994,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":568,"uniq":569}],568:[function(require,module,exports){
+},{"esprima":499,"uniq":500}],499:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -72469,9 +70904,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],569:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],570:[function(require,module,exports){
+},{}],500:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],501:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -72556,7 +70991,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":571,"cwise":573,"ndarray":586,"ndarray-ops":581,"typedarray-pool":589}],571:[function(require,module,exports){
+},{"./lib/fft-matrix.js":502,"cwise":504,"ndarray":517,"ndarray-ops":512,"typedarray-pool":520}],502:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -72775,25 +71210,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":572}],572:[function(require,module,exports){
+},{"bit-twiddle":503}],503:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],573:[function(require,module,exports){
-arguments[4][562][0].apply(exports,arguments)
-},{"cwise-compiler":574,"cwise-parser":578,"dup":562}],574:[function(require,module,exports){
-arguments[4][563][0].apply(exports,arguments)
-},{"./lib/thunk.js":576,"dup":563}],575:[function(require,module,exports){
-arguments[4][564][0].apply(exports,arguments)
-},{"dup":564,"uniq":577}],576:[function(require,module,exports){
+},{"dup":98}],504:[function(require,module,exports){
+arguments[4][493][0].apply(exports,arguments)
+},{"cwise-compiler":505,"cwise-parser":509,"dup":493}],505:[function(require,module,exports){
+arguments[4][494][0].apply(exports,arguments)
+},{"./lib/thunk.js":507,"dup":494}],506:[function(require,module,exports){
+arguments[4][495][0].apply(exports,arguments)
+},{"dup":495,"uniq":508}],507:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":575,"dup":94}],577:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],578:[function(require,module,exports){
-arguments[4][567][0].apply(exports,arguments)
-},{"dup":567,"esprima":579,"uniq":580}],579:[function(require,module,exports){
-arguments[4][568][0].apply(exports,arguments)
-},{"dup":568}],580:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],581:[function(require,module,exports){
+},{"./compile.js":506,"dup":94}],508:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],509:[function(require,module,exports){
+arguments[4][498][0].apply(exports,arguments)
+},{"dup":498,"esprima":510,"uniq":511}],510:[function(require,module,exports){
+arguments[4][499][0].apply(exports,arguments)
+},{"dup":499}],511:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],512:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -73242,21 +71677,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":582}],582:[function(require,module,exports){
-arguments[4][563][0].apply(exports,arguments)
-},{"./lib/thunk.js":584,"dup":563}],583:[function(require,module,exports){
-arguments[4][564][0].apply(exports,arguments)
-},{"dup":564,"uniq":585}],584:[function(require,module,exports){
+},{"cwise-compiler":513}],513:[function(require,module,exports){
+arguments[4][494][0].apply(exports,arguments)
+},{"./lib/thunk.js":515,"dup":494}],514:[function(require,module,exports){
+arguments[4][495][0].apply(exports,arguments)
+},{"dup":495,"uniq":516}],515:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":583,"dup":94}],585:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],586:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":587}],587:[function(require,module,exports){
+},{"./compile.js":514,"dup":94}],516:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],517:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":518}],518:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],588:[function(require,module,exports){
+},{"dup":97}],519:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],589:[function(require,module,exports){
+},{"dup":99}],520:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -73541,27 +71976,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":572,"dup":588}],590:[function(require,module,exports){
-arguments[4][581][0].apply(exports,arguments)
-},{"cwise-compiler":591,"dup":581}],591:[function(require,module,exports){
-arguments[4][563][0].apply(exports,arguments)
-},{"./lib/thunk.js":593,"dup":563}],592:[function(require,module,exports){
-arguments[4][564][0].apply(exports,arguments)
-},{"dup":564,"uniq":594}],593:[function(require,module,exports){
+},{"bit-twiddle":503,"dup":519}],521:[function(require,module,exports){
+arguments[4][512][0].apply(exports,arguments)
+},{"cwise-compiler":522,"dup":512}],522:[function(require,module,exports){
+arguments[4][494][0].apply(exports,arguments)
+},{"./lib/thunk.js":524,"dup":494}],523:[function(require,module,exports){
+arguments[4][495][0].apply(exports,arguments)
+},{"dup":495,"uniq":525}],524:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":592,"dup":94}],594:[function(require,module,exports){
-arguments[4][490][0].apply(exports,arguments)
-},{"dup":490}],595:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":596}],596:[function(require,module,exports){
+},{"./compile.js":523,"dup":94}],525:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421}],526:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":527}],527:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],597:[function(require,module,exports){
+},{"dup":97}],528:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],598:[function(require,module,exports){
+},{"dup":98}],529:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],599:[function(require,module,exports){
-arguments[4][589][0].apply(exports,arguments)
-},{"bit-twiddle":597,"dup":589}],600:[function(require,module,exports){
+},{"dup":99}],530:[function(require,module,exports){
+arguments[4][520][0].apply(exports,arguments)
+},{"bit-twiddle":528,"dup":520}],531:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -73585,41 +72020,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":595,"typedarray-pool":599}],601:[function(require,module,exports){
+},{"ndarray":526,"typedarray-pool":530}],532:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":602,"dup":91}],602:[function(require,module,exports){
+},{"cwise-compiler":533,"dup":91}],533:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":604,"dup":92}],603:[function(require,module,exports){
+},{"./lib/thunk.js":535,"dup":92}],534:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":605}],604:[function(require,module,exports){
+},{"dup":93,"uniq":536}],535:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":603,"dup":94}],605:[function(require,module,exports){
+},{"./compile.js":534,"dup":94}],536:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],606:[function(require,module,exports){
-arguments[4][491][0].apply(exports,arguments)
-},{"buffer":1097,"dup":491,"iota-array":607}],607:[function(require,module,exports){
+},{"dup":95}],537:[function(require,module,exports){
+arguments[4][422][0].apply(exports,arguments)
+},{"buffer":1028,"dup":422,"iota-array":538}],538:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],608:[function(require,module,exports){
-arguments[4][505][0].apply(exports,arguments)
-},{"buffer":1097,"dup":505,"stream":1117,"util":1120}],609:[function(require,module,exports){
-arguments[4][506][0].apply(exports,arguments)
-},{"dup":506}],610:[function(require,module,exports){
-arguments[4][507][0].apply(exports,arguments)
-},{"dup":507,"stream":1117,"util":1120}],611:[function(require,module,exports){
-arguments[4][508][0].apply(exports,arguments)
-},{"./chunkstream":608,"buffer":1097,"dup":508,"util":1120,"zlib":1096}],612:[function(require,module,exports){
-arguments[4][509][0].apply(exports,arguments)
-},{"./constants":609,"./crc":610,"./filter":611,"buffer":1097,"dup":509,"stream":1117,"util":1120,"zlib":1096}],613:[function(require,module,exports){
-arguments[4][510][0].apply(exports,arguments)
-},{"./chunkstream":608,"./constants":609,"./crc":610,"./filter":611,"buffer":1097,"dup":510,"util":1120,"zlib":1096}],614:[function(require,module,exports){
-arguments[4][511][0].apply(exports,arguments)
-},{"./packer":612,"./parser":613,"_process":1105,"buffer":1097,"dup":511,"stream":1117,"util":1120}],615:[function(require,module,exports){
+},{"dup":97}],539:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"buffer":1028,"dup":436,"stream":1048,"util":1051}],540:[function(require,module,exports){
+arguments[4][437][0].apply(exports,arguments)
+},{"dup":437}],541:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"stream":1048,"util":1051}],542:[function(require,module,exports){
+arguments[4][439][0].apply(exports,arguments)
+},{"./chunkstream":539,"buffer":1028,"dup":439,"util":1051,"zlib":1027}],543:[function(require,module,exports){
+arguments[4][440][0].apply(exports,arguments)
+},{"./constants":540,"./crc":541,"./filter":542,"buffer":1028,"dup":440,"stream":1048,"util":1051,"zlib":1027}],544:[function(require,module,exports){
+arguments[4][441][0].apply(exports,arguments)
+},{"./chunkstream":539,"./constants":540,"./crc":541,"./filter":542,"buffer":1028,"dup":441,"util":1051,"zlib":1027}],545:[function(require,module,exports){
+arguments[4][442][0].apply(exports,arguments)
+},{"./packer":543,"./parser":544,"_process":1036,"buffer":1028,"dup":442,"stream":1048,"util":1051}],546:[function(require,module,exports){
 arguments[4][165][0].apply(exports,arguments)
-},{"_process":1105,"dup":165,"stream":1117}],616:[function(require,module,exports){
-arguments[4][513][0].apply(exports,arguments)
-},{"dup":513,"pngjs":614,"through":615}],617:[function(require,module,exports){
+},{"_process":1036,"dup":165,"stream":1048}],547:[function(require,module,exports){
+arguments[4][444][0].apply(exports,arguments)
+},{"dup":444,"pngjs":545,"through":546}],548:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],618:[function(require,module,exports){
+},{"dup":44}],549:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -73709,7 +72144,7 @@ arguments[4][44][0].apply(exports,arguments)
 
 }).call(this);
 
-},{}],619:[function(require,module,exports){
+},{}],550:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -73998,23 +72433,23 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":481,"atlaspack":539,"cube-side-array":540,"events":1101,"gl-texture2d":553,"inherits":554,"ndarray":558,"ndarray-hash":555,"rect-mip-map":560,"save-pixels":616,"toarray":617,"touchup":618}],620:[function(require,module,exports){
+},{"artpacks":412,"atlaspack":470,"cube-side-array":471,"events":1032,"gl-texture2d":484,"inherits":485,"ndarray":489,"ndarray-hash":486,"rect-mip-map":491,"save-pixels":547,"toarray":548,"touchup":549}],551:[function(require,module,exports){
 arguments[4][195][0].apply(exports,arguments)
-},{"dup":195,"events":1101,"inherits":627}],621:[function(require,module,exports){
+},{"dup":195,"events":1032,"inherits":558}],552:[function(require,module,exports){
 arguments[4][196][0].apply(exports,arguments)
-},{"./chunker":620,"./meshers/culled":622,"./meshers/greedy":623,"./meshers/monotone":624,"./meshers/stupid":625,"./meshers/transgreedy":626,"dup":196,"ndarray":326}],622:[function(require,module,exports){
+},{"./chunker":551,"./meshers/culled":553,"./meshers/greedy":554,"./meshers/monotone":555,"./meshers/stupid":556,"./meshers/transgreedy":557,"dup":196,"ndarray":327}],553:[function(require,module,exports){
 arguments[4][197][0].apply(exports,arguments)
-},{"dup":197}],623:[function(require,module,exports){
+},{"dup":197}],554:[function(require,module,exports){
 arguments[4][198][0].apply(exports,arguments)
-},{"dup":198}],624:[function(require,module,exports){
+},{"dup":198}],555:[function(require,module,exports){
 arguments[4][199][0].apply(exports,arguments)
-},{"dup":199}],625:[function(require,module,exports){
+},{"dup":199}],556:[function(require,module,exports){
 arguments[4][200][0].apply(exports,arguments)
-},{"dup":200}],626:[function(require,module,exports){
+},{"dup":200}],557:[function(require,module,exports){
 arguments[4][201][0].apply(exports,arguments)
-},{"dup":201}],627:[function(require,module,exports){
+},{"dup":201}],558:[function(require,module,exports){
 arguments[4][202][0].apply(exports,arguments)
-},{"dup":202}],628:[function(require,module,exports){
+},{"dup":202}],559:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -74093,9 +72528,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":629}],629:[function(require,module,exports){
+},{"ucfirst":560}],560:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],630:[function(require,module,exports){
+},{"dup":25}],561:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -74193,7 +72628,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],631:[function(require,module,exports){
+},{}],562:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -74260,7 +72695,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],632:[function(require,module,exports){
+},{}],563:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -74395,7 +72830,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],633:[function(require,module,exports){
+},{}],564:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -74685,7 +73120,7 @@ FurnaceDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":643,"inventory-window":634,"itempile":652,"voxel-inventory-dialog":657}],634:[function(require,module,exports){
+},{"inventory":574,"inventory-window":565,"itempile":583,"voxel-inventory-dialog":588}],565:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -75131,7 +73566,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":635,"events":1101,"ever":637,"ftooltip":640,"touchup":642}],635:[function(require,module,exports){
+},{"cube-icon":566,"events":1032,"ever":568,"ftooltip":571,"touchup":573}],566:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -75198,21 +73633,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":636}],636:[function(require,module,exports){
+},{"cube-side-array":567}],567:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],637:[function(require,module,exports){
+},{"dup":39}],568:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":638,"./types.json":639,"dup":15,"events":1101}],638:[function(require,module,exports){
+},{"./init.json":569,"./types.json":570,"dup":15,"events":1032}],569:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],639:[function(require,module,exports){
+},{"dup":16}],570:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],640:[function(require,module,exports){
+},{"dup":17}],571:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":641}],641:[function(require,module,exports){
+},{"dup":43,"toarray":572}],572:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],642:[function(require,module,exports){
+},{"dup":44}],573:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],643:[function(require,module,exports){
+},{"dup":45}],574:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75372,13 +73807,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":644,"events":1101,"itempile":647}],644:[function(require,module,exports){
+},{"deep-equal":575,"events":1032,"itempile":578}],575:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":645,"./lib/keys.js":646,"dup":28}],645:[function(require,module,exports){
+},{"./lib/is_arguments.js":576,"./lib/keys.js":577,"dup":28}],576:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],646:[function(require,module,exports){
+},{"dup":23}],577:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],647:[function(require,module,exports){
+},{"dup":24}],578:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -75560,15 +73995,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":648,"deep-equal":649}],648:[function(require,module,exports){
+},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],649:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],580:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":650,"./lib/keys.js":651,"dup":22}],650:[function(require,module,exports){
+},{"./lib/is_arguments.js":581,"./lib/keys.js":582,"dup":22}],581:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],651:[function(require,module,exports){
+},{"dup":23}],582:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],652:[function(require,module,exports){
+},{"dup":24}],583:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -75750,15 +74185,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":653,"deep-equal":654}],653:[function(require,module,exports){
+},{"clone":584,"deep-equal":585}],584:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],654:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],585:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":655,"./lib/keys.js":656,"dup":22}],655:[function(require,module,exports){
+},{"./lib/is_arguments.js":586,"./lib/keys.js":587,"dup":22}],586:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],656:[function(require,module,exports){
+},{"dup":23}],587:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],657:[function(require,module,exports){
+},{"dup":24}],588:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -75834,7 +74269,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":667,"inventory-window":658,"itempile":676,"voxel-modal-dialog":681}],658:[function(require,module,exports){
+},{"inventory":598,"inventory-window":589,"itempile":607,"voxel-modal-dialog":612}],589:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -76280,7 +74715,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":659,"events":1101,"ever":661,"ftooltip":664,"touchup":666}],659:[function(require,module,exports){
+},{"cube-icon":590,"events":1032,"ever":592,"ftooltip":595,"touchup":597}],590:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -76347,21 +74782,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":660}],660:[function(require,module,exports){
+},{"cube-side-array":591}],591:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],661:[function(require,module,exports){
+},{"dup":39}],592:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":662,"./types.json":663,"dup":15,"events":1101}],662:[function(require,module,exports){
+},{"./init.json":593,"./types.json":594,"dup":15,"events":1032}],593:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],663:[function(require,module,exports){
+},{"dup":16}],594:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],664:[function(require,module,exports){
+},{"dup":17}],595:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":665}],665:[function(require,module,exports){
+},{"dup":43,"toarray":596}],596:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],666:[function(require,module,exports){
+},{"dup":44}],597:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],667:[function(require,module,exports){
+},{"dup":45}],598:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -76521,13 +74956,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":668,"events":1101,"itempile":671}],668:[function(require,module,exports){
+},{"deep-equal":599,"events":1032,"itempile":602}],599:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":669,"./lib/keys.js":670,"dup":28}],669:[function(require,module,exports){
+},{"./lib/is_arguments.js":600,"./lib/keys.js":601,"dup":28}],600:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],670:[function(require,module,exports){
+},{"dup":23}],601:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],671:[function(require,module,exports){
+},{"dup":24}],602:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -76709,15 +75144,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":672,"deep-equal":673}],672:[function(require,module,exports){
+},{"clone":603,"deep-equal":604}],603:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],673:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],604:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":674,"./lib/keys.js":675,"dup":22}],674:[function(require,module,exports){
+},{"./lib/is_arguments.js":605,"./lib/keys.js":606,"dup":22}],605:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],675:[function(require,module,exports){
+},{"dup":23}],606:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],676:[function(require,module,exports){
+},{"dup":24}],607:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -76899,25 +75334,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":677,"deep-equal":678}],677:[function(require,module,exports){
+},{"clone":608,"deep-equal":609}],608:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],678:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],609:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":679,"./lib/keys.js":680,"dup":22}],679:[function(require,module,exports){
+},{"./lib/is_arguments.js":610,"./lib/keys.js":611,"dup":22}],610:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],680:[function(require,module,exports){
+},{"dup":23}],611:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],681:[function(require,module,exports){
+},{"dup":24}],612:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":682}],682:[function(require,module,exports){
+},{"dup":13,"voxel-modal":613}],613:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":683}],683:[function(require,module,exports){
+},{"dup":14,"ever":614}],614:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":684,"./types.json":685,"dup":15,"events":1101}],684:[function(require,module,exports){
+},{"./init.json":615,"./types.json":616,"dup":15,"events":1032}],615:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],685:[function(require,module,exports){
+},{"dup":16}],616:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],686:[function(require,module,exports){
+},{"dup":17}],617:[function(require,module,exports){
 var Gamemode, Inventory, ItemPile;
 
 ItemPile = require('itempile');
@@ -77024,7 +75459,7 @@ Gamemode = (function() {
 })();
 
 
-},{"inventory":687,"itempile":696}],687:[function(require,module,exports){
+},{"inventory":618,"itempile":627}],618:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -77184,13 +75619,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":688,"events":1101,"itempile":691}],688:[function(require,module,exports){
+},{"deep-equal":619,"events":1032,"itempile":622}],619:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":689,"./lib/keys.js":690,"dup":28}],689:[function(require,module,exports){
+},{"./lib/is_arguments.js":620,"./lib/keys.js":621,"dup":28}],620:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],690:[function(require,module,exports){
+},{"dup":23}],621:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],691:[function(require,module,exports){
+},{"dup":24}],622:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -77372,15 +75807,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":692,"deep-equal":693}],692:[function(require,module,exports){
+},{"clone":623,"deep-equal":624}],623:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],693:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],624:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":694,"./lib/keys.js":695,"dup":22}],694:[function(require,module,exports){
+},{"./lib/is_arguments.js":625,"./lib/keys.js":626,"dup":22}],625:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],695:[function(require,module,exports){
+},{"dup":23}],626:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],696:[function(require,module,exports){
+},{"dup":24}],627:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -77562,15 +75997,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":697,"deep-equal":698}],697:[function(require,module,exports){
+},{"clone":628,"deep-equal":629}],628:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],698:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],629:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":699,"./lib/keys.js":700,"dup":22}],699:[function(require,module,exports){
+},{"./lib/is_arguments.js":630,"./lib/keys.js":631,"dup":22}],630:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],700:[function(require,module,exports){
+},{"dup":23}],631:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],701:[function(require,module,exports){
+},{"dup":24}],632:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -77698,7 +76133,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":702,"ucfirst":707}],702:[function(require,module,exports){
+},{"itempile":633,"ucfirst":638}],633:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -77877,7 +76312,7 @@ GlassPlugin.prototype.disable = function() {
 
 }).call(this);
 
-},{"clone":703,"deep-equal":704}],703:[function(require,module,exports){
+},{"clone":634,"deep-equal":635}],634:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -78009,15 +76444,15 @@ clone.clonePrototype = function(parent) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097}],704:[function(require,module,exports){
+},{"buffer":1028}],635:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":705,"./lib/keys.js":706,"dup":22}],705:[function(require,module,exports){
+},{"./lib/is_arguments.js":636,"./lib/keys.js":637,"dup":22}],636:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],706:[function(require,module,exports){
+},{"dup":23}],637:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],707:[function(require,module,exports){
+},{"dup":24}],638:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],708:[function(require,module,exports){
+},{"dup":25}],639:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -78091,7 +76526,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],709:[function(require,module,exports){
+},{}],640:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78239,7 +76674,7 @@ Harvest = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":1101,"itempile":710}],710:[function(require,module,exports){
+},{"events":1032,"itempile":641}],641:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -78421,15 +76856,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":711,"deep-equal":712}],711:[function(require,module,exports){
+},{"clone":642,"deep-equal":643}],642:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],712:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],643:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":713,"./lib/keys.js":714,"dup":22}],713:[function(require,module,exports){
+},{"./lib/is_arguments.js":644,"./lib/keys.js":645,"dup":22}],644:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],714:[function(require,module,exports){
+},{"dup":23}],645:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],715:[function(require,module,exports){
+},{"dup":24}],646:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -78500,7 +76935,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],716:[function(require,module,exports){
+},{}],647:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new HealthFallPlugin(game, opts);
@@ -78535,7 +76970,7 @@ HealthFallPlugin.prototype.disable = function() {
 };
 
 
-},{}],717:[function(require,module,exports){
+},{}],648:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -78623,9 +77058,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":1101,"inherits":718}],718:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],719:[function(require,module,exports){
+},{"events":1032,"inherits":649}],649:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],650:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -78744,7 +77179,7 @@ InventoryCrafting = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":729,"inventory-window":720,"itempile":738,"voxel-inventory-dialog":743}],720:[function(require,module,exports){
+},{"inventory":660,"inventory-window":651,"itempile":669,"voxel-inventory-dialog":674}],651:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -79190,7 +77625,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":721,"events":1101,"ever":723,"ftooltip":726,"touchup":728}],721:[function(require,module,exports){
+},{"cube-icon":652,"events":1032,"ever":654,"ftooltip":657,"touchup":659}],652:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -79257,21 +77692,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":722}],722:[function(require,module,exports){
+},{"cube-side-array":653}],653:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],723:[function(require,module,exports){
+},{"dup":39}],654:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":724,"./types.json":725,"dup":15,"events":1101}],724:[function(require,module,exports){
+},{"./init.json":655,"./types.json":656,"dup":15,"events":1032}],655:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],725:[function(require,module,exports){
+},{"dup":16}],656:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],726:[function(require,module,exports){
+},{"dup":17}],657:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":727}],727:[function(require,module,exports){
+},{"dup":43,"toarray":658}],658:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],728:[function(require,module,exports){
+},{"dup":44}],659:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],729:[function(require,module,exports){
+},{"dup":45}],660:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -79431,13 +77866,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":730,"events":1101,"itempile":733}],730:[function(require,module,exports){
+},{"deep-equal":661,"events":1032,"itempile":664}],661:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":731,"./lib/keys.js":732,"dup":28}],731:[function(require,module,exports){
+},{"./lib/is_arguments.js":662,"./lib/keys.js":663,"dup":28}],662:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],732:[function(require,module,exports){
+},{"dup":23}],663:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],733:[function(require,module,exports){
+},{"dup":24}],664:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -79619,15 +78054,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":734,"deep-equal":735}],734:[function(require,module,exports){
+},{"clone":665,"deep-equal":666}],665:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],735:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],666:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":736,"./lib/keys.js":737,"dup":22}],736:[function(require,module,exports){
+},{"./lib/is_arguments.js":667,"./lib/keys.js":668,"dup":22}],667:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],737:[function(require,module,exports){
+},{"dup":23}],668:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],738:[function(require,module,exports){
+},{"dup":24}],669:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -79809,15 +78244,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":739,"deep-equal":740}],739:[function(require,module,exports){
+},{"clone":670,"deep-equal":671}],670:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],740:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],671:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":741,"./lib/keys.js":742,"dup":22}],741:[function(require,module,exports){
+},{"./lib/is_arguments.js":672,"./lib/keys.js":673,"dup":22}],672:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],742:[function(require,module,exports){
+},{"dup":23}],673:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],743:[function(require,module,exports){
+},{"dup":24}],674:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -79893,7 +78328,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":753,"inventory-window":744,"itempile":762,"voxel-modal-dialog":767}],744:[function(require,module,exports){
+},{"inventory":684,"inventory-window":675,"itempile":693,"voxel-modal-dialog":698}],675:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -80339,7 +78774,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":745,"events":1101,"ever":747,"ftooltip":750,"touchup":752}],745:[function(require,module,exports){
+},{"cube-icon":676,"events":1032,"ever":678,"ftooltip":681,"touchup":683}],676:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -80406,21 +78841,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":746}],746:[function(require,module,exports){
+},{"cube-side-array":677}],677:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],747:[function(require,module,exports){
+},{"dup":39}],678:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":748,"./types.json":749,"dup":15,"events":1101}],748:[function(require,module,exports){
+},{"./init.json":679,"./types.json":680,"dup":15,"events":1032}],679:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],749:[function(require,module,exports){
+},{"dup":16}],680:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],750:[function(require,module,exports){
+},{"dup":17}],681:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":751}],751:[function(require,module,exports){
+},{"dup":43,"toarray":682}],682:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],752:[function(require,module,exports){
+},{"dup":44}],683:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],753:[function(require,module,exports){
+},{"dup":45}],684:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -80580,13 +79015,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":754,"events":1101,"itempile":757}],754:[function(require,module,exports){
+},{"deep-equal":685,"events":1032,"itempile":688}],685:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":755,"./lib/keys.js":756,"dup":28}],755:[function(require,module,exports){
+},{"./lib/is_arguments.js":686,"./lib/keys.js":687,"dup":28}],686:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],756:[function(require,module,exports){
+},{"dup":23}],687:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],757:[function(require,module,exports){
+},{"dup":24}],688:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -80768,15 +79203,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":758,"deep-equal":759}],758:[function(require,module,exports){
+},{"clone":689,"deep-equal":690}],689:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],759:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],690:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":760,"./lib/keys.js":761,"dup":22}],760:[function(require,module,exports){
+},{"./lib/is_arguments.js":691,"./lib/keys.js":692,"dup":22}],691:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],761:[function(require,module,exports){
+},{"dup":23}],692:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],762:[function(require,module,exports){
+},{"dup":24}],693:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -80958,25 +79393,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":763,"deep-equal":764}],763:[function(require,module,exports){
+},{"clone":694,"deep-equal":695}],694:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],764:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],695:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":765,"./lib/keys.js":766,"dup":22}],765:[function(require,module,exports){
+},{"./lib/is_arguments.js":696,"./lib/keys.js":697,"dup":22}],696:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],766:[function(require,module,exports){
+},{"dup":23}],697:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],767:[function(require,module,exports){
+},{"dup":24}],698:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":768}],768:[function(require,module,exports){
+},{"dup":13,"voxel-modal":699}],699:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":769}],769:[function(require,module,exports){
+},{"dup":14,"ever":700}],700:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":770,"./types.json":771,"dup":15,"events":1101}],770:[function(require,module,exports){
+},{"./init.json":701,"./types.json":702,"dup":15,"events":1032}],701:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],771:[function(require,module,exports){
+},{"dup":16}],702:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],772:[function(require,module,exports){
+},{"dup":17}],703:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -81146,7 +79581,7 @@ CreativeInventoryPlugin = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":782,"inventory-window":773,"itempile":791,"voxel-inventory-dialog":796}],773:[function(require,module,exports){
+},{"inventory":713,"inventory-window":704,"itempile":722,"voxel-inventory-dialog":727}],704:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -81592,7 +80027,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":774,"events":1101,"ever":776,"ftooltip":779,"touchup":781}],774:[function(require,module,exports){
+},{"cube-icon":705,"events":1032,"ever":707,"ftooltip":710,"touchup":712}],705:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -81659,21 +80094,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":775}],775:[function(require,module,exports){
+},{"cube-side-array":706}],706:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],776:[function(require,module,exports){
+},{"dup":39}],707:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":777,"./types.json":778,"dup":15,"events":1101}],777:[function(require,module,exports){
+},{"./init.json":708,"./types.json":709,"dup":15,"events":1032}],708:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],778:[function(require,module,exports){
+},{"dup":16}],709:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],779:[function(require,module,exports){
+},{"dup":17}],710:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":780}],780:[function(require,module,exports){
+},{"dup":43,"toarray":711}],711:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],781:[function(require,module,exports){
+},{"dup":44}],712:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],782:[function(require,module,exports){
+},{"dup":45}],713:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -81833,13 +80268,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":783,"events":1101,"itempile":786}],783:[function(require,module,exports){
+},{"deep-equal":714,"events":1032,"itempile":717}],714:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":784,"./lib/keys.js":785,"dup":28}],784:[function(require,module,exports){
+},{"./lib/is_arguments.js":715,"./lib/keys.js":716,"dup":28}],715:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],785:[function(require,module,exports){
+},{"dup":23}],716:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],786:[function(require,module,exports){
+},{"dup":24}],717:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -82021,15 +80456,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":787,"deep-equal":788}],787:[function(require,module,exports){
+},{"clone":718,"deep-equal":719}],718:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],788:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],719:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":789,"./lib/keys.js":790,"dup":22}],789:[function(require,module,exports){
+},{"./lib/is_arguments.js":720,"./lib/keys.js":721,"dup":22}],720:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],790:[function(require,module,exports){
+},{"dup":23}],721:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],791:[function(require,module,exports){
+},{"dup":24}],722:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -82211,15 +80646,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":792,"deep-equal":793}],792:[function(require,module,exports){
+},{"clone":723,"deep-equal":724}],723:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],793:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],724:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":794,"./lib/keys.js":795,"dup":22}],794:[function(require,module,exports){
+},{"./lib/is_arguments.js":725,"./lib/keys.js":726,"dup":22}],725:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],795:[function(require,module,exports){
+},{"dup":23}],726:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],796:[function(require,module,exports){
+},{"dup":24}],727:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -82295,7 +80730,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":806,"inventory-window":797,"itempile":815,"voxel-modal-dialog":820}],797:[function(require,module,exports){
+},{"inventory":737,"inventory-window":728,"itempile":746,"voxel-modal-dialog":751}],728:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -82741,7 +81176,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":798,"events":1101,"ever":800,"ftooltip":803,"touchup":805}],798:[function(require,module,exports){
+},{"cube-icon":729,"events":1032,"ever":731,"ftooltip":734,"touchup":736}],729:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -82808,21 +81243,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":799}],799:[function(require,module,exports){
+},{"cube-side-array":730}],730:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],800:[function(require,module,exports){
+},{"dup":39}],731:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":801,"./types.json":802,"dup":15,"events":1101}],801:[function(require,module,exports){
+},{"./init.json":732,"./types.json":733,"dup":15,"events":1032}],732:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],802:[function(require,module,exports){
+},{"dup":16}],733:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],803:[function(require,module,exports){
+},{"dup":17}],734:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":804}],804:[function(require,module,exports){
+},{"dup":43,"toarray":735}],735:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],805:[function(require,module,exports){
+},{"dup":44}],736:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],806:[function(require,module,exports){
+},{"dup":45}],737:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -82982,13 +81417,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":807,"events":1101,"itempile":810}],807:[function(require,module,exports){
+},{"deep-equal":738,"events":1032,"itempile":741}],738:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":808,"./lib/keys.js":809,"dup":28}],808:[function(require,module,exports){
+},{"./lib/is_arguments.js":739,"./lib/keys.js":740,"dup":28}],739:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],809:[function(require,module,exports){
+},{"dup":23}],740:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],810:[function(require,module,exports){
+},{"dup":24}],741:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -83170,15 +81605,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":811,"deep-equal":812}],811:[function(require,module,exports){
+},{"clone":742,"deep-equal":743}],742:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],812:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],743:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":813,"./lib/keys.js":814,"dup":22}],813:[function(require,module,exports){
+},{"./lib/is_arguments.js":744,"./lib/keys.js":745,"dup":22}],744:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],814:[function(require,module,exports){
+},{"dup":23}],745:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],815:[function(require,module,exports){
+},{"dup":24}],746:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -83360,25 +81795,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":816,"deep-equal":817}],816:[function(require,module,exports){
+},{"clone":747,"deep-equal":748}],747:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],817:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],748:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":818,"./lib/keys.js":819,"dup":22}],818:[function(require,module,exports){
+},{"./lib/is_arguments.js":749,"./lib/keys.js":750,"dup":22}],749:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],819:[function(require,module,exports){
+},{"dup":23}],750:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],820:[function(require,module,exports){
+},{"dup":24}],751:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":821}],821:[function(require,module,exports){
+},{"dup":13,"voxel-modal":752}],752:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":822}],822:[function(require,module,exports){
+},{"dup":14,"ever":753}],753:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":823,"./types.json":824,"dup":15,"events":1101}],823:[function(require,module,exports){
+},{"./init.json":754,"./types.json":755,"dup":15,"events":1032}],754:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],824:[function(require,module,exports){
+},{"dup":16}],755:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],825:[function(require,module,exports){
+},{"dup":17}],756:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -83592,13 +82027,13 @@ InventoryHotbarClient = (function(_super) {
 })(InventoryHotbarCommon);
 
 
-},{"events":1101,"ever":826,"inventory-window":829}],826:[function(require,module,exports){
+},{"events":1032,"ever":757,"inventory-window":760}],757:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":827,"./types.json":828,"dup":15,"events":1101}],827:[function(require,module,exports){
+},{"./init.json":758,"./types.json":759,"dup":15,"events":1032}],758:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],828:[function(require,module,exports){
+},{"dup":16}],759:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],829:[function(require,module,exports){
+},{"dup":17}],760:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -84044,7 +82479,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":830,"events":1101,"ever":832,"ftooltip":835,"touchup":837}],830:[function(require,module,exports){
+},{"cube-icon":761,"events":1032,"ever":763,"ftooltip":766,"touchup":768}],761:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -84111,21 +82546,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":831}],831:[function(require,module,exports){
+},{"cube-side-array":762}],762:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],832:[function(require,module,exports){
+},{"dup":39}],763:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":833,"./types.json":834,"dup":15,"events":1101}],833:[function(require,module,exports){
+},{"./init.json":764,"./types.json":765,"dup":15,"events":1032}],764:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],834:[function(require,module,exports){
+},{"dup":16}],765:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],835:[function(require,module,exports){
+},{"dup":17}],766:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":836}],836:[function(require,module,exports){
+},{"dup":43,"toarray":767}],767:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],837:[function(require,module,exports){
+},{"dup":44}],768:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],838:[function(require,module,exports){
+},{"dup":45}],769:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -84310,13 +82745,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":1101,"inherits":839,"toarray":840,"vkey":841}],839:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],840:[function(require,module,exports){
+},{"events":1032,"inherits":770,"toarray":771,"vkey":772}],770:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],771:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],841:[function(require,module,exports){
+},{"dup":44}],772:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],842:[function(require,module,exports){
+},{"dup":10}],773:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -84469,7 +82904,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require('_process'))
-},{"./worker.js":859,"_process":1105,"ndarray":852,"unworkify":855,"webworkify":858}],843:[function(require,module,exports){
+},{"./worker.js":790,"_process":1036,"ndarray":783,"unworkify":786,"webworkify":789}],774:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -84580,27 +83015,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],844:[function(require,module,exports){
+},{}],775:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":845,"./types.json":846,"dup":15,"events":1101}],845:[function(require,module,exports){
+},{"./init.json":776,"./types.json":777,"dup":15,"events":1032}],776:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],846:[function(require,module,exports){
+},{"dup":16}],777:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],847:[function(require,module,exports){
+},{"dup":17}],778:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":848,"dup":91}],848:[function(require,module,exports){
+},{"cwise-compiler":779,"dup":91}],779:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":850,"dup":92}],849:[function(require,module,exports){
+},{"./lib/thunk.js":781,"dup":92}],780:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":851}],850:[function(require,module,exports){
+},{"dup":93,"uniq":782}],781:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":849,"dup":94}],851:[function(require,module,exports){
+},{"./compile.js":780,"dup":94}],782:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],852:[function(require,module,exports){
+},{"dup":95}],783:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":853}],853:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":784}],784:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],854:[function(require,module,exports){
+},{"dup":97}],785:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -85049,7 +83484,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],855:[function(require,module,exports){
+},{}],786:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -85074,9 +83509,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":1101,"inherits":856}],856:[function(require,module,exports){
+},{"events":1032,"inherits":787}],787:[function(require,module,exports){
 arguments[4][202][0].apply(exports,arguments)
-},{"dup":202}],857:[function(require,module,exports){
+},{"dup":202}],788:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -85285,9 +83720,9 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],858:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
 arguments[4][176][0].apply(exports,arguments)
-},{"dup":176}],859:[function(require,module,exports){
+},{"dup":176}],790:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -85589,7 +84024,7 @@ module.exports = function() {
 
 
 
-},{"alea":843,"ever":844,"ndarray":852,"ndarray-ops":847,"simplex-noise":854,"voxel-trees":857}],860:[function(require,module,exports){
+},{"alea":774,"ever":775,"ndarray":783,"ndarray-ops":778,"simplex-noise":785,"voxel-trees":788}],791:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -85658,7 +84093,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":861,"gl-matrix":862}],861:[function(require,module,exports){
+},{"asarray":792,"gl-matrix":793}],792:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -85672,9 +84107,9 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],862:[function(require,module,exports){
+},{}],793:[function(require,module,exports){
 arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],863:[function(require,module,exports){
+},{"dup":219}],794:[function(require,module,exports){
 var EventEmitter, Mine,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -86034,63 +84469,63 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":1101}],864:[function(require,module,exports){
+},{"events":1032}],795:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":870,"ndarray-ops":865,"typedarray-pool":874,"webglew":876}],865:[function(require,module,exports){
+},{"dup":90,"ndarray":801,"ndarray-ops":796,"typedarray-pool":805,"webglew":807}],796:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":866,"dup":91}],866:[function(require,module,exports){
+},{"cwise-compiler":797,"dup":91}],797:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":868,"dup":92}],867:[function(require,module,exports){
+},{"./lib/thunk.js":799,"dup":92}],798:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":869}],868:[function(require,module,exports){
+},{"dup":93,"uniq":800}],799:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":867,"dup":94}],869:[function(require,module,exports){
+},{"./compile.js":798,"dup":94}],800:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],870:[function(require,module,exports){
+},{"dup":95}],801:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":871}],871:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":802}],802:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],872:[function(require,module,exports){
+},{"dup":97}],803:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],873:[function(require,module,exports){
+},{"dup":98}],804:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],874:[function(require,module,exports){
+},{"dup":99}],805:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":872,"buffer":1097,"dup":100}],875:[function(require,module,exports){
+},{"bit-twiddle":803,"buffer":1028,"dup":100}],806:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],876:[function(require,module,exports){
+},{"dup":101}],807:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":875}],877:[function(require,module,exports){
+},{"dup":102,"weakmap":806}],808:[function(require,module,exports){
 arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],878:[function(require,module,exports){
+},{"dup":219}],809:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],879:[function(require,module,exports){
+},{"dup":103}],810:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":878,"dup":104}],880:[function(require,module,exports){
+},{"./do-bind.js":809,"dup":104}],811:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":878,"dup":105}],881:[function(require,module,exports){
+},{"./do-bind.js":809,"dup":105}],812:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],882:[function(require,module,exports){
+},{"dup":101}],813:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":881}],883:[function(require,module,exports){
+},{"dup":102,"weakmap":812}],814:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":879,"./lib/vao-native.js":880,"dup":108,"webglew":882}],884:[function(require,module,exports){
+},{"./lib/vao-emulated.js":810,"./lib/vao-native.js":811,"dup":108,"webglew":813}],815:[function(require,module,exports){
 arguments[4][109][0].apply(exports,arguments)
-},{"dup":109,"gl-shader-core":890}],885:[function(require,module,exports){
+},{"dup":109,"gl-shader-core":821}],816:[function(require,module,exports){
 arguments[4][110][0].apply(exports,arguments)
-},{"dup":110}],886:[function(require,module,exports){
+},{"dup":110}],817:[function(require,module,exports){
 arguments[4][111][0].apply(exports,arguments)
-},{"dup":111}],887:[function(require,module,exports){
+},{"dup":111}],818:[function(require,module,exports){
 arguments[4][112][0].apply(exports,arguments)
-},{"./reflect.js":888,"dup":112}],888:[function(require,module,exports){
+},{"./reflect.js":819,"dup":112}],819:[function(require,module,exports){
 arguments[4][113][0].apply(exports,arguments)
-},{"dup":113}],889:[function(require,module,exports){
+},{"dup":113}],820:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],890:[function(require,module,exports){
+},{"dup":99}],821:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"./lib/create-attributes.js":886,"./lib/create-uniforms.js":887,"./lib/reflect.js":888,"dup":115}],891:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],892:[function(require,module,exports){
+},{"./lib/create-attributes.js":817,"./lib/create-uniforms.js":818,"./lib/reflect.js":819,"dup":115}],822:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],823:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -86206,314 +84641,312 @@ OutlinePlugin.prototype.shaderInit = function() {
     outlineVAO.length = outlineVertexCount;
     this.mesh = outlineVAO;
 };
-},{"events":1101,"gl-buffer":864,"gl-matrix":877,"gl-vao":883,"glslify":885,"glslify/adapter.js":884,"inherits":891}],893:[function(require,module,exports){
-// Generated by CoffeeScript 1.7.0
-(function() {
-  var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
-    __hasProp = {}.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+},{"events":1032,"gl-buffer":795,"gl-matrix":808,"gl-vao":814,"glslify":816,"glslify/adapter.js":815,"inherits":822}],824:[function(require,module,exports){
+(function (global){
+var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __hasProp = {}.hasOwnProperty;
 
-  CraftingThesaurus = (function() {
-    CraftingThesaurus.instance = void 0;
+CraftingThesaurus = (function() {
+  function CraftingThesaurus() {
+    this.map = {};
+    global.CraftingThesaurus_instance = this;
+  }
 
-    function CraftingThesaurus() {
-      this.map = {};
-      CraftingThesaurus.instance = this;
+  CraftingThesaurus.prototype.registerName = function(lookupName, item) {
+    if (lookupName.indexOf('.') === -1) {
+      throw "craftingrecipes registerName(" + lookupName + "): name is in invalid format, should be 'shape.material'";
     }
-
-    CraftingThesaurus.prototype.registerName = function(lookupName, item) {
-      if (lookupName.indexOf('.') === -1) {
-        throw "craftingrecipes registerName(" + lookupName + "): name is in invalid format, should be 'shape.material'";
-      }
-      if (this.map[lookupName] == null) {
-        this.map[lookupName] = [];
-      }
-      return this.map[lookupName].push(item);
-    };
-
-    CraftingThesaurus.prototype.matchesName = function(lookupName, itemPile) {
-      var a;
-      if (lookupName === void 0 && itemPile === void 0) {
-        return true;
-      }
-      if (itemPile == null) {
-        return false;
-      }
-      if (itemPile.item === lookupName) {
-        return true;
-      }
-      a = this.map[lookupName];
-      if (a == null) {
-        return false;
-      }
-      return a.indexOf(itemPile.item) !== -1;
-    };
-
-    return CraftingThesaurus;
-
-  })();
-
-  Recipe = (function() {
-    function Recipe() {}
-
-    Recipe.prototype.computeOutput = function(inventory) {
-      return void 0;
-    };
-
-    Recipe.prototype.matches = function(inventory) {
-      return this.computeOutput(inventory) !== void 0;
-    };
-
-    Recipe.prototype.craft = function(inventory) {
-      return void 0;
-    };
-
-    return Recipe;
-
-  })();
-
-  AmorphousRecipe = (function(_super) {
-    __extends(AmorphousRecipe, _super);
-
-    function AmorphousRecipe(ingredients, output) {
-      this.ingredients = ingredients;
-      this.output = output;
+    if (this.map[lookupName] == null) {
+      this.map[lookupName] = [];
     }
-
-    AmorphousRecipe.prototype.removeIngredient = function(itemPile, pendingIngredients) {
-      var i, testIngredient, _i, _len;
-      for (i = _i = 0, _len = pendingIngredients.length; _i < _len; i = ++_i) {
-        testIngredient = pendingIngredients[i];
-        if (CraftingThesaurus.instance.matchesName(testIngredient, itemPile)) {
-          pendingIngredients.splice(i, 1);
-          return true;
-        }
-      }
-      return false;
-    };
-
-    AmorphousRecipe.prototype.findMatchingSlots = function(inventory) {
-      var foundIndices, i, itemPile, pendingIngredients, _i, _ref;
-      pendingIngredients = this.ingredients.slice(0);
-      foundIndices = [];
-      for (i = _i = 0, _ref = inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
-        itemPile = inventory.get(i);
-        if (itemPile == null) {
-          continue;
-        }
-        if (!this.removeIngredient(itemPile, pendingIngredients)) {
-          return void 0;
-        }
-        foundIndices.push(i);
-      }
-      if (pendingIngredients.length !== 0) {
-        return void 0;
-      }
-      return foundIndices;
-    };
-
-    AmorphousRecipe.prototype.computeOutput = function(inventory) {
-      if (this.findMatchingSlots(inventory) !== void 0) {
-        return this.output.clone();
-      }
-      return void 0;
-    };
-
-    AmorphousRecipe.prototype.craft = function(inventory) {
-      var slot, slots, _i, _len;
-      slots = this.findMatchingSlots(inventory);
-      if (!slots) {
-        return void 0;
-      }
-      for (_i = 0, _len = slots.length; _i < _len; _i++) {
-        slot = slots[_i];
-        inventory.takeAt(slot, 1);
-      }
-      return this.output.clone();
-    };
-
-    return AmorphousRecipe;
-
-  })(Recipe);
-
-  PositionalRecipe = (function(_super) {
-    __extends(PositionalRecipe, _super);
-
-    function PositionalRecipe(ingredientMatrix, output) {
-      this.ingredientMatrix = ingredientMatrix;
-      this.output = output;
-    }
-
-    PositionalRecipe.prototype.findMatchingSlots = function(inputInventory) {
-      var actualPile, expectedName, foundIndices, i, index, inventory, j, row, shiftColumn, shiftRow, unshiftedIndex, _i, _j, _len, _len1, _ref, _ref1;
-      foundIndices = [];
-      _ref = PositionalRecipe.tighten(inputInventory), inventory = _ref[0], shiftRow = _ref[1], shiftColumn = _ref[2];
-      if (inventory.height !== this.ingredientMatrix.length || inventory.width !== this.ingredientMatrix[0].length) {
-        return void 0;
-      }
-      _ref1 = this.ingredientMatrix;
-      for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
-        row = _ref1[i];
-        for (j = _j = 0, _len1 = row.length; _j < _len1; j = ++_j) {
-          expectedName = row[j];
-          index = j + i * inventory.width;
-          actualPile = inventory.get(index);
-          if (!CraftingThesaurus.instance.matchesName(expectedName, actualPile)) {
-            return void 0;
-          }
-          unshiftedIndex = (j + shiftColumn) + (i + shiftRow) * inputInventory.width;
-          foundIndices.push(unshiftedIndex);
-        }
-      }
-      return foundIndices;
-    };
-
-    PositionalRecipe.tighten = function(inventory) {
-      var firstColumn, firstRow, isOccupied, lastColumn, lastRow, newHeight, newInventory, newWidth, newX, newY, oldX, oldY, pile, x, y, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
-      for (x = _i = 0, _ref = inventory.width; 0 <= _ref ? _i < _ref : _i > _ref; x = 0 <= _ref ? ++_i : --_i) {
-        isOccupied = false;
-        for (y = _j = 0, _ref1 = inventory.height; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
-          if (inventory.get(y + x * inventory.width) != null) {
-            isOccupied = true;
-          }
-        }
-        if (isOccupied) {
-          break;
-        }
-      }
-      firstRow = x;
-      for (x = _k = _ref2 = inventory.width - 1; _ref2 <= 0 ? _k <= 0 : _k >= 0; x = _ref2 <= 0 ? ++_k : --_k) {
-        isOccupied = false;
-        for (y = _l = 0, _ref3 = inventory.height; 0 <= _ref3 ? _l < _ref3 : _l > _ref3; y = 0 <= _ref3 ? ++_l : --_l) {
-          if (inventory.get(y + x * inventory.width) != null) {
-            isOccupied = true;
-          }
-        }
-        if (isOccupied) {
-          break;
-        }
-      }
-      lastRow = x;
-      for (y = _m = 0, _ref4 = inventory.height; 0 <= _ref4 ? _m < _ref4 : _m > _ref4; y = 0 <= _ref4 ? ++_m : --_m) {
-        isOccupied = false;
-        for (x = _n = 0, _ref5 = inventory.width; 0 <= _ref5 ? _n < _ref5 : _n > _ref5; x = 0 <= _ref5 ? ++_n : --_n) {
-          if (inventory.get(y + x * inventory.width) != null) {
-            isOccupied = true;
-          }
-        }
-        if (isOccupied) {
-          break;
-        }
-      }
-      firstColumn = y;
-      for (y = _o = _ref6 = inventory.height - 1; _ref6 <= 0 ? _o <= 0 : _o >= 0; y = _ref6 <= 0 ? ++_o : --_o) {
-        isOccupied = false;
-        for (x = _p = 0, _ref7 = inventory.width; 0 <= _ref7 ? _p < _ref7 : _p > _ref7; x = 0 <= _ref7 ? ++_p : --_p) {
-          if (inventory.get(y + x * inventory.width) != null) {
-            isOccupied = true;
-          }
-        }
-        if (isOccupied) {
-          break;
-        }
-      }
-      lastColumn = y;
-      newWidth = lastColumn - firstColumn + 1;
-      newHeight = lastRow - firstRow + 1;
-      if (newWidth < 0 || newHeight < 0) {
-        newWidth = newHeight = 1;
-      }
-      newInventory = new inventory.constructor(newWidth, newHeight);
-      for (oldX = _q = firstRow; firstRow <= lastRow ? _q <= lastRow : _q >= lastRow; oldX = firstRow <= lastRow ? ++_q : --_q) {
-        for (oldY = _r = firstColumn; firstColumn <= lastColumn ? _r <= lastColumn : _r >= lastColumn; oldY = firstColumn <= lastColumn ? ++_r : --_r) {
-          pile = inventory.get(oldY + oldX * inventory.width);
-          newX = oldX - firstRow;
-          newY = oldY - firstColumn;
-          newInventory.set(newY + newX * newInventory.width, pile);
-        }
-      }
-      return [newInventory, firstRow, firstColumn];
-    };
-
-    PositionalRecipe.prototype.computeOutput = function(inventory) {
-      if (this.findMatchingSlots(inventory) !== void 0) {
-        return this.output.clone();
-      }
-      return void 0;
-    };
-
-    PositionalRecipe.prototype.craft = function(inventory) {
-      var slot, slots, _i, _len;
-      slots = this.findMatchingSlots(inventory);
-      if (!slots) {
-        return void 0;
-      }
-      for (_i = 0, _len = slots.length; _i < _len; _i++) {
-        slot = slots[_i];
-        inventory.takeAt(slot, 1);
-      }
-      return this.output.clone();
-    };
-
-    return PositionalRecipe;
-
-  })(Recipe);
-
-  RecipeList = (function() {
-    function RecipeList() {
-      this.recipes = [];
-    }
-
-    RecipeList.prototype.register = function(recipe) {
-      return this.recipes.push(recipe);
-    };
-
-    RecipeList.prototype.find = function(inventory) {
-      var recipe, _i, _len, _ref;
-      _ref = this.recipes;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        recipe = _ref[_i];
-        if (recipe.computeOutput(inventory) !== void 0) {
-          return recipe;
-        }
-      }
-      return void 0;
-    };
-
-    RecipeList.prototype.craft = function(inventory) {
-      var output, recipe, _i, _len, _ref;
-      _ref = this.recipes;
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        recipe = _ref[_i];
-        output = recipe.craft(inventory);
-        if (output) {
-          return output;
-        }
-      }
-      return void 0;
-    };
-
-    return RecipeList;
-
-  })();
-
-  module.exports = function(game, opts) {
-    throw new Error('craftingrecipes plugin (plugin only) replaced by voxel-recipes');
+    return this.map[lookupName].push(item);
   };
 
-  module.exports.Recipe = Recipe;
+  CraftingThesaurus.prototype.matchesName = function(lookupName, itemPile) {
+    var a;
+    if (lookupName === void 0 && itemPile === void 0) {
+      return true;
+    }
+    if (itemPile == null) {
+      return false;
+    }
+    if (itemPile.item === lookupName) {
+      return true;
+    }
+    a = this.map[lookupName];
+    if (a == null) {
+      return false;
+    }
+    return a.indexOf(itemPile.item) !== -1;
+  };
 
-  module.exports.AmorphousRecipe = AmorphousRecipe;
+  return CraftingThesaurus;
 
-  module.exports.PositionalRecipe = PositionalRecipe;
+})();
 
-  module.exports.CraftingThesaurus = CraftingThesaurus;
+Recipe = (function() {
+  function Recipe() {}
 
-  module.exports.RecipeList = RecipeList;
+  Recipe.prototype.computeOutput = function(inventory) {
+    return void 0;
+  };
 
-}).call(this);
+  Recipe.prototype.matches = function(inventory) {
+    return this.computeOutput(inventory) !== void 0;
+  };
 
-},{}],894:[function(require,module,exports){
+  Recipe.prototype.craft = function(inventory) {
+    return void 0;
+  };
+
+  return Recipe;
+
+})();
+
+AmorphousRecipe = (function(_super) {
+  __extends(AmorphousRecipe, _super);
+
+  function AmorphousRecipe(_at_ingredients, _at_output) {
+    this.ingredients = _at_ingredients;
+    this.output = _at_output;
+  }
+
+  AmorphousRecipe.prototype.removeIngredient = function(itemPile, pendingIngredients) {
+    var i, testIngredient, _i, _len;
+    for (i = _i = 0, _len = pendingIngredients.length; _i < _len; i = ++_i) {
+      testIngredient = pendingIngredients[i];
+      if (global.CraftingThesaurus_instance.matchesName(testIngredient, itemPile)) {
+        pendingIngredients.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  AmorphousRecipe.prototype.findMatchingSlots = function(inventory) {
+    var foundIndices, i, itemPile, pendingIngredients, _i, _ref;
+    pendingIngredients = this.ingredients.slice(0);
+    foundIndices = [];
+    for (i = _i = 0, _ref = inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      itemPile = inventory.get(i);
+      if (itemPile == null) {
+        continue;
+      }
+      if (!this.removeIngredient(itemPile, pendingIngredients)) {
+        return void 0;
+      }
+      foundIndices.push(i);
+    }
+    if (pendingIngredients.length !== 0) {
+      return void 0;
+    }
+    return foundIndices;
+  };
+
+  AmorphousRecipe.prototype.computeOutput = function(inventory) {
+    if (this.findMatchingSlots(inventory) !== void 0) {
+      return this.output.clone();
+    }
+    return void 0;
+  };
+
+  AmorphousRecipe.prototype.craft = function(inventory) {
+    var slot, slots, _i, _len;
+    slots = this.findMatchingSlots(inventory);
+    if (!slots) {
+      return void 0;
+    }
+    for (_i = 0, _len = slots.length; _i < _len; _i++) {
+      slot = slots[_i];
+      inventory.takeAt(slot, 1);
+    }
+    return this.output.clone();
+  };
+
+  return AmorphousRecipe;
+
+})(Recipe);
+
+PositionalRecipe = (function(_super) {
+  __extends(PositionalRecipe, _super);
+
+  function PositionalRecipe(_at_ingredientMatrix, _at_output) {
+    this.ingredientMatrix = _at_ingredientMatrix;
+    this.output = _at_output;
+  }
+
+  PositionalRecipe.prototype.findMatchingSlots = function(inputInventory) {
+    var actualPile, expectedName, foundIndices, i, index, inventory, j, row, shiftColumn, shiftRow, unshiftedIndex, _i, _j, _len, _len1, _ref, _ref1;
+    foundIndices = [];
+    _ref = PositionalRecipe.tighten(inputInventory), inventory = _ref[0], shiftRow = _ref[1], shiftColumn = _ref[2];
+    if (inventory.height !== this.ingredientMatrix.length || inventory.width !== this.ingredientMatrix[0].length) {
+      return void 0;
+    }
+    _ref1 = this.ingredientMatrix;
+    for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
+      row = _ref1[i];
+      for (j = _j = 0, _len1 = row.length; _j < _len1; j = ++_j) {
+        expectedName = row[j];
+        index = j + i * inventory.width;
+        actualPile = inventory.get(index);
+        if (!global.CraftingThesaurus_instance.matchesName(expectedName, actualPile)) {
+          return void 0;
+        }
+        unshiftedIndex = (j + shiftColumn) + (i + shiftRow) * inputInventory.width;
+        foundIndices.push(unshiftedIndex);
+      }
+    }
+    return foundIndices;
+  };
+
+  PositionalRecipe.tighten = function(inventory) {
+    var firstColumn, firstRow, isOccupied, lastColumn, lastRow, newHeight, newInventory, newWidth, newX, newY, oldX, oldY, pile, x, y, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
+    for (x = _i = 0, _ref = inventory.width; 0 <= _ref ? _i < _ref : _i > _ref; x = 0 <= _ref ? ++_i : --_i) {
+      isOccupied = false;
+      for (y = _j = 0, _ref1 = inventory.height; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    firstRow = x;
+    for (x = _k = _ref2 = inventory.width - 1; _ref2 <= 0 ? _k <= 0 : _k >= 0; x = _ref2 <= 0 ? ++_k : --_k) {
+      isOccupied = false;
+      for (y = _l = 0, _ref3 = inventory.height; 0 <= _ref3 ? _l < _ref3 : _l > _ref3; y = 0 <= _ref3 ? ++_l : --_l) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    lastRow = x;
+    for (y = _m = 0, _ref4 = inventory.height; 0 <= _ref4 ? _m < _ref4 : _m > _ref4; y = 0 <= _ref4 ? ++_m : --_m) {
+      isOccupied = false;
+      for (x = _n = 0, _ref5 = inventory.width; 0 <= _ref5 ? _n < _ref5 : _n > _ref5; x = 0 <= _ref5 ? ++_n : --_n) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    firstColumn = y;
+    for (y = _o = _ref6 = inventory.height - 1; _ref6 <= 0 ? _o <= 0 : _o >= 0; y = _ref6 <= 0 ? ++_o : --_o) {
+      isOccupied = false;
+      for (x = _p = 0, _ref7 = inventory.width; 0 <= _ref7 ? _p < _ref7 : _p > _ref7; x = 0 <= _ref7 ? ++_p : --_p) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    lastColumn = y;
+    newWidth = lastColumn - firstColumn + 1;
+    newHeight = lastRow - firstRow + 1;
+    if (newWidth < 0 || newHeight < 0) {
+      newWidth = newHeight = 1;
+    }
+    newInventory = new inventory.constructor(newWidth, newHeight);
+    for (oldX = _q = firstRow; firstRow <= lastRow ? _q <= lastRow : _q >= lastRow; oldX = firstRow <= lastRow ? ++_q : --_q) {
+      for (oldY = _r = firstColumn; firstColumn <= lastColumn ? _r <= lastColumn : _r >= lastColumn; oldY = firstColumn <= lastColumn ? ++_r : --_r) {
+        pile = inventory.get(oldY + oldX * inventory.width);
+        newX = oldX - firstRow;
+        newY = oldY - firstColumn;
+        newInventory.set(newY + newX * newInventory.width, pile);
+      }
+    }
+    return [newInventory, firstRow, firstColumn];
+  };
+
+  PositionalRecipe.prototype.computeOutput = function(inventory) {
+    if (this.findMatchingSlots(inventory) !== void 0) {
+      return this.output.clone();
+    }
+    return void 0;
+  };
+
+  PositionalRecipe.prototype.craft = function(inventory) {
+    var slot, slots, _i, _len;
+    slots = this.findMatchingSlots(inventory);
+    if (!slots) {
+      return void 0;
+    }
+    for (_i = 0, _len = slots.length; _i < _len; _i++) {
+      slot = slots[_i];
+      inventory.takeAt(slot, 1);
+    }
+    return this.output.clone();
+  };
+
+  return PositionalRecipe;
+
+})(Recipe);
+
+RecipeList = (function() {
+  function RecipeList() {
+    this.recipes = [];
+  }
+
+  RecipeList.prototype.register = function(recipe) {
+    return this.recipes.push(recipe);
+  };
+
+  RecipeList.prototype.find = function(inventory) {
+    var recipe, _i, _len, _ref;
+    _ref = this.recipes;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      recipe = _ref[_i];
+      if (recipe.computeOutput(inventory) !== void 0) {
+        return recipe;
+      }
+    }
+    return void 0;
+  };
+
+  RecipeList.prototype.craft = function(inventory) {
+    var output, recipe, _i, _len, _ref;
+    _ref = this.recipes;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      recipe = _ref[_i];
+      output = recipe.craft(inventory);
+      if (output) {
+        return output;
+      }
+    }
+    return void 0;
+  };
+
+  return RecipeList;
+
+})();
+
+module.exports = function(game, opts) {
+  throw new Error('craftingrecipes plugin (plugin only) replaced by voxel-recipes');
+};
+
+module.exports.Recipe = Recipe;
+
+module.exports.AmorphousRecipe = AmorphousRecipe;
+
+module.exports.PositionalRecipe = PositionalRecipe;
+
+module.exports.CraftingThesaurus = CraftingThesaurus;
+
+module.exports.RecipeList = RecipeList;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],825:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -86695,15 +85128,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":895,"deep-equal":896}],895:[function(require,module,exports){
+},{"clone":826,"deep-equal":827}],826:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],896:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],827:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":897,"./lib/keys.js":898,"dup":22}],897:[function(require,module,exports){
+},{"./lib/is_arguments.js":828,"./lib/keys.js":829,"dup":22}],828:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],898:[function(require,module,exports){
+},{"dup":23}],829:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],899:[function(require,module,exports){
+},{"dup":24}],830:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, _ref,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -86918,7 +85351,7 @@ RepairRecipe = (function(_super) {
 })(Recipe);
 
 
-},{"craftingrecipes":893,"itempile":894}],900:[function(require,module,exports){
+},{"craftingrecipes":824,"itempile":825}],831:[function(require,module,exports){
 var skin = require('minecraft-skin');
 
 module.exports = function (game, opts) {
@@ -87059,7 +85492,7 @@ function parseXYZ (x, y, z) {
     return { x: Number(x), y: Number(y), z: Number(z) };
 }
 
-},{"minecraft-skin":901}],901:[function(require,module,exports){
+},{"minecraft-skin":832}],832:[function(require,module,exports){
 var THREE
 
 module.exports = function(three, image, sizeRatio) {
@@ -87449,13 +85882,13 @@ Skin.prototype.createPlayerObject = function(scene) {
   return playerGroup
 }
 
-},{}],902:[function(require,module,exports){
+},{}],833:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"./vendor/dat.color":903,"./vendor/dat.gui":904,"dup":3}],903:[function(require,module,exports){
+},{"./vendor/dat.color":834,"./vendor/dat.gui":835,"dup":3}],834:[function(require,module,exports){
 arguments[4][4][0].apply(exports,arguments)
-},{"dup":4}],904:[function(require,module,exports){
+},{"dup":4}],835:[function(require,module,exports){
 arguments[4][5][0].apply(exports,arguments)
-},{"dup":5}],905:[function(require,module,exports){
+},{"dup":5}],836:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -87535,7 +85968,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":902}],906:[function(require,module,exports){
+},{"dat-gui":833}],837:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -87717,17 +86150,17 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":907,"deep-equal":908}],907:[function(require,module,exports){
+},{"clone":838,"deep-equal":839}],838:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],908:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],839:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":909,"./lib/keys.js":910,"dup":22}],909:[function(require,module,exports){
+},{"./lib/is_arguments.js":840,"./lib/keys.js":841,"dup":22}],840:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],910:[function(require,module,exports){
+},{"dup":23}],841:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],911:[function(require,module,exports){
+},{"dup":24}],842:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],912:[function(require,module,exports){
+},{"dup":25}],843:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -87936,7 +86369,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":906,"ucfirst":911}],913:[function(require,module,exports){
+},{"itempile":837,"ucfirst":842}],844:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -88070,13 +86503,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],914:[function(require,module,exports){
+},{}],845:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":915,"./types.json":916,"dup":15,"events":1101}],915:[function(require,module,exports){
+},{"./init.json":846,"./types.json":847,"dup":15,"events":1032}],846:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],916:[function(require,module,exports){
+},{"dup":16}],847:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],917:[function(require,module,exports){
+},{"dup":17}],848:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -88085,9 +86518,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],918:[function(require,module,exports){
+},{}],849:[function(require,module,exports){
 arguments[4][202][0].apply(exports,arguments)
-},{"dup":202}],919:[function(require,module,exports){
+},{"dup":202}],850:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -88271,9 +86704,312 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":1101,"ever":914,"fract":917,"inherits":918}],920:[function(require,module,exports){
-arguments[4][893][0].apply(exports,arguments)
-},{"dup":893}],921:[function(require,module,exports){
+},{"events":1032,"ever":845,"fract":848,"inherits":849}],851:[function(require,module,exports){
+(function (global){
+var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
+  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  __hasProp = {}.hasOwnProperty;
+
+CraftingThesaurus = (function() {
+  function CraftingThesaurus() {
+    this.map = {};
+    global.CraftingThesaurus_instance = this;
+  }
+
+  CraftingThesaurus.prototype.registerName = function(lookupName, item) {
+    if (lookupName.indexOf('.') === -1) {
+      throw "craftingrecipes registerName(" + lookupName + "): name is in invalid format, should be 'shape.material'";
+    }
+    if (this.map[lookupName] == null) {
+      this.map[lookupName] = [];
+    }
+    return this.map[lookupName].push(item);
+  };
+
+  CraftingThesaurus.prototype.matchesName = function(lookupName, itemPile) {
+    var a;
+    if (lookupName === void 0 && itemPile === void 0) {
+      return true;
+    }
+    if (itemPile == null) {
+      return false;
+    }
+    if (itemPile.item === lookupName) {
+      return true;
+    }
+    a = this.map[lookupName];
+    if (a == null) {
+      return false;
+    }
+    return a.indexOf(itemPile.item) !== -1;
+  };
+
+  return CraftingThesaurus;
+
+})();
+
+Recipe = (function() {
+  function Recipe() {}
+
+  Recipe.prototype.computeOutput = function(inventory) {
+    return void 0;
+  };
+
+  Recipe.prototype.matches = function(inventory) {
+    return this.computeOutput(inventory) !== void 0;
+  };
+
+  Recipe.prototype.craft = function(inventory) {
+    return void 0;
+  };
+
+  return Recipe;
+
+})();
+
+AmorphousRecipe = (function(_super) {
+  __extends(AmorphousRecipe, _super);
+
+  function AmorphousRecipe(_at_ingredients, _at_output) {
+    this.ingredients = _at_ingredients;
+    this.output = _at_output;
+  }
+
+  AmorphousRecipe.prototype.removeIngredient = function(itemPile, pendingIngredients) {
+    var i, testIngredient, _i, _len;
+    for (i = _i = 0, _len = pendingIngredients.length; _i < _len; i = ++_i) {
+      testIngredient = pendingIngredients[i];
+      if (global.CraftingThesaurus_instance.matchesName(testIngredient, itemPile)) {
+        pendingIngredients.splice(i, 1);
+        return true;
+      }
+    }
+    return false;
+  };
+
+  AmorphousRecipe.prototype.findMatchingSlots = function(inventory) {
+    var foundIndices, i, itemPile, pendingIngredients, _i, _ref;
+    pendingIngredients = this.ingredients.slice(0);
+    foundIndices = [];
+    for (i = _i = 0, _ref = inventory.size(); 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+      itemPile = inventory.get(i);
+      if (itemPile == null) {
+        continue;
+      }
+      if (!this.removeIngredient(itemPile, pendingIngredients)) {
+        return void 0;
+      }
+      foundIndices.push(i);
+    }
+    if (pendingIngredients.length !== 0) {
+      return void 0;
+    }
+    return foundIndices;
+  };
+
+  AmorphousRecipe.prototype.computeOutput = function(inventory) {
+    if (this.findMatchingSlots(inventory) !== void 0) {
+      return this.output.clone();
+    }
+    return void 0;
+  };
+
+  AmorphousRecipe.prototype.craft = function(inventory) {
+    var slot, slots, _i, _len;
+    slots = this.findMatchingSlots(inventory);
+    if (!slots) {
+      return void 0;
+    }
+    for (_i = 0, _len = slots.length; _i < _len; _i++) {
+      slot = slots[_i];
+      inventory.takeAt(slot, 1);
+    }
+    return this.output.clone();
+  };
+
+  return AmorphousRecipe;
+
+})(Recipe);
+
+PositionalRecipe = (function(_super) {
+  __extends(PositionalRecipe, _super);
+
+  function PositionalRecipe(_at_ingredientMatrix, _at_output) {
+    this.ingredientMatrix = _at_ingredientMatrix;
+    this.output = _at_output;
+  }
+
+  PositionalRecipe.prototype.findMatchingSlots = function(inputInventory) {
+    var actualPile, expectedName, foundIndices, i, index, inventory, j, row, shiftColumn, shiftRow, unshiftedIndex, _i, _j, _len, _len1, _ref, _ref1;
+    foundIndices = [];
+    _ref = PositionalRecipe.tighten(inputInventory), inventory = _ref[0], shiftRow = _ref[1], shiftColumn = _ref[2];
+    if (inventory.height !== this.ingredientMatrix.length || inventory.width !== this.ingredientMatrix[0].length) {
+      return void 0;
+    }
+    _ref1 = this.ingredientMatrix;
+    for (i = _i = 0, _len = _ref1.length; _i < _len; i = ++_i) {
+      row = _ref1[i];
+      for (j = _j = 0, _len1 = row.length; _j < _len1; j = ++_j) {
+        expectedName = row[j];
+        index = j + i * inventory.width;
+        actualPile = inventory.get(index);
+        if (!global.CraftingThesaurus_instance.matchesName(expectedName, actualPile)) {
+          return void 0;
+        }
+        unshiftedIndex = (j + shiftColumn) + (i + shiftRow) * inputInventory.width;
+        foundIndices.push(unshiftedIndex);
+      }
+    }
+    return foundIndices;
+  };
+
+  PositionalRecipe.tighten = function(inventory) {
+    var firstColumn, firstRow, isOccupied, lastColumn, lastRow, newHeight, newInventory, newWidth, newX, newY, oldX, oldY, pile, x, y, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _ref, _ref1, _ref2, _ref3, _ref4, _ref5, _ref6, _ref7;
+    for (x = _i = 0, _ref = inventory.width; 0 <= _ref ? _i < _ref : _i > _ref; x = 0 <= _ref ? ++_i : --_i) {
+      isOccupied = false;
+      for (y = _j = 0, _ref1 = inventory.height; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; y = 0 <= _ref1 ? ++_j : --_j) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    firstRow = x;
+    for (x = _k = _ref2 = inventory.width - 1; _ref2 <= 0 ? _k <= 0 : _k >= 0; x = _ref2 <= 0 ? ++_k : --_k) {
+      isOccupied = false;
+      for (y = _l = 0, _ref3 = inventory.height; 0 <= _ref3 ? _l < _ref3 : _l > _ref3; y = 0 <= _ref3 ? ++_l : --_l) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    lastRow = x;
+    for (y = _m = 0, _ref4 = inventory.height; 0 <= _ref4 ? _m < _ref4 : _m > _ref4; y = 0 <= _ref4 ? ++_m : --_m) {
+      isOccupied = false;
+      for (x = _n = 0, _ref5 = inventory.width; 0 <= _ref5 ? _n < _ref5 : _n > _ref5; x = 0 <= _ref5 ? ++_n : --_n) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    firstColumn = y;
+    for (y = _o = _ref6 = inventory.height - 1; _ref6 <= 0 ? _o <= 0 : _o >= 0; y = _ref6 <= 0 ? ++_o : --_o) {
+      isOccupied = false;
+      for (x = _p = 0, _ref7 = inventory.width; 0 <= _ref7 ? _p < _ref7 : _p > _ref7; x = 0 <= _ref7 ? ++_p : --_p) {
+        if (inventory.get(y + x * inventory.width) != null) {
+          isOccupied = true;
+        }
+      }
+      if (isOccupied) {
+        break;
+      }
+    }
+    lastColumn = y;
+    newWidth = lastColumn - firstColumn + 1;
+    newHeight = lastRow - firstRow + 1;
+    if (newWidth < 0 || newHeight < 0) {
+      newWidth = newHeight = 1;
+    }
+    newInventory = new inventory.constructor(newWidth, newHeight);
+    for (oldX = _q = firstRow; firstRow <= lastRow ? _q <= lastRow : _q >= lastRow; oldX = firstRow <= lastRow ? ++_q : --_q) {
+      for (oldY = _r = firstColumn; firstColumn <= lastColumn ? _r <= lastColumn : _r >= lastColumn; oldY = firstColumn <= lastColumn ? ++_r : --_r) {
+        pile = inventory.get(oldY + oldX * inventory.width);
+        newX = oldX - firstRow;
+        newY = oldY - firstColumn;
+        newInventory.set(newY + newX * newInventory.width, pile);
+      }
+    }
+    return [newInventory, firstRow, firstColumn];
+  };
+
+  PositionalRecipe.prototype.computeOutput = function(inventory) {
+    if (this.findMatchingSlots(inventory) !== void 0) {
+      return this.output.clone();
+    }
+    return void 0;
+  };
+
+  PositionalRecipe.prototype.craft = function(inventory) {
+    var slot, slots, _i, _len;
+    slots = this.findMatchingSlots(inventory);
+    if (!slots) {
+      return void 0;
+    }
+    for (_i = 0, _len = slots.length; _i < _len; _i++) {
+      slot = slots[_i];
+      inventory.takeAt(slot, 1);
+    }
+    return this.output.clone();
+  };
+
+  return PositionalRecipe;
+
+})(Recipe);
+
+RecipeList = (function() {
+  function RecipeList() {
+    this.recipes = [];
+  }
+
+  RecipeList.prototype.register = function(recipe) {
+    return this.recipes.push(recipe);
+  };
+
+  RecipeList.prototype.find = function(inventory) {
+    var recipe, _i, _len, _ref;
+    _ref = this.recipes;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      recipe = _ref[_i];
+      if (recipe.computeOutput(inventory) !== void 0) {
+        return recipe;
+      }
+    }
+    return void 0;
+  };
+
+  RecipeList.prototype.craft = function(inventory) {
+    var output, recipe, _i, _len, _ref;
+    _ref = this.recipes;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      recipe = _ref[_i];
+      output = recipe.craft(inventory);
+      if (output) {
+        return output;
+      }
+    }
+    return void 0;
+  };
+
+  return RecipeList;
+
+})();
+
+module.exports = function(game, opts) {
+  throw new Error('craftingrecipes plugin (plugin only) replaced by voxel-recipes');
+};
+
+module.exports.Recipe = Recipe;
+
+module.exports.AmorphousRecipe = AmorphousRecipe;
+
+module.exports.PositionalRecipe = PositionalRecipe;
+
+module.exports.CraftingThesaurus = CraftingThesaurus;
+
+module.exports.RecipeList = RecipeList;
+
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}],852:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var ItemPile, clone, deepEqual;
@@ -88448,15 +87184,15 @@ arguments[4][893][0].apply(exports,arguments)
 
 }).call(this);
 
-},{"clone":922,"deep-equal":923}],922:[function(require,module,exports){
+},{"clone":853,"deep-equal":854}],853:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],923:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],854:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":924,"./lib/keys.js":925,"dup":22}],924:[function(require,module,exports){
+},{"./lib/is_arguments.js":855,"./lib/keys.js":856,"dup":22}],855:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],925:[function(require,module,exports){
+},{"dup":23}],856:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],926:[function(require,module,exports){
+},{"dup":24}],857:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -88505,10 +87241,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":920,"itempile":921}],927:[function(require,module,exports){
+},{"craftingrecipes":851,"itempile":852}],858:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":928}],928:[function(require,module,exports){
+},{"media":859}],859:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -88519,7 +87255,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":930}],929:[function(require,module,exports){
+},{"./lib/player":861}],860:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -88543,7 +87279,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],930:[function(require,module,exports){
+},{}],861:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -88620,7 +87356,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":931,"./src":932,"new-chain":935}],931:[function(require,module,exports){
+},{"./render":862,"./src":863,"new-chain":866}],862:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -88630,7 +87366,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":933,"domify":934}],932:[function(require,module,exports){
+},{"./templates":864,"domify":865}],863:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -88663,10 +87399,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":929}],933:[function(require,module,exports){
+},{"./mime":860}],864:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],934:[function(require,module,exports){
+},{}],865:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -88739,7 +87475,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],935:[function(require,module,exports){
+},{}],866:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -88796,7 +87532,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],936:[function(require,module,exports){
+},{}],867:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -88855,7 +87591,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":927}],937:[function(require,module,exports){
+},{"play-audio":858}],868:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -88907,7 +87643,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],938:[function(require,module,exports){
+},{}],869:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -88980,7 +87716,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],939:[function(require,module,exports){
+},{}],870:[function(require,module,exports){
 module.exports = function(game, opts) {
   return new StartPlugin(game, opts);
 };
@@ -89023,7 +87759,7 @@ StartPlugin.prototype.disable = function() {
   delete self.icon;
 };
 
-},{}],940:[function(require,module,exports){
+},{}],871:[function(require,module,exports){
 var EventEmitter, Use,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -89141,7 +87877,7 @@ Use = (function(_super) {
 })(EventEmitter);
 
 
-},{"events":1101}],941:[function(require,module,exports){
+},{"events":1032}],872:[function(require,module,exports){
 // Turns virus into water
 module.exports = function(water, material) {
   var old = {
@@ -89184,7 +87920,7 @@ module.exports = function(water, material) {
 
   return toNormal;
 };
-},{}],942:[function(require,module,exports){
+},{}],873:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -89293,7 +88029,7 @@ function defaultHow(block, level) {
 }
 
 }).call(this,require('_process'))
-},{"./example/water.js":941,"_process":1105}],943:[function(require,module,exports){
+},{"./example/water.js":872,"_process":1036}],874:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -89426,25 +88162,25 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require('_process'))
-},{"_process":1105}],944:[function(require,module,exports){
-arguments[4][450][0].apply(exports,arguments)
-},{"dup":450}],945:[function(require,module,exports){
-arguments[4][451][0].apply(exports,arguments)
-},{"dup":451}],946:[function(require,module,exports){
-arguments[4][452][0].apply(exports,arguments)
-},{"dup":452}],947:[function(require,module,exports){
-arguments[4][453][0].apply(exports,arguments)
-},{"dup":453}],948:[function(require,module,exports){
-arguments[4][454][0].apply(exports,arguments)
-},{"dup":454}],949:[function(require,module,exports){
-arguments[4][455][0].apply(exports,arguments)
-},{"dup":455}],950:[function(require,module,exports){
-arguments[4][456][0].apply(exports,arguments)
-},{"dup":456}],951:[function(require,module,exports){
-arguments[4][457][0].apply(exports,arguments)
-},{"dup":457}],952:[function(require,module,exports){
-arguments[4][458][0].apply(exports,arguments)
-},{"dup":458}],953:[function(require,module,exports){
+},{"_process":1036}],875:[function(require,module,exports){
+arguments[4][381][0].apply(exports,arguments)
+},{"dup":381}],876:[function(require,module,exports){
+arguments[4][382][0].apply(exports,arguments)
+},{"dup":382}],877:[function(require,module,exports){
+arguments[4][383][0].apply(exports,arguments)
+},{"dup":383}],878:[function(require,module,exports){
+arguments[4][384][0].apply(exports,arguments)
+},{"dup":384}],879:[function(require,module,exports){
+arguments[4][385][0].apply(exports,arguments)
+},{"dup":385}],880:[function(require,module,exports){
+arguments[4][386][0].apply(exports,arguments)
+},{"dup":386}],881:[function(require,module,exports){
+arguments[4][387][0].apply(exports,arguments)
+},{"dup":387}],882:[function(require,module,exports){
+arguments[4][388][0].apply(exports,arguments)
+},{"dup":388}],883:[function(require,module,exports){
+arguments[4][389][0].apply(exports,arguments)
+},{"dup":389}],884:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -89470,17 +88206,17 @@ module.exports = {
   , lookAt: require('./lookAt')
   , str: require('./str')
 }
-},{"./adjoint":944,"./clone":945,"./copy":946,"./create":947,"./determinant":948,"./fromQuat":949,"./fromRotationTranslation":950,"./frustum":951,"./identity":952,"./invert":954,"./lookAt":955,"./multiply":956,"./ortho":957,"./perspective":958,"./perspectiveFromFieldOfView":959,"./rotate":960,"./rotateX":961,"./rotateY":962,"./rotateZ":963,"./scale":964,"./str":965,"./translate":966,"./transpose":967}],954:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"dup":460}],955:[function(require,module,exports){
-arguments[4][461][0].apply(exports,arguments)
-},{"./identity":952,"dup":461}],956:[function(require,module,exports){
-arguments[4][462][0].apply(exports,arguments)
-},{"dup":462}],957:[function(require,module,exports){
-arguments[4][463][0].apply(exports,arguments)
-},{"dup":463}],958:[function(require,module,exports){
-arguments[4][464][0].apply(exports,arguments)
-},{"dup":464}],959:[function(require,module,exports){
+},{"./adjoint":875,"./clone":876,"./copy":877,"./create":878,"./determinant":879,"./fromQuat":880,"./fromRotationTranslation":881,"./frustum":882,"./identity":883,"./invert":885,"./lookAt":886,"./multiply":887,"./ortho":888,"./perspective":889,"./perspectiveFromFieldOfView":890,"./rotate":891,"./rotateX":892,"./rotateY":893,"./rotateZ":894,"./scale":895,"./str":896,"./translate":897,"./transpose":898}],885:[function(require,module,exports){
+arguments[4][391][0].apply(exports,arguments)
+},{"dup":391}],886:[function(require,module,exports){
+arguments[4][392][0].apply(exports,arguments)
+},{"./identity":883,"dup":392}],887:[function(require,module,exports){
+arguments[4][393][0].apply(exports,arguments)
+},{"dup":393}],888:[function(require,module,exports){
+arguments[4][394][0].apply(exports,arguments)
+},{"dup":394}],889:[function(require,module,exports){
+arguments[4][395][0].apply(exports,arguments)
+},{"dup":395}],890:[function(require,module,exports){
 module.exports = perspectiveFromFieldOfView;
 
 /**
@@ -89522,23 +88258,23 @@ function perspectiveFromFieldOfView(out, fov, near, far) {
 }
 
 
-},{}],960:[function(require,module,exports){
-arguments[4][465][0].apply(exports,arguments)
-},{"dup":465}],961:[function(require,module,exports){
-arguments[4][466][0].apply(exports,arguments)
-},{"dup":466}],962:[function(require,module,exports){
-arguments[4][467][0].apply(exports,arguments)
-},{"dup":467}],963:[function(require,module,exports){
-arguments[4][468][0].apply(exports,arguments)
-},{"dup":468}],964:[function(require,module,exports){
-arguments[4][469][0].apply(exports,arguments)
-},{"dup":469}],965:[function(require,module,exports){
-arguments[4][470][0].apply(exports,arguments)
-},{"dup":470}],966:[function(require,module,exports){
-arguments[4][471][0].apply(exports,arguments)
-},{"dup":471}],967:[function(require,module,exports){
-arguments[4][472][0].apply(exports,arguments)
-},{"dup":472}],968:[function(require,module,exports){
+},{}],891:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396}],892:[function(require,module,exports){
+arguments[4][397][0].apply(exports,arguments)
+},{"dup":397}],893:[function(require,module,exports){
+arguments[4][398][0].apply(exports,arguments)
+},{"dup":398}],894:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"dup":399}],895:[function(require,module,exports){
+arguments[4][400][0].apply(exports,arguments)
+},{"dup":400}],896:[function(require,module,exports){
+arguments[4][401][0].apply(exports,arguments)
+},{"dup":401}],897:[function(require,module,exports){
+arguments[4][402][0].apply(exports,arguments)
+},{"dup":402}],898:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],899:[function(require,module,exports){
 module.exports = function (obj) {
     if (!obj || typeof obj !== 'object') return obj;
     
@@ -89575,7 +88311,7 @@ var isArray = Array.isArray || function (xs) {
     return {}.toString.call(xs) === '[object Array]';
 };
 
-},{}],969:[function(require,module,exports){
+},{}],900:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89616,7 +88352,7 @@ module.exports.VRDevice = VRDevice;
 module.exports.HMDVRDevice = HMDVRDevice;
 module.exports.PositionSensorVRDevice = PositionSensorVRDevice;
 
-},{}],970:[function(require,module,exports){
+},{}],901:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89680,7 +88416,7 @@ CardboardHMDVRDevice.prototype.getEyeTranslation = function(whichEye) {
 
 module.exports = CardboardHMDVRDevice;
 
-},{"./base.js":969}],971:[function(require,module,exports){
+},{"./base.js":900}],902:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89766,7 +88502,7 @@ GyroPositionSensorVRDevice.prototype.getOrientation = function() {
 
 module.exports = GyroPositionSensorVRDevice;
 
-},{"./base.js":969,"./three-math.js":974}],972:[function(require,module,exports){
+},{"./base.js":900,"./three-math.js":905}],903:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89785,7 +88521,7 @@ var WebVRPolyfill = require('./webvr-polyfill.js');
 
 new WebVRPolyfill();
 
-},{"./webvr-polyfill.js":975}],973:[function(require,module,exports){
+},{"./webvr-polyfill.js":906}],904:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -89927,7 +88663,7 @@ MouseKeyboardPositionSensorVRDevice.prototype.onMouseUp_ = function(e) {
 
 module.exports = MouseKeyboardPositionSensorVRDevice;
 
-},{"./base.js":969,"./three-math.js":974}],974:[function(require,module,exports){
+},{"./base.js":900,"./three-math.js":905}],905:[function(require,module,exports){
 /*
  * A subset of THREE.js, providing mostly quaternion and euler-related
  * operations, manually lifted from
@@ -92051,7 +90787,7 @@ THREE.Euler.prototype = {
 
 module.exports = THREE;
 
-},{}],975:[function(require,module,exports){
+},{}],906:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92120,14 +90856,13 @@ WebVRPolyfill.prototype.isMobile = function() {
 };
 
 WebVRPolyfill.prototype.isCardboardCompatible = function() {
-  return true;
   // For now, support all iOS and Android devices.
   return this.isMobile();
 };
 
 module.exports = WebVRPolyfill;
 
-},{"./base.js":969,"./cardboard-hmd-vr-device.js":970,"./gyro-position-sensor-vr-device.js":971,"./mouse-keyboard-position-sensor-vr-device.js":973}],976:[function(require,module,exports){
+},{"./base.js":900,"./cardboard-hmd-vr-device.js":901,"./gyro-position-sensor-vr-device.js":902,"./mouse-keyboard-position-sensor-vr-device.js":904}],907:[function(require,module,exports){
 'use strict';
 
 require('webvr-polyfill'); // fills navigator.getVRDevices(), etc.
@@ -92193,6 +90928,8 @@ VRPlugin.prototype.enable = function() {
       this.fullscreen.requestFlags = this.requestFlags;
     }
   }
+
+  this.shader.updateProjectionMatrix();
 
   this.scanDevices();
 };
@@ -92319,53 +91056,53 @@ VRPlugin.prototype.renderVR = function(t) {
   this.currentEye = undefined
 };
 
-},{"gl-mat4":953,"shallow-copy":968,"webvr-polyfill":972}],977:[function(require,module,exports){
-arguments[4][450][0].apply(exports,arguments)
-},{"dup":450}],978:[function(require,module,exports){
-arguments[4][451][0].apply(exports,arguments)
-},{"dup":451}],979:[function(require,module,exports){
-arguments[4][452][0].apply(exports,arguments)
-},{"dup":452}],980:[function(require,module,exports){
-arguments[4][453][0].apply(exports,arguments)
-},{"dup":453}],981:[function(require,module,exports){
-arguments[4][454][0].apply(exports,arguments)
-},{"dup":454}],982:[function(require,module,exports){
-arguments[4][455][0].apply(exports,arguments)
-},{"dup":455}],983:[function(require,module,exports){
-arguments[4][456][0].apply(exports,arguments)
-},{"dup":456}],984:[function(require,module,exports){
-arguments[4][457][0].apply(exports,arguments)
-},{"dup":457}],985:[function(require,module,exports){
-arguments[4][458][0].apply(exports,arguments)
-},{"dup":458}],986:[function(require,module,exports){
-arguments[4][459][0].apply(exports,arguments)
-},{"./adjoint":977,"./clone":978,"./copy":979,"./create":980,"./determinant":981,"./fromQuat":982,"./fromRotationTranslation":983,"./frustum":984,"./identity":985,"./invert":987,"./lookAt":988,"./multiply":989,"./ortho":990,"./perspective":991,"./rotate":992,"./rotateX":993,"./rotateY":994,"./rotateZ":995,"./scale":996,"./str":997,"./translate":998,"./transpose":999,"dup":459}],987:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"dup":460}],988:[function(require,module,exports){
-arguments[4][461][0].apply(exports,arguments)
-},{"./identity":985,"dup":461}],989:[function(require,module,exports){
-arguments[4][462][0].apply(exports,arguments)
-},{"dup":462}],990:[function(require,module,exports){
-arguments[4][463][0].apply(exports,arguments)
-},{"dup":463}],991:[function(require,module,exports){
-arguments[4][464][0].apply(exports,arguments)
-},{"dup":464}],992:[function(require,module,exports){
-arguments[4][465][0].apply(exports,arguments)
-},{"dup":465}],993:[function(require,module,exports){
-arguments[4][466][0].apply(exports,arguments)
-},{"dup":466}],994:[function(require,module,exports){
-arguments[4][467][0].apply(exports,arguments)
-},{"dup":467}],995:[function(require,module,exports){
-arguments[4][468][0].apply(exports,arguments)
-},{"dup":468}],996:[function(require,module,exports){
-arguments[4][469][0].apply(exports,arguments)
-},{"dup":469}],997:[function(require,module,exports){
-arguments[4][470][0].apply(exports,arguments)
-},{"dup":470}],998:[function(require,module,exports){
-arguments[4][471][0].apply(exports,arguments)
-},{"dup":471}],999:[function(require,module,exports){
-arguments[4][472][0].apply(exports,arguments)
-},{"dup":472}],1000:[function(require,module,exports){
+},{"gl-mat4":884,"shallow-copy":899,"webvr-polyfill":903}],908:[function(require,module,exports){
+arguments[4][381][0].apply(exports,arguments)
+},{"dup":381}],909:[function(require,module,exports){
+arguments[4][382][0].apply(exports,arguments)
+},{"dup":382}],910:[function(require,module,exports){
+arguments[4][383][0].apply(exports,arguments)
+},{"dup":383}],911:[function(require,module,exports){
+arguments[4][384][0].apply(exports,arguments)
+},{"dup":384}],912:[function(require,module,exports){
+arguments[4][385][0].apply(exports,arguments)
+},{"dup":385}],913:[function(require,module,exports){
+arguments[4][386][0].apply(exports,arguments)
+},{"dup":386}],914:[function(require,module,exports){
+arguments[4][387][0].apply(exports,arguments)
+},{"dup":387}],915:[function(require,module,exports){
+arguments[4][388][0].apply(exports,arguments)
+},{"dup":388}],916:[function(require,module,exports){
+arguments[4][389][0].apply(exports,arguments)
+},{"dup":389}],917:[function(require,module,exports){
+arguments[4][390][0].apply(exports,arguments)
+},{"./adjoint":908,"./clone":909,"./copy":910,"./create":911,"./determinant":912,"./fromQuat":913,"./fromRotationTranslation":914,"./frustum":915,"./identity":916,"./invert":918,"./lookAt":919,"./multiply":920,"./ortho":921,"./perspective":922,"./rotate":923,"./rotateX":924,"./rotateY":925,"./rotateZ":926,"./scale":927,"./str":928,"./translate":929,"./transpose":930,"dup":390}],918:[function(require,module,exports){
+arguments[4][391][0].apply(exports,arguments)
+},{"dup":391}],919:[function(require,module,exports){
+arguments[4][392][0].apply(exports,arguments)
+},{"./identity":916,"dup":392}],920:[function(require,module,exports){
+arguments[4][393][0].apply(exports,arguments)
+},{"dup":393}],921:[function(require,module,exports){
+arguments[4][394][0].apply(exports,arguments)
+},{"dup":394}],922:[function(require,module,exports){
+arguments[4][395][0].apply(exports,arguments)
+},{"dup":395}],923:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396}],924:[function(require,module,exports){
+arguments[4][397][0].apply(exports,arguments)
+},{"dup":397}],925:[function(require,module,exports){
+arguments[4][398][0].apply(exports,arguments)
+},{"dup":398}],926:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"dup":399}],927:[function(require,module,exports){
+arguments[4][400][0].apply(exports,arguments)
+},{"dup":400}],928:[function(require,module,exports){
+arguments[4][401][0].apply(exports,arguments)
+},{"dup":401}],929:[function(require,module,exports){
+arguments[4][402][0].apply(exports,arguments)
+},{"dup":402}],930:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],931:[function(require,module,exports){
 /*
 
    Converts gl-matrix mat4 objects into strings that can be applied as matrix3d transforms.
@@ -92407,7 +91144,7 @@ function generateCSSString(matrix ){
 }
 
 module.exports = generateCSSString;
-},{}],1001:[function(require,module,exports){
+},{}],932:[function(require,module,exports){
 'use strict';
 
 var mat4 = require('gl-mat4');
@@ -92616,63 +91353,63 @@ WebviewPlugin.prototype.render = function() {
   this.updateCSSTransform();
 };
 
-},{"gl-mat4":986,"matrix-to-css":1000}],1002:[function(require,module,exports){
+},{"gl-mat4":917,"matrix-to-css":931}],933:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":1003,"ndarray-ops":1023,"typedarray-pool":1007,"webglew":1009}],1003:[function(require,module,exports){
+},{"dup":90,"ndarray":934,"ndarray-ops":954,"typedarray-pool":938,"webglew":940}],934:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":1004}],1004:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":935}],935:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],1005:[function(require,module,exports){
+},{"dup":97}],936:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],1006:[function(require,module,exports){
+},{"dup":98}],937:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],1007:[function(require,module,exports){
+},{"dup":99}],938:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":1005,"buffer":1097,"dup":100}],1008:[function(require,module,exports){
+},{"bit-twiddle":936,"buffer":1028,"dup":100}],939:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],1009:[function(require,module,exports){
+},{"dup":101}],940:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":1008}],1010:[function(require,module,exports){
+},{"dup":102,"weakmap":939}],941:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],1011:[function(require,module,exports){
+},{"dup":103}],942:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":1010,"dup":104}],1012:[function(require,module,exports){
+},{"./do-bind.js":941,"dup":104}],943:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":1010,"dup":105}],1013:[function(require,module,exports){
+},{"./do-bind.js":941,"dup":105}],944:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],1014:[function(require,module,exports){
+},{"dup":101}],945:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":1013}],1015:[function(require,module,exports){
+},{"dup":102,"weakmap":944}],946:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":1011,"./lib/vao-native.js":1012,"dup":108,"webglew":1014}],1016:[function(require,module,exports){
+},{"./lib/vao-emulated.js":942,"./lib/vao-native.js":943,"dup":108,"webglew":945}],947:[function(require,module,exports){
 arguments[4][109][0].apply(exports,arguments)
-},{"dup":109,"gl-shader-core":1022}],1017:[function(require,module,exports){
+},{"dup":109,"gl-shader-core":953}],948:[function(require,module,exports){
 arguments[4][110][0].apply(exports,arguments)
-},{"dup":110}],1018:[function(require,module,exports){
+},{"dup":110}],949:[function(require,module,exports){
 arguments[4][111][0].apply(exports,arguments)
-},{"dup":111}],1019:[function(require,module,exports){
+},{"dup":111}],950:[function(require,module,exports){
 arguments[4][112][0].apply(exports,arguments)
-},{"./reflect.js":1020,"dup":112}],1020:[function(require,module,exports){
+},{"./reflect.js":951,"dup":112}],951:[function(require,module,exports){
 arguments[4][113][0].apply(exports,arguments)
-},{"dup":113}],1021:[function(require,module,exports){
+},{"dup":113}],952:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],1022:[function(require,module,exports){
+},{"dup":99}],953:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"./lib/create-attributes.js":1018,"./lib/create-uniforms.js":1019,"./lib/reflect.js":1020,"dup":115}],1023:[function(require,module,exports){
+},{"./lib/create-attributes.js":949,"./lib/create-uniforms.js":950,"./lib/reflect.js":951,"dup":115}],954:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":1024,"dup":91}],1024:[function(require,module,exports){
+},{"cwise-compiler":955,"dup":91}],955:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":1026,"dup":92}],1025:[function(require,module,exports){
+},{"./lib/thunk.js":957,"dup":92}],956:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":1027}],1026:[function(require,module,exports){
+},{"dup":93,"uniq":958}],957:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":1025,"dup":94}],1027:[function(require,module,exports){
+},{"./compile.js":956,"dup":94}],958:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],1028:[function(require,module,exports){
+},{"dup":95}],959:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1097,"dup":96,"iota-array":1029}],1029:[function(require,module,exports){
+},{"buffer":1028,"dup":96,"iota-array":960}],960:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],1030:[function(require,module,exports){
+},{"dup":97}],961:[function(require,module,exports){
 "use strict";
 var ndarray = require("ndarray");
 var ops = require("ndarray-ops");
@@ -92790,9 +91527,9 @@ WireframePlugin.prototype.render = function() {
         }
     }
 };
-},{"gl-buffer":1002,"gl-vao":1015,"glslify":1017,"glslify/adapter.js":1016,"ndarray":1028,"ndarray-ops":1023}],1031:[function(require,module,exports){
+},{"gl-buffer":933,"gl-vao":946,"glslify":948,"glslify/adapter.js":947,"ndarray":959,"ndarray-ops":954}],962:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],1032:[function(require,module,exports){
+},{"dup":25}],963:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -92842,7 +91579,7 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":1031}],1033:[function(require,module,exports){
+},{"ucfirst":962}],964:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -93288,7 +92025,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":1034,"events":1101,"ever":1036,"ftooltip":1039,"touchup":1041}],1034:[function(require,module,exports){
+},{"cube-icon":965,"events":1032,"ever":967,"ftooltip":970,"touchup":972}],965:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -93355,21 +92092,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":1035}],1035:[function(require,module,exports){
+},{"cube-side-array":966}],966:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],1036:[function(require,module,exports){
+},{"dup":39}],967:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1037,"./types.json":1038,"dup":15,"events":1101}],1037:[function(require,module,exports){
+},{"./init.json":968,"./types.json":969,"dup":15,"events":1032}],968:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1038:[function(require,module,exports){
+},{"dup":16}],969:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1039:[function(require,module,exports){
+},{"dup":17}],970:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":1040}],1040:[function(require,module,exports){
+},{"dup":43,"toarray":971}],971:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],1041:[function(require,module,exports){
+},{"dup":44}],972:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],1042:[function(require,module,exports){
+},{"dup":45}],973:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -93529,13 +92266,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":1043,"events":1101,"itempile":1046}],1043:[function(require,module,exports){
+},{"deep-equal":974,"events":1032,"itempile":977}],974:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1044,"./lib/keys.js":1045,"dup":28}],1044:[function(require,module,exports){
+},{"./lib/is_arguments.js":975,"./lib/keys.js":976,"dup":28}],975:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1045:[function(require,module,exports){
+},{"dup":23}],976:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1046:[function(require,module,exports){
+},{"dup":24}],977:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -93717,15 +92454,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":1047,"deep-equal":1048}],1047:[function(require,module,exports){
+},{"clone":978,"deep-equal":979}],978:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],1048:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],979:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1049,"./lib/keys.js":1050,"dup":22}],1049:[function(require,module,exports){
+},{"./lib/is_arguments.js":980,"./lib/keys.js":981,"dup":22}],980:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1050:[function(require,module,exports){
+},{"dup":23}],981:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1051:[function(require,module,exports){
+},{"dup":24}],982:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -93801,7 +92538,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(_super) {
 })(ModalDialog);
 
 
-},{"inventory":1061,"inventory-window":1052,"itempile":1070,"voxel-modal-dialog":1075}],1052:[function(require,module,exports){
+},{"inventory":992,"inventory-window":983,"itempile":1001,"voxel-modal-dialog":1006}],983:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   __hasProp = {}.hasOwnProperty,
@@ -94247,7 +92984,7 @@ module.exports = InventoryWindow = (function(_super) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":1053,"events":1101,"ever":1055,"ftooltip":1058,"touchup":1060}],1053:[function(require,module,exports){
+},{"cube-icon":984,"events":1032,"ever":986,"ftooltip":989,"touchup":991}],984:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -94314,21 +93051,21 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":1054}],1054:[function(require,module,exports){
+},{"cube-side-array":985}],985:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],1055:[function(require,module,exports){
+},{"dup":39}],986:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1056,"./types.json":1057,"dup":15,"events":1101}],1056:[function(require,module,exports){
+},{"./init.json":987,"./types.json":988,"dup":15,"events":1032}],987:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1057:[function(require,module,exports){
+},{"dup":16}],988:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1058:[function(require,module,exports){
+},{"dup":17}],989:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":1059}],1059:[function(require,module,exports){
+},{"dup":43,"toarray":990}],990:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],1060:[function(require,module,exports){
+},{"dup":44}],991:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],1061:[function(require,module,exports){
+},{"dup":45}],992:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -94488,13 +93225,13 @@ module.exports = Inventory = (function(_super) {
 })(EventEmitter);
 
 
-},{"deep-equal":1062,"events":1101,"itempile":1065}],1062:[function(require,module,exports){
+},{"deep-equal":993,"events":1032,"itempile":996}],993:[function(require,module,exports){
 arguments[4][28][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1063,"./lib/keys.js":1064,"dup":28}],1063:[function(require,module,exports){
+},{"./lib/is_arguments.js":994,"./lib/keys.js":995,"dup":28}],994:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1064:[function(require,module,exports){
+},{"dup":23}],995:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1065:[function(require,module,exports){
+},{"dup":24}],996:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -94676,15 +93413,15 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":1066,"deep-equal":1067}],1066:[function(require,module,exports){
+},{"clone":997,"deep-equal":998}],997:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],1067:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],998:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1068,"./lib/keys.js":1069,"dup":22}],1068:[function(require,module,exports){
+},{"./lib/is_arguments.js":999,"./lib/keys.js":1000,"dup":22}],999:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1069:[function(require,module,exports){
+},{"dup":23}],1000:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1070:[function(require,module,exports){
+},{"dup":24}],1001:[function(require,module,exports){
 var ItemPile, clone, deepEqual;
 
 deepEqual = require('deep-equal');
@@ -94866,25 +93603,25 @@ module.exports = ItemPile = (function() {
 })();
 
 
-},{"clone":1071,"deep-equal":1072}],1071:[function(require,module,exports){
+},{"clone":1002,"deep-equal":1003}],1002:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1097,"dup":21}],1072:[function(require,module,exports){
+},{"buffer":1028,"dup":21}],1003:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1073,"./lib/keys.js":1074,"dup":22}],1073:[function(require,module,exports){
+},{"./lib/is_arguments.js":1004,"./lib/keys.js":1005,"dup":22}],1004:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1074:[function(require,module,exports){
+},{"dup":23}],1005:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1075:[function(require,module,exports){
+},{"dup":24}],1006:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":1076}],1076:[function(require,module,exports){
+},{"dup":13,"voxel-modal":1007}],1007:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":1077}],1077:[function(require,module,exports){
+},{"dup":14,"ever":1008}],1008:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1078,"./types.json":1079,"dup":15,"events":1101}],1078:[function(require,module,exports){
+},{"./init.json":1009,"./types.json":1010,"dup":15,"events":1032}],1009:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1079:[function(require,module,exports){
+},{"dup":16}],1010:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1080:[function(require,module,exports){
+},{"dup":17}],1011:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -95064,7 +93801,7 @@ WorkbenchDialog = (function(_super) {
 })(InventoryDialog);
 
 
-},{"inventory":1042,"inventory-window":1033,"voxel-inventory-dialog":1051}],1081:[function(require,module,exports){
+},{"inventory":973,"inventory-window":964,"voxel-inventory-dialog":982}],1012:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -95170,9 +93907,9 @@ ZenPlugin = (function() {
 })();
 
 
-},{}],1082:[function(require,module,exports){
+},{}],1013:[function(require,module,exports){
 
-},{}],1083:[function(require,module,exports){
+},{}],1014:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -95533,7 +94270,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":1120}],1084:[function(require,module,exports){
+},{"util/":1051}],1015:[function(require,module,exports){
 'use strict';
 
 
@@ -95636,7 +94373,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],1085:[function(require,module,exports){
+},{}],1016:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -95669,7 +94406,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],1086:[function(require,module,exports){
+},{}],1017:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -95717,7 +94454,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],1087:[function(require,module,exports){
+},{}],1018:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -95759,7 +94496,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],1088:[function(require,module,exports){
+},{}],1019:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -97525,7 +96262,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":1084,"./adler32":1085,"./crc32":1087,"./messages":1092,"./trees":1093}],1089:[function(require,module,exports){
+},{"../utils/common":1015,"./adler32":1016,"./crc32":1018,"./messages":1023,"./trees":1024}],1020:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -97852,7 +96589,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],1090:[function(require,module,exports){
+},{}],1021:[function(require,module,exports){
 'use strict';
 
 
@@ -99356,7 +98093,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":1084,"./adler32":1085,"./crc32":1087,"./inffast":1089,"./inftrees":1091}],1091:[function(require,module,exports){
+},{"../utils/common":1015,"./adler32":1016,"./crc32":1018,"./inffast":1020,"./inftrees":1022}],1022:[function(require,module,exports){
 'use strict';
 
 
@@ -99683,7 +98420,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   return 0;
 };
 
-},{"../utils/common":1084}],1092:[function(require,module,exports){
+},{"../utils/common":1015}],1023:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -99697,7 +98434,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],1093:[function(require,module,exports){
+},{}],1024:[function(require,module,exports){
 'use strict';
 
 
@@ -100897,7 +99634,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":1084}],1094:[function(require,module,exports){
+},{"../utils/common":1015}],1025:[function(require,module,exports){
 'use strict';
 
 
@@ -100927,7 +99664,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],1095:[function(require,module,exports){
+},{}],1026:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -101167,7 +99904,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1105,"buffer":1097,"pako/lib/zlib/constants":1086,"pako/lib/zlib/deflate.js":1088,"pako/lib/zlib/inflate.js":1090,"pako/lib/zlib/messages":1092,"pako/lib/zlib/zstream":1094}],1096:[function(require,module,exports){
+},{"_process":1036,"buffer":1028,"pako/lib/zlib/constants":1017,"pako/lib/zlib/deflate.js":1019,"pako/lib/zlib/inflate.js":1021,"pako/lib/zlib/messages":1023,"pako/lib/zlib/zstream":1025}],1027:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -101781,7 +100518,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"./binding":1095,"_process":1105,"_stream_transform":1115,"assert":1083,"buffer":1097,"util":1120}],1097:[function(require,module,exports){
+},{"./binding":1026,"_process":1036,"_stream_transform":1046,"assert":1014,"buffer":1028,"util":1051}],1028:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -103099,7 +101836,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-},{"base64-js":1098,"ieee754":1099,"is-array":1100}],1098:[function(require,module,exports){
+},{"base64-js":1029,"ieee754":1030,"is-array":1031}],1029:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -103225,7 +101962,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],1099:[function(require,module,exports){
+},{}],1030:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -103311,7 +102048,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],1100:[function(require,module,exports){
+},{}],1031:[function(require,module,exports){
 
 /**
  * isArray
@@ -103346,7 +102083,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],1101:[function(require,module,exports){
+},{}],1032:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -103649,14 +102386,14 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],1102:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],1103:[function(require,module,exports){
+},{}],1033:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],1034:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],1104:[function(require,module,exports){
+},{}],1035:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -103884,7 +102621,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":1105}],1105:[function(require,module,exports){
+},{"_process":1036}],1036:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -103943,10 +102680,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],1106:[function(require,module,exports){
+},{}],1037:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":1107}],1107:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":1038}],1038:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -104039,7 +102776,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_readable":1109,"./_stream_writable":1111,"_process":1105,"core-util-is":1112,"inherits":1102}],1108:[function(require,module,exports){
+},{"./_stream_readable":1040,"./_stream_writable":1042,"_process":1036,"core-util-is":1043,"inherits":1033}],1039:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -104087,7 +102824,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":1110,"core-util-is":1112,"inherits":1102}],1109:[function(require,module,exports){
+},{"./_stream_transform":1041,"core-util-is":1043,"inherits":1033}],1040:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -105073,7 +103810,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require('_process'))
-},{"_process":1105,"buffer":1097,"core-util-is":1112,"events":1101,"inherits":1102,"isarray":1103,"stream":1117,"string_decoder/":1118}],1110:[function(require,module,exports){
+},{"_process":1036,"buffer":1028,"core-util-is":1043,"events":1032,"inherits":1033,"isarray":1034,"stream":1048,"string_decoder/":1049}],1041:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -105285,7 +104022,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":1107,"core-util-is":1112,"inherits":1102}],1111:[function(require,module,exports){
+},{"./_stream_duplex":1038,"core-util-is":1043,"inherits":1033}],1042:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -105675,7 +104412,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_duplex":1107,"_process":1105,"buffer":1097,"core-util-is":1112,"inherits":1102,"stream":1117}],1112:[function(require,module,exports){
+},{"./_stream_duplex":1038,"_process":1036,"buffer":1028,"core-util-is":1043,"inherits":1033,"stream":1048}],1043:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -105785,10 +104522,10 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":1097}],1113:[function(require,module,exports){
+},{"buffer":1028}],1044:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":1108}],1114:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":1039}],1045:[function(require,module,exports){
 var Stream = require('stream'); // hack to fix a circular dependency issue when used with browserify
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = Stream;
@@ -105798,13 +104535,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":1107,"./lib/_stream_passthrough.js":1108,"./lib/_stream_readable.js":1109,"./lib/_stream_transform.js":1110,"./lib/_stream_writable.js":1111,"stream":1117}],1115:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":1038,"./lib/_stream_passthrough.js":1039,"./lib/_stream_readable.js":1040,"./lib/_stream_transform.js":1041,"./lib/_stream_writable.js":1042,"stream":1048}],1046:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":1110}],1116:[function(require,module,exports){
+},{"./lib/_stream_transform.js":1041}],1047:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":1111}],1117:[function(require,module,exports){
+},{"./lib/_stream_writable.js":1042}],1048:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -105933,7 +104670,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":1101,"inherits":1102,"readable-stream/duplex.js":1106,"readable-stream/passthrough.js":1113,"readable-stream/readable.js":1114,"readable-stream/transform.js":1115,"readable-stream/writable.js":1116}],1118:[function(require,module,exports){
+},{"events":1032,"inherits":1033,"readable-stream/duplex.js":1037,"readable-stream/passthrough.js":1044,"readable-stream/readable.js":1045,"readable-stream/transform.js":1046,"readable-stream/writable.js":1047}],1049:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -106156,14 +104893,14 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":1097}],1119:[function(require,module,exports){
+},{"buffer":1028}],1050:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],1120:[function(require,module,exports){
+},{}],1051:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -106753,7 +105490,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":1119,"_process":1105,"inherits":1102}],1121:[function(require,module,exports){
+},{"./support/isBuffer":1050,"_process":1036,"inherits":1033}],1052:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -106893,7 +105630,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":1122}],1122:[function(require,module,exports){
+},{"indexof":1053}],1053:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
