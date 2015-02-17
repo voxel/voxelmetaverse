@@ -2,9 +2,9 @@
 
 /**
 * 
-* latest commit: 504c972dc205694494131860774fac76537f76bf
+* latest commit: 1d356a1732b921580a050093b0efcdda6f873581
 
-* created at: Mon Feb 16 2015 21:23:01 GMT-0800 (PST)
+* created at: Mon Feb 16 2015 21:32:48 GMT-0800 (PST)
 * 
 **/
 
@@ -183,9 +183,7 @@ main = function() {
       'voxel-recipes': {},
       'voxel-quarry': {},
       'voxel-measure': {},
-      'voxel-webview': {
-        onDemand: true
-      },
+      'voxel-webview': {},
       'voxel-vr': {
         onDemand: true
       },
