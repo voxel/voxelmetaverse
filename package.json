@@ -44,7 +44,7 @@
     "voxel-chest": "^0.2.1",
     "voxel-blockdata": "^0.2.1",
     "voxel-recipes": "^0.3.2",
-    "voxel-webview": "^0.2.0",
+    "voxel-webview": "^0.2.1",
     "voxel-vr": "^0.1.1",
     "voxel-quarry": "^0.2.0",
     "voxel-measure": "^0.1.0",
@@ -79,6 +79,6 @@
     "wzrd": "^1.2.1"
   },
   "scripts": {
-    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --transform browserify-commit-sha --debug"
+    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --debug"
   }
 }
