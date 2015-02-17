@@ -2,9 +2,9 @@
 
 /**
 * 
-* latest commit: 2f82a08321a03b4bae952aab3af2605f269f8d81
+* latest commit: 399baedb46562b19fddbe166e188152e48da96a0
 
-* created at: Mon Feb 16 2015 19:22:07 GMT-0800 (PST)
+* created at: Mon Feb 16 2015 20:28:00 GMT-0800 (PST)
 * 
 **/
 
@@ -183,7 +183,9 @@ main = function() {
       'voxel-recipes': {},
       'voxel-quarry': {},
       'voxel-measure': {},
-      'voxel-webview': {},
+      'voxel-webview': {
+        onDemand: true
+      },
       'voxel-vr': {
         onDemand: true
       },
@@ -92666,9 +92668,11 @@ function generateCSSString(matrix ){
 
 module.exports = generateCSSString;
 },{}],982:[function(require,module,exports){
+(function (Buffer){
 'use strict';
 
 var createCSS3D = require('gl-css3d');
+
 
 module.exports = function(game, opts) {
   return new WebviewPlugin(game, opts);
@@ -92685,13 +92689,7 @@ function WebviewPlugin(game, opts)
   this.shader = game.plugins.get('voxel-shader');
   if (!this.shader) throw new Error('voxel-webview requires voxel-shader plugin');
 
-  this.url = opts.url || 'http://browserify.org/';
-  //this.url = opts.url || 'http://npmjs.org/'; // added X-Frame-Options: deny after security audit
-  //this.url = opts.url || 'http://learningthreejs.com/'; // hits illegal return in embedded video player??
-  //this.url = opts.url || 'https://news.ycombinator.com/'; // refuses to display since X-Frame-Options: DENY
-  //this.url = opts.url || 'http://voxeljs.com/'; // also has embedded youtube video player
-  //this.url = opts.url || 'http:/aol.com/'; // fails setting aol_devil_flag Uncaught SecurityError: Blocked a frame with origin "http://www.aol.com
-  //this.url = opts.url || 'http://github.com/'; // also has X-Frame-Options: deny
+  this.url = opts.url || 'data:text/html,' + Buffer("PCFET0NUWVBFIEhUTUw+CjxodG1sPgo8aGVhZD4KPHRpdGxlPnZveGVsLXdlYnZpZXc8L3RpdGxlPgo8bWV0YSBjaGFyc2V0PSJ1dGYtOCI+CjwvaGVhZD4KPGJvZHkgc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IGxpZ2h0Z3JheSI+CjxoMT52b3hlbC13ZWJ2aWV3IGxvYWRlZCE8L2gxPgo8cD5UeXBlIDx0dD4udXJsPC90dD4gdG8gY2hhbmdlIGxvYWQgYW5vdGhlciBwYWdlLCBvciA8dHQ+LndlYjwvdHQ+IHRvIGludGVyYWN0LgoKPHA+U29tZSB3ZWJzaXRlcyB0byB0cnk6Cjxicj48c21hbGw+KG5vdGUgdGhhdCBzb21lIHBvcHVsYXIgd2Vic2l0ZXMgZGlzYWJsZSBmcmFtaW5nIGFuZCAKY2Fubm90IGJlIGJyb3dzZWQgaGVyZSk8L3NtYWxsPgoKPHA+PHVsPgo8bGk+PGEgaHJlZj0iaHR0cDovL2Jyb3dzZXJpZnkub3JnIj5icm93c2VyaWZ5Lm9yZzwvYT4KPGxpPjxhIGhyZWY9Imh0dHA6Ly9zdGFjay5nbCI+c3RhY2suZ2w8L2E+CjxsaT48YSBocmVmPSJodHRwczovL3d3dy55b3V0dWJlLmNvbS9lbWJlZC84Z00zeE1PYkV6NCI+eW91dHViZS5jb20gKGVtYmVkZGVkIHZpZGVvKTwvYT4gPCEtLSBzZWUgaHR0cDovL2FwaWJsb2cueW91dHViZS5jb20vMjAxMC8wNy9uZXctd2F5LXRvLWVtYmVkLXlvdXR1YmUtdmlkZW9zLmh0bWwgLS0+CjxsaT48YSBocmVmPSJodHRwOi8vdm94ZWxtZXRhdmVyc2UuY29tIj52b3hlbG1ldGF2ZXJzZS5jb208L2E+CjxsaT48YSBocmVmPSJodHRwczovL2R1Y2tkdWNrZ28uY29tIj5kdWNrZHVja2dvLmNvbTwvYT4KCjwhLS0gCiAgLy90aGlzLnVybCA9IG9wdHMudXJsIHx8ICdodHRwOi8vYnJvd3NlcmlmeS5vcmcvJzsKICAvL3RoaXMudXJsID0gb3B0cy51cmwgfHwgJ2h0dHA6Ly9ucG1qcy5vcmcvJzsgLy8gYWRkZWQgWC1GcmFtZS1PcHRpb25zOiBkZW55IGFmdGVyIHNlY3VyaXR5IGF1ZGl0CiAgLy90aGlzLnVybCA9IG9wdHMudXJsIHx8ICdodHRwOi8vbGVhcm5pbmd0aHJlZWpzLmNvbS8nOyAvLyBoaXRzIGlsbGVnYWwgcmV0dXJuIGluIGVtYmVkZGVkIHZpZGVvIHBsYXllcj8/CiAgLy90aGlzLnVybCA9IG9wdHMudXJsIHx8ICdodHRwczovL25ld3MueWNvbWJpbmF0b3IuY29tLyc7IC8vIHJlZnVzZXMgdG8gZGlzcGxheSBzaW5jZSBYLUZyYW1lLU9wdGlvbnM6IERFTlkKICAvL3RoaXMudXJsID0gb3B0cy51cmwgfHwgJ2h0dHA6Ly92b3hlbGpzLmNvbS8nOyAvLyBhbHNvIGhhcyBlbWJlZGRlZCB5b3V0dWJlIHZpZGVvIHBsYXllcgogIC8vdGhpcy51cmwgPSBvcHRzLnVybCB8fCAnaHR0cDovYW9sLmNvbS8nOyAvLyBmYWlscyBzZXR0aW5nIGFvbF9kZXZpbF9mbGFnIFVuY2F1Z2h0IFNlY3VyaXR5RXJyb3I6IEJsb2NrZWQgYSBmcmFtZSB3aXRoIG9yaWdpbiAiaHR0cDovL3d3dy5hb2wuY29tCiAgLy90aGlzLnVybCA9IG9wdHMudXJsIHx8ICdodHRwOi8vZ2l0aHViLmNvbS8nOyAvLyBhbHNvIGhhcyBYLUZyYW1lLU9wdGlvbnM6IGRlbnkKICBodHRwczovL3d3dy55b3V0dWJlLmNvbSAvLyBYLUZyYW1lLU9wdGlvbnMgU0FNRU9SSUdJTgogIGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20gLy8gWC1GcmFtZS1PcHRpb25zOiBTQU1FT1JJR0lOCiAgaHR0cHM6Ly93d3cueWFob28uY29tIFgtRnJhbWUtT3B0aW9uczogREVOWQotLT4KCjwvcD4KPC9ib2R5Pgo8L2h0bWw+Cg==","base64");
 
   opts.planeWidth = opts.planeWidth || 10;
   opts.planeHeight = opts.planeHeight || 10;
@@ -92712,7 +92710,15 @@ function WebviewPlugin(game, opts)
 
 WebviewPlugin.prototype.enable = function() {
 
-  this.game.shell.on('gl-init', this.onInit = this.ginit.bind(this));
+  if (this.game.shell.gl) {
+    // gl is already initialized - we won't receive gl-init, or the first gl-resize
+    // call it here (on-demand plugin loading) TODO: cleaner generic fix for plugins receiving init events too late
+    this.ginit();
+    this.updatePerspective();
+  } else {
+    this.game.shell.on('gl-init', this.onInit = this.ginit.bind(this));
+  }
+
   this.shader.on('updateProjectionMatrix', this.onUpdatePerspective = this.updatePerspective.bind(this));
   this.game.shell.on('gl-render', this.onRender = this.render.bind(this));
 
@@ -92727,7 +92733,6 @@ WebviewPlugin.prototype.enable = function() {
     
     if (document.getElementById('voxel-webview').parentElement.parentElement.style.zIndex === '0') {
       document.getElementById('voxel-webview').parentElement.parentElement.style.zIndex = '-1';
-      self.game.interact.request();
     }
   });
 
@@ -92751,6 +92756,9 @@ WebviewPlugin.prototype.enable = function() {
 
     commands.registerCommand('web',
         this.onWeb = function() {
+          // bring to foreground
+          // TODO: alternatively could toggle pointer-events, see https://github.com/deathcap/voxel-webview/issues/1#issuecomment-74467436
+          // but raising the z-index unobscures the page for easier user interaction
           var z = document.getElementById('voxel-webview').parentElement.parentElement.style.zIndex;
           document.getElementById('voxel-webview').parentElement.parentElement.style.zIndex = {'-1':0, 0:-1}[z];
         },
@@ -92769,7 +92777,7 @@ WebviewPlugin.prototype.disable = function() {
   }
 
   this.game.shell.removeListener('gl-render', this.onRender);
-  this.game.shell.removeListener('gl-init', this.onInit);
+  if (this.onInit) this.game.shell.removeListener('gl-init', this.onInit);
   this.shader.removeListener('updateProjectionMatrix', this.onUpdatePerspective);
 };
 
@@ -92787,7 +92795,8 @@ WebviewPlugin.prototype.render = function() {
   this.css3d.render(this.shader.viewMatrix, this.shader.projectionMatrix);
 };
 
-},{"gl-css3d":931}],983:[function(require,module,exports){
+}).call(this,require("buffer").Buffer)
+},{"buffer":1078,"gl-css3d":931}],983:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
 },{"dup":90,"ndarray":984,"ndarray-ops":1004,"typedarray-pool":988,"webglew":990}],984:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
