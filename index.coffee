@@ -127,7 +127,7 @@ main = () ->
     'voxel-recipes': {}
     'voxel-quarry': {}
     'voxel-measure': {}
-    'voxel-webview': {}  # TODO: https://github.com/deathcap/voxel-webview/issues/3
+    'voxel-webview': {onDemand: true}  # TODO: https://github.com/deathcap/voxel-webview/issues/3
     'voxel-vr': {onDemand: true} # has to be enabled after gl-init to replace renderer
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
