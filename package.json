@@ -79,6 +79,6 @@
     "wzrd": "^1.2.1"
   },
   "scripts": {
-    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --transform browserify-commit-sha --debug"
+    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --debug"
   }
 }
