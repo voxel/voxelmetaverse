@@ -71,7 +71,7 @@
   "devDependencies": {
     "beefy": "^2.1.3",
     "browserify": "8.1.3",
-    "browserify-commit-sha": "git://github.com/deathcap/browserify-commit-sha.git#execsync",
+    "browserify-commit-sha": "git://github.com/deathcap/browserify-commit-sha.git#vars",
     "coffeeify": "0.6.0",
     "watchify": "^2.3.0"
   },
