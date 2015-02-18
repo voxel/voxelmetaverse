@@ -78,7 +78,12 @@
     "coffeeify": "0.6.0",
     "wzrd": "^1.2.1"
   },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
+  },
   "scripts": {
-    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --debug"
+    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --debug"
   }
 }
