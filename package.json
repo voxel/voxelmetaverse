@@ -69,10 +69,11 @@
     "node": "0.12.x"
   },
   "devDependencies": {
+    "beefy": "^2.1.3",
     "browserify": "8.1.3",
     "browserify-commit-sha": "git://github.com/deathcap/browserify-commit-sha.git#execsync",
     "coffeeify": "0.6.0",
-    "wzrd": "^1.2.1"
+    "watchify": "^2.3.0"
   },
   "browserify": {
     "transform": [
@@ -80,6 +81,6 @@
     ]
   },
   "scripts": {
-    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --debug"
+    "start": "beefy index.coffee:bundle.js --watchify --port 8080 -- --debug"
   }
 }
