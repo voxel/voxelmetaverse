@@ -14,30 +14,26 @@
     "voxel-chunkborder": "^0.4.2",
     "voxel-outline": "^0.3.0",
     "voxel-drop": "^0.1.3",
-    "voxel-start": "^0.1.1",
     "voxel-zen": "^0.1.1",
     "voxel-plugins": "^0.3.2",
     "voxel-plugins-ui": "^0.3.0",
     "voxel-voila": "^0.6.0",
-    "voxel-player": "git://github.com/deathcap/voxel-player.git#0e24515e0b3062ca3e4e3740c6bc9c08f1fc1fe3",
     "voxel-health": "^0.1.0",
     "voxel-health-bar": "^0.1.1",
     "voxel-health-fall": "git://github.com/deathcap/voxel-health-fall.git#01fc438f05a4c2548b07ee858ae79a87c78180d8",
     "voxel-food": "^0.1.0",
     "voxel-sfx": "^0.2.0",
-    "voxel-fly": "git://github.com/deathcap/voxel-fly.git#7267be7fc1eddffb51bc635d82b711eb7b634c3b",
+    "voxel-flight": "^0.2.0",
     "voxel-sprint": "^0.1.0",
     "voxel-reach": "^0.2.2",
     "voxel-decals": "^0.1.0",
     "voxel-mine": "^0.5.0",
     "voxel-harvest": "^0.4.0",
     "voxel-use": "^0.1.2",
-    "voxel-debug": "git://github.com/deathcap/voxel-debug.git#c9d038dc66597eab446b248f138711dc3ba2fe11",
     "camera-debug": "^0.3.0",
     "voxel-carry": "^0.1.2",
     "voxel-bucket": "^0.0.2",
     "voxel-fluid": "git://github.com/deathcap/voxel-fluid.git#30a4456f4b4050b85249c332616d7521b35631e7",
-    "voxel-virus": "git://github.com/deathcap/voxel-virus.git#d133c3f3e81ba48d99c50e5bbdebb06da297a269",
     "voxel-skyhook": "^0.1.1",
     "voxel-inventory-hotbar": "^0.4.1",
     "voxel-inventory-crafting": "^0.3.1",
@@ -47,7 +43,7 @@
     "voxel-webview": "^0.2.1",
     "voxel-vr": "^0.1.1",
     "voxel-quarry": "^0.2.0",
-    "voxel-measure": "^0.1.0",
+    "voxel-measure": "^0.1.2",
     "voxel-keys": "^0.5.0",
     "voxel-fullscreen": "^0.2.0",
     "kb-bindings-ui": "^0.3.2",
@@ -73,12 +69,18 @@
     "node": "0.12.x"
   },
   "devDependencies": {
+    "beefy": "^2.1.3",
     "browserify": "8.1.3",
     "browserify-commit-sha": "git://github.com/deathcap/browserify-commit-sha.git#execsync",
     "coffeeify": "0.6.0",
-    "wzrd": "^1.2.1"
+    "watchify": "^2.3.0"
+  },
+  "browserify": {
+    "transform": [
+      "coffeeify"
+    ]
   },
   "scripts": {
-    "start": "wzrd index.coffee:bundle.js --port 8080 -- -d --transform coffeeify --debug"
+    "start": "beefy index.coffee:bundle.js --watchify --port 8080 -- --debug"
   }
 }

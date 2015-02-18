@@ -7,7 +7,6 @@ require 'voxel-outline'
 require 'voxel-carry'
 require 'voxel-bucket'
 require 'voxel-fluid'
-require 'voxel-virus'
 require 'voxel-skyhook'
 require 'voxel-recipes'
 require 'voxel-quarry'
@@ -20,13 +19,12 @@ require 'voxel-chest'
 require 'voxel-inventory-hotbar'
 require 'voxel-inventory-crafting'
 require 'voxel-voila'
-require 'voxel-player'
 require 'voxel-health'
 require 'voxel-health-bar'
 require 'voxel-health-fall'
 require 'voxel-food'
 require 'voxel-sfx'
-require 'voxel-fly'
+require 'voxel-flight'
 require 'voxel-gamemode'
 require 'voxel-sprint'
 require 'voxel-decals'
@@ -47,9 +45,7 @@ require 'voxel-clientmc'
 require 'voxel-console'
 require 'voxel-commands'
 require 'voxel-drop'
-require 'voxel-start'
 require 'voxel-zen'
-require 'voxel-debug'
 require 'camera-debug'
 require 'voxel-plugins-ui'
 require 'voxel-fullscreen'
@@ -132,7 +128,7 @@ main = () ->
     'voxel-carry': {inventoryWidth:10, inventoryRows:5}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
-    #'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true} # requires this.game.materials
+    #'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true} # requires this.game.materials TODO: water
     'voxel-skyhook': {}
     'voxel-blockdata': {}
     'voxel-chest': {}
@@ -152,17 +148,16 @@ main = () ->
     'voxel-console': {}
     'voxel-commands': {}
     'voxel-drop': {}
-    #'voxel-start': {} # requires interact
     'voxel-zen': {}
 
 
-    #'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]} # three.js
+    #'voxel-player': {image: 'player.png', homePosition: [2,14,4], homeRotation: [0,0,0]} # three.js TODO: stackgl avatar
     'voxel-health': {}
     'voxel-health-bar': {}
-    #'voxel-health-fall': {} # requires voxel-player
+    #'voxel-health-fall': {} # requires voxel-player TODO: enable and test
     'voxel-food': {}
     'voxel-sfx': {}
-    'voxel-fly': {flySpeed: 0.8, onDemand: true} # TODO: update for voxel-physics-engine
+    'voxel-flight': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}
@@ -183,7 +178,7 @@ main = () ->
     'voxel-keys': {}
 
     # the GUI window (built-in toggle with 'H')
-    #'voxel-debug': {} # heavily three.js dependent
+    #'voxel-debug': {} # heavily three.js dependent TODO: more debugging options for stackgl-based engine besides camera?
     'camera-debug': {} # TODO: port from game-shell-fps-camera
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
