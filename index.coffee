@@ -24,7 +24,7 @@ require 'voxel-health-bar'
 require 'voxel-health-fall'
 require 'voxel-food'
 require 'voxel-sfx'
-require 'voxel-fly'
+require 'voxel-flight'
 require 'voxel-gamemode'
 require 'voxel-sprint'
 require 'voxel-decals'
@@ -157,7 +157,7 @@ main = () ->
     #'voxel-health-fall': {} # requires voxel-player TODO: enable and test
     'voxel-food': {}
     'voxel-sfx': {}
-    'voxel-fly': {flySpeed: 0.8, onDemand: true} # TODO: update for voxel-physics-engine
+    'voxel-flight': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-sprint': {}
     'voxel-inventory-hotbar': {inventorySize:10}

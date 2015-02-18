@@ -23,7 +23,7 @@
     "voxel-health-fall": "git://github.com/deathcap/voxel-health-fall.git#01fc438f05a4c2548b07ee858ae79a87c78180d8",
     "voxel-food": "^0.1.0",
     "voxel-sfx": "^0.2.0",
-    "voxel-fly": "git://github.com/deathcap/voxel-fly.git#7267be7fc1eddffb51bc635d82b711eb7b634c3b",
+    "voxel-flight": "^0.2.0",
     "voxel-sprint": "^0.1.0",
     "voxel-reach": "^0.2.2",
     "voxel-decals": "^0.1.0",
