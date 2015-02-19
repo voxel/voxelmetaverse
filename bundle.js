@@ -1,9 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
 var createEngine, main;
 
-window.GIT_VERSION = "9a089d837bdf2c2edf9a7e1783b810d31d732d63";
+global.__BROWSERIFY_META_DATA__GIT_VERSION = "15568bc5b46e091d324365bfe7419b3222041057";
 
-window.CREATED_AT = "Wed Feb 18 2015 00:17:39 GMT-0800 (PST)";
+global.__BROWSERIFY_META_DATA__CREATED_AT = "Wed Feb 18 2015 18:56:02 GMT-0800 (PST)";
 
 require('voxel-artpacks');
 
@@ -110,7 +111,7 @@ require('kb-bindings-ui');
 createEngine = require('voxel-engine');
 
 main = function() {
-  console.log('voxelmetaverse starting');
+  console.log('voxelmetaverse starting: ', global.__BROWSERIFY_META_DATA__GIT_VERSION, global.__BROWSERIFY_META_DATA__CREATED_AT);
   return createEngine({
     require: require,
     exposeGlobal: true,
@@ -243,6 +244,7 @@ main = function() {
 main();
 
 
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":116,"voxel-commands":177,"voxel-console":184,"voxel-decals":191,"voxel-decorative":242,"voxel-drop":244,"voxel-engine":275,"voxel-flight":591,"voxel-fluid":592,"voxel-food":594,"voxel-fullscreen":595,"voxel-furnace":596,"voxel-gamemode":649,"voxel-glass":664,"voxel-hammer":671,"voxel-harvest":672,"voxel-health":680,"voxel-health-bar":678,"voxel-health-fall":679,"voxel-inventory-crafting":682,"voxel-inventory-creative":735,"voxel-inventory-hotbar":788,"voxel-keys":801,"voxel-land":805,"voxel-measure":823,"voxel-mine":858,"voxel-outline":887,"voxel-pickaxe":894,"voxel-plugins-ui":898,"voxel-pumpkin":905,"voxel-quarry":906,"voxel-reach":912,"voxel-recipes":919,"voxel-sfx":929,"voxel-skyhook":930,"voxel-sprint":931,"voxel-use":932,"voxel-voila":933,"voxel-vr":966,"voxel-webview":1018,"voxel-wireframe":1047,"voxel-wool":1049,"voxel-workbench":1097,"voxel-zen":1098}],2:[function(require,module,exports){
 'use strict';
 
