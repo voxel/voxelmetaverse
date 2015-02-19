@@ -55,7 +55,7 @@ require 'kb-bindings-ui'
 createEngine = require 'voxel-engine'
 
 main = () ->
-  console.log 'voxelmetaverse starting'
+  console.log 'voxelmetaverse starting: ', global.__BROWSERIFY_META_DATA__GIT_VERSION, global.__BROWSERIFY_META_DATA__CREATED_AT # TODO: display somewhere on page
 
   createEngine {require:require, exposeGlobal:true, pluginOpts:
     'voxel-engine':
