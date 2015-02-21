@@ -113,7 +113,8 @@ main = () ->
       #cameraFOV: 110
 
     'voxel-mesher': {},
-    'game-shell-fps-camera': {},
+    'game-shell-fps-camera':
+      position: [0, -100, 0]
 
 
     'voxel-artpacks': {}
