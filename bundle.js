@@ -2,9 +2,9 @@
 (function (global){
 var createEngine, main;
 
-global.__BROWSERIFY_META_DATA__GIT_VERSION = "7673827cd4c6e07bdd42a48ef6302ddb12a18c01";
+global.__BROWSERIFY_META_DATA__GIT_VERSION = "401d38318869afbc4115b77171a2eb6ca8fc4658";
 
-global.__BROWSERIFY_META_DATA__CREATED_AT = "Sun Feb 22 2015 19:15:11 GMT-0800 (PST)";
+global.__BROWSERIFY_META_DATA__CREATED_AT = "Mon Feb 23 2015 00:23:39 GMT-0800 (PST)";
 
 require('voxel-artpacks');
 
@@ -85,8 +85,6 @@ require('voxel-land');
 require('voxel-decorative');
 
 require('voxel-inventory-creative');
-
-require('voxel-clientmc');
 
 require('voxel-console');
 
@@ -198,10 +196,6 @@ main = function() {
       },
       'voxel-decorative': {},
       'voxel-inventory-creative': {},
-      'voxel-clientmc': {
-        url: 'ws://localhost:1234',
-        onDemand: true
-      },
       'voxel-console': {},
       'voxel-commands': {},
       'voxel-drop': {},
@@ -246,7 +240,7 @@ main();
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-clientmc":123,"voxel-commands":184,"voxel-console":191,"voxel-decals":198,"voxel-decorative":249,"voxel-drop":251,"voxel-engine":282,"voxel-flight":599,"voxel-fluid":600,"voxel-food":602,"voxel-fullscreen":603,"voxel-furnace":604,"voxel-gamemode":657,"voxel-glass":658,"voxel-hammer":665,"voxel-harvest":666,"voxel-health":673,"voxel-health-bar":672,"voxel-inventory-crafting":675,"voxel-inventory-creative":728,"voxel-inventory-hotbar":781,"voxel-keys":794,"voxel-land":798,"voxel-measure":816,"voxel-mine":851,"voxel-outline":913,"voxel-pickaxe":920,"voxel-plugins-ui":924,"voxel-pumpkin":931,"voxel-quarry":932,"voxel-reach":938,"voxel-recipes":945,"voxel-sfx":955,"voxel-skyhook":956,"voxel-sprint":957,"voxel-use":958,"voxel-voila":959,"voxel-vr":992,"voxel-webview":1044,"voxel-wireframe":1104,"voxel-wool":1106,"voxel-workbench":1154,"voxel-zen":1155}],2:[function(require,module,exports){
+},{"camera-debug":2,"kb-bindings-ui":6,"voxel-artpacks":11,"voxel-blockdata":18,"voxel-bucket":19,"voxel-carry":26,"voxel-chest":36,"voxel-chunkborder":89,"voxel-commands":123,"voxel-console":130,"voxel-decals":137,"voxel-decorative":188,"voxel-drop":190,"voxel-engine":221,"voxel-flight":538,"voxel-fluid":539,"voxel-food":541,"voxel-fullscreen":542,"voxel-furnace":543,"voxel-gamemode":596,"voxel-glass":597,"voxel-hammer":604,"voxel-harvest":605,"voxel-health":612,"voxel-health-bar":611,"voxel-inventory-crafting":614,"voxel-inventory-creative":667,"voxel-inventory-hotbar":720,"voxel-keys":733,"voxel-land":737,"voxel-measure":755,"voxel-mine":790,"voxel-outline":852,"voxel-pickaxe":859,"voxel-plugins-ui":863,"voxel-pumpkin":870,"voxel-quarry":871,"voxel-reach":877,"voxel-recipes":884,"voxel-sfx":894,"voxel-skyhook":895,"voxel-sprint":896,"voxel-use":897,"voxel-voila":898,"voxel-vr":931,"voxel-webview":983,"voxel-wireframe":1043,"voxel-wool":1045,"voxel-workbench":1093,"voxel-zen":1094}],2:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -5597,7 +5591,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":16,"./types.json":17,"events":1175}],16:[function(require,module,exports){
+},{"./init.json":16,"./types.json":17,"events":1114}],16:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -6351,7 +6345,7 @@ if (module && module.exports)
   module.exports = clone;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"buffer":1171}],22:[function(require,module,exports){
+},{"buffer":1110}],22:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -6665,7 +6659,7 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":28,"events":1175,"itempile":31}],28:[function(require,module,exports){
+},{"deep-equal":28,"events":1114,"itempile":31}],28:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":29,"./lib/keys.js":30,"dup":22}],29:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -6970,7 +6964,7 @@ module.exports = ItemPile;
 
 },{"clone":32,"deep-equal":33}],32:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],33:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],33:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":34,"./lib/keys.js":35,"dup":22}],34:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -7579,7 +7573,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":38,"events":1175,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
+},{"cube-icon":38,"events":1114,"ever":40,"ftooltip":43,"touchup":45}],38:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -7724,7 +7718,7 @@ module.exports = expandName;
 
 },{}],40:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":41,"./types.json":42,"dup":15,"events":1175}],41:[function(require,module,exports){
+},{"./init.json":41,"./types.json":42,"dup":15,"events":1114}],41:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],42:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -8127,7 +8121,7 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":47,"events":1175,"itempile":50}],47:[function(require,module,exports){
+},{"deep-equal":47,"events":1114,"itempile":50}],47:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":48,"./lib/keys.js":49,"dup":22}],48:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -8432,7 +8426,7 @@ module.exports = ItemPile;
 
 },{"clone":51,"deep-equal":52}],51:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],52:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],52:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":53,"./lib/keys.js":54,"dup":22}],53:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -8737,7 +8731,7 @@ module.exports = ItemPile;
 
 },{"clone":56,"deep-equal":57}],56:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],57:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],57:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":58,"./lib/keys.js":59,"dup":22}],58:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -9267,7 +9261,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":62,"events":1175,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
+},{"cube-icon":62,"events":1114,"ever":64,"ftooltip":67,"touchup":69}],62:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -9339,7 +9333,7 @@ CubeIcon = (function() {
 arguments[4][39][0].apply(exports,arguments)
 },{"dup":39}],64:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":65,"./types.json":66,"dup":15,"events":1175}],65:[function(require,module,exports){
+},{"./init.json":65,"./types.json":66,"dup":15,"events":1114}],65:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],66:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -9510,7 +9504,7 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":71,"events":1175,"itempile":74}],71:[function(require,module,exports){
+},{"deep-equal":71,"events":1114,"itempile":74}],71:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":72,"./lib/keys.js":73,"dup":22}],72:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -9815,7 +9809,7 @@ module.exports = ItemPile;
 
 },{"clone":75,"deep-equal":76}],75:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],76:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],76:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":77,"./lib/keys.js":78,"dup":22}],77:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -10120,7 +10114,7 @@ module.exports = ItemPile;
 
 },{"clone":80,"deep-equal":81}],80:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],81:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],81:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
 },{"./lib/is_arguments.js":82,"./lib/keys.js":83,"dup":22}],82:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
@@ -10132,7 +10126,7 @@ arguments[4][13][0].apply(exports,arguments)
 arguments[4][14][0].apply(exports,arguments)
 },{"dup":14,"ever":86}],86:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":87,"./types.json":88,"dup":15,"events":1175}],87:[function(require,module,exports){
+},{"./init.json":87,"./types.json":88,"dup":15,"events":1114}],87:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16}],88:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
@@ -11778,7 +11772,7 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"iota-array":97}],97:[function(require,module,exports){
+},{"buffer":1110,"iota-array":97}],97:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -12416,7 +12410,7 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":98,"buffer":1171,"dup":99}],101:[function(require,module,exports){
+},{"bit-twiddle":98,"buffer":1110,"dup":99}],101:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -14586,7 +14580,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":1179,"stream":1191}],117:[function(require,module,exports){
+},{"_process":1118,"stream":1130}],117:[function(require,module,exports){
 module.exports = tokenize
 
 var through = require('through')
@@ -15321,7 +15315,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":1179,"stream":1191}],122:[function(require,module,exports){
+},{"_process":1118,"stream":1130}],122:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -15380,19707 +15374,6 @@ function unique(list, compare, sorted) {
 
 module.exports = unique
 },{}],123:[function(require,module,exports){
-(function (Buffer){
-'use strict';
-
-var ndarray = require('ndarray');
-var mineflayer = require('mineflayer');
-var ever = require('ever');
-var tellraw2dom = require('tellraw2dom');
-var bit_twiddle = require('bit-twiddle');
-var webworkify = require('webworkify');
-var popCount = bit_twiddle.popCount;
-
-module.exports = function(game, opts) {
-  return new ClientMC(game, opts);
-};
-
-module.exports.pluginInfo = {
-  loadAfter: ['voxel-land', 'voxel-player', 'voxel-registry', 'voxel-console']
-};
-
-
-function ClientMC(game, opts) {
-  this.game = game;
-  this.opts = opts;
-
-  if (game.chunkSize !== 16) throw new Error('voxel-clientmc requires game.chunkSize 16'); // // 16x16x16 maps more closely to 16x256x16 than 32x32x32
-
-  this.registry = game.plugins.get('voxel-registry');
-  if (!this.registry) throw new Error('voxel-clientmc requires voxel-registry plugin');
-
-  if (this.game.voxels.voxelIndex) { // ndarray voxel removes this in https://github.com/maxogden/voxel/pull/18 TODO: better detection?
-    throw new Error('voxel-clientmc requires voxel-engine with ndarray support');
-  }
-
-  this.console = game.plugins.get('voxel-console'); // optional
-
-  opts.url = opts.url || 'ws://'+document.location.hostname+':24444/server';
-
-  // Translate network block indices to our block names
-  // http://minecraft.gamepedia.com/Data_values#Block_IDs http://minecraft-ids.grahamedgecombe.com/
-  // TODO: get translation table from network protocol? I think Forge supports custom blocks with the map sent over the network?
-  // TODO: move to app/blocks.js?
-  opts.mcBlocks = opts.mcBlocks || {
-      0: 'air',
-      1: 'stone',
-      2: 'grass',
-      3: 'dirt',
-      4: 'cobblestone',
-      5: 'plankOak',
-      //6: 'sapling',
-      7: 'bedrock',
-      8: 'waterFlow',
-      9: 'water',
-      10: 'lavaFlow',
-      11: 'lavaFlow',
-      12: 'sand',
-      13: 'gravel',
-      14: 'oreGold',
-      15: 'oreIron',
-      16: 'oreCoal',
-      17: 'logOak',
-      18: 'leavesOak',
-      19: 'sponge',
-      20: 'glass',
-      21: 'oreLapis',
-      22: 'blockLapis',
-      23: 'dispenser', // TODO: direction
-      24: 'sandstone',
-      25: 'noteblock',
-      //26: 'bed',
-      //27: 'railPowered',
-      //28: 'railDetector',
-      //29: 'pistonSticky',
-      //30: 'web',
-      //31: 'shrubDead',
-      //33: 'piston',
-      //34: 'pistonHead',
-      35: 'wool',
-      //36: ?
-      //37: 'dandelion',
-      //38: 'poppy',
-      //39: 'mushroomBrown',
-      //40: 'mushroomRed',
-      41: 'blockGold', // voxel-decorative
-      42: 'blockIron', // voxel-decorative
-      //43: 'slabDouble',
-      //44: 'slabStone',
-      45: 'brick',
-      46: 'tnt',
-      47: 'bookshelf',
-      48: 'stoneMossy',
-      49: 'obsidian',
-      //50: 'torch',
-      //51: 'fire',
-      //52: 'monsterSpawner',
-      //53: 'stairsOakWood',
-      54: 'chest', // voxel-chest
-      //55: 'redstoneWire',
-      56: 'oreDiamond',
-      57: 'blockDiamond', // voxel-decorative
-      58: 'workbench', // voxel-workbench
-      //59: 'crops',
-      60: 'farmland',
-      61: 'furnace',
-      62: 'furnace', // TODO: lit
-      //63: 'signPost',
-      //64: 'doorWood',
-      //65: 'ladder',
-      //66: 'rails',
-      //67: 'stairsCobble',
-      //68: 'signWall',
-      //69: 'lever',
-      //70: 'plateStone',
-      //71: 'doorIron',
-      //72: 'plateWood',
-      73: 'oreRedstone',
-      74: 'oreRedstone', // TODO: glowing
-      //75: 'redstoneTorchOff',
-      //76: 'redstoneTorchOn',
-      //77: 'buttonStone',
-      78: 'snow', // TODO: non-block snow
-      79: 'ice',
-      80: 'snow',
-      81: 'cactus',
-      82: 'clay',
-      //83: 'sugarcane',
-      84: 'jukebox',
-      //85: 'fence',
-      86: 'pumpkinCarvedNorth', // voxel-pumpkin
-      87: 'netherrack',
-      88: 'soulsand',
-      89: 'glowstone',
-      90: 'portal',
-      91: 'pumpkinCarvedNorthLit', // voxel-pumpkin
-      //92: 'cake',
-      //93: 'repeaterOff',
-      //94: 'repeaterOn',
-      //95: 'glassStained',
-      //96: 'hatch',
-      97: 'stone', // silverfish
-      98: 'stoneBrick', // voxel-decorative
-      //'98:1': 'stoneBrickMossy', // TODO
-      //'98:2': 'stoneBrickCracked',
-      //'98:3': 'stoneBrickCarved',
-      99: 'mushroomBigRed',
-      100: 'mushroomBigBrown',
-      //101: 'barsIron',
-      //102: 'glassPane',
-      103: 'blockMelon',
-      //104: 'pumpkinStem',
-      //105: 'melonStem',
-      //106: 'vines',
-      //107: 'fenceGate',
-      //108: 'stairsBrick',
-      //109: 'stairsStoneBrick',
-      110: 'mycelium',
-      //110: 'lilypad',
-      112: 'brickNether',
-      //113: 'fenceNether',
-      //114: 'stairsNether',
-      //115: 'netherwart',
-      //116: 'enchantmentTable',
-      //117: 'brewingStand',
-      //118: 'cauldron',
-      //119: 'endPortal',
-      120: 'endPortalFrame',
-      121: 'endstone',
-      //122: 'dragonEgg',
-      123: 'lampOff',
-      124: 'lampOn',
-      //125: 'slabDoubleOak',
-      //126: 'slabOak',
-      //127: 'cocoa',
-      //128: 'stairsSandstone',
-      129: 'oreEmerald',
-      //130: 'chestEnder',
-      //131: 'tripwireHook',
-      //132: 'tripwire',
-      133: 'blockEmerald',
-      //134: 'stairsSpruce',
-      //135: 'stairsBrich',
-      //136: 'stairsJungle',
-      137: 'command',
-      //138: 'beacon',
-      //139: 'wallCobblestone',
-      //140: 'flowerPot',
-      //141: 'carrots',
-      //142: 'potatoes',
-      //143: 'buttonWood',
-      //144: 'headMob',
-      //145: 'anvil',
-      //146: 'chestTrapped',
-      //147: 'plateLight',
-      //148: 'plateHeavy',
-      //149: 'comparatorOff',
-      //150: 'comparatorOn',
-      //151: 'daylightSensor',
-      152: 'blockRedstone',
-      153: 'oreNetherQuartz',
-      //154: 'hopper',
-      155: 'blockQuartz',
-      //156: 'stairsQuartz',
-      //157: 'railActivator',
-      158: 'dropper',
-      159: 'clayStainedWhite',
-      //160: 'glassPaneStained',
-      161: 'leavesAcacia',
-      162: 'logAcacia',
-      //163: 'stairsAcacia',
-      //164: 'stairsDarkOak',
-      //165: 'blockSlime',
-      //166: 'barrier',
-      //167: 'hatchIron',
-      170: 'hayBale',
-      //171: 'carpet',
-      172: 'clayHardened',
-      173: 'blockCoal',
-      //174: 'icePacked',
-      //175: 'sunflower',
-
-      default: 'missing'
-  };
-    
-  this.mcPlayerHeight = 1.74; // from https://github.com/superjoe30/mineflayer/blob/4daa1f8a1f4282755b723df4bb748f6602784744/lib/plugins/physics.js#L23 - tested with a binary search
-
-  this.enable();
-}
-
-ClientMC.prototype.enable = function() {
-  this.log('voxel-clientmc initializing...');
-
-  this.game.plugins.disable('voxel-land');   // also provides chunks, use ours instead
-  //this.game.plugins.get('voxel-player').homePosition = [-248, 77, -198] // can't do this TODO
-  //this.game.plugins.get('voxel-player').moveTo -251, 81, -309
-
-  // login credential
-  var username;
-  var hash = document.location.hash;
-  if (hash.length < 2) {
-    // try anonymous auth
-    username = 'mcwebchatuserX';
-  } else {
-    username = hash.substring(1); // remove #
-  }
-
-  // create bot
-  this.bot = mineflayer.createBot({
-    username: username
-  });
-
-  this.game.voxels.on('missingChunk', this.missingChunk.bind(this));
-
-  this.voxelChunks = {};
-
-  // WebSocket to server proxy (wsmc)
-  var self = this;
-  this.bot.on('error', function(err) {
-    self.log('WebSocket error', err);
-    console.log('WebSocket error',err);
-    self.game.plugins.disable('voxel-clientmc');
-  });
-  this.bot.on('close', function() {
-    self.log('WebSocket closed');
-    self.game.plugins.disable('voxel-clientmc');
-  });
-
-  var self = this;
-  this.bot.on('message', function(message) {
-    self.console.logNode(tellraw2dom(message.json)); // TODO: also decode color codes
-  });
-
-  if (this.console) this.console.widget.on('input', this.onConsoleInput = function(text) {
-    self.bot.chat(text);
-  });
-
-  this.bot.on('chunkColumnLoad', function(point,column) {
-    self.console.log('Chunk load ('+point.x+','+point.y+','+point.z+')');
-
-    self.addColumn(point, column);
-  });
-
-  this.bot.on('game', function() {
-    self.console.log('Spawn position: '+JSON.stringify(self.bot.spawnPoint));
-    self.game.controls.target().avatar.position.x = self.bot.spawnPoint.x;
-    self.game.controls.target().avatar.position.y = self.bot.spawnPoint.y+50; // give some space to fall while chunks load TODO: move after all chunks load instead
-    self.game.controls.target().avatar.position.z = self.bot.spawnPoint.z;
-  });
-
-  var maxId = 255; // TODO: 4096?
-
-  // array MC block ID -> our block ID
-  // TODO: also support .metadata (MC block ID = 12-bits, meta = 4-bits, total 16-bits -> ours 16 bit)
-  this.translateBlockIDs = new this.game.arrayType(maxId);
-  for (var mcID = 0; mcID < this.translateBlockIDs.length; mcID += 1) {
-    this.translateBlockIDs[mcID] = this.registry.getBlockIndex(this.opts.mcBlocks.default);
-  }
-
-  for (mcID in this.opts.mcBlocks) {
-    var ourBlockName = this.opts.mcBlocks[mcID];
-    var ourBlockID = this.registry.getBlockIndex(ourBlockName);
-    if (ourBlockID === undefined)
-      throw new Error('voxel-clientmc unrecognized block name: '+ourBlockName+' for MC '+mcID);
-    this.translateBlockIDs[mcID] = ourBlockID;
-  }
-
-  // for chunk conversion - see voxel/chunker.js
-  this.chunkBits = Math.log(this.game.chunkSize) / Math.log(2); // must be power of two
-  this.chunkBits |= 0;
-  this.chunkMask = (1 << this.chunkBits) - 1;
-};
-
-ClientMC.prototype.disable = function() {
-  this.log('voxel-clientmc disabling');
-  this.game.voxels.removeListener('missingChunk', this.missingChunk);
-  this.game.plugins.get('voxel-console').widget.removeListener('input', this.onConsoleInput);
-  this.ws.end();
-  if (this.clearPositionUpdateTimer) this.clearPositionUpdateTimer();
-};
-
-ClientMC.prototype.decodePacket = function(data) { // based on https://github.com/deathcap/wsmc/tree/master/examples/mcwebchat
-  if (!(data instanceof Uint8Array)) {
-    return undefined;
-  }
-
-  // convert typed array to NodeJS buffer for minecraft-protocol's API
-  // TODO: is this conversion fast? backed by ArrayBuffer in Browserify 3, see https://npmjs.org/package/native-buffer-browserify
-  //  but is this the right way to "convert" from an ArrayBuffer to a Buffer, without copying?
-  data._isBuffer = true;
-  var buffer = new Buffer(data);
-
-
-  var state = 'play';
-  var isServer = false;
-  var packetsToParse = {packet: true};
-  var result = minecraft_protocol.protocol.parsePacket(buffer, state, isServer, packetsToParse);
-  if (!result || result.error) {
-    this.log('protocol parse error: ' + JSON.stringify(result.error));
-    return undefined;
-  }
-
-  var payload = result.results;
-  var id = result.results.id;
-  var name = minecraft_protocol.protocol.packetNames[minecraft_protocol.protocol.states.PLAY].toClient[id];
-
-  return {name:name, id:id, payload:payload};
-};
-
-
-// call the browser console.log() function with arguments as an array
-ClientMC.prototype.nativeConsoleLog = function(args) {
-  Function.prototype.bind.call(console.log, console).apply(console, args); // see http://stackoverflow.com/questions/5538972
-};
-
-// log to browser and to user console if available
-ClientMC.prototype.log = function(msg) {
-  var rest = []; //arguments.slice(1); // TODO
-  this.nativeConsoleLog(['[voxel-clientmc] ' + msg].concat(rest));  // as separate parameters to allow object expansion
-  if (this.console) this.console.log(msg + ' ' + rest.join(' '));
-};
-
-/* TODO: integrate with mineflayer
-ClientMC.prototype.handlePacket = function(name, payload) {
-  var self = this;
-
-  if (name === 'spawn_position') {
-    // move to spawn TODO: this might only reset the compass 
-    this.log('Spawn at ',payload);
-    var pos = this.game.plugins.get('game-shell-fps-camera').camera.position;
-    pos[0] = payload.x;
-    pos[1] = payload.y;
-    pos[2] = payload.z;
-    //this.game.plugins.get('voxel-player').homePosition = [-248, 77, -198] # can't do this TODO
-    
-  } else if (name === 'block_change') {
-    this.log('block_change',payload);
-    var blockID = this.translateBlockIDs[payload.type]; //  TODO: .metadata
-    this.game.setBlock([payload.x, payload.y, payload.z], blockID);
-
-  } else if (name === 'position') {
-    // TODO, yaw, pitch. to convert see http://wiki.vg/Protocol#Player_Position_And_Look
-    this.log('player pos and look', payload);
-    var ourY = payload.y - 1.62; // empirical  TODO: not playerHeight?
-    var pos = this.game.plugins.get('game-shell-fps-camera').camera.position;
-    pos[0] = payload.x;
-    pos[1] = ourY;
-    pos[2] = payload.z;
-
-    // the "apology"
-    this.sendPacket('position', payload);
-
-  } else if (name === 'kick_disconnect') {
-    window.alert('Disconnected from server: '+payload.reason); // TODO: console, also for chat
-  } else if (name === 'chat') {
-    // log formatted message
-    this.game.plugins.get('voxel-console').logNode(tellraw2dom(payload.message));
-  }
-};
-*/
-
-// convert MC chunk format to ours, caching to be ready for missingChunk()
-ClientMC.prototype.addColumn = function(point, column) {
-  var chunkX = point.x;
-  var chunkZ = point.z;
-
-  var offset = 0;
-  var size = 4096;
-  var s = this.game.chunkSize + this.game.chunkPad;
-  var length = column.blockType.length;
-  for (var chunkY = 0; chunkY < length; chunkY += 1) {
-    var miniChunk = column.blockType[chunkY];
-    if (miniChunk === null) continue; // skip 100% solid air
-
-    // translate network block IDs
-    for (var i = 0; i < miniChunk.length; i += 1) {
-        var mcBlockID = miniChunk[i];
-        var ourBlockID = this.translateBlockIDs[mcBlockID];
-        //vChunk.data[i] = ourBlockID;
-        miniChunk[i] = ourBlockID;
-    }
-
-    var vChunk = ndarray(new this.game.arrayType(s*s*s), [s,s,s]);
-
-    // transpose since MC uses XZY but voxel-engine XYZ
-    // TODO: changes stride..requires clients to use ndarray API get(), not access .data directly..
-    //  just switch to 100% ndarray-based voxel-engine?
-    for (var x = 0; x < vChunk.shape[0]; x += 1) {
-      for (var z = 0; z < vChunk.shape[1]; z += 1) {
-        for (var y = 0; y < vChunk.shape[2]; y += 1) {
-          vChunk.set(z+2, y+2, x+2, miniChunk[x | z<<4 | y<<8]);
-        }
-      }
-    }
-
-    // save TODO: avoid recreating array, mutate in-place?
-    var key = [chunkX, chunkY, chunkZ].join('|');
-    vChunk.position = [chunkX, chunkY, chunkZ];
-    this.voxelChunks[key] = vChunk;
-  }
-
-  // TODO: metadata,light,sky,add,biome
-};
-
-ClientMC.prototype.missingChunk = function(pos) {
-  var chunk = this.voxelChunks[pos.join('|')];
-  if (chunk === undefined) return;
-
-  this.game.showChunk(chunk);
-};
-
-
-
-}).call(this,require("buffer").Buffer)
-},{"bit-twiddle":124,"buffer":1171,"ever":125,"mineflayer":128,"ndarray":180,"tellraw2dom":182,"webworkify":183}],124:[function(require,module,exports){
-arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],125:[function(require,module,exports){
-arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":126,"./types.json":127,"dup":15,"events":1175}],126:[function(require,module,exports){
-arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],127:[function(require,module,exports){
-arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],128:[function(require,module,exports){
-(function (Buffer){
-var mc = require('minecraft-protocol')
-  , EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , path = require('path')
-  , websocket_stream = require('websocket-stream')
-  , plugins = {
-      bed: require('./lib/plugins/bed'),
-      block_actions: require('./lib/plugins/block_actions'),
-      blocks: require('./lib/plugins/blocks'),
-      chat: require('./lib/plugins/chat'),
-      digging: require('./lib/plugins/digging'),
-      entities: require('./lib/plugins/entities'),
-      experience: require('./lib/plugins/experience'),
-      game: require('./lib/plugins/game'),
-      health: require('./lib/plugins/health'),
-      inventory: require('./lib/plugins/inventory'),
-      kick: require('./lib/plugins/kick'),
-      physics: require('./lib/plugins/physics'),
-      rain: require('./lib/plugins/rain'),
-      settings: require('./lib/plugins/settings'),
-      spawn_point: require('./lib/plugins/spawn_point'),
-      time: require('./lib/plugins/time')
-    };
-
-module.exports = {
-  vec3: require('vec3'),
-  createBot: createBot,
-  Block: require('./lib/block'),
-  Location: require('./lib/location'),
-  Biome: require('./lib/biome'),
-  Entity: require('./lib/entity'),
-  Painting: require('./lib/painting'),
-  Item: require('./lib/item'),
-  Recipe: require('./lib/recipe'),
-  windows: require('./lib/windows'),
-  Chest: require('./lib/chest'),
-  Furnace: require('./lib/furnace'),
-  Dispenser: require('./lib/dispenser'),
-  EnchantmentTable: require('./lib/enchantment_table'),
-  blocks: require('./lib/enums/blocks'),
-  biomes: require('./lib/enums/biomes'),
-  items: require('./lib/enums/items'),
-  recipes: require('./lib/enums/recipes'),
-  instruments: require('./lib/enums/instruments'),
-  materials: require('./lib/enums/materials'),
-};
-
-function createBot(options) {
-  options = options || {};
-  options.username = options.username || 'Player';
-  options.protocol = options.protocol || 'ws';
-  options.host = options.host || 'localhost';
-  options.port = options.port || 24444;
-  options.path = options.path || 'server';
-  options.url = options.url || (options.protocol + '://' + options.host + ':' + options.port + '/' + options.path);
-
-  var bot = new Bot();
-  bot.connect(options);
-  return bot;
-}
-
-function Bot() {
-  EventEmitter.call(this);
-  this.client = null;
-}
-util.inherits(Bot, EventEmitter);
-
-// decode packet over WebSocket - always in play state
-var decodePacket = function(data) {
-  if (!(data instanceof Uint8Array)) {
-    return undefined;
-  }
-
-  // convert typed array to NodeJS buffer for minecraft-protocol's API
-  // TODO: is this conversion fast? backed by ArrayBuffer in Browserify 3, see https://npmjs.org/package/native-buffer-browserify
-  //  but is this the right way to "convert" from an ArrayBuffer to a Buffer, without copying?
-  data._isBuffer = true;
-  //var length = String.fromCharCode(data.length); // XXX
-  //var buffer = new Buffer(length + data);
-  var buffer = new Buffer(data);
-
-  var state = minecraft_protocol.protocol.states.PLAY;
-  var isServer = false;
-  var shouldParsePayload = {packet: 1}; // somehow this is needed to parse the fields TODO: figure out how this is supposed to work
-
-  var result = minecraft_protocol.protocol.parsePacket(buffer, state, isServer, shouldParsePayload);
-  if (!result || result.error) {
-    console.log('protocol parse error',result);
-    log('protocol parse error: ' + JSON.stringify(result));
-    return;
-  }
-  var payload = result.results;
-  var id = result.results.id;
-  var name = minecraft_protocol.protocol.packetNames[state].toClient[id];
-  //console.log('parsed',name,result);
-
-  return {name:name, id:id, payload:payload};
-};
-
-Bot.prototype.connect = function(options) {
-  var self = this;
-  self.client = mc.createClient(options);
-  self.username = self.client.username;
-  self.client.on('session', function() {
-    self.username = self.client.username;
-  });
-  self.client.on('connect', function() {
-    self.emit('connect');
-  });
-  self.client.on('error', function(err) {
-    self.emit('error', err);
-  });
-  self.client.on('end', function() {
-    self.emit('end');
-  });
-  for (var pluginName in plugins) {
-    plugins[pluginName](self, options);
-  }
-};
-
-Bot.prototype.end = function() {
-  this.client.end();
-};
-
-}).call(this,require("buffer").Buffer)
-},{"./lib/biome":129,"./lib/block":130,"./lib/chest":132,"./lib/dispenser":134,"./lib/enchantment_table":135,"./lib/entity":136,"./lib/enums/biomes":137,"./lib/enums/blocks":138,"./lib/enums/instruments":139,"./lib/enums/items":140,"./lib/enums/materials":141,"./lib/enums/recipes":142,"./lib/furnace":143,"./lib/item":144,"./lib/location":145,"./lib/painting":147,"./lib/plugins/bed":148,"./lib/plugins/block_actions":149,"./lib/plugins/blocks":150,"./lib/plugins/chat":151,"./lib/plugins/digging":152,"./lib/plugins/entities":153,"./lib/plugins/experience":154,"./lib/plugins/game":155,"./lib/plugins/health":156,"./lib/plugins/inventory":157,"./lib/plugins/kick":158,"./lib/plugins/physics":159,"./lib/plugins/rain":160,"./lib/plugins/settings":161,"./lib/plugins/spawn_point":162,"./lib/plugins/time":163,"./lib/recipe":164,"./lib/windows":165,"buffer":1171,"events":1175,"minecraft-protocol":167,"path":1178,"util":1194,"vec3":175,"websocket-stream":176}],129:[function(require,module,exports){
-var biomes = require('./enums/biomes')
-
-module.exports = Biome;
-
-function Biome(id) {
-  this.id = id;
-  var biomeEnum = biomes[id];
-  if (biomeEnum) {
-    this.color = biomeEnum.color;
-    this.name = biomeEnum.name;
-    this.height = biomeEnum.height;
-    this.rainfall = biomeEnum.rainfall;
-    this.temperature = biomeEnum.temperature;
-  } else {
-    this.color = 0;
-    this.height = null;
-    this.name = "";
-    this.rainfall = 0;
-    this.temperature = 0;
-  }
-}
-
-
-},{"./enums/biomes":137}],130:[function(require,module,exports){
-var Biome = require('./biome')
-  , blocks = require('./enums/blocks')
-
-module.exports = Block;
-
-function Block(type, biomeId) {
-  this.type = type;
-  this.metadata = 0;
-  this.light = 0;
-  this.skyLight = 0;
-  this.add = 0;
-  this.biome = new Biome(biomeId);
-  this.position = null;
-
-  var blockEnum = blocks[type];
-  if (blockEnum) {
-    this.name = blockEnum.name;
-    this.hardness = blockEnum.hardness;
-    this.displayName = blockEnum.displayName;
-    this.boundingBox = blockEnum.boundingBox;
-    this.diggable = blockEnum.diggable;
-    this.material = blockEnum.material;
-    this.harvestTools = blockEnum.harvestTools;
-  } else {
-    this.name = "";
-    this.displayName = "";
-    this.hardness = 0;
-    this.boundingBox = "empty"
-    this.diggable = false;
-  }
-}
-
-
-},{"./biome":129,"./enums/blocks":138}],131:[function(require,module,exports){
-var util = require('util');
-
-/**
- * ChatMessage Constructor
- * @param {String|Object} message content of ChatMessage
- */
-function ChatMessage(message) {
-	if(typeof message === 'string') {
-		this.json = { text: message };
-	}else if(typeof message === 'object' && !Array.isArray(message)) {
-		this.json = message;
-	}else{
-		throw new Error('Expected String or Object for Message argument');
-	}
-	this.parse();
-}
-
-/**
- * Parses the this.json property to decorate the properties of the ChatMessage.
- * Called by the Constructor
- * @return {void}
- */
-ChatMessage.prototype.parse = function() {
-	var json = this.json;
-	// Message scope for callback functions
-	var that = this;
-
-	// There is EITHER, a text property or a translate property
-	// If there is no translate property, there is no with property	
-	// HOWEVER! If there is a translate property, there may not be a with property
-	if(typeof json.text == 'string') {
-		this.text = json.text;
-	}else if(typeof json.translate === 'string') {
-		this.translate = json.translate;
-		if(typeof json.with === 'object' || Array.isArray(json.with)) {
-			this.with = [];
-			json.with.forEach(function(entry) {
-				if(typeof entry === 'string') {
-					that.with.push(entry);
-				}else if(typeof entry === 'object') {
-					// Parse ChatMessage
-					var subChatMessage = new ChatMessage(entry);
-					that.with.push(subChatMessage);
-				}
-			});
-		}
-	}
-	// Parse extra property
-	// Extras are appended to the initial text
-	if(typeof json.extra === 'object') {
-		if(!Array.isArray(json.extra)) {
-			throw new Error('Expected extra property to be an Array in ChatMessage');
-		}
-		this.extra = [];
-		json.extra.forEach(function(entry) {
-			if(typeof entry === 'string') {
-				that.extra.push(entry);
-			}else if(typeof entry === 'object') {
-				var subChatMessage = new ChatMessage(entry);
-				that.extra.push(subChatMessage);
-			}
-		});
-	}
-	// Text modifiers
-	this.bold = json.bold;
-	this.italic = json.italic;
-	this.underlined = json.underlined;
-	this.strikethrough = json.strikethrough;
-	this.obfuscated = json.obfuscated;
-
-	// Supported constants @ 2014-04-21
-	var supportedColors = [ 'black', 'dark_blue', 'dark_green', 'dark_aqua', 'dark_red', 'dark_purple',
-							'gold', 'gray', 'dark_gray', 'blue', 'green', 'aqua', 'red', 'light_purple',
-							'yellow', 'white', 'obfuscated', 'bold', 'strikethrough', 'underlined', 'italic',
-							'reset'];
-	var supportedClick = ['open_url', 'open_file', 'run_command', 'suggest_command'];
-	var supportedHover = ['show_text', 'show_achievement', 'show_item'];
-
-	// Parse color
-	this.color = json.color;
-	switch(this.color) {
-		case 'obfuscated': this.obfuscated = true; this.color = null; break;
-		case 'bold': this.bold = true; this.color = null; break;
-		case 'strikethrough': this.strikethrough = true; this.color = null; break;
-		case 'underlined': this.underlined = true; this.color = null; break;
-		case 'italic': this.italic = true; this.color = null; break;
-		case 'reset': this.reset = true; this.color = null; break;
-	}
-	if(Array.prototype.indexOf && this.color && 
-		supportedColors.indexOf(this.color) === -1) {
-		console.warn('ChatMessage parsed with unsupported color', this.color);
-	}
-
-	// Parse click event
-	if(typeof json.clickEvent === 'object') {
-		this.clickEvent = json.clickEvent;
-		if(typeof this.clickEvent.action !== 'string') {
-			throw new Error('ClickEvent action missing in ChatMessage');
-		}else if(Array.prototype.indexOf && supportedClick.indexOf(this.clickEvent.action) === -1) {
-			console.warn('ChatMessage parsed with unsupported clickEvent', this.clickEvent.action);
-		}
-	}
-
-	// Parse hover event
-	if(typeof json.hoverEvent === 'object') {
-		this.hoverEvent = json.hoverEvent;
-		if(typeof this.hoverEvent.action !== 'string') {
-			throw new Error('HoverEvent action missing in ChatMessage');
-		}else if(Array.prototype.indexOf && supportedHover.indexOf(this.hoverEvent.action) === -1) {
-			console.warn('ChatMessage parsed with unsupported hoverEvent', this.hoverEvent.action);
-		}
-		// Special case
-		if(this.hoverEvent.action === 'show_item') {
-			// Unfortunately, Mojang do not use compliant JSON as per the specifications
-			// So some adjustments must be made
-			// Note: Probably could have put this in a single regex, but felt it better
-			// to leave it seperate for the sake of maintainability 
-			this.hoverEvent.value = this.hoverEvent.value
-			.replace(/[\w],/g, ',')			// Remove number suffix
-			.replace(/(\w+):/g, '"$1":')	// Convert keys to JSON standard (quoted)
-			.replace(',}', '}');			// Replace any hanging commas
-			try {
-				this.hoverEvent.value = JSON.parse(this.hoverEvent.value);
-				if(typeof this.hoverEvent.value !== 'object') {
-					throw new Error('Parsed Item Object is not an Object');
-				}
-			}catch(err) {
-				console.info('Error parsing JSON Item Object', err);
-				throw new Error('Expected JSON item object in hoverEvent.value');
-			}
-		}
-	}
-}
-
-/**
- * Returns the count of text extras and child ChatMessages
- * Does not count recursively in to the children
- * @return {Number}
- */
-ChatMessage.prototype.length = function() {
-	var count = 0;
-	if(this.text) count++;
-	else if(this.translate) count += this.with.length;
-
-	if(this.extra) count += this.extra.length;
-}
-
-/**
- * Returns a text part from the message
- * @param  {Number} idx Index of the part	
- * @return {String}
- */
-ChatMessage.prototype.getText = function(idx) {
-	// If the index is not defined is is invalid, return toString
-	if(typeof idx !== 'number') return this.toString();
-	// If we are not a translating message, return the text
-	if(this.text && idx == 0) return this.text;
-	// Else return the with child if it's in range
-	else if(this.with.length > idx) return this.with[idx].toString();
-	// Else return the extra if it's in range
-	if(this.extra && this.extra.length + (this.text ? 1 : this.with.length) > idx)
-		return this.extra[idx - (this.text ? 1 : this.with.length)].toString();
-	// Not sure how you want to default this
-	// Undefined, an error ? 
-	return "";
-}
-
-/**
- * Flattens the message in to plain-text
- * @return {String}
- */
-ChatMessage.prototype.toString = function() {
-	var message = "";
-	if(typeof this.text === 'string') message += this.text + " ";
-	else {
-		this.with.forEach(function(entry) {
-			message += entry.toString() + " ";
-		})
-	}
-	if(this.extra) {
-		this.extra.forEach(function(entry) {
-			message += entry.toString() + " ";
-		})
-	}
-	return message.trim();
-}
-
-
-
-
-module.exports = ChatMessage;
-
-},{"util":1194}],132:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , assert = require('assert')
-
-module.exports = Chest;
-
-function Chest() {
-  EventEmitter.call(this);
-
-  this.window = null;
-}
-util.inherits(Chest, EventEmitter);
-
-Chest.windowType = 0;
-
-// this function is replaced by the inventory plugin
-Chest.prototype.close = function() {
-  assert.ok(false, "override");
-};
-
-Chest.prototype.deposit = function(itemType, metadata, count) {
-  assert.ok(false, "override");
-};
-
-Chest.prototype.withdraw = function(itemType, metadata, count) {
-  assert.ok(false, "override");
-};
-
-Chest.prototype.count = function(itemType, metadata) {
-  assert.ok(this.window);
-  return this.window.chestCount(itemType, metadata);
-};
-
-Chest.prototype.items = function() {
-  assert.ok(this.window);
-  return this.window.chestItems();
-};
-
-},{"assert":1157,"events":1175,"util":1194}],133:[function(require,module,exports){
-var math = require('./math')
-  , euclideanMod = math.euclideanMod
-  , PI = Math.PI
-  , PI_2 = Math.PI * 2
-  , TO_RAD = PI / 180
-  , TO_DEG = 1 / TO_RAD
-  , FROM_NOTCH_BYTE = 360 / 256
-  , FROM_NOTCH_VEL = 5 / 32000
-
-exports.toRadians = toRadians;
-exports.toDegrees = toDegrees;
-exports.fromNotchianYaw = fromNotchianYaw;
-exports.fromNotchianPitch = fromNotchianPitch;
-
-exports.toNotchianYaw = function(yaw) {
-  return toDegrees(PI - yaw);
-}
-
-exports.toNotchianPitch = function(pitch) {
-  return toDegrees(-pitch);
-}
-
-exports.fromNotchianYawByte = function(yaw) {
-  return fromNotchianYaw(yaw * FROM_NOTCH_BYTE);
-}
-
-exports.fromNotchianPitchByte = function(pitch) {
-  return fromNotchianPitch(pitch * FROM_NOTCH_BYTE);
-}
-
-exports.fromNotchVelocity = function(vel) {
-  return vel.scaled(FROM_NOTCH_VEL);
-};
-
-function toRadians(degrees) {
-  return TO_RAD * degrees;
-}
-
-function toDegrees(radians) {
-  return TO_DEG * radians;
-}
-
-function fromNotchianYaw(yaw) {
-  return euclideanMod(PI - toRadians(yaw), PI_2);
-}
-
-function fromNotchianPitch(pitch) {
-  return euclideanMod(toRadians(-pitch) + PI, PI_2) - PI;
-}
-
-},{"./math":146}],134:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , assert = require('assert')
-
-module.exports = Dispenser;
-
-function Dispenser() {
-  EventEmitter.call(this);
-
-  this.window = null;
-}
-util.inherits(Dispenser, EventEmitter);
-
-Dispenser.windowType = 3;
-
-// this function is replaced by the inventory plugin
-Dispenser.prototype.close = function() {
-  assert.ok(false, "override");
-};
-
-Dispenser.prototype.deposit = function(itemType, metadata, count) {
-  assert.ok(false, "override");
-};
-
-Dispenser.prototype.withdraw = function(itemType, metadata, count) {
-  assert.ok(false, "override");
-};
-
-Dispenser.prototype.count = function(itemType, metadata) {
-  assert.ok(this.window);
-  return this.window.dispenserCount(itemType, metadata);
-};
-
-Dispenser.prototype.items = function() {
-  assert.ok(this.window);
-  return this.window.dispenserItems();
-};
-
-},{"assert":1157,"events":1175,"util":1194}],135:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , assert = require('assert')
-
-module.exports = EnchantmentTable;
-
-function EnchantmentTable() {
-  EventEmitter.call(this);
-
-  this.window = null;
-}
-util.inherits(EnchantmentTable, EventEmitter);
-
-EnchantmentTable.windowType = 4;
-
-// this function is replaced by the inventory plugin
-EnchantmentTable.prototype.close = function() {
-  assert.ok(false, "override");
-};
-
-EnchantmentTable.prototype.targetItem = function() {
-  return this.window.slots[0];
-};
-
-EnchantmentTable.prototype.enchant = function() {
-  assert.ok(false, "override");
-};
-
-EnchantmentTable.prototype.takeTargetItem = function() {
-  assert.ok(false, "override");
-};
-
-EnchantmentTable.prototype.putTargetItem = function() {
-  assert.ok(false, "override");
-};
-
-},{"assert":1157,"events":1175,"util":1194}],136:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3;
-
-module.exports = Entity;
-
-function Entity(id) {
-  this.id = id;
-  this.type = null;
-  this.position = new Vec3(0, 0, 0);
-  this.velocity = new Vec3(0, 0, 0);
-  this.yaw = 0;
-  this.pitch = 0;
-  this.onGround = true;
-  this.height = 0;
-  this.effects = {};
-  // 0 = held item, 1-4 = armor slot
-  this.equipment = new Array(5);
-  this.heldItem = this.equipment[0]; // shortcut to equipment[0]
-  this.isValid = true;
-}
-
-Entity.prototype.setEquipment = function(index, item) {
-  this.equipment[index] = item;
-  this.heldItem = this.equipment[0];
-};
-
-
-},{"vec3":175}],137:[function(require,module,exports){
-module.exports={
-  "0": {
-    "id": 0,
-    "color": 112,
-    "height": [
-      -1,
-      0.4
-    ],
-    "name": "Ocean",
-    "rainfall": 0.5,
-    "temperature": 0.5
-  },
-  "1": {
-    "id": 1,
-    "color": 9286496,
-    "height": [
-      0.1,
-      0.3
-    ],
-    "name": "Plains",
-    "rainfall": 0.4,
-    "temperature": 0.8
-  },
-  "2": {
-    "id": 2,
-    "color": 16421912,
-    "height": [
-      0.1,
-      0.2
-    ],
-    "name": "Desert",
-    "rainfall": 0,
-    "temperature": 2
-  },
-  "3": {
-    "id": 3,
-    "color": 6316128,
-    "height": [
-      0.3,
-      1.5
-    ],
-    "name": "Extreme Hills",
-    "rainfall": 0.3,
-    "temperature": 0.2
-  },
-  "4": {
-    "id": 4,
-    "color": 353825,
-    "height": [
-      0.1,
-      0.3
-    ],
-    "name": "Forest",
-    "rainfall": 0.8,
-    "temperature": 0.7
-  },
-  "5": {
-    "id": 5,
-    "color": 747097,
-    "height": [
-      0.1,
-      0.4
-    ],
-    "name": "Taiga",
-    "rainfall": 0.8,
-    "temperature": 0.05
-  },
-  "6": {
-    "id": 6,
-    "color": 522674,
-    "height": [
-      -0.2,
-      0.1
-    ],
-    "name": "Swampland",
-    "rainfall": 0.9,
-    "temperature": 0.8
-  },
-  "7": {
-    "id": 7,
-    "height": [
-      -0.5,
-      0
-    ],
-    "name": "River",
-    "rainfall": 0.5,
-    "temperature": 0.5
-  },
-  "8": {
-    "id": 8,
-    "color": 16711680,
-    "height": [
-      0.1,
-      0.3
-    ],
-    "name": "Hell",
-    "rainfall": 0,
-    "temperature": 2
-  },
-  "9": {
-    "id": 9,
-    "color": 8421631,
-    "height": [
-      0.1,
-      0.3
-    ],
-    "name": "Sky",
-    "rainfall": 0,
-    "temperature": 0.5
-  },
-  "10": {
-    "id": 10,
-    "color": 9474208,
-    "height": [
-      -1,
-      0.5
-    ],
-    "name": "FrozenOcean",
-    "rainfall": 0.5,
-    "temperature": 0
-  },
-  "11": {
-    "id": 11,
-    "color": 10526975,
-    "height": [
-      -0.5,
-      0
-    ],
-    "name": "FrozenRiver",
-    "rainfall": 0.5,
-    "temperature": 0
-  },
-  "12": {
-    "id": 12,
-    "color": 16777215,
-    "height": [
-      0.1,
-      0.3
-    ],
-    "name": "Ice Plains",
-    "rainfall": 0.5,
-    "temperature": 0
-  },
-  "13": {
-    "id": 13,
-    "color": 10526880,
-    "height": [
-      0.3,
-      1.3
-    ],
-    "name": "Ice Mountains",
-    "rainfall": 0.5,
-    "temperature": 0
-  },
-  "14": {
-    "id": 14,
-    "color": 16711935,
-    "height": [
-      0.2,
-      1
-    ],
-    "name": "MushroomIsland",
-    "rainfall": 1,
-    "temperature": 0.9
-  },
-  "15": {
-    "id": 15,
-    "color": 10486015,
-    "height": [
-      -1,
-      0.1
-    ],
-    "name": "MushroomIslandShore",
-    "rainfall": 1,
-    "temperature": 0.9
-  },
-  "16": {
-    "id": 16,
-    "color": 16440917,
-    "height": [
-      0,
-      0.1
-    ],
-    "name": "Beach",
-    "rainfall": 0.4,
-    "temperature": 0.8
-  },
-  "17": {
-    "id": 17,
-    "color": 13786898,
-    "height": [
-      0.3,
-      0.8
-    ],
-    "name": "DesertHills",
-    "rainfall": 0,
-    "temperature": 2
-  },
-  "18": {
-    "id": 18,
-    "color": 2250012,
-    "height": [
-      0.3,
-      0.7
-    ],
-    "name": "ForestHills",
-    "rainfall": 0.8,
-    "temperature": 0.7
-  },
-  "19": {
-    "id": 19,
-    "color": 1456435,
-    "height": [
-      0.3,
-      0.8
-    ],
-    "name": "TaigaHills",
-    "rainfall": 0.8,
-    "temperature": 0.05
-  },
-  "20": {
-    "id": 20,
-    "color": 7501978,
-    "height": [
-      0.2,
-      0.8
-    ],
-    "name": "Extreme Hills Edge",
-    "rainfall": 0.3,
-    "temperature": 0.2
-  },
-  "21": {
-    "id": 21,
-    "color": 5470985,
-    "height": [
-      0.2,
-      0.4
-    ],
-    "name": "Jungle",
-    "rainfall": 0.9,
-    "temperature": 1.2
-  },
-  "22": {
-    "id": 22,
-    "color": 2900485,
-    "height": [
-      1.8,
-      0.5
-    ],
-    "name": "JungleHills",
-    "rainfall": 0.9,
-    "temperature": 1.2
-  }
-}
-},{}],138:[function(require,module,exports){
-module.exports={
-  "0": {
-    "id": 0,
-    "name": "air",
-    "displayName": "Air",
-    "hardness": 0,
-    "stackSize": null,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "1": {
-    "id": 1,
-    "displayName": "Stone",
-    "name": "stone",
-    "hardness": 1.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "2": {
-    "id": 2,
-    "displayName": "Grass Block",
-    "name": "grass",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "3": {
-    "id": 3,
-    "displayName": "Dirt",
-    "name": "dirt",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "4": {
-    "id": 4,
-    "displayName": "Cobblestone",
-    "name": "stonebrick",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "5": {
-    "id": 5,
-    "displayName": "Wooden Planks",
-    "name": "wood",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "6": {
-    "id": 6,
-    "displayName": "Sapling",
-    "name": "sapling",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "7": {
-    "id": 7,
-    "displayName": "Bedrock",
-    "name": "bedrock",
-    "hardness": null,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "block"
-  },
-  "8": {
-    "id": 8,
-    "displayName": "Water",
-    "name": "water",
-    "hardness": 100,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "9": {
-    "id": 9,
-    "displayName": "Stationary Water",
-    "name": "waterStationary",
-    "hardness": 100,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "10": {
-    "id": 10,
-    "displayName": "Lava",
-    "name": "lava",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "11": {
-    "id": 11,
-    "displayName": "Stationary Lava",
-    "name": "lavaStationary",
-    "hardness": 100,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "12": {
-    "id": 12,
-    "displayName": "Sand",
-    "name": "sand",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "13": {
-    "id": 13,
-    "displayName": "Gravel",
-    "name": "gravel",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "14": {
-    "id": 14,
-    "displayName": "Gold Ore",
-    "name": "oreGold",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "15": {
-    "id": 15,
-    "displayName": "Iron Ore",
-    "name": "oreIron",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "274": true,
-      "257": true,
-      "278": true
-    }
-  },
-  "16": {
-    "id": 16,
-    "displayName": "Coal Ore",
-    "name": "oreCoal",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "17": {
-    "id": 17,
-    "displayName": "Wood",
-    "name": "log",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "18": {
-    "id": 18,
-    "displayName": "Leaves",
-    "name": "leaves",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "leaves"
-  },
-  "19": {
-    "id": 19,
-    "displayName": "Sponge",
-    "name": "sponge",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "20": {
-    "id": 20,
-    "displayName": "Glass",
-    "name": "glass",
-    "hardness": 0.3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "21": {
-    "id": 21,
-    "displayName": "Lapis Lazuli Ore",
-    "name": "oreLapis",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "274": true,
-      "257": true,
-      "278": true
-    }
-  },
-  "22": {
-    "id": 22,
-    "displayName": "Lapis Lazuli Block",
-    "name": "blockLapis",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "274": true,
-      "257": true,
-      "278": true
-    }
-  },
-  "23": {
-    "id": 23,
-    "displayName": "Dispenser",
-    "name": "dispenser",
-    "hardness": 3.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "24": {
-    "id": 24,
-    "displayName": "Sandstone",
-    "name": "sandStone",
-    "hardness": 0.8,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "25": {
-    "id": 25,
-    "displayName": "Note Block",
-    "name": "musicBlock",
-    "hardness": 0.8,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "26": {
-    "id": 26,
-    "displayName": "Bed",
-    "name": "bed",
-    "hardness": 0.2,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "27": {
-    "id": 27,
-    "displayName": "Powered Rail",
-    "name": "goldenRail",
-    "hardness": 0.7,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock"
-  },
-  "28": {
-    "id": 28,
-    "displayName": "Detector Rail",
-    "name": "detectorRail",
-    "hardness": 0.7,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock"
-  },
-  "29": {
-    "id": 29,
-    "displayName": "Sticky Piston",
-    "name": "pistonStickyBase",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "30": {
-    "id": 30,
-    "displayName": "Cobweb",
-    "name": "web",
-    "hardness": 4,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "web",
-    "harvestTools": {
-      "359": true,
-      "267": true,
-      "268": true,
-      "272": true,
-      "276": true,
-      "283": true
-    }
-  },
-  "31": {
-    "id": 31,
-    "displayName": "Grass",
-    "name": "tallgrass",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "32": {
-    "id": 32,
-    "displayName": "Dead Bush",
-    "name": "deadbush",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "33": {
-    "id": 33,
-    "displayName": "Piston",
-    "name": "pistonBase",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "34": {
-    "id": 34,
-    "name": "pistonExtension",
-    "displayName": "Piston Extension",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "35": {
-    "id": 35,
-    "displayName": "Wool",
-    "name": "cloth",
-    "hardness": 0.8,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wool"
-  },
-  "36": {
-    "id": 36,
-    "name": "blockMovedByPiston",
-    "displayName": "Block Moved by Piston",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "block"
-  },
-  "37": {
-    "id": 37,
-    "displayName": "Flower",
-    "name": "flower",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "38": {
-    "id": 38,
-    "displayName": "Rose",
-    "name": "rose",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "39": {
-    "id": 39,
-    "displayName": "Brown Mushroom",
-    "name": "mushroomBrown",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "40": {
-    "id": 40,
-    "displayName": "Red Mushroom",
-    "name": "mushroomRed",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "41": {
-    "id": 41,
-    "displayName": "Block of Gold",
-    "name": "blockGold",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "42": {
-    "id": 42,
-    "displayName": "Block of Iron",
-    "name": "blockIron",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "274": true,
-      "257": true,
-      "278": true
-    }
-  },
-  "43": {
-    "id": 43,
-    "displayName": "Double Stone Slab",
-    "name": "stoneSlabDouble",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "44": {
-    "id": 44,
-    "displayName": "Stone Slab",
-    "name": "stoneSlab",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "45": {
-    "id": 45,
-    "displayName": "Bricks",
-    "name": "brick",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "46": {
-    "id": 46,
-    "displayName": "TNT",
-    "name": "tnt",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "47": {
-    "id": 47,
-    "displayName": "Bookshelf",
-    "name": "bookshelf",
-    "hardness": 1.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "48": {
-    "id": 48,
-    "displayName": "Moss Stone",
-    "name": "stoneMoss",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "49": {
-    "id": 49,
-    "displayName": "Obsidian",
-    "name": "obsidian",
-    "hardness": 50,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "278": true
-    }
-  },
-  "50": {
-    "id": 50,
-    "displayName": "Torch",
-    "name": "torch",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "51": {
-    "id": 51,
-    "displayName": "Fire",
-    "name": "fire",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "52": {
-    "id": 52,
-    "displayName": "Monster Spawner",
-    "name": "mobSpawner",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "53": {
-    "id": 53,
-    "displayName": "Wooden Stairs",
-    "name": "stairsWood",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "54": {
-    "id": 54,
-    "displayName": "Chest",
-    "name": "chest",
-    "hardness": 2.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "55": {
-    "id": 55,
-    "displayName": "Redstone Dust",
-    "name": "redstoneDust",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "56": {
-    "id": 56,
-    "displayName": "Diamond Ore",
-    "name": "oreDiamond",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "57": {
-    "id": 57,
-    "displayName": "Block of Diamond",
-    "name": "blockDiamond",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "58": {
-    "id": 58,
-    "displayName": "Crafting Table",
-    "name": "workbench",
-    "hardness": 2.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "59": {
-    "id": 59,
-    "displayName": "Crops",
-    "name": "crops",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "60": {
-    "id": 60,
-    "displayName": "Farmland",
-    "name": "farmland",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "61": {
-    "id": 61,
-    "displayName": "Furnace",
-    "name": "furnace",
-    "hardness": 3.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "62": {
-    "id": 62,
-    "displayName": "Burning Furnace",
-    "name": "furnaceBurning",
-    "hardness": 3.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "63": {
-    "id": 63,
-    "displayName": "Sign Post",
-    "name": "signPost",
-    "hardness": 1,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "wood"
-  },
-  "64": {
-    "id": 64,
-    "displayName": "Wooden Door",
-    "name": "doorWood",
-    "hardness": 3,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "65": {
-    "id": 65,
-    "displayName": "Ladder",
-    "name": "ladder",
-    "hardness": 0.4,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "66": {
-    "id": 66,
-    "displayName": "Rail",
-    "name": "rail",
-    "hardness": 0.7,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock"
-  },
-  "67": {
-    "id": 67,
-    "displayName": "Cobblestone Stairs",
-    "name": "stairsStone",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "68": {
-    "id": 68,
-    "displayName": "Wall Sign",
-    "name": "signWall",
-    "hardness": 1,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "69": {
-    "id": 69,
-    "displayName": "Lever",
-    "name": "lever",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "70": {
-    "id": 70,
-    "displayName": "Stone Pressure Plate",
-    "name": "stonePressurePlate",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "71": {
-    "id": 71,
-    "displayName": "Iron Door",
-    "name": "doorIron",
-    "hardness": 5,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "72": {
-    "id": 72,
-    "displayName": "Wooden Pressure Plate",
-    "name": "woodPressurePlate",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "wood"
-  },
-  "73": {
-    "id": 73,
-    "displayName": "Redstone Ore",
-    "name": "oreRedstone",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "74": {
-    "id": 74,
-    "displayName": "Glowing Redstone Ore",
-    "name": "oreRedstoneGlowing",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "75": {
-    "id": 75,
-    "displayName": "Redstone Torch (Inactive)",
-    "name": "notGateInactive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "76": {
-    "id": 76,
-    "displayName": "Redstone Torch (Active)",
-    "name": "notGateActive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "77": {
-    "id": 77,
-    "displayName": "Stone Button",
-    "name": "buttonStone",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "78": {
-    "id": 78,
-    "displayName": "Snow",
-    "name": "snow",
-    "hardness": 0.1,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "dirt",
-    "harvestTools": {
-      "269": true,
-      "273": true,
-      "256": true,
-      "277": true,
-      "284": true
-    }
-  },
-  "79": {
-    "id": 79,
-    "displayName": "Ice",
-    "name": "ice",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock"
-  },
-  "80": {
-    "id": 80,
-    "displayName": "Snow Block",
-    "name": "snowBlock",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt",
-    "harvestTools": {
-      "269": true,
-      "273": true,
-      "256": true,
-      "277": true,
-      "284": true
-    }
-  },
-  "81": {
-    "id": 81,
-    "displayName": "Cactus",
-    "name": "cactus",
-    "hardness": 0.4,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "82": {
-    "id": 82,
-    "displayName": "Clay",
-    "name": "clay",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "83": {
-    "id": 83,
-    "displayName": "Sugar cane",
-    "name": "reeds",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "84": {
-    "id": 84,
-    "displayName": "Jukebox",
-    "name": "jukebox",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "85": {
-    "id": 85,
-    "displayName": "Fence",
-    "name": "fence",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "86": {
-    "id": 86,
-    "displayName": "Pumpkin",
-    "name": "pumpkin",
-    "hardness": 1,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "plant"
-  },
-  "87": {
-    "id": 87,
-    "displayName": "Netherrack",
-    "name": "hellrock",
-    "hardness": 0.4,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "88": {
-    "id": 88,
-    "displayName": "Soul Sand",
-    "name": "hellsand",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "89": {
-    "id": 89,
-    "displayName": "Glowstone",
-    "name": "lightgem",
-    "hardness": 0.3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "90": {
-    "id": 90,
-    "displayName": "Portal",
-    "name": "portal",
-    "hardness": null,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "91": {
-    "id": 91,
-    "displayName": "Jack 'o' Lantern",
-    "name": "litpumpkin",
-    "hardness": 1,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "plant"
-  },
-  "92": {
-    "id": 92,
-    "displayName": "Cake",
-    "name": "cake",
-    "hardness": 0.5,
-    "stackSize": 1,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "93": {
-    "id": 93,
-    "displayName": "Redstone Repeater (Inactive)",
-    "name": "redstoneRepeaterInactive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "94": {
-    "id": 94,
-    "displayName": "Redstone Repeater (Active)",
-    "name": "redstoneRepeaterActive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "95": {
-    "id": 95,
-    "displayName": "Locked chest",
-    "name": "lockedchest",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "96": {
-    "id": 96,
-    "displayName": "Trapdoor",
-    "name": "trapdoor",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "97": {
-    "id": 97,
-    "displayName": "Monster Egg",
-    "name": "monsterStoneEgg",
-    "hardness": 0.75,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "98": {
-    "id": 98,
-    "displayName": "Stone Brick",
-    "name": "stonebricksmooth",
-    "hardness": 1.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "99": {
-    "id": 99,
-    "displayName": "Huge Brown Mushroom",
-    "name": "mushroomHugeBrown",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "100": {
-    "id": 100,
-    "displayName": "Huge Red Mushroom",
-    "name": "mushroomHugeRed",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "101": {
-    "id": 101,
-    "displayName": "Iron Bars",
-    "name": "fenceIron",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "102": {
-    "id": 102,
-    "displayName": "Glass Pane",
-    "name": "thinGlass",
-    "hardness": 0.3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "103": {
-    "id": 103,
-    "displayName": "Melon",
-    "name": "melon",
-    "hardness": 1,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "melon"
-  },
-  "104": {
-    "id": 104,
-    "displayName": "Pumpkin Stem",
-    "name": "pumpkinStem",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "105": {
-    "id": 105,
-    "displayName": "Melon Stem",
-    "name": "melonStem",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "106": {
-    "id": 106,
-    "displayName": "Vines",
-    "name": "vine",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "plant"
-  },
-  "107": {
-    "id": 107,
-    "displayName": "Fence Gate",
-    "name": "fenceGate",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "108": {
-    "id": 108,
-    "displayName": "Brick Stairs",
-    "name": "stairsBrick",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "109": {
-    "id": 109,
-    "displayName": "Stone Brick Stairs",
-    "name": "stairsStoneBrickSmooth",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "110": {
-    "id": 110,
-    "displayName": "Mycelium",
-    "name": "mycel",
-    "hardness": 0.6,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "dirt"
-  },
-  "111": {
-    "id": 111,
-    "displayName": "Lily Pad",
-    "name": "waterlily",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "112": {
-    "id": 112,
-    "displayName": "Nether Brick",
-    "name": "netherBrick",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "113": {
-    "id": 113,
-    "displayName": "Nether Brick Fence",
-    "name": "netherFence",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "114": {
-    "id": 114,
-    "displayName": "Nether Brick Stairs",
-    "name": "stairsNetherBrick",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "115": {
-    "id": 115,
-    "displayName": "Nether Wart",
-    "name": "netherStalk",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "116": {
-    "id": 116,
-    "displayName": "Enchantment Table",
-    "name": "enchantmentTable",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "117": {
-    "id": 117,
-    "displayName": "Brewing Stand",
-    "name": "brewingStand",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "118": {
-    "id": 118,
-    "displayName": "Cauldron",
-    "name": "cauldron",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "119": {
-    "id": 119,
-    "name": "endPortal",
-    "displayName": "End Portal",
-    "hardness": null,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "empty"
-  },
-  "120": {
-    "id": 120,
-    "displayName": "End Portal Frame",
-    "name": "endPortalFrame",
-    "hardness": null,
-    "stackSize": 64,
-    "diggable": false,
-    "boundingBox": "block"
-  },
-  "121": {
-    "id": 121,
-    "displayName": "End Stone",
-    "name": "whiteStone",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "122": {
-    "id": 122,
-    "displayName": "Dragon Egg",
-    "name": "dragonEgg",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "123": {
-    "id": 123,
-    "displayName": "Redstone Lamp (Inactive)",
-    "name": "redstoneLightInactive",
-    "hardness": 0.3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "124": {
-    "id": 124,
-    "displayName": "Redstone Lamp (Active)",
-    "name": "redstoneLightActive",
-    "hardness": 0.3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "125": {
-    "id": 125,
-    "displayName": "Wooden Double Slab",
-    "name": "woodSlabDouble",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "126": {
-    "id": 126,
-    "displayName": "Wooden Slab",
-    "name": "woodSlab",
-    "hardness": 2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "127": {
-    "id": 127,
-    "displayName": "Cocoa Pod",
-    "name": "cocoa",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "plant"
-  },
-  "128": {
-    "id": 128,
-    "displayName": "Sandstone Stairs",
-    "name": "stairsSandStone",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "129": {
-    "id": 129,
-    "displayName": "Emerald Ore",
-    "name": "oreEmerald",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "130": {
-    "id": 130,
-    "displayName": "Ender Chest",
-    "name": "enderChest",
-    "hardness": 22.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "131": {
-    "id": 131,
-    "displayName": "Tripwire Hook",
-    "name": "tripWireSource",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "132": {
-    "id": 132,
-    "displayName": "Tripwire",
-    "name": "tripWire",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "133": {
-    "id": 133,
-    "displayName": "Block of Emerald",
-    "name": "blockEmerald",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "257": true,
-      "278": true
-    }
-  },
-  "134": {
-    "id": 134,
-    "displayName": "Spruce Wood Stairs",
-    "name": "stairsWoodSpruce",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "135": {
-    "id": 135,
-    "displayName": "Birch Wood Stairs",
-    "name": "stairsWoodBirch",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "136": {
-    "id": 136,
-    "displayName": "Jungle Wood Stairs",
-    "name": "stairsWoodJungle",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "137": {
-    "id": 137,
-    "displayName": "Command Block",
-    "name": "commandBlock",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "138": {
-    "id": 138,
-    "displayName": "Beacon",
-    "name": "beacon",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "139": {
-    "id": 139,
-    "displayName": "Cobblestone Wall",
-    "name": "cobbleWall",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "140": {
-    "id": 140,
-    "displayName": "Flower Pot",
-    "name": "flowerPot",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "141": {
-    "id": 141,
-    "displayName": "Carrots",
-    "name": "carrots",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "142": {
-    "id": 142,
-    "displayName": "Potatoes",
-    "name": "potatoes",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "143": {
-    "id": 143,
-    "displayName": "Wooden Button",
-    "name": "buttonWood",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty"
-  },
-  "144": {
-    "id": 144,
-    "displayName": "Mob Head",
-    "name": "skull",
-    "hardness": 1,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "145": {
-    "id": 145,
-    "displayName": "Anvil",
-    "name": "anvil",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "146": {
-    "id": 146,
-    "displayName": "Trapped Chest",
-    "name": "trappedChest",
-    "hardness": 2.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "147": {
-    "id": 147,
-    "displayName": "Weighted Pressure plate (Light)",
-    "name": "pressurePlateWeightedLight",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "148": {
-    "id": 148,
-    "displayName": "Weighted Pressure plate (Heavy)",
-    "name": "pressurePlateWeightedHeavy",
-    "hardness": 0.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "149": {
-    "id": 149,
-    "displayName": "Redstone Comparator (Inactive)",
-    "name": "redstoneComparatorInactive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "150": {
-    "id": 150,
-    "displayName": "Redstone Comparator (Active)",
-    "name": "redstoneComparatorActive",
-    "hardness": 0,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block"
-  },
-  "151": {
-    "id": 151,
-    "displayName": "Daylight Sensor",
-    "name": "daylightSensor",
-    "hardness": 0.2,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "wood"
-  },
-  "152": {
-    "id": 152,
-    "displayName": "Block of Redstone",
-    "name": "redstoneBlock",
-    "hardness": 5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "153": {
-    "id": 153,
-    "displayName": "Nether Quartz Ore",
-    "name": "netherQuartzOre",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "154": {
-    "id": 154,
-    "displayName": "Hopper",
-    "name": "hopper",
-    "hardness": 3,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "155": {
-    "id": 155,
-    "displayName": "Block of Quartz",
-    "name": "quartzBlock",
-    "hardness": 0.8,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "156": {
-    "id": 156,
-    "displayName": "Quartz Stairs",
-    "name": "quartzStairs",
-    "hardness": 0.8,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  },
-  "157": {
-    "id": 157,
-    "displayName": "Activator Rail",
-    "name": "activatorRail",
-    "hardness": 0.7,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "empty",
-    "material": "rock"
-  },
-  "158": {
-    "id": 158,
-    "displayName": "Dropper",
-    "name": "dropper",
-    "hardness": 3.5,
-    "stackSize": 64,
-    "diggable": true,
-    "boundingBox": "block",
-    "material": "rock",
-    "harvestTools": {
-      "270": true,
-      "274": true,
-      "257": true,
-      "278": true,
-      "285": true
-    }
-  }
-}
-
-},{}],139:[function(require,module,exports){
-module.exports={
-  "0": {
-    "id": 0,
-    "name": "harp"
-  },
-  "1": {
-    "id": 1,
-    "name": "doubleBass"
-  },
-  "2": {
-    "id": 2,
-    "name": "snareDrum"
-  },
-  "3": {
-    "id": 3,
-    "name": "sticks"
-  },
-  "4": {
-    "id": 4,
-    "name": "bassDrum"
-  }
-}
-
-},{}],140:[function(require,module,exports){
-module.exports={
-  "256": {
-    "id": 256,
-    "displayName": "Iron Shovel",
-    "stackSize": 1,
-    "name": "shovelIron"
-  },
-  "257": {
-    "id": 257,
-    "displayName": "Iron Pickaxe",
-    "stackSize": 1,
-    "name": "pickaxeIron"
-  },
-  "258": {
-    "id": 258,
-    "displayName": "Iron Axe",
-    "stackSize": 1,
-    "name": "hatchetIron"
-  },
-  "259": {
-    "id": 259,
-    "displayName": "Flint and Steel",
-    "stackSize": 1,
-    "name": "flintAndSteel"
-  },
-  "260": {
-    "id": 260,
-    "displayName": "Apple",
-    "stackSize": 64,
-    "name": "apple"
-  },
-  "261": {
-    "id": 261,
-    "displayName": "Bow",
-    "stackSize": 1,
-    "name": "bow"
-  },
-  "262": {
-    "id": 262,
-    "displayName": "Arrow",
-    "stackSize": 64,
-    "name": "arrow"
-  },
-  "263": {
-    "id": 263,
-    "displayName": "Coal",
-    "stackSize": 64,
-    "name": "coal"
-  },
-  "264": {
-    "id": 264,
-    "displayName": "Diamond",
-    "stackSize": 64,
-    "name": "diamond"
-  },
-  "265": {
-    "id": 265,
-    "displayName": "Iron Ingot",
-    "stackSize": 64,
-    "name": "ingotIron"
-  },
-  "266": {
-    "id": 266,
-    "displayName": "Gold Ingot",
-    "stackSize": 64,
-    "name": "ingotGold"
-  },
-  "267": {
-    "id": 267,
-    "displayName": "Iron Sword",
-    "stackSize": 1,
-    "name": "swordIron"
-  },
-  "268": {
-    "id": 268,
-    "displayName": "Wooden Sword",
-    "stackSize": 1,
-    "name": "swordWood"
-  },
-  "269": {
-    "id": 269,
-    "displayName": "Wooden Shovel",
-    "stackSize": 1,
-    "name": "shovelWood"
-  },
-  "270": {
-    "id": 270,
-    "displayName": "Wooden Pickaxe",
-    "stackSize": 1,
-    "name": "pickaxeWood"
-  },
-  "271": {
-    "id": 271,
-    "displayName": "Wooden Axe",
-    "stackSize": 1,
-    "name": "hatchetWood"
-  },
-  "272": {
-    "id": 272,
-    "displayName": "Stone Sword",
-    "stackSize": 1,
-    "name": "swordStone"
-  },
-  "273": {
-    "id": 273,
-    "displayName": "Stone Shovel",
-    "stackSize": 1,
-    "name": "shovelStone"
-  },
-  "274": {
-    "id": 274,
-    "displayName": "Stone Pickaxe",
-    "stackSize": 1,
-    "name": "pickaxeStone"
-  },
-  "275": {
-    "id": 275,
-    "displayName": "Stone Axe",
-    "stackSize": 1,
-    "name": "hatchetStone"
-  },
-  "276": {
-    "id": 276,
-    "displayName": "Diamond Sword",
-    "stackSize": 1,
-    "name": "swordDiamond"
-  },
-  "277": {
-    "id": 277,
-    "displayName": "Diamond Shovel",
-    "stackSize": 1,
-    "name": "shovelDiamond"
-  },
-  "278": {
-    "id": 278,
-    "displayName": "Diamond Pickaxe",
-    "stackSize": 1,
-    "name": "pickaxeDiamond"
-  },
-  "279": {
-    "id": 279,
-    "displayName": "Diamond Axe",
-    "stackSize": 1,
-    "name": "hatchetDiamond"
-  },
-  "280": {
-    "id": 280,
-    "displayName": "Stick",
-    "stackSize": 64,
-    "name": "stick"
-  },
-  "281": {
-    "id": 281,
-    "displayName": "Bowl",
-    "stackSize": 64,
-    "name": "bowl"
-  },
-  "282": {
-    "id": 282,
-    "displayName": "Mushroom Stew",
-    "stackSize": 64,
-    "name": "mushroomStew"
-  },
-  "283": {
-    "id": 283,
-    "displayName": "Golden Sword",
-    "stackSize": 1,
-    "name": "swordGold"
-  },
-  "284": {
-    "id": 284,
-    "displayName": "Golden Shovel",
-    "stackSize": 1,
-    "name": "shovelGold"
-  },
-  "285": {
-    "id": 285,
-    "displayName": "Golden Pickaxe",
-    "stackSize": 1,
-    "name": "pickaxeGold"
-  },
-  "286": {
-    "id": 286,
-    "displayName": "Golden Axe",
-    "stackSize": 1,
-    "name": "hatchetGold"
-  },
-  "287": {
-    "id": 287,
-    "displayName": "String",
-    "stackSize": 64,
-    "name": "string"
-  },
-  "288": {
-    "id": 288,
-    "displayName": "Feather",
-    "stackSize": 64,
-    "name": "feather"
-  },
-  "289": {
-    "id": 289,
-    "displayName": "Gunpowder",
-    "stackSize": 64,
-    "name": "sulphur"
-  },
-  "290": {
-    "id": 290,
-    "displayName": "Wooden Hoe",
-    "stackSize": 1,
-    "name": "hoeWood"
-  },
-  "291": {
-    "id": 291,
-    "displayName": "Stone Hoe",
-    "stackSize": 1,
-    "name": "hoeStone"
-  },
-  "292": {
-    "id": 292,
-    "displayName": "Iron Hoe",
-    "stackSize": 1,
-    "name": "hoeIron"
-  },
-  "293": {
-    "id": 293,
-    "displayName": "Diamond Hoe",
-    "stackSize": 1,
-    "name": "hoeDiamond"
-  },
-  "294": {
-    "id": 294,
-    "displayName": "Golden Hoe",
-    "stackSize": 1,
-    "name": "hoeGold"
-  },
-  "295": {
-    "id": 295,
-    "displayName": "Seeds",
-    "stackSize": 64,
-    "name": "seeds"
-  },
-  "296": {
-    "id": 296,
-    "displayName": "Wheat",
-    "stackSize": 64,
-    "name": "wheat"
-  },
-  "297": {
-    "id": 297,
-    "displayName": "Bread",
-    "stackSize": 64,
-    "name": "bread"
-  },
-  "298": {
-    "id": 298,
-    "displayName": "Leather Cap",
-    "stackSize": 1,
-    "name": "helmetCloth"
-  },
-  "299": {
-    "id": 299,
-    "displayName": "Leather Tunic",
-    "stackSize": 1,
-    "name": "chestplateCloth"
-  },
-  "300": {
-    "id": 300,
-    "displayName": "Leather Pants",
-    "stackSize": 1,
-    "name": "leggingsCloth"
-  },
-  "301": {
-    "id": 301,
-    "displayName": "Leather Boots",
-    "stackSize": 1,
-    "name": "bootsCloth"
-  },
-  "302": {
-    "id": 302,
-    "displayName": "Chain Helmet",
-    "stackSize": 1,
-    "name": "helmetChain"
-  },
-  "303": {
-    "id": 303,
-    "displayName": "Chain Chestplate",
-    "stackSize": 1,
-    "name": "chestplateChain"
-  },
-  "304": {
-    "id": 304,
-    "displayName": "Chain Leggings",
-    "stackSize": 1,
-    "name": "leggingsChain"
-  },
-  "305": {
-    "id": 305,
-    "displayName": "Chain Boots",
-    "stackSize": 1,
-    "name": "bootsChain"
-  },
-  "306": {
-    "id": 306,
-    "displayName": "Iron Helmet",
-    "stackSize": 1,
-    "name": "helmetIron"
-  },
-  "307": {
-    "id": 307,
-    "displayName": "Iron Chestplate",
-    "stackSize": 1,
-    "name": "chestplateIron"
-  },
-  "308": {
-    "id": 308,
-    "displayName": "Iron Leggings",
-    "stackSize": 1,
-    "name": "leggingsIron"
-  },
-  "309": {
-    "id": 309,
-    "displayName": "Iron Boots",
-    "stackSize": 1,
-    "name": "bootsIron"
-  },
-  "310": {
-    "id": 310,
-    "displayName": "Diamond Helmet",
-    "stackSize": 1,
-    "name": "helmetDiamond"
-  },
-  "311": {
-    "id": 311,
-    "displayName": "Diamond Chestplate",
-    "stackSize": 1,
-    "name": "chestplateDiamond"
-  },
-  "312": {
-    "id": 312,
-    "displayName": "Diamond Leggings",
-    "stackSize": 1,
-    "name": "leggingsDiamond"
-  },
-  "313": {
-    "id": 313,
-    "displayName": "Diamond Boots",
-    "stackSize": 1,
-    "name": "bootsDiamond"
-  },
-  "314": {
-    "id": 314,
-    "displayName": "Golden Helmet",
-    "stackSize": 1,
-    "name": "helmetGold"
-  },
-  "315": {
-    "id": 315,
-    "displayName": "Golden Chestplate",
-    "stackSize": 1,
-    "name": "chestplateGold"
-  },
-  "316": {
-    "id": 316,
-    "displayName": "Golden Leggings",
-    "stackSize": 1,
-    "name": "leggingsGold"
-  },
-  "317": {
-    "id": 317,
-    "displayName": "Golden Boots",
-    "stackSize": 1,
-    "name": "bootsGold"
-  },
-  "318": {
-    "id": 318,
-    "displayName": "Flint",
-    "stackSize": 64,
-    "name": "flint"
-  },
-  "319": {
-    "id": 319,
-    "displayName": "Raw Porkchop",
-    "stackSize": 64,
-    "name": "porkchopRaw"
-  },
-  "320": {
-    "id": 320,
-    "displayName": "Cooked Porkchop",
-    "stackSize": 64,
-    "name": "porkchopCooked"
-  },
-  "321": {
-    "id": 321,
-    "displayName": "Painting",
-    "stackSize": 64,
-    "name": "painting"
-  },
-  "322": {
-    "id": 322,
-    "displayName": "Golden Apple",
-    "stackSize": 64,
-    "name": "appleGold"
-  },
-  "323": {
-    "id": 323,
-    "displayName": "Sign",
-    "stackSize": 1,
-    "name": "sign"
-  },
-  "324": {
-    "id": 324,
-    "displayName": "Wooden Door",
-    "stackSize": 1,
-    "name": "doorWood"
-  },
-  "325": {
-    "id": 325,
-    "displayName": "Bucket",
-    "name": "bucket",
-    "stackSize": 16
-  },
-  "326": {
-    "id": 326,
-    "displayName": "Water Bucket",
-    "stackSize": 1,
-    "name": "bucketWater"
-  },
-  "327": {
-    "id": 327,
-    "displayName": "Lava Bucket",
-    "stackSize": 1,
-    "name": "bucketLava"
-  },
-  "328": {
-    "id": 328,
-    "displayName": "Minecart",
-    "stackSize": 1,
-    "name": "minecart"
-  },
-  "329": {
-    "id": 329,
-    "displayName": "Saddle",
-    "stackSize": 1,
-    "name": "saddle"
-  },
-  "330": {
-    "id": 330,
-    "displayName": "Iron Door",
-    "stackSize": 1,
-    "name": "doorIron"
-  },
-  "331": {
-    "id": 331,
-    "displayName": "Redstone",
-    "stackSize": 64,
-    "name": "redstone"
-  },
-  "332": {
-    "id": 332,
-    "displayName": "Snowball",
-    "stackSize": 16,
-    "name": "snowball"
-  },
-  "333": {
-    "id": 333,
-    "displayName": "Boat",
-    "stackSize": 1,
-    "name": "boat"
-  },
-  "334": {
-    "id": 334,
-    "displayName": "Leather",
-    "stackSize": 64,
-    "name": "leather"
-  },
-  "335": {
-    "id": 335,
-    "displayName": "Milk",
-    "stackSize": 1,
-    "name": "milk"
-  },
-  "336": {
-    "id": 336,
-    "displayName": "Brick",
-    "stackSize": 64,
-    "name": "brick"
-  },
-  "337": {
-    "id": 337,
-    "displayName": "Clay",
-    "stackSize": 64,
-    "name": "clay"
-  },
-  "338": {
-    "id": 338,
-    "displayName": "Sugar Canes",
-    "stackSize": 64,
-    "name": "reeds"
-  },
-  "339": {
-    "id": 339,
-    "displayName": "Paper",
-    "stackSize": 64,
-    "name": "paper"
-  },
-  "340": {
-    "id": 340,
-    "displayName": "Book",
-    "stackSize": 64,
-    "name": "book"
-  },
-  "341": {
-    "id": 341,
-    "displayName": "Slimeball",
-    "stackSize": 64,
-    "name": "slimeball"
-  },
-  "342": {
-    "id": 342,
-    "displayName": "Minecart with Chest",
-    "stackSize": 1,
-    "name": "minecartChest"
-  },
-  "343": {
-    "id": 343,
-    "displayName": "Minecart with Furnace",
-    "stackSize": 1,
-    "name": "minecartFurnace"
-  },
-  "344": {
-    "id": 344,
-    "displayName": "Egg",
-    "stackSize": 16,
-    "name": "egg"
-  },
-  "345": {
-    "id": 345,
-    "displayName": "Compass",
-    "stackSize": 64,
-    "name": "compass"
-  },
-  "346": {
-    "id": 346,
-    "displayName": "Fishing Rod",
-    "stackSize": 1,
-    "name": "fishingRod"
-  },
-  "347": {
-    "id": 347,
-    "displayName": "Clock",
-    "stackSize": 64,
-    "name": "clock"
-  },
-  "348": {
-    "id": 348,
-    "displayName": "Glowstone Dust",
-    "stackSize": 64,
-    "name": "yellowDust"
-  },
-  "349": {
-    "id": 349,
-    "displayName": "Raw Fish",
-    "stackSize": 64,
-    "name": "fishRaw"
-  },
-  "350": {
-    "id": 350,
-    "displayName": "Cooked Fish",
-    "stackSize": 64,
-    "name": "fishCooked"
-  },
-  "351": {
-    "id": 351,
-    "stackSize": 64,
-    "displayName": "Dye",
-    "name": "dyePowder"
-  },
-  "352": {
-    "id": 352,
-    "displayName": "Bone",
-    "stackSize": 64,
-    "name": "bone"
-  },
-  "353": {
-    "id": 353,
-    "displayName": "Sugar",
-    "stackSize": 64,
-    "name": "sugar"
-  },
-  "354": {
-    "id": 354,
-    "displayName": "Cake",
-    "name": "cake",
-    "stackSize": 1
-  },
-  "355": {
-    "id": 355,
-    "displayName": "Bed",
-    "name": "bed",
-    "stackSize": 1
-  },
-  "356": {
-    "id": 356,
-    "displayName": "Redstone Repeater",
-    "stackSize": 64,
-    "name": "diode"
-  },
-  "357": {
-    "id": 357,
-    "displayName": "Cookie",
-    "stackSize": 8,
-    "name": "cookie"
-  },
-  "358": {
-    "id": 358,
-    "displayName": "Map",
-    "stackSize": 1,
-    "name": "map"
-  },
-  "359": {
-    "id": 359,
-    "displayName": "Shears",
-    "stackSize": 1,
-    "name": "shears"
-  },
-  "360": {
-    "id": 360,
-    "displayName": "Melon",
-    "stackSize": 64,
-    "name": "melon"
-  },
-  "361": {
-    "id": 361,
-    "displayName": "Pumpkin Seeds",
-    "stackSize": 64,
-    "name": "seeds_pumpkin"
-  },
-  "362": {
-    "id": 362,
-    "displayName": "Melon Seeds",
-    "stackSize": 64,
-    "name": "seeds_melon"
-  },
-  "363": {
-    "id": 363,
-    "displayName": "Raw Beef",
-    "stackSize": 64,
-    "name": "beefRaw"
-  },
-  "364": {
-    "id": 364,
-    "displayName": "Steak",
-    "stackSize": 64,
-    "name": "beefCooked"
-  },
-  "365": {
-    "id": 365,
-    "displayName": "Raw Chicken",
-    "stackSize": 64,
-    "name": "chickenRaw"
-  },
-  "366": {
-    "id": 366,
-    "displayName": "Cooked Chicken",
-    "stackSize": 64,
-    "name": "chickenCooked"
-  },
-  "367": {
-    "id": 367,
-    "displayName": "Rotten Flesh",
-    "stackSize": 64,
-    "name": "rottenFlesh"
-  },
-  "368": {
-    "id": 368,
-    "displayName": "Ender Pearl",
-    "stackSize": 64,
-    "name": "enderPearl"
-  },
-  "369": {
-    "id": 369,
-    "displayName": "Blaze Rod",
-    "stackSize": 64,
-    "name": "blazeRod"
-  },
-  "370": {
-    "id": 370,
-    "displayName": "Ghast Tear",
-    "stackSize": 64,
-    "name": "ghastTear"
-  },
-  "371": {
-    "id": 371,
-    "displayName": "Gold Nugget",
-    "stackSize": 64,
-    "name": "goldNugget"
-  },
-  "372": {
-    "id": 372,
-    "displayName": "Nether Wart",
-    "stackSize": 64,
-    "name": "netherStalkSeeds"
-  },
-  "373": {
-    "id": 373,
-    "displayName": "Potion",
-    "stackSize": 1,
-    "name": "potion"
-  },
-  "374": {
-    "id": 374,
-    "displayName": "Glass Bottle",
-    "stackSize": 64,
-    "name": "glassBottle"
-  },
-  "375": {
-    "id": 375,
-    "displayName": "Spider Eye",
-    "stackSize": 64,
-    "name": "spiderEye"
-  },
-  "376": {
-    "id": 376,
-    "displayName": "Fermented Spider Eye",
-    "stackSize": 64,
-    "name": "fermentedSpiderEye"
-  },
-  "377": {
-    "id": 377,
-    "displayName": "Blaze Powder",
-    "stackSize": 64,
-    "name": "blazePowder"
-  },
-  "378": {
-    "id": 378,
-    "displayName": "Magma Cream",
-    "stackSize": 64,
-    "name": "magmaCream"
-  },
-  "379": {
-    "id": 379,
-    "displayName": "Brewing Stand",
-    "stackSize": 64,
-    "name": "brewingStand"
-  },
-  "380": {
-    "id": 380,
-    "displayName": "Cauldron",
-    "stackSize": 1,
-    "name": "cauldron"
-  },
-  "381": {
-    "id": 381,
-    "displayName": "Eye of Ender",
-    "stackSize": 1,
-    "name": "eyeOfEnder"
-  },
-  "382": {
-    "id": 382,
-    "displayName": "Glistering Melon",
-    "stackSize": 64,
-    "name": "speckledMelon"
-  },
-  "383": {
-    "id": 383,
-    "displayName": "Spawn",
-    "stackSize": 64,
-    "name": "monsterPlacer"
-  },
-  "384": {
-    "id": 384,
-    "displayName": "Bottle o' Enchanting",
-    "stackSize": 64,
-    "name": "expBottle"
-  },
-  "385": {
-    "id": 385,
-    "displayName": "Fire Charge",
-    "stackSize": 64,
-    "name": "fireball"
-  },
-  "386": {
-    "id": 386,
-    "displayName": "Book and Quill",
-    "stackSize": 1,
-    "name": "writingBook"
-  },
-  "387": {
-    "id": 387,
-    "displayName": "Written Book",
-    "stackSize": 1,
-    "name": "writtenBook"
-  },
-  "388": {
-    "id": 388,
-    "displayName": "Emerald",
-    "stackSize": 64,
-    "name": "emerald"
-  },
-  "389": {
-    "id": 389,
-    "displayName": "Item Frame",
-    "stackSize": 64,
-    "name": "frame"
-  },
-  "390": {
-    "id": 390,
-    "displayName": "Flower Pot",
-    "stackSize": 64,
-    "name": "flowerPot"
-  },
-  "391": {
-    "id": 391,
-    "displayName": "Carrot",
-    "stackSize": 64,
-    "name": "carrots"
-  },
-  "392": {
-    "id": 392,
-    "displayName": "Potato",
-    "stackSize": 64,
-    "name": "potato"
-  },
-  "393": {
-    "id": 393,
-    "displayName": "Baked Potato",
-    "stackSize": 64,
-    "name": "potatoBaked"
-  },
-  "394": {
-    "id": 394,
-    "displayName": "Poisonous Potato",
-    "stackSize": 64,
-    "name": "potatoPoisonous"
-  },
-  "395": {
-    "id": 395,
-    "displayName": "Empty Map",
-    "stackSize": 64,
-    "name": "emptyMap"
-  },
-  "396": {
-    "id": 396,
-    "displayName": "Golden Carrot",
-    "stackSize": 64,
-    "name": "carrotGolden"
-  },
-  "397": {
-    "id": 397,
-    "stackSize": 64,
-    "displayName": "Mob Head",
-    "name": "skull"
-  },
-  "398": {
-    "id": 398,
-    "displayName": "Carrot on a Stick",
-    "stackSize": 64,
-    "name": "carrotOnAStick"
-  },
-  "399": {
-    "id": 399,
-    "displayName": "Nether Star",
-    "stackSize": 64,
-    "name": "netherStar"
-  },
-  "400": {
-    "id": 400,
-    "displayName": "Pumpkin Pie",
-    "stackSize": 64,
-    "name": "pumpkinPie"
-  },
-  "401": {
-    "id": 401,
-    "displayName": "Firework Rocket",
-    "stackSize": 64,
-    "name": "fireworks"
-  },
-  "402": {
-    "id": 402,
-    "displayName": "Firework Star",
-    "stackSize": 64,
-    "name": "fireworksCharge"
-  },
-  "403": {
-    "id": 403,
-    "displayName": "Enchanted Book",
-    "name": "enchantedBook",
-    "stackSize": 1
-  },
-  "2256": {
-    "id": 2256,
-    "displayName": "13 Disc",
-    "stackSize": 1,
-    "name": "record13"
-  },
-  "2257": {
-    "id": 2257,
-    "displayName": "Cat Disc",
-    "stackSize": 1,
-    "name": "recordCat"
-  },
-  "2258": {
-    "id": 2258,
-    "displayName": "Blocks Disc",
-    "stackSize": 1,
-    "name": "recordBlocks"
-  },
-  "2259": {
-    "id": 2259,
-    "displayName": "Chirp Disc",
-    "stackSize": 1,
-    "name": "recordChirp"
-  },
-  "2260": {
-    "id": 2260,
-    "displayName": "Far Disc",
-    "stackSize": 1,
-    "name": "recordFar"
-  },
-  "2261": {
-    "id": 2261,
-    "displayName": "Mall Disc",
-    "stackSize": 1,
-    "name": "recordMall"
-  },
-  "2262": {
-    "id": 2262,
-    "displayName": "Mellohi Disc",
-    "stackSize": 1,
-    "name": "recordMellohi"
-  },
-  "2263": {
-    "id": 2263,
-    "displayName": "Stal Disc",
-    "stackSize": 1,
-    "name": "recordStal"
-  },
-  "2264": {
-    "id": 2264,
-    "displayName": "Strad Disc",
-    "stackSize": 1,
-    "name": "recordStrad"
-  },
-  "2265": {
-    "id": 2265,
-    "displayName": "Ward Disc",
-    "stackSize": 1,
-    "name": "recordWard"
-  },
-  "2266": {
-    "id": 2266,
-    "displayName": "11 Disc",
-    "stackSize": 1,
-    "name": "record11"
-  },
-  "2267": {
-    "id": 2267,
-    "displayName": "Wait Disc",
-    "stackSize": 1,
-    "name": "recordWait"
-  }
-}
-
-},{}],141:[function(require,module,exports){
-module.exports={
-  "rock": {
-    "257": 6,
-    "270": 2,
-    "274": 4,
-    "278": 8,
-    "285": 12
-  },
-  "wood": {
-    "258": 6,
-    "271": 2,
-    "275": 4,
-    "279": 8,
-    "286": 12
-  },
-  "plant": {
-    "258": 6,
-    "267": 1.5,
-    "268": 1.5,
-    "271": 2,
-    "272": 1.5,
-    "275": 4,
-    "276": 1.5,
-    "279": 8,
-    "283": 1.5,
-    "286": 12
-  },
-  "melon": {
-    "267": 1.5,
-    "268": 1.5,
-    "272": 1.5,
-    "276": 1.5,
-    "283": 1.5
-  },
-  "leaves": {
-    "267": 1.5,
-    "268": 1.5,
-    "272": 1.5,
-    "276": 1.5,
-    "283": 1.5,
-    "359": 6
-  },
-  "dirt": {
-    "256": 6,
-    "269": 2,
-    "273": 4,
-    "277": 8,
-    "284": 12
-  },
-  "web": {
-    "267": 15,
-    "268": 15,
-    "272": 15,
-    "276": 15,
-    "283": 15,
-    "359": 15
-  },
-  "wool": {
-    "359": 4.8
-  }
-}
-},{}],142:[function(require,module,exports){
-module.exports={
-  "5": [
-    {
-      "type": 5,
-      "count": 4,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 17,
-          "metadata": 0
-        }
-      ]
-    },
-    {
-      "type": 5,
-      "count": 4,
-      "metadata": 1,
-      "ingredients": [
-        {
-          "id": 17,
-          "metadata": 1
-        }
-      ]
-    },
-    {
-      "type": 5,
-      "count": 4,
-      "metadata": 2,
-      "ingredients": [
-        {
-          "id": 17,
-          "metadata": 2
-        }
-      ]
-    },
-    {
-      "type": 5,
-      "count": 4,
-      "metadata": 3,
-      "ingredients": [
-        {
-          "id": 17,
-          "metadata": 3
-        }
-      ]
-    }
-  ],
-  "23": [
-    {
-      "type": 23,
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4,
-          4
-        ],
-        [
-          4,
-          261,
-          4
-        ],
-        [
-          4,
-          331,
-          4
-        ]
-      ]
-    }
-  ],
-  "24": [
-    {
-      "count": 4,
-      "metadata": 2,
-      "inShape": [
-        [
-          24,
-          24
-        ],
-        [
-          24,
-          24
-        ]
-      ],
-      "type": 24
-    },
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          12,
-          12
-        ],
-        [
-          12,
-          12
-        ]
-      ],
-      "type": 24
-    }
-  ],
-  "25": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          5,
-          331,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 25
-    }
-  ],
-  "27": [
-    {
-      "count": 6,
-      "metadata": 0,
-      "inShape": [
-        [
-          266,
-          null,
-          266
-        ],
-        [
-          266,
-          280,
-          266
-        ],
-        [
-          266,
-          331,
-          266
-        ]
-      ],
-      "type": 27
-    }
-  ],
-  "28": [
-    {
-      "count": 6,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          70,
-          265
-        ],
-        [
-          265,
-          331,
-          265
-        ]
-      ],
-      "type": 28
-    }
-  ],
-  "29": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          341
-        ],
-        [
-          33
-        ]
-      ],
-      "type": 29
-    }
-  ],
-  "33": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          4,
-          265,
-          4
-        ],
-        [
-          4,
-          331,
-          4
-        ]
-      ],
-      "type": 33
-    }
-  ],
-  "35": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          287,
-          287
-        ],
-        [
-          287,
-          287
-        ]
-      ],
-      "type": 35
-    }
-  ],
-  "41": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          266,
-          266,
-          266
-        ],
-        [
-          266,
-          266,
-          266
-        ],
-        [
-          266,
-          266,
-          266
-        ]
-      ],
-      "type": 41
-    }
-  ],
-  "42": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 42
-    }
-  ],
-  "44": [
-    {
-      "count": 6,
-      "metadata": 5,
-      "inShape": [
-        [
-          98,
-          98,
-          98
-        ]
-      ],
-      "type": 44
-    },
-    {
-      "count": 6,
-      "metadata": 4,
-      "inShape": [
-        [
-          45,
-          45,
-          45
-        ]
-      ],
-      "type": 44
-    },
-    {
-      "count": 6,
-      "metadata": 1,
-      "inShape": [
-        [
-          24,
-          24,
-          24
-        ]
-      ],
-      "type": 44
-    },
-    {
-      "count": 6,
-      "metadata": 0,
-      "inShape": [
-        [
-          1,
-          1,
-          1
-        ]
-      ],
-      "type": 44
-    },
-    {
-      "count": 6,
-      "metadata": 3,
-      "inShape": [
-        [
-          4,
-          4,
-          4
-        ]
-      ],
-      "type": 44
-    }
-  ],
-  "45": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          336,
-          336
-        ],
-        [
-          336,
-          336
-        ]
-      ],
-      "type": 45
-    }
-  ],
-  "46": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          289,
-          12,
-          289
-        ],
-        [
-          12,
-          289,
-          12
-        ],
-        [
-          289,
-          12,
-          289
-        ]
-      ],
-      "type": 46
-    }
-  ],
-  "47": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          340,
-          340,
-          340
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 47
-    }
-  ],
-  "50": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          263
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 50
-    }
-  ],
-  "54": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          5,
-          null,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 54
-    }
-  ],
-  "57": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          264,
-          264,
-          264
-        ]
-      ],
-      "type": 57
-    }
-  ],
-  "58": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5
-        ],
-        [
-          5,
-          5
-        ]
-      ],
-      "type": 58
-    }
-  ],
-  "61": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4,
-          4
-        ],
-        [
-          4,
-          null,
-          4
-        ],
-        [
-          4,
-          4,
-          4
-        ]
-      ],
-      "type": 61
-    }
-  ],
-  "65": [
-    {
-      "count": 3,
-      "metadata": 0,
-      "inShape": [
-        [
-          280,
-          null,
-          280
-        ],
-        [
-          280,
-          280,
-          280
-        ],
-        [
-          280,
-          null,
-          280
-        ]
-      ],
-      "type": 65
-    }
-  ],
-  "66": [
-    {
-      "count": 16,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          280,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ]
-      ],
-      "type": 66
-    }
-  ],
-  "67": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          null,
-          null
-        ],
-        [
-          4,
-          4,
-          null
-        ],
-        [
-          4,
-          4,
-          4
-        ]
-      ],
-      "type": 67
-    }
-  ],
-  "69": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          280
-        ],
-        [
-          4
-        ]
-      ],
-      "type": 69
-    }
-  ],
-  "70": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          1,
-          1
-        ]
-      ],
-      "type": 70
-    }
-  ],
-  "72": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5
-        ]
-      ],
-      "type": 72
-    }
-  ],
-  "76": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          331
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 76
-    }
-  ],
-  "77": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          1
-        ]
-      ],
-      "type": 77
-    }
-  ],
-  "80": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          332,
-          332
-        ],
-        [
-          332,
-          332
-        ]
-      ],
-      "type": 80
-    }
-  ],
-  "82": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          337,
-          337
-        ],
-        [
-          337,
-          337
-        ]
-      ],
-      "type": 82
-    }
-  ],
-  "84": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          5,
-          264,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 84
-    }
-  ],
-  "85": [
-    {
-      "count": 2,
-      "metadata": 0,
-      "inShape": [
-        [
-          280,
-          280,
-          280
-        ],
-        [
-          280,
-          280,
-          280
-        ]
-      ],
-      "type": 85
-    }
-  ],
-  "89": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          348,
-          348
-        ],
-        [
-          348,
-          348
-        ]
-      ],
-      "type": 89
-    }
-  ],
-  "91": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          86
-        ],
-        [
-          50
-        ]
-      ],
-      "type": 91
-    }
-  ],
-  "96": [
-    {
-      "count": 2,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 96
-    }
-  ],
-  "98": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          1,
-          1
-        ],
-        [
-          1,
-          1
-        ]
-      ],
-      "type": 98
-    }
-  ],
-  "101": [
-    {
-      "count": 16,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 101
-    }
-  ],
-  "102": [
-    {
-      "count": 16,
-      "metadata": 0,
-      "inShape": [
-        [
-          20,
-          20,
-          20
-        ],
-        [
-          20,
-          20,
-          20
-        ]
-      ],
-      "type": 102
-    }
-  ],
-  "103": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          360,
-          360,
-          360
-        ],
-        [
-          360,
-          360,
-          360
-        ],
-        [
-          360,
-          360,
-          360
-        ]
-      ],
-      "type": 103
-    }
-  ],
-  "107": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          280,
-          5,
-          280
-        ],
-        [
-          280,
-          5,
-          280
-        ]
-      ],
-      "type": 107
-    }
-  ],
-  "108": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          45,
-          null,
-          null
-        ],
-        [
-          45,
-          45,
-          null
-        ],
-        [
-          45,
-          45,
-          45
-        ]
-      ],
-      "type": 108
-    }
-  ],
-  "109": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          98,
-          null,
-          null
-        ],
-        [
-          98,
-          98,
-          null
-        ],
-        [
-          98,
-          98,
-          98
-        ]
-      ],
-      "type": 109
-    }
-  ],
-  "113": [
-    {
-      "count": 6,
-      "metadata": 0,
-      "inShape": [
-        [
-          112,
-          112,
-          112
-        ],
-        [
-          112,
-          112,
-          112
-        ]
-      ],
-      "type": 113
-    }
-  ],
-  "114": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          112,
-          null,
-          null
-        ],
-        [
-          112,
-          112,
-          null
-        ],
-        [
-          112,
-          112,
-          112
-        ]
-      ],
-      "type": 114
-    }
-  ],
-  "116": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          340,
-          null
-        ],
-        [
-          264,
-          49,
-          264
-        ],
-        [
-          49,
-          49,
-          49
-        ]
-      ],
-      "type": 116
-    }
-  ],
-  "123": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          331,
-          null
-        ],
-        [
-          331,
-          89,
-          331
-        ],
-        [
-          null,
-          331,
-          null
-        ]
-      ],
-      "type": 123
-    }
-  ],
-  "128": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          24,
-          null,
-          null
-        ],
-        [
-          24,
-          24,
-          null
-        ],
-        [
-          24,
-          24,
-          24
-        ]
-      ],
-      "type": 128
-    }
-  ],
-  "130": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          49,
-          49,
-          49
-        ],
-        [
-          49,
-          381,
-          49
-        ],
-        [
-          49,
-          49,
-          49
-        ]
-      ],
-      "type": 130
-    }
-  ],
-  "131": [
-    {
-      "count": 2,
-      "metadata": 0,
-      "inShape": [
-        [
-          265
-        ],
-        [
-          280
-        ],
-        [
-          5
-        ]
-      ],
-      "type": 131
-    }
-  ],
-  "133": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          388,
-          388,
-          388
-        ],
-        [
-          388,
-          388,
-          388
-        ],
-        [
-          388,
-          388,
-          388
-        ]
-      ],
-      "type": 133
-    }
-  ],
-  "138": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          20,
-          20,
-          20
-        ],
-        [
-          20,
-          399,
-          20
-        ],
-        [
-          49,
-          49,
-          49
-        ]
-      ],
-      "type": 138
-    }
-  ],
-  "139": [
-    {
-      "count": 6,
-      "metadata": 1,
-      "inShape": [
-        [
-          48,
-          48,
-          48
-        ],
-        [
-          48,
-          48,
-          48
-        ]
-      ],
-      "type": 139
-    },
-    {
-      "count": 6,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4,
-          4
-        ],
-        [
-          4,
-          4,
-          4
-        ]
-      ],
-      "type": 139
-    }
-  ],
-  "143": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5
-        ]
-      ],
-      "type": 143
-    }
-  ],
-  "145": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          42,
-          42,
-          42
-        ],
-        [
-          null,
-          265,
-          null
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 145
-    }
-  ],
-  "146": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          131,
-          54
-        ]
-      ],
-      "type": 146
-    }
-  ],
-  "152": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          55,
-          55,
-          55
-        ],
-        [
-          55,
-          55,
-          55
-        ],
-        [
-          55,
-          55,
-          55
-        ]
-      ],
-      "type": 152
-    }
-  ],
-  "154": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          54,
-          265
-        ],
-        [
-          null,
-          265,
-          null
-        ]
-      ],
-      "type": 154
-    }
-  ],
-  "256": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265
-        ],
-        [
-          280
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 256
-    }
-  ],
-  "257": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          null,
-          280,
-          null
-        ],
-        [
-          null,
-          280,
-          null
-        ]
-      ],
-      "type": 257
-    }
-  ],
-  "258": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265
-        ],
-        [
-          265,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 258
-    }
-  ],
-  "259": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null
-        ],
-        [
-          null,
-          318
-        ]
-      ],
-      "type": 259
-    }
-  ],
-  "261": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          280,
-          287
-        ],
-        [
-          280,
-          null,
-          287
-        ],
-        [
-          null,
-          280,
-          287
-        ]
-      ],
-      "type": 261
-    }
-  ],
-  "262": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          318
-        ],
-        [
-          280
-        ],
-        [
-          288
-        ]
-      ],
-      "type": 262
-    }
-  ],
-  "266": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          371,
-          371,
-          371
-        ],
-        [
-          371,
-          371,
-          371
-        ],
-        [
-          371,
-          371,
-          371
-        ]
-      ],
-      "type": 266
-    }
-  ],
-  "267": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265
-        ],
-        [
-          265
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 267
-    }
-  ],
-  "268": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5
-        ],
-        [
-          5
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 268
-    }
-  ],
-  "269": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5
-        ],
-        [
-          280
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 269
-    }
-  ],
-  "270": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          null,
-          280,
-          null
-        ],
-        [
-          null,
-          280,
-          null
-        ]
-      ],
-      "type": 270
-    }
-  ],
-  "271": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5
-        ],
-        [
-          5,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 271
-    }
-  ],
-  "272": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4
-        ],
-        [
-          4
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 272
-    }
-  ],
-  "273": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4
-        ],
-        [
-          280
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 273
-    }
-  ],
-  "274": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4,
-          4
-        ],
-        [
-          null,
-          280,
-          null
-        ],
-        [
-          null,
-          280,
-          null
-        ]
-      ],
-      "type": 274
-    }
-  ],
-  "275": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4
-        ],
-        [
-          4,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 275
-    }
-  ],
-  "276": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264
-        ],
-        [
-          264
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 276
-    }
-  ],
-  "277": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264
-        ],
-        [
-          280
-        ],
-        [
-          280
-        ]
-      ],
-      "type": 277
-    }
-  ],
-  "278": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          null,
-          280,
-          null
-        ],
-        [
-          null,
-          280,
-          null
-        ]
-      ],
-      "type": 278
-    }
-  ],
-  "279": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264
-        ],
-        [
-          264,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 279
-    }
-  ],
-  "280": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          5
-        ],
-        [
-          5
-        ]
-      ],
-      "type": 280
-    }
-  ],
-  "281": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          null,
-          5
-        ],
-        [
-          null,
-          5,
-          null
-        ]
-      ],
-      "type": 281
-    }
-  ],
-  "282": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 281
-        },
-        {
-          "id": 40
-        },
-        {
-          "id": 39
-        }
-      ],
-      "type": 282
-    }
-  ],
-  "290": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5
-        ],
-        [
-          null,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 290
-    }
-  ],
-  "291": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          4,
-          4
-        ],
-        [
-          null,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 291
-    }
-  ],
-  "292": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265
-        ],
-        [
-          null,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 292
-    }
-  ],
-  "293": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264
-        ],
-        [
-          null,
-          280
-        ],
-        [
-          null,
-          280
-        ]
-      ],
-      "type": 293
-    }
-  ],
-  "297": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          296,
-          296,
-          296
-        ]
-      ],
-      "type": 297
-    }
-  ],
-  "298": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          334,
-          334,
-          334
-        ],
-        [
-          334,
-          null,
-          334
-        ]
-      ],
-      "type": 298
-    }
-  ],
-  "299": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          334,
-          null,
-          334
-        ],
-        [
-          334,
-          334,
-          334
-        ],
-        [
-          334,
-          334,
-          334
-        ]
-      ],
-      "type": 299
-    }
-  ],
-  "300": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          334,
-          334,
-          334
-        ],
-        [
-          334,
-          null,
-          334
-        ],
-        [
-          334,
-          null,
-          334
-        ]
-      ],
-      "type": 300
-    }
-  ],
-  "301": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          334,
-          null,
-          334
-        ],
-        [
-          334,
-          null,
-          334
-        ]
-      ],
-      "type": 301
-    }
-  ],
-  "306": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ]
-      ],
-      "type": 306
-    }
-  ],
-  "307": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 307
-    }
-  ],
-  "308": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ]
-      ],
-      "type": 308
-    }
-  ],
-  "309": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ]
-      ],
-      "type": 309
-    }
-  ],
-  "310": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          264,
-          null,
-          264
-        ]
-      ],
-      "type": 310
-    }
-  ],
-  "311": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          null,
-          264
-        ],
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          264,
-          264,
-          264
-        ]
-      ],
-      "type": 311
-    }
-  ],
-  "312": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          264,
-          264
-        ],
-        [
-          264,
-          null,
-          264
-        ],
-        [
-          264,
-          null,
-          264
-        ]
-      ],
-      "type": 312
-    }
-  ],
-  "313": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          264,
-          null,
-          264
-        ],
-        [
-          264,
-          null,
-          264
-        ]
-      ],
-      "type": 313
-    }
-  ],
-  "321": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          280,
-          280,
-          280
-        ],
-        [
-          280,
-          35,
-          280
-        ],
-        [
-          280,
-          280,
-          280
-        ]
-      ],
-      "type": 321
-    }
-  ],
-  "322": [
-    {
-      "count": 1,
-      "metadata": 1,
-      "inShape": [
-        [
-          41,
-          41,
-          41
-        ],
-        [
-          41,
-          260,
-          41
-        ],
-        [
-          41,
-          41,
-          41
-        ]
-      ],
-      "type": 322
-    },
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          371,
-          371,
-          371
-        ],
-        [
-          371,
-          260,
-          371
-        ],
-        [
-          371,
-          371,
-          371
-        ]
-      ],
-      "type": 322
-    }
-  ],
-  "323": [
-    {
-      "count": 3,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ],
-        [
-          null,
-          280,
-          null
-        ]
-      ],
-      "type": 323
-    }
-  ],
-  "324": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          5
-        ],
-        [
-          5,
-          5
-        ],
-        [
-          5,
-          5
-        ]
-      ],
-      "type": 324
-    }
-  ],
-  "325": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          null,
-          265,
-          null
-        ]
-      ],
-      "type": 325
-    }
-  ],
-  "328": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 328
-    }
-  ],
-  "330": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          265
-        ],
-        [
-          265,
-          265
-        ],
-        [
-          265,
-          265
-        ]
-      ],
-      "type": 330
-    }
-  ],
-  "333": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          5,
-          null,
-          5
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 333
-    }
-  ],
-  "339": [
-    {
-      "count": 3,
-      "metadata": 0,
-      "inShape": [
-        [
-          338,
-          338,
-          338
-        ]
-      ],
-      "type": 339
-    }
-  ],
-  "340": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 334
-        },
-        {
-          "id": 339
-        },
-        {
-          "id": 339
-        },
-        {
-          "id": 339
-        }
-      ],
-      "type": 340
-    }
-  ],
-  "342": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          54
-        ],
-        [
-          328
-        ]
-      ],
-      "type": 342
-    }
-  ],
-  "343": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          61
-        ],
-        [
-          328
-        ]
-      ],
-      "type": 343
-    }
-  ],
-  "345": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          265,
-          null
-        ],
-        [
-          265,
-          331,
-          265
-        ],
-        [
-          null,
-          265,
-          null
-        ]
-      ],
-      "type": 345
-    }
-  ],
-  "346": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          null,
-          280
-        ],
-        [
-          null,
-          280,
-          287
-        ],
-        [
-          280,
-          null,
-          287
-        ]
-      ],
-      "type": 346
-    }
-  ],
-  "347": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          266,
-          null
-        ],
-        [
-          266,
-          331,
-          266
-        ],
-        [
-          null,
-          266,
-          null
-        ]
-      ],
-      "type": 347
-    }
-  ],
-  "351": [
-    {
-      "count": 3,
-      "metadata": 15,
-      "ingredients": [
-        {
-          "id": 352
-        }
-      ],
-      "type": 351
-    },
-    {
-      "count": 2,
-      "metadata": 1,
-      "ingredients": [
-        {
-          "id": 38
-        }
-      ],
-      "type": 351
-    },
-    {
-      "count": 2,
-      "metadata": 11,
-      "ingredients": [
-        {
-          "id": 37
-        }
-      ],
-      "type": 351
-    }
-  ],
-  "353": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          338
-        ]
-      ],
-      "type": 353
-    }
-  ],
-  "354": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          335,
-          335,
-          335
-        ],
-        [
-          353,
-          344,
-          353
-        ],
-        [
-          296,
-          296,
-          296
-        ]
-      ],
-      "outShape": [
-        [
-          325,
-          325,
-          325
-        ],
-        [
-          null,
-          null,
-          null
-        ],
-        [
-          null,
-          null,
-          null
-        ]
-      ],
-      "type": 354
-    }
-  ],
-  "355": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          35,
-          35,
-          35
-        ],
-        [
-          5,
-          5,
-          5
-        ]
-      ],
-      "type": 355
-    }
-  ],
-  "356": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          76,
-          331,
-          76
-        ],
-        [
-          1,
-          1,
-          1
-        ]
-      ],
-      "type": 356
-    }
-  ],
-  "359": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          265
-        ],
-        [
-          265,
-          null
-        ]
-      ],
-      "type": 359
-    }
-  ],
-  "361": [
-    {
-      "count": 4,
-      "metadata": 0,
-      "inShape": [
-        [
-          86
-        ]
-      ],
-      "type": 361
-    }
-  ],
-  "362": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          360
-        ]
-      ],
-      "type": 362
-    }
-  ],
-  "371": [
-    {
-      "count": 9,
-      "metadata": 0,
-      "inShape": [
-        [
-          266
-        ]
-      ],
-      "type": 371
-    }
-  ],
-  "374": [
-    {
-      "count": 3,
-      "metadata": 0,
-      "inShape": [
-        [
-          20,
-          null,
-          20
-        ],
-        [
-          null,
-          20,
-          null
-        ]
-      ],
-      "type": 374
-    }
-  ],
-  "376": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 353
-        },
-        {
-          "id": 39
-        },
-        {
-          "id": 375
-        }
-      ],
-      "type": 376
-    }
-  ],
-  "377": [
-    {
-      "count": 2,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 369
-        }
-      ],
-      "type": 377
-    }
-  ],
-  "378": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 341
-        },
-        {
-          "id": 377
-        }
-      ],
-      "type": 378
-    }
-  ],
-  "379": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          null,
-          369,
-          null
-        ],
-        [
-          4,
-          4,
-          4
-        ]
-      ],
-      "type": 379
-    }
-  ],
-  "380": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          null,
-          265
-        ],
-        [
-          265,
-          265,
-          265
-        ]
-      ],
-      "type": 380
-    }
-  ],
-  "381": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 377
-        },
-        {
-          "id": 368
-        }
-      ],
-      "type": 381
-    }
-  ],
-  "382": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 371
-        },
-        {
-          "id": 360
-        }
-      ],
-      "type": 382
-    }
-  ],
-  "385": [
-    {
-      "count": 3,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 263
-        },
-        {
-          "id": 377
-        },
-        {
-          "id": 289
-        }
-      ],
-      "type": 385
-    }
-  ],
-  "389": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          280,
-          280,
-          280
-        ],
-        [
-          280,
-          334,
-          280
-        ],
-        [
-          280,
-          280,
-          280
-        ]
-      ],
-      "type": 389
-    }
-  ],
-  "390": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          336,
-          null,
-          336
-        ],
-        [
-          null,
-          336,
-          null
-        ]
-      ],
-      "type": 390
-    }
-  ],
-  "395": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          339,
-          339,
-          339
-        ],
-        [
-          339,
-          345,
-          339
-        ],
-        [
-          339,
-          339,
-          339
-        ]
-      ],
-      "type": 395
-    }
-  ],
-  "396": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          371,
-          371,
-          371
-        ],
-        [
-          371,
-          391,
-          371
-        ],
-        [
-          371,
-          371,
-          371
-        ]
-      ],
-      "type": 396
-    }
-  ],
-  "398": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "inShape": [
-        [
-          346,
-          null
-        ],
-        [
-          null,
-          391
-        ]
-      ],
-      "type": 398
-    }
-  ],
-  "400": [
-    {
-      "count": 1,
-      "metadata": 0,
-      "ingredients": [
-        {
-          "id": 344
-        },
-        {
-          "id": 353
-        },
-        {
-          "id": 86
-        }
-      ],
-      "type": 400
-    }
-  ]
-}
-
-},{}],143:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , assert = require('assert')
-
-module.exports = Furnace;
-
-function Furnace() {
-  EventEmitter.call(this);
-
-  this.window = null;
-  this.fuel = null;
-  this.progress = null;
-}
-util.inherits(Furnace, EventEmitter);
-
-Furnace.windowType = 2;
-
-// this function is replaced by the inventory plugin
-Furnace.prototype.close = function() {
-  assert.ok(false, "override");
-};
-
-Furnace.prototype.takeInput = function(cb) {
-  assert.ok(false, "override");
-};
-Furnace.prototype.takeFuel = function(cb) {
-  assert.ok(false, "override");
-};
-Furnace.prototype.takeOutput = function(cb) {
-  assert.ok(false, "override");
-};
-Furnace.prototype.putInput = function(itemType, metadata, cb) {
-  assert.ok(false, "override");
-};
-Furnace.prototype.putFuel = function(itemType, metadata, cb) {
-  assert.ok(false, "override");
-};
-Furnace.prototype.inputItem = function() {
-  assert.notEqual(this.window, null);
-  return this.window.slots[0];
-}
-Furnace.prototype.fuelItem = function() {
-  assert.notEqual(this.window, null);
-  return this.window.slots[1];
-}
-Furnace.prototype.outputItem = function() {
-  assert.notEqual(this.window, null);
-  return this.window.slots[2];
-}
-
-},{"assert":1157,"events":1175,"util":1194}],144:[function(require,module,exports){
-(function (Buffer){
-var items = require('./enums/items')
-  , blocks = require('./enums/blocks')
-  , assert = require('assert')
-
-module.exports = Item;
-
-function Item(type, count, metadata, nbt) {
-  if (type == null) return null;
-
-  this.type = type;
-  this.count = count;
-  this.metadata = metadata;
-  this.nbt = nbt || new Buffer(0);
-
-  var itemEnum = items[type] || blocks[type];
-  assert.ok(itemEnum);
-  this.name = itemEnum.name;
-  this.displayName = itemEnum.displayName;
-  this.stackSize = itemEnum.stackSize;
-}
-
-Item.equal = function(item1, item2) {
-  if (item1 == null && item2 == null) {
-    return true;
-  } else if (item1 == null) {
-    return false;
-  } else if (item2 == null) {
-    return false;
-  } else {
-    return item1.type === item2.type &&
-      item1.count === item2.count &&
-      item1.metadata === item2.metadata;
-  }
-};
-
-}).call(this,require("buffer").Buffer)
-},{"./enums/blocks":138,"./enums/items":140,"assert":1157,"buffer":1171}],145:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3;
-var CHUNK_SIZE = new Vec3(16, 16, 16)
-
-module.exports = Location;
-
-function Location(absoluteVector) {
-  this.floored = absoluteVector.floored();
-  this.blockPoint = this.floored.modulus(CHUNK_SIZE);
-  this.chunkCorner = this.floored.minus(this.blockPoint);
-  this.blockIndex =
-    this.blockPoint.x +
-    CHUNK_SIZE.x * this.blockPoint.z +
-    CHUNK_SIZE.x * CHUNK_SIZE.z * this.blockPoint.y;
-  this.biomeBlockIndex = this.blockPoint.x + CHUNK_SIZE.x * this.blockPoint.z;
-  this.chunkYIndex = Math.floor(absoluteVector.y / 16);
-}
-
-},{"vec3":175}],146:[function(require,module,exports){
-exports.clamp = function clamp(min, x, max) {
-  return x < min ? min : x > max ? max : x;
-};
-
-exports.sign = function sign(n) {
-  return n > 0 ?  1 : n < 0 ?  -1 : 0;
-};
-
-exports.euclideanMod = function euclideanMod(numerator, denominator) {
-  var result = numerator % denominator;
-  return result < 0 ? result + denominator : result;
-};
-
-},{}],147:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3;
-
-module.exports = Painting;
-
-function Painting(id, pos, name, direction) {
-  this.id = id;
-  this.position = pos;
-  this.name = name;
-  this.direction = direction;
-}
-
-},{"vec3":175}],148:[function(require,module,exports){
-var assert = require('assert');
-
-module.exports = inject;
-
-function inject(bot) {
-  bot.isSleeping = false;
-
-  function wake() {
-    assert.strictEqual(bot.isSleeping, true, "already awake");
-    bot.client.write('entity_action', {
-      entityId: bot.entity.id,
-      actionId: 3,
-      jumpBoost: 0
-    });
-  }
-
-  function sleep(bedBlock) {
-    assert.strictEqual(bot.isSleeping, false, "already sleeping");
-    assert.strictEqual(bedBlock.type, 26);
-    bot.activateBlock(bedBlock);
-  }
-
-  bot.client.on('game_state_change', function(packet) {
-    if (packet.reason === 0) {
-      // occurs when you can't spawn in your bed and your spawn point gets reset
-      bot.emit('spawnReset');
-    }
-  });
-
-  bot.on('entitySleep', function(entity) {
-    if (entity === bot.entity) {
-      bot.isSleeping = true;
-      bot.emit('sleep');
-    }
-  });
-
-  bot.on('entityWake', function(entity) {
-    if (entity === bot.entity) {
-      bot.isSleeping = false;
-      bot.emit('wake');
-    }
-  });
-
-  bot.wake = wake;
-  bot.sleep = sleep;
-}
-
-},{"assert":1157}],149:[function(require,module,exports){
-var instruments = require('../enums/instruments')
-  , Vec3 = require('vec3').Vec3
-
-module.exports = inject;
-
-function inject(bot) {
-  bot.client.on('block_action', function(packet) {
-    // block action
-    var pt = new Vec3(packet.x, packet.y, packet.z);
-    var block = bot.blockAt(pt);
-    if (packet.blockId === 25) {
-      bot.emit('noteHeard', block, instruments[packet.byte1], packet.byte2);
-    } else if (packet.blockId === 29 || packet.blockId === 33) {
-      bot.emit('pistonMove', block, packet.byte1, packet.byte2);
-    } else {
-      bot.emit('chestLidMove', block, packet.byte2);
-    }
-  });
-}
-
-},{"../enums/instruments":139,"vec3":175}],150:[function(require,module,exports){
-(function (Buffer){
-var vec3 = require('vec3')
-  , Vec3 = vec3.Vec3
-  , assert = require('assert')
-  , zlib = require('zlib')
-  , Block = require('../block')
-  , Painting = require('../painting')
-  , Location = require('../location')
-
-module.exports = inject;
-
-var paintingFaceToVec = [
-  new Vec3(0, 0, -1),
-  new Vec3(-1, 0, 0),
-  new Vec3(0, 0, 1),
-  new Vec3(1, 0, 0),
-];
-
-function inject(bot) {
-  var columns = {};
-  var signs = {};
-  var paintingsByPos = {};
-  var paintingsById = {};
-
-  function addPainting(painting) {
-    paintingsById[painting.id] = painting;
-    paintingsByPos[painting.position] = painting;
-  }
-
-  function deletePainting(painting) {
-    delete paintingsById[painting.id];
-    delete paintingsByPos[painting.position];
-  }
-
-  function addColumn(args) {
-    var columnCorner = new Vec3(args.x * 16, 0, args.z * 16);
-    var key = columnKeyXZ(columnCorner.x, columnCorner.z);
-    if (! args.bitMap) {
-      // stop storing the chunk column
-      delete columns[key];
-      bot.emit("chunkColumnUnload", columnCorner);
-      return;
-    }
-    var column = columns[key];
-    if (! column) columns[key] = column = new Column();
-    var chunkIncluded = new Array(16);
-    var addIncluded = new Array(16);
-    var y;
-    for (y = 0; y < 16; ++y) {
-      chunkIncluded[y] = args.bitMap & (1 << y);
-      addIncluded[y] = args.addBitMap & (1 << y);
-    }
-
-    var offset = 0;
-
-    // block types
-    var size = 4096;
-    for (y = 0; y < 16; ++y) {
-      column.blockType[y] = chunkIncluded[y] ?
-        args.data.slice(offset, offset + size) : null;
-      offset = chunkIncluded[y] ? offset + size : offset;
-    }
-    // block metadata
-    size = 2048;
-    for (y = 0; y < 16; ++y) {
-      column.metadata[y] = chunkIncluded[y] ?
-        args.data.slice(offset, offset + size) : null;
-      offset = chunkIncluded[y] ? offset + size : offset;
-    }
-    // light
-    for (y = 0; y < 16; ++y) {
-      column.light[y] = chunkIncluded[y] ?
-        args.data.slice(offset, offset + size) : null;
-      offset = chunkIncluded[y] ? offset + size : offset;
-    }
-    // sky light
-    if (args.skyLightSent) {
-      for (y = 0; y < 16; ++y) {
-        column.skyLight[y] = chunkIncluded[y] ?
-          args.data.slice(offset, offset + size) : null;
-        offset = chunkIncluded[y] ? offset + size : offset;
-      }
-    }
-    // add
-    for (y = 0; y < 16; ++y) {
-      column.add[y] = addIncluded[y] ?
-        args.data.slice(offset, offset + size) : null;
-      offset = addIncluded[y] ? offset + size : offset;
-    }
-    // biome
-    if (args.groundUp) {
-      size = 256;
-      column.biome = args.data.slice(offset, offset + size);
-      offset += size;
-    }
-
-    assert.strictEqual(offset, args.data.length);
-    bot.emit("chunkColumnLoad", columnCorner, column);
-  }
-
-  function blockAt(absolutePoint) {
-    var loc = new Location(absolutePoint);
-    var key = columnKeyXZ(loc.chunkCorner.x, loc.chunkCorner.z);
-    var column = columns[key];
-    // null column means chunk not loaded
-    if (! column) return null;
-
-    var blockType = bite(column.blockType);
-
-    var nibbleIndex = loc.blockIndex >> 1;
-    var lowNibble = loc.blockIndex % 2 === 1;
-
-    var biomeId = column.biome.readUInt8(loc.biomeBlockIndex);
-
-    var block = new Block(blockType, biomeId);
-    block.metadata = nib(column.metadata);
-    block.light = nib(column.light);
-    block.skyLight = nib(column.skyLight);
-    block.add = nib(column.add);
-    block.position = loc.floored;
-    block.signText = signs[loc.floored];
-    block.painting = paintingsByPos[loc.floored];
-
-    return block;
-
-    function bite(array) {
-      var buf = array[loc.chunkYIndex];
-      return buf ? buf.readUInt8(loc.blockIndex) : 0;
-    }
-
-    function nib(array) {
-      var buf = array[loc.chunkYIndex];
-      return buf ? nibble(buf.readUInt8(nibbleIndex), lowNibble) : 0;
-    }
-  }
-
-  function emitBlockUpdate(oldBlock, newBlock) {
-    bot.emit("blockUpdate", oldBlock, newBlock);
-    var position = oldBlock ? oldBlock.position :
-      (newBlock ? newBlock.position : null);
-    if (position) bot.emit("blockUpdate:" + newBlock.position, oldBlock, newBlock);
-  }
-
-  function updateBlock(point, type, metadata) {
-    var oldBlock = blockAt(point);
-    var loc = new Location(point);
-    var nibbleIndex = loc.blockIndex >> 1;
-    var key = columnKeyXZ(loc.chunkCorner.x, loc.chunkCorner.z);
-    var column = columns[key];
-    // sometimes minecraft server sends us block updates before it sends
-    // us the column that the block is in. ignore this.
-    if (! column) return;
-    var blockTypeBuffer = column.blockType[loc.chunkYIndex];
-    // if it's null, it was all air, but now we're inserting a block.
-    if (! blockTypeBuffer) {
-      blockTypeBuffer = new Buffer(4096);
-      blockTypeBuffer.fill(0);
-      column.blockType[loc.chunkYIndex] = blockTypeBuffer;
-    }
-    blockTypeBuffer.writeUInt8(type, loc.blockIndex);
-    var metadataBuffer = column.metadata[loc.chunkYIndex];
-    if (! metadataBuffer) {
-      metadataBuffer = new Buffer(2048);
-      metadataBuffer.fill(0);
-      column.metadata[loc.chunkYIndex] = metadataBuffer;
-    }
-    var oldValue = metadataBuffer.readUInt8(nibbleIndex);
-    var nibbleValue = (loc.blockIndex % 2 === 0) ? metadata << 4 : metadata;
-    metadataBuffer.writeUInt8(nibbleValue | oldValue, nibbleIndex);
-
-    delete signs[loc.floored];
-
-    var painting = paintingsByPos[loc.floored];
-    if (painting) deletePainting(painting);
-
-    emitBlockUpdate(oldBlock, blockAt(point));
-  }
-
-  bot.client.on('map_chunk', function(packet) {
-    zlib.inflate(packet.compressedChunkData, function(err, inflated) {
-      if (err) return bot.emit('error', err);
-
-      addColumn({
-        x: packet.x,
-        z: packet.z,
-        bitMap: packet.bitMap,
-        addBitMap: packet.addBitMap,
-        skyLightSent: true,
-        groundUp: packet.groundUp,
-        data: inflated,
-      });
-    });
-  });
-
-
-  bot.client.on('map_chunk_bulk', function(packet) {
-    zlib.inflate(packet.compressedChunkData, function(err, inflated) {
-      if(err) return bot.emit('error', err);
-
-      var offset = 0;
-      var meta, i, size;
-      for (i = 0; i < packet.meta.length; ++i) {
-        meta = packet.meta[i];
-        size = (8192 + (packet.skyLightSent ? 2048 : 0)) *
-          onesInShort(meta.bitMap) +
-          2048 * onesInShort(meta.addBitMap) + 256;
-        addColumn({
-          x: meta.x,
-          z: meta.z,
-          bitMap: meta.bitMap,
-          addBitMap: meta.addBitMap,
-          skyLightSent: packet.skyLightSent,
-          groundUp: true,
-          data: inflated.slice(offset, offset + size),
-        });
-        offset += size;
-      }
-
-      assert.strictEqual(offset, inflated.length);
-    });
-  });
-
-  bot.client.on('multi_block_change', function(packet) {
-    // multi block change
-    var i, record, metadata, type, blockX, blockZ, y, pt;
-    for (i = 0; i < packet.recordCount; ++i) {
-      record = packet.data.readUInt32BE(i * 4);
-      metadata = (record & 0x0000000f) >> 0;
-      type     = (record & 0x0000fff0) >> 4;
-      y        = (record & 0x00ff0000) >> 16;
-      blockZ   = (record & 0x0f000000) >> 24;
-      blockX   = (record & 0xf0000000) >> 28;
-
-      pt = new Vec3(packet.chunkX * 16 + blockX, y, packet.chunkZ * 16 + blockZ);
-      updateBlock(pt, type, metadata);
-    }
-  });
-
-  bot.client.on('block_change', function(packet) {
-    // block change
-    var pt = new Vec3(packet.x, packet.y, packet.z);
-    updateBlock(pt, packet.type, packet.metadata);
-  });
-
-  bot.client.on('explosion', function(packet) {
-    // explosion
-    packet.affectedBlockOffsets.forEach(function(offset) {
-      var pt = vec3(offset).offset(packet.x, packet.y, packet.z);
-      updateBlock(pt.floor(), 0, 0);
-    });
-  });
-
-  bot.client.on('spawn_entity_painting', function(packet) {
-    var pos = new Vec3(packet.x, packet.y, packet.z);
-    var painting = new Painting(packet.entityId,
-      pos, packet.title, paintingFaceToVec[packet.direction]);
-    addPainting(painting);
-  });
-
-  bot.client.on('entity_destroy', function(packet) {
-    // destroy entity
-    packet.entityIds.forEach(function(id) {
-      var painting = paintingsById[id];
-      if (painting) deletePainting(painting);
-    });
-  });
-
-  bot.client.on('update_sign', function(packet) {
-    // update sign
-    var pos = new Vec3(packet.x, packet.y, packet.z);
-    var oldBlock = blockAt(pos);
-    var str = packet.text1 + "\n" + packet.text2 + "\n" + packet.text3 + "\n" + packet.text4;
-    signs[pos] = str;
-    emitBlockUpdate(oldBlock, blockAt(pos));
-  });
-  bot.updateSign = function(block, text) {
-    var lines = text.split("\n");
-    if (lines.length > 4) {
-      bot.emit("error", new Error("too many lines for sign text"));
-      return;
-    }
-    for (var i = 0; i < lines.length; ++i) {
-      if (lines[i].length > 15) {
-        bot.emit("error", new Error("signs have max line length 15"));
-        return;
-      }
-    }
-    bot.client.write('update_sign', {
-      x: block.position.x,
-      y: block.position.y,
-      z: block.position.z,
-      text1: lines[0] || "",
-      text2: lines[1] || "",
-      text3: lines[2] || "",
-      text4: lines[3] || "",
-    });
-  }
-
-  // if we get a respawn packet and the dimension is changed,
-  // unload all chunks from memory.
-  var dimension;
-  bot.client.on('login', function(packet) {
-    dimension = packet.dimension
-  });
-  bot.client.on('respawn', function(packet) {
-    if (dimension === packet.dimension) return;
-    dimension = packet.dimension;
-    columns = {};
-  });
-
-  bot.blockAt = blockAt;
-  bot._updateBlock = updateBlock;
-}
-
-function columnKeyXZ(x, z) {
-  return x + ',' + z;
-}
-
-function onesInShort(n) {
-  n = n & 0xffff;
-  var count = 0;
-  for (var i = 0; i < 16; ++i) {
-    count = ((1 << i) & n) ? count + 1 : count;
-  }
-  return count;
-}
-
-function nibble(wholeByte, low) {
-  return low ?
-    wholeByte & 0x0f :
-    wholeByte >> 4;
-}
-
-function Column() {
-  this.blockType = new Array(16);
-  this.metadata = new Array(16);
-  this.light = new Array(16);
-  this.skyLight = new Array(16);
-  this.add = new Array(16);
-  this.biome = null;
-}
-
-
-}).call(this,require("buffer").Buffer)
-},{"../block":130,"../location":145,"../painting":147,"assert":1157,"buffer":1171,"vec3":175,"zlib":1170}],151:[function(require,module,exports){
-var assert = require('assert')
-  , quoteMeta = require('quotemeta')
-  , ChatMessage = require('../chat_message')
-  , LEGAL_CHARS = ' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜø£Ø×ƒáíóúñÑªº¿®¬½¼¡«»§'
-  , CHAT_LENGTH_LIMIT = 100
-
-module.exports = inject;
-
-var quotedLegalChars = quoteMeta(LEGAL_CHARS);
-var incomingFilter = new RegExp("([^" + quotedLegalChars + "]|§.)", 'g');
-var outgoingFilter = new RegExp("([^" + quotedLegalChars + "])", 'g');
-
-function inject(bot) {
-  bot.client.on('chat', function(packet) {
-
-    // used by minecraft <= 1.6.1 and craftbukkit >= 1.6.2
-    function parseOldMessage(message) {
-      var legalContent = message.replace(incomingFilter, '');
-      var match, username, content;
-      if (match = legalContent.match(/^<(?:.+? )?(.+?)> (.*)$/)) {
-        // spoken chat
-        username = match[1];
-        content = match[2];
-        bot.emit('chat', username, content, message);
-      } else if (match = legalContent.match(/^(?:.+? )?(.+?) (?:whispers to you:|whispers) (.*)$/)) {
-        // whispered chat
-        username = match[1];
-        content = match[2];
-        bot.emit('whisper', username, content, message);
-      }
-    }
-
-    /**
-     * Parse 1.6.* version message
-     * @param  {JSONObject} jsonMessage
-     * @return {void}
-     */
-    function parseJsonMessage6(jsonMessage) {
-      if (typeof jsonMsg.translate === 'string' && jsonMsg.translate.match(/^chat\./)) {
-        var username = jsonMsg.using[0];
-        var content = jsonMsg.using[1].replace(incomingFilter, '');
-        bot.emit('chat', username, content, jsonMessage.translate, jsonMessage)
-      } else if (jsonMsg.translate === "commands.message.display.incoming") {
-        username = jsonMsg.using[0];
-        content = jsonMsg.using[1].replace(incomingFilter, '');
-        bot.emit('whisper', username, content, jsonMsg.translate, jsonMsg);
-      } else if (typeof jsonMsg.text === 'string') {
-        // craftbukkit message format
-        parseOldMessage(jsonMsg.text);
-      }
-      bot.emit('message', jsonMsg);
-    }
-
-    /**
-     * Parse 1.7+ version message
-     * @param  {JSONObject} jsonMessage
-     * @return {void}
-     */
-    function parseJsonMessage7(jsonMessage) {
-      var chatMessage = new ChatMessage(jsonMessage);
-      bot.emit('message', chatMessage);
-      // Now parse the message type
-      switch(chatMessage.translate) {
-        case undefined: {
-          parseOldMessage(chatMessage.toString());
-          break;
-        }
-        case 'chat.type.text': {
-          var username = chatMessage.getText(0);
-          var extendedMessage = chatMessage.toString().substring(username.length).trim();
-          bot.emit('chat', username, extendedMessage, chatMessage.translate, chatMessage);
-          break;
-        }
-        case 'commands.message.display.incoming': {
-          var username = chatMessage.getText(0);
-          var extendedMessage = chatMessage.toString().substring(username.length).trim();
-          bot.emit('whisper', username, extendedMessage, chatMessage.translate, chatMessage);
-          break;
-        }
-      }
-    }
-
-    // used by minecraft >= 1.6.2
-    function parseJsonMessage(jsonMessage) {
-      if(jsonMessage.using) {
-        parseJsonMessage6(jsonMessage);
-      }else {
-        parseJsonMessage7(jsonMessage);
-      }      
-    }
-
-    var jsonMsg;
-    // Honestly we should be checking against the server version
-    try {
-      jsonMsg = JSON.parse(packet.message);
-    } catch (e) {
-      // old message format
-      bot.emit('message', packet.message);
-      parseOldMessage(packet.message);
-      return;
-    }
-    parseJsonMessage(jsonMsg)
-  });
-
-  function chatWithHeader(header, message) {
-    message = message.replace(outgoingFilter, '');
-    var lengthLimit = CHAT_LENGTH_LIMIT - header.length;
-    message.split("\n").forEach(function(subMessage) {
-      if (! subMessage) return;
-      var i, smallMsg;
-      for (i = 0; i < subMessage.length; i += lengthLimit) {
-        smallMsg = header + subMessage.substring(i, i + lengthLimit);
-        bot.client.write('chat', {message: smallMsg});
-      }
-    });
-  }
-  bot.whisper = function(username, message) {
-    chatWithHeader("/tell " + username + " ", message);
-  };
-  bot.chat = function(message) {
-    chatWithHeader("", message);
-  };
-}
-
-},{"../chat_message":131,"assert":1157,"quotemeta":174}],152:[function(require,module,exports){
-var assert = require('assert');
-var toolMultipliers = require('../enums/materials');
-
-module.exports = inject;
-
-function inject(bot) {
-  var swingInterval = null;
-  var waitTimeout = null;
-
-  bot.targetDigBlock = null;
-  bot.lastDigTime = null
-
-  function dig(block, cb) {
-    if (bot.targetDigBlock) bot.stopDigging();
-    cb = cb || noop;
-    bot.lookAt(block.position);
-    bot.client.write('block_dig', {
-      status: 0, // start digging
-      x: block.position.x,
-      y: block.position.y,
-      z: block.position.z,
-      face: 1, // hard coded to always dig from the top
-    });
-    var waitTime = bot.digTime(block);
-    waitTimeout = setTimeout(finishDigging, waitTime);
-    bot.targetDigBlock = block;
-    swingInterval = setInterval(function() {
-      bot.client.write('arm_animation', {
-        entityId: bot.entity.id,
-        animation: 1,
-      });
-    }, 350);
-    var eventName = "blockUpdate:" + block.position;
-    bot.on(eventName, onBlockUpdate);
-
-    bot.stopDigging = function() {
-      bot.removeListener(eventName, onBlockUpdate);
-      clearInterval(swingInterval);
-      clearTimeout(waitTimeout);
-      swingInterval = null;
-      waitTimeout = null;
-      bot.client.write('block_dig', {
-        status: 1, // cancel digging
-        x: bot.targetDigBlock.position.x,
-        y: bot.targetDigBlock.position.y,
-        z: bot.targetDigBlock.position.z,
-        face: 1, // hard coded to always dig from the top
-      });
-      var block = bot.targetDigBlock;
-      bot.targetDigBlock = null;
-      bot.lastDigTime = new Date();
-      bot.emit("diggingAborted", block);
-      bot.stopDigging = noop;
-    };
-
-    function onBlockUpdate(oldBlock, newBlock) {
-      bot.removeListener(eventName, onBlockUpdate);
-      clearInterval(swingInterval);
-      clearTimeout(waitTimeout);
-      swingInterval = null;
-      waitTimeout = null;
-      bot.targetDigBlock = null;
-      bot.lastDigTime = new Date();
-      if (newBlock.type === 0) {
-        bot.emit("diggingCompleted", newBlock);
-        cb();
-      } else {
-        bot.emit("diggingAborted", newBlock);
-        var err = new Error("digging interruption");
-        err.code = "EDIGINTERRUPT";
-        cb(err);
-      }
-    }
-
-    function finishDigging() {
-      clearInterval(swingInterval);
-      clearTimeout(waitTimeout);
-      swingInterval = null;
-      waitTimeout = null;
-      bot.client.write('block_dig', {
-        status: 2, // finish digging
-        x: bot.targetDigBlock.position.x,
-        y: bot.targetDigBlock.position.y,
-        z: bot.targetDigBlock.position.z,
-        face: 1, // hard coded to always dig from the top
-      });
-      bot.targetDigBlock = null;
-      bot.lastDigTime = new Date();
-      bot._updateBlock(block.position, 0, 0);
-    }
-  }
-
-  function canDigBlock(block) {
-    return block && block.diggable && block.position.offset(0.5, 0.5, 0.5).distanceTo(bot.entity.position) < 6;
-  }
-
-  function digTime(block) {
-    if (bot.game.gameMode === 'creative') return 0;
-    var time = 1000 * block.hardness * 1.5;
-    if (block.harvestTools) {
-      var penalty = !bot.heldItem || !block.harvestTools[bot.heldItem.type];
-      if (penalty) return time * 10 / 3;
-    }
-    var toolMultiplier = toolMultipliers[block.material];
-    if (toolMultiplier && bot.heldItem) {
-      var multiplier = toolMultiplier[bot.heldItem.type];
-      if (multiplier) time /= multiplier;
-    }
-    if (! bot.entity.onGround) time *= 5;
-    var blockIn = bot.blockAt(bot.entity.position);
-    var inWater = blockIn.type === 9; // only stationary water counts
-    if (inWater) time *= 5;
-    return time;
-  }
-
-  bot.dig = dig;
-  bot.stopDigging = noop;
-  bot.canDigBlock = canDigBlock;
-  bot.digTime = digTime;
-}
-
-function noop(err) {
-  if (err) throw err;
-}
-
-},{"../enums/materials":141,"assert":1157}],153:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3
-  , _ = require('lodash')
-  , Entity = require('../entity')
-  , conv = require('../conversions')
-  , NAMED_ENTITY_HEIGHT = 1.62
-  , CROUCH_HEIGHT = NAMED_ENTITY_HEIGHT - 0.08
-
-module.exports = inject;
-
-var animationEvents = {
-  1: 'entitySwingArm',
-  2: 'entityHurt',
-  3: 'entityWake',
-  5: 'entityEat',
-  104: 'entityCrouch',
-  105: 'entityUncrouch',
-};
-
-var entityStatusEvents = {
-  2: 'entityHurt',
-  3: 'entityDead',
-  6: 'entityTaming',
-  7: 'entityTamed',
-  8: 'entityShakingOffWater',
-  10: 'entityEatingGrass',
-};
-
-var spawnedObjectTypes = {
-  1: 'boat',
-  2: 'itemStack',
-  10: 'minecart',
-  11: 'minecartChest',
-  12: 'minecartPowered',
-  50: 'activatedTnt',
-  51: 'enderCrystal',
-  60: 'arrowProjectile',
-  61: 'snowballProjectile',
-  62: 'eggProjectile',
-  65: 'thrownEnderpearl',
-  66: 'witherSkull',
-  70: 'fallingObjects',
-  71: 'itemFrames',
-  72: 'eyeOfEnder',
-  73: 'thrownPotion',
-  74: 'fallingDragonEgg',
-  75: 'thrownExperienceBottle',
-  90: 'fishingFloat',
-};
-
-var mobTypes = {
-  50: "creeper",
-  51: "skeleton",
-  52: "spider",
-  53: "giantZombie",
-  54: "zombie",
-  55: "slime",
-  56: "ghast",
-  57: "zombiePigman",
-  58: "enderman",
-  59: "caveSpider",
-  60: "silverfish",
-  61: "blaze",
-  62: "magmaCube",
-  63: "enderDragon",
-  64: "wither",
-  65: "bat",
-  66: "witch",
-  90: "pig",
-  91: "sheep",
-  92: "cow",
-  93: "chicken",
-  94: "squid",
-  95: "wolf",
-  96: "mooshroom",
-  97: "snowman",
-  98: "ocelot",
-  99: "ironGolem",
-  120: "villager",
-};
-
-function inject(bot) {
-  
-  bot.findPlayer = bot.findPlayers = function(filter) {
-    var filterFn =  function(entity) {
-      if(entity.type !== 'player') return false;
-      if(filter == null) return true;
-      if(typeof filter === 'object' && filter instanceof RegExp) {
-        return entity.username.search(filter) !== -1;
-      }else if(typeof filter === 'function') {
-        return filter(entity);
-      }else if(typeof filter === 'string') {
-        return entity.username.toLowerCase() === filter.toLowerCase();
-      }
-      return false;
-    }
-    var resultSet = _.transform(bot.entities, function(players, entity) {
-      if(filterFn(entity)) players.push(entity);
-    }, []);
-
-    if(typeof filter === 'string') {
-      switch(resultSet.length) {
-        case 0: return null;
-        case 1: return resultSet[0];
-        default: return resultSet;
-      }
-    }
-    return resultSet;
-  }
-
-  bot.players = {}
-  bot.entities = {};
-
-  bot.client.once('login', function(packet) {
-    // login
-    bot.entity = fetchEntity(packet.entityId);
-    bot.entity.username = bot.username;
-    bot.entity.type = 'player';
-  });
-
-  bot.client.on('entity_equipment', function(packet) {
-    // entity equipment
-    var entity = fetchEntity(packet.entityId);
-    entity.setEquipment(packet.slot, packet.item);
-    bot.emit('entityEquip', entity);
-  });
-
-  bot.client.on('bed', function(packet) {
-    // use bed
-    var entity = fetchEntity(packet.entityId);
-    entity.position.set(packet.x, packet.y, packet.z);
-    bot.emit('entitySleep', entity);
-  });
-
-  bot.client.on('animation', function(packet) {
-    // animation
-    var entity = fetchEntity(packet.entityId);
-    var eventName = animationEvents[packet.animation];
-    if (eventName) bot.emit(eventName, entity);
-  });
-
-  bot.client.on('named_entity_spawn', function(packet) {
-    // spawn named entity
-    var entity = fetchEntity(packet.entityId);
-    entity.type = 'player';
-    entity.username = packet.playerName;
-    entity.uuid = packet.playerUUID;
-    entity.dataBlobs = packet.data;
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    entity.height = NAMED_ENTITY_HEIGHT;
-    entity.metadata = parseMetadata(packet.metadata);
-    if(!bot.players[entity.username]) {
-      bot.players[entity.username] = {
-        username: entity.username,
-        ping: 999,
-        entity: entity
-      };
-    }
-    bot.emit('entitySpawn', entity);
-  });
-  bot.on("entityCrouch", function(entity) {
-    entity.height = CROUCH_HEIGHT;
-  });
-  bot.on("entityUncrouch", function(entity) {
-    entity.height = NAMED_ENTITY_HEIGHT;
-  });
-
-  bot.client.on('collect', function(packet) {
-    // collect item
-    var collector = fetchEntity(packet.collectorEntityId);
-    var collected = fetchEntity(packet.collectedEntityId);
-    bot.emit('playerCollect', collector, collected);
-  });
-
-  bot.client.on('spawn_entity', function(packet) {
-    // spawn object/vehicle
-    var entity = fetchEntity(packet.entityId);
-    entity.type = 'object';
-    entity.objectType = spawnedObjectTypes[packet.type];
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    entity.objectData = packet.objectData;
-    bot.emit('entitySpawn', entity);
-  });
-
-  bot.client.on('spawn_entity_experience_orb', function(packet) {
-    var entity = fetchEntity(packet.entityId);
-    entity.type = 'orb';
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    entity.count = packet.count;
-    bot.emit('entitySpawn', entity);
-  });
-
-  bot.client.on('spawn_entity_living', function(packet) {
-    // spawn mob
-    var entity = fetchEntity(packet.entityId);
-    entity.type = 'mob';
-    entity.mobType = mobTypes[packet.type];
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    entity.headPitch = conv.fromNotchianPitchByte(packet.headPitch);
-    var notchVel = new Vec3(packet.velocityX, packet.velocityY, packet.velocityZ);
-    entity.velocity.update(conv.fromNotchVelocity(notchVel));
-    entity.metadata = parseMetadata(packet.metadata);
-    bot.emit('entitySpawn', entity);
-  });
-
-  bot.client.on('entity_velocity', function(packet) {
-    // entity velocity
-    var entity = fetchEntity(packet.entityId);
-    var notchVel = new Vec3(packet.velocityX, packet.velocityY, packet.velocityZ);
-    entity.velocity.update(conv.fromNotchVelocity(notchVel));
-  });
-
-  bot.client.on('entity_destroy', function(packet) {
-    // destroy entity
-    packet.entityIds.forEach(function(id) {
-      var entity = fetchEntity(id);
-      bot.emit('entityGone', entity);
-      entity.isValid = false;
-      if(entity.username && bot.players[entity.username]) {
-        bot.players[entity.username].entity = null;
-      }
-      delete bot.entities[id];
-    });
-  });
-
-  bot.client.on('rel_entity_move', function(packet) {
-    // entity relative move
-    var entity = fetchEntity(packet.entityId);
-    entity.position.translate(packet.dX / 32, packet.dY / 32, packet.dZ / 32);
-    bot.emit('entityMoved', entity);
-  });
-
-  bot.client.on('entity_look', function(packet) {
-    // entity look
-    var entity = fetchEntity(packet.entityId);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    bot.emit('entityMoved', entity);
-  });
-
-  bot.client.on('entity_move_look', function(packet) {
-    // entity look and relative move
-    var entity = fetchEntity(packet.entityId);
-    entity.position.translate(packet.dX / 32, packet.dY / 32, packet.dZ / 32);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    bot.emit('entityMoved', entity);
-  });
-
-  bot.client.on('entity_teleport', function(packet) {
-    // entity teleport
-    var entity = fetchEntity(packet.entityId);
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    entity.yaw = conv.fromNotchianYawByte(packet.yaw);
-    entity.pitch = conv.fromNotchianPitchByte(packet.pitch);
-    bot.emit('entityMoved', entity);
-  });
-
-  bot.client.on('entity_head_rotation', function(packet) {
-    // entity head look
-    var entity = fetchEntity(packet.entityId);
-    entity.headYaw = conv.fromNotchianYawByte(packet.headYaw);
-    bot.emit('entityMoved', entity);
-  });
-
-  bot.client.on('entity_status', function(packet) {
-    // entity status
-    var entity = fetchEntity(packet.entityId);
-    var eventName = entityStatusEvents[packet.status];
-    if (eventName) bot.emit(eventName, entity);
-  });
-
-  bot.client.on('attach_entity', function(packet) {
-    // attach entity
-    var entity = fetchEntity(packet.entityId);
-    if (packet.vehicleId === -1) {
-      var vehicle = entity.vehicle;
-      delete entity.vehicle;
-      bot.emit('entityDetach', entity, vehicle);
-    } else {
-      entity.vehicle = fetchEntity(packet.vehicleId);
-      bot.emit('entityAttach', entity, entity.vehicle);
-    }
-  });
-
-  bot.client.on('entity_metadata', function(packet) {
-    // entity metadata
-    var entity = fetchEntity(packet.entityId);
-    entity.metadata = parseMetadata(packet.metadata);
-    bot.emit('entityUpdate', entity);
-  });
-
-  bot.client.on('entity_effect', function(packet) {
-    // entity effect
-    var entity = fetchEntity(packet.entityId);
-    var effect = {
-      id: packet.effectId,
-      amplifier: packet.amplifier,
-      duration: packet.duration,
-    };
-    entity.effects[effect.id] = effect;
-    bot.emit('entityEffect', entity, effect);
-  });
-
-  bot.client.on('remove_entity_effect', function(packet) {
-    // remove entity effect
-    var entity = fetchEntity(packet.entityId);
-    var effect = entity.effects[packet.effectId];
-    delete entity.effects[effect.id];
-    bot.emit('entityEffectEnd', entity, effect);
-  });
-
-  bot.client.on('spawn_entity_weather', function(packet) {
-    // spawn global entity
-    var entity = fetchEntity(packet.entityId);
-    entity.type = 'global';
-    entity.globalType = 'thunderbolt';
-    entity.position.set(packet.x / 32, packet.y / 32, packet.z / 32);
-    bot.emit('entitySpawn', entity);
-  });
-
-  bot.on('spawn', function() {
-    bot.emit('entitySpawn', bot.entity);
-  });
-  bot.client.on('player_info', function(packet) {
-    // player list item
-    var playerEntity = bot.findPlayers(packet.playerName);
-    var player = bot.players[packet.playerName];
-    if(packet.online) {
-      // New Player
-      if(!player) {
-        player = bot.players[packet.playerName] = { username: packet.playerName, ping: packet.ping };
-        bot.emit('playerJoined', player);
-        // Just an Update
-      } else player.ping = packet.ping;
-      
-      player.entity = playerEntity;
-    // Player has parted
-    } else {
-      player.entity = null;
-      delete bot.players[packet.playerName];
-      bot.emit('playerLeft', player);
-    }
-  });
-
-  // attaching to a vehicle
-  bot.client.on('attach_entity', function(packet) {
-    if (packet.entityId !== bot.entity.id) return;
-    var vehicle = bot.vehicle;
-    if (packet.vehicleId === -1) {
-      bot.vehicle = null;
-      bot.emit("dismount", vehicle);
-    } else {
-      bot.vehicle = bot.entities[packet.vehicleId];
-      bot.emit("mount");
-    }
-  });
-
-
-  bot.attack = attack;
-  bot.mount = mount;
-  bot.dismount = dismount;
-  bot.useOn = useOn;
-
-  function useOn(target) {
-    // TODO: check if not crouching will make make this action always use the item
-    useEntity(target, false);
-  }
-
-  function attack(target, swing) {
-    if(swing)
-    {
-      bot.client.write('arm_animation', {
-        entityId: target.id,
-        animation: 1
-      });
-    }
-    useEntity(target, true);
-  }
-
-  function mount(target) {
-    // TODO: check if crouching will make make this action always mount
-    useEntity(target, false);
-  }
-
-  function dismount(target) {
-    if (bot.vehicle) {
-      mount(bot.vehicle);
-    } else {
-      bot.emit("error", new Error("dismount: not mounted"));
-    }
-  }
-
-  function useEntity(target, leftClick) {
-    bot.client.write('use_entity', {
-      target: target.id,
-      leftClick: leftClick,
-    });
-  }
-
-  function fetchEntity(id) {
-    return bot.entities[id] || (bot.entities[id] = new Entity(id));
-  }
-}
-
-function parseMetadata(metadata) {
-  var o = {};
-  metadata.forEach(function(pair) {
-    o[pair.key] = pair.value;
-  });
-  return o;
-}
-
-},{"../conversions":133,"../entity":136,"lodash":166,"vec3":175}],154:[function(require,module,exports){
-module.exports = inject;
-
-function inject(bot) {
-  bot.experience = {
-    level: null,
-    points: null,
-    progress: null,
-  };
-  bot.client.on('experience', function(packet) {
-    bot.experience.level = packet.level;
-    bot.experience.points = packet.totalExperience;
-    bot.experience.progress = packet.experienceBar;
-    bot.emit('experience');
-  });
-}
-
-},{}],155:[function(require,module,exports){
-(function (Buffer){
-module.exports = inject;
-
-var dimensionNames = {
-  '-1': 'nether',
-  '0': 'overworld',
-  '1': 'end',
-};
-
-var difficultyNames = ['peaceful', 'easy', 'normal', 'hard'];
-
-function inject(bot, options) {
-  bot.game = {};
-
-  bot.client.on('login', function(packet) {
-    bot.game.levelType = packet.levelType;
-    bot.game.gameMode = parseGameMode(packet.gameMode);
-    bot.game.hardcore = parseHardcore(packet.gameMode);
-    bot.game.dimension = dimensionNames[packet.dimension];
-    bot.game.difficulty = difficultyNames[packet.difficulty];
-    bot.game.maxPlayers = packet.maxPlayers;
-    bot.emit('login');
-    bot.emit('game');
-    bot.client.write('held_item_slot', {slotId: 0});
-    bot.client.write('custom_payload', {channel: 'MC|Brand', data: new Buffer('vanilla')})
-
-    //autoRespawn(bot);
-  });
-
-  bot.client.on('respawn', function(packet) {
-    bot.game.levelType = packet.levelType;
-    bot.game.dimension = dimensionNames[packet.dimension];
-    bot.game.difficulty = difficultyNames[packet.difficulty];
-    bot.game.gameMode = parseGameMode(packet.gameMode);
-    bot.game.hardcore = parseHardcore(packet.gameMode);
-    bot.emit('game');
-  });
-
-  bot.client.on('game_state_change', function(packet) {
-    if (packet.reason === 3) {
-      bot.game.gameMode = parseGameMode(packet.gameMode);
-      bot.emit('game');
-    }
-  });
-}
-
-var gameModes = ['survival', 'creative', 'adventure'];
-
-function parseGameMode(gameModeBits) {
-  return gameModes[(gameModeBits & 0x03)];
-}
-
-function parseHardcore(gameModeBits) {
-  return !!(gameModeBits & 0x04);
-}
-
-/**
- * AutoRespawn if dead on login
- * Waits 2 seconds for the update_health packet,
- * on timeout of this packet it sends a respawn request
- * I can't think of a cleaner way to do this at the moment.
- * @param  {Bot} bot
- * @return {void}
- */
-function autoRespawn(bot) {
-  var timer = setTimeout(function() {
-    bot.client.write('client_command', { payload: 0 });
-  }, 2000);
-  bot.client.once('update_health', function() {
-    clearTimeout(timer);
-  })
-}
-
-
-}).call(this,require("buffer").Buffer)
-},{"buffer":1171}],156:[function(require,module,exports){
-module.exports = inject;
-
-function inject(bot, options) {
-  bot.isAlive = false;
-
-  bot.client.on('respawn', function(packet) {
-    bot.isAlive = false;
-    bot.emit("respawn");
-  });
-
-  bot.client.on('update_health', function(packet) {
-    bot.health = packet.health;
-    bot.food = packet.food;
-    bot.foodSaturation = packet.foodSaturation;
-    bot.emit('health');
-    if (bot.health <= 0) {
-      bot.isAlive = false;
-      bot.emit('death');
-      bot.client.write('client_command', { payload: 0 });
-    } else if (bot.health > 0 && !bot.isAlive) {
-      bot.isAlive = true;
-      bot.emit('spawn');
-    }
-  });
-}
-
-},{}],157:[function(require,module,exports){
-(function (process){
-var Item = require('../item')
-  , assert = require('assert')
-  , Recipe = require('../recipe')
-  , windows = require('../windows')
-  , Chest = require('../chest')
-  , Furnace = require('../furnace')
-  , Dispenser = require('../dispenser')
-  , EnchantmentTable = require('../enchantment_table')
-
-module.exports = inject;
-
-var QUICK_BAR_START = 36;
-var QUICK_BAR_COUNT = 9;
-
-// ms to wait before clicking on a tool so the server can send the new
-// damage information
-var DIG_CLICK_TIMEOUT = 500;
-
-var armorSlots = {
-  head: 5,
-  torso: 6,
-  legs: 7,
-  feet: 8,
-};
-
-function inject(bot) {
-  var nextActionNumber = 0;
-  var windowClickQueue = [];
-  var nextQuickBarSlot = 0;
-
-  // 0-8, null = uninitialized
-  // which quick bar slot is selected
-  bot.quickBarSlot = null;
-  bot.inventory = new windows.InventoryWindow(0, "Inventory", 44);
-  bot.currentWindow = null;
-  bot.heldItem = null;
-
-  function activateItem() {
-    bot.client.write('block_place', {
-      x: -1,
-      y: 255,
-      z: -1,
-      direction: -1,
-      heldItem: itemToNotch(bot.heldItem),
-      cursorX: -1,
-      cursorY: -1,
-      cursorZ: -1,
-    });
-  }
-
-  function deactivateItem() {
-    bot.client.write('block_dig', {
-      status: 5,
-      x: 0,
-      y: 0,
-      z: 0,
-      face: 255,
-    });
-  }
-
-
-  function putSelectedItemRange(start, end, window, slot, cb) {
-    // put the selected item back indow the slot range in window
-
-    // try to put it in an item that already exists and just increase
-    // the count.
-    tryToJoin();
-
-    function tryToJoin() {
-      if (! window.selectedItem) {
-        cb();
-        return;
-      }
-      var item = window.findItemRange(start, end, window.selectedItem.type,
-          window.selectedItem.metadata, true);
-      if (item) {
-        clickWindow(item.slot, 0, 0, onClick);
-      } else {
-        tryToFindEmpty();
-      }
-
-      function onClick(err) {
-        if (err) {
-          cb(err);
-        } else {
-          tryToJoin();
-        }
-      }
-    }
-    function tryToFindEmpty() {
-      var emptySlot = window.firstEmptySlotRange(start, end);
-      if (emptySlot == null) {
-        // if there is still some leftover and slot is not null, click slot
-        if (slot == null) {
-          tossLeftover();
-        } else {
-          clickWindow(slot, 0, 0, tossLeftover);
-        }
-      } else {
-        clickWindow(emptySlot, 0, 0, cb);
-      }
-    }
-    function tossLeftover() {
-      if (window.selectedItem) {
-        clickWindow(-999, 0, 0, cb);
-      } else {
-        cb();
-      }
-    }
-  }
-
-  function activateBlock(block) {
-    // TODO: tell the server that we are not sneaking while doing this
-    bot.lookAt(block.position);
-    // swing arm animation
-    bot.client.write('arm_animation', {
-      entityId: bot.entity.id,
-      animation: 1,
-    });
-    // place block message
-    bot.client.write('block_place', {
-      x: block.position.x,
-      y: block.position.y,
-      z: block.position.z,
-      direction: 1,
-      heldItem: itemToNotch(bot.heldItem),
-      cursorX: 8,
-      cursorY: 8,
-      cursorZ: 8,
-    });
-  }
-
-  function openDispenser(dispenserBlock) {
-    assert.strictEqual(dispenserBlock.type, 23);
-    var dispenser = openBlock(dispenserBlock, Dispenser);
-    dispenser.deposit = deposit;
-    dispenser.withdraw = withdraw;
-    return dispenser;
-    function deposit(itemType, metadata, count, cb) {
-      var options = {
-        window: dispenser.window,
-        itemType: itemType,
-        metadata: metadata,
-        count: count,
-        sourceStart: dispenser.window.inventorySlotStart,
-        sourceEnd: dispenser.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-        destStart: 0,
-        destEnd: dispenser.window.inventorySlotStart,
-      };
-      transfer(options, cb);
-    }
-    function withdraw(itemType, metadata, count, cb) {
-      var options = {
-        window: dispenser.window,
-        itemType: itemType,
-        metadata: metadata,
-        count: count,
-        sourceStart: 0,
-        sourceEnd: dispenser.window.inventorySlotStart,
-        destStart: dispenser.window.inventorySlotStart,
-        destEnd: dispenser.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-      };
-      transfer(options, cb);
-    }
-  }
-
-  function openFurnace(furnaceBlock) {
-    assert.ok(furnaceBlock.type === 61 || furnaceBlock.type === 62);
-    var furnace = openBlock(furnaceBlock, Furnace);
-    furnace.takeInput = takeInput;
-    furnace.takeFuel = takeFuel;
-    furnace.takeOutput = takeOutput;
-    furnace.putInput = putInput;
-    furnace.putFuel = putFuel;
-    bot.client.on('craft_progress_bar', onUpdateWindowProperty);
-    furnace.once("close", onClose);
-    return furnace;
-    function onClose() {
-      bot.client.removeListener('craft_progress_bar', onUpdateWindowProperty);
-    }
-    function onUpdateWindowProperty(packet) {
-      if (!furnace.window) return;
-      if (packet.windowId !== furnace.window.id) return;
-      if (packet.property === 0) {
-        furnace.progress = packet.value / 200;
-      } else if (packet.property === 1) {
-        furnace.fuel = packet.value / 300;
-      }
-      furnace.emit("update");
-    }
-    function takeSomething(item, cb) {
-      assert.ok(item);
-      putAway(item.slot, function(err) {
-        if (err) {
-          cb(err);
-        } else {
-          cb(null, item);
-        }
-      });
-    }
-    function takeInput(cb) {
-      takeSomething(furnace.inputItem(), cb);
-    }
-    function takeFuel(cb) {
-      takeSomething(furnace.fuelItem(), cb);
-    }
-    function takeOutput(cb) {
-      takeSomething(furnace.outputItem(), cb);
-    }
-    function putSomething(destSlot, itemType, metadata, count, cb) {
-      var options = {
-        window: furnace.window,
-        itemType: itemType,
-        metadata: metadata,
-        count: count,
-        sourceStart: furnace.window.inventorySlotStart,
-        sourceEnd: furnace.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-        destStart: destSlot,
-      };
-      transfer(options, cb);
-    }
-    function putInput(itemType, metadata, count, cb) {
-      putSomething(0, itemType, metadata, count, cb);
-    }
-    function putFuel(itemType, metadata, count, cb) {
-      putSomething(1, itemType, metadata, count, cb);
-    }
-  }
-
-  function openEnchantmentTable(enchantmentTableBlock) {
-    assert.strictEqual(enchantmentTableBlock.type, 116);
-    var ready = false;
-    var enchantmentTable = openBlock(enchantmentTableBlock, EnchantmentTable);
-    resetEnchantmentOptions();
-    bot.client.on('craft_progress_bar', onUpdateWindowProperty);
-    enchantmentTable.on('updateSlot', onUpdateSlot);
-    enchantmentTable.once('close', onClose);
-    enchantmentTable.enchant = enchant;
-    enchantmentTable.takeTargetItem = takeTargetItem;
-    enchantmentTable.putTargetItem = putTargetItem;
-    return enchantmentTable;
-    function onClose() {
-      bot.client.removeListener('craft_progress_bar', onUpdateWindowProperty);
-    }
-    function onUpdateWindowProperty(packet) {
-      if (!enchantmentTable.window) return;
-      if (packet.windowId !== enchantmentTable.window.id) return;
-      assert.ok(packet.property >= 0);
-      assert.ok(packet.property < 3);
-      var arr = enchantmentTable.enchantments;
-      arr[packet.property].level = packet.value;
-      if (arr[0].level && arr[1].level && arr[2].level && ! ready) {
-        ready = true;
-        enchantmentTable.emit("ready");
-      }
-    }
-    function onUpdateSlot(oldItem, newItem) {
-      resetEnchantmentOptions();
-    }
-    function resetEnchantmentOptions() {
-      enchantmentTable.enchantments = [ {level: null}, {level: null}, {level: null} ];
-      ready = false;
-    }
-    function enchant(choice, cb) {
-      choice = parseInt(choice, 10); // allow string argument
-      cb = cb || noop;
-      assert.notEqual(enchantmentTable.enchantments[choice].level, null);
-      bot.client.write('enchant_item', {
-        windowId: enchantmentTable.window.id,
-        enchantment: choice,
-      });
-      enchantmentTable.once('updateSlot', function(oldItem, newItem) { cb(null, newItem); });
-    }
-    function takeTargetItem(cb) {
-      cb = cb || noop;
-      var item = enchantmentTable.targetItem();
-      assert.ok(item);
-      putAway(item.slot, function(err) {
-        cb(err, item);
-      });
-    }
-    function putTargetItem(item, cb) {
-      cb = cb || noop;
-      moveSlotItem(item.slot, 0, cb);
-    }
-  }
-
-  function transfer(options, cb) {
-    var window = options.window || bot.currentWindow || bot.inventory;
-    var itemType = options.itemType;
-    var metadata = options.metadata;
-    var count = options.count == null ? 1 : options.count;
-    cb = cb || noop;
-    var firstSourceSlot = null;
-
-    // ranges
-    var sourceStart = options.sourceStart;
-    var destStart = options.destStart;
-    assert.notEqual(sourceStart, null);
-    assert.notEqual(destStart, null);
-    var sourceEnd = options.sourceEnd == null ? sourceStart + 1 : options.sourceEnd;
-    var destEnd = options.destEnd == null ? destStart + 1 : options.destEnd;
-
-    transferOne();
-
-    function transferOne() {
-      if (count === 0) {
-        putSelectedItemRange(sourceStart, sourceEnd, window, firstSourceSlot, cb);
-        return;
-      }
-      if (!window.selectedItem || window.selectedItem.type !== itemType ||
-        (metadata != null && window.selectedItem.metadata !== metadata))
-      {
-        // we are not holding the item we need. click it.
-        var sourceItem = window.findItemRange(sourceStart, sourceEnd, itemType, metadata);
-        if (!sourceItem) return cb(new Error("missing source item"));
-        if (firstSourceSlot == null) firstSourceSlot = sourceItem.slot;
-        clickWindow(sourceItem.slot, 0, 0, function(err) {
-          if (err) {
-            cb(err);
-          } else {
-            clickDest();
-          }
-        });
-      } else {
-        clickDest();
-      }
-
-      function clickDest() {
-        assert.notEqual(window.selectedItem.type, null);
-        assert.notEqual(window.selectedItem.metadata, null);
-        var destItem, destSlot;
-        // special case for tossing
-        if (destStart === -999) {
-          destSlot = -999;
-        } else {
-          // find a non full item that we can drop into
-          destItem = window.findItemRange(destStart, destEnd,
-              window.selectedItem.type, window.selectedItem.metadata, true);
-          // if that didn't work find an empty slot to drop into
-          destSlot = destItem ? destItem.slot :
-            window.firstEmptySlotRange(destStart, destEnd);
-          // if that didn't work, give up
-          if (destSlot == null) {
-            cb(new Error("destination full"));
-            return;
-          }
-        }
-        clickWindow(destSlot, 1, 0, function(err) {
-          if (err) {
-            cb(err);
-          } else {
-            count -= 1;
-            transferOne();
-          }
-        });
-      }
-    }
-  }
-  
-  function openBlock(block, Class) {
-    var session = new Class();
-    session.close = close;
-    bot.once("windowOpen", onWindowOpen);
-    bot.activateBlock(block);
-    return session;
-    function onWindowOpen(window) {
-      if (window.type !== Class.windowType) return;
-      session.window = window;
-      bot.once("windowClose", onClose);
-      bot.on("setSlot:" + window.id, onSetSlot);
-      session.emit("open");
-    }
-    function close() {
-      assert.notEqual(session.window, null);
-      closeWindow(session.window);
-    }
-    function onClose() {
-      bot.removeListener("setSlot:" + session.window.id, onSetSlot);
-      session.window = null;
-      session.emit("close");
-    }
-    function onSetSlot(oldItem, newItem) {
-      if (! Item.equal(oldItem, newItem)) {
-        session.emit("updateSlot", oldItem, newItem);
-      }
-    }
-  }
-
-  function openChest(chestBlock) {
-    assert.ok(chestBlock.type === 54 || chestBlock.type === 130 || chestBlock.type === 146);
-    var chest = openBlock(chestBlock, Chest);
-    chest.withdraw = withdraw;
-    chest.deposit = deposit;
-    return chest;
-    function deposit(itemType, metadata, count, cb) {
-      var options = {
-        window: chest.window,
-        itemType: itemType,
-        metadata: metadata,
-        count: count,
-        sourceStart: chest.window.inventorySlotStart,
-        sourceEnd: chest.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-        destStart: 0,
-        destEnd: chest.window.inventorySlotStart,
-      };
-      transfer(options, cb);
-    }
-    function withdraw(itemType, metadata, count, cb) {
-      var options = {
-        window: chest.window,
-        itemType: itemType,
-        metadata: metadata,
-        count: count,
-        sourceStart: 0,
-        sourceEnd: chest.window.inventorySlotStart,
-        destStart: chest.window.inventorySlotStart,
-        destEnd: chest.window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-      };
-      transfer(options, cb);
-    }
-  }
-
-  function craft(recipe, count, craftingTable, cb) {
-    assert.ok(recipe);
-    cb = cb || noop;
-    count = count == null ? 1 : parseInt(count, 10);
-    if (recipe.requiresTable && !craftingTable) {
-      cb(new Error("recipe requires craftingTable"));
-      return;
-    }
-    next();
-    function next(err) {
-      if (err) {
-        cb(err);
-      } else if (count > 0) {
-        count -= 1;
-        craftOnce(recipe, craftingTable, next);
-      } else {
-        cb();
-      }
-    }
-  }
-
-  function craftOnce(recipe, craftingTable, cb) {
-    if (craftingTable) {
-      activateBlock(craftingTable);
-      bot.once('windowOpen', function(window) {
-        if (window.type !== 1) {
-          cb(new Error("crafting: non craftingTable used as craftingTable"));
-          return;
-        }
-        startClicking(window, 3, 3);
-      });
-    } else {
-      startClicking(bot.inventory, 2, 2);
-    }
-
-    function startClicking(window, w, h) {
-      var extraSlots = unusedRecipeSlots();
-      var ingredientIndex = 0;
-      var originalSourceSlot = null;
-      var it;
-      if (recipe.inShape) {
-        it = {
-          x: 0,
-          y: 0,
-          row: recipe.inShape[0],
-        };
-        clickShape();
-      } else {
-        nextIngredientsClick();
-      }
-
-      function incrementShapeIterator() {
-        it.x += 1;
-        if (it.x >= it.row.length) {
-          it.y += 1;
-          if (it.y >= recipe.inShape.length) return null;
-          it.x = 0;
-          it.row = recipe.inShape[it.y];
-        }
-        return it;
-      }
-      function nextShapeClick() {
-        if (incrementShapeIterator()) {
-          clickShape();
-        } else if (! recipe.ingredients) {
-          putMaterialsAway();
-        } else {
-          nextIngredientsClick();
-        }
-      }
-      function clickShape() {
-        var destSlot = slot(it.x, it.y);
-        var ingredient = it.row[it.x];
-        if (!ingredient) return nextShapeClick();
-        if (!window.selectedItem || window.selectedItem.type !== ingredient.id ||
-            (ingredient.metadata != null &&
-             window.selectedItem.metadata !== ingredient.metadata))
-        {
-          // we are not holding the item we need. click it.
-          var sourceItem = window.findInventoryItem(ingredient.id, ingredient.metadata);
-          if (!sourceItem) return cb(new Error("missing ingredient"));
-          if (originalSourceSlot == null) originalSourceSlot = sourceItem.slot;
-          clickWindow(sourceItem.slot, 0, 0, function(err) {
-            if (err) return cb(err);
-            clickDest();
-          });
-        } else {
-          clickDest();
-        }
-        function clickDest() {
-          clickWindow(destSlot, 1, 0, function(err) {
-            if (err) {
-              cb(err);
-            } else {
-              nextShapeClick();
-            }
-          });
-        }
-      }
-      function nextIngredientsClick() {
-        var ingredient = recipe.ingredients[ingredientIndex];
-        var destSlot = extraSlots.pop();
-        if (!window.selectedItem || window.selectedItem.type !== ingredient.id ||
-          (ingredient.metadata != null &&
-           window.selectedItem.metadata !== ingredient.metadata))
-        {
-          // we are not holding the item we need. click it.
-          var sourceItem = window.findInventoryItem(ingredient.id, ingredient.metadata);
-          if (!sourceItem) return cb(new Error("missing ingredient"));
-          if (originalSourceSlot == null) originalSourceSlot = sourceItem.slot;
-          clickWindow(sourceItem.slot, 0, 0, clickDest);
-        } else {
-          clickDest();
-        }
-        function clickDest() {
-          clickWindow(destSlot, 1, 0, function(err) {
-            if (err) {
-              cb(err);
-            } else if (++ingredientIndex < recipe.ingredients.length) {
-              nextIngredientsClick();
-            } else {
-              putMaterialsAway();
-            }
-          });
-        }
-      }
-      function putMaterialsAway() {
-        var start = window.inventorySlotStart;
-        var end = start + windows.INVENTORY_SLOT_COUNT;
-        putSelectedItemRange(start, end, window, originalSourceSlot, function(err) {
-          if (err) {
-            cb(err);
-          } else {
-            grabResult();
-          }
-        });
-      }
-      function grabResult() {
-        assert.equal(window.selectedItem, null);
-        // put the recipe result in the output
-        var item = new Item(recipe.type, recipe.count, recipe.metadata);
-        window.updateSlot(0, item);
-        // shift click result
-        putAway(0, function (err) {
-          if (err) {
-            cb(err);
-          } else {
-            updateOutShape();
-          }
-        });
-      }
-      function updateOutShape() {
-        if (! recipe.outShape) {
-          closeTheWindow();
-          return;
-        }
-        var slotsToClick = [];
-        var x, y, row, item, theSlot;
-        for (y = 0; y < recipe.outShape.length; ++y) {
-          row = recipe.outShape[y];
-          for (x = 0; x < row.length; ++x) {
-            theSlot = slot(x, y);
-            if (row[x]) {
-              item = new Item(row[x].id, row[x].count, row[x].metadata || 0);
-              slotsToClick.push(theSlot);
-            } else {
-              item = null;
-            }
-            window.updateSlot(theSlot, item);
-          }
-        }
-        next();
-        function next() {
-          var theSlot = slotsToClick.pop();
-          if (!theSlot) {
-            closeTheWindow();
-            return
-          }
-          putAway(theSlot, function(err) {
-            if (err) {
-              cb(err);
-            } else {
-              next();
-            }
-          });
-        }
-      }
-      function closeTheWindow() {
-        closeWindow(window);
-        cb();
-      }
-      function slot(x, y) {
-        return 1 + x + w * y;
-      }
-      function unusedRecipeSlots() {
-        var result = [];
-        var x, y, row;
-        if (recipe.inShape) {
-          for (y = 0; y < recipe.inShape.length; ++y) {
-            row = recipe.inShape[y];
-            for (x = 0; x < row.length; ++x) {
-              if (! row[x]) result.push(slot(x, y));
-            }
-            for (; x < w; ++x) {
-              result.push(slot(x, y));
-            }
-          }
-          for (; y < h; ++y) {
-            for (x = 0; x < w; ++x) {
-              result.push(slot(x, y));
-            }
-          }
-        } else {
-          for (y = 0; y < h; ++y) {
-            for (x = 0; x < w; ++x) {
-              result.push(slot(x, y));
-            }
-          }
-        }
-        return result;
-      }
-    }
-  }
-
-  function recipesFor(itemType, metadata, minResultCount, craftingTable) {
-    minResultCount = minResultCount == null ? 1 : minResultCount;
-    var results = [];
-    Recipe.find(itemType, metadata).forEach(function(recipe) {
-      if (requirementsMetForRecipe(recipe, minResultCount, craftingTable)) {
-        results.push(recipe);
-      }
-    });
-    return results;
-  }
-
-  function requirementsMetForRecipe(recipe, minResultCount, craftingTable) {
-    if (recipe.requiresTable && !craftingTable) return false;
-
-    // how many times we have to perform the craft to achieve minResultCount
-    var craftCount = Math.ceil(minResultCount / recipe.count);
-
-    // false if not enough inventory to make all the ones that we want
-    for (var i = 0; i < recipe.delta.length; ++i) {
-      var d = recipe.delta[i];
-      if (bot.inventory.count(d.type, d.metadata) + d.count * craftCount < 0) return false;
-    }
-
-    // otherwise true
-    return true;
-  }
-
-  function placeBlock(referenceBlock, faceVector) {
-    assert.ok(bot.heldItem, "must be holding an item to place a block");
-    // TODO: tell the server that we are sneaking while doing this
-    var pos = referenceBlock.position;
-    bot.client.write('block_place', {
-      x: pos.x,
-      y: pos.y,
-      z: pos.z,
-      direction: vectorToDirection(faceVector),
-      heldItem: itemToNotch(bot.heldItem),
-      cursorX: 8,
-      cursorY: 8,
-      cursorZ: 8,
-    });
-    // update it immediately; the server will correct us if it did not work.
-    var dest = pos.plus(faceVector);
-    bot._updateBlock(dest, bot.heldItem.type, bot.heldItem.metadata);
-  }
-
-  function createActionNumber() {
-    return nextActionNumber++;
-  }
-
-  function setQuickBarSlot(slot) {
-    assert.ok(slot >= 0);
-    assert.ok(slot < 9);
-    if (bot.quickBarSlot === slot) return;
-    bot.quickBarSlot = slot;
-    bot.client.write('held_item_slot', {
-      slotId: slot,
-    });
-    updateHeldItem();
-  }
-
-  function updateHeldItem() {
-    bot.heldItem = bot.inventory.slots[QUICK_BAR_START + bot.quickBarSlot];
-  }
-
-  function closeWindow(window) {
-    bot.client.write('close_window', {
-      windowId: window.id,
-    });
-    bot.currentWindow = null;
-    bot.emit("windowClose", window);
-  }
-
-  function confirmTransaction(windowId, actionId, accepted) {
-    // drop the queue entries for all the clicks that the server did not send
-    // transaction packets for.
-    var click = windowClickQueue.shift();
-    assert.ok(click.id <= actionId);
-    while (actionId > click.id) {
-      onAccepted();
-      click = windowClickQueue.shift();
-    }
-    assert.ok(click);
-
-    if (accepted) {
-      onAccepted();
-    } else {
-      onRejected();
-    }
-    updateHeldItem();
-
-    function onAccepted() {
-      var window = windowId === 0 ? bot.inventory : bot.currentWindow;
-      if (! window || window.id !== click.windowId) return;
-      window.acceptClick(click);
-      bot.emit("confirmTransaction" + click.id, true);
-    }
-
-    function onRejected() {
-      bot.client.write('transaction', {
-        windowId: 0,
-        action: click.id,
-        accepted: false,
-      });
-      bot.emit("confirmTransaction" + click.id, false);
-    }
-  }
-
-  function clickWindow(slot, mouseButton, mode, cb) {
-    // if you click on the quick bar and have dug recently,
-    // wait a bit
-    if (slot >= QUICK_BAR_START && bot.lastDigTime != null) {
-      var timeSinceLastDig = new Date() - bot.lastDigTime;
-      if (timeSinceLastDig < DIG_CLICK_TIMEOUT) {
-        setTimeout(function() {
-          clickWindow(slot, mouseButton, mode, cb);
-        }, DIG_CLICK_TIMEOUT - timeSinceLastDig);
-        return;
-      }
-    }
-    cb = cb || noop;
-    var window = bot.currentWindow || bot.inventory;
-
-    assert.ok(mouseButton === 0 || mouseButton === 1);
-    assert.strictEqual(mode, 0);
-    var actionId = createActionNumber();
-
-    var click = {
-      slot: slot,
-      mouseButton: mouseButton,
-      mode: mode,
-      id: actionId,
-      windowId: window.id,
-    };
-    windowClickQueue.push(click);
-    bot.client.write('window_click', {
-      windowId: window.id,
-      slot: slot,
-      mouseButton: mouseButton,
-      action: actionId,
-      mode: mode,
-      item: slot === -999 ? { id: -1 } : itemToNotch(window.slots[slot]),
-    });
-    bot.once("confirmTransaction" + actionId, function(success) {
-      if (success) {
-        cb();
-      } else {
-        cb(new Error("Server rejected transaction."));
-      }
-    });
-    // notchian servers are assholes and only confirm certain transactions.
-    if (! window.transactionRequiresConfirmation(click)) {
-      // jump the gun and accept the click
-      confirmTransaction(window.id, actionId, true);
-    }
-  }
-
-  function tossStack(item, cb) {
-    cb = cb || noop;
-    assert.ok(item);
-    clickWindow(item.slot, 0, 0, function(err) {
-      if (err) return cb(err);
-      clickWindow(-999, 0, 0, cb);
-      closeWindow(bot.currentWindow || bot.inventory);
-    });
-  }
-
-  function toss(itemType, metadata, count, cb) {
-    var window = bot.currentWindow || bot.inventory;
-    var options = {
-      window: window,
-      itemType: itemType,
-      metadata: metadata,
-      count: count,
-      sourceStart: window.inventorySlotStart,
-      sourceEnd: window.inventorySlotStart + windows.INVENTORY_SLOT_COUNT,
-      destStart: -999,
-    };
-    transfer(options, cb);
-  }
-
-  function getDestSlot(destination) {
-    if (! destination || destination === 'hand') {
-      return QUICK_BAR_START + bot.quickBarSlot;
-    } else {
-      var destSlot = armorSlots[destination];
-      assert.ok(destSlot != null, "invalid destination: " + destination);
-      return destSlot;
-    }
-  }
-
-  function unequip(destination, cb) {
-    cb = cb || noop;
-    if (destination === 'hand') {
-      equipEmpty(cb);
-    } else {
-      disrobe(destination, cb);
-    }
-  }
-
-  function equipEmpty(cb) {
-    for (var i = 0; i < 9; ++i) {
-      if (! bot.inventory.slots[QUICK_BAR_START + i]) {
-        setQuickBarSlot(i);
-        process.nextTick(cb);
-        return;
-      }
-    }
-    var slot = bot.inventory.firstEmptyInventorySlot();
-    if (! slot) {
-      bot.tossStack(bot.heldItem, cb);
-      return;
-    }
-    var equipSlot = QUICK_BAR_START + bot.quickBarSlot;
-    clickWindow(equipSlot, 0, 0, function(err) {
-      if (err) return cb(err);
-      clickWindow(slot, 0, 0, function(err) {
-        if (err) return cb(err);
-        if (bot.inventory.selectedItem) {
-          clickWindow(-999, 0, 0, cb);
-        } else {
-          cb();
-        }
-      });
-    });
-  }
-
-  function putAway(slot, cb) {
-    clickWindow(slot, 0, 0, function(err) {
-      if (err) return cb(err);
-      var window = bot.currentWindow || bot.inventory;
-      var start = window.inventorySlotStart;
-      var end = start + windows.INVENTORY_SLOT_COUNT;
-      putSelectedItemRange(start, end, window, null, cb);
-    });
-  }
-
-  function disrobe(destination, cb) {
-    assert.equal(bot.currentWindow, null);
-    var destSlot = getDestSlot(destination);
-    putAway(destSlot, cb);
-  }
-
-  function equip(item, destination, cb) {
-    cb = cb || noop;
-    if(typeof item === 'number') {
-      item = bot.inventory.findInventoryItem(item);
-    }
-    if(item == null || typeof item !== 'object') {
-      return cb(new Error('Invalid item object in equip'));
-    }
-    var sourceSlot = item.slot;
-    var destSlot = getDestSlot(destination);
-
-    if (sourceSlot === destSlot) {
-      // don't need to do anything
-      process.nextTick(cb);
-      return;
-    }
-
-    if (destSlot >= QUICK_BAR_START && sourceSlot >= QUICK_BAR_START) {
-      // all we have to do is change the quick bar selection
-      bot.setQuickBarSlot(sourceSlot - QUICK_BAR_START);
-      process.nextTick(cb);
-      return;
-    }
-
-    if (destination !== 'hand') {
-      moveSlotItem(sourceSlot, destSlot, cb);
-      return;
-    }
-
-    // find an empty slot on the quick bar to put the source item in
-    destSlot = bot.inventory.firstEmptySlotRange(QUICK_BAR_START, QUICK_BAR_START + QUICK_BAR_COUNT);
-    if (destSlot == null) {
-      // LRU cache for the quick bar items
-      destSlot = QUICK_BAR_START + nextQuickBarSlot;
-      nextQuickBarSlot = (nextQuickBarSlot + 1) % QUICK_BAR_COUNT;
-    }
-    bot.setQuickBarSlot(destSlot - QUICK_BAR_START);
-    moveSlotItem(sourceSlot, destSlot, cb);
-  }
-
-  function moveSlotItem(sourceSlot, destSlot, cb) {
-    clickWindow(sourceSlot, 0, 0, function(err) {
-      if (err) return cb(err);
-      clickWindow(destSlot, 0, 0, function(err) {
-        // if we're holding an item, put it back where the source item was.
-        // otherwise we're done.
-        if (err) {
-          cb(err);
-        } else if (bot.inventory.selectedItem) {
-          clickWindow(sourceSlot, 0, 0, cb);
-        } else {
-          cb();
-        }
-      });
-    });
-  }
-
-  bot.client.on('transaction', function(packet) {
-    // confirm transaction
-    confirmTransaction(packet.windowId, packet.action, packet.accepted);
-  });
-
-  bot.client.on('held_item_slot', function(packet) {
-    // held item change
-    bot.quickBarSlot = packet.slot;
-    updateHeldItem();
-  });
-  bot.client.on('open_window', function(packet) {
-    // open window
-    bot.currentWindow = windows.createWindow(packet.windowId,
-      packet.inventoryType, packet.windowTitle, packet.slotCount);
-    // don't emit windowOpen until we have the slot data
-    var window = bot.currentWindow;
-    bot.once("setWindowItems:" + window.id, function() {
-      bot.emit("windowOpen", window);
-    });
-  });
-  bot.client.on('close_window', function(packet) {
-    // close window
-    var oldWindow = bot.currentWindow;
-    bot.currentWindow = null;
-    bot.emit("windowClose", oldWindow);
-  });
-  bot.client.on('set_slot', function(packet) {
-    // set slot
-    var window = packet.windowId === 0 ? bot.inventory : bot.currentWindow;
-    if (! window || window.id !== packet.windowId) return;
-    var newItem = itemFromNotch(packet.item);
-    var oldItem = window.slots[packet.slot];
-    window.updateSlot(packet.slot, newItem);
-    updateHeldItem();
-    bot.emit("setSlot:" + window.id, oldItem, newItem);
-  });
-  bot.client.on('window_items', function(packet) {
-    // set window items
-    var window = packet.windowId === 0 ? bot.inventory : bot.currentWindow;
-    if (! window || window.id !== packet.windowId) return;
-    var i, item;
-    for (i = 0; i < packet.items.length; ++i) {
-      item = itemFromNotch(packet.items[i]);
-      window.updateSlot(i, item);
-    }
-    updateHeldItem();
-    bot.emit("setWindowItems:" + window.id);
-  });
-
-  bot.equip = equip;
-  bot.unequip = unequip;
-  bot.toss = toss;
-  bot.tossStack = tossStack;
-  bot.activateBlock = activateBlock;
-  bot.placeBlock = placeBlock;
-  bot.setQuickBarSlot = setQuickBarSlot;
-  bot.craft = craft;
-  bot.recipesFor = recipesFor;
-  bot.openChest = openChest;
-  bot.openFurnace = openFurnace;
-  bot.openDispenser = openDispenser;
-  bot.openEnchantmentTable = openEnchantmentTable;
-  bot.activateItem = activateItem;
-  bot.deactivateItem = deactivateItem;
-}
-
-function itemToNotch(item) {
-  console.log('itemToNotch', item);
-  assert.ok(typeof item === 'object');
-  return item ? {
-    id: item.type,
-    itemCount: item.count,
-    itemDamage: item.metadata,
-    nbtData: item.nbt,
-  } : { id: -1 };
-}
-
-function itemFromNotch(item) {
-  return item.id === -1 ? null :
-    new Item(item.id, item.itemCount, item.itemDamage, item.nbtData);
-}
-
-function noop(err) {
-  if (err) throw err;
-}
-
-function vectorToDirection(v) {
-  if (v.y < 0) {
-    return 0;
-  } else if (v.y > 0) {
-    return 1;
-  } else if (v.z < 0) {
-    return 2;
-  } else if (v.z > 0) {
-    return 3;
-  } else if (v.x < 0) {
-    return 4;
-  } else if (v.x > 0) {
-    return 5;
-  }
-  assert.ok(false, "invalid direction vector " + v);
-}
-
-}).call(this,require('_process'))
-},{"../chest":132,"../dispenser":134,"../enchantment_table":135,"../furnace":143,"../item":144,"../recipe":164,"../windows":165,"_process":1179,"assert":1157}],158:[function(require,module,exports){
-module.exports = inject;
-
-function inject(bot) {
-  bot.client.on('kick_disconnect', function(packet) {
-    bot.emit('kicked', packet.reason);
-  });
-  bot.quit = function(reason) {
-    reason = reason || 'disconnect.quitting';
-    bot.client.end(reason);
-  };
-}
-
-},{}],159:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3
-  , assert = require('assert')
-  , math = require('../math')
-  , conv = require('../conversions')
-
-module.exports = inject;
-
-var EPSILON = 0.000001
-  , PI = Math.PI
-  , PI_2 = Math.PI * 2
-  , POSITION_UPDATE_INTERVAL_MS = 50
-  , PHYSICS_INTERVAL_MS = 20
-  , MAX_PHYSICS_DELTA_SECONDS = 0.2;
-
-function inject(bot) {
-  var physics = {
-    maxGroundSpeed: 4.27, // according to the internet
-    terminalVelocity: 20.0, // guess
-    walkingAcceleration: 100.0, // seems good
-    gravity: 27.0, // seems good
-    groundFriction: 0.9, // seems good
-    playerApothem: 0.32, // notch's client F3 says 0.30, but that caused spankings
-    playerHeight: 1.74, // tested with a binary search
-    jumpSpeed: 9.0, // seems good
-    yawSpeed: 3.0, // seems good
-    sprintSpeed: 1.3, // correct
-  };
-
-  var controlState = {
-    forward: false,
-    back: false,
-    left: false,
-    right: false,
-    jump: false,
-    sprint: false,
-  };
-  var jumpQueued = false;
-  var lastSentYaw = null;
-  var positionUpdateTimer = null;
-  var doPhysicsTimer = null;
-  var lastPositionSentTime = null;
-  var lastPhysicsFrameTime = null;
-  var lastFlyingUpdate = 0;
-
-  function doPhysics() {
-    var now = new Date();
-    var deltaSeconds = (now - lastPhysicsFrameTime) / 1000;
-    lastPhysicsFrameTime = now;
-    var deltaToUse = deltaSeconds < MAX_PHYSICS_DELTA_SECONDS ?
-                     deltaSeconds : MAX_PHYSICS_DELTA_SECONDS;
-    nextFrame(deltaToUse);
-  }
-
-  function cleanup() {
-    stopPhysics();
-    stopPositionUpdates();
-  }
-
-  function stopPositionUpdates() {
-    clearInterval(positionUpdateTimer);
-    positionUpdateTimer = null;
-  }
-
-  function stopPhysics() {
-    clearInterval(doPhysicsTimer);
-    doPhysicsTimer = null;
-  }
-
-  function nextFrame(deltaSeconds) {
-    if (deltaSeconds < EPSILON) return; // too fast
-    var pos = bot.entity.position;
-    var vel = bot.entity.velocity;
-
-    // derive xy movement vector from controls
-    var movementRight = 0;
-    if (controlState.right) movementRight += 1;
-    if (controlState.left) movementRight -= 1;
-    var movementForward = 0;
-    if (controlState.forward) movementForward += 1;
-    if (controlState.back) movementForward -= 1;
-
-    // acceleration is m/s/s
-    var acceleration = new Vec3(0, 0, 0);
-    if (movementForward || movementRight) {
-      // input acceleration
-      var rotationFromInput = Math.atan2(-movementRight, movementForward);
-      var inputYaw = bot.entity.yaw + rotationFromInput;
-      acceleration.x += physics.walkingAcceleration * -Math.sin(inputYaw);
-      acceleration.z += physics.walkingAcceleration * -Math.cos(inputYaw);
-      if (controlState.sprint) {
-        acceleration.x *= physics.sprintSpeed;
-        acceleration.z *= physics.sprintSpeed;
-      }
-    }
-
-    // jumping
-    if ((controlState.jump || jumpQueued) && bot.entity.onGround) {
-      vel.y = physics.jumpSpeed;
-    }
-    jumpQueued = false;
-
-    // gravity
-    acceleration.y -= physics.gravity;
-
-    var oldGroundSpeedSquared = calcGroundSpeedSquared();
-    if (oldGroundSpeedSquared < EPSILON) {
-      // stopped
-      vel.x = 0;
-      vel.z = 0;
-    } else {
-      // non-zero ground speed
-      var oldGroundSpeed = Math.sqrt(oldGroundSpeedSquared);
-      var groundFriction = physics.groundFriction * physics.walkingAcceleration;
-      // less friction for air
-      if (! bot.entity.onGround) groundFriction *= 0.05;
-      // if friction would stop the motion, do it
-      var maybeNewGroundFriction = oldGroundSpeed / deltaSeconds;
-      groundFriction = groundFriction > maybeNewGroundFriction ?
-        maybeNewGroundFriction : groundFriction;
-      acceleration.x -= vel.x / oldGroundSpeed * groundFriction;
-      acceleration.z -= vel.z / oldGroundSpeed * groundFriction;
-    }
-
-    // calculate new speed
-    vel.add(acceleration.scaled(deltaSeconds))
-
-    // limit speed
-    var groundSpeedSquared = calcGroundSpeedSquared();
-    if (groundSpeedSquared > physics.maxGroundSpeed * physics.maxGroundSpeed) {
-      var groundSpeed = Math.sqrt(groundSpeedSquared);
-      var correctionScale = physics.maxGroundSpeed / groundSpeed;
-      vel.x *= correctionScale;
-      vel.z *= correctionScale;
-    }
-    vel.y = math.clamp(-physics.terminalVelocity, vel.y, physics.terminalVelocity);
-
-    // calculate new positions and resolve collisions
-    var boundingBox = getBoundingBox();
-    var boundingBoxMin, boundingBoxMax;
-    if (vel.x !== 0) {
-      pos.x += vel.x * deltaSeconds;
-      var blockX = Math.floor(pos.x + math.sign(vel.x) * physics.playerApothem);
-      boundingBoxMin = new Vec3(blockX, boundingBox.min.y, boundingBox.min.z);
-      boundingBoxMax = new Vec3(blockX, boundingBox.max.y, boundingBox.max.z);
-      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
-        pos.x = blockX + (vel.x < 0 ? 1 + physics.playerApothem : -physics.playerApothem) * 1.001;
-        vel.x = 0;
-        boundingBox = getBoundingBox();
-      }
-    }
-
-    if (vel.z !== 0) {
-      pos.z += vel.z * deltaSeconds;
-      var blockZ = Math.floor(pos.z + math.sign(vel.z) * physics.playerApothem);
-      boundingBoxMin = new Vec3(boundingBox.min.x, boundingBox.min.y, blockZ);
-      boundingBoxMax = new Vec3(boundingBox.max.x, boundingBox.max.y, blockZ);
-      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
-        pos.z = blockZ + (vel.z < 0 ? 1 + physics.playerApothem : -physics.playerApothem) * 1.001;
-        vel.z = 0;
-        boundingBox = getBoundingBox();
-      }
-    }
-
-
-    bot.entity.onGround = false;
-    if (vel.y !== 0) {
-      pos.y += vel.y * deltaSeconds;
-      var playerHalfHeight = physics.playerHeight / 2;
-      var blockY = Math.floor(pos.y + playerHalfHeight + math.sign(vel.y) * playerHalfHeight);
-      boundingBoxMin = new Vec3(boundingBox.min.x, blockY, boundingBox.min.z);
-      boundingBoxMax = new Vec3(boundingBox.max.x, blockY, boundingBox.max.z);
-      if (collisionInRange(boundingBoxMin, boundingBoxMax)) {
-        pos.y = blockY + (vel.y < 0 ? 1 : -physics.playerHeight) * 1.001;
-        bot.entity.onGround = vel.y < 0 ? true : bot.entity.onGround;
-        vel.y = 0;
-      }
-    }
-
-    bot.emit('move');
-  }
-
-  function collisionInRange(boundingBoxMin, boundingBoxMax) {
-    var cursor = new Vec3(0, 0, 0);
-    var block;
-    for (cursor.x = boundingBoxMin.x; cursor.x <= boundingBoxMax.x; cursor.x++) {
-      for (cursor.y = boundingBoxMin.y; cursor.y <= boundingBoxMax.y; cursor.y++) {
-        for (cursor.z = boundingBoxMin.z; cursor.z <= boundingBoxMax.z; cursor.z++) {
-          block = bot.blockAt(cursor);
-          if (block && block.boundingBox === 'block') return true;
-        }
-      }
-    }
-
-    return false;
-  }
-
-  function calcGroundSpeedSquared() {
-    var vel = bot.entity.velocity;
-    return vel.x * vel.x + vel.z * vel.z;
-  }
-
-  function getBoundingBox() {
-    var pos = bot.entity.position;
-    return {
-      min: new Vec3(
-        pos.x - physics.playerApothem,
-        pos.y,
-        pos.z - physics.playerApothem
-      ).floor(),
-      max: new Vec3(
-        pos.x + physics.playerApothem,
-        pos.y + physics.playerHeight,
-        pos.z + physics.playerApothem
-      ).floor(),
-    };
-  }
-
-  function sendPositionAndLook(entity) {
-    // sends data, no logic
-    var packet = {
-      x: entity.position.x,
-      y: entity.position.y + entity.height,
-      z: entity.position.z,
-      stance: entity.position.y,
-      onGround: entity.onGround,
-    };
-    packet.yaw = conv.toNotchianYaw(entity.yaw);
-    packet.pitch = conv.toNotchianPitch(entity.pitch);
-    bot.client.write('position_look', packet);
-  }
-
-  function sendPosition() {
-    // increment the yaw in baby steps so that notchian clients (not the server) can keep up.
-    if(typeof bot.entity.height !== 'number' || isNaN(bot.entity.height) || bot.entity.height < 0.1 || bot.entity.height > 1.65) {
-      // Sometimes this is NaN, not sure of why, it seems it's set via a position packet
-      // Note seems some packets handled by 'position' event do not have a stance. 
-      bot.entity.height = 1.62;
-    }
-    var sentPosition = {
-      yaw: bot.entity.yaw % PI_2,
-      pitch: bot.entity.pitch,
-      position: bot.entity.position,
-      velocity: bot.entity.velocity,
-      height: bot.entity.height,
-      onGround: bot.entity.onGround,
-    }
-    var deltaYaw = math.euclideanMod(sentPosition.yaw - lastSentYaw, PI_2);
-    deltaYaw = deltaYaw < 0 ?
-      (deltaYaw < -PI ? deltaYaw + PI_2 : deltaYaw) :
-      (deltaYaw >  PI ? deltaYaw - PI_2 : deltaYaw);
-    var absDeltaYaw = Math.abs(deltaYaw);
-    assert.ok(absDeltaYaw < PI + 0.001);
-
-    var now = new Date();
-    var deltaMs = now - lastPositionSentTime;
-    lastPositionSentTime = now;
-    var maxDeltaYaw = deltaMs / 1000 * physics.yawSpeed;
-    deltaYaw = absDeltaYaw > maxDeltaYaw ? maxDeltaYaw * math.sign(deltaYaw) : deltaYaw;
-    lastSentYaw = (lastSentYaw + deltaYaw) % PI_2;
-    sentPosition.yaw = lastSentYaw;
-
-    if(new Date() - lastFlyingUpdate > 1000) {
-      // Always send flying messages
-      // If you're dead, you're probably on the ground though ...
-      if(!bot.isAlive) bot.onGround = true;
-      bot.client.write('flying', {onGround: bot.onGround});
-      lastFlyingUpdate = new Date();
-    }
-
-    // Only send location when alive though
-    if(bot.isAlive) {
-      sendPositionAndLook(sentPosition);
-    }
-  }
-
-  bot.physics = physics;
-
-  bot.setControlState = function(control, state) {
-    assert.ok(control in controlState, "invalid control: " + control);
-    if (controlState[control] === state) return;
-    controlState[control] = state;
-    if (control === 'jump' && state) {
-      jumpQueued = true;
-    } else if(control === 'sprint') {
-      bot.client.write('entity_action', {
-        entityId: bot.entity.id,
-        actionId: state ? 4 : 5,
-      });
-    }
-  };
-
-  bot.clearControlStates = function() {
-    for (var control in controlState) {
-      bot.setControlState(control, false);
-    }
-  };
-
-  bot.look = function(yaw, pitch, force) {
-    bot.entity.yaw = yaw;
-    bot.entity.pitch = pitch;
-    if (force) lastSentYaw = yaw;
-    bot.emit("move")
-  };
-
-  bot.lookAt = function(point, force) {
-    var delta = point.minus(bot.entity.position.offset(0, bot.entity.height, 0));
-    var yaw = Math.atan2(-delta.x, -delta.z);
-    var groundDistance = Math.sqrt(delta.x * delta.x + delta.z * delta.z);
-    var pitch = Math.atan2(delta.y, groundDistance);
-    bot.look(yaw, pitch, force);
-  };
-
-  // player position and look
-  bot.client.on('position', function(packet) {
-    if (positionUpdateTimer == null) {
-      // got first 0x0d. start the clocks
-      bot.entity.yaw = conv.fromNotchianYaw(packet.yaw);
-      bot.entity.pitch = conv.fromNotchianPitch(packet.pitch);
-      positionUpdateTimer = setInterval(sendPosition, POSITION_UPDATE_INTERVAL_MS);
-    }
-
-    bot.entity.velocity.set(0, 0, 0);
-    bot.entity.position.set(packet.x, packet.y, packet.z);
-
-    // Packet 0x08 Player Position And Look, does not send a stance
-    if(packet.stance) bot.entity.height = packet.stance - bot.entity.position.y;
-    else bot.entity.height = 1.62;
-    bot.entity.onGround = packet.onGround;
-
-    // NOTE: TODO: - NeverCast
-    // The y position sent to us is actually the eye position, but the physics
-    // Engine assumes it's the foot position.
-    // There needs to be discussion about how to handle this.
-    // Currently I'm just taking the eye height off the y position when we receive it
-    // And adding it back when we send it.
-    bot.entity.position.y -= bot.entity.height;
-
-    // apologize to the notchian server by echoing an identical position back
-    sendPositionAndLook(bot.entity);
-
-    if (doPhysicsTimer == null) {
-      lastSentYaw = math.euclideanMod(bot.entity.yaw, PI_2);
-      lastPositionSentTime = new Date();
-      lastPhysicsFrameTime = new Date();
-      doPhysicsTimer = setInterval(doPhysics, PHYSICS_INTERVAL_MS);
-    }
-  });
-
-  bot.on('mount', stopPhysics);
-  bot.on('respawn', stopPhysics);
-  bot.on('end', cleanup);
-}
-
-},{"../conversions":133,"../math":146,"assert":1157,"vec3":175}],160:[function(require,module,exports){
-module.exports = inject;
-
-function inject(bot) {
-  bot.isRaining = false;
-  bot.client.on('game_state_change', function(packet) {
-    if (packet.reason === 1) {
-      bot.isRaining = true;
-      bot.emit('rain');
-    } else if (packet.reason === 2) {
-      bot.isRaining = false;
-      bot.emit('rain');
-    }
-  });
-}
-
-},{}],161:[function(require,module,exports){
-var assert = require('assert');
-
-module.exports = inject;
-
-var chatToBits = {
-  enabled: 0,
-  commandsOnly: 1,
-  disabled: 2,
-};
-
-var viewDistanceToBits = {
-  'far': 0,
-  'normal': 1,
-  'short': 2,
-  'tiny': 3,
-};
-
-function inject(bot, options) {
-  function setSettings(settings) {
-    extend(bot.settings, settings);
-    var chatBits = chatToBits[bot.settings.chat];
-    assert.ok(chatBits != null, "invalid chat setting: " + bot.settings.chat);
-    var viewDistanceBits = viewDistanceToBits[bot.settings.viewDistance];
-    assert.ok(viewDistanceBits != null, "invalid view distance setting: " + bot.settings.viewDistance);
-    bot.settings.showCape = !!bot.settings.showCape;
-    bot.client.write('settings', {
-      locale: bot.settings.locale || 'en_US',
-      viewDistance: viewDistanceBits,
-      chatFlags: chatBits,
-      chatColors: bot.settings.colorsEnabled,
-      difficulty: bot.settings.difficulty,
-      showCape: bot.settings.showCape,
-    });
-  }
-
-  bot.settings = {
-    chat: options.chat || 'enabled',
-    colorsEnabled: options.colorsEnabled == null ? true : options.colorsEnabled,
-    viewDistance: options.viewDistance || 'far',
-    difficulty: options.difficulty == null ? 2 : options.difficulty,
-    showCape: options.showCape == null ? true : !!options.showCape,
-  };
-
-  bot.client.once('login', function() {
-    setSettings({});
-  });
-
-  bot.setSettings = setSettings;
-}
-
-var hasOwn = {}.hasOwnProperty;
-function extend(obj, src) {
-  for (var key in src) {
-    if (hasOwn.call(src, key)) obj[key] = src[key];
-  }
-  return obj;
-}
-
-},{"assert":1157}],162:[function(require,module,exports){
-var Vec3 = require('vec3').Vec3;
-
-module.exports = inject;
-
-function inject(bot) {
-  bot.spawnPoint = new Vec3(0, 0, 0);
-  bot.client.on('spawn_position', function(packet) {
-    bot.spawnPoint.set(packet.x, packet.y, packet.z);
-    bot.emit('game');
-  });
-}
-
-},{"vec3":175}],163:[function(require,module,exports){
-module.exports = inject;
-
-function inject(bot) {
-  bot.time = {
-    day: null,
-    age: null,
-  };
-  bot.client.on('update_time', function(packet) {
-    // for day we ignore the big number since it is always 0
-    bot.time.day = longToNumber(packet.time) % 24000;
-    bot.time.age = longToNumber(packet.age);
-    bot.emit('time');
-  });
-}
-
-function longToNumber(arr) {
-  return arr[1] + 4294967296 * arr[0];
-}
-
-},{}],164:[function(require,module,exports){
-var recipes = require('./enums/recipes');
-
-module.exports = Recipe;
-
-function Recipe(recipeEnumItem) {
-  this.type = recipeEnumItem.type;
-  this.count = recipeEnumItem.count;
-  this.metadata = recipeEnumItem.metadata;
-
-  var x, y, row, myRow;
-  this.inShape = recipeEnumItem.inShape ?
-    reformatShape(recipeEnumItem.inShape) : null;
-  this.outShape = recipeEnumItem.outShape ?
-    reformatShape(recipeEnumItem.outShape) : null;
-  this.ingredients = recipeEnumItem.ingredients ?
-    reformatIngredients(recipeEnumItem.ingredients) : null;
-  this.delta = computeDelta(this);
-  this.requiresTable = computeRequiresTable(this);
-}
-
-Recipe.find = function(itemType, metadata) {
-  var results = [];
-  (recipes[itemType] || []).forEach(function(recipeEnumItem) {
-    if ((metadata == null || recipeEnumItem.metadata === metadata)) {
-      results.push(new Recipe(recipeEnumItem));
-    }
-  });
-  return results;
-};
-
-function computeRequiresTable(recipe) {
-  var spaceLeft = 4;
-
-  var x, y, row;
-  if (recipe.inShape) {
-    if (recipe.inShape.length > 2) return true;
-    for (y = 0; y < recipe.inShape.length; ++y) {
-      row = recipe.inShape[y];
-      if (row.length > 2) return true;
-      for (x = 0; x < row.length; ++x) {
-        if (row[x]) spaceLeft -= 1;
-      }
-    }
-  }
-  if (recipe.ingredients) spaceLeft -= recipe.ingredients.length;
-  return spaceLeft < 0;
-}
-
-function computeDelta(recipe) {
-  // returns a list of item type and metadata with the delta how many more or
-  // less you will have in your inventory after crafting
-  var delta = [];
-  if (recipe.inShape) applyShape(recipe.inShape, -1);
-  if (recipe.outShape) applyShape(recipe.outShape, 1);
-  if (recipe.ingredients) applyIngredients(recipe.ingredients);
-  // add the result
-  add(recipe.type, recipe.metadata, recipe.count);
-  return delta;
-
-  function add(type, metadata, count) {
-    metadata = metadata == null ? null : metadata;
-    for (var i = 0; i < delta.length; ++i) {
-      var d = delta[i];
-      if (d.type === type && d.metadata === metadata) {
-        d.count += count;
-        return;
-      }
-    }
-    delta.push({
-      type: type,
-      metadata: metadata,
-      count: count,
-    });
-  }
-
-  function applyShape(shape, direction) {
-    var x, y, row;
-    for (y = 0; y < shape.length; ++y) {
-      row = recipe.inShape[y];
-      for (x = 0; x < row.length; ++x) {
-        if (row[x] != null) add(row[x].id, null, direction);
-      }
-    }
-  }
-
-  function applyIngredients(ingredients) {
-    var i, id;
-    for (i = 0; i < ingredients.length; ++i) {
-      id = ingredients[i].id;
-      add(ingredients[i].id, ingredients[i].metadata, -1);
-    }
-  }
-}
-
-function reformatShape(shape) {
-  var out = new Array(shape.length);
-  var x, y, row, outRow;
-  for (y = 0; y < shape.length; ++y) {
-    row = shape[y];
-    out[y] = outRow = new Array(row.length);
-    for (x = 0; x < outRow.length; ++x) {
-      outRow[x] = row[x] ? {
-        id: row[x],
-        metadata: null,
-        count: 1,
-      } : null;
-    }
-  }
-  return out;
-}
-
-function reformatIngredients(ingredients) {
-  var out = new Array(ingredients.length);
-  for (var i = 0; i < out.length; ++i) {
-    out[i] = {
-      id: ingredients[i].id,
-      metadata: ingredients[i].metadata,
-    };
-  }
-  return out;
-}
-
-},{"./enums/recipes":142}],165:[function(require,module,exports){
-var util = require('util')
-  , assert = require('assert')
-  , Item = require('./item')
-
-
-var INVENTORY_SLOT_COUNT = 36;
-
-module.exports = {
-  createWindow: createWindow,
-  Window: Window,
-  InventoryWindow: InventoryWindow,
-  ChestWindow: ChestWindow,
-  CraftingTableWindow: CraftingTableWindow,
-  FurnaceWindow: FurnaceWindow,
-  DispenserWindow: DispenserWindow,
-  EnchantmentTableWindow: EnchantmentTableWindow,
-  BrewingStandWindow: BrewingStandWindow,
-  INVENTORY_SLOT_COUNT: INVENTORY_SLOT_COUNT,
-};
-
-var windows = [
-  ChestWindow,
-  CraftingTableWindow,
-  FurnaceWindow,
-  DispenserWindow,
-  EnchantmentTableWindow,
-  BrewingStandWindow,
-];
-
-function createWindow(id, type, title, slotCount) {
-  return new windows[type](id, title, slotCount);
-}
-
-function Window(id, type, title, slotCount) {
-  this.id = id;
-  this.type = type;
-  this.title = title;
-  this.slots = new Array(slotCount);
-  // in vanilla client, this is the item you are holding with the
-  // mouse cursor
-  this.selectedItem = null;
-}
-
-Window.prototype.findItemRange = function(start, end, itemType, metadata, notFull) {
-  assert.notEqual(itemType, null);
-  for (var i = start; i < end; ++i) {
-    var item = this.slots[i];
-    if (item && itemType === item.type &&
-       (metadata == null || metadata === item.metadata) &&
-       (!notFull || item.count < item.stackSize))
-    {
-      return item;
-    }
-  }
-  return null;
-};
-
-Window.prototype.findInventoryItem = function(itemType, metadata, notFull) {
-  assert.ok(this.inventorySlotStart != null);
-
-  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  return this.findItemRange(this.inventorySlotStart, end, itemType, metadata, notFull);
-};
-
-Window.prototype.firstEmptySlotRange = function(start, end) {
-  for (var i = start; i < end; ++i) {
-    if (!this.slots[i]) return i;
-  }
-  return null;
-};
-
-Window.prototype.firstEmptyInventorySlot = function() {
-  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  return this.firstEmptySlotRange(this.inventorySlotStart, end);
-};
-
-Window.prototype.acceptClick = function(click) {
-  assert.ok(click.mouseButton === 0 || click.mouseButton === 1);
-  var invSlotEnd = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  if (click.slot === -999) {
-    this.acceptOutsideWindowClick(click);
-  } else if (click.slot >= this.inventorySlotStart && click.slot < invSlotEnd) {
-    this.acceptInventoryClick(click);
-  } else {
-    this.acceptUniqueClick(click);
-  }
-};
-
-Window.prototype.acceptOutsideWindowClick = function(click) {
-  assert.strictEqual(click.mode, 0, "unimplemented");
-  if (click.mouseButton === 0) {
-    this.selectedItem = null;
-  } else if (click.mouseButton === 1) {
-    this.selectedItem.count -= 1;
-    if (! this.selectedItem.count) this.selectedItem = null;
-  } else {
-    assert.ok(false, "unimplemented");
-  }
-}
-
-Window.prototype.acceptInventoryClick = function(click) {
-  if (click.mouseButton === 0) {
-    if (click.mode > 0) {
-      assert.ok(false, "unimplemented");
-    } else {
-      this.acceptSwapAreaLeftClick(click);
-    }
-  } else if (click.mouseButton === 1) {
-    this.acceptSwapAreaRightClick(click);
-  } else {
-    assert.ok(false, "unimplemented");
-  }
-};
-
-Window.prototype.acceptNonInventorySwapAreaClick = function(click) {
-  assert.strictEqual(click.mode, 0, "unimplemented");
-  if (click.mouseButton === 0) {
-    this.acceptSwapAreaLeftClick(click);
-  } else if (click.mouseButton === 1) {
-    this.acceptSwapAreaRightClick(click);
-  } else {
-    assert.ok(false, "unimplemented");
-  }
-};
-
-
-Window.prototype.acceptSwapAreaRightClick = function(click) {
-  assert.strictEqual(click.mouseButton, 1);
-  assert.strictEqual(click.mode, 0);
-
-  var item = this.slots[click.slot];
-  if (this.selectedItem) {
-    if (item) {
-      if (item.type === this.selectedItem.type &&
-          item.metadata === this.selectedItem.metadata)
-      {
-        item.count += 1;
-        this.selectedItem.count -= 1;
-        if (this.selectedItem.count === 0) this.selectedItem = null;
-      } else {
-        // swap selected item and window item
-        this.updateSlot(click.slot, this.selectedItem);
-        this.selectedItem = item;
-      }
-    } else {
-      if (this.selectedItem.count === 1) {
-        this.updateSlot(click.slot, this.selectedItem);
-        this.selectedItem = null;
-      } else {
-        this.updateSlot(click.slot, new Item(this.selectedItem.type, 1,
-              this.selectedItem.metadata, this.selectedItem.nbt));
-        this.selectedItem.count -= 1;
-      }
-    }
-  } else if (item) {
-    // grab 1/2 of item
-    this.selectedItem = new Item(item.type, Math.ceil(item.count / 2),
-        item.metadata, item.nbt);
-    item.count -= this.selectedItem.count;
-    if (item.count === 0) this.updateSlot(item.slot, null);
-  }
-}
-
-Window.prototype.acceptSwapAreaLeftClick = function(click) {
-  assert.strictEqual(click.mouseButton, 0);
-  assert.strictEqual(click.mode, 0);
-  var item = this.slots[click.slot];
-  if (item && this.selectedItem &&
-      item.type === this.selectedItem.type &&
-      item.metadata === this.selectedItem.metadata)
-  {
-    // drop as many held item counts into the slot as we can
-    var newCount = item.count + this.selectedItem.count;
-    var leftover = newCount - item.stackSize;
-    if (leftover <= 0) {
-      item.count = newCount;
-      this.selectedItem = null;
-    } else {
-      item.count = item.stackSize;
-      this.selectedItem.count = leftover;
-    }
-  } else {
-    // swap selected item and window item
-    var tmp = this.selectedItem;
-    this.selectedItem = item;
-    this.updateSlot(click.slot, tmp);
-  }
-};
-
-Window.prototype.updateSlot = function (slot, newItem) {
-  if (newItem) newItem.slot = slot;
-  this.slots[slot] = newItem;
-};
-
-Window.prototype.acceptUniqueClick = function(click) {
-  assert.ok(false, "override this method");
-};
-
-Window.prototype.countRange = function(start, end, itemType, metadata) {
-  var sum = 0;
-  for (var i = start; i < end; ++i) {
-    var item = this.slots[i];
-    if (item && itemType === item.type &&
-       (metadata == null || item.metadata === metadata))
-    {
-      sum += item.count;
-    }
-  }
-  return sum;
-};
-
-Window.prototype.itemsRange = function(start, end) {
-  var results = [];
-  for (var i = start; i < end; ++i) {
-    var item = this.slots[i];
-    if (item) results.push(item);
-  }
-  return results;
-};
-
-Window.prototype.count = function(itemType, metadata) {
-  itemType = parseInt(itemType, 10); // allow input to be string
-  assert.ok(this.inventorySlotStart != null);
-
-  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  return this.countRange(this.inventorySlotStart, end, itemType, metadata);
-};
-
-Window.prototype.items = function() {
-  assert.ok(this.inventorySlotStart != null);
-  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  return this.itemsRange(this.inventorySlotStart, end);
-};
-
-Window.prototype.emptySlotCount = function() {
-  var end = this.inventorySlotStart + INVENTORY_SLOT_COUNT;
-  var count = 0;
-  for (var i = this.inventorySlotStart; i < end; ++i) {
-    if (!this.slots[i]) count += 1;
-  }
-  return count;
-};
-
-Window.prototype.transactionRequiresConfirmation = function(click) {
-  return true;
-};
-
-Window.prototype.acceptCraftingClick = function(click) {
-  assert.strictEqual(click.mouseButton, 0);
-  assert.strictEqual(click.mode, 0);
-  assert.equal(this.selectedItem, null);
-  this.acceptNonInventorySwapAreaClick(click);
-};
-
-function InventoryWindow(id, title, slotCount) {
-  Window.call(this, id, null, title, slotCount);
-}
-util.inherits(InventoryWindow, Window);
-
-InventoryWindow.prototype.inventorySlotStart = 9;
-
-InventoryWindow.prototype.acceptUniqueClick = function(click) {
-  if (click.slot === 0) {
-    this.acceptCraftingClick(click);
-  } else if (click.slot >= 1 && click.slot < 9) {
-    this.acceptNonInventorySwapAreaClick(click);
-  }
-}
-
-
-function ChestWindow(id, title, slotCount) {
-  Window.call(this, id, 0, title, slotCount);
-
-  this.inventorySlotStart = slotCount > 62 ? 54 : 27;
-}
-util.inherits(ChestWindow, Window);
-
-ChestWindow.prototype.chestItems = function() {
-  return this.itemsRange(0, this.inventorySlotStart);
-};
-
-ChestWindow.prototype.chestCount = function(itemType, metadata) {
-  itemType = parseInt(itemType, 10); // allow input to be a string
-  return this.countRange(0, this.inventorySlotStart, itemType, metadata);
-};
-
-ChestWindow.prototype.findChestItem = function(itemType, metadata, notFull) {
-  itemType = parseInt(itemType, 10); // allow input to be a string
-  return this.findItemRange(0, this.inventorySlotStart, itemType, metadata, notFull);
-};
-
-ChestWindow.prototype.firstEmptyChestSlot = function() {
-  return this.firstEmptySlotRange(0, this.inventorySlotStart);
-};
-
-ChestWindow.prototype.acceptUniqueClick = function(click) {
-  assert.ok(click.slot >= 0);
-  assert.ok(click.slot < this.inventorySlotStart);
-  this.acceptNonInventorySwapAreaClick(click);
-};
-
-function CraftingTableWindow(id, title, slotCount) {
-  Window.call(this, id, 1, title, slotCount);
-}
-util.inherits(CraftingTableWindow, Window);
-
-CraftingTableWindow.prototype.inventorySlotStart = 10;
-
-CraftingTableWindow.prototype.acceptUniqueClick = function(click) {
-  if (click.slot === 0) {
-    this.acceptCraftingClick(click);
-  } else if (click.slot >= 1 && click.slot < 10) {
-    this.acceptNonInventorySwapAreaClick(click);
-  }
-};
-
-function FurnaceWindow(id, title, slotCount) {
-  Window.call(this, id, 2, title, slotCount);
-}
-util.inherits(FurnaceWindow, Window);
-
-FurnaceWindow.prototype.inventorySlotStart = 3;
-
-FurnaceWindow.prototype.acceptUniqueClick = function(click) {
-  this.acceptNonInventorySwapAreaClick(click);
-}
-
-function DispenserWindow(id, title, slotCount) {
-  Window.call(this, id, 3, title, slotCount);
-}
-util.inherits(DispenserWindow, Window);
-
-DispenserWindow.prototype.inventorySlotStart = 9;
-
-DispenserWindow.prototype.dispenserItems = function() {
-  return this.itemsRange(0, this.inventorySlotStart);
-};
-
-DispenserWindow.prototype.dispenserCount = function(itemType, metadata) {
-  itemType = parseInt(itemType, 10); // allow input to be a string
-  return this.countRange(0, this.inventorySlotStart, itemType, metadata);
-};
-
-DispenserWindow.prototype.acceptUniqueClick = function(click) {
-  assert.ok(click.slot >= 0);
-  assert.ok(click.slot < this.inventorySlotStart);
-  this.acceptNonInventorySwapAreaClick(click);
-};
-
-function EnchantmentTableWindow(id, title, slotCount) {
-  // this window incorrectly reports the number of slots as 9. it should be 1.
-  Window.call(this, id, 4, title, 1);
-}
-util.inherits(EnchantmentTableWindow, Window);
-
-EnchantmentTableWindow.prototype.inventorySlotStart = 1;
-
-EnchantmentTableWindow.prototype.acceptUniqueClick = function(click) {
-  if (click.slot === 0) {
-    // this is technically incorrect. there are some exceptions to enchantment
-    // table slot clicks but we're going to bank on them not being used.
-    this.acceptNonInventorySwapAreaClick(click);
-  }
-}
-
-
-function BrewingStandWindow(id, title, slotCount) {
-  Window.call(this, id, 5, title, slotCount);
-}
-util.inherits(BrewingStandWindow, Window);
-
-BrewingStandWindow.prototype.inventorySlotStart = 5;
-
-},{"./item":144,"assert":1157,"util":1194}],166:[function(require,module,exports){
-(function (global){
-/**
- * @license
- * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
- * Build: `lodash modern -o ./dist/lodash.js`
- * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
- * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
- * Copyright 2009-2013 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
- * Available under MIT license <http://lodash.com/license>
- */
-;(function() {
-
-  /** Used as a safe reference for `undefined` in pre ES5 environments */
-  var undefined;
-
-  /** Used to pool arrays and objects used internally */
-  var arrayPool = [],
-      objectPool = [];
-
-  /** Used to generate unique IDs */
-  var idCounter = 0;
-
-  /** Used to prefix keys to avoid issues with `__proto__` and properties on `Object.prototype` */
-  var keyPrefix = +new Date + '';
-
-  /** Used as the size when optimizations are enabled for large arrays */
-  var largeArraySize = 75;
-
-  /** Used as the max size of the `arrayPool` and `objectPool` */
-  var maxPoolSize = 40;
-
-  /** Used to detect and test whitespace */
-  var whitespace = (
-    // whitespace
-    ' \t\x0B\f\xA0\ufeff' +
-
-    // line terminators
-    '\n\r\u2028\u2029' +
-
-    // unicode category "Zs" space separators
-    '\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000'
-  );
-
-  /** Used to match empty string literals in compiled template source */
-  var reEmptyStringLeading = /\b__p \+= '';/g,
-      reEmptyStringMiddle = /\b(__p \+=) '' \+/g,
-      reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
-
-  /**
-   * Used to match ES6 template delimiters
-   * http://people.mozilla.org/~jorendorff/es6-draft.html#sec-literals-string-literals
-   */
-  var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
-
-  /** Used to match regexp flags from their coerced string values */
-  var reFlags = /\w*$/;
-
-  /** Used to detected named functions */
-  var reFuncName = /^\s*function[ \n\r\t]+\w/;
-
-  /** Used to match "interpolate" template delimiters */
-  var reInterpolate = /<%=([\s\S]+?)%>/g;
-
-  /** Used to match leading whitespace and zeros to be removed */
-  var reLeadingSpacesAndZeros = RegExp('^[' + whitespace + ']*0+(?=.$)');
-
-  /** Used to ensure capturing order of template delimiters */
-  var reNoMatch = /($^)/;
-
-  /** Used to detect functions containing a `this` reference */
-  var reThis = /\bthis\b/;
-
-  /** Used to match unescaped characters in compiled string literals */
-  var reUnescapedString = /['\n\r\t\u2028\u2029\\]/g;
-
-  /** Used to assign default `context` object properties */
-  var contextProps = [
-    'Array', 'Boolean', 'Date', 'Function', 'Math', 'Number', 'Object',
-    'RegExp', 'String', '_', 'attachEvent', 'clearTimeout', 'isFinite', 'isNaN',
-    'parseInt', 'setTimeout'
-  ];
-
-  /** Used to make template sourceURLs easier to identify */
-  var templateCounter = 0;
-
-  /** `Object#toString` result shortcuts */
-  var argsClass = '[object Arguments]',
-      arrayClass = '[object Array]',
-      boolClass = '[object Boolean]',
-      dateClass = '[object Date]',
-      funcClass = '[object Function]',
-      numberClass = '[object Number]',
-      objectClass = '[object Object]',
-      regexpClass = '[object RegExp]',
-      stringClass = '[object String]';
-
-  /** Used to identify object classifications that `_.clone` supports */
-  var cloneableClasses = {};
-  cloneableClasses[funcClass] = false;
-  cloneableClasses[argsClass] = cloneableClasses[arrayClass] =
-  cloneableClasses[boolClass] = cloneableClasses[dateClass] =
-  cloneableClasses[numberClass] = cloneableClasses[objectClass] =
-  cloneableClasses[regexpClass] = cloneableClasses[stringClass] = true;
-
-  /** Used as an internal `_.debounce` options object */
-  var debounceOptions = {
-    'leading': false,
-    'maxWait': 0,
-    'trailing': false
-  };
-
-  /** Used as the property descriptor for `__bindData__` */
-  var descriptor = {
-    'configurable': false,
-    'enumerable': false,
-    'value': null,
-    'writable': false
-  };
-
-  /** Used to determine if values are of the language type Object */
-  var objectTypes = {
-    'boolean': false,
-    'function': true,
-    'object': true,
-    'number': false,
-    'string': false,
-    'undefined': false
-  };
-
-  /** Used to escape characters for inclusion in compiled string literals */
-  var stringEscapes = {
-    '\\': '\\',
-    "'": "'",
-    '\n': 'n',
-    '\r': 'r',
-    '\t': 't',
-    '\u2028': 'u2028',
-    '\u2029': 'u2029'
-  };
-
-  /** Used as a reference to the global object */
-  var root = (objectTypes[typeof window] && window) || this;
-
-  /** Detect free variable `exports` */
-  var freeExports = objectTypes[typeof exports] && exports && !exports.nodeType && exports;
-
-  /** Detect free variable `module` */
-  var freeModule = objectTypes[typeof module] && module && !module.nodeType && module;
-
-  /** Detect the popular CommonJS extension `module.exports` */
-  var moduleExports = freeModule && freeModule.exports === freeExports && freeExports;
-
-  /** Detect free variable `global` from Node.js or Browserified code and use it as `root` */
-  var freeGlobal = objectTypes[typeof global] && global;
-  if (freeGlobal && (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal)) {
-    root = freeGlobal;
-  }
-
-  /*--------------------------------------------------------------------------*/
-
-  /**
-   * The base implementation of `_.indexOf` without support for binary searches
-   * or `fromIndex` constraints.
-   *
-   * @private
-   * @param {Array} array The array to search.
-   * @param {*} value The value to search for.
-   * @param {number} [fromIndex=0] The index to search from.
-   * @returns {number} Returns the index of the matched value or `-1`.
-   */
-  function baseIndexOf(array, value, fromIndex) {
-    var index = (fromIndex || 0) - 1,
-        length = array ? array.length : 0;
-
-    while (++index < length) {
-      if (array[index] === value) {
-        return index;
-      }
-    }
-    return -1;
-  }
-
-  /**
-   * An implementation of `_.contains` for cache objects that mimics the return
-   * signature of `_.indexOf` by returning `0` if the value is found, else `-1`.
-   *
-   * @private
-   * @param {Object} cache The cache object to inspect.
-   * @param {*} value The value to search for.
-   * @returns {number} Returns `0` if `value` is found, else `-1`.
-   */
-  function cacheIndexOf(cache, value) {
-    var type = typeof value;
-    cache = cache.cache;
-
-    if (type == 'boolean' || value == null) {
-      return cache[value] ? 0 : -1;
-    }
-    if (type != 'number' && type != 'string') {
-      type = 'object';
-    }
-    var key = type == 'number' ? value : keyPrefix + value;
-    cache = (cache = cache[type]) && cache[key];
-
-    return type == 'object'
-      ? (cache && baseIndexOf(cache, value) > -1 ? 0 : -1)
-      : (cache ? 0 : -1);
-  }
-
-  /**
-   * Adds a given value to the corresponding cache object.
-   *
-   * @private
-   * @param {*} value The value to add to the cache.
-   */
-  function cachePush(value) {
-    var cache = this.cache,
-        type = typeof value;
-
-    if (type == 'boolean' || value == null) {
-      cache[value] = true;
-    } else {
-      if (type != 'number' && type != 'string') {
-        type = 'object';
-      }
-      var key = type == 'number' ? value : keyPrefix + value,
-          typeCache = cache[type] || (cache[type] = {});
-
-      if (type == 'object') {
-        (typeCache[key] || (typeCache[key] = [])).push(value);
-      } else {
-        typeCache[key] = true;
-      }
-    }
-  }
-
-  /**
-   * Used by `_.max` and `_.min` as the default callback when a given
-   * collection is a string value.
-   *
-   * @private
-   * @param {string} value The character to inspect.
-   * @returns {number} Returns the code unit of given character.
-   */
-  function charAtCallback(value) {
-    return value.charCodeAt(0);
-  }
-
-  /**
-   * Used by `sortBy` to compare transformed `collection` elements, stable sorting
-   * them in ascending order.
-   *
-   * @private
-   * @param {Object} a The object to compare to `b`.
-   * @param {Object} b The object to compare to `a`.
-   * @returns {number} Returns the sort order indicator of `1` or `-1`.
-   */
-  function compareAscending(a, b) {
-    var ac = a.criteria,
-        bc = b.criteria,
-        index = -1,
-        length = ac.length;
-
-    while (++index < length) {
-      var value = ac[index],
-          other = bc[index];
-
-      if (value !== other) {
-        if (value > other || typeof value == 'undefined') {
-          return 1;
-        }
-        if (value < other || typeof other == 'undefined') {
-          return -1;
-        }
-      }
-    }
-    // Fixes an `Array#sort` bug in the JS engine embedded in Adobe applications
-    // that causes it, under certain circumstances, to return the same value for
-    // `a` and `b`. See https://github.com/jashkenas/underscore/pull/1247
-    //
-    // This also ensures a stable sort in V8 and other engines.
-    // See http://code.google.com/p/v8/issues/detail?id=90
-    return a.index - b.index;
-  }
-
-  /**
-   * Creates a cache object to optimize linear searches of large arrays.
-   *
-   * @private
-   * @param {Array} [array=[]] The array to search.
-   * @returns {null|Object} Returns the cache object or `null` if caching should not be used.
-   */
-  function createCache(array) {
-    var index = -1,
-        length = array.length,
-        first = array[0],
-        mid = array[(length / 2) | 0],
-        last = array[length - 1];
-
-    if (first && typeof first == 'object' &&
-        mid && typeof mid == 'object' && last && typeof last == 'object') {
-      return false;
-    }
-    var cache = getObject();
-    cache['false'] = cache['null'] = cache['true'] = cache['undefined'] = false;
-
-    var result = getObject();
-    result.array = array;
-    result.cache = cache;
-    result.push = cachePush;
-
-    while (++index < length) {
-      result.push(array[index]);
-    }
-    return result;
-  }
-
-  /**
-   * Used by `template` to escape characters for inclusion in compiled
-   * string literals.
-   *
-   * @private
-   * @param {string} match The matched character to escape.
-   * @returns {string} Returns the escaped character.
-   */
-  function escapeStringChar(match) {
-    return '\\' + stringEscapes[match];
-  }
-
-  /**
-   * Gets an array from the array pool or creates a new one if the pool is empty.
-   *
-   * @private
-   * @returns {Array} The array from the pool.
-   */
-  function getArray() {
-    return arrayPool.pop() || [];
-  }
-
-  /**
-   * Gets an object from the object pool or creates a new one if the pool is empty.
-   *
-   * @private
-   * @returns {Object} The object from the pool.
-   */
-  function getObject() {
-    return objectPool.pop() || {
-      'array': null,
-      'cache': null,
-      'criteria': null,
-      'false': false,
-      'index': 0,
-      'null': false,
-      'number': null,
-      'object': null,
-      'push': null,
-      'string': null,
-      'true': false,
-      'undefined': false,
-      'value': null
-    };
-  }
-
-  /**
-   * Releases the given array back to the array pool.
-   *
-   * @private
-   * @param {Array} [array] The array to release.
-   */
-  function releaseArray(array) {
-    array.length = 0;
-    if (arrayPool.length < maxPoolSize) {
-      arrayPool.push(array);
-    }
-  }
-
-  /**
-   * Releases the given object back to the object pool.
-   *
-   * @private
-   * @param {Object} [object] The object to release.
-   */
-  function releaseObject(object) {
-    var cache = object.cache;
-    if (cache) {
-      releaseObject(cache);
-    }
-    object.array = object.cache = object.criteria = object.object = object.number = object.string = object.value = null;
-    if (objectPool.length < maxPoolSize) {
-      objectPool.push(object);
-    }
-  }
-
-  /**
-   * Slices the `collection` from the `start` index up to, but not including,
-   * the `end` index.
-   *
-   * Note: This function is used instead of `Array#slice` to support node lists
-   * in IE < 9 and to ensure dense arrays are returned.
-   *
-   * @private
-   * @param {Array|Object|string} collection The collection to slice.
-   * @param {number} start The start index.
-   * @param {number} end The end index.
-   * @returns {Array} Returns the new array.
-   */
-  function slice(array, start, end) {
-    start || (start = 0);
-    if (typeof end == 'undefined') {
-      end = array ? array.length : 0;
-    }
-    var index = -1,
-        length = end - start || 0,
-        result = Array(length < 0 ? 0 : length);
-
-    while (++index < length) {
-      result[index] = array[start + index];
-    }
-    return result;
-  }
-
-  /*--------------------------------------------------------------------------*/
-
-  /**
-   * Create a new `lodash` function using the given context object.
-   *
-   * @static
-   * @memberOf _
-   * @category Utilities
-   * @param {Object} [context=root] The context object.
-   * @returns {Function} Returns the `lodash` function.
-   */
-  function runInContext(context) {
-    // Avoid issues with some ES3 environments that attempt to use values, named
-    // after built-in constructors like `Object`, for the creation of literals.
-    // ES5 clears this up by stating that literals must use built-in constructors.
-    // See http://es5.github.io/#x11.1.5.
-    context = context ? _.defaults(root.Object(), context, _.pick(root, contextProps)) : root;
-
-    /** Native constructor references */
-    var Array = context.Array,
-        Boolean = context.Boolean,
-        Date = context.Date,
-        Function = context.Function,
-        Math = context.Math,
-        Number = context.Number,
-        Object = context.Object,
-        RegExp = context.RegExp,
-        String = context.String,
-        TypeError = context.TypeError;
-
-    /**
-     * Used for `Array` method references.
-     *
-     * Normally `Array.prototype` would suffice, however, using an array literal
-     * avoids issues in Narwhal.
-     */
-    var arrayRef = [];
-
-    /** Used for native method references */
-    var objectProto = Object.prototype;
-
-    /** Used to restore the original `_` reference in `noConflict` */
-    var oldDash = context._;
-
-    /** Used to resolve the internal [[Class]] of values */
-    var toString = objectProto.toString;
-
-    /** Used to detect if a method is native */
-    var reNative = RegExp('^' +
-      String(toString)
-        .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-        .replace(/toString| for [^\]]+/g, '.*?') + '$'
-    );
-
-    /** Native method shortcuts */
-    var ceil = Math.ceil,
-        clearTimeout = context.clearTimeout,
-        floor = Math.floor,
-        fnToString = Function.prototype.toString,
-        getPrototypeOf = isNative(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
-        hasOwnProperty = objectProto.hasOwnProperty,
-        push = arrayRef.push,
-        setTimeout = context.setTimeout,
-        splice = arrayRef.splice,
-        unshift = arrayRef.unshift;
-
-    /** Used to set meta data on functions */
-    var defineProperty = (function() {
-      // IE 8 only accepts DOM elements
-      try {
-        var o = {},
-            func = isNative(func = Object.defineProperty) && func,
-            result = func(o, o, o) && func;
-      } catch(e) { }
-      return result;
-    }());
-
-    /* Native method shortcuts for methods with the same name as other `lodash` methods */
-    var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate,
-        nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray,
-        nativeIsFinite = context.isFinite,
-        nativeIsNaN = context.isNaN,
-        nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys,
-        nativeMax = Math.max,
-        nativeMin = Math.min,
-        nativeParseInt = context.parseInt,
-        nativeRandom = Math.random;
-
-    /** Used to lookup a built-in constructor by [[Class]] */
-    var ctorByClass = {};
-    ctorByClass[arrayClass] = Array;
-    ctorByClass[boolClass] = Boolean;
-    ctorByClass[dateClass] = Date;
-    ctorByClass[funcClass] = Function;
-    ctorByClass[objectClass] = Object;
-    ctorByClass[numberClass] = Number;
-    ctorByClass[regexpClass] = RegExp;
-    ctorByClass[stringClass] = String;
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates a `lodash` object which wraps the given value to enable intuitive
-     * method chaining.
-     *
-     * In addition to Lo-Dash methods, wrappers also have the following `Array` methods:
-     * `concat`, `join`, `pop`, `push`, `reverse`, `shift`, `slice`, `sort`, `splice`,
-     * and `unshift`
-     *
-     * Chaining is supported in custom builds as long as the `value` method is
-     * implicitly or explicitly included in the build.
-     *
-     * The chainable wrapper functions are:
-     * `after`, `assign`, `bind`, `bindAll`, `bindKey`, `chain`, `compact`,
-     * `compose`, `concat`, `countBy`, `create`, `createCallback`, `curry`,
-     * `debounce`, `defaults`, `defer`, `delay`, `difference`, `filter`, `flatten`,
-     * `forEach`, `forEachRight`, `forIn`, `forInRight`, `forOwn`, `forOwnRight`,
-     * `functions`, `groupBy`, `indexBy`, `initial`, `intersection`, `invert`,
-     * `invoke`, `keys`, `map`, `max`, `memoize`, `merge`, `min`, `object`, `omit`,
-     * `once`, `pairs`, `partial`, `partialRight`, `pick`, `pluck`, `pull`, `push`,
-     * `range`, `reject`, `remove`, `rest`, `reverse`, `shuffle`, `slice`, `sort`,
-     * `sortBy`, `splice`, `tap`, `throttle`, `times`, `toArray`, `transform`,
-     * `union`, `uniq`, `unshift`, `unzip`, `values`, `where`, `without`, `wrap`,
-     * and `zip`
-     *
-     * The non-chainable wrapper functions are:
-     * `clone`, `cloneDeep`, `contains`, `escape`, `every`, `find`, `findIndex`,
-     * `findKey`, `findLast`, `findLastIndex`, `findLastKey`, `has`, `identity`,
-     * `indexOf`, `isArguments`, `isArray`, `isBoolean`, `isDate`, `isElement`,
-     * `isEmpty`, `isEqual`, `isFinite`, `isFunction`, `isNaN`, `isNull`, `isNumber`,
-     * `isObject`, `isPlainObject`, `isRegExp`, `isString`, `isUndefined`, `join`,
-     * `lastIndexOf`, `mixin`, `noConflict`, `parseInt`, `pop`, `random`, `reduce`,
-     * `reduceRight`, `result`, `shift`, `size`, `some`, `sortedIndex`, `runInContext`,
-     * `template`, `unescape`, `uniqueId`, and `value`
-     *
-     * The wrapper functions `first` and `last` return wrapped values when `n` is
-     * provided, otherwise they return unwrapped values.
-     *
-     * Explicit chaining can be enabled by using the `_.chain` method.
-     *
-     * @name _
-     * @constructor
-     * @category Chaining
-     * @param {*} value The value to wrap in a `lodash` instance.
-     * @returns {Object} Returns a `lodash` instance.
-     * @example
-     *
-     * var wrapped = _([1, 2, 3]);
-     *
-     * // returns an unwrapped value
-     * wrapped.reduce(function(sum, num) {
-     *   return sum + num;
-     * });
-     * // => 6
-     *
-     * // returns a wrapped value
-     * var squares = wrapped.map(function(num) {
-     *   return num * num;
-     * });
-     *
-     * _.isArray(squares);
-     * // => false
-     *
-     * _.isArray(squares.value());
-     * // => true
-     */
-    function lodash(value) {
-      // don't wrap if already wrapped, even if wrapped by a different `lodash` constructor
-      return (value && typeof value == 'object' && !isArray(value) && hasOwnProperty.call(value, '__wrapped__'))
-       ? value
-       : new lodashWrapper(value);
-    }
-
-    /**
-     * A fast path for creating `lodash` wrapper objects.
-     *
-     * @private
-     * @param {*} value The value to wrap in a `lodash` instance.
-     * @param {boolean} chainAll A flag to enable chaining for all methods
-     * @returns {Object} Returns a `lodash` instance.
-     */
-    function lodashWrapper(value, chainAll) {
-      this.__chain__ = !!chainAll;
-      this.__wrapped__ = value;
-    }
-    // ensure `new lodashWrapper` is an instance of `lodash`
-    lodashWrapper.prototype = lodash.prototype;
-
-    /**
-     * An object used to flag environments features.
-     *
-     * @static
-     * @memberOf _
-     * @type Object
-     */
-    var support = lodash.support = {};
-
-    /**
-     * Detect if functions can be decompiled by `Function#toString`
-     * (all but PS3 and older Opera mobile browsers & avoided in Windows 8 apps).
-     *
-     * @memberOf _.support
-     * @type boolean
-     */
-    support.funcDecomp = !isNative(context.WinRTError) && reThis.test(runInContext);
-
-    /**
-     * Detect if `Function#name` is supported (all but IE).
-     *
-     * @memberOf _.support
-     * @type boolean
-     */
-    support.funcNames = typeof Function.name == 'string';
-
-    /**
-     * By default, the template delimiters used by Lo-Dash are similar to those in
-     * embedded Ruby (ERB). Change the following template settings to use alternative
-     * delimiters.
-     *
-     * @static
-     * @memberOf _
-     * @type Object
-     */
-    lodash.templateSettings = {
-
-      /**
-       * Used to detect `data` property values to be HTML-escaped.
-       *
-       * @memberOf _.templateSettings
-       * @type RegExp
-       */
-      'escape': /<%-([\s\S]+?)%>/g,
-
-      /**
-       * Used to detect code to be evaluated.
-       *
-       * @memberOf _.templateSettings
-       * @type RegExp
-       */
-      'evaluate': /<%([\s\S]+?)%>/g,
-
-      /**
-       * Used to detect `data` property values to inject.
-       *
-       * @memberOf _.templateSettings
-       * @type RegExp
-       */
-      'interpolate': reInterpolate,
-
-      /**
-       * Used to reference the data object in the template text.
-       *
-       * @memberOf _.templateSettings
-       * @type string
-       */
-      'variable': '',
-
-      /**
-       * Used to import variables into the compiled template.
-       *
-       * @memberOf _.templateSettings
-       * @type Object
-       */
-      'imports': {
-
-        /**
-         * A reference to the `lodash` function.
-         *
-         * @memberOf _.templateSettings.imports
-         * @type Function
-         */
-        '_': lodash
-      }
-    };
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * The base implementation of `_.bind` that creates the bound function and
-     * sets its meta data.
-     *
-     * @private
-     * @param {Array} bindData The bind data array.
-     * @returns {Function} Returns the new bound function.
-     */
-    function baseBind(bindData) {
-      var func = bindData[0],
-          partialArgs = bindData[2],
-          thisArg = bindData[4];
-
-      function bound() {
-        // `Function#bind` spec
-        // http://es5.github.io/#x15.3.4.5
-        if (partialArgs) {
-          // avoid `arguments` object deoptimizations by using `slice` instead
-          // of `Array.prototype.slice.call` and not assigning `arguments` to a
-          // variable as a ternary expression
-          var args = slice(partialArgs);
-          push.apply(args, arguments);
-        }
-        // mimic the constructor's `return` behavior
-        // http://es5.github.io/#x13.2.2
-        if (this instanceof bound) {
-          // ensure `new bound` is an instance of `func`
-          var thisBinding = baseCreate(func.prototype),
-              result = func.apply(thisBinding, args || arguments);
-          return isObject(result) ? result : thisBinding;
-        }
-        return func.apply(thisArg, args || arguments);
-      }
-      setBindData(bound, bindData);
-      return bound;
-    }
-
-    /**
-     * The base implementation of `_.clone` without argument juggling or support
-     * for `thisArg` binding.
-     *
-     * @private
-     * @param {*} value The value to clone.
-     * @param {boolean} [isDeep=false] Specify a deep clone.
-     * @param {Function} [callback] The function to customize cloning values.
-     * @param {Array} [stackA=[]] Tracks traversed source objects.
-     * @param {Array} [stackB=[]] Associates clones with source counterparts.
-     * @returns {*} Returns the cloned value.
-     */
-    function baseClone(value, isDeep, callback, stackA, stackB) {
-      if (callback) {
-        var result = callback(value);
-        if (typeof result != 'undefined') {
-          return result;
-        }
-      }
-      // inspect [[Class]]
-      var isObj = isObject(value);
-      if (isObj) {
-        var className = toString.call(value);
-        if (!cloneableClasses[className]) {
-          return value;
-        }
-        var ctor = ctorByClass[className];
-        switch (className) {
-          case boolClass:
-          case dateClass:
-            return new ctor(+value);
-
-          case numberClass:
-          case stringClass:
-            return new ctor(value);
-
-          case regexpClass:
-            result = ctor(value.source, reFlags.exec(value));
-            result.lastIndex = value.lastIndex;
-            return result;
-        }
-      } else {
-        return value;
-      }
-      var isArr = isArray(value);
-      if (isDeep) {
-        // check for circular references and return corresponding clone
-        var initedStack = !stackA;
-        stackA || (stackA = getArray());
-        stackB || (stackB = getArray());
-
-        var length = stackA.length;
-        while (length--) {
-          if (stackA[length] == value) {
-            return stackB[length];
-          }
-        }
-        result = isArr ? ctor(value.length) : {};
-      }
-      else {
-        result = isArr ? slice(value) : assign({}, value);
-      }
-      // add array properties assigned by `RegExp#exec`
-      if (isArr) {
-        if (hasOwnProperty.call(value, 'index')) {
-          result.index = value.index;
-        }
-        if (hasOwnProperty.call(value, 'input')) {
-          result.input = value.input;
-        }
-      }
-      // exit for shallow clone
-      if (!isDeep) {
-        return result;
-      }
-      // add the source value to the stack of traversed objects
-      // and associate it with its clone
-      stackA.push(value);
-      stackB.push(result);
-
-      // recursively populate clone (susceptible to call stack limits)
-      (isArr ? forEach : forOwn)(value, function(objValue, key) {
-        result[key] = baseClone(objValue, isDeep, callback, stackA, stackB);
-      });
-
-      if (initedStack) {
-        releaseArray(stackA);
-        releaseArray(stackB);
-      }
-      return result;
-    }
-
-    /**
-     * The base implementation of `_.create` without support for assigning
-     * properties to the created object.
-     *
-     * @private
-     * @param {Object} prototype The object to inherit from.
-     * @returns {Object} Returns the new object.
-     */
-    function baseCreate(prototype, properties) {
-      return isObject(prototype) ? nativeCreate(prototype) : {};
-    }
-    // fallback for browsers without `Object.create`
-    if (!nativeCreate) {
-      baseCreate = (function() {
-        function Object() {}
-        return function(prototype) {
-          if (isObject(prototype)) {
-            Object.prototype = prototype;
-            var result = new Object;
-            Object.prototype = null;
-          }
-          return result || context.Object();
-        };
-      }());
-    }
-
-    /**
-     * The base implementation of `_.createCallback` without support for creating
-     * "_.pluck" or "_.where" style callbacks.
-     *
-     * @private
-     * @param {*} [func=identity] The value to convert to a callback.
-     * @param {*} [thisArg] The `this` binding of the created callback.
-     * @param {number} [argCount] The number of arguments the callback accepts.
-     * @returns {Function} Returns a callback function.
-     */
-    function baseCreateCallback(func, thisArg, argCount) {
-      if (typeof func != 'function') {
-        return identity;
-      }
-      // exit early for no `thisArg` or already bound by `Function#bind`
-      if (typeof thisArg == 'undefined' || !('prototype' in func)) {
-        return func;
-      }
-      var bindData = func.__bindData__;
-      if (typeof bindData == 'undefined') {
-        if (support.funcNames) {
-          bindData = !func.name;
-        }
-        bindData = bindData || !support.funcDecomp;
-        if (!bindData) {
-          var source = fnToString.call(func);
-          if (!support.funcNames) {
-            bindData = !reFuncName.test(source);
-          }
-          if (!bindData) {
-            // checks if `func` references the `this` keyword and stores the result
-            bindData = reThis.test(source);
-            setBindData(func, bindData);
-          }
-        }
-      }
-      // exit early if there are no `this` references or `func` is bound
-      if (bindData === false || (bindData !== true && bindData[1] & 1)) {
-        return func;
-      }
-      switch (argCount) {
-        case 1: return function(value) {
-          return func.call(thisArg, value);
-        };
-        case 2: return function(a, b) {
-          return func.call(thisArg, a, b);
-        };
-        case 3: return function(value, index, collection) {
-          return func.call(thisArg, value, index, collection);
-        };
-        case 4: return function(accumulator, value, index, collection) {
-          return func.call(thisArg, accumulator, value, index, collection);
-        };
-      }
-      return bind(func, thisArg);
-    }
-
-    /**
-     * The base implementation of `createWrapper` that creates the wrapper and
-     * sets its meta data.
-     *
-     * @private
-     * @param {Array} bindData The bind data array.
-     * @returns {Function} Returns the new function.
-     */
-    function baseCreateWrapper(bindData) {
-      var func = bindData[0],
-          bitmask = bindData[1],
-          partialArgs = bindData[2],
-          partialRightArgs = bindData[3],
-          thisArg = bindData[4],
-          arity = bindData[5];
-
-      var isBind = bitmask & 1,
-          isBindKey = bitmask & 2,
-          isCurry = bitmask & 4,
-          isCurryBound = bitmask & 8,
-          key = func;
-
-      function bound() {
-        var thisBinding = isBind ? thisArg : this;
-        if (partialArgs) {
-          var args = slice(partialArgs);
-          push.apply(args, arguments);
-        }
-        if (partialRightArgs || isCurry) {
-          args || (args = slice(arguments));
-          if (partialRightArgs) {
-            push.apply(args, partialRightArgs);
-          }
-          if (isCurry && args.length < arity) {
-            bitmask |= 16 & ~32;
-            return baseCreateWrapper([func, (isCurryBound ? bitmask : bitmask & ~3), args, null, thisArg, arity]);
-          }
-        }
-        args || (args = arguments);
-        if (isBindKey) {
-          func = thisBinding[key];
-        }
-        if (this instanceof bound) {
-          thisBinding = baseCreate(func.prototype);
-          var result = func.apply(thisBinding, args);
-          return isObject(result) ? result : thisBinding;
-        }
-        return func.apply(thisBinding, args);
-      }
-      setBindData(bound, bindData);
-      return bound;
-    }
-
-    /**
-     * The base implementation of `_.difference` that accepts a single array
-     * of values to exclude.
-     *
-     * @private
-     * @param {Array} array The array to process.
-     * @param {Array} [values] The array of values to exclude.
-     * @returns {Array} Returns a new array of filtered values.
-     */
-    function baseDifference(array, values) {
-      var index = -1,
-          indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          isLarge = length >= largeArraySize && indexOf === baseIndexOf,
-          result = [];
-
-      if (isLarge) {
-        var cache = createCache(values);
-        if (cache) {
-          indexOf = cacheIndexOf;
-          values = cache;
-        } else {
-          isLarge = false;
-        }
-      }
-      while (++index < length) {
-        var value = array[index];
-        if (indexOf(values, value) < 0) {
-          result.push(value);
-        }
-      }
-      if (isLarge) {
-        releaseObject(values);
-      }
-      return result;
-    }
-
-    /**
-     * The base implementation of `_.flatten` without support for callback
-     * shorthands or `thisArg` binding.
-     *
-     * @private
-     * @param {Array} array The array to flatten.
-     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
-     * @param {boolean} [isStrict=false] A flag to restrict flattening to arrays and `arguments` objects.
-     * @param {number} [fromIndex=0] The index to start from.
-     * @returns {Array} Returns a new flattened array.
-     */
-    function baseFlatten(array, isShallow, isStrict, fromIndex) {
-      var index = (fromIndex || 0) - 1,
-          length = array ? array.length : 0,
-          result = [];
-
-      while (++index < length) {
-        var value = array[index];
-
-        if (value && typeof value == 'object' && typeof value.length == 'number'
-            && (isArray(value) || isArguments(value))) {
-          // recursively flatten arrays (susceptible to call stack limits)
-          if (!isShallow) {
-            value = baseFlatten(value, isShallow, isStrict);
-          }
-          var valIndex = -1,
-              valLength = value.length,
-              resIndex = result.length;
-
-          result.length += valLength;
-          while (++valIndex < valLength) {
-            result[resIndex++] = value[valIndex];
-          }
-        } else if (!isStrict) {
-          result.push(value);
-        }
-      }
-      return result;
-    }
-
-    /**
-     * The base implementation of `_.isEqual`, without support for `thisArg` binding,
-     * that allows partial "_.where" style comparisons.
-     *
-     * @private
-     * @param {*} a The value to compare.
-     * @param {*} b The other value to compare.
-     * @param {Function} [callback] The function to customize comparing values.
-     * @param {Function} [isWhere=false] A flag to indicate performing partial comparisons.
-     * @param {Array} [stackA=[]] Tracks traversed `a` objects.
-     * @param {Array} [stackB=[]] Tracks traversed `b` objects.
-     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
-     */
-    function baseIsEqual(a, b, callback, isWhere, stackA, stackB) {
-      // used to indicate that when comparing objects, `a` has at least the properties of `b`
-      if (callback) {
-        var result = callback(a, b);
-        if (typeof result != 'undefined') {
-          return !!result;
-        }
-      }
-      // exit early for identical values
-      if (a === b) {
-        // treat `+0` vs. `-0` as not equal
-        return a !== 0 || (1 / a == 1 / b);
-      }
-      var type = typeof a,
-          otherType = typeof b;
-
-      // exit early for unlike primitive values
-      if (a === a &&
-          !(a && objectTypes[type]) &&
-          !(b && objectTypes[otherType])) {
-        return false;
-      }
-      // exit early for `null` and `undefined` avoiding ES3's Function#call behavior
-      // http://es5.github.io/#x15.3.4.4
-      if (a == null || b == null) {
-        return a === b;
-      }
-      // compare [[Class]] names
-      var className = toString.call(a),
-          otherClass = toString.call(b);
-
-      if (className == argsClass) {
-        className = objectClass;
-      }
-      if (otherClass == argsClass) {
-        otherClass = objectClass;
-      }
-      if (className != otherClass) {
-        return false;
-      }
-      switch (className) {
-        case boolClass:
-        case dateClass:
-          // coerce dates and booleans to numbers, dates to milliseconds and booleans
-          // to `1` or `0` treating invalid dates coerced to `NaN` as not equal
-          return +a == +b;
-
-        case numberClass:
-          // treat `NaN` vs. `NaN` as equal
-          return (a != +a)
-            ? b != +b
-            // but treat `+0` vs. `-0` as not equal
-            : (a == 0 ? (1 / a == 1 / b) : a == +b);
-
-        case regexpClass:
-        case stringClass:
-          // coerce regexes to strings (http://es5.github.io/#x15.10.6.4)
-          // treat string primitives and their corresponding object instances as equal
-          return a == String(b);
-      }
-      var isArr = className == arrayClass;
-      if (!isArr) {
-        // unwrap any `lodash` wrapped values
-        var aWrapped = hasOwnProperty.call(a, '__wrapped__'),
-            bWrapped = hasOwnProperty.call(b, '__wrapped__');
-
-        if (aWrapped || bWrapped) {
-          return baseIsEqual(aWrapped ? a.__wrapped__ : a, bWrapped ? b.__wrapped__ : b, callback, isWhere, stackA, stackB);
-        }
-        // exit for functions and DOM nodes
-        if (className != objectClass) {
-          return false;
-        }
-        // in older versions of Opera, `arguments` objects have `Array` constructors
-        var ctorA = a.constructor,
-            ctorB = b.constructor;
-
-        // non `Object` object instances with different constructors are not equal
-        if (ctorA != ctorB &&
-              !(isFunction(ctorA) && ctorA instanceof ctorA && isFunction(ctorB) && ctorB instanceof ctorB) &&
-              ('constructor' in a && 'constructor' in b)
-            ) {
-          return false;
-        }
-      }
-      // assume cyclic structures are equal
-      // the algorithm for detecting cyclic structures is adapted from ES 5.1
-      // section 15.12.3, abstract operation `JO` (http://es5.github.io/#x15.12.3)
-      var initedStack = !stackA;
-      stackA || (stackA = getArray());
-      stackB || (stackB = getArray());
-
-      var length = stackA.length;
-      while (length--) {
-        if (stackA[length] == a) {
-          return stackB[length] == b;
-        }
-      }
-      var size = 0;
-      result = true;
-
-      // add `a` and `b` to the stack of traversed objects
-      stackA.push(a);
-      stackB.push(b);
-
-      // recursively compare objects and arrays (susceptible to call stack limits)
-      if (isArr) {
-        // compare lengths to determine if a deep comparison is necessary
-        length = a.length;
-        size = b.length;
-        result = size == length;
-
-        if (result || isWhere) {
-          // deep compare the contents, ignoring non-numeric properties
-          while (size--) {
-            var index = length,
-                value = b[size];
-
-            if (isWhere) {
-              while (index--) {
-                if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
-                  break;
-                }
-              }
-            } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
-              break;
-            }
-          }
-        }
-      }
-      else {
-        // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
-        // which, in this case, is more costly
-        forIn(b, function(value, key, b) {
-          if (hasOwnProperty.call(b, key)) {
-            // count the number of properties.
-            size++;
-            // deep compare each property value.
-            return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
-          }
-        });
-
-        if (result && !isWhere) {
-          // ensure both objects have the same number of properties
-          forIn(a, function(value, key, a) {
-            if (hasOwnProperty.call(a, key)) {
-              // `size` will be `-1` if `a` has more properties than `b`
-              return (result = --size > -1);
-            }
-          });
-        }
-      }
-      stackA.pop();
-      stackB.pop();
-
-      if (initedStack) {
-        releaseArray(stackA);
-        releaseArray(stackB);
-      }
-      return result;
-    }
-
-    /**
-     * The base implementation of `_.merge` without argument juggling or support
-     * for `thisArg` binding.
-     *
-     * @private
-     * @param {Object} object The destination object.
-     * @param {Object} source The source object.
-     * @param {Function} [callback] The function to customize merging properties.
-     * @param {Array} [stackA=[]] Tracks traversed source objects.
-     * @param {Array} [stackB=[]] Associates values with source counterparts.
-     */
-    function baseMerge(object, source, callback, stackA, stackB) {
-      (isArray(source) ? forEach : forOwn)(source, function(source, key) {
-        var found,
-            isArr,
-            result = source,
-            value = object[key];
-
-        if (source && ((isArr = isArray(source)) || isPlainObject(source))) {
-          // avoid merging previously merged cyclic sources
-          var stackLength = stackA.length;
-          while (stackLength--) {
-            if ((found = stackA[stackLength] == source)) {
-              value = stackB[stackLength];
-              break;
-            }
-          }
-          if (!found) {
-            var isShallow;
-            if (callback) {
-              result = callback(value, source);
-              if ((isShallow = typeof result != 'undefined')) {
-                value = result;
-              }
-            }
-            if (!isShallow) {
-              value = isArr
-                ? (isArray(value) ? value : [])
-                : (isPlainObject(value) ? value : {});
-            }
-            // add `source` and associated `value` to the stack of traversed objects
-            stackA.push(source);
-            stackB.push(value);
-
-            // recursively merge objects and arrays (susceptible to call stack limits)
-            if (!isShallow) {
-              baseMerge(value, source, callback, stackA, stackB);
-            }
-          }
-        }
-        else {
-          if (callback) {
-            result = callback(value, source);
-            if (typeof result == 'undefined') {
-              result = source;
-            }
-          }
-          if (typeof result != 'undefined') {
-            value = result;
-          }
-        }
-        object[key] = value;
-      });
-    }
-
-    /**
-     * The base implementation of `_.random` without argument juggling or support
-     * for returning floating-point numbers.
-     *
-     * @private
-     * @param {number} min The minimum possible value.
-     * @param {number} max The maximum possible value.
-     * @returns {number} Returns a random number.
-     */
-    function baseRandom(min, max) {
-      return min + floor(nativeRandom() * (max - min + 1));
-    }
-
-    /**
-     * The base implementation of `_.uniq` without support for callback shorthands
-     * or `thisArg` binding.
-     *
-     * @private
-     * @param {Array} array The array to process.
-     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
-     * @param {Function} [callback] The function called per iteration.
-     * @returns {Array} Returns a duplicate-value-free array.
-     */
-    function baseUniq(array, isSorted, callback) {
-      var index = -1,
-          indexOf = getIndexOf(),
-          length = array ? array.length : 0,
-          result = [];
-
-      var isLarge = !isSorted && length >= largeArraySize && indexOf === baseIndexOf,
-          seen = (callback || isLarge) ? getArray() : result;
-
-      if (isLarge) {
-        var cache = createCache(seen);
-        indexOf = cacheIndexOf;
-        seen = cache;
-      }
-      while (++index < length) {
-        var value = array[index],
-            computed = callback ? callback(value, index, array) : value;
-
-        if (isSorted
-              ? !index || seen[seen.length - 1] !== computed
-              : indexOf(seen, computed) < 0
-            ) {
-          if (callback || isLarge) {
-            seen.push(computed);
-          }
-          result.push(value);
-        }
-      }
-      if (isLarge) {
-        releaseArray(seen.array);
-        releaseObject(seen);
-      } else if (callback) {
-        releaseArray(seen);
-      }
-      return result;
-    }
-
-    /**
-     * Creates a function that aggregates a collection, creating an object composed
-     * of keys generated from the results of running each element of the collection
-     * through a callback. The given `setter` function sets the keys and values
-     * of the composed object.
-     *
-     * @private
-     * @param {Function} setter The setter function.
-     * @returns {Function} Returns the new aggregator function.
-     */
-    function createAggregator(setter) {
-      return function(collection, callback, thisArg) {
-        var result = {};
-        callback = lodash.createCallback(callback, thisArg, 3);
-
-        var index = -1,
-            length = collection ? collection.length : 0;
-
-        if (typeof length == 'number') {
-          while (++index < length) {
-            var value = collection[index];
-            setter(result, value, callback(value, index, collection), collection);
-          }
-        } else {
-          forOwn(collection, function(value, key, collection) {
-            setter(result, value, callback(value, key, collection), collection);
-          });
-        }
-        return result;
-      };
-    }
-
-    /**
-     * Creates a function that, when called, either curries or invokes `func`
-     * with an optional `this` binding and partially applied arguments.
-     *
-     * @private
-     * @param {Function|string} func The function or method name to reference.
-     * @param {number} bitmask The bitmask of method flags to compose.
-     *  The bitmask may be composed of the following flags:
-     *  1 - `_.bind`
-     *  2 - `_.bindKey`
-     *  4 - `_.curry`
-     *  8 - `_.curry` (bound)
-     *  16 - `_.partial`
-     *  32 - `_.partialRight`
-     * @param {Array} [partialArgs] An array of arguments to prepend to those
-     *  provided to the new function.
-     * @param {Array} [partialRightArgs] An array of arguments to append to those
-     *  provided to the new function.
-     * @param {*} [thisArg] The `this` binding of `func`.
-     * @param {number} [arity] The arity of `func`.
-     * @returns {Function} Returns the new function.
-     */
-    function createWrapper(func, bitmask, partialArgs, partialRightArgs, thisArg, arity) {
-      var isBind = bitmask & 1,
-          isBindKey = bitmask & 2,
-          isCurry = bitmask & 4,
-          isCurryBound = bitmask & 8,
-          isPartial = bitmask & 16,
-          isPartialRight = bitmask & 32;
-
-      if (!isBindKey && !isFunction(func)) {
-        throw new TypeError;
-      }
-      if (isPartial && !partialArgs.length) {
-        bitmask &= ~16;
-        isPartial = partialArgs = false;
-      }
-      if (isPartialRight && !partialRightArgs.length) {
-        bitmask &= ~32;
-        isPartialRight = partialRightArgs = false;
-      }
-      var bindData = func && func.__bindData__;
-      if (bindData && bindData !== true) {
-        // clone `bindData`
-        bindData = slice(bindData);
-        if (bindData[2]) {
-          bindData[2] = slice(bindData[2]);
-        }
-        if (bindData[3]) {
-          bindData[3] = slice(bindData[3]);
-        }
-        // set `thisBinding` is not previously bound
-        if (isBind && !(bindData[1] & 1)) {
-          bindData[4] = thisArg;
-        }
-        // set if previously bound but not currently (subsequent curried functions)
-        if (!isBind && bindData[1] & 1) {
-          bitmask |= 8;
-        }
-        // set curried arity if not yet set
-        if (isCurry && !(bindData[1] & 4)) {
-          bindData[5] = arity;
-        }
-        // append partial left arguments
-        if (isPartial) {
-          push.apply(bindData[2] || (bindData[2] = []), partialArgs);
-        }
-        // append partial right arguments
-        if (isPartialRight) {
-          unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
-        }
-        // merge flags
-        bindData[1] |= bitmask;
-        return createWrapper.apply(null, bindData);
-      }
-      // fast path for `_.bind`
-      var creater = (bitmask == 1 || bitmask === 17) ? baseBind : baseCreateWrapper;
-      return creater([func, bitmask, partialArgs, partialRightArgs, thisArg, arity]);
-    }
-
-    /**
-     * Used by `escape` to convert characters to HTML entities.
-     *
-     * @private
-     * @param {string} match The matched character to escape.
-     * @returns {string} Returns the escaped character.
-     */
-    function escapeHtmlChar(match) {
-      return htmlEscapes[match];
-    }
-
-    /**
-     * Gets the appropriate "indexOf" function. If the `_.indexOf` method is
-     * customized, this method returns the custom method, otherwise it returns
-     * the `baseIndexOf` function.
-     *
-     * @private
-     * @returns {Function} Returns the "indexOf" function.
-     */
-    function getIndexOf() {
-      var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
-      return result;
-    }
-
-    /**
-     * Checks if `value` is a native function.
-     *
-     * @private
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
-     */
-    function isNative(value) {
-      return typeof value == 'function' && reNative.test(value);
-    }
-
-    /**
-     * Sets `this` binding data on a given function.
-     *
-     * @private
-     * @param {Function} func The function to set data on.
-     * @param {Array} value The data array to set.
-     */
-    var setBindData = !defineProperty ? noop : function(func, value) {
-      descriptor.value = value;
-      defineProperty(func, '__bindData__', descriptor);
-    };
-
-    /**
-     * A fallback implementation of `isPlainObject` which checks if a given value
-     * is an object created by the `Object` constructor, assuming objects created
-     * by the `Object` constructor have no inherited enumerable properties and that
-     * there are no `Object.prototype` extensions.
-     *
-     * @private
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
-     */
-    function shimIsPlainObject(value) {
-      var ctor,
-          result;
-
-      // avoid non Object objects, `arguments` objects, and DOM elements
-      if (!(value && toString.call(value) == objectClass) ||
-          (ctor = value.constructor, isFunction(ctor) && !(ctor instanceof ctor))) {
-        return false;
-      }
-      // In most environments an object's own properties are iterated before
-      // its inherited properties. If the last iterated property is an object's
-      // own property then there are no inherited enumerable properties.
-      forIn(value, function(value, key) {
-        result = key;
-      });
-      return typeof result == 'undefined' || hasOwnProperty.call(value, result);
-    }
-
-    /**
-     * Used by `unescape` to convert HTML entities to characters.
-     *
-     * @private
-     * @param {string} match The matched character to unescape.
-     * @returns {string} Returns the unescaped character.
-     */
-    function unescapeHtmlChar(match) {
-      return htmlUnescapes[match];
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Checks if `value` is an `arguments` object.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is an `arguments` object, else `false`.
-     * @example
-     *
-     * (function() { return _.isArguments(arguments); })(1, 2, 3);
-     * // => true
-     *
-     * _.isArguments([1, 2, 3]);
-     * // => false
-     */
-    function isArguments(value) {
-      return value && typeof value == 'object' && typeof value.length == 'number' &&
-        toString.call(value) == argsClass || false;
-    }
-
-    /**
-     * Checks if `value` is an array.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is an array, else `false`.
-     * @example
-     *
-     * (function() { return _.isArray(arguments); })();
-     * // => false
-     *
-     * _.isArray([1, 2, 3]);
-     * // => true
-     */
-    var isArray = nativeIsArray || function(value) {
-      return value && typeof value == 'object' && typeof value.length == 'number' &&
-        toString.call(value) == arrayClass || false;
-    };
-
-    /**
-     * A fallback implementation of `Object.keys` which produces an array of the
-     * given object's own enumerable property names.
-     *
-     * @private
-     * @type Function
-     * @param {Object} object The object to inspect.
-     * @returns {Array} Returns an array of property names.
-     */
-    var shimKeys = function(object) {
-      var index, iterable = object, result = [];
-      if (!iterable) return result;
-      if (!(objectTypes[typeof object])) return result;
-        for (index in iterable) {
-          if (hasOwnProperty.call(iterable, index)) {
-            result.push(index);
-          }
-        }
-      return result
-    };
-
-    /**
-     * Creates an array composed of the own enumerable property names of an object.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to inspect.
-     * @returns {Array} Returns an array of property names.
-     * @example
-     *
-     * _.keys({ 'one': 1, 'two': 2, 'three': 3 });
-     * // => ['one', 'two', 'three'] (property order is not guaranteed across environments)
-     */
-    var keys = !nativeKeys ? shimKeys : function(object) {
-      if (!isObject(object)) {
-        return [];
-      }
-      return nativeKeys(object);
-    };
-
-    /**
-     * Used to convert characters to HTML entities:
-     *
-     * Though the `>` character is escaped for symmetry, characters like `>` and `/`
-     * don't require escaping in HTML and have no special meaning unless they're part
-     * of a tag or an unquoted attribute value.
-     * http://mathiasbynens.be/notes/ambiguous-ampersands (under "semi-related fun fact")
-     */
-    var htmlEscapes = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;'
-    };
-
-    /** Used to convert HTML entities to characters */
-    var htmlUnescapes = invert(htmlEscapes);
-
-    /** Used to match HTML entities and HTML characters */
-    var reEscapedHtml = RegExp('(' + keys(htmlUnescapes).join('|') + ')', 'g'),
-        reUnescapedHtml = RegExp('[' + keys(htmlEscapes).join('') + ']', 'g');
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Assigns own enumerable properties of source object(s) to the destination
-     * object. Subsequent sources will overwrite property assignments of previous
-     * sources. If a callback is provided it will be executed to produce the
-     * assigned values. The callback is bound to `thisArg` and invoked with two
-     * arguments; (objectValue, sourceValue).
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @alias extend
-     * @category Objects
-     * @param {Object} object The destination object.
-     * @param {...Object} [source] The source objects.
-     * @param {Function} [callback] The function to customize assigning values.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns the destination object.
-     * @example
-     *
-     * _.assign({ 'name': 'fred' }, { 'employer': 'slate' });
-     * // => { 'name': 'fred', 'employer': 'slate' }
-     *
-     * var defaults = _.partialRight(_.assign, function(a, b) {
-     *   return typeof a == 'undefined' ? b : a;
-     * });
-     *
-     * var object = { 'name': 'barney' };
-     * defaults(object, { 'name': 'fred', 'employer': 'slate' });
-     * // => { 'name': 'barney', 'employer': 'slate' }
-     */
-    var assign = function(object, source, guard) {
-      var index, iterable = object, result = iterable;
-      if (!iterable) return result;
-      var args = arguments,
-          argsIndex = 0,
-          argsLength = typeof guard == 'number' ? 2 : args.length;
-      if (argsLength > 3 && typeof args[argsLength - 2] == 'function') {
-        var callback = baseCreateCallback(args[--argsLength - 1], args[argsLength--], 2);
-      } else if (argsLength > 2 && typeof args[argsLength - 1] == 'function') {
-        callback = args[--argsLength];
-      }
-      while (++argsIndex < argsLength) {
-        iterable = args[argsIndex];
-        if (iterable && objectTypes[typeof iterable]) {
-        var ownIndex = -1,
-            ownProps = objectTypes[typeof iterable] && keys(iterable),
-            length = ownProps ? ownProps.length : 0;
-
-        while (++ownIndex < length) {
-          index = ownProps[ownIndex];
-          result[index] = callback ? callback(result[index], iterable[index]) : iterable[index];
-        }
-        }
-      }
-      return result
-    };
-
-    /**
-     * Creates a clone of `value`. If `isDeep` is `true` nested objects will also
-     * be cloned, otherwise they will be assigned by reference. If a callback
-     * is provided it will be executed to produce the cloned values. If the
-     * callback returns `undefined` cloning will be handled by the method instead.
-     * The callback is bound to `thisArg` and invoked with one argument; (value).
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to clone.
-     * @param {boolean} [isDeep=false] Specify a deep clone.
-     * @param {Function} [callback] The function to customize cloning values.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the cloned value.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * var shallow = _.clone(characters);
-     * shallow[0] === characters[0];
-     * // => true
-     *
-     * var deep = _.clone(characters, true);
-     * deep[0] === characters[0];
-     * // => false
-     *
-     * _.mixin({
-     *   'clone': _.partialRight(_.clone, function(value) {
-     *     return _.isElement(value) ? value.cloneNode(false) : undefined;
-     *   })
-     * });
-     *
-     * var clone = _.clone(document.body);
-     * clone.childNodes.length;
-     * // => 0
-     */
-    function clone(value, isDeep, callback, thisArg) {
-      // allows working with "Collections" methods without using their `index`
-      // and `collection` arguments for `isDeep` and `callback`
-      if (typeof isDeep != 'boolean' && isDeep != null) {
-        thisArg = callback;
-        callback = isDeep;
-        isDeep = false;
-      }
-      return baseClone(value, isDeep, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
-    }
-
-    /**
-     * Creates a deep clone of `value`. If a callback is provided it will be
-     * executed to produce the cloned values. If the callback returns `undefined`
-     * cloning will be handled by the method instead. The callback is bound to
-     * `thisArg` and invoked with one argument; (value).
-     *
-     * Note: This method is loosely based on the structured clone algorithm. Functions
-     * and DOM nodes are **not** cloned. The enumerable properties of `arguments` objects and
-     * objects created by constructors other than `Object` are cloned to plain `Object` objects.
-     * See http://www.w3.org/TR/html5/infrastructure.html#internal-structured-cloning-algorithm.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to deep clone.
-     * @param {Function} [callback] The function to customize cloning values.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the deep cloned value.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * var deep = _.cloneDeep(characters);
-     * deep[0] === characters[0];
-     * // => false
-     *
-     * var view = {
-     *   'label': 'docs',
-     *   'node': element
-     * };
-     *
-     * var clone = _.cloneDeep(view, function(value) {
-     *   return _.isElement(value) ? value.cloneNode(true) : undefined;
-     * });
-     *
-     * clone.node == view.node;
-     * // => false
-     */
-    function cloneDeep(value, callback, thisArg) {
-      return baseClone(value, true, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 1));
-    }
-
-    /**
-     * Creates an object that inherits from the given `prototype` object. If a
-     * `properties` object is provided its own enumerable properties are assigned
-     * to the created object.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} prototype The object to inherit from.
-     * @param {Object} [properties] The properties to assign to the object.
-     * @returns {Object} Returns the new object.
-     * @example
-     *
-     * function Shape() {
-     *   this.x = 0;
-     *   this.y = 0;
-     * }
-     *
-     * function Circle() {
-     *   Shape.call(this);
-     * }
-     *
-     * Circle.prototype = _.create(Shape.prototype, { 'constructor': Circle });
-     *
-     * var circle = new Circle;
-     * circle instanceof Circle;
-     * // => true
-     *
-     * circle instanceof Shape;
-     * // => true
-     */
-    function create(prototype, properties) {
-      var result = baseCreate(prototype);
-      return properties ? assign(result, properties) : result;
-    }
-
-    /**
-     * Assigns own enumerable properties of source object(s) to the destination
-     * object for all destination properties that resolve to `undefined`. Once a
-     * property is set, additional defaults of the same property will be ignored.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Objects
-     * @param {Object} object The destination object.
-     * @param {...Object} [source] The source objects.
-     * @param- {Object} [guard] Allows working with `_.reduce` without using its
-     *  `key` and `object` arguments as sources.
-     * @returns {Object} Returns the destination object.
-     * @example
-     *
-     * var object = { 'name': 'barney' };
-     * _.defaults(object, { 'name': 'fred', 'employer': 'slate' });
-     * // => { 'name': 'barney', 'employer': 'slate' }
-     */
-    var defaults = function(object, source, guard) {
-      var index, iterable = object, result = iterable;
-      if (!iterable) return result;
-      var args = arguments,
-          argsIndex = 0,
-          argsLength = typeof guard == 'number' ? 2 : args.length;
-      while (++argsIndex < argsLength) {
-        iterable = args[argsIndex];
-        if (iterable && objectTypes[typeof iterable]) {
-        var ownIndex = -1,
-            ownProps = objectTypes[typeof iterable] && keys(iterable),
-            length = ownProps ? ownProps.length : 0;
-
-        while (++ownIndex < length) {
-          index = ownProps[ownIndex];
-          if (typeof result[index] == 'undefined') result[index] = iterable[index];
-        }
-        }
-      }
-      return result
-    };
-
-    /**
-     * This method is like `_.findIndex` except that it returns the key of the
-     * first element that passes the callback check, instead of the element itself.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to search.
-     * @param {Function|Object|string} [callback=identity] The function called per
-     *  iteration. If a property name or object is provided it will be used to
-     *  create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
-     * @example
-     *
-     * var characters = {
-     *   'barney': {  'age': 36, 'blocked': false },
-     *   'fred': {    'age': 40, 'blocked': true },
-     *   'pebbles': { 'age': 1,  'blocked': false }
-     * };
-     *
-     * _.findKey(characters, function(chr) {
-     *   return chr.age < 40;
-     * });
-     * // => 'barney' (property order is not guaranteed across environments)
-     *
-     * // using "_.where" callback shorthand
-     * _.findKey(characters, { 'age': 1 });
-     * // => 'pebbles'
-     *
-     * // using "_.pluck" callback shorthand
-     * _.findKey(characters, 'blocked');
-     * // => 'fred'
-     */
-    function findKey(object, callback, thisArg) {
-      var result;
-      callback = lodash.createCallback(callback, thisArg, 3);
-      forOwn(object, function(value, key, object) {
-        if (callback(value, key, object)) {
-          result = key;
-          return false;
-        }
-      });
-      return result;
-    }
-
-    /**
-     * This method is like `_.findKey` except that it iterates over elements
-     * of a `collection` in the opposite order.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to search.
-     * @param {Function|Object|string} [callback=identity] The function called per
-     *  iteration. If a property name or object is provided it will be used to
-     *  create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {string|undefined} Returns the key of the found element, else `undefined`.
-     * @example
-     *
-     * var characters = {
-     *   'barney': {  'age': 36, 'blocked': true },
-     *   'fred': {    'age': 40, 'blocked': false },
-     *   'pebbles': { 'age': 1,  'blocked': true }
-     * };
-     *
-     * _.findLastKey(characters, function(chr) {
-     *   return chr.age < 40;
-     * });
-     * // => returns `pebbles`, assuming `_.findKey` returns `barney`
-     *
-     * // using "_.where" callback shorthand
-     * _.findLastKey(characters, { 'age': 40 });
-     * // => 'fred'
-     *
-     * // using "_.pluck" callback shorthand
-     * _.findLastKey(characters, 'blocked');
-     * // => 'pebbles'
-     */
-    function findLastKey(object, callback, thisArg) {
-      var result;
-      callback = lodash.createCallback(callback, thisArg, 3);
-      forOwnRight(object, function(value, key, object) {
-        if (callback(value, key, object)) {
-          result = key;
-          return false;
-        }
-      });
-      return result;
-    }
-
-    /**
-     * Iterates over own and inherited enumerable properties of an object,
-     * executing the callback for each property. The callback is bound to `thisArg`
-     * and invoked with three arguments; (value, key, object). Callbacks may exit
-     * iteration early by explicitly returning `false`.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Objects
-     * @param {Object} object The object to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns `object`.
-     * @example
-     *
-     * function Shape() {
-     *   this.x = 0;
-     *   this.y = 0;
-     * }
-     *
-     * Shape.prototype.move = function(x, y) {
-     *   this.x += x;
-     *   this.y += y;
-     * };
-     *
-     * _.forIn(new Shape, function(value, key) {
-     *   console.log(key);
-     * });
-     * // => logs 'x', 'y', and 'move' (property order is not guaranteed across environments)
-     */
-    var forIn = function(collection, callback, thisArg) {
-      var index, iterable = collection, result = iterable;
-      if (!iterable) return result;
-      if (!objectTypes[typeof iterable]) return result;
-      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
-        for (index in iterable) {
-          if (callback(iterable[index], index, collection) === false) return result;
-        }
-      return result
-    };
-
-    /**
-     * This method is like `_.forIn` except that it iterates over elements
-     * of a `collection` in the opposite order.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns `object`.
-     * @example
-     *
-     * function Shape() {
-     *   this.x = 0;
-     *   this.y = 0;
-     * }
-     *
-     * Shape.prototype.move = function(x, y) {
-     *   this.x += x;
-     *   this.y += y;
-     * };
-     *
-     * _.forInRight(new Shape, function(value, key) {
-     *   console.log(key);
-     * });
-     * // => logs 'move', 'y', and 'x' assuming `_.forIn ` logs 'x', 'y', and 'move'
-     */
-    function forInRight(object, callback, thisArg) {
-      var pairs = [];
-
-      forIn(object, function(value, key) {
-        pairs.push(key, value);
-      });
-
-      var length = pairs.length;
-      callback = baseCreateCallback(callback, thisArg, 3);
-      while (length--) {
-        if (callback(pairs[length--], pairs[length], object) === false) {
-          break;
-        }
-      }
-      return object;
-    }
-
-    /**
-     * Iterates over own enumerable properties of an object, executing the callback
-     * for each property. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, key, object). Callbacks may exit iteration early by
-     * explicitly returning `false`.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Objects
-     * @param {Object} object The object to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns `object`.
-     * @example
-     *
-     * _.forOwn({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
-     *   console.log(key);
-     * });
-     * // => logs '0', '1', and 'length' (property order is not guaranteed across environments)
-     */
-    var forOwn = function(collection, callback, thisArg) {
-      var index, iterable = collection, result = iterable;
-      if (!iterable) return result;
-      if (!objectTypes[typeof iterable]) return result;
-      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
-        var ownIndex = -1,
-            ownProps = objectTypes[typeof iterable] && keys(iterable),
-            length = ownProps ? ownProps.length : 0;
-
-        while (++ownIndex < length) {
-          index = ownProps[ownIndex];
-          if (callback(iterable[index], index, collection) === false) return result;
-        }
-      return result
-    };
-
-    /**
-     * This method is like `_.forOwn` except that it iterates over elements
-     * of a `collection` in the opposite order.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns `object`.
-     * @example
-     *
-     * _.forOwnRight({ '0': 'zero', '1': 'one', 'length': 2 }, function(num, key) {
-     *   console.log(key);
-     * });
-     * // => logs 'length', '1', and '0' assuming `_.forOwn` logs '0', '1', and 'length'
-     */
-    function forOwnRight(object, callback, thisArg) {
-      var props = keys(object),
-          length = props.length;
-
-      callback = baseCreateCallback(callback, thisArg, 3);
-      while (length--) {
-        var key = props[length];
-        if (callback(object[key], key, object) === false) {
-          break;
-        }
-      }
-      return object;
-    }
-
-    /**
-     * Creates a sorted array of property names of all enumerable properties,
-     * own and inherited, of `object` that have function values.
-     *
-     * @static
-     * @memberOf _
-     * @alias methods
-     * @category Objects
-     * @param {Object} object The object to inspect.
-     * @returns {Array} Returns an array of property names that have function values.
-     * @example
-     *
-     * _.functions(_);
-     * // => ['all', 'any', 'bind', 'bindAll', 'clone', 'compact', 'compose', ...]
-     */
-    function functions(object) {
-      var result = [];
-      forIn(object, function(value, key) {
-        if (isFunction(value)) {
-          result.push(key);
-        }
-      });
-      return result.sort();
-    }
-
-    /**
-     * Checks if the specified property name exists as a direct property of `object`,
-     * instead of an inherited property.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to inspect.
-     * @param {string} key The name of the property to check.
-     * @returns {boolean} Returns `true` if key is a direct property, else `false`.
-     * @example
-     *
-     * _.has({ 'a': 1, 'b': 2, 'c': 3 }, 'b');
-     * // => true
-     */
-    function has(object, key) {
-      return object ? hasOwnProperty.call(object, key) : false;
-    }
-
-    /**
-     * Creates an object composed of the inverted keys and values of the given object.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to invert.
-     * @returns {Object} Returns the created inverted object.
-     * @example
-     *
-     * _.invert({ 'first': 'fred', 'second': 'barney' });
-     * // => { 'fred': 'first', 'barney': 'second' }
-     */
-    function invert(object) {
-      var index = -1,
-          props = keys(object),
-          length = props.length,
-          result = {};
-
-      while (++index < length) {
-        var key = props[index];
-        result[object[key]] = key;
-      }
-      return result;
-    }
-
-    /**
-     * Checks if `value` is a boolean value.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a boolean value, else `false`.
-     * @example
-     *
-     * _.isBoolean(null);
-     * // => false
-     */
-    function isBoolean(value) {
-      return value === true || value === false ||
-        value && typeof value == 'object' && toString.call(value) == boolClass || false;
-    }
-
-    /**
-     * Checks if `value` is a date.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a date, else `false`.
-     * @example
-     *
-     * _.isDate(new Date);
-     * // => true
-     */
-    function isDate(value) {
-      return value && typeof value == 'object' && toString.call(value) == dateClass || false;
-    }
-
-    /**
-     * Checks if `value` is a DOM element.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a DOM element, else `false`.
-     * @example
-     *
-     * _.isElement(document.body);
-     * // => true
-     */
-    function isElement(value) {
-      return value && value.nodeType === 1 || false;
-    }
-
-    /**
-     * Checks if `value` is empty. Arrays, strings, or `arguments` objects with a
-     * length of `0` and objects with no own enumerable properties are considered
-     * "empty".
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Array|Object|string} value The value to inspect.
-     * @returns {boolean} Returns `true` if the `value` is empty, else `false`.
-     * @example
-     *
-     * _.isEmpty([1, 2, 3]);
-     * // => false
-     *
-     * _.isEmpty({});
-     * // => true
-     *
-     * _.isEmpty('');
-     * // => true
-     */
-    function isEmpty(value) {
-      var result = true;
-      if (!value) {
-        return result;
-      }
-      var className = toString.call(value),
-          length = value.length;
-
-      if ((className == arrayClass || className == stringClass || className == argsClass ) ||
-          (className == objectClass && typeof length == 'number' && isFunction(value.splice))) {
-        return !length;
-      }
-      forOwn(value, function() {
-        return (result = false);
-      });
-      return result;
-    }
-
-    /**
-     * Performs a deep comparison between two values to determine if they are
-     * equivalent to each other. If a callback is provided it will be executed
-     * to compare values. If the callback returns `undefined` comparisons will
-     * be handled by the method instead. The callback is bound to `thisArg` and
-     * invoked with two arguments; (a, b).
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} a The value to compare.
-     * @param {*} b The other value to compare.
-     * @param {Function} [callback] The function to customize comparing values.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
-     * @example
-     *
-     * var object = { 'name': 'fred' };
-     * var copy = { 'name': 'fred' };
-     *
-     * object == copy;
-     * // => false
-     *
-     * _.isEqual(object, copy);
-     * // => true
-     *
-     * var words = ['hello', 'goodbye'];
-     * var otherWords = ['hi', 'goodbye'];
-     *
-     * _.isEqual(words, otherWords, function(a, b) {
-     *   var reGreet = /^(?:hello|hi)$/i,
-     *       aGreet = _.isString(a) && reGreet.test(a),
-     *       bGreet = _.isString(b) && reGreet.test(b);
-     *
-     *   return (aGreet || bGreet) ? (aGreet == bGreet) : undefined;
-     * });
-     * // => true
-     */
-    function isEqual(a, b, callback, thisArg) {
-      return baseIsEqual(a, b, typeof callback == 'function' && baseCreateCallback(callback, thisArg, 2));
-    }
-
-    /**
-     * Checks if `value` is, or can be coerced to, a finite number.
-     *
-     * Note: This is not the same as native `isFinite` which will return true for
-     * booleans and empty strings. See http://es5.github.io/#x15.1.2.5.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is finite, else `false`.
-     * @example
-     *
-     * _.isFinite(-101);
-     * // => true
-     *
-     * _.isFinite('10');
-     * // => true
-     *
-     * _.isFinite(true);
-     * // => false
-     *
-     * _.isFinite('');
-     * // => false
-     *
-     * _.isFinite(Infinity);
-     * // => false
-     */
-    function isFinite(value) {
-      return nativeIsFinite(value) && !nativeIsNaN(parseFloat(value));
-    }
-
-    /**
-     * Checks if `value` is a function.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a function, else `false`.
-     * @example
-     *
-     * _.isFunction(_);
-     * // => true
-     */
-    function isFunction(value) {
-      return typeof value == 'function';
-    }
-
-    /**
-     * Checks if `value` is the language type of Object.
-     * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is an object, else `false`.
-     * @example
-     *
-     * _.isObject({});
-     * // => true
-     *
-     * _.isObject([1, 2, 3]);
-     * // => true
-     *
-     * _.isObject(1);
-     * // => false
-     */
-    function isObject(value) {
-      // check if the value is the ECMAScript language type of Object
-      // http://es5.github.io/#x8
-      // and avoid a V8 bug
-      // http://code.google.com/p/v8/issues/detail?id=2291
-      return !!(value && objectTypes[typeof value]);
-    }
-
-    /**
-     * Checks if `value` is `NaN`.
-     *
-     * Note: This is not the same as native `isNaN` which will return `true` for
-     * `undefined` and other non-numeric values. See http://es5.github.io/#x15.1.2.4.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is `NaN`, else `false`.
-     * @example
-     *
-     * _.isNaN(NaN);
-     * // => true
-     *
-     * _.isNaN(new Number(NaN));
-     * // => true
-     *
-     * isNaN(undefined);
-     * // => true
-     *
-     * _.isNaN(undefined);
-     * // => false
-     */
-    function isNaN(value) {
-      // `NaN` as a primitive is the only value that is not equal to itself
-      // (perform the [[Class]] check first to avoid errors with some host objects in IE)
-      return isNumber(value) && value != +value;
-    }
-
-    /**
-     * Checks if `value` is `null`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is `null`, else `false`.
-     * @example
-     *
-     * _.isNull(null);
-     * // => true
-     *
-     * _.isNull(undefined);
-     * // => false
-     */
-    function isNull(value) {
-      return value === null;
-    }
-
-    /**
-     * Checks if `value` is a number.
-     *
-     * Note: `NaN` is considered a number. See http://es5.github.io/#x8.5.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a number, else `false`.
-     * @example
-     *
-     * _.isNumber(8.4 * 5);
-     * // => true
-     */
-    function isNumber(value) {
-      return typeof value == 'number' ||
-        value && typeof value == 'object' && toString.call(value) == numberClass || false;
-    }
-
-    /**
-     * Checks if `value` is an object created by the `Object` constructor.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
-     * @example
-     *
-     * function Shape() {
-     *   this.x = 0;
-     *   this.y = 0;
-     * }
-     *
-     * _.isPlainObject(new Shape);
-     * // => false
-     *
-     * _.isPlainObject([1, 2, 3]);
-     * // => false
-     *
-     * _.isPlainObject({ 'x': 0, 'y': 0 });
-     * // => true
-     */
-    var isPlainObject = !getPrototypeOf ? shimIsPlainObject : function(value) {
-      if (!(value && toString.call(value) == objectClass)) {
-        return false;
-      }
-      var valueOf = value.valueOf,
-          objProto = isNative(valueOf) && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
-
-      return objProto
-        ? (value == objProto || getPrototypeOf(value) == objProto)
-        : shimIsPlainObject(value);
-    };
-
-    /**
-     * Checks if `value` is a regular expression.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a regular expression, else `false`.
-     * @example
-     *
-     * _.isRegExp(/fred/);
-     * // => true
-     */
-    function isRegExp(value) {
-      return value && typeof value == 'object' && toString.call(value) == regexpClass || false;
-    }
-
-    /**
-     * Checks if `value` is a string.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is a string, else `false`.
-     * @example
-     *
-     * _.isString('fred');
-     * // => true
-     */
-    function isString(value) {
-      return typeof value == 'string' ||
-        value && typeof value == 'object' && toString.call(value) == stringClass || false;
-    }
-
-    /**
-     * Checks if `value` is `undefined`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {*} value The value to check.
-     * @returns {boolean} Returns `true` if the `value` is `undefined`, else `false`.
-     * @example
-     *
-     * _.isUndefined(void 0);
-     * // => true
-     */
-    function isUndefined(value) {
-      return typeof value == 'undefined';
-    }
-
-    /**
-     * Creates an object with the same keys as `object` and values generated by
-     * running each own enumerable property of `object` through the callback.
-     * The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, key, object).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new object with values of the results of each `callback` execution.
-     * @example
-     *
-     * _.mapValues({ 'a': 1, 'b': 2, 'c': 3} , function(num) { return num * 3; });
-     * // => { 'a': 3, 'b': 6, 'c': 9 }
-     *
-     * var characters = {
-     *   'fred': { 'name': 'fred', 'age': 40 },
-     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
-     * };
-     *
-     * // using "_.pluck" callback shorthand
-     * _.mapValues(characters, 'age');
-     * // => { 'fred': 40, 'pebbles': 1 }
-     */
-    function mapValues(object, callback, thisArg) {
-      var result = {};
-      callback = lodash.createCallback(callback, thisArg, 3);
-
-      forOwn(object, function(value, key, object) {
-        result[key] = callback(value, key, object);
-      });
-      return result;
-    }
-
-    /**
-     * Recursively merges own enumerable properties of the source object(s), that
-     * don't resolve to `undefined` into the destination object. Subsequent sources
-     * will overwrite property assignments of previous sources. If a callback is
-     * provided it will be executed to produce the merged values of the destination
-     * and source properties. If the callback returns `undefined` merging will
-     * be handled by the method instead. The callback is bound to `thisArg` and
-     * invoked with two arguments; (objectValue, sourceValue).
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The destination object.
-     * @param {...Object} [source] The source objects.
-     * @param {Function} [callback] The function to customize merging properties.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns the destination object.
-     * @example
-     *
-     * var names = {
-     *   'characters': [
-     *     { 'name': 'barney' },
-     *     { 'name': 'fred' }
-     *   ]
-     * };
-     *
-     * var ages = {
-     *   'characters': [
-     *     { 'age': 36 },
-     *     { 'age': 40 }
-     *   ]
-     * };
-     *
-     * _.merge(names, ages);
-     * // => { 'characters': [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred', 'age': 40 }] }
-     *
-     * var food = {
-     *   'fruits': ['apple'],
-     *   'vegetables': ['beet']
-     * };
-     *
-     * var otherFood = {
-     *   'fruits': ['banana'],
-     *   'vegetables': ['carrot']
-     * };
-     *
-     * _.merge(food, otherFood, function(a, b) {
-     *   return _.isArray(a) ? a.concat(b) : undefined;
-     * });
-     * // => { 'fruits': ['apple', 'banana'], 'vegetables': ['beet', 'carrot] }
-     */
-    function merge(object) {
-      var args = arguments,
-          length = 2;
-
-      if (!isObject(object)) {
-        return object;
-      }
-      // allows working with `_.reduce` and `_.reduceRight` without using
-      // their `index` and `collection` arguments
-      if (typeof args[2] != 'number') {
-        length = args.length;
-      }
-      if (length > 3 && typeof args[length - 2] == 'function') {
-        var callback = baseCreateCallback(args[--length - 1], args[length--], 2);
-      } else if (length > 2 && typeof args[length - 1] == 'function') {
-        callback = args[--length];
-      }
-      var sources = slice(arguments, 1, length),
-          index = -1,
-          stackA = getArray(),
-          stackB = getArray();
-
-      while (++index < length) {
-        baseMerge(object, sources[index], callback, stackA, stackB);
-      }
-      releaseArray(stackA);
-      releaseArray(stackB);
-      return object;
-    }
-
-    /**
-     * Creates a shallow clone of `object` excluding the specified properties.
-     * Property names may be specified as individual arguments or as arrays of
-     * property names. If a callback is provided it will be executed for each
-     * property of `object` omitting the properties the callback returns truey
-     * for. The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, key, object).
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The source object.
-     * @param {Function|...string|string[]} [callback] The properties to omit or the
-     *  function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns an object without the omitted properties.
-     * @example
-     *
-     * _.omit({ 'name': 'fred', 'age': 40 }, 'age');
-     * // => { 'name': 'fred' }
-     *
-     * _.omit({ 'name': 'fred', 'age': 40 }, function(value) {
-     *   return typeof value == 'number';
-     * });
-     * // => { 'name': 'fred' }
-     */
-    function omit(object, callback, thisArg) {
-      var result = {};
-      if (typeof callback != 'function') {
-        var props = [];
-        forIn(object, function(value, key) {
-          props.push(key);
-        });
-        props = baseDifference(props, baseFlatten(arguments, true, false, 1));
-
-        var index = -1,
-            length = props.length;
-
-        while (++index < length) {
-          var key = props[index];
-          result[key] = object[key];
-        }
-      } else {
-        callback = lodash.createCallback(callback, thisArg, 3);
-        forIn(object, function(value, key, object) {
-          if (!callback(value, key, object)) {
-            result[key] = value;
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Creates a two dimensional array of an object's key-value pairs,
-     * i.e. `[[key1, value1], [key2, value2]]`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to inspect.
-     * @returns {Array} Returns new array of key-value pairs.
-     * @example
-     *
-     * _.pairs({ 'barney': 36, 'fred': 40 });
-     * // => [['barney', 36], ['fred', 40]] (property order is not guaranteed across environments)
-     */
-    function pairs(object) {
-      var index = -1,
-          props = keys(object),
-          length = props.length,
-          result = Array(length);
-
-      while (++index < length) {
-        var key = props[index];
-        result[index] = [key, object[key]];
-      }
-      return result;
-    }
-
-    /**
-     * Creates a shallow clone of `object` composed of the specified properties.
-     * Property names may be specified as individual arguments or as arrays of
-     * property names. If a callback is provided it will be executed for each
-     * property of `object` picking the properties the callback returns truey
-     * for. The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, key, object).
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The source object.
-     * @param {Function|...string|string[]} [callback] The function called per
-     *  iteration or property names to pick, specified as individual property
-     *  names or arrays of property names.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns an object composed of the picked properties.
-     * @example
-     *
-     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, 'name');
-     * // => { 'name': 'fred' }
-     *
-     * _.pick({ 'name': 'fred', '_userid': 'fred1' }, function(value, key) {
-     *   return key.charAt(0) != '_';
-     * });
-     * // => { 'name': 'fred' }
-     */
-    function pick(object, callback, thisArg) {
-      var result = {};
-      if (typeof callback != 'function') {
-        var index = -1,
-            props = baseFlatten(arguments, true, false, 1),
-            length = isObject(object) ? props.length : 0;
-
-        while (++index < length) {
-          var key = props[index];
-          if (key in object) {
-            result[key] = object[key];
-          }
-        }
-      } else {
-        callback = lodash.createCallback(callback, thisArg, 3);
-        forIn(object, function(value, key, object) {
-          if (callback(value, key, object)) {
-            result[key] = value;
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * An alternative to `_.reduce` this method transforms `object` to a new
-     * `accumulator` object which is the result of running each of its own
-     * enumerable properties through a callback, with each callback execution
-     * potentially mutating the `accumulator` object. The callback is bound to
-     * `thisArg` and invoked with four arguments; (accumulator, value, key, object).
-     * Callbacks may exit iteration early by explicitly returning `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Array|Object} object The object to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [accumulator] The custom accumulator value.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the accumulated value.
-     * @example
-     *
-     * var squares = _.transform([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], function(result, num) {
-     *   num *= num;
-     *   if (num % 2) {
-     *     return result.push(num) < 3;
-     *   }
-     * });
-     * // => [1, 9, 25]
-     *
-     * var mapped = _.transform({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
-     *   result[key] = num * 3;
-     * });
-     * // => { 'a': 3, 'b': 6, 'c': 9 }
-     */
-    function transform(object, callback, accumulator, thisArg) {
-      var isArr = isArray(object);
-      if (accumulator == null) {
-        if (isArr) {
-          accumulator = [];
-        } else {
-          var ctor = object && object.constructor,
-              proto = ctor && ctor.prototype;
-
-          accumulator = baseCreate(proto);
-        }
-      }
-      if (callback) {
-        callback = lodash.createCallback(callback, thisArg, 4);
-        (isArr ? forEach : forOwn)(object, function(value, index, object) {
-          return callback(accumulator, value, index, object);
-        });
-      }
-      return accumulator;
-    }
-
-    /**
-     * Creates an array composed of the own enumerable property values of `object`.
-     *
-     * @static
-     * @memberOf _
-     * @category Objects
-     * @param {Object} object The object to inspect.
-     * @returns {Array} Returns an array of property values.
-     * @example
-     *
-     * _.values({ 'one': 1, 'two': 2, 'three': 3 });
-     * // => [1, 2, 3] (property order is not guaranteed across environments)
-     */
-    function values(object) {
-      var index = -1,
-          props = keys(object),
-          length = props.length,
-          result = Array(length);
-
-      while (++index < length) {
-        result[index] = object[props[index]];
-      }
-      return result;
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates an array of elements from the specified indexes, or keys, of the
-     * `collection`. Indexes may be specified as individual arguments or as arrays
-     * of indexes.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {...(number|number[]|string|string[])} [index] The indexes of `collection`
-     *   to retrieve, specified as individual indexes or arrays of indexes.
-     * @returns {Array} Returns a new array of elements corresponding to the
-     *  provided indexes.
-     * @example
-     *
-     * _.at(['a', 'b', 'c', 'd', 'e'], [0, 2, 4]);
-     * // => ['a', 'c', 'e']
-     *
-     * _.at(['fred', 'barney', 'pebbles'], 0, 2);
-     * // => ['fred', 'pebbles']
-     */
-    function at(collection) {
-      var args = arguments,
-          index = -1,
-          props = baseFlatten(args, true, false, 1),
-          length = (args[2] && args[2][args[1]] === collection) ? 1 : props.length,
-          result = Array(length);
-
-      while(++index < length) {
-        result[index] = collection[props[index]];
-      }
-      return result;
-    }
-
-    /**
-     * Checks if a given value is present in a collection using strict equality
-     * for comparisons, i.e. `===`. If `fromIndex` is negative, it is used as the
-     * offset from the end of the collection.
-     *
-     * @static
-     * @memberOf _
-     * @alias include
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {*} target The value to check for.
-     * @param {number} [fromIndex=0] The index to search from.
-     * @returns {boolean} Returns `true` if the `target` element is found, else `false`.
-     * @example
-     *
-     * _.contains([1, 2, 3], 1);
-     * // => true
-     *
-     * _.contains([1, 2, 3], 1, 2);
-     * // => false
-     *
-     * _.contains({ 'name': 'fred', 'age': 40 }, 'fred');
-     * // => true
-     *
-     * _.contains('pebbles', 'eb');
-     * // => true
-     */
-    function contains(collection, target, fromIndex) {
-      var index = -1,
-          indexOf = getIndexOf(),
-          length = collection ? collection.length : 0,
-          result = false;
-
-      fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex) || 0;
-      if (isArray(collection)) {
-        result = indexOf(collection, target, fromIndex) > -1;
-      } else if (typeof length == 'number') {
-        result = (isString(collection) ? collection.indexOf(target, fromIndex) : indexOf(collection, target, fromIndex)) > -1;
-      } else {
-        forOwn(collection, function(value) {
-          if (++index >= fromIndex) {
-            return !(result = value === target);
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Creates an object composed of keys generated from the results of running
-     * each element of `collection` through the callback. The corresponding value
-     * of each key is the number of times the key was returned by the callback.
-     * The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns the composed aggregate object.
-     * @example
-     *
-     * _.countBy([4.3, 6.1, 6.4], function(num) { return Math.floor(num); });
-     * // => { '4': 1, '6': 2 }
-     *
-     * _.countBy([4.3, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
-     * // => { '4': 1, '6': 2 }
-     *
-     * _.countBy(['one', 'two', 'three'], 'length');
-     * // => { '3': 2, '5': 1 }
-     */
-    var countBy = createAggregator(function(result, value, key) {
-      (hasOwnProperty.call(result, key) ? result[key]++ : result[key] = 1);
-    });
-
-    /**
-     * Checks if the given callback returns truey value for **all** elements of
-     * a collection. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias all
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {boolean} Returns `true` if all elements passed the callback check,
-     *  else `false`.
-     * @example
-     *
-     * _.every([true, 1, null, 'yes']);
-     * // => false
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.every(characters, 'age');
-     * // => true
-     *
-     * // using "_.where" callback shorthand
-     * _.every(characters, { 'age': 36 });
-     * // => false
-     */
-    function every(collection, callback, thisArg) {
-      var result = true;
-      callback = lodash.createCallback(callback, thisArg, 3);
-
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      if (typeof length == 'number') {
-        while (++index < length) {
-          if (!(result = !!callback(collection[index], index, collection))) {
-            break;
-          }
-        }
-      } else {
-        forOwn(collection, function(value, index, collection) {
-          return (result = !!callback(value, index, collection));
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Iterates over elements of a collection, returning an array of all elements
-     * the callback returns truey for. The callback is bound to `thisArg` and
-     * invoked with three arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias select
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of elements that passed the callback check.
-     * @example
-     *
-     * var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-     * // => [2, 4, 6]
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
-     *   { 'name': 'fred',   'age': 40, 'blocked': true }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.filter(characters, 'blocked');
-     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
-     *
-     * // using "_.where" callback shorthand
-     * _.filter(characters, { 'age': 36 });
-     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
-     */
-    function filter(collection, callback, thisArg) {
-      var result = [];
-      callback = lodash.createCallback(callback, thisArg, 3);
-
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      if (typeof length == 'number') {
-        while (++index < length) {
-          var value = collection[index];
-          if (callback(value, index, collection)) {
-            result.push(value);
-          }
-        }
-      } else {
-        forOwn(collection, function(value, index, collection) {
-          if (callback(value, index, collection)) {
-            result.push(value);
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Iterates over elements of a collection, returning the first element that
-     * the callback returns truey for. The callback is bound to `thisArg` and
-     * invoked with three arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias detect, findWhere
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the found element, else `undefined`.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'age': 36, 'blocked': false },
-     *   { 'name': 'fred',    'age': 40, 'blocked': true },
-     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
-     * ];
-     *
-     * _.find(characters, function(chr) {
-     *   return chr.age < 40;
-     * });
-     * // => { 'name': 'barney', 'age': 36, 'blocked': false }
-     *
-     * // using "_.where" callback shorthand
-     * _.find(characters, { 'age': 1 });
-     * // =>  { 'name': 'pebbles', 'age': 1, 'blocked': false }
-     *
-     * // using "_.pluck" callback shorthand
-     * _.find(characters, 'blocked');
-     * // => { 'name': 'fred', 'age': 40, 'blocked': true }
-     */
-    function find(collection, callback, thisArg) {
-      callback = lodash.createCallback(callback, thisArg, 3);
-
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      if (typeof length == 'number') {
-        while (++index < length) {
-          var value = collection[index];
-          if (callback(value, index, collection)) {
-            return value;
-          }
-        }
-      } else {
-        var result;
-        forOwn(collection, function(value, index, collection) {
-          if (callback(value, index, collection)) {
-            result = value;
-            return false;
-          }
-        });
-        return result;
-      }
-    }
-
-    /**
-     * This method is like `_.find` except that it iterates over elements
-     * of a `collection` from right to left.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the found element, else `undefined`.
-     * @example
-     *
-     * _.findLast([1, 2, 3, 4], function(num) {
-     *   return num % 2 == 1;
-     * });
-     * // => 3
-     */
-    function findLast(collection, callback, thisArg) {
-      var result;
-      callback = lodash.createCallback(callback, thisArg, 3);
-      forEachRight(collection, function(value, index, collection) {
-        if (callback(value, index, collection)) {
-          result = value;
-          return false;
-        }
-      });
-      return result;
-    }
-
-    /**
-     * Iterates over elements of a collection, executing the callback for each
-     * element. The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, index|key, collection). Callbacks may exit iteration early by
-     * explicitly returning `false`.
-     *
-     * Note: As with other "Collections" methods, objects with a `length` property
-     * are iterated like arrays. To avoid this behavior `_.forIn` or `_.forOwn`
-     * may be used for object iteration.
-     *
-     * @static
-     * @memberOf _
-     * @alias each
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array|Object|string} Returns `collection`.
-     * @example
-     *
-     * _([1, 2, 3]).forEach(function(num) { console.log(num); }).join(',');
-     * // => logs each number and returns '1,2,3'
-     *
-     * _.forEach({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { console.log(num); });
-     * // => logs each number and returns the object (property order is not guaranteed across environments)
-     */
-    function forEach(collection, callback, thisArg) {
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
-      if (typeof length == 'number') {
-        while (++index < length) {
-          if (callback(collection[index], index, collection) === false) {
-            break;
-          }
-        }
-      } else {
-        forOwn(collection, callback);
-      }
-      return collection;
-    }
-
-    /**
-     * This method is like `_.forEach` except that it iterates over elements
-     * of a `collection` from right to left.
-     *
-     * @static
-     * @memberOf _
-     * @alias eachRight
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array|Object|string} Returns `collection`.
-     * @example
-     *
-     * _([1, 2, 3]).forEachRight(function(num) { console.log(num); }).join(',');
-     * // => logs each number from right to left and returns '3,2,1'
-     */
-    function forEachRight(collection, callback, thisArg) {
-      var length = collection ? collection.length : 0;
-      callback = callback && typeof thisArg == 'undefined' ? callback : baseCreateCallback(callback, thisArg, 3);
-      if (typeof length == 'number') {
-        while (length--) {
-          if (callback(collection[length], length, collection) === false) {
-            break;
-          }
-        }
-      } else {
-        var props = keys(collection);
-        length = props.length;
-        forOwn(collection, function(value, key, collection) {
-          key = props ? props[--length] : --length;
-          return callback(collection[key], key, collection);
-        });
-      }
-      return collection;
-    }
-
-    /**
-     * Creates an object composed of keys generated from the results of running
-     * each element of a collection through the callback. The corresponding value
-     * of each key is an array of the elements responsible for generating the key.
-     * The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns the composed aggregate object.
-     * @example
-     *
-     * _.groupBy([4.2, 6.1, 6.4], function(num) { return Math.floor(num); });
-     * // => { '4': [4.2], '6': [6.1, 6.4] }
-     *
-     * _.groupBy([4.2, 6.1, 6.4], function(num) { return this.floor(num); }, Math);
-     * // => { '4': [4.2], '6': [6.1, 6.4] }
-     *
-     * // using "_.pluck" callback shorthand
-     * _.groupBy(['one', 'two', 'three'], 'length');
-     * // => { '3': ['one', 'two'], '5': ['three'] }
-     */
-    var groupBy = createAggregator(function(result, value, key) {
-      (hasOwnProperty.call(result, key) ? result[key] : result[key] = []).push(value);
-    });
-
-    /**
-     * Creates an object composed of keys generated from the results of running
-     * each element of the collection through the given callback. The corresponding
-     * value of each key is the last element responsible for generating the key.
-     * The callback is bound to `thisArg` and invoked with three arguments;
-     * (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Object} Returns the composed aggregate object.
-     * @example
-     *
-     * var keys = [
-     *   { 'dir': 'left', 'code': 97 },
-     *   { 'dir': 'right', 'code': 100 }
-     * ];
-     *
-     * _.indexBy(keys, 'dir');
-     * // => { 'left': { 'dir': 'left', 'code': 97 }, 'right': { 'dir': 'right', 'code': 100 } }
-     *
-     * _.indexBy(keys, function(key) { return String.fromCharCode(key.code); });
-     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
-     *
-     * _.indexBy(characters, function(key) { this.fromCharCode(key.code); }, String);
-     * // => { 'a': { 'dir': 'left', 'code': 97 }, 'd': { 'dir': 'right', 'code': 100 } }
-     */
-    var indexBy = createAggregator(function(result, value, key) {
-      result[key] = value;
-    });
-
-    /**
-     * Invokes the method named by `methodName` on each element in the `collection`
-     * returning an array of the results of each invoked method. Additional arguments
-     * will be provided to each invoked method. If `methodName` is a function it
-     * will be invoked for, and `this` bound to, each element in the `collection`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|string} methodName The name of the method to invoke or
-     *  the function invoked per iteration.
-     * @param {...*} [arg] Arguments to invoke the method with.
-     * @returns {Array} Returns a new array of the results of each invoked method.
-     * @example
-     *
-     * _.invoke([[5, 1, 7], [3, 2, 1]], 'sort');
-     * // => [[1, 5, 7], [1, 2, 3]]
-     *
-     * _.invoke([123, 456], String.prototype.split, '');
-     * // => [['1', '2', '3'], ['4', '5', '6']]
-     */
-    function invoke(collection, methodName) {
-      var args = slice(arguments, 2),
-          index = -1,
-          isFunc = typeof methodName == 'function',
-          length = collection ? collection.length : 0,
-          result = Array(typeof length == 'number' ? length : 0);
-
-      forEach(collection, function(value) {
-        result[++index] = (isFunc ? methodName : value[methodName]).apply(value, args);
-      });
-      return result;
-    }
-
-    /**
-     * Creates an array of values by running each element in the collection
-     * through the callback. The callback is bound to `thisArg` and invoked with
-     * three arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias collect
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of the results of each `callback` execution.
-     * @example
-     *
-     * _.map([1, 2, 3], function(num) { return num * 3; });
-     * // => [3, 6, 9]
-     *
-     * _.map({ 'one': 1, 'two': 2, 'three': 3 }, function(num) { return num * 3; });
-     * // => [3, 6, 9] (property order is not guaranteed across environments)
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.map(characters, 'name');
-     * // => ['barney', 'fred']
-     */
-    function map(collection, callback, thisArg) {
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      callback = lodash.createCallback(callback, thisArg, 3);
-      if (typeof length == 'number') {
-        var result = Array(length);
-        while (++index < length) {
-          result[index] = callback(collection[index], index, collection);
-        }
-      } else {
-        result = [];
-        forOwn(collection, function(value, key, collection) {
-          result[++index] = callback(value, key, collection);
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Retrieves the maximum value of a collection. If the collection is empty or
-     * falsey `-Infinity` is returned. If a callback is provided it will be executed
-     * for each value in the collection to generate the criterion by which the value
-     * is ranked. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the maximum value.
-     * @example
-     *
-     * _.max([4, 2, 8, 6]);
-     * // => 8
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * _.max(characters, function(chr) { return chr.age; });
-     * // => { 'name': 'fred', 'age': 40 };
-     *
-     * // using "_.pluck" callback shorthand
-     * _.max(characters, 'age');
-     * // => { 'name': 'fred', 'age': 40 };
-     */
-    function max(collection, callback, thisArg) {
-      var computed = -Infinity,
-          result = computed;
-
-      // allows working with functions like `_.map` without using
-      // their `index` argument as a callback
-      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
-        callback = null;
-      }
-      if (callback == null && isArray(collection)) {
-        var index = -1,
-            length = collection.length;
-
-        while (++index < length) {
-          var value = collection[index];
-          if (value > result) {
-            result = value;
-          }
-        }
-      } else {
-        callback = (callback == null && isString(collection))
-          ? charAtCallback
-          : lodash.createCallback(callback, thisArg, 3);
-
-        forEach(collection, function(value, index, collection) {
-          var current = callback(value, index, collection);
-          if (current > computed) {
-            computed = current;
-            result = value;
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Retrieves the minimum value of a collection. If the collection is empty or
-     * falsey `Infinity` is returned. If a callback is provided it will be executed
-     * for each value in the collection to generate the criterion by which the value
-     * is ranked. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the minimum value.
-     * @example
-     *
-     * _.min([4, 2, 8, 6]);
-     * // => 2
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * _.min(characters, function(chr) { return chr.age; });
-     * // => { 'name': 'barney', 'age': 36 };
-     *
-     * // using "_.pluck" callback shorthand
-     * _.min(characters, 'age');
-     * // => { 'name': 'barney', 'age': 36 };
-     */
-    function min(collection, callback, thisArg) {
-      var computed = Infinity,
-          result = computed;
-
-      // allows working with functions like `_.map` without using
-      // their `index` argument as a callback
-      if (typeof callback != 'function' && thisArg && thisArg[callback] === collection) {
-        callback = null;
-      }
-      if (callback == null && isArray(collection)) {
-        var index = -1,
-            length = collection.length;
-
-        while (++index < length) {
-          var value = collection[index];
-          if (value < result) {
-            result = value;
-          }
-        }
-      } else {
-        callback = (callback == null && isString(collection))
-          ? charAtCallback
-          : lodash.createCallback(callback, thisArg, 3);
-
-        forEach(collection, function(value, index, collection) {
-          var current = callback(value, index, collection);
-          if (current < computed) {
-            computed = current;
-            result = value;
-          }
-        });
-      }
-      return result;
-    }
-
-    /**
-     * Retrieves the value of a specified property from all elements in the collection.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {string} property The name of the property to pluck.
-     * @returns {Array} Returns a new array of property values.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * _.pluck(characters, 'name');
-     * // => ['barney', 'fred']
-     */
-    var pluck = map;
-
-    /**
-     * Reduces a collection to a value which is the accumulated result of running
-     * each element in the collection through the callback, where each successive
-     * callback execution consumes the return value of the previous execution. If
-     * `accumulator` is not provided the first element of the collection will be
-     * used as the initial `accumulator` value. The callback is bound to `thisArg`
-     * and invoked with four arguments; (accumulator, value, index|key, collection).
-     *
-     * @static
-     * @memberOf _
-     * @alias foldl, inject
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [accumulator] Initial value of the accumulator.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the accumulated value.
-     * @example
-     *
-     * var sum = _.reduce([1, 2, 3], function(sum, num) {
-     *   return sum + num;
-     * });
-     * // => 6
-     *
-     * var mapped = _.reduce({ 'a': 1, 'b': 2, 'c': 3 }, function(result, num, key) {
-     *   result[key] = num * 3;
-     *   return result;
-     * }, {});
-     * // => { 'a': 3, 'b': 6, 'c': 9 }
-     */
-    function reduce(collection, callback, accumulator, thisArg) {
-      if (!collection) return accumulator;
-      var noaccum = arguments.length < 3;
-      callback = lodash.createCallback(callback, thisArg, 4);
-
-      var index = -1,
-          length = collection.length;
-
-      if (typeof length == 'number') {
-        if (noaccum) {
-          accumulator = collection[++index];
-        }
-        while (++index < length) {
-          accumulator = callback(accumulator, collection[index], index, collection);
-        }
-      } else {
-        forOwn(collection, function(value, index, collection) {
-          accumulator = noaccum
-            ? (noaccum = false, value)
-            : callback(accumulator, value, index, collection)
-        });
-      }
-      return accumulator;
-    }
-
-    /**
-     * This method is like `_.reduce` except that it iterates over elements
-     * of a `collection` from right to left.
-     *
-     * @static
-     * @memberOf _
-     * @alias foldr
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function} [callback=identity] The function called per iteration.
-     * @param {*} [accumulator] Initial value of the accumulator.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the accumulated value.
-     * @example
-     *
-     * var list = [[0, 1], [2, 3], [4, 5]];
-     * var flat = _.reduceRight(list, function(a, b) { return a.concat(b); }, []);
-     * // => [4, 5, 2, 3, 0, 1]
-     */
-    function reduceRight(collection, callback, accumulator, thisArg) {
-      var noaccum = arguments.length < 3;
-      callback = lodash.createCallback(callback, thisArg, 4);
-      forEachRight(collection, function(value, index, collection) {
-        accumulator = noaccum
-          ? (noaccum = false, value)
-          : callback(accumulator, value, index, collection);
-      });
-      return accumulator;
-    }
-
-    /**
-     * The opposite of `_.filter` this method returns the elements of a
-     * collection that the callback does **not** return truey for.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of elements that failed the callback check.
-     * @example
-     *
-     * var odds = _.reject([1, 2, 3, 4, 5, 6], function(num) { return num % 2 == 0; });
-     * // => [1, 3, 5]
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
-     *   { 'name': 'fred',   'age': 40, 'blocked': true }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.reject(characters, 'blocked');
-     * // => [{ 'name': 'barney', 'age': 36, 'blocked': false }]
-     *
-     * // using "_.where" callback shorthand
-     * _.reject(characters, { 'age': 36 });
-     * // => [{ 'name': 'fred', 'age': 40, 'blocked': true }]
-     */
-    function reject(collection, callback, thisArg) {
-      callback = lodash.createCallback(callback, thisArg, 3);
-      return filter(collection, function(value, index, collection) {
-        return !callback(value, index, collection);
-      });
-    }
-
-    /**
-     * Retrieves a random element or `n` random elements from a collection.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to sample.
-     * @param {number} [n] The number of elements to sample.
-     * @param- {Object} [guard] Allows working with functions like `_.map`
-     *  without using their `index` arguments as `n`.
-     * @returns {Array} Returns the random sample(s) of `collection`.
-     * @example
-     *
-     * _.sample([1, 2, 3, 4]);
-     * // => 2
-     *
-     * _.sample([1, 2, 3, 4], 2);
-     * // => [3, 1]
-     */
-    function sample(collection, n, guard) {
-      if (collection && typeof collection.length != 'number') {
-        collection = values(collection);
-      }
-      if (n == null || guard) {
-        return collection ? collection[baseRandom(0, collection.length - 1)] : undefined;
-      }
-      var result = shuffle(collection);
-      result.length = nativeMin(nativeMax(0, n), result.length);
-      return result;
-    }
-
-    /**
-     * Creates an array of shuffled values, using a version of the Fisher-Yates
-     * shuffle. See http://en.wikipedia.org/wiki/Fisher-Yates_shuffle.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to shuffle.
-     * @returns {Array} Returns a new shuffled collection.
-     * @example
-     *
-     * _.shuffle([1, 2, 3, 4, 5, 6]);
-     * // => [4, 1, 6, 3, 5, 2]
-     */
-    function shuffle(collection) {
-      var index = -1,
-          length = collection ? collection.length : 0,
-          result = Array(typeof length == 'number' ? length : 0);
-
-      forEach(collection, function(value) {
-        var rand = baseRandom(0, ++index);
-        result[index] = result[rand];
-        result[rand] = value;
-      });
-      return result;
-    }
-
-    /**
-     * Gets the size of the `collection` by returning `collection.length` for arrays
-     * and array-like objects or the number of own enumerable properties for objects.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to inspect.
-     * @returns {number} Returns `collection.length` or number of own enumerable properties.
-     * @example
-     *
-     * _.size([1, 2]);
-     * // => 2
-     *
-     * _.size({ 'one': 1, 'two': 2, 'three': 3 });
-     * // => 3
-     *
-     * _.size('pebbles');
-     * // => 7
-     */
-    function size(collection) {
-      var length = collection ? collection.length : 0;
-      return typeof length == 'number' ? length : keys(collection).length;
-    }
-
-    /**
-     * Checks if the callback returns a truey value for **any** element of a
-     * collection. The function returns as soon as it finds a passing value and
-     * does not iterate over the entire collection. The callback is bound to
-     * `thisArg` and invoked with three arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias any
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {boolean} Returns `true` if any element passed the callback check,
-     *  else `false`.
-     * @example
-     *
-     * _.some([null, 0, 'yes', false], Boolean);
-     * // => true
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'blocked': false },
-     *   { 'name': 'fred',   'age': 40, 'blocked': true }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.some(characters, 'blocked');
-     * // => true
-     *
-     * // using "_.where" callback shorthand
-     * _.some(characters, { 'age': 1 });
-     * // => false
-     */
-    function some(collection, callback, thisArg) {
-      var result;
-      callback = lodash.createCallback(callback, thisArg, 3);
-
-      var index = -1,
-          length = collection ? collection.length : 0;
-
-      if (typeof length == 'number') {
-        while (++index < length) {
-          if ((result = callback(collection[index], index, collection))) {
-            break;
-          }
-        }
-      } else {
-        forOwn(collection, function(value, index, collection) {
-          return !(result = callback(value, index, collection));
-        });
-      }
-      return !!result;
-    }
-
-    /**
-     * Creates an array of elements, sorted in ascending order by the results of
-     * running each element in a collection through the callback. This method
-     * performs a stable sort, that is, it will preserve the original sort order
-     * of equal elements. The callback is bound to `thisArg` and invoked with
-     * three arguments; (value, index|key, collection).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an array of property names is provided for `callback` the collection
-     * will be sorted by each property value.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Array|Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of sorted elements.
-     * @example
-     *
-     * _.sortBy([1, 2, 3], function(num) { return Math.sin(num); });
-     * // => [3, 1, 2]
-     *
-     * _.sortBy([1, 2, 3], function(num) { return this.sin(num); }, Math);
-     * // => [3, 1, 2]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'age': 36 },
-     *   { 'name': 'fred',    'age': 40 },
-     *   { 'name': 'barney',  'age': 26 },
-     *   { 'name': 'fred',    'age': 30 }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.map(_.sortBy(characters, 'age'), _.values);
-     * // => [['barney', 26], ['fred', 30], ['barney', 36], ['fred', 40]]
-     *
-     * // sorting by multiple properties
-     * _.map(_.sortBy(characters, ['name', 'age']), _.values);
-     * // = > [['barney', 26], ['barney', 36], ['fred', 30], ['fred', 40]]
-     */
-    function sortBy(collection, callback, thisArg) {
-      var index = -1,
-          isArr = isArray(callback),
-          length = collection ? collection.length : 0,
-          result = Array(typeof length == 'number' ? length : 0);
-
-      if (!isArr) {
-        callback = lodash.createCallback(callback, thisArg, 3);
-      }
-      forEach(collection, function(value, key, collection) {
-        var object = result[++index] = getObject();
-        if (isArr) {
-          object.criteria = map(callback, function(key) { return value[key]; });
-        } else {
-          (object.criteria = getArray())[0] = callback(value, key, collection);
-        }
-        object.index = index;
-        object.value = value;
-      });
-
-      length = result.length;
-      result.sort(compareAscending);
-      while (length--) {
-        var object = result[length];
-        result[length] = object.value;
-        if (!isArr) {
-          releaseArray(object.criteria);
-        }
-        releaseObject(object);
-      }
-      return result;
-    }
-
-    /**
-     * Converts the `collection` to an array.
-     *
-     * @static
-     * @memberOf _
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to convert.
-     * @returns {Array} Returns the new converted array.
-     * @example
-     *
-     * (function() { return _.toArray(arguments).slice(1); })(1, 2, 3, 4);
-     * // => [2, 3, 4]
-     */
-    function toArray(collection) {
-      if (collection && typeof collection.length == 'number') {
-        return slice(collection);
-      }
-      return values(collection);
-    }
-
-    /**
-     * Performs a deep comparison of each element in a `collection` to the given
-     * `properties` object, returning an array of all elements that have equivalent
-     * property values.
-     *
-     * @static
-     * @memberOf _
-     * @type Function
-     * @category Collections
-     * @param {Array|Object|string} collection The collection to iterate over.
-     * @param {Object} props The object of property values to filter by.
-     * @returns {Array} Returns a new array of elements that have the given properties.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36, 'pets': ['hoppy'] },
-     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
-     * ];
-     *
-     * _.where(characters, { 'age': 36 });
-     * // => [{ 'name': 'barney', 'age': 36, 'pets': ['hoppy'] }]
-     *
-     * _.where(characters, { 'pets': ['dino'] });
-     * // => [{ 'name': 'fred', 'age': 40, 'pets': ['baby puss', 'dino'] }]
-     */
-    var where = filter;
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates an array with all falsey values removed. The values `false`, `null`,
-     * `0`, `""`, `undefined`, and `NaN` are all falsey.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to compact.
-     * @returns {Array} Returns a new array of filtered values.
-     * @example
-     *
-     * _.compact([0, 1, false, 2, '', 3]);
-     * // => [1, 2, 3]
-     */
-    function compact(array) {
-      var index = -1,
-          length = array ? array.length : 0,
-          result = [];
-
-      while (++index < length) {
-        var value = array[index];
-        if (value) {
-          result.push(value);
-        }
-      }
-      return result;
-    }
-
-    /**
-     * Creates an array excluding all values of the provided arrays using strict
-     * equality for comparisons, i.e. `===`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to process.
-     * @param {...Array} [values] The arrays of values to exclude.
-     * @returns {Array} Returns a new array of filtered values.
-     * @example
-     *
-     * _.difference([1, 2, 3, 4, 5], [5, 2, 10]);
-     * // => [1, 3, 4]
-     */
-    function difference(array) {
-      return baseDifference(array, baseFlatten(arguments, true, true, 1));
-    }
-
-    /**
-     * This method is like `_.find` except that it returns the index of the first
-     * element that passes the callback check, instead of the element itself.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to search.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {number} Returns the index of the found element, else `-1`.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'age': 36, 'blocked': false },
-     *   { 'name': 'fred',    'age': 40, 'blocked': true },
-     *   { 'name': 'pebbles', 'age': 1,  'blocked': false }
-     * ];
-     *
-     * _.findIndex(characters, function(chr) {
-     *   return chr.age < 20;
-     * });
-     * // => 2
-     *
-     * // using "_.where" callback shorthand
-     * _.findIndex(characters, { 'age': 36 });
-     * // => 0
-     *
-     * // using "_.pluck" callback shorthand
-     * _.findIndex(characters, 'blocked');
-     * // => 1
-     */
-    function findIndex(array, callback, thisArg) {
-      var index = -1,
-          length = array ? array.length : 0;
-
-      callback = lodash.createCallback(callback, thisArg, 3);
-      while (++index < length) {
-        if (callback(array[index], index, array)) {
-          return index;
-        }
-      }
-      return -1;
-    }
-
-    /**
-     * This method is like `_.findIndex` except that it iterates over elements
-     * of a `collection` from right to left.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to search.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {number} Returns the index of the found element, else `-1`.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'age': 36, 'blocked': true },
-     *   { 'name': 'fred',    'age': 40, 'blocked': false },
-     *   { 'name': 'pebbles', 'age': 1,  'blocked': true }
-     * ];
-     *
-     * _.findLastIndex(characters, function(chr) {
-     *   return chr.age > 30;
-     * });
-     * // => 1
-     *
-     * // using "_.where" callback shorthand
-     * _.findLastIndex(characters, { 'age': 36 });
-     * // => 0
-     *
-     * // using "_.pluck" callback shorthand
-     * _.findLastIndex(characters, 'blocked');
-     * // => 2
-     */
-    function findLastIndex(array, callback, thisArg) {
-      var length = array ? array.length : 0;
-      callback = lodash.createCallback(callback, thisArg, 3);
-      while (length--) {
-        if (callback(array[length], length, array)) {
-          return length;
-        }
-      }
-      return -1;
-    }
-
-    /**
-     * Gets the first element or first `n` elements of an array. If a callback
-     * is provided elements at the beginning of the array are returned as long
-     * as the callback returns truey. The callback is bound to `thisArg` and
-     * invoked with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias head, take
-     * @category Arrays
-     * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback] The function called
-     *  per element or the number of elements to return. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the first element(s) of `array`.
-     * @example
-     *
-     * _.first([1, 2, 3]);
-     * // => 1
-     *
-     * _.first([1, 2, 3], 2);
-     * // => [1, 2]
-     *
-     * _.first([1, 2, 3], function(num) {
-     *   return num < 3;
-     * });
-     * // => [1, 2]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.first(characters, 'blocked');
-     * // => [{ 'name': 'barney', 'blocked': true, 'employer': 'slate' }]
-     *
-     * // using "_.where" callback shorthand
-     * _.pluck(_.first(characters, { 'employer': 'slate' }), 'name');
-     * // => ['barney', 'fred']
-     */
-    function first(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
-
-      if (typeof callback != 'number' && callback != null) {
-        var index = -1;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (++index < length && callback(array[index], index, array)) {
-          n++;
-        }
-      } else {
-        n = callback;
-        if (n == null || thisArg) {
-          return array ? array[0] : undefined;
-        }
-      }
-      return slice(array, 0, nativeMin(nativeMax(0, n), length));
-    }
-
-    /**
-     * Flattens a nested array (the nesting can be to any depth). If `isShallow`
-     * is truey, the array will only be flattened a single level. If a callback
-     * is provided each element of the array is passed through the callback before
-     * flattening. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to flatten.
-     * @param {boolean} [isShallow=false] A flag to restrict flattening to a single level.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new flattened array.
-     * @example
-     *
-     * _.flatten([1, [2], [3, [[4]]]]);
-     * // => [1, 2, 3, 4];
-     *
-     * _.flatten([1, [2], [3, [[4]]]], true);
-     * // => [1, 2, 3, [[4]]];
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 30, 'pets': ['hoppy'] },
-     *   { 'name': 'fred',   'age': 40, 'pets': ['baby puss', 'dino'] }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.flatten(characters, 'pets');
-     * // => ['hoppy', 'baby puss', 'dino']
-     */
-    function flatten(array, isShallow, callback, thisArg) {
-      // juggle arguments
-      if (typeof isShallow != 'boolean' && isShallow != null) {
-        thisArg = callback;
-        callback = (typeof isShallow != 'function' && thisArg && thisArg[isShallow] === array) ? null : isShallow;
-        isShallow = false;
-      }
-      if (callback != null) {
-        array = map(array, callback, thisArg);
-      }
-      return baseFlatten(array, isShallow);
-    }
-
-    /**
-     * Gets the index at which the first occurrence of `value` is found using
-     * strict equality for comparisons, i.e. `===`. If the array is already sorted
-     * providing `true` for `fromIndex` will run a faster binary search.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to search.
-     * @param {*} value The value to search for.
-     * @param {boolean|number} [fromIndex=0] The index to search from or `true`
-     *  to perform a binary search on a sorted array.
-     * @returns {number} Returns the index of the matched value or `-1`.
-     * @example
-     *
-     * _.indexOf([1, 2, 3, 1, 2, 3], 2);
-     * // => 1
-     *
-     * _.indexOf([1, 2, 3, 1, 2, 3], 2, 3);
-     * // => 4
-     *
-     * _.indexOf([1, 1, 2, 2, 3, 3], 2, true);
-     * // => 2
-     */
-    function indexOf(array, value, fromIndex) {
-      if (typeof fromIndex == 'number') {
-        var length = array ? array.length : 0;
-        fromIndex = (fromIndex < 0 ? nativeMax(0, length + fromIndex) : fromIndex || 0);
-      } else if (fromIndex) {
-        var index = sortedIndex(array, value);
-        return array[index] === value ? index : -1;
-      }
-      return baseIndexOf(array, value, fromIndex);
-    }
-
-    /**
-     * Gets all but the last element or last `n` elements of an array. If a
-     * callback is provided elements at the end of the array are excluded from
-     * the result as long as the callback returns truey. The callback is bound
-     * to `thisArg` and invoked with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback=1] The function called
-     *  per element or the number of elements to exclude. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a slice of `array`.
-     * @example
-     *
-     * _.initial([1, 2, 3]);
-     * // => [1, 2]
-     *
-     * _.initial([1, 2, 3], 2);
-     * // => [1]
-     *
-     * _.initial([1, 2, 3], function(num) {
-     *   return num > 1;
-     * });
-     * // => [1]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.initial(characters, 'blocked');
-     * // => [{ 'name': 'barney',  'blocked': false, 'employer': 'slate' }]
-     *
-     * // using "_.where" callback shorthand
-     * _.pluck(_.initial(characters, { 'employer': 'na' }), 'name');
-     * // => ['barney', 'fred']
-     */
-    function initial(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
-
-      if (typeof callback != 'number' && callback != null) {
-        var index = length;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (index-- && callback(array[index], index, array)) {
-          n++;
-        }
-      } else {
-        n = (callback == null || thisArg) ? 1 : callback || n;
-      }
-      return slice(array, 0, nativeMin(nativeMax(0, length - n), length));
-    }
-
-    /**
-     * Creates an array of unique values present in all provided arrays using
-     * strict equality for comparisons, i.e. `===`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {...Array} [array] The arrays to inspect.
-     * @returns {Array} Returns an array of shared values.
-     * @example
-     *
-     * _.intersection([1, 2, 3], [5, 2, 1, 4], [2, 1]);
-     * // => [1, 2]
-     */
-    function intersection() {
-      var args = [],
-          argsIndex = -1,
-          argsLength = arguments.length,
-          caches = getArray(),
-          indexOf = getIndexOf(),
-          trustIndexOf = indexOf === baseIndexOf,
-          seen = getArray();
-
-      while (++argsIndex < argsLength) {
-        var value = arguments[argsIndex];
-        if (isArray(value) || isArguments(value)) {
-          args.push(value);
-          caches.push(trustIndexOf && value.length >= largeArraySize &&
-            createCache(argsIndex ? args[argsIndex] : seen));
-        }
-      }
-      var array = args[0],
-          index = -1,
-          length = array ? array.length : 0,
-          result = [];
-
-      outer:
-      while (++index < length) {
-        var cache = caches[0];
-        value = array[index];
-
-        if ((cache ? cacheIndexOf(cache, value) : indexOf(seen, value)) < 0) {
-          argsIndex = argsLength;
-          (cache || seen).push(value);
-          while (--argsIndex) {
-            cache = caches[argsIndex];
-            if ((cache ? cacheIndexOf(cache, value) : indexOf(args[argsIndex], value)) < 0) {
-              continue outer;
-            }
-          }
-          result.push(value);
-        }
-      }
-      while (argsLength--) {
-        cache = caches[argsLength];
-        if (cache) {
-          releaseObject(cache);
-        }
-      }
-      releaseArray(caches);
-      releaseArray(seen);
-      return result;
-    }
-
-    /**
-     * Gets the last element or last `n` elements of an array. If a callback is
-     * provided elements at the end of the array are returned as long as the
-     * callback returns truey. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback] The function called
-     *  per element or the number of elements to return. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {*} Returns the last element(s) of `array`.
-     * @example
-     *
-     * _.last([1, 2, 3]);
-     * // => 3
-     *
-     * _.last([1, 2, 3], 2);
-     * // => [2, 3]
-     *
-     * _.last([1, 2, 3], function(num) {
-     *   return num > 1;
-     * });
-     * // => [2, 3]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': false, 'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true,  'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.pluck(_.last(characters, 'blocked'), 'name');
-     * // => ['fred', 'pebbles']
-     *
-     * // using "_.where" callback shorthand
-     * _.last(characters, { 'employer': 'na' });
-     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
-     */
-    function last(array, callback, thisArg) {
-      var n = 0,
-          length = array ? array.length : 0;
-
-      if (typeof callback != 'number' && callback != null) {
-        var index = length;
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (index-- && callback(array[index], index, array)) {
-          n++;
-        }
-      } else {
-        n = callback;
-        if (n == null || thisArg) {
-          return array ? array[length - 1] : undefined;
-        }
-      }
-      return slice(array, nativeMax(0, length - n));
-    }
-
-    /**
-     * Gets the index at which the last occurrence of `value` is found using strict
-     * equality for comparisons, i.e. `===`. If `fromIndex` is negative, it is used
-     * as the offset from the end of the collection.
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to search.
-     * @param {*} value The value to search for.
-     * @param {number} [fromIndex=array.length-1] The index to search from.
-     * @returns {number} Returns the index of the matched value or `-1`.
-     * @example
-     *
-     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2);
-     * // => 4
-     *
-     * _.lastIndexOf([1, 2, 3, 1, 2, 3], 2, 3);
-     * // => 1
-     */
-    function lastIndexOf(array, value, fromIndex) {
-      var index = array ? array.length : 0;
-      if (typeof fromIndex == 'number') {
-        index = (fromIndex < 0 ? nativeMax(0, index + fromIndex) : nativeMin(fromIndex, index - 1)) + 1;
-      }
-      while (index--) {
-        if (array[index] === value) {
-          return index;
-        }
-      }
-      return -1;
-    }
-
-    /**
-     * Removes all provided values from the given array using strict equality for
-     * comparisons, i.e. `===`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to modify.
-     * @param {...*} [value] The values to remove.
-     * @returns {Array} Returns `array`.
-     * @example
-     *
-     * var array = [1, 2, 3, 1, 2, 3];
-     * _.pull(array, 2, 3);
-     * console.log(array);
-     * // => [1, 1]
-     */
-    function pull(array) {
-      var args = arguments,
-          argsIndex = 0,
-          argsLength = args.length,
-          length = array ? array.length : 0;
-
-      while (++argsIndex < argsLength) {
-        var index = -1,
-            value = args[argsIndex];
-        while (++index < length) {
-          if (array[index] === value) {
-            splice.call(array, index--, 1);
-            length--;
-          }
-        }
-      }
-      return array;
-    }
-
-    /**
-     * Creates an array of numbers (positive and/or negative) progressing from
-     * `start` up to but not including `end`. If `start` is less than `stop` a
-     * zero-length range is created unless a negative `step` is specified.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {number} [start=0] The start of the range.
-     * @param {number} end The end of the range.
-     * @param {number} [step=1] The value to increment or decrement by.
-     * @returns {Array} Returns a new range array.
-     * @example
-     *
-     * _.range(4);
-     * // => [0, 1, 2, 3]
-     *
-     * _.range(1, 5);
-     * // => [1, 2, 3, 4]
-     *
-     * _.range(0, 20, 5);
-     * // => [0, 5, 10, 15]
-     *
-     * _.range(0, -4, -1);
-     * // => [0, -1, -2, -3]
-     *
-     * _.range(1, 4, 0);
-     * // => [1, 1, 1]
-     *
-     * _.range(0);
-     * // => []
-     */
-    function range(start, end, step) {
-      start = +start || 0;
-      step = typeof step == 'number' ? step : (+step || 1);
-
-      if (end == null) {
-        end = start;
-        start = 0;
-      }
-      // use `Array(length)` so engines like Chakra and V8 avoid slower modes
-      // http://youtu.be/XAqIpGU8ZZk#t=17m25s
-      var index = -1,
-          length = nativeMax(0, ceil((end - start) / (step || 1))),
-          result = Array(length);
-
-      while (++index < length) {
-        result[index] = start;
-        start += step;
-      }
-      return result;
-    }
-
-    /**
-     * Removes all elements from an array that the callback returns truey for
-     * and returns an array of removed elements. The callback is bound to `thisArg`
-     * and invoked with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to modify.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a new array of removed elements.
-     * @example
-     *
-     * var array = [1, 2, 3, 4, 5, 6];
-     * var evens = _.remove(array, function(num) { return num % 2 == 0; });
-     *
-     * console.log(array);
-     * // => [1, 3, 5]
-     *
-     * console.log(evens);
-     * // => [2, 4, 6]
-     */
-    function remove(array, callback, thisArg) {
-      var index = -1,
-          length = array ? array.length : 0,
-          result = [];
-
-      callback = lodash.createCallback(callback, thisArg, 3);
-      while (++index < length) {
-        var value = array[index];
-        if (callback(value, index, array)) {
-          result.push(value);
-          splice.call(array, index--, 1);
-          length--;
-        }
-      }
-      return result;
-    }
-
-    /**
-     * The opposite of `_.initial` this method gets all but the first element or
-     * first `n` elements of an array. If a callback function is provided elements
-     * at the beginning of the array are excluded from the result as long as the
-     * callback returns truey. The callback is bound to `thisArg` and invoked
-     * with three arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias drop, tail
-     * @category Arrays
-     * @param {Array} array The array to query.
-     * @param {Function|Object|number|string} [callback=1] The function called
-     *  per element or the number of elements to exclude. If a property name or
-     *  object is provided it will be used to create a "_.pluck" or "_.where"
-     *  style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a slice of `array`.
-     * @example
-     *
-     * _.rest([1, 2, 3]);
-     * // => [2, 3]
-     *
-     * _.rest([1, 2, 3], 2);
-     * // => [3]
-     *
-     * _.rest([1, 2, 3], function(num) {
-     *   return num < 3;
-     * });
-     * // => [3]
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'blocked': true,  'employer': 'slate' },
-     *   { 'name': 'fred',    'blocked': false,  'employer': 'slate' },
-     *   { 'name': 'pebbles', 'blocked': true, 'employer': 'na' }
-     * ];
-     *
-     * // using "_.pluck" callback shorthand
-     * _.pluck(_.rest(characters, 'blocked'), 'name');
-     * // => ['fred', 'pebbles']
-     *
-     * // using "_.where" callback shorthand
-     * _.rest(characters, { 'employer': 'slate' });
-     * // => [{ 'name': 'pebbles', 'blocked': true, 'employer': 'na' }]
-     */
-    function rest(array, callback, thisArg) {
-      if (typeof callback != 'number' && callback != null) {
-        var n = 0,
-            index = -1,
-            length = array ? array.length : 0;
-
-        callback = lodash.createCallback(callback, thisArg, 3);
-        while (++index < length && callback(array[index], index, array)) {
-          n++;
-        }
-      } else {
-        n = (callback == null || thisArg) ? 1 : nativeMax(0, callback);
-      }
-      return slice(array, n);
-    }
-
-    /**
-     * Uses a binary search to determine the smallest index at which a value
-     * should be inserted into a given sorted array in order to maintain the sort
-     * order of the array. If a callback is provided it will be executed for
-     * `value` and each element of `array` to compute their sort ranking. The
-     * callback is bound to `thisArg` and invoked with one argument; (value).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to inspect.
-     * @param {*} value The value to evaluate.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {number} Returns the index at which `value` should be inserted
-     *  into `array`.
-     * @example
-     *
-     * _.sortedIndex([20, 30, 50], 40);
-     * // => 2
-     *
-     * // using "_.pluck" callback shorthand
-     * _.sortedIndex([{ 'x': 20 }, { 'x': 30 }, { 'x': 50 }], { 'x': 40 }, 'x');
-     * // => 2
-     *
-     * var dict = {
-     *   'wordToNumber': { 'twenty': 20, 'thirty': 30, 'fourty': 40, 'fifty': 50 }
-     * };
-     *
-     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
-     *   return dict.wordToNumber[word];
-     * });
-     * // => 2
-     *
-     * _.sortedIndex(['twenty', 'thirty', 'fifty'], 'fourty', function(word) {
-     *   return this.wordToNumber[word];
-     * }, dict);
-     * // => 2
-     */
-    function sortedIndex(array, value, callback, thisArg) {
-      var low = 0,
-          high = array ? array.length : low;
-
-      // explicitly reference `identity` for better inlining in Firefox
-      callback = callback ? lodash.createCallback(callback, thisArg, 1) : identity;
-      value = callback(value);
-
-      while (low < high) {
-        var mid = (low + high) >>> 1;
-        (callback(array[mid]) < value)
-          ? low = mid + 1
-          : high = mid;
-      }
-      return low;
-    }
-
-    /**
-     * Creates an array of unique values, in order, of the provided arrays using
-     * strict equality for comparisons, i.e. `===`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {...Array} [array] The arrays to inspect.
-     * @returns {Array} Returns an array of combined values.
-     * @example
-     *
-     * _.union([1, 2, 3], [5, 2, 1, 4], [2, 1]);
-     * // => [1, 2, 3, 5, 4]
-     */
-    function union() {
-      return baseUniq(baseFlatten(arguments, true, true));
-    }
-
-    /**
-     * Creates a duplicate-value-free version of an array using strict equality
-     * for comparisons, i.e. `===`. If the array is sorted, providing
-     * `true` for `isSorted` will use a faster algorithm. If a callback is provided
-     * each element of `array` is passed through the callback before uniqueness
-     * is computed. The callback is bound to `thisArg` and invoked with three
-     * arguments; (value, index, array).
-     *
-     * If a property name is provided for `callback` the created "_.pluck" style
-     * callback will return the property value of the given element.
-     *
-     * If an object is provided for `callback` the created "_.where" style callback
-     * will return `true` for elements that have the properties of the given object,
-     * else `false`.
-     *
-     * @static
-     * @memberOf _
-     * @alias unique
-     * @category Arrays
-     * @param {Array} array The array to process.
-     * @param {boolean} [isSorted=false] A flag to indicate that `array` is sorted.
-     * @param {Function|Object|string} [callback=identity] The function called
-     *  per iteration. If a property name or object is provided it will be used
-     *  to create a "_.pluck" or "_.where" style callback, respectively.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns a duplicate-value-free array.
-     * @example
-     *
-     * _.uniq([1, 2, 1, 3, 1]);
-     * // => [1, 2, 3]
-     *
-     * _.uniq([1, 1, 2, 2, 3], true);
-     * // => [1, 2, 3]
-     *
-     * _.uniq(['A', 'b', 'C', 'a', 'B', 'c'], function(letter) { return letter.toLowerCase(); });
-     * // => ['A', 'b', 'C']
-     *
-     * _.uniq([1, 2.5, 3, 1.5, 2, 3.5], function(num) { return this.floor(num); }, Math);
-     * // => [1, 2.5, 3]
-     *
-     * // using "_.pluck" callback shorthand
-     * _.uniq([{ 'x': 1 }, { 'x': 2 }, { 'x': 1 }], 'x');
-     * // => [{ 'x': 1 }, { 'x': 2 }]
-     */
-    function uniq(array, isSorted, callback, thisArg) {
-      // juggle arguments
-      if (typeof isSorted != 'boolean' && isSorted != null) {
-        thisArg = callback;
-        callback = (typeof isSorted != 'function' && thisArg && thisArg[isSorted] === array) ? null : isSorted;
-        isSorted = false;
-      }
-      if (callback != null) {
-        callback = lodash.createCallback(callback, thisArg, 3);
-      }
-      return baseUniq(array, isSorted, callback);
-    }
-
-    /**
-     * Creates an array excluding all provided values using strict equality for
-     * comparisons, i.e. `===`.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {Array} array The array to filter.
-     * @param {...*} [value] The values to exclude.
-     * @returns {Array} Returns a new array of filtered values.
-     * @example
-     *
-     * _.without([1, 2, 1, 0, 3, 1, 4], 0, 1);
-     * // => [2, 3, 4]
-     */
-    function without(array) {
-      return baseDifference(array, slice(arguments, 1));
-    }
-
-    /**
-     * Creates an array that is the symmetric difference of the provided arrays.
-     * See http://en.wikipedia.org/wiki/Symmetric_difference.
-     *
-     * @static
-     * @memberOf _
-     * @category Arrays
-     * @param {...Array} [array] The arrays to inspect.
-     * @returns {Array} Returns an array of values.
-     * @example
-     *
-     * _.xor([1, 2, 3], [5, 2, 1, 4]);
-     * // => [3, 5, 4]
-     *
-     * _.xor([1, 2, 5], [2, 3, 5], [3, 4, 5]);
-     * // => [1, 4, 5]
-     */
-    function xor() {
-      var index = -1,
-          length = arguments.length;
-
-      while (++index < length) {
-        var array = arguments[index];
-        if (isArray(array) || isArguments(array)) {
-          var result = result
-            ? baseUniq(baseDifference(result, array).concat(baseDifference(array, result)))
-            : array;
-        }
-      }
-      return result || [];
-    }
-
-    /**
-     * Creates an array of grouped elements, the first of which contains the first
-     * elements of the given arrays, the second of which contains the second
-     * elements of the given arrays, and so on.
-     *
-     * @static
-     * @memberOf _
-     * @alias unzip
-     * @category Arrays
-     * @param {...Array} [array] Arrays to process.
-     * @returns {Array} Returns a new array of grouped elements.
-     * @example
-     *
-     * _.zip(['fred', 'barney'], [30, 40], [true, false]);
-     * // => [['fred', 30, true], ['barney', 40, false]]
-     */
-    function zip() {
-      var array = arguments.length > 1 ? arguments : arguments[0],
-          index = -1,
-          length = array ? max(pluck(array, 'length')) : 0,
-          result = Array(length < 0 ? 0 : length);
-
-      while (++index < length) {
-        result[index] = pluck(array, index);
-      }
-      return result;
-    }
-
-    /**
-     * Creates an object composed from arrays of `keys` and `values`. Provide
-     * either a single two dimensional array, i.e. `[[key1, value1], [key2, value2]]`
-     * or two arrays, one of `keys` and one of corresponding `values`.
-     *
-     * @static
-     * @memberOf _
-     * @alias object
-     * @category Arrays
-     * @param {Array} keys The array of keys.
-     * @param {Array} [values=[]] The array of values.
-     * @returns {Object} Returns an object composed of the given keys and
-     *  corresponding values.
-     * @example
-     *
-     * _.zipObject(['fred', 'barney'], [30, 40]);
-     * // => { 'fred': 30, 'barney': 40 }
-     */
-    function zipObject(keys, values) {
-      var index = -1,
-          length = keys ? keys.length : 0,
-          result = {};
-
-      if (!values && length && !isArray(keys[0])) {
-        values = [];
-      }
-      while (++index < length) {
-        var key = keys[index];
-        if (values) {
-          result[key] = values[index];
-        } else if (key) {
-          result[key[0]] = key[1];
-        }
-      }
-      return result;
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates a function that executes `func`, with  the `this` binding and
-     * arguments of the created function, only after being called `n` times.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {number} n The number of times the function must be called before
-     *  `func` is executed.
-     * @param {Function} func The function to restrict.
-     * @returns {Function} Returns the new restricted function.
-     * @example
-     *
-     * var saves = ['profile', 'settings'];
-     *
-     * var done = _.after(saves.length, function() {
-     *   console.log('Done saving!');
-     * });
-     *
-     * _.forEach(saves, function(type) {
-     *   asyncSave({ 'type': type, 'complete': done });
-     * });
-     * // => logs 'Done saving!', after all saves have completed
-     */
-    function after(n, func) {
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      return function() {
-        if (--n < 1) {
-          return func.apply(this, arguments);
-        }
-      };
-    }
-
-    /**
-     * Creates a function that, when called, invokes `func` with the `this`
-     * binding of `thisArg` and prepends any additional `bind` arguments to those
-     * provided to the bound function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to bind.
-     * @param {*} [thisArg] The `this` binding of `func`.
-     * @param {...*} [arg] Arguments to be partially applied.
-     * @returns {Function} Returns the new bound function.
-     * @example
-     *
-     * var func = function(greeting) {
-     *   return greeting + ' ' + this.name;
-     * };
-     *
-     * func = _.bind(func, { 'name': 'fred' }, 'hi');
-     * func();
-     * // => 'hi fred'
-     */
-    function bind(func, thisArg) {
-      return arguments.length > 2
-        ? createWrapper(func, 17, slice(arguments, 2), null, thisArg)
-        : createWrapper(func, 1, null, null, thisArg);
-    }
-
-    /**
-     * Binds methods of an object to the object itself, overwriting the existing
-     * method. Method names may be specified as individual arguments or as arrays
-     * of method names. If no method names are provided all the function properties
-     * of `object` will be bound.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Object} object The object to bind and assign the bound methods to.
-     * @param {...string} [methodName] The object method names to
-     *  bind, specified as individual method names or arrays of method names.
-     * @returns {Object} Returns `object`.
-     * @example
-     *
-     * var view = {
-     *   'label': 'docs',
-     *   'onClick': function() { console.log('clicked ' + this.label); }
-     * };
-     *
-     * _.bindAll(view);
-     * jQuery('#docs').on('click', view.onClick);
-     * // => logs 'clicked docs', when the button is clicked
-     */
-    function bindAll(object) {
-      var funcs = arguments.length > 1 ? baseFlatten(arguments, true, false, 1) : functions(object),
-          index = -1,
-          length = funcs.length;
-
-      while (++index < length) {
-        var key = funcs[index];
-        object[key] = createWrapper(object[key], 1, null, null, object);
-      }
-      return object;
-    }
-
-    /**
-     * Creates a function that, when called, invokes the method at `object[key]`
-     * and prepends any additional `bindKey` arguments to those provided to the bound
-     * function. This method differs from `_.bind` by allowing bound functions to
-     * reference methods that will be redefined or don't yet exist.
-     * See http://michaux.ca/articles/lazy-function-definition-pattern.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Object} object The object the method belongs to.
-     * @param {string} key The key of the method.
-     * @param {...*} [arg] Arguments to be partially applied.
-     * @returns {Function} Returns the new bound function.
-     * @example
-     *
-     * var object = {
-     *   'name': 'fred',
-     *   'greet': function(greeting) {
-     *     return greeting + ' ' + this.name;
-     *   }
-     * };
-     *
-     * var func = _.bindKey(object, 'greet', 'hi');
-     * func();
-     * // => 'hi fred'
-     *
-     * object.greet = function(greeting) {
-     *   return greeting + 'ya ' + this.name + '!';
-     * };
-     *
-     * func();
-     * // => 'hiya fred!'
-     */
-    function bindKey(object, key) {
-      return arguments.length > 2
-        ? createWrapper(key, 19, slice(arguments, 2), null, object)
-        : createWrapper(key, 3, null, null, object);
-    }
-
-    /**
-     * Creates a function that is the composition of the provided functions,
-     * where each function consumes the return value of the function that follows.
-     * For example, composing the functions `f()`, `g()`, and `h()` produces `f(g(h()))`.
-     * Each function is executed with the `this` binding of the composed function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {...Function} [func] Functions to compose.
-     * @returns {Function} Returns the new composed function.
-     * @example
-     *
-     * var realNameMap = {
-     *   'pebbles': 'penelope'
-     * };
-     *
-     * var format = function(name) {
-     *   name = realNameMap[name.toLowerCase()] || name;
-     *   return name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
-     * };
-     *
-     * var greet = function(formatted) {
-     *   return 'Hiya ' + formatted + '!';
-     * };
-     *
-     * var welcome = _.compose(greet, format);
-     * welcome('pebbles');
-     * // => 'Hiya Penelope!'
-     */
-    function compose() {
-      var funcs = arguments,
-          length = funcs.length;
-
-      while (length--) {
-        if (!isFunction(funcs[length])) {
-          throw new TypeError;
-        }
-      }
-      return function() {
-        var args = arguments,
-            length = funcs.length;
-
-        while (length--) {
-          args = [funcs[length].apply(this, args)];
-        }
-        return args[0];
-      };
-    }
-
-    /**
-     * Creates a function which accepts one or more arguments of `func` that when
-     * invoked either executes `func` returning its result, if all `func` arguments
-     * have been provided, or returns a function that accepts one or more of the
-     * remaining `func` arguments, and so on. The arity of `func` can be specified
-     * if `func.length` is not sufficient.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to curry.
-     * @param {number} [arity=func.length] The arity of `func`.
-     * @returns {Function} Returns the new curried function.
-     * @example
-     *
-     * var curried = _.curry(function(a, b, c) {
-     *   console.log(a + b + c);
-     * });
-     *
-     * curried(1)(2)(3);
-     * // => 6
-     *
-     * curried(1, 2)(3);
-     * // => 6
-     *
-     * curried(1, 2, 3);
-     * // => 6
-     */
-    function curry(func, arity) {
-      arity = typeof arity == 'number' ? arity : (+arity || func.length);
-      return createWrapper(func, 4, null, null, null, arity);
-    }
-
-    /**
-     * Creates a function that will delay the execution of `func` until after
-     * `wait` milliseconds have elapsed since the last time it was invoked.
-     * Provide an options object to indicate that `func` should be invoked on
-     * the leading and/or trailing edge of the `wait` timeout. Subsequent calls
-     * to the debounced function will return the result of the last `func` call.
-     *
-     * Note: If `leading` and `trailing` options are `true` `func` will be called
-     * on the trailing edge of the timeout only if the the debounced function is
-     * invoked more than once during the `wait` timeout.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to debounce.
-     * @param {number} wait The number of milliseconds to delay.
-     * @param {Object} [options] The options object.
-     * @param {boolean} [options.leading=false] Specify execution on the leading edge of the timeout.
-     * @param {number} [options.maxWait] The maximum time `func` is allowed to be delayed before it's called.
-     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
-     * @returns {Function} Returns the new debounced function.
-     * @example
-     *
-     * // avoid costly calculations while the window size is in flux
-     * var lazyLayout = _.debounce(calculateLayout, 150);
-     * jQuery(window).on('resize', lazyLayout);
-     *
-     * // execute `sendMail` when the click event is fired, debouncing subsequent calls
-     * jQuery('#postbox').on('click', _.debounce(sendMail, 300, {
-     *   'leading': true,
-     *   'trailing': false
-     * });
-     *
-     * // ensure `batchLog` is executed once after 1 second of debounced calls
-     * var source = new EventSource('/stream');
-     * source.addEventListener('message', _.debounce(batchLog, 250, {
-     *   'maxWait': 1000
-     * }, false);
-     */
-    function debounce(func, wait, options) {
-      var args,
-          maxTimeoutId,
-          result,
-          stamp,
-          thisArg,
-          timeoutId,
-          trailingCall,
-          lastCalled = 0,
-          maxWait = false,
-          trailing = true;
-
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      wait = nativeMax(0, wait) || 0;
-      if (options === true) {
-        var leading = true;
-        trailing = false;
-      } else if (isObject(options)) {
-        leading = options.leading;
-        maxWait = 'maxWait' in options && (nativeMax(wait, options.maxWait) || 0);
-        trailing = 'trailing' in options ? options.trailing : trailing;
-      }
-      var delayed = function() {
-        var remaining = wait - (now() - stamp);
-        if (remaining <= 0) {
-          if (maxTimeoutId) {
-            clearTimeout(maxTimeoutId);
-          }
-          var isCalled = trailingCall;
-          maxTimeoutId = timeoutId = trailingCall = undefined;
-          if (isCalled) {
-            lastCalled = now();
-            result = func.apply(thisArg, args);
-            if (!timeoutId && !maxTimeoutId) {
-              args = thisArg = null;
-            }
-          }
-        } else {
-          timeoutId = setTimeout(delayed, remaining);
-        }
-      };
-
-      var maxDelayed = function() {
-        if (timeoutId) {
-          clearTimeout(timeoutId);
-        }
-        maxTimeoutId = timeoutId = trailingCall = undefined;
-        if (trailing || (maxWait !== wait)) {
-          lastCalled = now();
-          result = func.apply(thisArg, args);
-          if (!timeoutId && !maxTimeoutId) {
-            args = thisArg = null;
-          }
-        }
-      };
-
-      return function() {
-        args = arguments;
-        stamp = now();
-        thisArg = this;
-        trailingCall = trailing && (timeoutId || !leading);
-
-        if (maxWait === false) {
-          var leadingCall = leading && !timeoutId;
-        } else {
-          if (!maxTimeoutId && !leading) {
-            lastCalled = stamp;
-          }
-          var remaining = maxWait - (stamp - lastCalled),
-              isCalled = remaining <= 0;
-
-          if (isCalled) {
-            if (maxTimeoutId) {
-              maxTimeoutId = clearTimeout(maxTimeoutId);
-            }
-            lastCalled = stamp;
-            result = func.apply(thisArg, args);
-          }
-          else if (!maxTimeoutId) {
-            maxTimeoutId = setTimeout(maxDelayed, remaining);
-          }
-        }
-        if (isCalled && timeoutId) {
-          timeoutId = clearTimeout(timeoutId);
-        }
-        else if (!timeoutId && wait !== maxWait) {
-          timeoutId = setTimeout(delayed, wait);
-        }
-        if (leadingCall) {
-          isCalled = true;
-          result = func.apply(thisArg, args);
-        }
-        if (isCalled && !timeoutId && !maxTimeoutId) {
-          args = thisArg = null;
-        }
-        return result;
-      };
-    }
-
-    /**
-     * Defers executing the `func` function until the current call stack has cleared.
-     * Additional arguments will be provided to `func` when it is invoked.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to defer.
-     * @param {...*} [arg] Arguments to invoke the function with.
-     * @returns {number} Returns the timer id.
-     * @example
-     *
-     * _.defer(function(text) { console.log(text); }, 'deferred');
-     * // logs 'deferred' after one or more milliseconds
-     */
-    function defer(func) {
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      var args = slice(arguments, 1);
-      return setTimeout(function() { func.apply(undefined, args); }, 1);
-    }
-
-    /**
-     * Executes the `func` function after `wait` milliseconds. Additional arguments
-     * will be provided to `func` when it is invoked.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to delay.
-     * @param {number} wait The number of milliseconds to delay execution.
-     * @param {...*} [arg] Arguments to invoke the function with.
-     * @returns {number} Returns the timer id.
-     * @example
-     *
-     * _.delay(function(text) { console.log(text); }, 1000, 'later');
-     * // => logs 'later' after one second
-     */
-    function delay(func, wait) {
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      var args = slice(arguments, 2);
-      return setTimeout(function() { func.apply(undefined, args); }, wait);
-    }
-
-    /**
-     * Creates a function that memoizes the result of `func`. If `resolver` is
-     * provided it will be used to determine the cache key for storing the result
-     * based on the arguments provided to the memoized function. By default, the
-     * first argument provided to the memoized function is used as the cache key.
-     * The `func` is executed with the `this` binding of the memoized function.
-     * The result cache is exposed as the `cache` property on the memoized function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to have its output memoized.
-     * @param {Function} [resolver] A function used to resolve the cache key.
-     * @returns {Function} Returns the new memoizing function.
-     * @example
-     *
-     * var fibonacci = _.memoize(function(n) {
-     *   return n < 2 ? n : fibonacci(n - 1) + fibonacci(n - 2);
-     * });
-     *
-     * fibonacci(9)
-     * // => 34
-     *
-     * var data = {
-     *   'fred': { 'name': 'fred', 'age': 40 },
-     *   'pebbles': { 'name': 'pebbles', 'age': 1 }
-     * };
-     *
-     * // modifying the result cache
-     * var get = _.memoize(function(name) { return data[name]; }, _.identity);
-     * get('pebbles');
-     * // => { 'name': 'pebbles', 'age': 1 }
-     *
-     * get.cache.pebbles.name = 'penelope';
-     * get('pebbles');
-     * // => { 'name': 'penelope', 'age': 1 }
-     */
-    function memoize(func, resolver) {
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      var memoized = function() {
-        var cache = memoized.cache,
-            key = resolver ? resolver.apply(this, arguments) : keyPrefix + arguments[0];
-
-        return hasOwnProperty.call(cache, key)
-          ? cache[key]
-          : (cache[key] = func.apply(this, arguments));
-      }
-      memoized.cache = {};
-      return memoized;
-    }
-
-    /**
-     * Creates a function that is restricted to execute `func` once. Repeat calls to
-     * the function will return the value of the first call. The `func` is executed
-     * with the `this` binding of the created function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to restrict.
-     * @returns {Function} Returns the new restricted function.
-     * @example
-     *
-     * var initialize = _.once(createApplication);
-     * initialize();
-     * initialize();
-     * // `initialize` executes `createApplication` once
-     */
-    function once(func) {
-      var ran,
-          result;
-
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      return function() {
-        if (ran) {
-          return result;
-        }
-        ran = true;
-        result = func.apply(this, arguments);
-
-        // clear the `func` variable so the function may be garbage collected
-        func = null;
-        return result;
-      };
-    }
-
-    /**
-     * Creates a function that, when called, invokes `func` with any additional
-     * `partial` arguments prepended to those provided to the new function. This
-     * method is similar to `_.bind` except it does **not** alter the `this` binding.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to partially apply arguments to.
-     * @param {...*} [arg] Arguments to be partially applied.
-     * @returns {Function} Returns the new partially applied function.
-     * @example
-     *
-     * var greet = function(greeting, name) { return greeting + ' ' + name; };
-     * var hi = _.partial(greet, 'hi');
-     * hi('fred');
-     * // => 'hi fred'
-     */
-    function partial(func) {
-      return createWrapper(func, 16, slice(arguments, 1));
-    }
-
-    /**
-     * This method is like `_.partial` except that `partial` arguments are
-     * appended to those provided to the new function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to partially apply arguments to.
-     * @param {...*} [arg] Arguments to be partially applied.
-     * @returns {Function} Returns the new partially applied function.
-     * @example
-     *
-     * var defaultsDeep = _.partialRight(_.merge, _.defaults);
-     *
-     * var options = {
-     *   'variable': 'data',
-     *   'imports': { 'jq': $ }
-     * };
-     *
-     * defaultsDeep(options, _.templateSettings);
-     *
-     * options.variable
-     * // => 'data'
-     *
-     * options.imports
-     * // => { '_': _, 'jq': $ }
-     */
-    function partialRight(func) {
-      return createWrapper(func, 32, null, slice(arguments, 1));
-    }
-
-    /**
-     * Creates a function that, when executed, will only call the `func` function
-     * at most once per every `wait` milliseconds. Provide an options object to
-     * indicate that `func` should be invoked on the leading and/or trailing edge
-     * of the `wait` timeout. Subsequent calls to the throttled function will
-     * return the result of the last `func` call.
-     *
-     * Note: If `leading` and `trailing` options are `true` `func` will be called
-     * on the trailing edge of the timeout only if the the throttled function is
-     * invoked more than once during the `wait` timeout.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {Function} func The function to throttle.
-     * @param {number} wait The number of milliseconds to throttle executions to.
-     * @param {Object} [options] The options object.
-     * @param {boolean} [options.leading=true] Specify execution on the leading edge of the timeout.
-     * @param {boolean} [options.trailing=true] Specify execution on the trailing edge of the timeout.
-     * @returns {Function} Returns the new throttled function.
-     * @example
-     *
-     * // avoid excessively updating the position while scrolling
-     * var throttled = _.throttle(updatePosition, 100);
-     * jQuery(window).on('scroll', throttled);
-     *
-     * // execute `renewToken` when the click event is fired, but not more than once every 5 minutes
-     * jQuery('.interactive').on('click', _.throttle(renewToken, 300000, {
-     *   'trailing': false
-     * }));
-     */
-    function throttle(func, wait, options) {
-      var leading = true,
-          trailing = true;
-
-      if (!isFunction(func)) {
-        throw new TypeError;
-      }
-      if (options === false) {
-        leading = false;
-      } else if (isObject(options)) {
-        leading = 'leading' in options ? options.leading : leading;
-        trailing = 'trailing' in options ? options.trailing : trailing;
-      }
-      debounceOptions.leading = leading;
-      debounceOptions.maxWait = wait;
-      debounceOptions.trailing = trailing;
-
-      return debounce(func, wait, debounceOptions);
-    }
-
-    /**
-     * Creates a function that provides `value` to the wrapper function as its
-     * first argument. Additional arguments provided to the function are appended
-     * to those provided to the wrapper function. The wrapper is executed with
-     * the `this` binding of the created function.
-     *
-     * @static
-     * @memberOf _
-     * @category Functions
-     * @param {*} value The value to wrap.
-     * @param {Function} wrapper The wrapper function.
-     * @returns {Function} Returns the new function.
-     * @example
-     *
-     * var p = _.wrap(_.escape, function(func, text) {
-     *   return '<p>' + func(text) + '</p>';
-     * });
-     *
-     * p('Fred, Wilma, & Pebbles');
-     * // => '<p>Fred, Wilma, &amp; Pebbles</p>'
-     */
-    function wrap(value, wrapper) {
-      return createWrapper(wrapper, 16, [value]);
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates a function that returns `value`.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {*} value The value to return from the new function.
-     * @returns {Function} Returns the new function.
-     * @example
-     *
-     * var object = { 'name': 'fred' };
-     * var getter = _.constant(object);
-     * getter() === object;
-     * // => true
-     */
-    function constant(value) {
-      return function() {
-        return value;
-      };
-    }
-
-    /**
-     * Produces a callback bound to an optional `thisArg`. If `func` is a property
-     * name the created callback will return the property value for a given element.
-     * If `func` is an object the created callback will return `true` for elements
-     * that contain the equivalent object properties, otherwise it will return `false`.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {*} [func=identity] The value to convert to a callback.
-     * @param {*} [thisArg] The `this` binding of the created callback.
-     * @param {number} [argCount] The number of arguments the callback accepts.
-     * @returns {Function} Returns a callback function.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * // wrap to create custom callback shorthands
-     * _.createCallback = _.wrap(_.createCallback, function(func, callback, thisArg) {
-     *   var match = /^(.+?)__([gl]t)(.+)$/.exec(callback);
-     *   return !match ? func(callback, thisArg) : function(object) {
-     *     return match[2] == 'gt' ? object[match[1]] > match[3] : object[match[1]] < match[3];
-     *   };
-     * });
-     *
-     * _.filter(characters, 'age__gt38');
-     * // => [{ 'name': 'fred', 'age': 40 }]
-     */
-    function createCallback(func, thisArg, argCount) {
-      var type = typeof func;
-      if (func == null || type == 'function') {
-        return baseCreateCallback(func, thisArg, argCount);
-      }
-      // handle "_.pluck" style callback shorthands
-      if (type != 'object') {
-        return property(func);
-      }
-      var props = keys(func),
-          key = props[0],
-          a = func[key];
-
-      // handle "_.where" style callback shorthands
-      if (props.length == 1 && a === a && !isObject(a)) {
-        // fast path the common case of providing an object with a single
-        // property containing a primitive value
-        return function(object) {
-          var b = object[key];
-          return a === b && (a !== 0 || (1 / a == 1 / b));
-        };
-      }
-      return function(object) {
-        var length = props.length,
-            result = false;
-
-        while (length--) {
-          if (!(result = baseIsEqual(object[props[length]], func[props[length]], null, true))) {
-            break;
-          }
-        }
-        return result;
-      };
-    }
-
-    /**
-     * Converts the characters `&`, `<`, `>`, `"`, and `'` in `string` to their
-     * corresponding HTML entities.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} string The string to escape.
-     * @returns {string} Returns the escaped string.
-     * @example
-     *
-     * _.escape('Fred, Wilma, & Pebbles');
-     * // => 'Fred, Wilma, &amp; Pebbles'
-     */
-    function escape(string) {
-      return string == null ? '' : String(string).replace(reUnescapedHtml, escapeHtmlChar);
-    }
-
-    /**
-     * This method returns the first argument provided to it.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {*} value Any value.
-     * @returns {*} Returns `value`.
-     * @example
-     *
-     * var object = { 'name': 'fred' };
-     * _.identity(object) === object;
-     * // => true
-     */
-    function identity(value) {
-      return value;
-    }
-
-    /**
-     * Adds function properties of a source object to the destination object.
-     * If `object` is a function methods will be added to its prototype as well.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {Function|Object} [object=lodash] object The destination object.
-     * @param {Object} source The object of functions to add.
-     * @param {Object} [options] The options object.
-     * @param {boolean} [options.chain=true] Specify whether the functions added are chainable.
-     * @example
-     *
-     * function capitalize(string) {
-     *   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-     * }
-     *
-     * _.mixin({ 'capitalize': capitalize });
-     * _.capitalize('fred');
-     * // => 'Fred'
-     *
-     * _('fred').capitalize().value();
-     * // => 'Fred'
-     *
-     * _.mixin({ 'capitalize': capitalize }, { 'chain': false });
-     * _('fred').capitalize();
-     * // => 'Fred'
-     */
-    function mixin(object, source, options) {
-      var chain = true,
-          methodNames = source && functions(source);
-
-      if (!source || (!options && !methodNames.length)) {
-        if (options == null) {
-          options = source;
-        }
-        ctor = lodashWrapper;
-        source = object;
-        object = lodash;
-        methodNames = functions(source);
-      }
-      if (options === false) {
-        chain = false;
-      } else if (isObject(options) && 'chain' in options) {
-        chain = options.chain;
-      }
-      var ctor = object,
-          isFunc = isFunction(ctor);
-
-      forEach(methodNames, function(methodName) {
-        var func = object[methodName] = source[methodName];
-        if (isFunc) {
-          ctor.prototype[methodName] = function() {
-            var chainAll = this.__chain__,
-                value = this.__wrapped__,
-                args = [value];
-
-            push.apply(args, arguments);
-            var result = func.apply(object, args);
-            if (chain || chainAll) {
-              if (value === result && isObject(result)) {
-                return this;
-              }
-              result = new ctor(result);
-              result.__chain__ = chainAll;
-            }
-            return result;
-          };
-        }
-      });
-    }
-
-    /**
-     * Reverts the '_' variable to its previous value and returns a reference to
-     * the `lodash` function.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @returns {Function} Returns the `lodash` function.
-     * @example
-     *
-     * var lodash = _.noConflict();
-     */
-    function noConflict() {
-      context._ = oldDash;
-      return this;
-    }
-
-    /**
-     * A no-operation function.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @example
-     *
-     * var object = { 'name': 'fred' };
-     * _.noop(object) === undefined;
-     * // => true
-     */
-    function noop() {
-      // no operation performed
-    }
-
-    /**
-     * Gets the number of milliseconds that have elapsed since the Unix epoch
-     * (1 January 1970 00:00:00 UTC).
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @example
-     *
-     * var stamp = _.now();
-     * _.defer(function() { console.log(_.now() - stamp); });
-     * // => logs the number of milliseconds it took for the deferred function to be called
-     */
-    var now = isNative(now = Date.now) && now || function() {
-      return new Date().getTime();
-    };
-
-    /**
-     * Converts the given value into an integer of the specified radix.
-     * If `radix` is `undefined` or `0` a `radix` of `10` is used unless the
-     * `value` is a hexadecimal, in which case a `radix` of `16` is used.
-     *
-     * Note: This method avoids differences in native ES3 and ES5 `parseInt`
-     * implementations. See http://es5.github.io/#E.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} value The value to parse.
-     * @param {number} [radix] The radix used to interpret the value to parse.
-     * @returns {number} Returns the new integer value.
-     * @example
-     *
-     * _.parseInt('08');
-     * // => 8
-     */
-    var parseInt = nativeParseInt(whitespace + '08') == 8 ? nativeParseInt : function(value, radix) {
-      // Firefox < 21 and Opera < 15 follow the ES3 specified implementation of `parseInt`
-      return nativeParseInt(isString(value) ? value.replace(reLeadingSpacesAndZeros, '') : value, radix || 0);
-    };
-
-    /**
-     * Creates a "_.pluck" style function, which returns the `key` value of a
-     * given object.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} key The name of the property to retrieve.
-     * @returns {Function} Returns the new function.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'fred',   'age': 40 },
-     *   { 'name': 'barney', 'age': 36 }
-     * ];
-     *
-     * var getName = _.property('name');
-     *
-     * _.map(characters, getName);
-     * // => ['barney', 'fred']
-     *
-     * _.sortBy(characters, getName);
-     * // => [{ 'name': 'barney', 'age': 36 }, { 'name': 'fred',   'age': 40 }]
-     */
-    function property(key) {
-      return function(object) {
-        return object[key];
-      };
-    }
-
-    /**
-     * Produces a random number between `min` and `max` (inclusive). If only one
-     * argument is provided a number between `0` and the given number will be
-     * returned. If `floating` is truey or either `min` or `max` are floats a
-     * floating-point number will be returned instead of an integer.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {number} [min=0] The minimum possible value.
-     * @param {number} [max=1] The maximum possible value.
-     * @param {boolean} [floating=false] Specify returning a floating-point number.
-     * @returns {number} Returns a random number.
-     * @example
-     *
-     * _.random(0, 5);
-     * // => an integer between 0 and 5
-     *
-     * _.random(5);
-     * // => also an integer between 0 and 5
-     *
-     * _.random(5, true);
-     * // => a floating-point number between 0 and 5
-     *
-     * _.random(1.2, 5.2);
-     * // => a floating-point number between 1.2 and 5.2
-     */
-    function random(min, max, floating) {
-      var noMin = min == null,
-          noMax = max == null;
-
-      if (floating == null) {
-        if (typeof min == 'boolean' && noMax) {
-          floating = min;
-          min = 1;
-        }
-        else if (!noMax && typeof max == 'boolean') {
-          floating = max;
-          noMax = true;
-        }
-      }
-      if (noMin && noMax) {
-        max = 1;
-      }
-      min = +min || 0;
-      if (noMax) {
-        max = min;
-        min = 0;
-      } else {
-        max = +max || 0;
-      }
-      if (floating || min % 1 || max % 1) {
-        var rand = nativeRandom();
-        return nativeMin(min + (rand * (max - min + parseFloat('1e-' + ((rand +'').length - 1)))), max);
-      }
-      return baseRandom(min, max);
-    }
-
-    /**
-     * Resolves the value of property `key` on `object`. If `key` is a function
-     * it will be invoked with the `this` binding of `object` and its result returned,
-     * else the property value is returned. If `object` is falsey then `undefined`
-     * is returned.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {Object} object The object to inspect.
-     * @param {string} key The name of the property to resolve.
-     * @returns {*} Returns the resolved value.
-     * @example
-     *
-     * var object = {
-     *   'cheese': 'crumpets',
-     *   'stuff': function() {
-     *     return 'nonsense';
-     *   }
-     * };
-     *
-     * _.result(object, 'cheese');
-     * // => 'crumpets'
-     *
-     * _.result(object, 'stuff');
-     * // => 'nonsense'
-     */
-    function result(object, key) {
-      if (object) {
-        var value = object[key];
-        return isFunction(value) ? object[key]() : value;
-      }
-    }
-
-    /**
-     * A micro-templating method that handles arbitrary delimiters, preserves
-     * whitespace, and correctly escapes quotes within interpolated code.
-     *
-     * Note: In the development build, `_.template` utilizes sourceURLs for easier
-     * debugging. See http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
-     *
-     * For more information on precompiling templates see:
-     * http://lodash.com/custom-builds
-     *
-     * For more information on Chrome extension sandboxes see:
-     * http://developer.chrome.com/stable/extensions/sandboxingEval.html
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} text The template text.
-     * @param {Object} data The data object used to populate the text.
-     * @param {Object} [options] The options object.
-     * @param {RegExp} [options.escape] The "escape" delimiter.
-     * @param {RegExp} [options.evaluate] The "evaluate" delimiter.
-     * @param {Object} [options.imports] An object to import into the template as local variables.
-     * @param {RegExp} [options.interpolate] The "interpolate" delimiter.
-     * @param {string} [sourceURL] The sourceURL of the template's compiled source.
-     * @param {string} [variable] The data object variable name.
-     * @returns {Function|string} Returns a compiled function when no `data` object
-     *  is given, else it returns the interpolated text.
-     * @example
-     *
-     * // using the "interpolate" delimiter to create a compiled template
-     * var compiled = _.template('hello <%= name %>');
-     * compiled({ 'name': 'fred' });
-     * // => 'hello fred'
-     *
-     * // using the "escape" delimiter to escape HTML in data property values
-     * _.template('<b><%- value %></b>', { 'value': '<script>' });
-     * // => '<b>&lt;script&gt;</b>'
-     *
-     * // using the "evaluate" delimiter to generate HTML
-     * var list = '<% _.forEach(people, function(name) { %><li><%- name %></li><% }); %>';
-     * _.template(list, { 'people': ['fred', 'barney'] });
-     * // => '<li>fred</li><li>barney</li>'
-     *
-     * // using the ES6 delimiter as an alternative to the default "interpolate" delimiter
-     * _.template('hello ${ name }', { 'name': 'pebbles' });
-     * // => 'hello pebbles'
-     *
-     * // using the internal `print` function in "evaluate" delimiters
-     * _.template('<% print("hello " + name); %>!', { 'name': 'barney' });
-     * // => 'hello barney!'
-     *
-     * // using a custom template delimiters
-     * _.templateSettings = {
-     *   'interpolate': /{{([\s\S]+?)}}/g
-     * };
-     *
-     * _.template('hello {{ name }}!', { 'name': 'mustache' });
-     * // => 'hello mustache!'
-     *
-     * // using the `imports` option to import jQuery
-     * var list = '<% jq.each(people, function(name) { %><li><%- name %></li><% }); %>';
-     * _.template(list, { 'people': ['fred', 'barney'] }, { 'imports': { 'jq': jQuery } });
-     * // => '<li>fred</li><li>barney</li>'
-     *
-     * // using the `sourceURL` option to specify a custom sourceURL for the template
-     * var compiled = _.template('hello <%= name %>', null, { 'sourceURL': '/basic/greeting.jst' });
-     * compiled(data);
-     * // => find the source of "greeting.jst" under the Sources tab or Resources panel of the web inspector
-     *
-     * // using the `variable` option to ensure a with-statement isn't used in the compiled template
-     * var compiled = _.template('hi <%= data.name %>!', null, { 'variable': 'data' });
-     * compiled.source;
-     * // => function(data) {
-     *   var __t, __p = '', __e = _.escape;
-     *   __p += 'hi ' + ((__t = ( data.name )) == null ? '' : __t) + '!';
-     *   return __p;
-     * }
-     *
-     * // using the `source` property to inline compiled templates for meaningful
-     * // line numbers in error messages and a stack trace
-     * fs.writeFileSync(path.join(cwd, 'jst.js'), '\
-     *   var JST = {\
-     *     "main": ' + _.template(mainText).source + '\
-     *   };\
-     * ');
-     */
-    function template(text, data, options) {
-      // based on John Resig's `tmpl` implementation
-      // http://ejohn.org/blog/javascript-micro-templating/
-      // and Laura Doktorova's doT.js
-      // https://github.com/olado/doT
-      var settings = lodash.templateSettings;
-      text = String(text || '');
-
-      // avoid missing dependencies when `iteratorTemplate` is not defined
-      options = defaults({}, options, settings);
-
-      var imports = defaults({}, options.imports, settings.imports),
-          importsKeys = keys(imports),
-          importsValues = values(imports);
-
-      var isEvaluating,
-          index = 0,
-          interpolate = options.interpolate || reNoMatch,
-          source = "__p += '";
-
-      // compile the regexp to match each delimiter
-      var reDelimiters = RegExp(
-        (options.escape || reNoMatch).source + '|' +
-        interpolate.source + '|' +
-        (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + '|' +
-        (options.evaluate || reNoMatch).source + '|$'
-      , 'g');
-
-      text.replace(reDelimiters, function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
-        interpolateValue || (interpolateValue = esTemplateValue);
-
-        // escape characters that cannot be included in string literals
-        source += text.slice(index, offset).replace(reUnescapedString, escapeStringChar);
-
-        // replace delimiters with snippets
-        if (escapeValue) {
-          source += "' +\n__e(" + escapeValue + ") +\n'";
-        }
-        if (evaluateValue) {
-          isEvaluating = true;
-          source += "';\n" + evaluateValue + ";\n__p += '";
-        }
-        if (interpolateValue) {
-          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
-        }
-        index = offset + match.length;
-
-        // the JS engine embedded in Adobe products requires returning the `match`
-        // string in order to produce the correct `offset` value
-        return match;
-      });
-
-      source += "';\n";
-
-      // if `variable` is not specified, wrap a with-statement around the generated
-      // code to add the data object to the top of the scope chain
-      var variable = options.variable,
-          hasVariable = variable;
-
-      if (!hasVariable) {
-        variable = 'obj';
-        source = 'with (' + variable + ') {\n' + source + '\n}\n';
-      }
-      // cleanup code by stripping empty strings
-      source = (isEvaluating ? source.replace(reEmptyStringLeading, '') : source)
-        .replace(reEmptyStringMiddle, '$1')
-        .replace(reEmptyStringTrailing, '$1;');
-
-      // frame code as the function body
-      source = 'function(' + variable + ') {\n' +
-        (hasVariable ? '' : variable + ' || (' + variable + ' = {});\n') +
-        "var __t, __p = '', __e = _.escape" +
-        (isEvaluating
-          ? ', __j = Array.prototype.join;\n' +
-            "function print() { __p += __j.call(arguments, '') }\n"
-          : ';\n'
-        ) +
-        source +
-        'return __p\n}';
-
-      // Use a sourceURL for easier debugging.
-      // http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl
-      var sourceURL = '\n/*\n//# sourceURL=' + (options.sourceURL || '/lodash/template/source[' + (templateCounter++) + ']') + '\n*/';
-
-      try {
-        var result = Function(importsKeys, 'return ' + source + sourceURL).apply(undefined, importsValues);
-      } catch(e) {
-        e.source = source;
-        throw e;
-      }
-      if (data) {
-        return result(data);
-      }
-      // provide the compiled function's source by its `toString` method, in
-      // supported environments, or the `source` property as a convenience for
-      // inlining compiled templates during the build process
-      result.source = source;
-      return result;
-    }
-
-    /**
-     * Executes the callback `n` times, returning an array of the results
-     * of each callback execution. The callback is bound to `thisArg` and invoked
-     * with one argument; (index).
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {number} n The number of times to execute the callback.
-     * @param {Function} callback The function called per iteration.
-     * @param {*} [thisArg] The `this` binding of `callback`.
-     * @returns {Array} Returns an array of the results of each `callback` execution.
-     * @example
-     *
-     * var diceRolls = _.times(3, _.partial(_.random, 1, 6));
-     * // => [3, 6, 4]
-     *
-     * _.times(3, function(n) { mage.castSpell(n); });
-     * // => calls `mage.castSpell(n)` three times, passing `n` of `0`, `1`, and `2` respectively
-     *
-     * _.times(3, function(n) { this.cast(n); }, mage);
-     * // => also calls `mage.castSpell(n)` three times
-     */
-    function times(n, callback, thisArg) {
-      n = (n = +n) > -1 ? n : 0;
-      var index = -1,
-          result = Array(n);
-
-      callback = baseCreateCallback(callback, thisArg, 1);
-      while (++index < n) {
-        result[index] = callback(index);
-      }
-      return result;
-    }
-
-    /**
-     * The inverse of `_.escape` this method converts the HTML entities
-     * `&amp;`, `&lt;`, `&gt;`, `&quot;`, and `&#39;` in `string` to their
-     * corresponding characters.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} string The string to unescape.
-     * @returns {string} Returns the unescaped string.
-     * @example
-     *
-     * _.unescape('Fred, Barney &amp; Pebbles');
-     * // => 'Fred, Barney & Pebbles'
-     */
-    function unescape(string) {
-      return string == null ? '' : String(string).replace(reEscapedHtml, unescapeHtmlChar);
-    }
-
-    /**
-     * Generates a unique ID. If `prefix` is provided the ID will be appended to it.
-     *
-     * @static
-     * @memberOf _
-     * @category Utilities
-     * @param {string} [prefix] The value to prefix the ID with.
-     * @returns {string} Returns the unique ID.
-     * @example
-     *
-     * _.uniqueId('contact_');
-     * // => 'contact_104'
-     *
-     * _.uniqueId();
-     * // => '105'
-     */
-    function uniqueId(prefix) {
-      var id = ++idCounter;
-      return String(prefix == null ? '' : prefix) + id;
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * Creates a `lodash` object that wraps the given value with explicit
-     * method chaining enabled.
-     *
-     * @static
-     * @memberOf _
-     * @category Chaining
-     * @param {*} value The value to wrap.
-     * @returns {Object} Returns the wrapper object.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney',  'age': 36 },
-     *   { 'name': 'fred',    'age': 40 },
-     *   { 'name': 'pebbles', 'age': 1 }
-     * ];
-     *
-     * var youngest = _.chain(characters)
-     *     .sortBy('age')
-     *     .map(function(chr) { return chr.name + ' is ' + chr.age; })
-     *     .first()
-     *     .value();
-     * // => 'pebbles is 1'
-     */
-    function chain(value) {
-      value = new lodashWrapper(value);
-      value.__chain__ = true;
-      return value;
-    }
-
-    /**
-     * Invokes `interceptor` with the `value` as the first argument and then
-     * returns `value`. The purpose of this method is to "tap into" a method
-     * chain in order to perform operations on intermediate results within
-     * the chain.
-     *
-     * @static
-     * @memberOf _
-     * @category Chaining
-     * @param {*} value The value to provide to `interceptor`.
-     * @param {Function} interceptor The function to invoke.
-     * @returns {*} Returns `value`.
-     * @example
-     *
-     * _([1, 2, 3, 4])
-     *  .tap(function(array) { array.pop(); })
-     *  .reverse()
-     *  .value();
-     * // => [3, 2, 1]
-     */
-    function tap(value, interceptor) {
-      interceptor(value);
-      return value;
-    }
-
-    /**
-     * Enables explicit method chaining on the wrapper object.
-     *
-     * @name chain
-     * @memberOf _
-     * @category Chaining
-     * @returns {*} Returns the wrapper object.
-     * @example
-     *
-     * var characters = [
-     *   { 'name': 'barney', 'age': 36 },
-     *   { 'name': 'fred',   'age': 40 }
-     * ];
-     *
-     * // without explicit chaining
-     * _(characters).first();
-     * // => { 'name': 'barney', 'age': 36 }
-     *
-     * // with explicit chaining
-     * _(characters).chain()
-     *   .first()
-     *   .pick('age')
-     *   .value();
-     * // => { 'age': 36 }
-     */
-    function wrapperChain() {
-      this.__chain__ = true;
-      return this;
-    }
-
-    /**
-     * Produces the `toString` result of the wrapped value.
-     *
-     * @name toString
-     * @memberOf _
-     * @category Chaining
-     * @returns {string} Returns the string result.
-     * @example
-     *
-     * _([1, 2, 3]).toString();
-     * // => '1,2,3'
-     */
-    function wrapperToString() {
-      return String(this.__wrapped__);
-    }
-
-    /**
-     * Extracts the wrapped value.
-     *
-     * @name valueOf
-     * @memberOf _
-     * @alias value
-     * @category Chaining
-     * @returns {*} Returns the wrapped value.
-     * @example
-     *
-     * _([1, 2, 3]).valueOf();
-     * // => [1, 2, 3]
-     */
-    function wrapperValueOf() {
-      return this.__wrapped__;
-    }
-
-    /*--------------------------------------------------------------------------*/
-
-    // add functions that return wrapped values when chaining
-    lodash.after = after;
-    lodash.assign = assign;
-    lodash.at = at;
-    lodash.bind = bind;
-    lodash.bindAll = bindAll;
-    lodash.bindKey = bindKey;
-    lodash.chain = chain;
-    lodash.compact = compact;
-    lodash.compose = compose;
-    lodash.constant = constant;
-    lodash.countBy = countBy;
-    lodash.create = create;
-    lodash.createCallback = createCallback;
-    lodash.curry = curry;
-    lodash.debounce = debounce;
-    lodash.defaults = defaults;
-    lodash.defer = defer;
-    lodash.delay = delay;
-    lodash.difference = difference;
-    lodash.filter = filter;
-    lodash.flatten = flatten;
-    lodash.forEach = forEach;
-    lodash.forEachRight = forEachRight;
-    lodash.forIn = forIn;
-    lodash.forInRight = forInRight;
-    lodash.forOwn = forOwn;
-    lodash.forOwnRight = forOwnRight;
-    lodash.functions = functions;
-    lodash.groupBy = groupBy;
-    lodash.indexBy = indexBy;
-    lodash.initial = initial;
-    lodash.intersection = intersection;
-    lodash.invert = invert;
-    lodash.invoke = invoke;
-    lodash.keys = keys;
-    lodash.map = map;
-    lodash.mapValues = mapValues;
-    lodash.max = max;
-    lodash.memoize = memoize;
-    lodash.merge = merge;
-    lodash.min = min;
-    lodash.omit = omit;
-    lodash.once = once;
-    lodash.pairs = pairs;
-    lodash.partial = partial;
-    lodash.partialRight = partialRight;
-    lodash.pick = pick;
-    lodash.pluck = pluck;
-    lodash.property = property;
-    lodash.pull = pull;
-    lodash.range = range;
-    lodash.reject = reject;
-    lodash.remove = remove;
-    lodash.rest = rest;
-    lodash.shuffle = shuffle;
-    lodash.sortBy = sortBy;
-    lodash.tap = tap;
-    lodash.throttle = throttle;
-    lodash.times = times;
-    lodash.toArray = toArray;
-    lodash.transform = transform;
-    lodash.union = union;
-    lodash.uniq = uniq;
-    lodash.values = values;
-    lodash.where = where;
-    lodash.without = without;
-    lodash.wrap = wrap;
-    lodash.xor = xor;
-    lodash.zip = zip;
-    lodash.zipObject = zipObject;
-
-    // add aliases
-    lodash.collect = map;
-    lodash.drop = rest;
-    lodash.each = forEach;
-    lodash.eachRight = forEachRight;
-    lodash.extend = assign;
-    lodash.methods = functions;
-    lodash.object = zipObject;
-    lodash.select = filter;
-    lodash.tail = rest;
-    lodash.unique = uniq;
-    lodash.unzip = zip;
-
-    // add functions to `lodash.prototype`
-    mixin(lodash);
-
-    /*--------------------------------------------------------------------------*/
-
-    // add functions that return unwrapped values when chaining
-    lodash.clone = clone;
-    lodash.cloneDeep = cloneDeep;
-    lodash.contains = contains;
-    lodash.escape = escape;
-    lodash.every = every;
-    lodash.find = find;
-    lodash.findIndex = findIndex;
-    lodash.findKey = findKey;
-    lodash.findLast = findLast;
-    lodash.findLastIndex = findLastIndex;
-    lodash.findLastKey = findLastKey;
-    lodash.has = has;
-    lodash.identity = identity;
-    lodash.indexOf = indexOf;
-    lodash.isArguments = isArguments;
-    lodash.isArray = isArray;
-    lodash.isBoolean = isBoolean;
-    lodash.isDate = isDate;
-    lodash.isElement = isElement;
-    lodash.isEmpty = isEmpty;
-    lodash.isEqual = isEqual;
-    lodash.isFinite = isFinite;
-    lodash.isFunction = isFunction;
-    lodash.isNaN = isNaN;
-    lodash.isNull = isNull;
-    lodash.isNumber = isNumber;
-    lodash.isObject = isObject;
-    lodash.isPlainObject = isPlainObject;
-    lodash.isRegExp = isRegExp;
-    lodash.isString = isString;
-    lodash.isUndefined = isUndefined;
-    lodash.lastIndexOf = lastIndexOf;
-    lodash.mixin = mixin;
-    lodash.noConflict = noConflict;
-    lodash.noop = noop;
-    lodash.now = now;
-    lodash.parseInt = parseInt;
-    lodash.random = random;
-    lodash.reduce = reduce;
-    lodash.reduceRight = reduceRight;
-    lodash.result = result;
-    lodash.runInContext = runInContext;
-    lodash.size = size;
-    lodash.some = some;
-    lodash.sortedIndex = sortedIndex;
-    lodash.template = template;
-    lodash.unescape = unescape;
-    lodash.uniqueId = uniqueId;
-
-    // add aliases
-    lodash.all = every;
-    lodash.any = some;
-    lodash.detect = find;
-    lodash.findWhere = find;
-    lodash.foldl = reduce;
-    lodash.foldr = reduceRight;
-    lodash.include = contains;
-    lodash.inject = reduce;
-
-    mixin(function() {
-      var source = {}
-      forOwn(lodash, function(func, methodName) {
-        if (!lodash.prototype[methodName]) {
-          source[methodName] = func;
-        }
-      });
-      return source;
-    }(), false);
-
-    /*--------------------------------------------------------------------------*/
-
-    // add functions capable of returning wrapped and unwrapped values when chaining
-    lodash.first = first;
-    lodash.last = last;
-    lodash.sample = sample;
-
-    // add aliases
-    lodash.take = first;
-    lodash.head = first;
-
-    forOwn(lodash, function(func, methodName) {
-      var callbackable = methodName !== 'sample';
-      if (!lodash.prototype[methodName]) {
-        lodash.prototype[methodName]= function(n, guard) {
-          var chainAll = this.__chain__,
-              result = func(this.__wrapped__, n, guard);
-
-          return !chainAll && (n == null || (guard && !(callbackable && typeof n == 'function')))
-            ? result
-            : new lodashWrapper(result, chainAll);
-        };
-      }
-    });
-
-    /*--------------------------------------------------------------------------*/
-
-    /**
-     * The semantic version number.
-     *
-     * @static
-     * @memberOf _
-     * @type string
-     */
-    lodash.VERSION = '2.4.1';
-
-    // add "Chaining" functions to the wrapper
-    lodash.prototype.chain = wrapperChain;
-    lodash.prototype.toString = wrapperToString;
-    lodash.prototype.value = wrapperValueOf;
-    lodash.prototype.valueOf = wrapperValueOf;
-
-    // add `Array` functions that return unwrapped values
-    forEach(['join', 'pop', 'shift'], function(methodName) {
-      var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
-        var chainAll = this.__chain__,
-            result = func.apply(this.__wrapped__, arguments);
-
-        return chainAll
-          ? new lodashWrapper(result, chainAll)
-          : result;
-      };
-    });
-
-    // add `Array` functions that return the existing wrapped value
-    forEach(['push', 'reverse', 'sort', 'unshift'], function(methodName) {
-      var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
-        func.apply(this.__wrapped__, arguments);
-        return this;
-      };
-    });
-
-    // add `Array` functions that return new wrapped values
-    forEach(['concat', 'slice', 'splice'], function(methodName) {
-      var func = arrayRef[methodName];
-      lodash.prototype[methodName] = function() {
-        return new lodashWrapper(func.apply(this.__wrapped__, arguments), this.__chain__);
-      };
-    });
-
-    return lodash;
-  }
-
-  /*--------------------------------------------------------------------------*/
-
-  // expose Lo-Dash
-  var _ = runInContext();
-
-  // some AMD build optimizers like r.js check for condition patterns like the following:
-  if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
-    // Expose Lo-Dash to the global object even when an AMD loader is present in
-    // case Lo-Dash is loaded with a RequireJS shim config.
-    // See http://requirejs.org/docs/api.html#config-shim
-    root._ = _;
-
-    // define as an anonymous module so, through path mapping, it can be
-    // referenced as the "underscore" module
-    define(function() {
-      return _;
-    });
-  }
-  // check for `exports` after `define` in case a build optimizer adds an `exports` object
-  else if (freeExports && freeModule) {
-    // in Node.js or RingoJS
-    if (moduleExports) {
-      (freeModule.exports = _)._ = _;
-    }
-    // in Narwhal or Rhino -require
-    else {
-      freeExports._ = _;
-    }
-  }
-  else {
-    // in a browser or Rhino
-    root._ = _;
-  }
-}.call(this));
-
-}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],167:[function(require,module,exports){
-(function (Buffer){
-'use strict';
-
-var Client = require('./lib/client')
-    , protocol = require('./lib/protocol')
-    , assert = require('assert')
-    , states = protocol.states;
-
-module.exports = {
-  protocol: require('./lib/protocol'),
-  createClient: createClient
-};
-
-// websocket version of index.js createClient()
-function createClient(options) {
-  assert.ok(options, "options is required");
-  var port = options.port || 24444;
-  var host = options.host || 'localhost';
-  var protocol = options.protocol || 'ws';
-  var path = options.path || 'server';
-  var url = options.url || (options.protocol + '://' + options.host + ':' + options.port + '/' + options.path);
-
-  assert.ok(options.username, "username is required");
-  var keepAlive = options.keepAlive == null ? true : options.keepAlive;
-
-
-  var client = new Client(false);
-  client.on('connect', onConnect);
-  if (keepAlive) client.on([states.PLAY, 0x00], onKeepAlive);
-
-  client.username = options.username;
-  client.connectWS(url);
-
-  return client;
-
-  function onConnect() {
-    client.socket.write(new Buffer(client.username));
-    client.state = states.PLAY;
-  }
-
-  function onKeepAlive(packet) {
-    client.write(0x00, {
-      keepAliveId: packet.keepAliveId
-    });
-  }
-}
-
-
-}).call(this,require("buffer").Buffer)
-},{"./lib/client":168,"./lib/protocol":169,"assert":1157,"buffer":1171}],168:[function(require,module,exports){
-(function (Buffer){
-var net = require('net')
-  , EventEmitter = require('events').EventEmitter
-  , util = require('util')
-  , websocket_stream = require('websocket-stream')
-  , protocol = require('./protocol')
-  , dns = require('dns')
-  , createPacketBuffer = protocol.createPacketBuffer
-  , parsePacket = protocol.parsePacket
-  , states = protocol.states
-  , debug = protocol.debug
-;
-
-module.exports = Client;
-
-function Client(isServer) {
-  EventEmitter.call(this);
-
-  this._state = states.HANDSHAKING;
-  Object.defineProperty(this, "state", {
-    get: function() {
-      return this._state;
-    },
-    set: function(newProperty) {
-      var oldProperty = this._state;
-      this._state = newProperty;
-      this.emit('state', newProperty, oldProperty);
-    }
-  });
-  this.isServer = !!isServer;
-  this.socket = null;
-  this.encryptionEnabled = false;
-  this.cipher = null;
-  this.decipher = null;
-  this.packetsToParse = {};
-  this.on('newListener', function(event, listener) {
-    var direction = this.isServer ? 'toServer' : 'toClient';
-    if (protocol.packetStates[direction].hasOwnProperty(event) || event === "packet") {
-      if (typeof this.packetsToParse[event] === "undefined") this.packetsToParse[event] = 1;
-      else this.packetsToParse[event] += 1;
-    }
-  });
-  this.on('removeListener', function(event, listener) {
-    var direction = this.isServer ? 'toServer' : 'toClient';
-    if (protocol.packetStates[direction].hasOwnProperty(event) || event === "packet") {
-      this.packetsToParse[event] -= 1;
-    }
-  });
-}
-
-util.inherits(Client, EventEmitter);
-
-// Transform weird "packet" types into string representing their type. Should be mostly retro-compatible
-Client.prototype.on = function(type, func) {
-    var direction = this.isServer ? 'toServer' : 'toClient';
-    if (Array.isArray(type)) {
-        arguments[0] = protocol.packetNames[type[0]][direction][type[1]];
-    } else if (typeof type === "number") {
-        arguments[0] = protocol.packetNames[this.state][direction][type];
-    }
-    EventEmitter.prototype.on.apply(this, arguments);
-};
-
-Client.prototype.onRaw = function(type, func) {
-    var arg = "raw.";
-    if (Array.isArray(type)) {
-        arg += protocol.packetNames[type[0]][direction][type[1]];
-    } else if (typeof type === "number") {
-        arg += protocol.packetNames[this.state][direction][type];
-    } else {
-        arg += type;
-    }
-    arguments[0] = arg;
-    EventEmitter.prototype.on.apply(this, arguments);
-};
-
-Client.prototype.setSocket = function(socket) {
-  var self = this;
-  self.socket = socket;
-  var incomingBuffer = new Buffer(0);
-  self.socket.on('data', function(data) {
-    if (self.encryptionEnabled) data = new Buffer(self.decipher.update(data), 'binary');
-    if (!Buffer.isBuffer(data)) data = new Buffer(data);
-    incomingBuffer = Buffer.concat([incomingBuffer, data]);
-    var parsed, packet;
-    while (true) {
-      parsed = parsePacket(incomingBuffer, self.state, self.isServer, self.packetsToParse);
-      if (! parsed) break;
-      if (parsed.error) {
-          this.emit('error', parsed.error);
-          this.end("ProtocolError");
-          return;
-      }
-      packet = parsed.results;
-      incomingBuffer = incomingBuffer.slice(parsed.size);
-
-      var packetName = protocol.packetNames[self.state][self.isServer ? 'toServer' : 'toClient'][packet.id];
-      self.emit(packetName, packet);
-      self.emit('packet', packet);
-      self.emit('raw.' + packetName, parsed.buffer);
-      self.emit('raw', parsed.buffer);
-    }
-  });
-
-  self.socket.on('connect', function() {
-    self.emit('connect');
-  });
-
-  self.socket.on('error', onError);
-  self.socket.on('close', endSocket);
-  self.socket.on('end', endSocket);
-  self.socket.on('timeout', endSocket);
-
-  function onError(err) {
-    self.emit('error', err);
-    endSocket();
-  }
-
-  var ended = false;
-  function endSocket() {
-    if (ended) return;
-    ended = true;
-    self.socket.removeListener('close', endSocket);
-    self.socket.removeListener('end', endSocket);
-    self.socket.removeListener('timeout', endSocket);
-    self.emit('end', self._endReason);
-  }
-};
-
-Client.prototype.connectWS = function(url) {
-  var ws = websocket_stream(url, {type: Uint8Array});
-  this.setSocket(ws);
-};
-
-Client.prototype.connect = function(port, host) {
-  var self = this;
-  if (port == 25565) {
-      dns.resolveSrv("_minecraft._tcp." + host, function(err, addresses) {
-      if (addresses) {
-        self.setSocket(net.connect(addresses[0].port, addresses[0].name));
-      } else {
-        self.setSocket(net.connect(port, host));
-      }
-    });
-  } else {
-    self.setSocket(net.connect(port, host));
-  }
-};
-
-Client.prototype.end = function(reason) {
-  this._endReason = reason;
-  this.socket.end();
-};
-
-Client.prototype.write = function(packetId, params) {
-  if (Array.isArray(packetId)) {
-     if (packetId[0] !== this.state)
-      return false;
-    packetId = packetId[1];
-  }
-  
-  var buffer = createPacketBuffer(packetId, this.state, params, this.isServer);
-  debug("writing packetId " + packetId + " (0x" + packetId.toString(16) + ")");
-  debug(params);
-  var out = this.encryptionEnabled ? new Buffer(this.cipher.update(buffer), 'binary') : buffer;
-  this.socket.write(out);
-  return true;
-};
-
-Client.prototype.writeRaw = function(buffer, shouldEncrypt) {
-    if (shouldEncrypt === null) {
-        shouldEncrypt = true;
-    }
-    var out = (shouldEncrypt && this.encryptionEnabled) ? new Buffer(this.cipher.update(buffer), 'binary') : buffer;
-    this.socket.write(out);
-};
-}).call(this,require("buffer").Buffer)
-},{"./protocol":169,"buffer":1171,"dns":1156,"events":1175,"net":1156,"util":1194,"websocket-stream":170}],169:[function(require,module,exports){
-(function (process,Buffer){
-var assert = require('assert');
-var util = require('util');
-
-var STRING_MAX_LENGTH = 240;
-var SRV_STRING_MAX_LENGTH = 32767;
-
-// This is really just for the client.
-var states = {
-  "HANDSHAKING": "handshaking",
-  "STATUS": "status",
-  "LOGIN": "login",
-  "PLAY": "play"
-}
-
-var packets = {
-  handshaking: {
-    toClient: {},
-    toServer: { 
-      set_protocol:          {id: 0x00, fields: [
-        { name: "protocolVersion", type: "varint" },
-        { name: "serverHost", type: "string" },
-        { name: "serverPort", type: "ushort" },
-        { name: "nextState", type: "varint" }
-      ]}
-    },
-  },
-
-// TODO : protocollib names aren't the best around here
-  status: {
-    toClient: {
-      server_info:    {id: 0x00, fields: [
-        { name: "response", type: "ustring" }
-      ]},
-      ping:        {id: 0x01, fields: [
-        { name: "time", type: "long" }
-      ]}
-    },
-    toServer: {
-      ping_start:     {id: 0x00, fields: []},
-      ping:        {id: 0x01, fields: [
-        { name: "time", type: "long" }
-      ]}
-    }
-  },
-
-  login: {
-    toClient: {
-      disconnect:   {id: 0x00, fields: [
-        { name: "reason", type: "string" }
-      ]},
-      encryption_begin: {id: 0x01, fields: [
-        { name: "serverId", type: "string" },
-        { name: "publicKeyLength", type: "count", typeArgs: { type: "short", countFor: "publicKey" } },
-        { name: "publicKey", type: "buffer", typeArgs: { count: "publicKeyLength" } },
-        { name: "verifyTokenLength", type: "count", typeArgs: { type: "short", countFor: "verifyToken" } },
-        { name: "verifyToken", type: "buffer", typeArgs: { count: "verifyTokenLength" } },
-      ]},
-      success:      {id: 0x02, fields: [
-        { name: "uuid", type: "string" },
-        { name: "username", type: "string" }
-      ]}
-    },
-    toServer: {
-      login_start:        {id: 0x00, fields: [
-        { name: "username", type: "string" }
-      ]},
-      encryption_begin: {id: 0x01, fields: [
-        { name: "sharedSecretLength", type: "count", typeArgs: { type: "short", countFor: "sharedSecret" } },
-        { name: "sharedSecret", type: "buffer", typeArgs: { count: "sharedSecretLength" } },
-        { name: "verifyTokenLength", type: "count", typeArgs: { type: "short", countFor: "verifyToken" } },
-        { name: "verifyToken", type: "buffer", typeArgs: { count: "verifyTokenLength" } },
-      ]}
-    }
-  },
-
-  play: {
-    toClient: {
-      keep_alive:         {id: 0x00, fields: [
-        { name: "keepAliveId", type: "int" },
-      ]},
-      login:          {id: 0x01, fields: [
-        { name: "entityId", type: "int" },
-        { name: "gameMode", type: "ubyte" },
-        { name: "dimension", type: "byte" },
-        { name: "difficulty", type: "ubyte" },
-        { name: "maxPlayers", type: "ubyte" },
-        { name: "levelType", type: "string" },
-      ]},
-      chat:               {id: 0x02, fields: [
-        { name: "message", type: "ustring" },
-      ]},
-      update_time:        {id: 0x03, fields: [
-        { name: "age", type: "long" },
-        { name: "time", type: "long" },
-      ]},
-      entity_equipment:   {id: 0x04, fields: [
-        { name: "entityId", type: "int" },
-        { name: "slot", type: "short" },
-        { name: "item", type: "slot" }
-      ]},
-      spawn_position:     {id: 0x05, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" }
-      ]},
-      update_health:      {id: 0x06, fields: [
-        { name: "health", type: "float" },
-        { name: "food", type: "short" },
-        { name: "foodSaturation", type: "float" }
-      ]},
-      respawn:            {id: 0x07, fields: [
-        { name: "dimension", type: "int" },
-        { name: "difficulty", type: "ubyte" },
-        { name: "gamemode", type: "ubyte" },
-        { name: "levelType", type: "string" }
-      ]},
-      position:    {id: 0x08, fields: [
-        { name: "x", type: "double" },
-        { name: "y", type: "double" },
-        { name: "z", type: "double" },
-        { name: "yaw", type: "float" },
-        { name: "pitch", type: "float" },
-        { name: "onGround", type: "bool" }
-      ]},
-      held_item_slot:   {id: 0x09, fields: [
-        { name: "slot", type: "byte" }
-      ]},
-      bed:            {id: 0x0a, fields: [
-        { name: "entityId", type: "int" },
-        { name: "x", type: "int" },
-        { name: "y", type: "ubyte" },
-        { name: "z", type: "int" }
-      ]},
-      animation:          {id: 0x0b, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "animation", type: "byte" }
-      ]},
-      named_entity_spawn:       {id: 0x0c, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "playerUUID", type: "string" },
-        { name: "playerName", type: "string" },
-        { name: "dataCount", type: "count", typeArgs: { type: "varint", countFor: "data" }},
-        { name: "data", type: "array", typeArgs: { count: "dataCount", 
-          type: "container", typeArgs: { fields: [
-            { name: "name", type: "string" },
-            { name: "value", type: "string" },
-            { name: "signature", type: "string" }
-        ]}}},
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "yaw", type: "byte" },
-        { name: "pitch", type: "byte" },
-        { name: "currentItem", type: "short" },
-        { name: "metadata", type: "entityMetadata" }
-      ]},
-      collect:       {id: 0x0d, fields: [
-        { name: "collectedEntityId", type: "int" },
-        { name: "collectorEntityId", type: "int" }
-      ]},
-      spawn_entity:       {id: 0x0e, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "type", type: "byte" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "pitch", type: "byte" },
-        { name: "yaw", type: "byte" },
-        { name: "objectData", type: "container", typeArgs: { fields: [
-          { name: "intField", type: "int" },
-          { name: "velocityX", type: "short", condition: function(field_values) {
-            return field_values['this']['intField'] != 0;
-          }},
-          { name: "velocityY", type: "short", condition: function(field_values) {
-            return field_values['this']['intField'] != 0;
-          }},
-          { name: "velocityZ", type: "short", condition: function(field_values) {
-            return field_values['this']['intField'] != 0;
-          }}
-        ]}} 
-      ]},
-      spawn_entity_living:          {id: 0x0f, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "type", type: "ubyte" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "pitch", type: "byte" },
-        { name: "headPitch", type: "byte" },
-        { name: "yaw", type: "byte" },
-        { name: "velocityX", type: "short" },
-        { name: "velocityY", type: "short" },
-        { name: "velocityZ", type: "short" },
-        { name: "metadata", type: "entityMetadata" },
-      ]},
-      spawn_entity_painting:     {id: 0x10, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "title", type: "string" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "direction", type: "int" }
-      ]},
-      spawn_entity_experience_orb: {id: 0x11, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "count", type: "short" }
-      ]},
-      entity_velocity:    {id: 0x12, fields: [
-        { name: "entityId", type: "int" },
-        { name: "velocityX", type: "short" },
-        { name: "velocityY", type: "short" },
-        { name: "velocityZ", type: "short" }
-      ]},
-      entity_destroy:   {id: 0x13, fields: [
-        { name: "count", type: "count", typeArgs: { type: "byte", countFor: "entityIds" } },
-        { name: "entityIds", type: "array", typeArgs: { type: "int", count: "count" } }
-      ]},
-      entity:             {id: 0x14, fields: [
-        { name: "entityId", type: "int" } 
-      ]},
-      rel_entity_move: {id: 0x15, fields: [
-        { name: "entityId", type: "int" },
-        { name: "dX", type: "byte" },
-        { name: "dY", type: "byte" },
-        { name: "dZ", type: "byte" }
-      ]},
-      entity_look:        {id: 0x16, fields: [
-        { name: "entityId", type: "int" },
-        { name: "yaw", type: "byte" },
-        { name: "pitch", type: "byte" }
-      ]},
-      entity_move_look: {id: 0x17, fields: [
-        { name: "entityId", type: "int" },
-        { name: "dX", type: "byte" },
-        { name: "dY", type: "byte" },
-        { name: "dZ", type: "byte" },
-        { name: "yaw", type: "byte" },
-        { name: "pitch", type: "byte" }
-      ]},
-      entity_teleport:    {id: 0x18, fields: [
-        { name: "entityId", type: "int" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "yaw", type: "byte" },
-        { name: "pitch", type: "byte" }
-      ]},
-      entity_head_rotation:   {id: 0x19, fields: [
-        { name: "entityId", type: "int" },
-        { name: "headYaw", type: "byte" },
-      ]},
-      entity_status:      {id: 0x1a, fields: [
-        { name: "entityId", type: "int" },
-        { name: "entityStatus", type: "byte" }
-      ]},
-      attach_entity:      {id: 0x1b, fields: [
-        { name: "entityId", type: "int" },
-        { name: "vehicleId", type: "int" },
-        { name: "leash", type: "bool" }
-      ]},
-      entity_metadata:    {id: 0x1c, fields: [
-        { name: "entityId", type: "int" },
-        { name: "metadata", type: "entityMetadata" }
-      ]},
-      entity_effect:      {id: 0x1d, fields: [
-        { name: "entityId", type: "int" },
-        { name: "effectId", type: "byte" },
-        { name: "amplifier", type: "byte" },
-        { name: "duration", type: "short" }
-      ]},
-      remove_entity_effect: {id: 0x1e, fields: [
-        { name: "entityId", type: "int" },
-        { name: "effectId", type: "byte" }
-      ]},
-      experience:     {id: 0x1f, fields: [
-        { name: "experienceBar", type: "float" },
-        { name: "level", type: "short" },
-        { name: "totalExperience", type: "short" }
-      ]},
-      update_attributes:  {id: 0x20, fields: [
-        { name: "entityId", type: "int" },
-        { name: "count", type: "count", typeArgs: { type: "int", countFor: "properties" } },
-        { name: "properties", type: "array", typeArgs: { count: "count", 
-          type: "container", typeArgs: { fields: [
-            { name: "key", type: "string" },
-            { name: "value", type: "double" },
-            { name: "listLength", type: "count", typeArgs: { type: "short", countFor: "this.modifiers" } },
-            { name: "modifiers", type: "array", typeArgs: { count: "this.listLength", 
-              type: "container", typeArgs: { fields: [
-                { name: "UUID", type: "UUID" },
-                { name: "amount", type: "double" },
-                { name: "operation", type: "byte" }
-              ]}}}
-          ]}
-        }}
-      ]},
-      map_chunk:         {id: 0x21, fields: [
-        { name: "x", type: "int" },
-        { name: "z", type: "int" },
-        { name: "groundUp", type: "bool" },
-        { name: "bitMap", type: "ushort" },
-        { name: "addBitMap", type: "ushort" },
-        { name: "compressedChunkDataLength", type: "count", typeArgs: { type: "int", countFor: "compressedChunkData" } },
-        { name: "compressedChunkData", type: "buffer", typeArgs: { count: "compressedChunkDataLength" } },
-      ]},
-      multi_block_change: {id: 0x22, fields: [
-        { name: "chunkX", type: "int" },
-        { name: "chunkZ", type: "int" },
-        { name: "recordCount", type: "short" },
-        { name: "dataLength", type: "count", typeArgs: { type: "int", countFor: "data" } },
-        { name: "data", type: "buffer", typeArgs: { count: "dataLength" } },
-      ]},
-      block_change:       {id: 0x23, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "ubyte" },
-        { name: "z", type: "int" },
-        { name: "type", type: "varint" },
-        { name: "metadata", type: "ubyte" }
-      ]},
-      block_action:       {id: 0x24, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "short" },
-        { name: "z", type: "int" },
-        { name: "byte1", type: "ubyte" },
-        { name: "byte2", type: "ubyte" },
-        { name: "blockId", type: "varint" }
-      ]},
-      block_break_animation:   {id: 0x25, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "destroyStage", type: "byte" }
-      ]},
-      map_chunk_bulk:     {id: 0x26, fields: [
-        { name: "chunkColumnCount", type: "count", typeArgs: { type: "short", countFor: "meta" } },
-        { name: "dataLength", type: "count", typeArgs: { type: "int", countFor: "compressedChunkData" } },
-        { name: "skyLightSent", type: "bool" },
-        { name: "compressedChunkData", type: "buffer", typeArgs: { count: "dataLength" } },
-        { name: "meta", type: "array", typeArgs: { count: "chunkColumnCount", 
-          type: "container", typeArgs: { fields: [
-            { name: "x", type: "int" },
-            { name: "z", type: "int" },
-            { name: "bitMap", type: "ushort" },
-            { name: "addBitMap", type: "ushort" }
-        ] } } }
-      ]},
-      explosion:          {id: 0x27, fields: [
-        { name: "x", type: "float" },
-        { name: "y", type: "float" },
-        { name: "z", type: "float" },
-        { name: "radius", type: "float" },
-        { name: "count", type: "count", typeArgs: { type: "int", countFor: "affectedBlockOffsets" } },
-        { name: "affectedBlockOffsets", type: "array", typeArgs: { count: "count", type: "container", typeArgs: {
-          fields: [
-            { name: "x", type: "byte" },
-            { name: "y", type: "byte" },
-            { name: "z", type: "byte" }
-          ]
-        }}},
-        { name: "playerMotionX", type: "float" },
-        { name: "playerMotionY", type: "float" },
-        { name: "playerMotionZ", type: "float" }
-      ]},
-      world_event:             {id: 0x28, fields: [ // TODO : kinda wtf naming there
-        { name: "effectId", type: "int" },
-        { name: "x", type: "int" },
-        { name: "y", type: "byte" },
-        { name: "z", type: "int" },
-        { name: "data", type: "int" },
-        { name: "global", type: "bool" }
-      ]},
-      named_sound_effect:       {id: 0x29, fields: [
-        { name: "soundName", type: "string" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" },
-        { name: "volume", type: "float" },
-        { name: "pitch", type: "ubyte" }
-      ]},
-      world_particles:           {id: 0x2a, fields: [
-        { name: "particleName", type: "string" },
-        { name: "x", type: "float" },
-        { name: "y", type: "float" },
-        { name: "z", type: "float" },
-        { name: "offsetX", type: "float" },
-        { name: "offsetY", type: "float" },
-        { name: "offsetZ", type: "float" },
-        { name: "particleSpeed", type: "float" },
-        { name: "particles", type: "int" }
-      ]},
-      game_state_change:  {id: 0x2b, fields: [
-        { name: "reason", type: "ubyte" },
-        { name: "gameMode", type: "float" }
-      ]},
-      spawn_entity_weather:{id: 0x2c, fields: [
-        { name: "entityId", type: "varint" },
-        { name: "type", type: "byte" },
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" }
-      ]},
-      open_window:        {id: 0x2d, fields: [
-        { name: "windowId", type: "ubyte" },
-        { name: "inventoryType", type: "ubyte" },
-        { name: "windowTitle", type: "string" },
-        { name: "slotCount", type: "ubyte" },
-        { name: "useProvidedTitle", type: "bool" },
-        { name: "entityId", type: "int", condition: function(field_values) {
-          return field_values['inventoryType'] == 11;
-        } }
-      ]},
-      close_window:       {id: 0x2e, fields: [
-        { name: "windowId", type: "ubyte" }
-      ]},
-      set_slot:           {id: 0x2f, fields: [
-        { name: "windowId", type: "ubyte" },
-        { name: "slot", type: "short" },
-        { name: "item", type: "slot" }
-      ]},
-      window_items:       {id: 0x30, fields: [
-        { name: "windowId", type: "ubyte" },
-        { name: "count", type: "count", typeArgs: { type: "short", countFor: "items" } },
-        { name: "items", type: "array", typeArgs: { type: "slot", count: "count" } }
-      ]},
-      craft_progress_bar:    {id: 0x31, fields: [
-        { name: "windowId", type: "ubyte" },
-        { name: "property", type: "short" },
-        { name: "value", type: "short" }
-      ]},
-      transaction:{id: 0x32, fields: [
-        { name: "windowId", type: "ubyte" },
-        { name: "action", type: "short" },
-        { name: "accepted", type: "bool" }
-      ]},
-      update_sign:        {id: 0x33, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "short" },
-        { name: "z", type: "int" },
-        { name: "text1", type: "string" },
-        { name: "text2", type: "string" },
-        { name: "text3", type: "string" },
-        { name: "text4", type: "string" }
-      ]},
-      map:               {id: 0x34, fields: [
-        { name: "itemDamage", type: "varint" },
-        { name: "dataLength", type: "count", typeArgs: { type: "short", countFor: "data" } },
-        { name: "data", type: "buffer", typeArgs: { count: "dataLength" } },
-      ]},
-      tile_entity_data:{id: 0x35, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "short" },
-        { name: "z", type: "int" },
-        { name: "action", type: "ubyte" },
-        { name: "nbtDataLength", type: "count", typeArgs: { type: "short", countFor: "nbtData" } },
-        { name: "nbtData", type: "buffer", typeArgs: { count: "nbtDataLength" } },
-      ]},
-      open_sign_entity:   {id: 0x36, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "int" },
-        { name: "z", type: "int" }
-      ]},
-      statistics:         {id: 0x37, fields: [
-        { name: "count", type: "count", typeArgs: { type: "varint", countFor: "entries" } },
-        { name: "entries", type: "array", typeArgs: { count: "count", 
-          type: "container", typeArgs: { fields: [
-            { name: "name", type: "string" },
-            { name: "value", type: "varint" }
-          ]}
-        }}
-      ]},
-      player_info:   {id: 0x38, fields: [
-        { name: "playerName", type: "string" },
-        { name: "online", type: "bool" },
-        { name: "ping", type: "short" }
-      ]},
-      abilities:   {id: 0x39, fields: [
-        { name: "flags", type: "byte" },
-        { name: "flyingSpeed", type: "float" },
-        { name: "walkingSpeed", type: "float" }
-      ]},
-      tab_complete:       {id: 0x3a, fields: [
-        { name: "count", type: "count", typeArgs: { type: "varint", countFor: "matches" } },
-        { name: "matches", type: "array", typeArgs: { type: "string", count: "count" } }
-      ]},
-      scoreboard_objective: {id: 0x3b, fields: [
-        { name: "name", type: "string" },
-        { name: "displayText", type: "string" },
-        { name: "action", type: "byte" }
-      ]},
-      scoreboard_score:       {id: 0x3c, fields: [
-        { name: "itemName", type: "string" },
-        { name: "remove", type: "bool" },
-        { name: "scoreName", type: "string", condition: function(field_values) {
-          return !field_values['remove']
-        } },
-        { name: "value", type: "int", condition: function(field_values) {
-          return !field_values['remove']
-        } }
-      ]},
-      scoreboard_display_objective: {id: 0x3d, fields: [
-        { name: "position", type: "byte" },
-        { name: "name", type: "string" }
-      ]},
-      scoreboard_team:              {id: 0x3e, fields: [
-        { name: "team", type: "string" },
-        { name: "mode", type: "byte" },
-        { name: "name", type: "string", condition: function(field_values) {
-            return field_values['mode'] == 0 || field_values['mode'] == 2;
-        } },
-        { name: "prefix", type: "string", condition: function(field_values) {
-          return field_values['mode'] == 0 || field_values['mode'] == 2;
-        } },
-        { name: "suffix", type: "string", condition: function(field_values) {
-          return field_values['mode'] == 0 || field_values['mode'] == 2;
-        } },
-        { name: "friendlyFire", type: "byte", condition: function(field_values) {
-          return field_values['mode'] == 0 || field_values['mode'] == 2;
-        } },
-        { name: "playerCount", type: "count", condition: function(field_values) {
-          return field_values['mode'] == 0 || field_values['mode'] == 3 || field_values['mode'] == 4;
-        }, typeArgs: { type: "short", countFor: "players" } },
-        { name: "players", type: "array", condition: function(field_values) {
-          return field_values['mode'] == 0 || field_values['mode'] == 3 || field_values['mode'] == 4;
-        }, typeArgs: { type: "string", count: "playerCount" } }
-      ]},
-      custom_payload:     {id: 0x3f, fields: [
-        { name: "channel", type: "string" },
-        { name: "dataCount", type: 'count', typeArgs: { type: "short", countFor: "data" } },
-        { name: "data", type: "buffer", typeArgs: { count: "dataCount" } }
-      ]},
-      kick_disconnect:         {id: 0x40, fields: [
-        { name: "reason", type: "string" }
-      ]}
-    },
-    toServer: {
-      keep_alive:         {id: 0x00, fields: [
-        { name: "keepAliveId", type: "int" }
-      ]},
-      chat:       {id: 0x01, fields: [
-        { name: "message", type: "string" }
-      ]},
-      use_entity:         {id: 0x02, fields: [
-        { name: "target", type: "int" },
-        { name: "mouse", type: "byte" }
-      ]},
-      flying:             {id: 0x03, fields: [
-        { name: "onGround", type: "bool" }
-      ]},
-      position:    {id: 0x04, fields: [
-        { name: "x", type: "double" },
-        { name: "stance", type: "double" },
-        { name: "y", type: "double" },
-        { name: "z", type: "double" },
-        { name: "onGround", type: "bool" }
-      ]},
-      look:        {id: 0x05, fields: [
-        { name: "yaw", type: "float" },
-        { name: "pitch", type: "float" },
-        { name: "onGround", type: "bool" }
-      ]},
-      position_look: {id: 0x06, fields: [
-        { name: "x", type: "double" },
-        { name: "stance", type: "double" },
-        { name: "y", type: "double" },
-        { name: "z", type: "double" },
-        { name: "yaw", type: "float" },
-        { name: "pitch", type: "float" },
-        { name: "onGround", type: "bool" }
-      ]},
-      block_dig:     {id: 0x07, fields: [
-        { name: "status", type: "byte" },
-        { name: "x", type: "int" },
-        { name: "y", type: "ubyte" },
-        { name: "z", type: "int" },
-        { name: "face", type: "byte" }
-      ]},
-      block_place: {id: 0x08, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "ubyte" },
-        { name: "z", type: "int" },
-        { name: "direction", type: "byte" },
-        { name: "heldItem", type: "slot" },
-        { name: "cursorX", type: "byte" },
-        { name: "cursorY", type: "byte" },
-        { name: "cursorZ", type: "byte" }
-      ]},
-      held_item_slot:   {id: 0x09, fields: [
-        { name: "slotId", type: "short" }
-      ]},
-      arm_animation:          {id: 0x0a, fields: [
-        { name: "entityId", type: "int" },
-        { name: "animation", type: "byte" }
-      ]},
-      entity_action:      {id: 0x0b, fields: [
-        { name: "entityId", type: "int" },
-        { name: "actionId", type: "byte" },
-        { name: "jumpBoost", type: "int" }
-      ]},
-      steer_vehicle:      {id: 0x0c, fields: [
-        { name: "sideways", type: "float" },
-        { name: "forward", type: "float" },
-        { name: "jump", type: "bool" },
-        { name: "unmount", type: "bool" }
-      ]},
-      close_window:       {id: 0x0d, fields: [
-        { name: "windowId", type: "byte" }
-      ]},
-      window_click:       {id: 0x0e, fields: [
-        { name: "windowId", type: "byte" },
-        { name: "slot", type: "short" },
-        { name: "mouseButton", type: "byte" },
-        { name: "action", type: "short" },
-        { name: "mode", type: "byte" },
-        { name: "item", type: "slot" }
-      ]},
-      transaction: {id: 0x0f, fields: [
-        { name: "windowId", type: "byte" },
-        { name: "action", type: "short" },
-        { name: "accepted", type: "bool" }
-      ]},
-      set_creative_slot: {id: 0x10, fields: [
-        { name: "slot", type: "short" },
-        { name: "item", type: "slot" }
-      ]},
-      enchant_item:       {id: 0x11, fields: [
-        { name: "windowId", type: "byte" },
-        { name: "enchantment", type: "byte" }
-      ]},
-      update_sign:        {id: 0x12, fields: [
-        { name: "x", type: "int" },
-        { name: "y", type: "short" },
-        { name: "z", type: "int" },
-        { name: "text1", type: "string" },
-        { name: "text2", type: "string" },
-        { name: "text3", type: "string" },
-        { name: "text4", type: "string" }
-      ]},
-      abilities:   {id: 0x13, fields: [
-        { name: "flags", type: "byte" },
-        { name: "flyingSpeed", type: "float" },
-        { name: "walkingSpeed", type: "float" }
-      ]},
-      tab_complete:       {id: 0x14, fields: [
-        { name: "text", type: "string" }
-      ]},
-      settings:    {id: 0x15, fields: [
-        { name: "locale", type: "string" },
-        { name: "viewDistance", type: "byte" },
-        { name: "chatFlags", type: "byte" },
-        { name: "chatColors", type: "bool" },
-        { name: "difficulty", type: "byte" },
-        { name: "showCape", type: "bool" }
-      ]},
-      client_command:      {id: 0x16, fields: [
-        { name: "payload", type: "byte" }
-      ]},
-      custom_payload:     {id: 0x17, fields: [
-        { name: "channel", type: "string" },
-        { name: "dataLength", type: "count", typeArgs: { type: "short", countFor: "data" } },
-        { name: "data", type: "buffer", typeArgs: { count: "dataLength" } },
-      ]}
-    }
-  }
-};
-
-var packetFields = {};
-var packetNames = {};
-var packetIds = {};
-var packetStates = {toClient: {}, toServer: {}};
-(function() {
-  for (var stateName in states) {
-    var state = states[stateName];
-
-    packetFields[state] = {toClient: [], toServer: []};
-    packetNames[state] = {toClient: [], toServer: []};
-    packetIds[state] = {toClient: [], toServer: []};
-
-    ['toClient', 'toServer'].forEach(function(direction) {
-      for (var name in packets[state][direction]) {
-        var info = packets[state][direction][name];
-        var id = info.id;
-        var fields = info.fields;
-
-        assert(id !== undefined, 'missing id for packet '+name);
-        assert(fields !== undefined, 'missing fields for packet '+name);
-        assert(!packetNames[state][direction].hasOwnProperty(id), 'duplicate packet id '+id+' for '+name);
-        assert(!packetIds[state][direction].hasOwnProperty(name), 'duplicate packet name '+name+' for '+id);
-        assert(!packetFields[state][direction].hasOwnProperty(id), 'duplicate packet id '+id+' for '+name);
-        assert(!packetStates[direction].hasOwnProperty(name), 'duplicate packet name '+name+' for '+id+', must be unique across all states');
-
-        packetNames[state][direction][id] = name;
-        packetIds[state][direction][name] = id;
-        packetFields[state][direction][id] = fields;
-        packetStates[direction][name] = state;
-      }
-    });
-  }
-})();
-
-
-
-var types = {
-  'byte': [readByte, writeByte, 1],
-  'ubyte': [readUByte, writeUByte, 1],
-  'short': [readShort, writeShort, 2],
-  'ushort': [readUShort, writeUShort, 2],
-  'int': [readInt, writeInt, 4],
-  'long': [readLong, writeLong, 8],
-  'varint': [readVarInt, writeVarInt, sizeOfVarInt],
-  'float': [readFloat, writeFloat, 4],
-  'double': [readDouble, writeDouble, 8],
-  'bool': [readBool, writeBool, 1],
-  'string': [readString, writeString, sizeOfString],
-  'ustring': [readString, writeString, sizeOfUString], // TODO : remove ustring
-  'UUID': [readUUID, writeUUID, 16],
-  'container': [readContainer, writeContainer, sizeOfContainer],
-  'array': [readArray, writeArray, sizeOfArray],
-  'buffer': [readBuffer, writeBuffer, sizeOfBuffer],
-  'count': [readCount, writeCount, sizeOfCount],
-  // TODO : remove type-specific, replace with generic containers and arrays.
-  'slot': [readSlot, writeSlot, sizeOfSlot],
-  'entityMetadata': [readEntityMetadata, writeEntityMetadata, sizeOfEntityMetadata],
-};
-
-var debug;
-if (process.env.NODE_DEBUG && /(minecraft-protocol|mc-proto)/.test(process.env.NODE_DEBUG)) {
-  var pid = process.pid;
-  debug = function(x) {
-    // if console is not set up yet, then skip this.
-    if (!console.error)
-      return;
-    console.error('MC-PROTO: %d', pid,
-                  util.format.apply(util, arguments).slice(0, 500));
-  };
-} else {
-  debug = function() { };
-}
-
-var entityMetadataTypes = {
-  0: { type: 'byte' },
-  1: { type: 'short' },
-  2: { type: 'int' },
-  3: { type: 'float' },
-  4: { type: 'string' },
-  5: { type: 'slot' },
-  6: { type: 'container', typeArgs: { fields: [
-       { name: 'x', type: 'int' },
-       { name: 'y', type: 'int' },
-       { name: 'z', type: 'int' }
-  ]}}
-};
-
-// maps string type name to number
-var entityMetadataTypeBytes = {};
-for (var n in entityMetadataTypes) {
-  if (!entityMetadataTypes.hasOwnProperty(n)) continue;
-
-  entityMetadataTypeBytes[entityMetadataTypes[n].type] = n;
-}
-
-function sizeOfEntityMetadata(value) {
-  var size = 1 + value.length;
-  var item;
-  for (var i = 0; i < value.length; ++i) {
-    item = value[i];
-    size += sizeOf(item.value, entityMetadataTypes[entityMetadataTypeBytes[item.type]], {});
-  }
-  return size;
-}
-
-function writeEntityMetadata(value, buffer, offset) {
-  value.forEach(function(item) {
-    var type = entityMetadataTypeBytes[item.type];
-    var headerByte = (type << 5) | item.key;
-    buffer.writeUInt8(headerByte, offset);
-    offset += 1;
-    offset = write(item.value, buffer, offset, entityMetadataTypes[type], {});
-  });
-  buffer.writeUInt8(0x7f, offset);
-  return offset + 1;
-}
-
-function writeUUID(value, buffer, offset) {
-  buffer.writeInt32BE(value[0], offset);
-  buffer.writeInt32BE(value[1], offset + 4);
-  buffer.writeInt32BE(value[2], offset + 8);
-  buffer.writeInt32BE(value[3], offset + 12);
-  return offset + 16;
-}
-
-function readEntityMetadata(buffer, offset) {
-  var cursor = offset;
-  var metadata = [];
-  var item, key, type, results, reader, typeName, dataType;
-  while (true) {
-    if (cursor + 1 > buffer.length) return null;
-    item = buffer.readUInt8(cursor);
-    cursor += 1;
-    if (item === 0x7f) {
-      return {
-        value: metadata,
-        size: cursor - offset,
-      };
-    }
-    key = item & 0x1f;
-    type = item >> 5;
-    dataType = entityMetadataTypes[type];
-    debug("Reading entity metadata type " + dataType + " (" + ( typeName || "unknown" ) + ")");
-    if (!dataType) {
-      return {
-        error: new Error("unrecognized entity metadata type " + type)
-      }
-    }
-    results = read(buffer, cursor, dataType, {});
-    if (! results) return null;
-    metadata.push({
-      key: key,
-      value: results.value,
-      type: typeName,
-    });
-    cursor += results.size;
-  }
-}
-
-function readString (buffer, offset) {
-  var length = readVarInt(buffer, offset);
-  if (!!!length) return null;
-  var cursor = offset + length.size;
-  var stringLength = length.value;
-  var strEnd = cursor + stringLength;
-  if (strEnd > buffer.length) return null;
-  
-  var value = buffer.toString('utf8', cursor, strEnd);
-  cursor = strEnd;
-  
-  return {
-    value: value,
-    size: cursor - offset,
-  };
-}
-
-function readUUID(buffer, offset) {
-  return {
-    value: [
-      buffer.readInt32BE(offset),
-      buffer.readInt32BE(offset + 4),
-      buffer.readInt32BE(offset + 8),
-      buffer.readInt32BE(offset + 12),
-    ],
-    size: 16,
-  };
-}
-
-function readShort(buffer, offset) {
-  if (offset + 2 > buffer.length) return null;
-  var value = buffer.readInt16BE(offset);
-  return {
-    value: value,
-    size: 2,
-  };
-}
-
-function readUShort(buffer, offset) {
-  if (offset + 2 > buffer.length) return null;
-  var value = buffer.readUInt16BE(offset);
-  return {
-    value: value,
-    size: 2,
-  };
-}
-
-function readInt(buffer, offset) {
-  if (offset + 4 > buffer.length) return null;
-  var value = buffer.readInt32BE(offset);
-  return {
-    value: value,
-    size: 4,
-  };
-}
-
-function readFloat(buffer, offset) {
-  if (offset + 4 > buffer.length) return null;
-  var value = buffer.readFloatBE(offset);
-  return {
-    value: value,
-    size: 4,
-  };
-}
-
-function readDouble(buffer, offset) {
-  if (offset + 8 > buffer.length) return null;
-  var value = buffer.readDoubleBE(offset);
-  return {
-    value: value,
-    size: 8,
-  };
-}
-
-function readLong(buffer, offset) {
-  if (offset + 8 > buffer.length) return null;
-  return {
-    value: [buffer.readInt32BE(offset), buffer.readInt32BE(offset + 4)],
-    size: 8,
-  };
-}
-
-function readByte(buffer, offset) {
-  if (offset + 1 > buffer.length) return null;
-  var value = buffer.readInt8(offset);
-  return {
-    value: value,
-    size: 1,
-  };
-}
-
-function readUByte(buffer, offset) {
-  if (offset + 1 > buffer.length) return null;
-  var value = buffer.readUInt8(offset);
-  return {
-    value: value,
-    size: 1,
-  };
-}
-
-function readBool(buffer, offset) {
-  if (offset + 1 > buffer.length) return null;
-  var value = buffer.readInt8(offset);
-  return {
-    value: !!value,
-    size: 1,
-  };
-}
-
-function readSlot(buffer, offset) {
-  var results = readShort(buffer, offset);
-  if (! results) return null;
-  var blockId = results.value;
-  var cursor = offset + results.size;
-
-  if (blockId === -1) {
-    return {
-      value: { id: blockId },
-      size: cursor - offset,
-    };
-  }
-
-  var cursorEnd = cursor + 5;
-  if (cursorEnd > buffer.length) return null;
-  var itemCount = buffer.readInt8(cursor);
-  var itemDamage = buffer.readInt16BE(cursor + 1);
-  var nbtDataSize = buffer.readInt16BE(cursor + 3);
-  if (nbtDataSize === -1) nbtDataSize = 0;
-  var nbtDataEnd = cursorEnd + nbtDataSize;
-  if (nbtDataEnd > buffer.length) return null;
-  var nbtData = buffer.slice(cursorEnd, nbtDataEnd);
-
-  return {
-    value: {
-      id: blockId,
-      itemCount: itemCount,
-      itemDamage: itemDamage,
-      nbtData: nbtData,
-    },
-    size: nbtDataEnd - offset,
-  };
-}
-
-function sizeOfSlot(value) {
-  return value.id === -1 ? 2 : 7 + value.nbtData.length;
-}
-
-function writeSlot(value, buffer, offset) {
-  buffer.writeInt16BE(value.id, offset);
-  if (value.id === -1) return offset + 2;
-  buffer.writeInt8(value.itemCount, offset + 2);
-  buffer.writeInt16BE(value.itemDamage, offset + 3);
-  var nbtDataSize = value.nbtData.length;
-  if (nbtDataSize === 0) nbtDataSize = -1; // I don't know wtf mojang smokes
-  buffer.writeInt16BE(nbtDataSize, offset + 5);
-  value.nbtData.copy(buffer, offset + 7);
-  return offset + 7 + value.nbtData.length;
-}
-
-function sizeOfString(value) {
-  var length = Buffer.byteLength(value, 'utf8');
-  assert.ok(length < STRING_MAX_LENGTH, "string greater than max length");
-  return sizeOfVarInt(length) + length;
-}
-
-function sizeOfUString(value) {
-  var length = Buffer.byteLength(value, 'utf8');
-  assert.ok(length < SRV_STRING_MAX_LENGTH, "string greater than max length");
-  return sizeOfVarInt(length) + length;
-}
-
-function writeString(value, buffer, offset) {
-  var length = Buffer.byteLength(value, 'utf8');
-  offset = writeVarInt(length, buffer, offset);
-  buffer.write(value, offset, length, 'utf8');
-  return offset + length;
-}
-
-function writeByte(value, buffer, offset) {
-  buffer.writeInt8(value, offset);
-  return offset + 1;
-}
-
-function writeBool(value, buffer, offset) {
-  buffer.writeInt8(+value, offset);
-  return offset + 1;
-}
-
-function writeUByte(value, buffer, offset) {
-  buffer.writeUInt8(value, offset);
-  return offset + 1;
-}
-
-function writeFloat(value, buffer, offset) {
-  buffer.writeFloatBE(value, offset);
-  return offset + 4;
-}
-
-function writeDouble(value, buffer, offset) {
-  buffer.writeDoubleBE(value, offset);
-  return offset + 8;
-}
-
-function writeShort(value, buffer, offset) {
-  buffer.writeInt16BE(value, offset);
-  return offset + 2;
-}
-
-function writeUShort(value, buffer, offset) {
-  buffer.writeUInt16BE(value, offset);
-  return offset + 2;
-}
-
-function writeInt(value, buffer, offset) {
-  buffer.writeInt32BE(value, offset);
-  return offset + 4;
-}
-
-function writeLong(value, buffer, offset) {
-  buffer.writeInt32BE(value[0], offset);
-  buffer.writeInt32BE(value[1], offset + 4);
-  return offset + 8;
-}
-
-function readVarInt(buffer, offset) {
-  var result = 0;
-  var shift = 0;
-  var cursor = offset;
-    
-  while (true) {
-    if (cursor + 1 > buffer.length) return null;
-    var b = buffer.readUInt8(cursor);
-    result |= ((b & 0x7f) << shift); // Add the bits to our number, except MSB
-    cursor++;
-    if (!(b & 0x80)) { // If the MSB is not set, we return the number
-      return {
-        value: result,
-        size: cursor - offset
-      };
-    }
-    shift += 7; // we only have 7 bits, MSB being the return-trigger
-    assert.ok(shift < 64, "varint is too big"); // Make sure our shift don't overflow.
-  }
-}
-
-function sizeOfVarInt(value) {
-  var cursor = 0;
-  while (value & ~0x7F) {
-    value >>>= 7;
-    cursor++;
-  }
-  return cursor + 1;
-}
-
-function writeVarInt(value, buffer, offset) {
-  var cursor = 0;
-  while (value & ~0x7F) {
-    buffer.writeUInt8((value & 0xFF) | 0x80, offset + cursor);
-    cursor++;
-    value >>>= 7;
-  }
-  buffer.writeUInt8(value, offset + cursor);
-  return offset + cursor + 1;
-}
-
-function readContainer(buffer, offset, typeArgs, rootNode) {
-    var results = {
-        value: {},
-        size: 0
-    };
-    // BLEIGH. Huge hack because I have no way of knowing my current name.
-    // TODO : either pass fieldInfo instead of typeArgs as argument (bleigh), or send name as argument (verybleigh).
-    rootNode.this = results.value;
-    for (var index in typeArgs.fields) {
-        var readResults = read(buffer, offset, typeArgs.fields[index], rootNode);
-        results.size += readResults.size;
-        offset += readResults.size;
-        results.value[typeArgs.fields[index].name] = readResults.value;
-    }
-    delete rootNode.this;
-    return results;
-}
-
-function writeContainer(value, buffer, offset, typeArgs, rootNode) {
-    rootNode.this = value;
-    for (var index in typeArgs.fields) {
-        offset = write(value[typeArgs.fields[index].name], buffer, offset, typeArgs.fields[index], rootNode);
-    }
-    delete rootNode.this;
-    return offset;
-}
-
-function sizeOfContainer(value, typeArgs, rootNode) {
-    var size = 0;
-    rootNode.this = value;
-    for (var index in typeArgs.fields) {
-        size += sizeOf(value[typeArgs.fields[index].name], typeArgs.fields[index], rootNode);
-    }
-    delete rootNode.this;
-    return size;
-}
-
-function readBuffer(buffer, offset, typeArgs, rootNode) {    
-    var count = getField(typeArgs.count, rootNode);
-    return {
-        value: buffer.slice(offset, offset + count),
-        size: count
-    };
-}
-
-function writeBuffer(value, buffer, offset) {
-    value.copy(buffer, offset);
-    return offset + value.length;
-}
-
-function sizeOfBuffer(value) {
-    return value.length;
-}
-
-function readArray(buffer, offset, typeArgs, rootNode) {
-    var results = {
-        value: [],
-        size: 0
-    }
-    var count = getField(typeArgs.count, rootNode);
-    for (var i = 0; i < count; i++) {
-        var readResults = read(buffer, offset, { type: typeArgs.type, typeArgs: typeArgs.typeArgs }, rootNode);
-        results.size += readResults.size;
-        offset += readResults.size;
-        results.value.push(readResults.value);
-    }
-    return results;
-}
-
-function writeArray(value, buffer, offset, typeArgs, rootNode) {
-    for (var index in value) {
-        offset = write(value[index], buffer, offset, { type: typeArgs.type, typeArgs: typeArgs.typeArgs }, rootNode);
-    }
-    return offset;
-}
-
-function sizeOfArray(value, typeArgs, rootNode) {
-    var size = 0;
-    for (var index in value) {
-        size += sizeOf(value[index], { type: typeArgs.type, typeArgs: typeArgs.typeArgs }, rootNode);
-    }
-    return size;
-}
-
-function getField(countField, rootNode) {
-    var countFieldArr = countField.split(".");
-    var count = rootNode;
-    for (var index in countFieldArr) {
-        count = count[countFieldArr[index]];
-    }
-    return count;
-}
-
-function readCount(buffer, offset, typeArgs, rootNode) {
-    return read(buffer, offset, { type: typeArgs.type }, rootNode);
-}
-
-function writeCount(value, buffer, offset, typeArgs, rootNode) {
-    // Actually gets the required field, and writes its length. Value is unused.
-    // TODO : a bit hackityhack.
-    return write(getField(typeArgs.countFor, rootNode).length, buffer, offset, { type: typeArgs.type }, rootNode);
-}
-
-function sizeOfCount(value, typeArgs, rootNode) {
-    // TODO : should I use value or getField().length ?
-    /*console.log(rootNode);
-    console.log(typeArgs);*/
-    return sizeOf(getField(typeArgs.countFor, rootNode).length, { type: typeArgs.type }, rootNode);
-}
-
-function read(buffer, cursor, fieldInfo, rootNodes) {
-  if (fieldInfo.condition && !fieldInfo.condition(rootNodes)) {
-    return null;
-  }
-  var type = types[fieldInfo.type];
-  if (!type) {
-    return {
-      error: new Error("missing data type: " + fieldInfo.type)
-    };
-  }
-  var readResults = type[0](buffer, cursor, fieldInfo.typeArgs, rootNodes);
-  if (readResults.error) return { error: readResults.error };
-  return readResults;
-}
-
-function write(value, buffer, offset, fieldInfo, rootNode) {
-  if (fieldInfo.condition && !fieldInfo.condition(rootNode)) {
-    return null;
-  }
-  var type = types[fieldInfo.type];
-  if (!type) {
-    return {
-      error: new Error("missing data type: " + fieldInfo.type)
-    };
-  }
-  return type[1](value, buffer, offset, fieldInfo.typeArgs, rootNode);
-}
-
-function sizeOf(value, fieldInfo, rootNode) {
-  if (fieldInfo.condition && !fieldInfo.condition(rootNode)) {
-    return 0;
-  }
-  var type = types[fieldInfo.type];
-  if (!type) {
-    throw new Error("missing data type: " + fieldInfo.type);
-  }
-  if (typeof type[2] === 'function') {
-    return type[2](value, fieldInfo.typeArgs, rootNode);
-  } else {
-    return type[2];
-  }
-}
-
-function get(packetId, state, toServer) {
-  var direction = toServer ? "toServer" : "toClient";
-  var packetInfo = packetFields[state][direction][packetId];
-  if (!packetInfo) {
-    return null;
-  }
-  return packetInfo;
-}
-
-function createPacketBuffer(packetId, state, params, isServer) {
-  var length = 0;
-  if (typeof packetId === 'string' && typeof state !== 'string' && !params) {
-    // simplified two-argument usage, createPacketBuffer(name, params)
-    params = state;
-    state = packetStates[!isServer ? 'toServer' : 'toClient'][packetId];
-  }
-  if (typeof packetId === 'string') packetId = packetIds[state][!isServer ? 'toServer' : 'toClient'][packetId];
-  assert.notEqual(packetId, undefined);
-
-  var packet = get(packetId, state, !isServer);
-  assert.notEqual(packet, null);
-  packet.forEach(function(fieldInfo) {
-    length += sizeOf(params[fieldInfo.name], fieldInfo, params);
-  });
-  length += sizeOfVarInt(packetId);
-  var size = length + sizeOfVarInt(length);
-  var buffer = new Buffer(size);
-  var offset = writeVarInt(length, buffer, 0);
-  offset = writeVarInt(packetId, buffer, offset);
-  packet.forEach(function(fieldInfo) {
-    var value = params[fieldInfo.name];
-    if(typeof value === "undefined") value = 0; // TODO : Why ?
-    offset = write(value, buffer, offset, fieldInfo, params);
-  });
-  return buffer;
-}
-
-function parsePacket(buffer, state, isServer, packetsToParse) {
-  if (state == null) state == states.PLAY;
-  var cursor = 0;
-  var lengthField = readVarInt(buffer, 0);
-  if (!!!lengthField) return null;
-  var length = lengthField.value;
-  cursor += lengthField.size;
-  if (length + lengthField.size > buffer.length) return null;
-  var buffer = buffer.slice(0, length + cursor); // fail early if too much is read.
-  
-  var packetIdField = readVarInt(buffer, cursor);
-  var packetId = packetIdField.value;
-  cursor += packetIdField.size;
-  
-  var results = { id: packetId };
-  // Only parse the packet if there is a need for it, AKA if there is a listener attached to it
-  var name = packetNames[state][isServer ? "toServer" : "toClient"][packetId];
-  var shouldParse = (!packetsToParse.hasOwnProperty(name) || packetsToParse[name] <= 0)
-                    && (!packetsToParse.hasOwnProperty("packet") || packetsToParse["packet"] <= 0);
-  if (shouldParse) {
-    return {
-        size: length + lengthField.size,
-        buffer: buffer,
-        results: results
-    };
-  }
-  
-  var packetInfo = get(packetId, state, isServer);
-  if (packetInfo === null) {
-    return {
-      error: new Error("Unrecognized packetId: " + packetId + " (0x" + packetId.toString(16) + ")"),
-      size: length + lengthField.size,
-      buffer: buffer,
-      results: results
-    };
-  } else {
-    debug("read packetId " + packetId + " (0x" + packetId.toString(16) + ")");
-  }
-  
-  var i, fieldInfo, readResults;
-  for (i = 0; i < packetInfo.length; ++i) {
-    fieldInfo = packetInfo[i];
-    readResults = read(buffer, cursor, fieldInfo, results);
-    /* A deserializer cannot return null anymore. Besides, read() returns
-     * null when the condition is not fulfilled.
-     if (!!!readResults) {
-        var error = new Error("A deserializer returned null");
-        error.packetId = packetId;
-        error.fieldInfo = fieldInfo.name;
-        return {
-            size: length + lengthField.size,
-            error: error,
-            results: results
-        };
-    }*/
-    if (readResults === null) continue;
-    if (readResults.error) {
-      return readResults;
-    }
-    results[fieldInfo.name] = readResults.value;
-    cursor += readResults.size;
-  }
-  debug(results);
-  return {
-    size: length + lengthField.size,
-    results: results,
-    buffer: buffer
-  };
-}
-
-module.exports = {
-  version: 5,
-  minecraftVersion: '1.7.6',
-  sessionVersion: 13,
-  parsePacket: parsePacket,
-  createPacketBuffer: createPacketBuffer,
-  STRING_MAX_LENGTH: STRING_MAX_LENGTH,
-  packetIds: packetIds,
-  packetNames: packetNames,
-  packetFields: packetFields,
-  packetStates: packetStates,
-  states: states,
-  get: get,
-  debug: debug,
-};
-
-}).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1179,"assert":1157,"buffer":1171,"util":1194}],170:[function(require,module,exports){
-(function (process){
-var through = require('through')
-var isBuffer = require('isbuffer')
-var WebSocketPoly = require('ws')
-
-function WebsocketStream(server, options) {
-  if (!(this instanceof WebsocketStream)) return new WebsocketStream(server, options)
-
-  this.stream = through(this.write.bind(this), this.end.bind(this))
-
-  this.stream.websocketStream = this
-  this.options = options || {}
-  this._buffer = []
- 
-  if (typeof server === "object") {
-    this.ws = server
-    this.ws.on('message', this.onMessage.bind(this))
-    this.ws.on('error', this.onError.bind(this))
-    this.ws.on('close', this.onClose.bind(this))
-    this.ws.on('open', this.onOpen.bind(this))
-    if (this.ws.readyState === 1) this._open = true
-  } else {
-    var opts = (process.title === 'browser') ? this.options.protocol : this.options
-    this.ws = new WebSocketPoly(server, opts)
-    this.ws.binaryType = this.options.binaryType || 'arraybuffer'
-    this.ws.onmessage = this.onMessage.bind(this)
-    this.ws.onerror = this.onError.bind(this)
-    this.ws.onclose = this.onClose.bind(this)
-    this.ws.onopen = this.onOpen.bind(this)
-  }
-  
-  return this.stream
-}
-
-module.exports = WebsocketStream
-module.exports.WebsocketStream = WebsocketStream
-
-WebsocketStream.prototype.onMessage = function(e) {
-  var data = e
-  if (typeof data.data !== 'undefined') data = data.data
-
-  // type must be a Typed Array (ArrayBufferView)
-  var type = this.options.type
-  if (type && data instanceof ArrayBuffer) data = new type(data)
-  
-  this.stream.queue(data)
-}
-
-WebsocketStream.prototype.onError = function(err) {
-  this.stream.emit('error', err)
-}
-
-WebsocketStream.prototype.onClose = function(err) {
-  if (this._destroy) return
-  this.stream.emit('end')
-  this.stream.emit('close')
-}
-
-WebsocketStream.prototype.onOpen = function(err) {
-  if (this._destroy) return
-  this._open = true
-  for (var i = 0; i < this._buffer.length; i++) {
-    this._write(this._buffer[i])
-  }
-  this._buffer = undefined
-  this.stream.emit('open')
-  this.stream.emit('connect')
-  if (this._end) this.ws.close()
-}
-
-WebsocketStream.prototype.write = function(data) {
-  if (!this._open) {
-    this._buffer.push(data)
-  } else {
-    this._write(data)
-  }
-}
-
-WebsocketStream.prototype._write = function(data) {
-  if (this.ws.readyState == 1)
-    // we are connected
-    typeof WebSocket != 'undefined' && this.ws instanceof WebSocket
-      ? this.ws.send(data)
-      : this.ws.send(data, { binary : isBuffer(data) })
-  else
-    this.stream.emit('error', 'Not connected')
-}
-
-WebsocketStream.prototype.end = function(data) {
-  if (data !== undefined) this.stream.queue(data)
-  if (this._open) this.ws.close()
-  this._end = true
-}
-
-}).call(this,require('_process'))
-},{"_process":1179,"isbuffer":171,"through":172,"ws":173}],171:[function(require,module,exports){
-var Buffer = require('buffer').Buffer;
-
-module.exports = isBuffer;
-
-function isBuffer (o) {
-  return Buffer.isBuffer(o)
-    || /\[object (.+Array|Array.+)\]/.test(Object.prototype.toString.call(o));
-}
-
-},{"buffer":1171}],172:[function(require,module,exports){
-arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],173:[function(require,module,exports){
-
-/**
- * Module dependencies.
- */
-
-var global = (function() { return this; })();
-
-/**
- * WebSocket constructor.
- */
-
-var WebSocket = global.WebSocket || global.MozWebSocket;
-
-/**
- * Module exports.
- */
-
-module.exports = WebSocket ? ws : null;
-
-/**
- * WebSocket constructor.
- *
- * The third `opts` options object gets ignored in web browsers, since it's
- * non-standard, and throws a TypeError if passed to the constructor.
- * See: https://github.com/einaros/ws/issues/227
- *
- * @param {String} uri
- * @param {Array} protocols (optional)
- * @param {Object) opts (optional)
- * @api public
- */
-
-function ws(uri, protocols, opts) {
-  var instance;
-  if (protocols) {
-    instance = new WebSocket(uri, protocols);
-  } else {
-    instance = new WebSocket(uri);
-  }
-  return instance;
-}
-
-if (WebSocket) ws.prototype = WebSocket.prototype;
-
-},{}],174:[function(require,module,exports){
-module.exports = function (str) {
-    return String(str).replace(/(\W)/g, '\\$1');
-};
-
-},{}],175:[function(require,module,exports){
-module.exports = v;
-v.Vec3 = Vec3;
-
-var re = /\((-?[.\d]+), (-?[.\d]+), (-?[.\d]+)\)/;
-
-function Vec3(x, y, z) {
-  this.x = x;
-  this.y = y;
-  this.z = z;
-}
-
-function v(x, y, z) {
-  if (x == null) {
-    return new Vec3(0, 0, 0);
-  } else if (Array.isArray(x)) {
-    return new Vec3(parseFloat(x[0], 10), parseFloat(x[1], 10), parseFloat(x[2], 10));
-  } else if (typeof x === 'object') {
-    return new Vec3(parseFloat(x.x, 10), parseFloat(x.y, 10), parseFloat(x.z, 10));
-  } else if (typeof x === 'string' && y == null) {
-    var match = x.match(re);
-    if (match) {
-      return new Vec3(
-          parseFloat(match[1], 10),
-          parseFloat(match[2], 10),
-          parseFloat(match[3], 10));
-    } else {
-      throw new Error("vec3: cannot parse: " + x);
-    }
-  } else {
-    return new Vec3(parseFloat(x, 10), parseFloat(y, 10), parseFloat(z, 10));
-  }
-}
-
-Vec3.prototype.set = function(x, y, z) {
-  this.x = x;
-  this.y = y;
-  this.z = z;
-  return this;
-};
-
-Vec3.prototype.update = function(other) {
-  this.x = other.x;
-  this.y = other.y;
-  this.z = other.z;
-  return this;
-};
-
-Vec3.prototype.floored = function() {
-  return new Vec3(Math.floor(this.x), Math.floor(this.y), Math.floor(this.z));
-};
-
-Vec3.prototype.floor = function() {
-  this.x = Math.floor(this.x);
-  this.y = Math.floor(this.y);
-  this.z = Math.floor(this.z);
-  return this;
-};
-
-Vec3.prototype.offset = function(dx, dy, dz) {
-  return new Vec3(this.x + dx, this.y + dy, this.z + dz);
-};
-Vec3.prototype.translate = function(dx, dy, dz) {
-  this.x += dx;
-  this.y += dy;
-  this.z += dz;
-  return this;
-};
-Vec3.prototype.add = function(other) {
-  this.x += other.x;
-  this.y += other.y;
-  this.z += other.z;
-  return this;
-};
-Vec3.prototype.subtract = function(other) {
-  this.x -= other.x;
-  this.y -= other.y;
-  this.z -= other.z;
-  return this;
-};
-Vec3.prototype.plus = function(other) {
-  return this.offset(other.x, other.y, other.z);
-};
-Vec3.prototype.minus = function(other) {
-  return this.offset(-other.x, -other.y, -other.z);
-};
-Vec3.prototype.scaled = function(scalar) {
-  return new Vec3(this.x * scalar, this.y * scalar, this.z * scalar);
-};
-Vec3.prototype.abs = function() {
-  return new Vec3(Math.abs(this.x), Math.abs(this.y), Math.abs(this.z));
-};
-Vec3.prototype.volume = function() {
-  return this.x * this.y * this.z;
-};
-Vec3.prototype.modulus = function(other) {
-  return new Vec3(
-    euclideanMod(this.x, other.x),
-    euclideanMod(this.y, other.y),
-    euclideanMod(this.z, other.z));
-};
-Vec3.prototype.distanceTo = function(other) {
-  var dx = other.x - this.x;
-  var dy = other.y - this.y;
-  var dz = other.z - this.z;
-  return Math.sqrt(dx * dx + dy * dy + dz * dz);
-};
-Vec3.prototype.equals = function(other) {
-  return this.x === other.x && this.y === other.y && this.z === other.z;
-};
-Vec3.prototype.toString = function() {
-  return "(" + this.x + ", " + this.y + ", " + this.z + ")";
-};
-Vec3.prototype.clone = function() {
-  return this.offset(0, 0, 0);
-};
-Vec3.prototype.min = function(other) {
-  return new Vec3(Math.min(this.x, other.x), Math.min(this.y, other.y), Math.min(this.z, other.z));
-};
-Vec3.prototype.max = function(other) {
-  return new Vec3(Math.max(this.x, other.x), Math.max(this.y, other.y), Math.max(this.z, other.z));
-};
-
-function euclideanMod(numerator, denominator) {
-  var result = numerator % denominator;
-  return result < 0 ? result + denominator : result;
-}
-
-},{}],176:[function(require,module,exports){
-arguments[4][170][0].apply(exports,arguments)
-},{"_process":1179,"dup":170,"isbuffer":177,"through":178,"ws":179}],177:[function(require,module,exports){
-arguments[4][171][0].apply(exports,arguments)
-},{"buffer":1171,"dup":171}],178:[function(require,module,exports){
-arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],179:[function(require,module,exports){
-arguments[4][173][0].apply(exports,arguments)
-},{"dup":173}],180:[function(require,module,exports){
-(function (Buffer){
-"use strict"
-
-var iota = require("iota-array")
-
-var arrayMethods = [
-  "concat",
-  "join",
-  "slice",
-  "toString",
-  "indexOf",
-  "lastIndexOf",
-  "forEach",
-  "every",
-  "some",
-  "filter",
-  "map",
-  "reduce",
-  "reduceRight"
-]
-
-function compare1st(a, b) {
-  return a[0] - b[0]
-}
-
-function order() {
-  var stride = this.stride
-  var terms = new Array(stride.length)
-  var i
-  for(i=0; i<terms.length; ++i) {
-    terms[i] = [Math.abs(stride[i]), i]
-  }
-  terms.sort(compare1st)
-  var result = new Array(terms.length)
-  for(i=0; i<result.length; ++i) {
-    result[i] = terms[i][1]
-  }
-  return result
-}
-
-function compileConstructor(dtype, dimension) {
-  var className = ["View", dimension, "d", dtype].join("")
-  if(dimension < 0) {
-    className = "View_Nil" + dtype
-  }
-  var useGetters = (dtype === "generic")
-  
-  if(dimension === -1) {
-    //Special case for trivial arrays
-    var code = 
-      "function "+className+"(a){this.data=a;};\
-var proto="+className+".prototype;\
-proto.dtype='"+dtype+"';\
-proto.index=function(){return -1};\
-proto.size=0;\
-proto.dimension=-1;\
-proto.shape=proto.stride=proto.order=[];\
-proto.lo=proto.hi=proto.transpose=proto.step=\
-function(){return new "+className+"(this.data);};\
-proto.get=proto.set=function(){};\
-proto.pick=function(){return null};\
-return function construct_"+className+"(a){return new "+className+"(a);}"
-    var procedure = new Function(code)
-    return procedure()
-  } else if(dimension === 0) {
-    //Special case for 0d arrays
-    var code =
-      "function "+className+"(a,d) {\
-this.data = a;\
-this.offset = d\
-};\
-var proto="+className+".prototype;\
-proto.dtype='"+dtype+"';\
-proto.index=function(){return this.offset};\
-proto.dimension=0;\
-proto.size=1;\
-proto.shape=\
-proto.stride=\
-proto.order=[];\
-proto.lo=\
-proto.hi=\
-proto.transpose=\
-proto.step=function "+className+"_copy() {\
-return new "+className+"(this.data,this.offset)\
-};\
-proto.pick=function "+className+"_pick(){\
-return TrivialArray(this.data);\
-};\
-proto.valueOf=proto.get=function "+className+"_get(){\
-return "+(useGetters ? "this.data.get(this.offset)" : "this.data[this.offset]")+
-"};\
-proto.set=function "+className+"_set(v){\
-return "+(useGetters ? "this.data.set(this.offset,v)" : "this.data[this.offset]=v")+"\
-};\
-return function construct_"+className+"(a,b,c,d){return new "+className+"(a,d)}"
-    var procedure = new Function("TrivialArray", code)
-    return procedure(CACHED_CONSTRUCTORS[dtype][0])
-  }
-
-  var code = ["'use strict'"]
-    
-  //Create constructor for view
-  var indices = iota(dimension)
-  var args = indices.map(function(i) { return "i"+i })
-  var index_str = "this.offset+" + indices.map(function(i) {
-        return ["this._stride", i, "*i",i].join("")
-      }).join("+")
-  code.push("function "+className+"(a,"+
-    indices.map(function(i) {
-      return "b"+i
-    }).join(",")+","+
-    indices.map(function(i) {
-      return "c"+i
-    }).join(",")+",d){this.data=a")
-  for(var i=0; i<dimension; ++i) {
-    code.push("this._shape"+i+"=b"+i+"|0")
-  }
-  for(var i=0; i<dimension; ++i) {
-    code.push("this._stride"+i+"=c"+i+"|0")
-  }
-  code.push("this.offset=d|0}",
-    "var proto="+className+".prototype",
-    "proto.dtype='"+dtype+"'",
-    "proto.dimension="+dimension)
-  
-  //view.stride and view.shape
-  var strideClassName = "VStride" + dimension + "d" + dtype
-  var shapeClassName = "VShape" + dimension + "d" + dtype
-  var props = {"stride":strideClassName, "shape":shapeClassName}
-  for(var prop in props) {
-    var arrayName = props[prop]
-    code.push(
-      "function " + arrayName + "(v) {this._v=v} var aproto=" + arrayName + ".prototype",
-      "aproto.length="+dimension)
-    
-    var array_elements = []
-    for(var i=0; i<dimension; ++i) {
-      array_elements.push(["this._v._", prop, i].join(""))
-    }
-    code.push(
-      "aproto.toJSON=function " + arrayName + "_toJSON(){return [" + array_elements.join(",") + "]}",
-      "aproto.valueOf=aproto.toString=function " + arrayName + "_toString(){return [" + array_elements.join(",") + "].join()}")
-    
-    for(var i=0; i<dimension; ++i) {
-      code.push(["Object.defineProperty(aproto,", i, ",{get:function(){return this._v._", prop, i, "},set:function(v){return this._v._", prop, i, "=v|0},enumerable:true})"].join(""))
-    }
-    for(var i=0; i<arrayMethods.length; ++i) {
-      if(arrayMethods[i] in Array.prototype) {
-        code.push(["aproto.", arrayMethods[i], "=Array.prototype.", arrayMethods[i]].join(""))
-      }
-    }
-    code.push(["Object.defineProperty(proto,'",prop,"',{get:function ", arrayName, "_get(){return new ", arrayName, "(this)},set: function ", arrayName, "_set(v){"].join(""))
-    for(var i=0; i<dimension; ++i) {
-      code.push(["this._", prop, i, "=v[", i, "]|0"].join(""))
-    }
-    code.push("return v}})")
-  }
-  
-  //view.size:
-  code.push(["Object.defineProperty(proto,'size',{get:function ",className,"_size(){\
-return ", indices.map(function(i) { return ["this._shape", i].join("") }).join("*"),
-"}})"].join(""))
-
-  //view.order:
-  if(dimension === 1) {
-    code.push("proto.order=[0]")
-  } else {
-    code.push("Object.defineProperty(proto,'order',{get:")
-    if(dimension < 4) {
-      code.push(["function ",className,"_order(){"].join(""))
-      if(dimension === 2) {
-        code.push("return (Math.abs(this._stride0)>Math.abs(this._stride1))?[1,0]:[0,1]}})")
-      } else if(dimension === 3) {
-        code.push(
-"var s0=Math.abs(this._stride0),s1=Math.abs(this._stride1),s2=Math.abs(this._stride2);\
-if(s0>s1){\
-if(s1>s2){\
-return [2,1,0];\
-}else if(s0>s2){\
-return [1,2,0];\
-}else{\
-return [1,0,2];\
-}\
-}else if(s0>s2){\
-return [2,0,1];\
-}else if(s2>s1){\
-return [0,1,2];\
-}else{\
-return [0,2,1];\
-}}})")
-      }
-    } else {
-      code.push("ORDER})")
-    }
-  }
-  
-  //view.set(i0, ..., v):
-  code.push([
-"proto.set=function ",className,"_set(", args.join(","), ",v){"].join(""))
-  if(useGetters) {
-    code.push(["return this.data.set(", index_str, ",v)}"].join(""))
-  } else {
-    code.push(["return this.data[", index_str, "]=v}"].join(""))
-  }
-  
-  //view.get(i0, ...):
-  code.push(["proto.get=function ",className,"_get(", args.join(","), "){"].join(""))
-  if(useGetters) {
-    code.push(["return this.data.get(", index_str, ")}"].join(""))
-  } else {
-    code.push(["return this.data[", index_str, "]}"].join(""))
-  }
-  
-  //view.index:
-  code.push([
-    "proto.index=function ",
-      className,
-      "_index(", args.join(), "){return ", 
-      index_str, "}"].join(""))
-
-  //view.hi():
-  code.push(["proto.hi=function ",className,"_hi(",args.join(","),"){return new ", className, "(this.data,",
-    indices.map(function(i) {
-      return ["(typeof i",i,"!=='number'||i",i,"<0)?this._shape", i, ":i", i,"|0"].join("")
-    }).join(","), ",",
-    indices.map(function(i) {
-      return "this._stride"+i
-    }).join(","), ",this.offset)}"].join(""))
-  
-  //view.lo():
-  var a_vars = indices.map(function(i) { return "a"+i+"=this._shape"+i })
-  var c_vars = indices.map(function(i) { return "c"+i+"=this._stride"+i })
-  code.push(["proto.lo=function ",className,"_lo(",args.join(","),"){var b=this.offset,d=0,", a_vars.join(","), ",", c_vars.join(",")].join(""))
-  for(var i=0; i<dimension; ++i) {
-    code.push([
-"if(typeof i",i,"==='number'&&i",i,">=0){\
-d=i",i,"|0;\
-b+=c",i,"*d;\
-a",i,"-=d}"].join(""))
-  }
-  code.push(["return new ", className, "(this.data,",
-    indices.map(function(i) {
-      return "a"+i
-    }).join(","),",",
-    indices.map(function(i) {
-      return "c"+i
-    }).join(","), ",b)}"].join(""))
-  
-  //view.step():
-  code.push(["proto.step=function ",className,"_step(",args.join(","),"){var ",
-    indices.map(function(i) {
-      return "a"+i+"=this._shape"+i
-    }).join(","), ",",
-    indices.map(function(i) {
-      return "b"+i+"=this._stride"+i
-    }).join(","),",c=this.offset,d=0,ceil=Math.ceil"].join(""))
-  for(var i=0; i<dimension; ++i) {
-    code.push([
-"if(typeof i",i,"==='number'){\
-d=i",i,"|0;\
-if(d<0){\
-c+=b",i,"*(a",i,"-1);\
-a",i,"=ceil(-a",i,"/d)\
-}else{\
-a",i,"=ceil(a",i,"/d)\
-}\
-b",i,"*=d\
-}"].join(""))
-  }
-  code.push(["return new ", className, "(this.data,",
-    indices.map(function(i) {
-      return "a" + i
-    }).join(","), ",",
-    indices.map(function(i) {
-      return "b" + i
-    }).join(","), ",c)}"].join(""))
-  
-  //view.transpose():
-  var tShape = new Array(dimension)
-  var tStride = new Array(dimension)
-  for(var i=0; i<dimension; ++i) {
-    tShape[i] = ["a[i", i, "]"].join("")
-    tStride[i] = ["b[i", i, "]"].join("")
-  }
-  code.push(["proto.transpose=function ",className,"_transpose(",args,"){", 
-    args.map(function(n,idx) { return n + "=(" + n + "===undefined?" + idx + ":" + n + "|0)"}).join(";"),
-    ";var a=this.shape,b=this.stride;return new ", className, "(this.data,", tShape.join(","), ",", tStride.join(","), ",this.offset)}"].join(""))
-  
-  //view.pick():
-  code.push(["proto.pick=function ",className,"_pick(",args,"){var a=[],b=[],c=this.offset"].join(""))
-  for(var i=0; i<dimension; ++i) {
-    code.push(["if(typeof i",i,"==='number'&&i",i,">=0){c=(c+this._stride",i,"*i",i,")|0}else{a.push(this._shape",i,");b.push(this._stride",i,")}"].join(""))
-  }
-  code.push("var ctor=CTOR_LIST[a.length+1];return ctor(this.data,a,b,c)}")
-    
-  //Add return statement
-  code.push(["return function construct_",className,"(data,shape,stride,offset){return new ", className,"(data,",
-    indices.map(function(i) {
-      return "shape["+i+"]"
-    }).join(","), ",",
-    indices.map(function(i) {
-      return "stride["+i+"]"
-    }).join(","), ",offset)}"].join(""))
-
-  //Compile procedure
-  var procedure = new Function("CTOR_LIST", "ORDER", code.join("\n"))
-  return procedure(CACHED_CONSTRUCTORS[dtype], order)
-}
-
-function arrayDType(data) {
-  if(data instanceof Float64Array) {
-    return "float64";
-  } else if(data instanceof Float32Array) {
-    return "float32"
-  } else if(data instanceof Int32Array) {
-    return "int32"
-  } else if(data instanceof Uint32Array) {
-    return "uint32"
-  } else if(data instanceof Uint8Array) {
-    return "uint8"
-  } else if(data instanceof Uint16Array) {
-    return "uint16"
-  } else if(data instanceof Int16Array) {
-    return "int16"
-  } else if(data instanceof Int8Array) {
-    return "int8"
-  } else if(data instanceof Uint8ClampedArray) {
-    return "uint8_clamped"
-  } else if((typeof Buffer !== "undefined") && (data instanceof Buffer)) {
-    return "buffer"
-  } else if(data instanceof Array) {
-    return "array"
-  }
-  return "generic"
-}
-
-var CACHED_CONSTRUCTORS = {
-  "float32":[],
-  "float64":[],
-  "int8":[],
-  "int16":[],
-  "int32":[],
-  "uint8":[],
-  "uint16":[],
-  "uint32":[],
-  "array":[],
-  "uint8_clamped":[],
-  "buffer":[],
-  "generic":[]
-}
-
-;(function() {
-  for(var id in CACHED_CONSTRUCTORS) {
-    CACHED_CONSTRUCTORS[id].push(compileConstructor(id, -1))
-  }
-});
-
-function wrappedNDArrayCtor(data, shape, stride, offset) {
-  if(data === undefined) {
-    var ctor = CACHED_CONSTRUCTORS.array[0]
-    return ctor([])
-  } else if(typeof data === "number") {
-    data = [data]
-  }
-  if(shape === undefined) {
-    shape = [ data.length ]
-  }
-  var d = shape.length
-  if(stride === undefined) {
-    stride = new Array(d)
-    for(var i=d-1, sz=1; i>=0; --i) {
-      stride[i] = sz
-      sz *= shape[i]
-    }
-  }
-  if(offset === undefined) {
-    offset = 0
-    for(var i=0; i<d; ++i) {
-      if(stride[i] < 0) {
-        offset -= (shape[i]-1)*stride[i]
-      }
-    }
-  }
-  var dtype = arrayDType(data)
-  var ctor_list = CACHED_CONSTRUCTORS[dtype]
-  while(ctor_list.length <= d+1) {
-    ctor_list.push(compileConstructor(dtype, ctor_list.length-1))
-  }
-  var ctor = ctor_list[d+1]
-  return ctor(data, shape, stride, offset)
-}
-
-module.exports = wrappedNDArrayCtor
-}).call(this,require("buffer").Buffer)
-},{"buffer":1171,"iota-array":181}],181:[function(require,module,exports){
-arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],182:[function(require,module,exports){
-'use strict';
-
-var colormc2html = {
-  black: 'black',
-  dark_blue: '#0000b2',
-  dark_green: '#14ab00',
-  dark_aqua: '#13aaab',
-  dark_red: '#a90400',
-  dark_purple: '#a900b2',
-  gold: '#feac00',
-  gray: 'gray',
-  dark_gray: '#555555',
-  blue: '#544cff',
-  green: '#5cff00',
-  aqua: '#5bffff',
-  red: '#fd5650',
-  light_purple: '#fd4dff',
-  yellow: 'yellow',
-  white: 'white'
-};
-
-var translations = {
-  'chat.type.text': '<%s> %s',
-  'chat.type.emote': '* %s %s',
-  'chat.type.announcement': '[%s] %s',
-  'chat.type.admin': '[%s: %s]',
-  'chat.stream.text': '(%s) <%s> %s',
-  'chat.stream.emote': '(%s) * %s %s'
-};
-
-var isTrue = function(x) {
-  if (x === undefined) return false;
-  if (x === 'false') return false;
-  return true;
-};
-
-var parseRaw = function(raw, opts) {
-  var json;
-
-  opts = opts || {};
-
-  if (typeof raw === 'string') {
-    try {
-      json = JSON.parse(raw);
-    } catch (error) {
-      console.log(raw);
-      return document.createTextNode('Invalid JSON: ' + error);
-    }
-  } else {
-    json = raw;
-  }
-
-  var parseObject = function(element) {
-    if (typeof element === 'string') {
-      return document.createTextNode(element);
-    }
-
-    var node = document.createElement('span');
-
-    if ('color' in element) node.style.color = colormc2html[element.color];
-    if (isTrue(element.bold)) node.style.fontWeight = 'bold';
-    if (isTrue(element.italic)) node.style.fontStyle = 'italic';
-    if (isTrue(element.underlined) || isTrue(element.strikethrough))
-      node.style.textDecoration = 
-        (isTrue(element.underlined) ? 'underline ' : '') + 
-        (isTrue(element.strikethrough) ? 'line-through' : '');
-
-    if ('clickEvent' in element) {
-      if (opts.click) {
-        node.addEventListener('click', function(ev) {
-          opts.click(element, element.clickEvent, ev);
-        });
-      }
-    }
-
-    if ('hoverEvent' in element) {
-      if (opts.hover) {
-        node.addEventListener('mouseover', function(ev) {
-          opts.hover(element, element.hoverEvent, ev);
-        });
-      }
-
-      if (opts.hoverOut) {
-        node.addEventListener('mouseout', function(ev) {
-          opts.hoverOut(element, element.hoverEvent, ev);
-        });
-      }
-    }
-
-    if ('text' in element) node.textContent = element.text;
-    if ('translate' in element) {
-      var translate = translations[element.translate] || element.translate;
-      var translateTexts = translate.split('%s');
-
-      (element['with'] || []).forEach(function(x, i) {
-        node.appendChild(document.createTextNode(translateTexts[i] || ' '));
-        node.appendChild(parseObject(x));
-      });
-
-      if (!/%s$/.test(translateTexts))
-        node.appendChild(document.createTextNode(translateTexts.splice(-1)[0]));
-    }
-
-    if ('extra' in element) {
-      element.extra.forEach(function(x) {
-        node.appendChild(parseObject(x));
-      });
-    }
-
-    return node;
-  };
-
-  return parseObject(json);
-
-  // references:
-  // http://ezekielelin.com/minecraft/tellraw/
-  // https://github.com/deathcap/node-minecraft-protocol/blob/986cf0af918768e98ec6b95a9dfcab46f5204e5e/examples/client_chat.js#L116
-}
-module.exports = parseRaw;
-
-
-
-},{}],183:[function(require,module,exports){
-var bundleFn = arguments[3];
-var sources = arguments[4];
-var cache = arguments[5];
-
-var stringify = JSON.stringify;
-
-module.exports = function (fn) {
-    var keys = [];
-    var wkey;
-    var cacheKeys = Object.keys(cache);
-    
-    for (var i = 0, l = cacheKeys.length; i < l; i++) {
-        var key = cacheKeys[i];
-        if (cache[key].exports === fn) {
-            wkey = key;
-            break;
-        }
-    }
-    
-    if (!wkey) {
-        wkey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
-        var wcache = {};
-        for (var i = 0, l = cacheKeys.length; i < l; i++) {
-            var key = cacheKeys[i];
-            wcache[key] = key;
-        }
-        sources[wkey] = [
-            Function(['require','module','exports'], '(' + fn + ')(self)'),
-            wcache
-        ];
-    }
-    var skey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
-    
-    var scache = {}; scache[wkey] = wkey;
-    sources[skey] = [
-        Function(['require'],'require(' + stringify(wkey) + ')(self)'),
-        scache
-    ];
-    
-    var src = '(' + bundleFn + ')({'
-        + Object.keys(sources).map(function (key) {
-            return stringify(key) + ':['
-                + sources[key][0]
-                + ',' + stringify(sources[key][1]) + ']'
-            ;
-        }).join(',')
-        + '},{},[' + stringify(skey) + '])'
-    ;
-    return new Worker(window.URL.createObjectURL(
-        new Blob([src], { type: 'text/javascript' })
-    ));
-};
-
-},{}],184:[function(require,module,exports){
 var CommandsPlugin, ItemPile, shellwords,
   slice = [].slice,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -35330,7 +15623,7 @@ CommandsPlugin = (function() {
 
 
 
-},{"itempile":185,"shellwords":190}],185:[function(require,module,exports){
+},{"itempile":124,"shellwords":129}],124:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -35627,15 +15920,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":186,"deep-equal":187}],186:[function(require,module,exports){
+},{"clone":125,"deep-equal":126}],125:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],187:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],126:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":188,"./lib/keys.js":189,"dup":22}],188:[function(require,module,exports){
+},{"./lib/is_arguments.js":127,"./lib/keys.js":128,"dup":22}],127:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],189:[function(require,module,exports){
+},{"dup":23}],128:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],190:[function(require,module,exports){
+},{"dup":24}],129:[function(require,module,exports){
 // Generated by CoffeeScript 1.3.3
 (function() {
   var scan;
@@ -35694,7 +15987,7 @@ arguments[4][24][0].apply(exports,arguments)
 
 }).call(this);
 
-},{}],191:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 var Console, ConsoleWidget, Modal,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -35782,7 +16075,7 @@ Console = (function(superClass) {
 
 
 
-},{"console-widget":192,"voxel-modal":194}],192:[function(require,module,exports){
+},{"console-widget":131,"voxel-modal":133}],131:[function(require,module,exports){
 var ConsoleWidget, EventEmitter, MAX_LINES, vkey,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -36007,17 +16300,17 @@ module.exports = function(opts) {
 };
 
 
-},{"events":1175,"vkey":193}],193:[function(require,module,exports){
+},{"events":1114,"vkey":132}],132:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],194:[function(require,module,exports){
+},{"dup":10}],133:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":195}],195:[function(require,module,exports){
+},{"dup":14,"ever":134}],134:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":196,"./types.json":197,"dup":15,"events":1175}],196:[function(require,module,exports){
+},{"./init.json":135,"./types.json":136,"dup":15,"events":1114}],135:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],197:[function(require,module,exports){
+},{"dup":16}],136:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],198:[function(require,module,exports){
+},{"dup":17}],137:[function(require,module,exports){
 "use strict";
 var createBuffer = require("gl-buffer");
 var createVAO = require("gl-vao");
@@ -36180,33 +16473,33 @@ DecalsPlugin.prototype.render = function() {
         this.mesh.unbind();
     }
 };
-},{"gl-buffer":199,"gl-mat4":221,"gl-vao":241,"glslify":243,"glslify/adapter.js":242}],199:[function(require,module,exports){
+},{"gl-buffer":138,"gl-mat4":160,"gl-vao":180,"glslify":182,"glslify/adapter.js":181}],138:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":205,"ndarray-ops":200,"typedarray-pool":209,"webglew":211}],200:[function(require,module,exports){
+},{"dup":90,"ndarray":144,"ndarray-ops":139,"typedarray-pool":148,"webglew":150}],139:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":201,"dup":91}],201:[function(require,module,exports){
+},{"cwise-compiler":140,"dup":91}],140:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":203,"dup":92}],202:[function(require,module,exports){
+},{"./lib/thunk.js":142,"dup":92}],141:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":204}],203:[function(require,module,exports){
+},{"dup":93,"uniq":143}],142:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":202,"dup":94}],204:[function(require,module,exports){
+},{"./compile.js":141,"dup":94}],143:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],205:[function(require,module,exports){
+},{"dup":95}],144:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":206}],206:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":145}],145:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],207:[function(require,module,exports){
+},{"dup":97}],146:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],208:[function(require,module,exports){
+},{"dup":98}],147:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],209:[function(require,module,exports){
+},{"dup":99}],148:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":207,"buffer":1171,"dup":100}],210:[function(require,module,exports){
+},{"bit-twiddle":146,"buffer":1110,"dup":100}],149:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],211:[function(require,module,exports){
+},{"dup":101}],150:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":210}],212:[function(require,module,exports){
+},{"dup":102,"weakmap":149}],151:[function(require,module,exports){
 module.exports = adjoint;
 
 /**
@@ -36240,7 +16533,7 @@ function adjoint(out, a) {
     out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
-},{}],213:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -36269,7 +16562,7 @@ function clone(a) {
     out[15] = a[15];
     return out;
 };
-},{}],214:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -36298,7 +16591,7 @@ function copy(out, a) {
     out[15] = a[15];
     return out;
 };
-},{}],215:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -36326,7 +16619,7 @@ function create() {
     out[15] = 1;
     return out;
 };
-},{}],216:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 module.exports = determinant;
 
 /**
@@ -36357,7 +16650,7 @@ function determinant(a) {
     // Calculate the determinant
     return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
-},{}],217:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -36405,7 +16698,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],218:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 module.exports = fromRotationTranslation;
 
 /**
@@ -36459,7 +16752,7 @@ function fromRotationTranslation(out, q, v) {
     
     return out;
 };
-},{}],219:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 module.exports = frustum;
 
 /**
@@ -36496,7 +16789,7 @@ function frustum(out, left, right, bottom, top, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],220:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 module.exports = identity;
 
 /**
@@ -36524,7 +16817,7 @@ function identity(out) {
     out[15] = 1;
     return out;
 };
-},{}],221:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -36550,7 +16843,7 @@ module.exports = {
   , lookAt: require('./lookAt')
   , str: require('./str')
 }
-},{"./adjoint":212,"./clone":213,"./copy":214,"./create":215,"./determinant":216,"./fromQuat":217,"./fromRotationTranslation":218,"./frustum":219,"./identity":220,"./invert":222,"./lookAt":223,"./multiply":224,"./ortho":225,"./perspective":226,"./perspectiveFromFieldOfView":227,"./rotate":228,"./rotateX":229,"./rotateY":230,"./rotateZ":231,"./scale":232,"./str":233,"./translate":234,"./transpose":235}],222:[function(require,module,exports){
+},{"./adjoint":151,"./clone":152,"./copy":153,"./create":154,"./determinant":155,"./fromQuat":156,"./fromRotationTranslation":157,"./frustum":158,"./identity":159,"./invert":161,"./lookAt":162,"./multiply":163,"./ortho":164,"./perspective":165,"./perspectiveFromFieldOfView":166,"./rotate":167,"./rotateX":168,"./rotateY":169,"./rotateZ":170,"./scale":171,"./str":172,"./translate":173,"./transpose":174}],161:[function(require,module,exports){
 module.exports = invert;
 
 /**
@@ -36606,7 +16899,7 @@ function invert(out, a) {
 
     return out;
 };
-},{}],223:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 var identity = require('./identity');
 
 module.exports = lookAt;
@@ -36697,7 +16990,7 @@ function lookAt(out, eye, center, up) {
 
     return out;
 };
-},{"./identity":220}],224:[function(require,module,exports){
+},{"./identity":159}],163:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -36740,7 +17033,7 @@ function multiply(out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
-},{}],225:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 module.exports = ortho;
 
 /**
@@ -36777,7 +17070,7 @@ function ortho(out, left, right, bottom, top, near, far) {
     out[15] = 1;
     return out;
 };
-},{}],226:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 module.exports = perspective;
 
 /**
@@ -36811,7 +17104,7 @@ function perspective(out, fovy, aspect, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],227:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 module.exports = perspectiveFromFieldOfView;
 
 /**
@@ -36853,7 +17146,7 @@ function perspectiveFromFieldOfView(out, fov, near, far) {
 }
 
 
-},{}],228:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 module.exports = rotate;
 
 /**
@@ -36918,7 +17211,7 @@ function rotate(out, a, rad, axis) {
     }
     return out;
 };
-},{}],229:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -36963,7 +17256,7 @@ function rotateX(out, a, rad) {
     out[11] = a23 * c - a13 * s;
     return out;
 };
-},{}],230:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -37008,7 +17301,7 @@ function rotateY(out, a, rad) {
     out[11] = a03 * s + a23 * c;
     return out;
 };
-},{}],231:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -37053,7 +17346,7 @@ function rotateZ(out, a, rad) {
     out[7] = a13 * c - a03 * s;
     return out;
 };
-},{}],232:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -37085,7 +17378,7 @@ function scale(out, a, v) {
     out[15] = a[15];
     return out;
 };
-},{}],233:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 module.exports = str;
 
 /**
@@ -37100,7 +17393,7 @@ function str(a) {
                     a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
-},{}],234:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 module.exports = translate;
 
 /**
@@ -37139,7 +17432,7 @@ function translate(out, a, v) {
 
     return out;
 };
-},{}],235:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 module.exports = transpose;
 
 /**
@@ -37189,19 +17482,19 @@ function transpose(out, a) {
     
     return out;
 };
-},{}],236:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],237:[function(require,module,exports){
+},{"dup":103}],176:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":236,"dup":104}],238:[function(require,module,exports){
+},{"./do-bind.js":175,"dup":104}],177:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":236,"dup":105}],239:[function(require,module,exports){
+},{"./do-bind.js":175,"dup":105}],178:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],240:[function(require,module,exports){
+},{"dup":101}],179:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":239}],241:[function(require,module,exports){
+},{"dup":102,"weakmap":178}],180:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":237,"./lib/vao-native.js":238,"dup":108,"webglew":240}],242:[function(require,module,exports){
+},{"./lib/vao-emulated.js":176,"./lib/vao-native.js":177,"dup":108,"webglew":179}],181:[function(require,module,exports){
 module.exports = programify
 
 var shader = require('gl-shader-core')
@@ -37212,7 +17505,7 @@ function programify(vertex, fragment, uniforms, attributes) {
   }
 }
 
-},{"gl-shader-core":248}],243:[function(require,module,exports){
+},{"gl-shader-core":187}],182:[function(require,module,exports){
 module.exports = noop
 
 function noop() {
@@ -37222,7 +17515,7 @@ function noop() {
   )
 }
 
-},{}],244:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 'use strict'
 
 module.exports = createAttributeWrapper
@@ -37318,7 +17611,7 @@ function createAttributeWrapper(gl, program, attributes, doLink) {
   }
   return obj
 }
-},{}],245:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 'use strict'
 
 var dup = require('dup')
@@ -37500,7 +17793,7 @@ function createUniformWrapper(gl, program, uniforms, locations) {
   }
 }
 
-},{"./reflect":246,"dup":247}],246:[function(require,module,exports){
+},{"./reflect":185,"dup":186}],185:[function(require,module,exports){
 'use strict'
 
 module.exports = makeReflectTypes
@@ -37558,9 +17851,9 @@ function makeReflectTypes(uniforms, useIndex) {
   }
   return obj
 }
-},{}],247:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],248:[function(require,module,exports){
+},{"dup":99}],187:[function(require,module,exports){
 'use strict'
 
 var createUniformWrapper = require('./lib/create-uniforms')
@@ -37691,7 +17984,7 @@ function createShader(
 
 module.exports = createShader
 
-},{"./lib/create-attributes":244,"./lib/create-uniforms":245,"./lib/reflect":246}],249:[function(require,module,exports){
+},{"./lib/create-attributes":183,"./lib/create-uniforms":184,"./lib/reflect":185}],188:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -37771,9 +18064,9 @@ DecorativePlugin.prototype.disable = function() {
 };
 
 
-},{"ucfirst":250}],250:[function(require,module,exports){
+},{"ucfirst":189}],189:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],251:[function(require,module,exports){
+},{"dup":25}],190:[function(require,module,exports){
 var DropPlugin, coffee_script, ever, playerdat;
 
 ever = require('ever');
@@ -37958,7 +18251,7 @@ DropPlugin = (function() {
 
 
 
-},{"coffee-script":252,"ever":261,"playerdat":280,"string.prototype.endswith":281}],252:[function(require,module,exports){
+},{"coffee-script":191,"ever":200,"playerdat":219,"string.prototype.endswith":220}],191:[function(require,module,exports){
 (function (process,global){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -38297,7 +18590,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":253,"./lexer":254,"./nodes":255,"./parser":256,"./register":257,"./sourcemap":260,"_process":1179,"fs":1156,"module":1156,"path":1178,"vm":1195}],253:[function(require,module,exports){
+},{"./helpers":192,"./lexer":193,"./nodes":194,"./parser":195,"./register":196,"./sourcemap":199,"_process":1118,"fs":1095,"module":1095,"path":1117,"vm":1134}],192:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.7.1
 (function() {
@@ -38553,7 +18846,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'))
-},{"_process":1179}],254:[function(require,module,exports){
+},{"_process":1118}],193:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HEREDOC, HEREDOC_ILLEGAL, HEREDOC_INDENT, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTILINER, MULTI_DENT, NOT_REGEX, NOT_SPACED_REGEX, NUMBER, OPERATOR, REGEX, RELATION, RESERVED, Rewriter, SHIFT, SIMPLESTR, STRICT_PROSCRIBED, TRAILING_SPACES, UNARY, UNARY_MATH, WHITESPACE, compact, count, invertLiterate, key, last, locationDataToString, repeat, starts, throwSyntaxError, _ref, _ref1,
@@ -39481,7 +19774,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":253,"./rewriter":258}],255:[function(require,module,exports){
+},{"./helpers":192,"./rewriter":197}],194:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Access, Arr, Assign, Base, Block, Call, Class, Code, CodeFragment, Comment, Existence, Expansion, Extends, For, HEXNUM, IDENTIFIER, IDENTIFIER_STR, IS_REGEX, IS_STRING, If, In, Index, LEVEL_ACCESS, LEVEL_COND, LEVEL_LIST, LEVEL_OP, LEVEL_PAREN, LEVEL_TOP, Literal, METHOD_DEF, NEGATE, NO, NUMBER, Obj, Op, Param, Parens, RESERVED, Range, Return, SIMPLENUM, STRICT_PROSCRIBED, Scope, Slice, Splat, Switch, TAB, THIS, Throw, Try, UTILITIES, Value, While, YES, addLocationDataFn, compact, del, ends, extend, flatten, fragmentsToText, isLiteralArguments, isLiteralThis, last, locationDataToString, merge, multident, parseNum, some, starts, throwSyntaxError, unfoldSoak, utility, _ref, _ref1,
@@ -42641,7 +22934,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":253,"./lexer":254,"./scope":259}],256:[function(require,module,exports){
+},{"./helpers":192,"./lexer":193,"./scope":198}],195:[function(require,module,exports){
 (function (process){
 /* parser generated by jison 0.4.13 */
 /*
@@ -43368,7 +23661,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require('_process'))
-},{"_process":1179,"fs":1156,"path":1178}],257:[function(require,module,exports){
+},{"_process":1118,"fs":1095,"path":1117}],196:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, loadFile, path, _i, _len, _ref;
@@ -43436,7 +23729,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":252,"./helpers":253,"child_process":1156,"module":1156,"path":1178}],258:[function(require,module,exports){
+},{"./coffee-script":191,"./helpers":192,"child_process":1095,"module":1095,"path":1117}],197:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, left, rite, _i, _len, _ref,
@@ -43913,7 +24206,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],259:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var Scope, extend, last, _ref;
@@ -44061,7 +24354,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./helpers":253}],260:[function(require,module,exports){
+},{"./helpers":192}],199:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.1
 (function() {
   var LineMap, SourceMap;
@@ -44224,13 +24517,13 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],261:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":262,"./types.json":263,"dup":15,"events":1175}],262:[function(require,module,exports){
+},{"./init.json":201,"./types.json":202,"dup":15,"events":1114}],201:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],263:[function(require,module,exports){
+},{"dup":16}],202:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],264:[function(require,module,exports){
+},{"dup":17}],203:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -44391,13 +24684,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":265,"events":1175,"itempile":268}],265:[function(require,module,exports){
+},{"deep-equal":204,"events":1114,"itempile":207}],204:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":266,"./lib/keys.js":267,"dup":22}],266:[function(require,module,exports){
+},{"./lib/is_arguments.js":205,"./lib/keys.js":206,"dup":22}],205:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],267:[function(require,module,exports){
+},{"dup":23}],206:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],268:[function(require,module,exports){
+},{"dup":24}],207:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -44694,15 +24987,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":269,"deep-equal":270}],269:[function(require,module,exports){
+},{"clone":208,"deep-equal":209}],208:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],270:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],209:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":271,"./lib/keys.js":272,"dup":22}],271:[function(require,module,exports){
+},{"./lib/is_arguments.js":210,"./lib/keys.js":211,"dup":22}],210:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],272:[function(require,module,exports){
+},{"dup":23}],211:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],273:[function(require,module,exports){
+},{"dup":24}],212:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -44999,15 +25292,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":274,"deep-equal":275}],274:[function(require,module,exports){
+},{"clone":213,"deep-equal":214}],213:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],275:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],214:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":276,"./lib/keys.js":277,"dup":22}],276:[function(require,module,exports){
+},{"./lib/is_arguments.js":215,"./lib/keys.js":216,"dup":22}],215:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],277:[function(require,module,exports){
+},{"dup":23}],216:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],278:[function(require,module,exports){
+},{"dup":24}],217:[function(require,module,exports){
 (function (Buffer){
 /*
 	NBT.js - a JavaScript parser for NBT archives
@@ -45177,7 +25470,7 @@ arguments[4][24][0].apply(exports,arguments)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"node-int64":279,"zlib":1170}],279:[function(require,module,exports){
+},{"buffer":1110,"node-int64":218,"zlib":1109}],218:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -45415,7 +25708,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171}],280:[function(require,module,exports){
+},{"buffer":1110}],219:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -45529,7 +25822,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"inventory":264,"itempile":273,"nbt":278}],281:[function(require,module,exports){
+},{"buffer":1110,"inventory":203,"itempile":212,"nbt":217}],220:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -45582,7 +25875,7 @@ if (!String.prototype.endsWith) {
 	}());
 }
 
-},{}],282:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 (function (process){
 'use strict'
 var voxel = require('voxel')
@@ -46397,7 +26690,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require('_process'))
-},{"./lib/detector":283,"./lib/stats":284,"_process":1179,"aabb-3d":285,"collide-3d-tilemap":287,"events":1175,"extend":288,"game-shell-fps-camera":289,"gl-now":294,"gl-vec3":318,"inherits":340,"isndarray":341,"ndarray":342,"obsolete":344,"path":1178,"spatial-events":345,"tic":347,"voxel":590,"voxel-controls":348,"voxel-mesher":350,"voxel-physicals":409,"voxel-plugins":412,"voxel-raycast":413,"voxel-region-change":414,"voxel-registry":417,"voxel-shader":418,"voxel-stitch":588}],283:[function(require,module,exports){
+},{"./lib/detector":222,"./lib/stats":223,"_process":1118,"aabb-3d":224,"collide-3d-tilemap":226,"events":1114,"extend":227,"game-shell-fps-camera":228,"gl-now":233,"gl-vec3":257,"inherits":279,"isndarray":280,"ndarray":281,"obsolete":283,"path":1117,"spatial-events":284,"tic":286,"voxel":529,"voxel-controls":287,"voxel-mesher":289,"voxel-physicals":348,"voxel-plugins":351,"voxel-raycast":352,"voxel-region-change":353,"voxel-registry":356,"voxel-shader":357,"voxel-stitch":527}],222:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -46458,7 +26751,7 @@ module.exports = function() {
   };
 }
 
-},{}],284:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 /**
  * @author mrdoob / http://mrdoob.com/
  */
@@ -46604,7 +26897,7 @@ var Stats = function () {
 };
 
 module.exports = Stats
-},{}],285:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -46721,7 +27014,7 @@ proto.union = function(aabb) {
 
 
 
-},{"gl-matrix":286}],286:[function(require,module,exports){
+},{"gl-matrix":225}],225:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -50971,7 +31264,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })(this);
 
-},{}],287:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -51060,7 +31353,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],288:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -51142,7 +31435,7 @@ module.exports = function extend() {
 };
 
 
-},{}],289:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -51271,7 +31564,7 @@ CameraPlugin.prototype.getVector = function(out) {
   out[2] = -_scratch1[2];
 };
 
-},{"./pointer-stream.js":293,"basic-camera":290,"events":1175,"gl-matrix":291,"inherits":292}],290:[function(require,module,exports){
+},{"./pointer-stream.js":232,"basic-camera":229,"events":1114,"gl-matrix":230,"inherits":231}],229:[function(require,module,exports){
 var glm = require('gl-matrix')
 var vec3 = glm.vec3
 var mat4 = glm.mat4
@@ -51325,9 +31618,9 @@ noclip.prototype.rotateZ   = function(angle) {
   return this
 }
 
-},{"gl-matrix":291}],291:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],292:[function(require,module,exports){
+},{"gl-matrix":230}],230:[function(require,module,exports){
+arguments[4][225][0].apply(exports,arguments)
+},{"dup":225}],231:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -51352,7 +31645,7 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],293:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 'use strict';
 
 var Readable = require('stream').Readable;
@@ -51396,7 +31689,7 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":292,"stream":1191}],294:[function(require,module,exports){
+},{"inherits":231,"stream":1130}],233:[function(require,module,exports){
 "use strict"
 
 var makeGameShell = require("game-shell")
@@ -51538,7 +31831,7 @@ function createGLShell(options) {
 
 module.exports = createGLShell
 
-},{"game-shell":304,"webglew":306}],295:[function(require,module,exports){
+},{"game-shell":243,"webglew":245}],234:[function(require,module,exports){
 if(typeof window.performance === "object") {
   if(window.performance.now) {
     module.exports = function() { return window.performance.now() }
@@ -51551,7 +31844,7 @@ if(typeof window.performance === "object") {
   module.exports = function() { return (new Date()).getTime() }
 }
 
-},{}],296:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 //Adapted from here: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel?redirectlocale=en-US&redirectslug=DOM%2FMozilla_event_reference%2Fwheel
 
 var prefix = "", _addEventListener, onwheel, support;
@@ -51611,7 +31904,7 @@ module.exports = function( elem, callback, useCapture ) {
     _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
   }
 };
-},{}],297:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
  
@@ -51641,7 +31934,7 @@ if (!window.cancelAnimationFrame)
         clearTimeout(id);
     };
 
-},{}],298:[function(require,module,exports){
+},{}],237:[function(require,module,exports){
 "use strict"
 
 function compileSearch(funcName, predicate, reversed, extraArgs, useNdarray, earlyOut) {
@@ -51703,7 +31996,7 @@ module.exports = {
   eq: compileBoundsSearch("-", true, "EQ", true)
 }
 
-},{}],299:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -51733,7 +32026,7 @@ module.exports = {
 
 });
 
-},{}],300:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
 "use strict"
 
 function invert(hash) {
@@ -51747,13 +32040,13 @@ function invert(hash) {
 }
 
 module.exports = invert
-},{}],301:[function(require,module,exports){
+},{}],240:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],302:[function(require,module,exports){
+},{"dup":97}],241:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],303:[function(require,module,exports){
+},{"dup":95}],242:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],304:[function(require,module,exports){
+},{"dup":10}],243:[function(require,module,exports){
 "use strict"
 
 var EventEmitter = require("events").EventEmitter
@@ -52473,11 +32766,11 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":295,"./lib/mousewheel-polyfill.js":296,"./lib/raf-polyfill.js":297,"binary-search-bounds":298,"domready":299,"events":1175,"invert-hash":300,"iota-array":301,"uniq":302,"util":1194,"vkey":303}],305:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":234,"./lib/mousewheel-polyfill.js":235,"./lib/raf-polyfill.js":236,"binary-search-bounds":237,"domready":238,"events":1114,"invert-hash":239,"iota-array":240,"uniq":241,"util":1133,"vkey":242}],244:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],306:[function(require,module,exports){
+},{"dup":101}],245:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":305}],307:[function(require,module,exports){
+},{"dup":102,"weakmap":244}],246:[function(require,module,exports){
 module.exports = add;
 
 /**
@@ -52494,7 +32787,7 @@ function add(out, a, b) {
     out[2] = a[2] + b[2]
     return out
 }
-},{}],308:[function(require,module,exports){
+},{}],247:[function(require,module,exports){
 module.exports = angle
 
 var fromValues = require('./fromValues')
@@ -52523,7 +32816,7 @@ function angle(a, b) {
     }     
 }
 
-},{"./dot":315,"./fromValues":317,"./normalize":326}],309:[function(require,module,exports){
+},{"./dot":254,"./fromValues":256,"./normalize":265}],248:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -52539,7 +32832,7 @@ function clone(a) {
     out[2] = a[2]
     return out
 }
-},{}],310:[function(require,module,exports){
+},{}],249:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -52555,7 +32848,7 @@ function copy(out, a) {
     out[2] = a[2]
     return out
 }
-},{}],311:[function(require,module,exports){
+},{}],250:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -52570,7 +32863,7 @@ function create() {
     out[2] = 0
     return out
 }
-},{}],312:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 module.exports = cross;
 
 /**
@@ -52590,7 +32883,7 @@ function cross(out, a, b) {
     out[2] = ax * by - ay * bx
     return out
 }
-},{}],313:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 module.exports = distance;
 
 /**
@@ -52606,7 +32899,7 @@ function distance(a, b) {
         z = b[2] - a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],314:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 module.exports = divide;
 
 /**
@@ -52623,7 +32916,7 @@ function divide(out, a, b) {
     out[2] = a[2] / b[2]
     return out
 }
-},{}],315:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 module.exports = dot;
 
 /**
@@ -52636,7 +32929,7 @@ module.exports = dot;
 function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 }
-},{}],316:[function(require,module,exports){
+},{}],255:[function(require,module,exports){
 module.exports = forEach;
 
 var vec = require('./create')()
@@ -52681,7 +32974,7 @@ function forEach(a, stride, offset, count, fn, arg) {
         
         return a
 }
-},{"./create":311}],317:[function(require,module,exports){
+},{"./create":250}],256:[function(require,module,exports){
 module.exports = fromValues;
 
 /**
@@ -52699,7 +32992,7 @@ function fromValues(x, y, z) {
     out[2] = z
     return out
 }
-},{}],318:[function(require,module,exports){
+},{}],257:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -52734,7 +33027,7 @@ module.exports = {
   , rotateZ: require('./rotateZ')
   , forEach: require('./forEach')
 }
-},{"./add":307,"./angle":308,"./clone":309,"./copy":310,"./create":311,"./cross":312,"./distance":313,"./divide":314,"./dot":315,"./forEach":316,"./fromValues":317,"./inverse":319,"./length":320,"./lerp":321,"./max":322,"./min":323,"./multiply":324,"./negate":325,"./normalize":326,"./random":327,"./rotateX":328,"./rotateY":329,"./rotateZ":330,"./scale":331,"./scaleAndAdd":332,"./set":333,"./squaredDistance":334,"./squaredLength":335,"./subtract":336,"./transformMat3":337,"./transformMat4":338,"./transformQuat":339}],319:[function(require,module,exports){
+},{"./add":246,"./angle":247,"./clone":248,"./copy":249,"./create":250,"./cross":251,"./distance":252,"./divide":253,"./dot":254,"./forEach":255,"./fromValues":256,"./inverse":258,"./length":259,"./lerp":260,"./max":261,"./min":262,"./multiply":263,"./negate":264,"./normalize":265,"./random":266,"./rotateX":267,"./rotateY":268,"./rotateZ":269,"./scale":270,"./scaleAndAdd":271,"./set":272,"./squaredDistance":273,"./squaredLength":274,"./subtract":275,"./transformMat3":276,"./transformMat4":277,"./transformQuat":278}],258:[function(require,module,exports){
 module.exports = inverse;
 
 /**
@@ -52750,7 +33043,7 @@ function inverse(out, a) {
   out[2] = 1.0 / a[2]
   return out
 }
-},{}],320:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 module.exports = length;
 
 /**
@@ -52765,7 +33058,7 @@ function length(a) {
         z = a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],321:[function(require,module,exports){
+},{}],260:[function(require,module,exports){
 module.exports = lerp;
 
 /**
@@ -52786,7 +33079,7 @@ function lerp(out, a, b, t) {
     out[2] = az + t * (b[2] - az)
     return out
 }
-},{}],322:[function(require,module,exports){
+},{}],261:[function(require,module,exports){
 module.exports = max;
 
 /**
@@ -52803,7 +33096,7 @@ function max(out, a, b) {
     out[2] = Math.max(a[2], b[2])
     return out
 }
-},{}],323:[function(require,module,exports){
+},{}],262:[function(require,module,exports){
 module.exports = min;
 
 /**
@@ -52820,7 +33113,7 @@ function min(out, a, b) {
     out[2] = Math.min(a[2], b[2])
     return out
 }
-},{}],324:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -52837,7 +33130,7 @@ function multiply(out, a, b) {
     out[2] = a[2] * b[2]
     return out
 }
-},{}],325:[function(require,module,exports){
+},{}],264:[function(require,module,exports){
 module.exports = negate;
 
 /**
@@ -52853,7 +33146,7 @@ function negate(out, a) {
     out[2] = -a[2]
     return out
 }
-},{}],326:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 module.exports = normalize;
 
 /**
@@ -52877,7 +33170,7 @@ function normalize(out, a) {
     }
     return out
 }
-},{}],327:[function(require,module,exports){
+},{}],266:[function(require,module,exports){
 module.exports = random;
 
 /**
@@ -52899,7 +33192,7 @@ function random(out, scale) {
     out[2] = z * scale
     return out
 }
-},{}],328:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -52929,7 +33222,7 @@ function rotateX(out, a, b, c){
 
     return out
 }
-},{}],329:[function(require,module,exports){
+},{}],268:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -52959,7 +33252,7 @@ function rotateY(out, a, b, c){
   
     return out
 }
-},{}],330:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -52989,7 +33282,7 @@ function rotateZ(out, a, b, c){
   
     return out
 }
-},{}],331:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -53006,7 +33299,7 @@ function scale(out, a, b) {
     out[2] = a[2] * b
     return out
 }
-},{}],332:[function(require,module,exports){
+},{}],271:[function(require,module,exports){
 module.exports = scaleAndAdd;
 
 /**
@@ -53024,7 +33317,7 @@ function scaleAndAdd(out, a, b, scale) {
     out[2] = a[2] + (b[2] * scale)
     return out
 }
-},{}],333:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 module.exports = set;
 
 /**
@@ -53042,7 +33335,7 @@ function set(out, x, y, z) {
     out[2] = z
     return out
 }
-},{}],334:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 module.exports = squaredDistance;
 
 /**
@@ -53058,7 +33351,7 @@ function squaredDistance(a, b) {
         z = b[2] - a[2]
     return x*x + y*y + z*z
 }
-},{}],335:[function(require,module,exports){
+},{}],274:[function(require,module,exports){
 module.exports = squaredLength;
 
 /**
@@ -53073,7 +33366,7 @@ function squaredLength(a) {
         z = a[2]
     return x*x + y*y + z*z
 }
-},{}],336:[function(require,module,exports){
+},{}],275:[function(require,module,exports){
 module.exports = subtract;
 
 /**
@@ -53090,7 +33383,7 @@ function subtract(out, a, b) {
     out[2] = a[2] - b[2]
     return out
 }
-},{}],337:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 module.exports = transformMat3;
 
 /**
@@ -53108,7 +33401,7 @@ function transformMat3(out, a, m) {
     out[2] = x * m[2] + y * m[5] + z * m[8]
     return out
 }
-},{}],338:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 module.exports = transformMat4;
 
 /**
@@ -53129,7 +33422,7 @@ function transformMat4(out, a, m) {
     out[2] = (m[2] * x + m[6] * y + m[10] * z + m[14]) / w
     return out
 }
-},{}],339:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 module.exports = transformQuat;
 
 /**
@@ -53158,9 +33451,9 @@ function transformQuat(out, a, q) {
     out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx
     return out
 }
-},{}],340:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],341:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],280:[function(require,module,exports){
 module.exports = function(arr) {
   if (!arr) return false
   if (!arr.dtype) return false
@@ -53168,11 +33461,11 @@ module.exports = function(arr) {
   return re.test(String(arr.constructor))
 }
 
-},{}],342:[function(require,module,exports){
+},{}],281:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":343}],343:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":282}],282:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],344:[function(require,module,exports){
+},{"dup":97}],283:[function(require,module,exports){
 'use strict';
 
 var obsolete = function(object, property, reason) {
@@ -53188,7 +33481,7 @@ var obsolete = function(object, property, reason) {
 
 module.exports = obsolete;
 
-},{}],345:[function(require,module,exports){
+},{}],284:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -53324,7 +33617,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":346,"aabb-3d":285}],346:[function(require,module,exports){
+},{"./tree":285,"aabb-3d":224}],285:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -53450,7 +33743,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":285}],347:[function(require,module,exports){
+},{"aabb-3d":224}],286:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -53497,7 +33790,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],348:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -53791,7 +34084,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":1191}],349:[function(require,module,exports){
+},{"stream":1130}],288:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -53858,7 +34151,7 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
 
 module.exports = createVoxelMesh
 
-},{"./mesh.js":351,"gl-buffer":357,"gl-mat4":369,"gl-vao":389,"ndarray":402,"ndarray-ops":397}],350:[function(require,module,exports){
+},{"./mesh.js":290,"gl-buffer":296,"gl-mat4":308,"gl-vao":328,"ndarray":341,"ndarray-ops":336}],289:[function(require,module,exports){
 'use strict';
 
 var createVoxelMesh = require('./mesh-buffer.js');
@@ -53987,7 +34280,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":349,"block-models":352,"events":1175,"gl-buffer":357,"gl-vao":389,"inherits":396,"ndarray":402,"ndarray-ops":397}],351:[function(require,module,exports){
+},{"./mesh-buffer.js":288,"block-models":291,"events":1114,"gl-buffer":296,"gl-vao":328,"inherits":335,"ndarray":341,"ndarray-ops":336}],290:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -54538,7 +34831,7 @@ function computeMesh(array, voxelSideTextureIDs, voxelSideTextureSizes) {
 
 module.exports = computeMesh
 
-},{"cwise-compiler":353,"greedy-mesher":390,"ndarray":402,"typedarray-pool":406}],352:[function(require,module,exports){
+},{"cwise-compiler":292,"greedy-mesher":329,"ndarray":341,"typedarray-pool":345}],291:[function(require,module,exports){
 'use strict';
 
 // get all coordinates for a cube ranging from vertex a to b
@@ -54684,81 +34977,81 @@ var parseBlockModel = function(elements, getTextureUV, x, y, z) {
 module.exports = parseBlockModel;
 
 
-},{}],353:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":355,"dup":92}],354:[function(require,module,exports){
+},{"./lib/thunk.js":294,"dup":92}],293:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":356}],355:[function(require,module,exports){
+},{"dup":93,"uniq":295}],294:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":354,"dup":94}],356:[function(require,module,exports){
+},{"./compile.js":293,"dup":94}],295:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],357:[function(require,module,exports){
+},{"dup":95}],296:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":402,"ndarray-ops":397,"typedarray-pool":406,"webglew":359}],358:[function(require,module,exports){
+},{"dup":90,"ndarray":341,"ndarray-ops":336,"typedarray-pool":345,"webglew":298}],297:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],359:[function(require,module,exports){
+},{"dup":101}],298:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":358}],360:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],361:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],362:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],363:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],364:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],365:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],366:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],367:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],368:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],369:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":360,"./clone":361,"./copy":362,"./create":363,"./determinant":364,"./fromQuat":365,"./fromRotationTranslation":366,"./frustum":367,"./identity":368,"./invert":370,"./lookAt":371,"./multiply":372,"./ortho":373,"./perspective":374,"./perspectiveFromFieldOfView":375,"./rotate":376,"./rotateX":377,"./rotateY":378,"./rotateZ":379,"./scale":380,"./str":381,"./translate":382,"./transpose":383,"dup":221}],370:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],371:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":368,"dup":223}],372:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],373:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],374:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],375:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],376:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],377:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],378:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],379:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],380:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],381:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],382:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],383:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],384:[function(require,module,exports){
+},{"dup":102,"weakmap":297}],299:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],300:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],301:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],302:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],303:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],304:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],305:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],306:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],307:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],308:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":299,"./clone":300,"./copy":301,"./create":302,"./determinant":303,"./fromQuat":304,"./fromRotationTranslation":305,"./frustum":306,"./identity":307,"./invert":309,"./lookAt":310,"./multiply":311,"./ortho":312,"./perspective":313,"./perspectiveFromFieldOfView":314,"./rotate":315,"./rotateX":316,"./rotateY":317,"./rotateZ":318,"./scale":319,"./str":320,"./translate":321,"./transpose":322,"dup":160}],309:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],310:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":307,"dup":162}],311:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],312:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],313:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],314:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],315:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],316:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],317:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],318:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],319:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],320:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],321:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],322:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],323:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],385:[function(require,module,exports){
+},{"dup":103}],324:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":384,"dup":104}],386:[function(require,module,exports){
+},{"./do-bind.js":323,"dup":104}],325:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":384,"dup":105}],387:[function(require,module,exports){
+},{"./do-bind.js":323,"dup":105}],326:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],388:[function(require,module,exports){
+},{"dup":101}],327:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":387}],389:[function(require,module,exports){
+},{"dup":102,"weakmap":326}],328:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":385,"./lib/vao-native.js":386,"dup":108,"webglew":388}],390:[function(require,module,exports){
+},{"./lib/vao-emulated.js":324,"./lib/vao-native.js":325,"dup":108,"webglew":327}],329:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -54957,39 +35250,39 @@ function compileMesher(options) {
 }
 module.exports = compileMesher
 
-},{"iota-array":391,"typedarray-pool":394,"uniq":395}],391:[function(require,module,exports){
+},{"iota-array":330,"typedarray-pool":333,"uniq":334}],330:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],392:[function(require,module,exports){
+},{"dup":97}],331:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],393:[function(require,module,exports){
+},{"dup":98}],332:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],394:[function(require,module,exports){
+},{"dup":99}],333:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":392,"buffer":1171,"dup":100}],395:[function(require,module,exports){
+},{"bit-twiddle":331,"buffer":1110,"dup":100}],334:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],396:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],397:[function(require,module,exports){
+},{"dup":95}],335:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],336:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":398,"dup":91}],398:[function(require,module,exports){
+},{"cwise-compiler":337,"dup":91}],337:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":400,"dup":92}],399:[function(require,module,exports){
+},{"./lib/thunk.js":339,"dup":92}],338:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":401}],400:[function(require,module,exports){
+},{"dup":93,"uniq":340}],339:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":399,"dup":94}],401:[function(require,module,exports){
+},{"./compile.js":338,"dup":94}],340:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],402:[function(require,module,exports){
+},{"dup":95}],341:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":403}],403:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":342}],342:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],404:[function(require,module,exports){
+},{"dup":97}],343:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],405:[function(require,module,exports){
+},{"dup":98}],344:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],406:[function(require,module,exports){
+},{"dup":99}],345:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":404,"buffer":1171,"dup":100}],407:[function(require,module,exports){
+},{"bit-twiddle":343,"buffer":1110,"dup":100}],346:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -55088,9 +35381,9 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":408}],408:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],409:[function(require,module,exports){
+},{"gl-matrix":347}],347:[function(require,module,exports){
+arguments[4][225][0].apply(exports,arguments)
+},{"dup":225}],348:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -55350,7 +35643,7 @@ proto.fell = function(distance) {
   return
 }
 
-},{"aabb-3d":407,"gl-matrix":408}],410:[function(require,module,exports){
+},{"aabb-3d":346,"gl-matrix":347}],349:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -55381,7 +35674,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],411:[function(require,module,exports){
+},{}],350:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -55455,7 +35748,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":1194}],412:[function(require,module,exports){
+},{"util":1133}],351:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -55772,7 +36065,7 @@ Plugins.prototype.destroy = function(name) {
 inherits(Plugins, EventEmitter);
 
 }).call(this,require('_process'))
-},{"_process":1179,"events":1175,"inherits":410,"tsort":411}],413:[function(require,module,exports){
+},{"_process":1118,"events":1114,"inherits":349,"tsort":350}],352:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -55994,7 +36287,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],414:[function(require,module,exports){
+},{}],353:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -56022,9 +36315,9 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":415,"events":1175}],415:[function(require,module,exports){
-arguments[4][407][0].apply(exports,arguments)
-},{"dup":407,"gl-matrix":416}],416:[function(require,module,exports){
+},{"aabb-3d":354,"events":1114}],354:[function(require,module,exports){
+arguments[4][346][0].apply(exports,arguments)
+},{"dup":346,"gl-matrix":355}],355:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -59897,7 +40190,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],417:[function(require,module,exports){
+},{}],356:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -60155,7 +40448,7 @@ Registry.prototype.getTextureURL = function(name) {
 
 
 
-},{}],418:[function(require,module,exports){
+},{}],357:[function(require,module,exports){
 var glslify = require("glslify");
 var fs = require("fs");
 var mat4 = require("gl-mat4");
@@ -60307,69 +40600,69 @@ ShaderPlugin.prototype.createAOShader = function() {
 ShaderPlugin.prototype.createCustomModelShader = function() {
     return require("glslify/adapter.js")("\n#define GLSLIFY 1\n\nattribute vec3 position;\nattribute vec2 uv;\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nvarying vec2 vUv;\nvoid main() {\n  gl_Position = projection * view * model * vec4(position, 1.0);\n  vUv = uv;\n}", "\n#define GLSLIFY 1\n\nprecision highp float;\nuniform sampler2D texture;\nvarying vec2 vUv;\nvoid main() {\n  gl_FragColor = texture2D(texture, vUv);\n}", [{"name":"projection","type":"mat4"},{"name":"view","type":"mat4"},{"name":"model","type":"mat4"},{"name":"texture","type":"sampler2D"}], [{"name":"position","type":"vec3"},{"name":"uv","type":"vec2"}])(this.shell.gl);
 };
-},{"events":1175,"fs":1156,"gl-mat4":428,"glslify":444,"glslify/adapter.js":443,"inherits":340}],419:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],420:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],421:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],422:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],423:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],424:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],425:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],426:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],427:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],428:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":419,"./clone":420,"./copy":421,"./create":422,"./determinant":423,"./fromQuat":424,"./fromRotationTranslation":425,"./frustum":426,"./identity":427,"./invert":429,"./lookAt":430,"./multiply":431,"./ortho":432,"./perspective":433,"./perspectiveFromFieldOfView":434,"./rotate":435,"./rotateX":436,"./rotateY":437,"./rotateZ":438,"./scale":439,"./str":440,"./translate":441,"./transpose":442,"dup":221}],429:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],430:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":427,"dup":223}],431:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],432:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],433:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],434:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],435:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],436:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],437:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],438:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],439:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],440:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],441:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],442:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],443:[function(require,module,exports){
-arguments[4][242][0].apply(exports,arguments)
-},{"dup":242,"gl-shader-core":449}],444:[function(require,module,exports){
-arguments[4][243][0].apply(exports,arguments)
-},{"dup":243}],445:[function(require,module,exports){
-arguments[4][244][0].apply(exports,arguments)
-},{"dup":244}],446:[function(require,module,exports){
-arguments[4][245][0].apply(exports,arguments)
-},{"./reflect":447,"dup":245}],447:[function(require,module,exports){
-arguments[4][246][0].apply(exports,arguments)
-},{"dup":246}],448:[function(require,module,exports){
+},{"events":1114,"fs":1095,"gl-mat4":367,"glslify":383,"glslify/adapter.js":382,"inherits":279}],358:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],359:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],360:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],361:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],362:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],363:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],364:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],365:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],366:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],367:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":358,"./clone":359,"./copy":360,"./create":361,"./determinant":362,"./fromQuat":363,"./fromRotationTranslation":364,"./frustum":365,"./identity":366,"./invert":368,"./lookAt":369,"./multiply":370,"./ortho":371,"./perspective":372,"./perspectiveFromFieldOfView":373,"./rotate":374,"./rotateX":375,"./rotateY":376,"./rotateZ":377,"./scale":378,"./str":379,"./translate":380,"./transpose":381,"dup":160}],368:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],369:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":366,"dup":162}],370:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],371:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],372:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],373:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],374:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],375:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],376:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],377:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],378:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],379:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],380:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],381:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],382:[function(require,module,exports){
+arguments[4][181][0].apply(exports,arguments)
+},{"dup":181,"gl-shader-core":388}],383:[function(require,module,exports){
+arguments[4][182][0].apply(exports,arguments)
+},{"dup":182}],384:[function(require,module,exports){
+arguments[4][183][0].apply(exports,arguments)
+},{"dup":183}],385:[function(require,module,exports){
+arguments[4][184][0].apply(exports,arguments)
+},{"./reflect":386,"dup":184}],386:[function(require,module,exports){
+arguments[4][185][0].apply(exports,arguments)
+},{"dup":185}],387:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],449:[function(require,module,exports){
-arguments[4][248][0].apply(exports,arguments)
-},{"./lib/create-attributes":445,"./lib/create-uniforms":446,"./lib/reflect":447,"dup":248}],450:[function(require,module,exports){
+},{"dup":99}],388:[function(require,module,exports){
+arguments[4][187][0].apply(exports,arguments)
+},{"./lib/create-attributes":384,"./lib/create-uniforms":385,"./lib/reflect":386,"dup":187}],389:[function(require,module,exports){
 var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -60853,7 +41146,7 @@ module.exports = function(opts) {
 };
 
 
-},{"binary-xhr":451,"events":1175,"fs":1156,"get-pixels":453,"graycolorize":466,"mcmeta":470,"path":1178,"save-pixels":491,"zip":507}],451:[function(require,module,exports){
+},{"binary-xhr":390,"events":1114,"fs":1095,"get-pixels":392,"graycolorize":405,"mcmeta":409,"path":1117,"save-pixels":430,"zip":446}],390:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -60881,9 +41174,9 @@ function BinaryXHR(url, cb) {
   xhr.send(null)
 }
 
-},{"inherits":452}],452:[function(require,module,exports){
-arguments[4][410][0].apply(exports,arguments)
-},{"dup":410}],453:[function(require,module,exports){
+},{"inherits":391}],391:[function(require,module,exports){
+arguments[4][349][0].apply(exports,arguments)
+},{"dup":349}],392:[function(require,module,exports){
 "use strict"
 
 var path = require("path")
@@ -61010,7 +41303,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":460,"ndarray-pack":454,"omggif":462,"path":1178,"ppm":464,"through":465}],454:[function(require,module,exports){
+},{"ndarray":399,"ndarray-pack":393,"omggif":401,"path":1117,"ppm":403,"through":404}],393:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -61033,10 +41326,10 @@ module.exports = function convert(arr, result) {
   return result
 }
 
-},{"./doConvert.js":455,"ndarray":460}],455:[function(require,module,exports){
+},{"./doConvert.js":394,"ndarray":399}],394:[function(require,module,exports){
 module.exports=require('cwise-compiler')({"args":["array","scalar","index"],"pre":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"body":{"body":"{\nvar _inline_1_v=_inline_1_arg1_,_inline_1_i\nfor(_inline_1_i=0;_inline_1_i<_inline_1_arg2_.length-1;++_inline_1_i) {\n_inline_1_v=_inline_1_v[_inline_1_arg2_[_inline_1_i]]\n}\n_inline_1_arg0_=_inline_1_v[_inline_1_arg2_[_inline_1_arg2_.length-1]]\n}","args":[{"name":"_inline_1_arg0_","lvalue":true,"rvalue":false,"count":1},{"name":"_inline_1_arg1_","lvalue":false,"rvalue":true,"count":1},{"name":"_inline_1_arg2_","lvalue":false,"rvalue":true,"count":4}],"thisVars":[],"localVars":["_inline_1_i","_inline_1_v"]},"post":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"funcName":"convert","blockSize":64})
 
-},{"cwise-compiler":456}],456:[function(require,module,exports){
+},{"cwise-compiler":395}],395:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -61144,7 +41437,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":458}],457:[function(require,module,exports){
+},{"./lib/thunk.js":397}],396:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -61428,11 +41721,11 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":459}],458:[function(require,module,exports){
+},{"uniq":398}],397:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":457,"dup":94}],459:[function(require,module,exports){
+},{"./compile.js":396,"dup":94}],398:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],460:[function(require,module,exports){
+},{"dup":122}],399:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -61780,9 +42073,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"iota-array":461}],461:[function(require,module,exports){
+},{"buffer":1110,"iota-array":400}],400:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],462:[function(require,module,exports){
+},{"dup":97}],401:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -62513,7 +42806,7 @@ function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
 
 try { exports.GifWriter = GifWriter; exports.GifReader = GifReader } catch(e) { }  // CommonJS.
 
-},{}],463:[function(require,module,exports){
+},{}],402:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -62620,7 +42913,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":1179,"stream":1191}],464:[function(require,module,exports){
+},{"_process":1118,"stream":1130}],403:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -62942,9 +43235,9 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1179,"buffer":1171,"through":463}],465:[function(require,module,exports){
+},{"_process":1118,"buffer":1110,"through":402}],404:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],466:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],405:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -63028,11 +43321,11 @@ var graycolorize = function(pixels, colors) {
 module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
-},{"ndarray":467,"onecolor":469}],467:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":468}],468:[function(require,module,exports){
+},{"ndarray":406,"onecolor":408}],406:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":407}],407:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],469:[function(require,module,exports){
+},{"dup":97}],408:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
 /*global define*/
 var installedColorSpaces = [],
@@ -63788,7 +44081,7 @@ ONECOLOR.installMethod('toAlpha', function (color) {
 // Convenience functions
 
 
-},{}],470:[function(require,module,exports){
+},{}],409:[function(require,module,exports){
 'use strict';
 
 var getPixels = require('get-pixels');
@@ -63930,7 +44223,7 @@ module.exports.getFrames = getFrames;
 module.exports.parseFramesInfo = parseFramesInfo;
 module.exports.splitTiles = splitTiles;
 
-},{"get-pixels":471,"save-pixels":482}],471:[function(require,module,exports){
+},{"get-pixels":410,"save-pixels":421}],410:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -63952,11 +44245,11 @@ module.exports = function getPixels(url, cb) {
   img.src = url
 }
 
-},{"ndarray":472}],472:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":473}],473:[function(require,module,exports){
+},{"ndarray":411}],411:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":412}],412:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],474:[function(require,module,exports){
+},{"dup":97}],413:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64158,7 +44451,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"stream":1191,"util":1194}],475:[function(require,module,exports){
+},{"buffer":1110,"stream":1130,"util":1133}],414:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64198,7 +44491,7 @@ module.exports = {
     COLOR_ALPHA: 4
 };
 
-},{}],476:[function(require,module,exports){
+},{}],415:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -64279,7 +44572,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":1191,"util":1194}],477:[function(require,module,exports){
+},{"stream":1130,"util":1133}],416:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64597,7 +44890,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":474,"buffer":1171,"util":1194,"zlib":1170}],478:[function(require,module,exports){
+},{"./chunkstream":413,"buffer":1110,"util":1133,"zlib":1109}],417:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -64711,7 +45004,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":475,"./crc":476,"./filter":477,"buffer":1171,"stream":1191,"util":1194,"zlib":1170}],479:[function(require,module,exports){
+},{"./constants":414,"./crc":415,"./filter":416,"buffer":1110,"stream":1130,"util":1133,"zlib":1109}],418:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -65074,7 +45367,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":474,"./constants":475,"./crc":476,"./filter":477,"buffer":1171,"util":1194,"zlib":1170}],480:[function(require,module,exports){
+},{"./chunkstream":413,"./constants":414,"./crc":415,"./filter":416,"buffer":1110,"util":1133,"zlib":1109}],419:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -65225,9 +45518,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"./packer":478,"./parser":479,"_process":1179,"buffer":1171,"stream":1191,"util":1194}],481:[function(require,module,exports){
+},{"./packer":417,"./parser":418,"_process":1118,"buffer":1110,"stream":1130,"util":1133}],420:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],482:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],421:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -65319,25 +45612,25 @@ module.exports = function savePixels(array, type) {
   }
 }
 
-},{"pngjs":480,"through":481}],483:[function(require,module,exports){
-arguments[4][474][0].apply(exports,arguments)
-},{"buffer":1171,"dup":474,"stream":1191,"util":1194}],484:[function(require,module,exports){
-arguments[4][475][0].apply(exports,arguments)
-},{"dup":475}],485:[function(require,module,exports){
-arguments[4][476][0].apply(exports,arguments)
-},{"dup":476,"stream":1191,"util":1194}],486:[function(require,module,exports){
-arguments[4][477][0].apply(exports,arguments)
-},{"./chunkstream":483,"buffer":1171,"dup":477,"util":1194,"zlib":1170}],487:[function(require,module,exports){
-arguments[4][478][0].apply(exports,arguments)
-},{"./constants":484,"./crc":485,"./filter":486,"buffer":1171,"dup":478,"stream":1191,"util":1194,"zlib":1170}],488:[function(require,module,exports){
-arguments[4][479][0].apply(exports,arguments)
-},{"./chunkstream":483,"./constants":484,"./crc":485,"./filter":486,"buffer":1171,"dup":479,"util":1194,"zlib":1170}],489:[function(require,module,exports){
-arguments[4][480][0].apply(exports,arguments)
-},{"./packer":487,"./parser":488,"_process":1179,"buffer":1171,"dup":480,"stream":1191,"util":1194}],490:[function(require,module,exports){
+},{"pngjs":419,"through":420}],422:[function(require,module,exports){
+arguments[4][413][0].apply(exports,arguments)
+},{"buffer":1110,"dup":413,"stream":1130,"util":1133}],423:[function(require,module,exports){
+arguments[4][414][0].apply(exports,arguments)
+},{"dup":414}],424:[function(require,module,exports){
+arguments[4][415][0].apply(exports,arguments)
+},{"dup":415,"stream":1130,"util":1133}],425:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"./chunkstream":422,"buffer":1110,"dup":416,"util":1133,"zlib":1109}],426:[function(require,module,exports){
+arguments[4][417][0].apply(exports,arguments)
+},{"./constants":423,"./crc":424,"./filter":425,"buffer":1110,"dup":417,"stream":1130,"util":1133,"zlib":1109}],427:[function(require,module,exports){
+arguments[4][418][0].apply(exports,arguments)
+},{"./chunkstream":422,"./constants":423,"./crc":424,"./filter":425,"buffer":1110,"dup":418,"util":1133,"zlib":1109}],428:[function(require,module,exports){
+arguments[4][419][0].apply(exports,arguments)
+},{"./packer":426,"./parser":427,"_process":1118,"buffer":1110,"dup":419,"stream":1130,"util":1133}],429:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],491:[function(require,module,exports){
-arguments[4][482][0].apply(exports,arguments)
-},{"dup":482,"pngjs":489,"through":490}],492:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],430:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421,"pngjs":428,"through":429}],431:[function(require,module,exports){
 
 var bops = require("bops");
 
@@ -65396,7 +45689,7 @@ function consolidate(buffers) {
 }
 
 
-},{"bops":494}],493:[function(require,module,exports){
+},{"bops":433}],432:[function(require,module,exports){
 /* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
  * Version: 1.0.0.1
  * LastModified: Dec 25 1999
@@ -66152,7 +46445,7 @@ exports.inflate = function (input) {
 };
 
 
-},{"./buffer-io":492,"bops":494}],494:[function(require,module,exports){
+},{"./buffer-io":431,"bops":433}],433:[function(require,module,exports){
 var proto = {}
 module.exports = proto
 
@@ -66173,7 +46466,7 @@ function mix(from, into) {
   }
 }
 
-},{"./copy.js":497,"./create.js":498,"./from.js":499,"./is.js":500,"./join.js":501,"./read.js":503,"./subarray.js":504,"./to.js":505,"./write.js":506}],495:[function(require,module,exports){
+},{"./copy.js":436,"./create.js":437,"./from.js":438,"./is.js":439,"./join.js":440,"./read.js":442,"./subarray.js":443,"./to.js":444,"./write.js":445}],434:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -66259,7 +46552,7 @@ function mix(from, into) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],496:[function(require,module,exports){
+},{}],435:[function(require,module,exports){
 module.exports = to_utf8
 
 var out = []
@@ -66334,7 +46627,7 @@ function reduced(list) {
   return out
 }
 
-},{}],497:[function(require,module,exports){
+},{}],436:[function(require,module,exports){
 module.exports = copy
 
 var slice = [].slice
@@ -66388,12 +46681,12 @@ function slow_copy(from, to, j, i, jend) {
   }
 }
 
-},{}],498:[function(require,module,exports){
+},{}],437:[function(require,module,exports){
 module.exports = function(size) {
   return new Uint8Array(size)
 }
 
-},{}],499:[function(require,module,exports){
+},{}],438:[function(require,module,exports){
 module.exports = from
 
 var base64 = require('base64-js')
@@ -66529,13 +46822,13 @@ function from_base64(str) {
   return new Uint8Array(base64.toByteArray(str)) 
 }
 
-},{"base64-js":495}],500:[function(require,module,exports){
+},{"base64-js":434}],439:[function(require,module,exports){
 
 module.exports = function(buffer) {
   return buffer instanceof Uint8Array;
 }
 
-},{}],501:[function(require,module,exports){
+},{}],440:[function(require,module,exports){
 module.exports = join
 
 function join(targets, hint) {
@@ -66573,7 +46866,7 @@ function get_length(targets) {
   return size
 }
 
-},{}],502:[function(require,module,exports){
+},{}],441:[function(require,module,exports){
 var proto
   , map
 
@@ -66595,7 +46888,7 @@ function get(target) {
   return out
 }
 
-},{}],503:[function(require,module,exports){
+},{}],442:[function(require,module,exports){
 module.exports = {
     readUInt8:      read_uint8
   , readInt8:       read_int8
@@ -66684,14 +46977,14 @@ function read_double_be(target, at) {
   return dv.getFloat64(at + target.byteOffset, false)
 }
 
-},{"./mapped.js":502}],504:[function(require,module,exports){
+},{"./mapped.js":441}],443:[function(require,module,exports){
 module.exports = subarray
 
 function subarray(buf, from, to) {
   return buf.subarray(from || 0, to || buf.length)
 }
 
-},{}],505:[function(require,module,exports){
+},{}],444:[function(require,module,exports){
 module.exports = to
 
 var base64 = require('base64-js')
@@ -66729,7 +47022,7 @@ function to_base64(buf) {
 }
 
 
-},{"base64-js":495,"to-utf8":496}],506:[function(require,module,exports){
+},{"base64-js":434,"to-utf8":435}],445:[function(require,module,exports){
 module.exports = {
     writeUInt8:      write_uint8
   , writeInt8:       write_int8
@@ -66817,7 +47110,7 @@ function write_double_be(target, value, at) {
   return dv.setFloat64(at + target.byteOffset, value, false)
 }
 
-},{"./mapped.js":502}],507:[function(require,module,exports){
+},{"./mapped.js":441}],446:[function(require,module,exports){
 (function (process){
 // Tom Robinson
 // Kris Kowal
@@ -67282,7 +47575,7 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require('_process'))
-},{"./inflate":493,"_process":1179,"bops":494,"fs":1156}],508:[function(require,module,exports){
+},{"./inflate":432,"_process":1118,"bops":433,"fs":1095}],447:[function(require,module,exports){
 (function (global){
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.atlaspack=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
@@ -67544,33 +47837,33 @@ Atlas.prototype._debug = function() {
 });;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],509:[function(require,module,exports){
+},{}],448:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],510:[function(require,module,exports){
+},{"dup":39}],449:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":511,"dup":91}],511:[function(require,module,exports){
+},{"cwise-compiler":450,"dup":91}],450:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":513,"dup":92}],512:[function(require,module,exports){
+},{"./lib/thunk.js":452,"dup":92}],451:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":514}],513:[function(require,module,exports){
+},{"dup":93,"uniq":453}],452:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":512,"dup":94}],514:[function(require,module,exports){
+},{"./compile.js":451,"dup":94}],453:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],515:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":516}],516:[function(require,module,exports){
+},{"dup":95}],454:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":455}],455:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],517:[function(require,module,exports){
+},{"dup":97}],456:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],518:[function(require,module,exports){
+},{"dup":98}],457:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],519:[function(require,module,exports){
+},{"dup":99}],458:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":517,"buffer":1171,"dup":100}],520:[function(require,module,exports){
+},{"bit-twiddle":456,"buffer":1110,"dup":100}],459:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],521:[function(require,module,exports){
+},{"dup":101}],460:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":520}],522:[function(require,module,exports){
+},{"dup":102,"weakmap":459}],461:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -68065,9 +48358,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":515,"ndarray-ops":510,"typedarray-pool":519,"webglew":521}],523:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],524:[function(require,module,exports){
+},{"ndarray":454,"ndarray-ops":449,"typedarray-pool":458,"webglew":460}],462:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],463:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -68092,15 +48385,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":525}],525:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":526}],526:[function(require,module,exports){
+},{"ndarray":464}],464:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":465}],465:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],527:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":528}],528:[function(require,module,exports){
+},{"dup":97}],466:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":467}],467:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],529:[function(require,module,exports){
+},{"dup":97}],468:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -68216,7 +48509,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":575,"ndarray-downsample2x":530,"ndarray-ops":570}],530:[function(require,module,exports){
+},{"ndarray":514,"ndarray-downsample2x":469,"ndarray-ops":509}],469:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -68301,7 +48594,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":531,"ndarray-fft":539,"ndarray-ops":559,"ndarray-scratch":569}],531:[function(require,module,exports){
+},{"cwise":470,"ndarray-fft":478,"ndarray-ops":498,"ndarray-scratch":508}],470:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -68338,7 +48631,7 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":532,"cwise-parser":536}],532:[function(require,module,exports){
+},{"cwise-compiler":471,"cwise-parser":475}],471:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -68444,7 +48737,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":534}],533:[function(require,module,exports){
+},{"./lib/thunk.js":473}],472:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -68701,11 +48994,11 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":535}],534:[function(require,module,exports){
+},{"uniq":474}],473:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":533,"dup":94}],535:[function(require,module,exports){
+},{"./compile.js":472,"dup":94}],474:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],536:[function(require,module,exports){
+},{"dup":122}],475:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -68901,7 +49194,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":537,"uniq":538}],537:[function(require,module,exports){
+},{"esprima":476,"uniq":477}],476:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -72811,9 +53104,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],538:[function(require,module,exports){
+},{}],477:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],539:[function(require,module,exports){
+},{"dup":122}],478:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -72898,7 +53191,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":540,"cwise":542,"ndarray":555,"ndarray-ops":550,"typedarray-pool":558}],540:[function(require,module,exports){
+},{"./lib/fft-matrix.js":479,"cwise":481,"ndarray":494,"ndarray-ops":489,"typedarray-pool":497}],479:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -73117,25 +53410,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":541}],541:[function(require,module,exports){
+},{"bit-twiddle":480}],480:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],542:[function(require,module,exports){
-arguments[4][531][0].apply(exports,arguments)
-},{"cwise-compiler":543,"cwise-parser":547,"dup":531}],543:[function(require,module,exports){
-arguments[4][532][0].apply(exports,arguments)
-},{"./lib/thunk.js":545,"dup":532}],544:[function(require,module,exports){
-arguments[4][533][0].apply(exports,arguments)
-},{"dup":533,"uniq":546}],545:[function(require,module,exports){
+},{"dup":98}],481:[function(require,module,exports){
+arguments[4][470][0].apply(exports,arguments)
+},{"cwise-compiler":482,"cwise-parser":486,"dup":470}],482:[function(require,module,exports){
+arguments[4][471][0].apply(exports,arguments)
+},{"./lib/thunk.js":484,"dup":471}],483:[function(require,module,exports){
+arguments[4][472][0].apply(exports,arguments)
+},{"dup":472,"uniq":485}],484:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":544,"dup":94}],546:[function(require,module,exports){
+},{"./compile.js":483,"dup":94}],485:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],547:[function(require,module,exports){
-arguments[4][536][0].apply(exports,arguments)
-},{"dup":536,"esprima":548,"uniq":549}],548:[function(require,module,exports){
-arguments[4][537][0].apply(exports,arguments)
-},{"dup":537}],549:[function(require,module,exports){
+},{"dup":122}],486:[function(require,module,exports){
+arguments[4][475][0].apply(exports,arguments)
+},{"dup":475,"esprima":487,"uniq":488}],487:[function(require,module,exports){
+arguments[4][476][0].apply(exports,arguments)
+},{"dup":476}],488:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],550:[function(require,module,exports){
+},{"dup":122}],489:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -73584,21 +53877,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":551}],551:[function(require,module,exports){
-arguments[4][532][0].apply(exports,arguments)
-},{"./lib/thunk.js":553,"dup":532}],552:[function(require,module,exports){
-arguments[4][533][0].apply(exports,arguments)
-},{"dup":533,"uniq":554}],553:[function(require,module,exports){
+},{"cwise-compiler":490}],490:[function(require,module,exports){
+arguments[4][471][0].apply(exports,arguments)
+},{"./lib/thunk.js":492,"dup":471}],491:[function(require,module,exports){
+arguments[4][472][0].apply(exports,arguments)
+},{"dup":472,"uniq":493}],492:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":552,"dup":94}],554:[function(require,module,exports){
+},{"./compile.js":491,"dup":94}],493:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],555:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":556}],556:[function(require,module,exports){
+},{"dup":122}],494:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":495}],495:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],557:[function(require,module,exports){
+},{"dup":97}],496:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],558:[function(require,module,exports){
+},{"dup":99}],497:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -73883,27 +54176,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":541,"dup":557}],559:[function(require,module,exports){
-arguments[4][550][0].apply(exports,arguments)
-},{"cwise-compiler":560,"dup":550}],560:[function(require,module,exports){
-arguments[4][532][0].apply(exports,arguments)
-},{"./lib/thunk.js":562,"dup":532}],561:[function(require,module,exports){
-arguments[4][533][0].apply(exports,arguments)
-},{"dup":533,"uniq":563}],562:[function(require,module,exports){
+},{"bit-twiddle":480,"dup":496}],498:[function(require,module,exports){
+arguments[4][489][0].apply(exports,arguments)
+},{"cwise-compiler":499,"dup":489}],499:[function(require,module,exports){
+arguments[4][471][0].apply(exports,arguments)
+},{"./lib/thunk.js":501,"dup":471}],500:[function(require,module,exports){
+arguments[4][472][0].apply(exports,arguments)
+},{"dup":472,"uniq":502}],501:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":561,"dup":94}],563:[function(require,module,exports){
+},{"./compile.js":500,"dup":94}],502:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],564:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":565}],565:[function(require,module,exports){
+},{"dup":122}],503:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":504}],504:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],566:[function(require,module,exports){
+},{"dup":97}],505:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],567:[function(require,module,exports){
+},{"dup":98}],506:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],568:[function(require,module,exports){
-arguments[4][558][0].apply(exports,arguments)
-},{"bit-twiddle":566,"dup":558}],569:[function(require,module,exports){
+},{"dup":99}],507:[function(require,module,exports){
+arguments[4][497][0].apply(exports,arguments)
+},{"bit-twiddle":505,"dup":497}],508:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -73927,41 +54220,41 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":564,"typedarray-pool":568}],570:[function(require,module,exports){
+},{"ndarray":503,"typedarray-pool":507}],509:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":571,"dup":91}],571:[function(require,module,exports){
+},{"cwise-compiler":510,"dup":91}],510:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":573,"dup":92}],572:[function(require,module,exports){
+},{"./lib/thunk.js":512,"dup":92}],511:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":574}],573:[function(require,module,exports){
+},{"dup":93,"uniq":513}],512:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":572,"dup":94}],574:[function(require,module,exports){
+},{"./compile.js":511,"dup":94}],513:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],575:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":576}],576:[function(require,module,exports){
+},{"dup":95}],514:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":515}],515:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],577:[function(require,module,exports){
-arguments[4][474][0].apply(exports,arguments)
-},{"buffer":1171,"dup":474,"stream":1191,"util":1194}],578:[function(require,module,exports){
-arguments[4][475][0].apply(exports,arguments)
-},{"dup":475}],579:[function(require,module,exports){
-arguments[4][476][0].apply(exports,arguments)
-},{"dup":476,"stream":1191,"util":1194}],580:[function(require,module,exports){
-arguments[4][477][0].apply(exports,arguments)
-},{"./chunkstream":577,"buffer":1171,"dup":477,"util":1194,"zlib":1170}],581:[function(require,module,exports){
-arguments[4][478][0].apply(exports,arguments)
-},{"./constants":578,"./crc":579,"./filter":580,"buffer":1171,"dup":478,"stream":1191,"util":1194,"zlib":1170}],582:[function(require,module,exports){
-arguments[4][479][0].apply(exports,arguments)
-},{"./chunkstream":577,"./constants":578,"./crc":579,"./filter":580,"buffer":1171,"dup":479,"util":1194,"zlib":1170}],583:[function(require,module,exports){
-arguments[4][480][0].apply(exports,arguments)
-},{"./packer":581,"./parser":582,"_process":1179,"buffer":1171,"dup":480,"stream":1191,"util":1194}],584:[function(require,module,exports){
+},{"dup":97}],516:[function(require,module,exports){
+arguments[4][413][0].apply(exports,arguments)
+},{"buffer":1110,"dup":413,"stream":1130,"util":1133}],517:[function(require,module,exports){
+arguments[4][414][0].apply(exports,arguments)
+},{"dup":414}],518:[function(require,module,exports){
+arguments[4][415][0].apply(exports,arguments)
+},{"dup":415,"stream":1130,"util":1133}],519:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"./chunkstream":516,"buffer":1110,"dup":416,"util":1133,"zlib":1109}],520:[function(require,module,exports){
+arguments[4][417][0].apply(exports,arguments)
+},{"./constants":517,"./crc":518,"./filter":519,"buffer":1110,"dup":417,"stream":1130,"util":1133,"zlib":1109}],521:[function(require,module,exports){
+arguments[4][418][0].apply(exports,arguments)
+},{"./chunkstream":516,"./constants":517,"./crc":518,"./filter":519,"buffer":1110,"dup":418,"util":1133,"zlib":1109}],522:[function(require,module,exports){
+arguments[4][419][0].apply(exports,arguments)
+},{"./packer":520,"./parser":521,"_process":1118,"buffer":1110,"dup":419,"stream":1130,"util":1133}],523:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],585:[function(require,module,exports){
-arguments[4][482][0].apply(exports,arguments)
-},{"dup":482,"pngjs":583,"through":584}],586:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],524:[function(require,module,exports){
+arguments[4][421][0].apply(exports,arguments)
+},{"dup":421,"pngjs":522,"through":523}],525:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],587:[function(require,module,exports){
+},{"dup":44}],526:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -74051,7 +54344,7 @@ arguments[4][44][0].apply(exports,arguments)
 
 }).call(this);
 
-},{}],588:[function(require,module,exports){
+},{}],527:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -74340,7 +54633,7 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":450,"atlaspack":508,"cube-side-array":509,"events":1175,"gl-texture2d":522,"inherits":523,"ndarray":527,"ndarray-hash":524,"rect-mip-map":529,"save-pixels":585,"toarray":586,"touchup":587}],589:[function(require,module,exports){
+},{"artpacks":389,"atlaspack":447,"cube-side-array":448,"events":1114,"gl-texture2d":461,"inherits":462,"ndarray":466,"ndarray-hash":463,"rect-mip-map":468,"save-pixels":524,"toarray":525,"touchup":526}],528:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -74461,7 +54754,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":1175,"inherits":596}],590:[function(require,module,exports){
+},{"events":1114,"inherits":535}],529:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -74564,7 +54857,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":589,"./meshers/culled":591,"./meshers/greedy":592,"./meshers/monotone":593,"./meshers/stupid":594,"./meshers/transgreedy":595,"ndarray":597}],591:[function(require,module,exports){
+},{"./chunker":528,"./meshers/culled":530,"./meshers/greedy":531,"./meshers/monotone":532,"./meshers/stupid":533,"./meshers/transgreedy":534,"ndarray":536}],530:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -74616,7 +54909,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],592:[function(require,module,exports){
+},{}],531:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -74733,7 +55026,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],593:[function(require,module,exports){
+},{}],532:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -74986,7 +55279,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],594:[function(require,module,exports){
+},{}],533:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -75022,7 +55315,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],595:[function(require,module,exports){
+},{}],534:[function(require,module,exports){
 var GreedyMesh = (function greedyLoader() {
     
 // contains all forward faces (in terms of scan direction)
@@ -75214,13 +55507,13 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],596:[function(require,module,exports){
-arguments[4][410][0].apply(exports,arguments)
-},{"dup":410}],597:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":598}],598:[function(require,module,exports){
+},{}],535:[function(require,module,exports){
+arguments[4][349][0].apply(exports,arguments)
+},{"dup":349}],536:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":537}],537:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],599:[function(require,module,exports){
+},{"dup":97}],538:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -75316,7 +55609,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],600:[function(require,module,exports){
+},{}],539:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -75395,9 +55688,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":601}],601:[function(require,module,exports){
+},{"ucfirst":540}],540:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],602:[function(require,module,exports){
+},{"dup":25}],541:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -75464,7 +55757,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],603:[function(require,module,exports){
+},{}],542:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -75599,7 +55892,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],604:[function(require,module,exports){
+},{}],543:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -75890,7 +56183,7 @@ FurnaceDialog = (function(superClass) {
 
 
 
-},{"inventory":614,"inventory-window":605,"itempile":623,"voxel-inventory-dialog":628}],605:[function(require,module,exports){
+},{"inventory":553,"inventory-window":544,"itempile":562,"voxel-inventory-dialog":567}],544:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -76337,7 +56630,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":606,"events":1175,"ever":608,"ftooltip":611,"touchup":613}],606:[function(require,module,exports){
+},{"cube-icon":545,"events":1114,"ever":547,"ftooltip":550,"touchup":552}],545:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -76405,21 +56698,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":607}],607:[function(require,module,exports){
+},{"cube-side-array":546}],546:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],608:[function(require,module,exports){
+},{"dup":39}],547:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":609,"./types.json":610,"dup":15,"events":1175}],609:[function(require,module,exports){
+},{"./init.json":548,"./types.json":549,"dup":15,"events":1114}],548:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],610:[function(require,module,exports){
+},{"dup":16}],549:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],611:[function(require,module,exports){
+},{"dup":17}],550:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":612}],612:[function(require,module,exports){
+},{"dup":43,"toarray":551}],551:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],613:[function(require,module,exports){
+},{"dup":44}],552:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],614:[function(require,module,exports){
+},{"dup":45}],553:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -76580,13 +56873,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":615,"events":1175,"itempile":618}],615:[function(require,module,exports){
+},{"deep-equal":554,"events":1114,"itempile":557}],554:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":616,"./lib/keys.js":617,"dup":22}],616:[function(require,module,exports){
+},{"./lib/is_arguments.js":555,"./lib/keys.js":556,"dup":22}],555:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],617:[function(require,module,exports){
+},{"dup":23}],556:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],618:[function(require,module,exports){
+},{"dup":24}],557:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -76883,15 +57176,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":619,"deep-equal":620}],619:[function(require,module,exports){
+},{"clone":558,"deep-equal":559}],558:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],620:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],559:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":621,"./lib/keys.js":622,"dup":22}],621:[function(require,module,exports){
+},{"./lib/is_arguments.js":560,"./lib/keys.js":561,"dup":22}],560:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],622:[function(require,module,exports){
+},{"dup":23}],561:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],623:[function(require,module,exports){
+},{"dup":24}],562:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -77188,15 +57481,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":624,"deep-equal":625}],624:[function(require,module,exports){
+},{"clone":563,"deep-equal":564}],563:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],625:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],564:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":626,"./lib/keys.js":627,"dup":22}],626:[function(require,module,exports){
+},{"./lib/is_arguments.js":565,"./lib/keys.js":566,"dup":22}],565:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],627:[function(require,module,exports){
+},{"dup":23}],566:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],628:[function(require,module,exports){
+},{"dup":24}],567:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -77273,7 +57566,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 
 
 
-},{"inventory":638,"inventory-window":629,"itempile":647,"voxel-modal-dialog":652}],629:[function(require,module,exports){
+},{"inventory":577,"inventory-window":568,"itempile":586,"voxel-modal-dialog":591}],568:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -77720,7 +58013,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":630,"events":1175,"ever":632,"ftooltip":635,"touchup":637}],630:[function(require,module,exports){
+},{"cube-icon":569,"events":1114,"ever":571,"ftooltip":574,"touchup":576}],569:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -77788,21 +58081,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":631}],631:[function(require,module,exports){
+},{"cube-side-array":570}],570:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],632:[function(require,module,exports){
+},{"dup":39}],571:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":633,"./types.json":634,"dup":15,"events":1175}],633:[function(require,module,exports){
+},{"./init.json":572,"./types.json":573,"dup":15,"events":1114}],572:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],634:[function(require,module,exports){
+},{"dup":16}],573:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],635:[function(require,module,exports){
+},{"dup":17}],574:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":636}],636:[function(require,module,exports){
+},{"dup":43,"toarray":575}],575:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],637:[function(require,module,exports){
+},{"dup":44}],576:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],638:[function(require,module,exports){
+},{"dup":45}],577:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -77963,13 +58256,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":639,"events":1175,"itempile":642}],639:[function(require,module,exports){
+},{"deep-equal":578,"events":1114,"itempile":581}],578:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":640,"./lib/keys.js":641,"dup":22}],640:[function(require,module,exports){
+},{"./lib/is_arguments.js":579,"./lib/keys.js":580,"dup":22}],579:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],641:[function(require,module,exports){
+},{"dup":23}],580:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],642:[function(require,module,exports){
+},{"dup":24}],581:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -78266,15 +58559,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":643,"deep-equal":644}],643:[function(require,module,exports){
+},{"clone":582,"deep-equal":583}],582:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],644:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],583:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":645,"./lib/keys.js":646,"dup":22}],645:[function(require,module,exports){
+},{"./lib/is_arguments.js":584,"./lib/keys.js":585,"dup":22}],584:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],646:[function(require,module,exports){
+},{"dup":23}],585:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],647:[function(require,module,exports){
+},{"dup":24}],586:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -78571,25 +58864,25 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":648,"deep-equal":649}],648:[function(require,module,exports){
+},{"clone":587,"deep-equal":588}],587:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],649:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],588:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":650,"./lib/keys.js":651,"dup":22}],650:[function(require,module,exports){
+},{"./lib/is_arguments.js":589,"./lib/keys.js":590,"dup":22}],589:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],651:[function(require,module,exports){
+},{"dup":23}],590:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],652:[function(require,module,exports){
+},{"dup":24}],591:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":653}],653:[function(require,module,exports){
+},{"dup":13,"voxel-modal":592}],592:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":654}],654:[function(require,module,exports){
+},{"dup":14,"ever":593}],593:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":655,"./types.json":656,"dup":15,"events":1175}],655:[function(require,module,exports){
+},{"./init.json":594,"./types.json":595,"dup":15,"events":1114}],594:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],656:[function(require,module,exports){
+},{"dup":16}],595:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],657:[function(require,module,exports){
+},{"dup":17}],596:[function(require,module,exports){
 var Gamemode;
 
 module.exports = function(game, opts) {
@@ -78693,7 +58986,7 @@ Gamemode = (function() {
 
 
 
-},{}],658:[function(require,module,exports){
+},{}],597:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -78821,7 +59114,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":659,"ucfirst":664}],659:[function(require,module,exports){
+},{"itempile":598,"ucfirst":603}],598:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -79118,17 +59411,17 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":660,"deep-equal":661}],660:[function(require,module,exports){
+},{"clone":599,"deep-equal":600}],599:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],661:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],600:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":662,"./lib/keys.js":663,"dup":22}],662:[function(require,module,exports){
+},{"./lib/is_arguments.js":601,"./lib/keys.js":602,"dup":22}],601:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],663:[function(require,module,exports){
+},{"dup":23}],602:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],664:[function(require,module,exports){
+},{"dup":24}],603:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],665:[function(require,module,exports){
+},{"dup":25}],604:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -79202,7 +59495,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],666:[function(require,module,exports){
+},{}],605:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -79351,7 +59644,7 @@ Harvest = (function(superClass) {
 
 
 
-},{"events":1175,"itempile":667}],667:[function(require,module,exports){
+},{"events":1114,"itempile":606}],606:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -79648,15 +59941,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":668,"deep-equal":669}],668:[function(require,module,exports){
+},{"clone":607,"deep-equal":608}],607:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],669:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],608:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":670,"./lib/keys.js":671,"dup":22}],670:[function(require,module,exports){
+},{"./lib/is_arguments.js":609,"./lib/keys.js":610,"dup":22}],609:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],671:[function(require,module,exports){
+},{"dup":23}],610:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],672:[function(require,module,exports){
+},{"dup":24}],611:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -79727,7 +60020,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],673:[function(require,module,exports){
+},{}],612:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -79815,9 +60108,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":1175,"inherits":674}],674:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],675:[function(require,module,exports){
+},{"events":1114,"inherits":613}],613:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],614:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -79937,7 +60230,7 @@ InventoryCrafting = (function(superClass) {
 
 
 
-},{"inventory":685,"inventory-window":676,"itempile":694,"voxel-inventory-dialog":699}],676:[function(require,module,exports){
+},{"inventory":624,"inventory-window":615,"itempile":633,"voxel-inventory-dialog":638}],615:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -80384,7 +60677,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":677,"events":1175,"ever":679,"ftooltip":682,"touchup":684}],677:[function(require,module,exports){
+},{"cube-icon":616,"events":1114,"ever":618,"ftooltip":621,"touchup":623}],616:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -80452,21 +60745,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":678}],678:[function(require,module,exports){
+},{"cube-side-array":617}],617:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],679:[function(require,module,exports){
+},{"dup":39}],618:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":680,"./types.json":681,"dup":15,"events":1175}],680:[function(require,module,exports){
+},{"./init.json":619,"./types.json":620,"dup":15,"events":1114}],619:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],681:[function(require,module,exports){
+},{"dup":16}],620:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],682:[function(require,module,exports){
+},{"dup":17}],621:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":683}],683:[function(require,module,exports){
+},{"dup":43,"toarray":622}],622:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],684:[function(require,module,exports){
+},{"dup":44}],623:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],685:[function(require,module,exports){
+},{"dup":45}],624:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -80627,13 +60920,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":686,"events":1175,"itempile":689}],686:[function(require,module,exports){
+},{"deep-equal":625,"events":1114,"itempile":628}],625:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":687,"./lib/keys.js":688,"dup":22}],687:[function(require,module,exports){
+},{"./lib/is_arguments.js":626,"./lib/keys.js":627,"dup":22}],626:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],688:[function(require,module,exports){
+},{"dup":23}],627:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],689:[function(require,module,exports){
+},{"dup":24}],628:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -80930,15 +61223,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":690,"deep-equal":691}],690:[function(require,module,exports){
+},{"clone":629,"deep-equal":630}],629:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],691:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],630:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":692,"./lib/keys.js":693,"dup":22}],692:[function(require,module,exports){
+},{"./lib/is_arguments.js":631,"./lib/keys.js":632,"dup":22}],631:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],693:[function(require,module,exports){
+},{"dup":23}],632:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],694:[function(require,module,exports){
+},{"dup":24}],633:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -81235,15 +61528,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":695,"deep-equal":696}],695:[function(require,module,exports){
+},{"clone":634,"deep-equal":635}],634:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],696:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],635:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":697,"./lib/keys.js":698,"dup":22}],697:[function(require,module,exports){
+},{"./lib/is_arguments.js":636,"./lib/keys.js":637,"dup":22}],636:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],698:[function(require,module,exports){
+},{"dup":23}],637:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],699:[function(require,module,exports){
+},{"dup":24}],638:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -81320,7 +61613,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 
 
 
-},{"inventory":709,"inventory-window":700,"itempile":718,"voxel-modal-dialog":723}],700:[function(require,module,exports){
+},{"inventory":648,"inventory-window":639,"itempile":657,"voxel-modal-dialog":662}],639:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -81767,7 +62060,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":701,"events":1175,"ever":703,"ftooltip":706,"touchup":708}],701:[function(require,module,exports){
+},{"cube-icon":640,"events":1114,"ever":642,"ftooltip":645,"touchup":647}],640:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -81835,21 +62128,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":702}],702:[function(require,module,exports){
+},{"cube-side-array":641}],641:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],703:[function(require,module,exports){
+},{"dup":39}],642:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":704,"./types.json":705,"dup":15,"events":1175}],704:[function(require,module,exports){
+},{"./init.json":643,"./types.json":644,"dup":15,"events":1114}],643:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],705:[function(require,module,exports){
+},{"dup":16}],644:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],706:[function(require,module,exports){
+},{"dup":17}],645:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":707}],707:[function(require,module,exports){
+},{"dup":43,"toarray":646}],646:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],708:[function(require,module,exports){
+},{"dup":44}],647:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],709:[function(require,module,exports){
+},{"dup":45}],648:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -82010,13 +62303,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":710,"events":1175,"itempile":713}],710:[function(require,module,exports){
+},{"deep-equal":649,"events":1114,"itempile":652}],649:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":711,"./lib/keys.js":712,"dup":22}],711:[function(require,module,exports){
+},{"./lib/is_arguments.js":650,"./lib/keys.js":651,"dup":22}],650:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],712:[function(require,module,exports){
+},{"dup":23}],651:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],713:[function(require,module,exports){
+},{"dup":24}],652:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -82313,15 +62606,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":714,"deep-equal":715}],714:[function(require,module,exports){
+},{"clone":653,"deep-equal":654}],653:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],715:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],654:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":716,"./lib/keys.js":717,"dup":22}],716:[function(require,module,exports){
+},{"./lib/is_arguments.js":655,"./lib/keys.js":656,"dup":22}],655:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],717:[function(require,module,exports){
+},{"dup":23}],656:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],718:[function(require,module,exports){
+},{"dup":24}],657:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -82618,25 +62911,25 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":719,"deep-equal":720}],719:[function(require,module,exports){
+},{"clone":658,"deep-equal":659}],658:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],720:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],659:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":721,"./lib/keys.js":722,"dup":22}],721:[function(require,module,exports){
+},{"./lib/is_arguments.js":660,"./lib/keys.js":661,"dup":22}],660:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],722:[function(require,module,exports){
+},{"dup":23}],661:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],723:[function(require,module,exports){
+},{"dup":24}],662:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":724}],724:[function(require,module,exports){
+},{"dup":13,"voxel-modal":663}],663:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":725}],725:[function(require,module,exports){
+},{"dup":14,"ever":664}],664:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":726,"./types.json":727,"dup":15,"events":1175}],726:[function(require,module,exports){
+},{"./init.json":665,"./types.json":666,"dup":15,"events":1114}],665:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],727:[function(require,module,exports){
+},{"dup":16}],666:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],728:[function(require,module,exports){
+},{"dup":17}],667:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -82807,7 +63100,7 @@ CreativeInventoryPlugin = (function(superClass) {
 
 
 
-},{"inventory":738,"inventory-window":729,"itempile":747,"voxel-inventory-dialog":752}],729:[function(require,module,exports){
+},{"inventory":677,"inventory-window":668,"itempile":686,"voxel-inventory-dialog":691}],668:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -83254,7 +63547,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":730,"events":1175,"ever":732,"ftooltip":735,"touchup":737}],730:[function(require,module,exports){
+},{"cube-icon":669,"events":1114,"ever":671,"ftooltip":674,"touchup":676}],669:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -83322,21 +63615,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":731}],731:[function(require,module,exports){
+},{"cube-side-array":670}],670:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],732:[function(require,module,exports){
+},{"dup":39}],671:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":733,"./types.json":734,"dup":15,"events":1175}],733:[function(require,module,exports){
+},{"./init.json":672,"./types.json":673,"dup":15,"events":1114}],672:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],734:[function(require,module,exports){
+},{"dup":16}],673:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],735:[function(require,module,exports){
+},{"dup":17}],674:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":736}],736:[function(require,module,exports){
+},{"dup":43,"toarray":675}],675:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],737:[function(require,module,exports){
+},{"dup":44}],676:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],738:[function(require,module,exports){
+},{"dup":45}],677:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -83497,13 +63790,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":739,"events":1175,"itempile":742}],739:[function(require,module,exports){
+},{"deep-equal":678,"events":1114,"itempile":681}],678:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":740,"./lib/keys.js":741,"dup":22}],740:[function(require,module,exports){
+},{"./lib/is_arguments.js":679,"./lib/keys.js":680,"dup":22}],679:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],741:[function(require,module,exports){
+},{"dup":23}],680:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],742:[function(require,module,exports){
+},{"dup":24}],681:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -83800,15 +64093,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":743,"deep-equal":744}],743:[function(require,module,exports){
+},{"clone":682,"deep-equal":683}],682:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],744:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],683:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":745,"./lib/keys.js":746,"dup":22}],745:[function(require,module,exports){
+},{"./lib/is_arguments.js":684,"./lib/keys.js":685,"dup":22}],684:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],746:[function(require,module,exports){
+},{"dup":23}],685:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],747:[function(require,module,exports){
+},{"dup":24}],686:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -84105,15 +64398,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":748,"deep-equal":749}],748:[function(require,module,exports){
+},{"clone":687,"deep-equal":688}],687:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],749:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],688:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":750,"./lib/keys.js":751,"dup":22}],750:[function(require,module,exports){
+},{"./lib/is_arguments.js":689,"./lib/keys.js":690,"dup":22}],689:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],751:[function(require,module,exports){
+},{"dup":23}],690:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],752:[function(require,module,exports){
+},{"dup":24}],691:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -84190,7 +64483,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 
 
 
-},{"inventory":762,"inventory-window":753,"itempile":771,"voxel-modal-dialog":776}],753:[function(require,module,exports){
+},{"inventory":701,"inventory-window":692,"itempile":710,"voxel-modal-dialog":715}],692:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -84637,7 +64930,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":754,"events":1175,"ever":756,"ftooltip":759,"touchup":761}],754:[function(require,module,exports){
+},{"cube-icon":693,"events":1114,"ever":695,"ftooltip":698,"touchup":700}],693:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -84705,21 +64998,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":755}],755:[function(require,module,exports){
+},{"cube-side-array":694}],694:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],756:[function(require,module,exports){
+},{"dup":39}],695:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":757,"./types.json":758,"dup":15,"events":1175}],757:[function(require,module,exports){
+},{"./init.json":696,"./types.json":697,"dup":15,"events":1114}],696:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],758:[function(require,module,exports){
+},{"dup":16}],697:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],759:[function(require,module,exports){
+},{"dup":17}],698:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":760}],760:[function(require,module,exports){
+},{"dup":43,"toarray":699}],699:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],761:[function(require,module,exports){
+},{"dup":44}],700:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],762:[function(require,module,exports){
+},{"dup":45}],701:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -84880,13 +65173,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":763,"events":1175,"itempile":766}],763:[function(require,module,exports){
+},{"deep-equal":702,"events":1114,"itempile":705}],702:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":764,"./lib/keys.js":765,"dup":22}],764:[function(require,module,exports){
+},{"./lib/is_arguments.js":703,"./lib/keys.js":704,"dup":22}],703:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],765:[function(require,module,exports){
+},{"dup":23}],704:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],766:[function(require,module,exports){
+},{"dup":24}],705:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -85183,15 +65476,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":767,"deep-equal":768}],767:[function(require,module,exports){
+},{"clone":706,"deep-equal":707}],706:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],768:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],707:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":769,"./lib/keys.js":770,"dup":22}],769:[function(require,module,exports){
+},{"./lib/is_arguments.js":708,"./lib/keys.js":709,"dup":22}],708:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],770:[function(require,module,exports){
+},{"dup":23}],709:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],771:[function(require,module,exports){
+},{"dup":24}],710:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -85488,25 +65781,25 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":772,"deep-equal":773}],772:[function(require,module,exports){
+},{"clone":711,"deep-equal":712}],711:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],773:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],712:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":774,"./lib/keys.js":775,"dup":22}],774:[function(require,module,exports){
+},{"./lib/is_arguments.js":713,"./lib/keys.js":714,"dup":22}],713:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],775:[function(require,module,exports){
+},{"dup":23}],714:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],776:[function(require,module,exports){
+},{"dup":24}],715:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":777}],777:[function(require,module,exports){
+},{"dup":13,"voxel-modal":716}],716:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":778}],778:[function(require,module,exports){
+},{"dup":14,"ever":717}],717:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":779,"./types.json":780,"dup":15,"events":1175}],779:[function(require,module,exports){
+},{"./init.json":718,"./types.json":719,"dup":15,"events":1114}],718:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],780:[function(require,module,exports){
+},{"dup":16}],719:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],781:[function(require,module,exports){
+},{"dup":17}],720:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty,
@@ -85721,13 +66014,13 @@ InventoryHotbarClient = (function(superClass) {
 
 
 
-},{"events":1175,"ever":782,"inventory-window":785}],782:[function(require,module,exports){
+},{"events":1114,"ever":721,"inventory-window":724}],721:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":783,"./types.json":784,"dup":15,"events":1175}],783:[function(require,module,exports){
+},{"./init.json":722,"./types.json":723,"dup":15,"events":1114}],722:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],784:[function(require,module,exports){
+},{"dup":16}],723:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],785:[function(require,module,exports){
+},{"dup":17}],724:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -86174,7 +66467,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":786,"events":1175,"ever":788,"ftooltip":791,"touchup":793}],786:[function(require,module,exports){
+},{"cube-icon":725,"events":1114,"ever":727,"ftooltip":730,"touchup":732}],725:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -86242,21 +66535,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":787}],787:[function(require,module,exports){
+},{"cube-side-array":726}],726:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],788:[function(require,module,exports){
+},{"dup":39}],727:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":789,"./types.json":790,"dup":15,"events":1175}],789:[function(require,module,exports){
+},{"./init.json":728,"./types.json":729,"dup":15,"events":1114}],728:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],790:[function(require,module,exports){
+},{"dup":16}],729:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],791:[function(require,module,exports){
+},{"dup":17}],730:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":792}],792:[function(require,module,exports){
+},{"dup":43,"toarray":731}],731:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],793:[function(require,module,exports){
+},{"dup":44}],732:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],794:[function(require,module,exports){
+},{"dup":45}],733:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -86441,13 +66734,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":1175,"inherits":795,"toarray":796,"vkey":797}],795:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],796:[function(require,module,exports){
+},{"events":1114,"inherits":734,"toarray":735,"vkey":736}],734:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],735:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],797:[function(require,module,exports){
+},{"dup":44}],736:[function(require,module,exports){
 arguments[4][10][0].apply(exports,arguments)
-},{"dup":10}],798:[function(require,module,exports){
+},{"dup":10}],737:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -86600,7 +66893,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require('_process'))
-},{"./worker.js":815,"_process":1179,"ndarray":808,"unworkify":811,"webworkify":814}],799:[function(require,module,exports){
+},{"./worker.js":754,"_process":1118,"ndarray":747,"unworkify":750,"webworkify":753}],738:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -86711,27 +67004,27 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],800:[function(require,module,exports){
+},{}],739:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":801,"./types.json":802,"dup":15,"events":1175}],801:[function(require,module,exports){
+},{"./init.json":740,"./types.json":741,"dup":15,"events":1114}],740:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],802:[function(require,module,exports){
+},{"dup":16}],741:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],803:[function(require,module,exports){
+},{"dup":17}],742:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":804,"dup":91}],804:[function(require,module,exports){
+},{"cwise-compiler":743,"dup":91}],743:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":806,"dup":92}],805:[function(require,module,exports){
+},{"./lib/thunk.js":745,"dup":92}],744:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":807}],806:[function(require,module,exports){
+},{"dup":93,"uniq":746}],745:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":805,"dup":94}],807:[function(require,module,exports){
+},{"./compile.js":744,"dup":94}],746:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],808:[function(require,module,exports){
+},{"dup":95}],747:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":809}],809:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":748}],748:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],810:[function(require,module,exports){
+},{"dup":97}],749:[function(require,module,exports){
 (function (global){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
@@ -87180,7 +67473,7 @@ if (typeof module !== 'undefined') {
 })();
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],811:[function(require,module,exports){
+},{}],750:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -87205,9 +67498,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":1175,"inherits":812}],812:[function(require,module,exports){
-arguments[4][410][0].apply(exports,arguments)
-},{"dup":410}],813:[function(require,module,exports){
+},{"events":1114,"inherits":751}],751:[function(require,module,exports){
+arguments[4][349][0].apply(exports,arguments)
+},{"dup":349}],752:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -87416,9 +67709,61 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],814:[function(require,module,exports){
-arguments[4][183][0].apply(exports,arguments)
-},{"dup":183}],815:[function(require,module,exports){
+},{}],753:[function(require,module,exports){
+var bundleFn = arguments[3];
+var sources = arguments[4];
+var cache = arguments[5];
+
+var stringify = JSON.stringify;
+
+module.exports = function (fn) {
+    var keys = [];
+    var wkey;
+    var cacheKeys = Object.keys(cache);
+    
+    for (var i = 0, l = cacheKeys.length; i < l; i++) {
+        var key = cacheKeys[i];
+        if (cache[key].exports === fn) {
+            wkey = key;
+            break;
+        }
+    }
+    
+    if (!wkey) {
+        wkey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+        var wcache = {};
+        for (var i = 0, l = cacheKeys.length; i < l; i++) {
+            var key = cacheKeys[i];
+            wcache[key] = key;
+        }
+        sources[wkey] = [
+            Function(['require','module','exports'], '(' + fn + ')(self)'),
+            wcache
+        ];
+    }
+    var skey = Math.floor(Math.pow(16, 8) * Math.random()).toString(16);
+    
+    var scache = {}; scache[wkey] = wkey;
+    sources[skey] = [
+        Function(['require'],'require(' + stringify(wkey) + ')(self)'),
+        scache
+    ];
+    
+    var src = '(' + bundleFn + ')({'
+        + Object.keys(sources).map(function (key) {
+            return stringify(key) + ':['
+                + sources[key][0]
+                + ',' + stringify(sources[key][1]) + ']'
+            ;
+        }).join(',')
+        + '},{},[' + stringify(skey) + '])'
+    ;
+    return new Worker(window.URL.createObjectURL(
+        new Blob([src], { type: 'text/javascript' })
+    ));
+};
+
+},{}],754:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -87720,7 +68065,7 @@ module.exports = function() {
 
 
 
-},{"alea":799,"ever":800,"ndarray":808,"ndarray-ops":803,"simplex-noise":810,"voxel-trees":813}],816:[function(require,module,exports){
+},{"alea":738,"ever":739,"ndarray":747,"ndarray-ops":742,"simplex-noise":749,"voxel-trees":752}],755:[function(require,module,exports){
 'use strict';
 
 var vec3 = require('gl-vec3');
@@ -87788,7 +68133,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":817,"gl-vec3":829}],817:[function(require,module,exports){
+},{"asarray":756,"gl-vec3":768}],756:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -87802,73 +68147,73 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],818:[function(require,module,exports){
-arguments[4][307][0].apply(exports,arguments)
-},{"dup":307}],819:[function(require,module,exports){
-arguments[4][308][0].apply(exports,arguments)
-},{"./dot":826,"./fromValues":828,"./normalize":837,"dup":308}],820:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"dup":309}],821:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310}],822:[function(require,module,exports){
-arguments[4][311][0].apply(exports,arguments)
-},{"dup":311}],823:[function(require,module,exports){
-arguments[4][312][0].apply(exports,arguments)
-},{"dup":312}],824:[function(require,module,exports){
-arguments[4][313][0].apply(exports,arguments)
-},{"dup":313}],825:[function(require,module,exports){
-arguments[4][314][0].apply(exports,arguments)
-},{"dup":314}],826:[function(require,module,exports){
-arguments[4][315][0].apply(exports,arguments)
-},{"dup":315}],827:[function(require,module,exports){
-arguments[4][316][0].apply(exports,arguments)
-},{"./create":822,"dup":316}],828:[function(require,module,exports){
-arguments[4][317][0].apply(exports,arguments)
-},{"dup":317}],829:[function(require,module,exports){
-arguments[4][318][0].apply(exports,arguments)
-},{"./add":818,"./angle":819,"./clone":820,"./copy":821,"./create":822,"./cross":823,"./distance":824,"./divide":825,"./dot":826,"./forEach":827,"./fromValues":828,"./inverse":830,"./length":831,"./lerp":832,"./max":833,"./min":834,"./multiply":835,"./negate":836,"./normalize":837,"./random":838,"./rotateX":839,"./rotateY":840,"./rotateZ":841,"./scale":842,"./scaleAndAdd":843,"./set":844,"./squaredDistance":845,"./squaredLength":846,"./subtract":847,"./transformMat3":848,"./transformMat4":849,"./transformQuat":850,"dup":318}],830:[function(require,module,exports){
-arguments[4][319][0].apply(exports,arguments)
-},{"dup":319}],831:[function(require,module,exports){
-arguments[4][320][0].apply(exports,arguments)
-},{"dup":320}],832:[function(require,module,exports){
-arguments[4][321][0].apply(exports,arguments)
-},{"dup":321}],833:[function(require,module,exports){
-arguments[4][322][0].apply(exports,arguments)
-},{"dup":322}],834:[function(require,module,exports){
-arguments[4][323][0].apply(exports,arguments)
-},{"dup":323}],835:[function(require,module,exports){
-arguments[4][324][0].apply(exports,arguments)
-},{"dup":324}],836:[function(require,module,exports){
-arguments[4][325][0].apply(exports,arguments)
-},{"dup":325}],837:[function(require,module,exports){
-arguments[4][326][0].apply(exports,arguments)
-},{"dup":326}],838:[function(require,module,exports){
-arguments[4][327][0].apply(exports,arguments)
-},{"dup":327}],839:[function(require,module,exports){
-arguments[4][328][0].apply(exports,arguments)
-},{"dup":328}],840:[function(require,module,exports){
-arguments[4][329][0].apply(exports,arguments)
-},{"dup":329}],841:[function(require,module,exports){
-arguments[4][330][0].apply(exports,arguments)
-},{"dup":330}],842:[function(require,module,exports){
-arguments[4][331][0].apply(exports,arguments)
-},{"dup":331}],843:[function(require,module,exports){
-arguments[4][332][0].apply(exports,arguments)
-},{"dup":332}],844:[function(require,module,exports){
-arguments[4][333][0].apply(exports,arguments)
-},{"dup":333}],845:[function(require,module,exports){
-arguments[4][334][0].apply(exports,arguments)
-},{"dup":334}],846:[function(require,module,exports){
-arguments[4][335][0].apply(exports,arguments)
-},{"dup":335}],847:[function(require,module,exports){
-arguments[4][336][0].apply(exports,arguments)
-},{"dup":336}],848:[function(require,module,exports){
-arguments[4][337][0].apply(exports,arguments)
-},{"dup":337}],849:[function(require,module,exports){
-arguments[4][338][0].apply(exports,arguments)
-},{"dup":338}],850:[function(require,module,exports){
-arguments[4][339][0].apply(exports,arguments)
-},{"dup":339}],851:[function(require,module,exports){
+},{}],757:[function(require,module,exports){
+arguments[4][246][0].apply(exports,arguments)
+},{"dup":246}],758:[function(require,module,exports){
+arguments[4][247][0].apply(exports,arguments)
+},{"./dot":765,"./fromValues":767,"./normalize":776,"dup":247}],759:[function(require,module,exports){
+arguments[4][248][0].apply(exports,arguments)
+},{"dup":248}],760:[function(require,module,exports){
+arguments[4][249][0].apply(exports,arguments)
+},{"dup":249}],761:[function(require,module,exports){
+arguments[4][250][0].apply(exports,arguments)
+},{"dup":250}],762:[function(require,module,exports){
+arguments[4][251][0].apply(exports,arguments)
+},{"dup":251}],763:[function(require,module,exports){
+arguments[4][252][0].apply(exports,arguments)
+},{"dup":252}],764:[function(require,module,exports){
+arguments[4][253][0].apply(exports,arguments)
+},{"dup":253}],765:[function(require,module,exports){
+arguments[4][254][0].apply(exports,arguments)
+},{"dup":254}],766:[function(require,module,exports){
+arguments[4][255][0].apply(exports,arguments)
+},{"./create":761,"dup":255}],767:[function(require,module,exports){
+arguments[4][256][0].apply(exports,arguments)
+},{"dup":256}],768:[function(require,module,exports){
+arguments[4][257][0].apply(exports,arguments)
+},{"./add":757,"./angle":758,"./clone":759,"./copy":760,"./create":761,"./cross":762,"./distance":763,"./divide":764,"./dot":765,"./forEach":766,"./fromValues":767,"./inverse":769,"./length":770,"./lerp":771,"./max":772,"./min":773,"./multiply":774,"./negate":775,"./normalize":776,"./random":777,"./rotateX":778,"./rotateY":779,"./rotateZ":780,"./scale":781,"./scaleAndAdd":782,"./set":783,"./squaredDistance":784,"./squaredLength":785,"./subtract":786,"./transformMat3":787,"./transformMat4":788,"./transformQuat":789,"dup":257}],769:[function(require,module,exports){
+arguments[4][258][0].apply(exports,arguments)
+},{"dup":258}],770:[function(require,module,exports){
+arguments[4][259][0].apply(exports,arguments)
+},{"dup":259}],771:[function(require,module,exports){
+arguments[4][260][0].apply(exports,arguments)
+},{"dup":260}],772:[function(require,module,exports){
+arguments[4][261][0].apply(exports,arguments)
+},{"dup":261}],773:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262}],774:[function(require,module,exports){
+arguments[4][263][0].apply(exports,arguments)
+},{"dup":263}],775:[function(require,module,exports){
+arguments[4][264][0].apply(exports,arguments)
+},{"dup":264}],776:[function(require,module,exports){
+arguments[4][265][0].apply(exports,arguments)
+},{"dup":265}],777:[function(require,module,exports){
+arguments[4][266][0].apply(exports,arguments)
+},{"dup":266}],778:[function(require,module,exports){
+arguments[4][267][0].apply(exports,arguments)
+},{"dup":267}],779:[function(require,module,exports){
+arguments[4][268][0].apply(exports,arguments)
+},{"dup":268}],780:[function(require,module,exports){
+arguments[4][269][0].apply(exports,arguments)
+},{"dup":269}],781:[function(require,module,exports){
+arguments[4][270][0].apply(exports,arguments)
+},{"dup":270}],782:[function(require,module,exports){
+arguments[4][271][0].apply(exports,arguments)
+},{"dup":271}],783:[function(require,module,exports){
+arguments[4][272][0].apply(exports,arguments)
+},{"dup":272}],784:[function(require,module,exports){
+arguments[4][273][0].apply(exports,arguments)
+},{"dup":273}],785:[function(require,module,exports){
+arguments[4][274][0].apply(exports,arguments)
+},{"dup":274}],786:[function(require,module,exports){
+arguments[4][275][0].apply(exports,arguments)
+},{"dup":275}],787:[function(require,module,exports){
+arguments[4][276][0].apply(exports,arguments)
+},{"dup":276}],788:[function(require,module,exports){
+arguments[4][277][0].apply(exports,arguments)
+},{"dup":277}],789:[function(require,module,exports){
+arguments[4][278][0].apply(exports,arguments)
+},{"dup":278}],790:[function(require,module,exports){
 var EventEmitter, Mine,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -88229,95 +68574,95 @@ Mine.prototype.destroyOverlay = function() {
 
 
 
-},{"events":1175}],852:[function(require,module,exports){
+},{"events":1114}],791:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":858,"ndarray-ops":853,"typedarray-pool":862,"webglew":864}],853:[function(require,module,exports){
+},{"dup":90,"ndarray":797,"ndarray-ops":792,"typedarray-pool":801,"webglew":803}],792:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":854,"dup":91}],854:[function(require,module,exports){
+},{"cwise-compiler":793,"dup":91}],793:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":856,"dup":92}],855:[function(require,module,exports){
+},{"./lib/thunk.js":795,"dup":92}],794:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":857}],856:[function(require,module,exports){
+},{"dup":93,"uniq":796}],795:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":855,"dup":94}],857:[function(require,module,exports){
+},{"./compile.js":794,"dup":94}],796:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],858:[function(require,module,exports){
+},{"dup":95}],797:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":859}],859:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":798}],798:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],860:[function(require,module,exports){
+},{"dup":97}],799:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],861:[function(require,module,exports){
+},{"dup":98}],800:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],862:[function(require,module,exports){
+},{"dup":99}],801:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":860,"buffer":1171,"dup":100}],863:[function(require,module,exports){
+},{"bit-twiddle":799,"buffer":1110,"dup":100}],802:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],864:[function(require,module,exports){
+},{"dup":101}],803:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":863}],865:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],866:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],867:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],868:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],869:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],870:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],871:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],872:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],873:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],874:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":865,"./clone":866,"./copy":867,"./create":868,"./determinant":869,"./fromQuat":870,"./fromRotationTranslation":871,"./frustum":872,"./identity":873,"./invert":875,"./lookAt":876,"./multiply":877,"./ortho":878,"./perspective":879,"./perspectiveFromFieldOfView":880,"./rotate":881,"./rotateX":882,"./rotateY":883,"./rotateZ":884,"./scale":885,"./str":886,"./translate":887,"./transpose":888,"dup":221}],875:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],876:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":873,"dup":223}],877:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],878:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],879:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],880:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],881:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],882:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],883:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],884:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],885:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],886:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],887:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],888:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],889:[function(require,module,exports){
+},{"dup":102,"weakmap":802}],804:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],805:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],806:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],807:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],808:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],809:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],810:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],811:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],812:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],813:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":804,"./clone":805,"./copy":806,"./create":807,"./determinant":808,"./fromQuat":809,"./fromRotationTranslation":810,"./frustum":811,"./identity":812,"./invert":814,"./lookAt":815,"./multiply":816,"./ortho":817,"./perspective":818,"./perspectiveFromFieldOfView":819,"./rotate":820,"./rotateX":821,"./rotateY":822,"./rotateZ":823,"./scale":824,"./str":825,"./translate":826,"./transpose":827,"dup":160}],814:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],815:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":812,"dup":162}],816:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],817:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],818:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],819:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],820:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],821:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],822:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],823:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],824:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],825:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],826:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],827:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],828:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],890:[function(require,module,exports){
+},{"dup":103}],829:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":889,"dup":104}],891:[function(require,module,exports){
+},{"./do-bind.js":828,"dup":104}],830:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":889,"dup":105}],892:[function(require,module,exports){
+},{"./do-bind.js":828,"dup":105}],831:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],893:[function(require,module,exports){
+},{"dup":101}],832:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":892}],894:[function(require,module,exports){
+},{"dup":102,"weakmap":831}],833:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":890,"./lib/vao-native.js":891,"dup":108,"webglew":893}],895:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],896:[function(require,module,exports){
+},{"./lib/vao-emulated.js":829,"./lib/vao-native.js":830,"dup":108,"webglew":832}],834:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],835:[function(require,module,exports){
 /**
  * lodash 3.0.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -88426,7 +68771,7 @@ function isObject(value) {
 
 module.exports = throttle;
 
-},{"lodash.debounce":897}],897:[function(require,module,exports){
+},{"lodash.debounce":836}],836:[function(require,module,exports){
 /**
  * lodash 3.0.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -88667,7 +69012,7 @@ function isObject(value) {
 
 module.exports = debounce;
 
-},{"lodash.isnative":898}],898:[function(require,module,exports){
+},{"lodash.isnative":837}],837:[function(require,module,exports){
 /**
  * lodash 3.0.0 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -88785,35 +69130,35 @@ function escapeRegExp(string) {
 
 module.exports = isNative;
 
-},{}],899:[function(require,module,exports){
+},{}],838:[function(require,module,exports){
 arguments[4][109][0].apply(exports,arguments)
-},{"dup":109,"gl-shader":900}],900:[function(require,module,exports){
+},{"dup":109,"gl-shader":839}],839:[function(require,module,exports){
 arguments[4][110][0].apply(exports,arguments)
-},{"dup":110,"glsl-exports":901,"uniq":912}],901:[function(require,module,exports){
+},{"dup":110,"glsl-exports":840,"uniq":851}],840:[function(require,module,exports){
 arguments[4][111][0].apply(exports,arguments)
-},{"dup":111,"glsl-parser":902,"glsl-tokenizer":907,"through":911}],902:[function(require,module,exports){
+},{"dup":111,"glsl-parser":841,"glsl-tokenizer":846,"through":850}],841:[function(require,module,exports){
 arguments[4][112][0].apply(exports,arguments)
-},{"./lib/index":904,"dup":112}],903:[function(require,module,exports){
+},{"./lib/index":843,"dup":112}],842:[function(require,module,exports){
 arguments[4][113][0].apply(exports,arguments)
-},{"dup":113}],904:[function(require,module,exports){
+},{"dup":113}],843:[function(require,module,exports){
 arguments[4][114][0].apply(exports,arguments)
-},{"./expr":903,"./scope":905,"dup":114,"through":906}],905:[function(require,module,exports){
+},{"./expr":842,"./scope":844,"dup":114,"through":845}],844:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"dup":115}],906:[function(require,module,exports){
+},{"dup":115}],845:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
-},{"_process":1179,"dup":116,"stream":1191}],907:[function(require,module,exports){
+},{"_process":1118,"dup":116,"stream":1130}],846:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"./lib/builtins":908,"./lib/literals":909,"./lib/operators":910,"dup":117,"through":911}],908:[function(require,module,exports){
+},{"./lib/builtins":847,"./lib/literals":848,"./lib/operators":849,"dup":117,"through":850}],847:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"dup":118}],909:[function(require,module,exports){
+},{"dup":118}],848:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
-},{"dup":119}],910:[function(require,module,exports){
+},{"dup":119}],849:[function(require,module,exports){
 arguments[4][120][0].apply(exports,arguments)
-},{"dup":120}],911:[function(require,module,exports){
+},{"dup":120}],850:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],912:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],851:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],913:[function(require,module,exports){
+},{"dup":122}],852:[function(require,module,exports){
 'use strict';
 
 var createBuffer = require('gl-buffer');
@@ -88964,7 +69309,7 @@ OutlinePlugin.prototype.shaderInit = function() {
 };
 
 
-},{"events":1175,"gl-buffer":852,"gl-mat4":874,"gl-vao":894,"inherits":895,"lodash.throttle":896,"simple-3d-shader":899}],914:[function(require,module,exports){
+},{"events":1114,"gl-buffer":791,"gl-mat4":813,"gl-vao":833,"inherits":834,"lodash.throttle":835,"simple-3d-shader":838}],853:[function(require,module,exports){
 (function (global){
 var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -89269,7 +69614,7 @@ module.exports.RecipeList = RecipeList;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],915:[function(require,module,exports){
+},{}],854:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -89566,15 +69911,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":916,"deep-equal":917}],916:[function(require,module,exports){
+},{"clone":855,"deep-equal":856}],855:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],917:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],856:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":918,"./lib/keys.js":919,"dup":22}],918:[function(require,module,exports){
+},{"./lib/is_arguments.js":857,"./lib/keys.js":858,"dup":22}],857:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],919:[function(require,module,exports){
+},{"dup":23}],858:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],920:[function(require,module,exports){
+},{"dup":24}],859:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, ref,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -89790,13 +70135,13 @@ RepairRecipe = (function(superClass) {
 
 
 
-},{"craftingrecipes":914,"itempile":915}],921:[function(require,module,exports){
+},{"craftingrecipes":853,"itempile":854}],860:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"./vendor/dat.color":922,"./vendor/dat.gui":923,"dup":3}],922:[function(require,module,exports){
+},{"./vendor/dat.color":861,"./vendor/dat.gui":862,"dup":3}],861:[function(require,module,exports){
 arguments[4][4][0].apply(exports,arguments)
-},{"dup":4}],923:[function(require,module,exports){
+},{"dup":4}],862:[function(require,module,exports){
 arguments[4][5][0].apply(exports,arguments)
-},{"dup":5}],924:[function(require,module,exports){
+},{"dup":5}],863:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -89876,7 +70221,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":921}],925:[function(require,module,exports){
+},{"dat-gui":860}],864:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -90173,17 +70518,17 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":926,"deep-equal":927}],926:[function(require,module,exports){
+},{"clone":865,"deep-equal":866}],865:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],927:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],866:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":928,"./lib/keys.js":929,"dup":22}],928:[function(require,module,exports){
+},{"./lib/is_arguments.js":867,"./lib/keys.js":868,"dup":22}],867:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],929:[function(require,module,exports){
+},{"dup":23}],868:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],930:[function(require,module,exports){
+},{"dup":24}],869:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],931:[function(require,module,exports){
+},{"dup":25}],870:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -90392,7 +70737,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":925,"ucfirst":930}],932:[function(require,module,exports){
+},{"itempile":864,"ucfirst":869}],871:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -90526,13 +70871,13 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],933:[function(require,module,exports){
+},{}],872:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":934,"./types.json":935,"dup":15,"events":1175}],934:[function(require,module,exports){
+},{"./init.json":873,"./types.json":874,"dup":15,"events":1114}],873:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],935:[function(require,module,exports){
+},{"dup":16}],874:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],936:[function(require,module,exports){
+},{"dup":17}],875:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -90541,9 +70886,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],937:[function(require,module,exports){
-arguments[4][410][0].apply(exports,arguments)
-},{"dup":410}],938:[function(require,module,exports){
+},{}],876:[function(require,module,exports){
+arguments[4][349][0].apply(exports,arguments)
+},{"dup":349}],877:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -90727,7 +71072,7 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":1175,"ever":933,"fract":936,"inherits":937}],939:[function(require,module,exports){
+},{"events":1114,"ever":872,"fract":875,"inherits":876}],878:[function(require,module,exports){
 (function (global){
 var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -91032,7 +71377,7 @@ module.exports.RecipeList = RecipeList;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],940:[function(require,module,exports){
+},{}],879:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -91329,15 +71674,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":941,"deep-equal":942}],941:[function(require,module,exports){
+},{"clone":880,"deep-equal":881}],880:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],942:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],881:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":943,"./lib/keys.js":944,"dup":22}],943:[function(require,module,exports){
+},{"./lib/is_arguments.js":882,"./lib/keys.js":883,"dup":22}],882:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],944:[function(require,module,exports){
+},{"dup":23}],883:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],945:[function(require,module,exports){
+},{"dup":24}],884:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -91386,10 +71731,10 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":939,"itempile":940}],946:[function(require,module,exports){
+},{"craftingrecipes":878,"itempile":879}],885:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":947}],947:[function(require,module,exports){
+},{"media":886}],886:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -91400,7 +71745,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":949}],948:[function(require,module,exports){
+},{"./lib/player":888}],887:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -91424,7 +71769,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],949:[function(require,module,exports){
+},{}],888:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -91501,7 +71846,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":950,"./src":951,"new-chain":954}],950:[function(require,module,exports){
+},{"./render":889,"./src":890,"new-chain":893}],889:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -91511,7 +71856,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":952,"domify":953}],951:[function(require,module,exports){
+},{"./templates":891,"domify":892}],890:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -91544,10 +71889,10 @@ function pick(el, urls){
   })[0];
 }
 
-},{"./mime":948}],952:[function(require,module,exports){
+},{"./mime":887}],891:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],953:[function(require,module,exports){
+},{}],892:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -91620,7 +71965,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],954:[function(require,module,exports){
+},{}],893:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -91677,7 +72022,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],955:[function(require,module,exports){
+},{}],894:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -91736,7 +72081,7 @@ SfxPlugin.prototype.play = function(name) {
   play_audio(url).autoplay();
 };
 
-},{"play-audio":946}],956:[function(require,module,exports){
+},{"play-audio":885}],895:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -91788,7 +72133,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],957:[function(require,module,exports){
+},{}],896:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -91861,7 +72206,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],958:[function(require,module,exports){
+},{}],897:[function(require,module,exports){
 var EventEmitter, Use,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -91980,7 +72325,7 @@ Use = (function(superClass) {
 
 
 
-},{"events":1175}],959:[function(require,module,exports){
+},{"events":1114}],898:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -92119,55 +72464,55 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require('_process'))
-},{"_process":1179}],960:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],961:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],962:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],963:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],964:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],965:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],966:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],967:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],968:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],969:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":960,"./clone":961,"./copy":962,"./create":963,"./determinant":964,"./fromQuat":965,"./fromRotationTranslation":966,"./frustum":967,"./identity":968,"./invert":970,"./lookAt":971,"./multiply":972,"./ortho":973,"./perspective":974,"./perspectiveFromFieldOfView":975,"./rotate":976,"./rotateX":977,"./rotateY":978,"./rotateZ":979,"./scale":980,"./str":981,"./translate":982,"./transpose":983,"dup":221}],970:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],971:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":968,"dup":223}],972:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],973:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],974:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],975:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],976:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],977:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],978:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],979:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],980:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],981:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],982:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],983:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],984:[function(require,module,exports){
+},{"_process":1118}],899:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],900:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],901:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],902:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],903:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],904:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],905:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],906:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],907:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],908:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":899,"./clone":900,"./copy":901,"./create":902,"./determinant":903,"./fromQuat":904,"./fromRotationTranslation":905,"./frustum":906,"./identity":907,"./invert":909,"./lookAt":910,"./multiply":911,"./ortho":912,"./perspective":913,"./perspectiveFromFieldOfView":914,"./rotate":915,"./rotateX":916,"./rotateY":917,"./rotateZ":918,"./scale":919,"./str":920,"./translate":921,"./transpose":922,"dup":160}],909:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],910:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":907,"dup":162}],911:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],912:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],913:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],914:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],915:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],916:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],917:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],918:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],919:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],920:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],921:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],922:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],923:[function(require,module,exports){
 module.exports = function (obj) {
     if (!obj || typeof obj !== 'object') return obj;
     
@@ -92204,7 +72549,7 @@ var isArray = Array.isArray || function (xs) {
     return {}.toString.call(xs) === '[object Array]';
 };
 
-},{}],985:[function(require,module,exports){
+},{}],924:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92245,7 +72590,7 @@ module.exports.VRDevice = VRDevice;
 module.exports.HMDVRDevice = HMDVRDevice;
 module.exports.PositionSensorVRDevice = PositionSensorVRDevice;
 
-},{}],986:[function(require,module,exports){
+},{}],925:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92309,7 +72654,7 @@ CardboardHMDVRDevice.prototype.getEyeTranslation = function(whichEye) {
 
 module.exports = CardboardHMDVRDevice;
 
-},{"./base.js":985}],987:[function(require,module,exports){
+},{"./base.js":924}],926:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92395,7 +72740,7 @@ GyroPositionSensorVRDevice.prototype.getOrientation = function() {
 
 module.exports = GyroPositionSensorVRDevice;
 
-},{"./base.js":985,"./three-math.js":990}],988:[function(require,module,exports){
+},{"./base.js":924,"./three-math.js":929}],927:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92414,7 +72759,7 @@ var WebVRPolyfill = require('./webvr-polyfill.js');
 
 new WebVRPolyfill();
 
-},{"./webvr-polyfill.js":991}],989:[function(require,module,exports){
+},{"./webvr-polyfill.js":930}],928:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -92556,7 +72901,7 @@ MouseKeyboardPositionSensorVRDevice.prototype.onMouseUp_ = function(e) {
 
 module.exports = MouseKeyboardPositionSensorVRDevice;
 
-},{"./base.js":985,"./three-math.js":990}],990:[function(require,module,exports){
+},{"./base.js":924,"./three-math.js":929}],929:[function(require,module,exports){
 /*
  * A subset of THREE.js, providing mostly quaternion and euler-related
  * operations, manually lifted from
@@ -94680,7 +75025,7 @@ THREE.Euler.prototype = {
 
 module.exports = THREE;
 
-},{}],991:[function(require,module,exports){
+},{}],930:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -94755,7 +75100,7 @@ WebVRPolyfill.prototype.isCardboardCompatible = function() {
 
 module.exports = WebVRPolyfill;
 
-},{"./base.js":985,"./cardboard-hmd-vr-device.js":986,"./gyro-position-sensor-vr-device.js":987,"./mouse-keyboard-position-sensor-vr-device.js":989}],992:[function(require,module,exports){
+},{"./base.js":924,"./cardboard-hmd-vr-device.js":925,"./gyro-position-sensor-vr-device.js":926,"./mouse-keyboard-position-sensor-vr-device.js":928}],931:[function(require,module,exports){
 'use strict';
 
 require('webvr-polyfill'); // fills navigator.getVRDevices(), etc.
@@ -94949,7 +75294,7 @@ VRPlugin.prototype.renderVR = function(t) {
   this.currentEye = undefined
 };
 
-},{"gl-mat4":969,"shallow-copy":984,"webvr-polyfill":988}],993:[function(require,module,exports){
+},{"gl-mat4":908,"shallow-copy":923,"webvr-polyfill":927}],932:[function(require,module,exports){
 "use strict";
 var matrixToCSS = require("matrix-to-css");
 var mat4 = require("gl-mat4");
@@ -95070,55 +75415,55 @@ GLCSS3D.prototype.render = function(view, proj) {
     this.updateView(view);
     this.renderCutout(view, proj);
 };
-},{"gl-mat4":1003,"gl-mesh":1018,"glslify":1037,"glslify/adapter.js":1036,"matrix-to-css":1043}],994:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],995:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],996:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],997:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],998:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],999:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],1000:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],1001:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],1002:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],1003:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":994,"./clone":995,"./copy":996,"./create":997,"./determinant":998,"./fromQuat":999,"./fromRotationTranslation":1000,"./frustum":1001,"./identity":1002,"./invert":1004,"./lookAt":1005,"./multiply":1006,"./ortho":1007,"./perspective":1008,"./perspectiveFromFieldOfView":1009,"./rotate":1010,"./rotateX":1011,"./rotateY":1012,"./rotateZ":1013,"./scale":1014,"./str":1015,"./translate":1016,"./transpose":1017,"dup":221}],1004:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],1005:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":1002,"dup":223}],1006:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],1007:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],1008:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],1009:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],1010:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],1011:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],1012:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],1013:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],1014:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],1015:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],1016:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],1017:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],1018:[function(require,module,exports){
+},{"gl-mat4":942,"gl-mesh":957,"glslify":976,"glslify/adapter.js":975,"matrix-to-css":982}],933:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],934:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],935:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],936:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],937:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],938:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],939:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],940:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],941:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],942:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":933,"./clone":934,"./copy":935,"./create":936,"./determinant":937,"./fromQuat":938,"./fromRotationTranslation":939,"./frustum":940,"./identity":941,"./invert":943,"./lookAt":944,"./multiply":945,"./ortho":946,"./perspective":947,"./perspectiveFromFieldOfView":948,"./rotate":949,"./rotateX":950,"./rotateY":951,"./rotateZ":952,"./scale":953,"./str":954,"./translate":955,"./transpose":956,"dup":160}],943:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],944:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":941,"dup":162}],945:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],946:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],947:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],948:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],949:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],950:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],951:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],952:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],953:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],954:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],955:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],956:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],957:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -95582,7 +75927,7 @@ function createMesh(gl, elements, attributes) {
 }
 
 module.exports = createMesh
-},{"./lib/mesh.js":1019,"gl-buffer":1020,"gl-vao":1024,"ndarray":1030,"ndarray-ops":1025,"typedarray-pool":1034,"webglew":1035}],1019:[function(require,module,exports){
+},{"./lib/mesh.js":958,"gl-buffer":959,"gl-vao":963,"ndarray":969,"ndarray-ops":964,"typedarray-pool":973,"webglew":974}],958:[function(require,module,exports){
 "use strict"
 
 function Mesh(gl, mode, numElements, vao, elements, attributes, attributeNames) {
@@ -95635,7 +75980,7 @@ Mesh.prototype.draw = function() {
 }
 
 module.exports = Mesh
-},{}],1020:[function(require,module,exports){
+},{}],959:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -95800,7 +76145,7 @@ function createBuffer(gl, type, data, usage) {
 }
 
 module.exports = createBuffer
-},{"ndarray":1030,"ndarray-ops":1025,"typedarray-pool":1034}],1021:[function(require,module,exports){
+},{"ndarray":969,"ndarray-ops":964,"typedarray-pool":973}],960:[function(require,module,exports){
 "use strict"
 
 function doBind(gl, elements, attributes) {
@@ -95855,7 +76200,7 @@ function doBind(gl, elements, attributes) {
 }
 
 module.exports = doBind
-},{}],1022:[function(require,module,exports){
+},{}],961:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -95883,7 +76228,7 @@ function createVAOEmulated(gl) {
 }
 
 module.exports = createVAOEmulated
-},{"./do-bind.js":1021}],1023:[function(require,module,exports){
+},{"./do-bind.js":960}],962:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -95917,7 +76262,7 @@ function createVAONative(gl, ext) {
 }
 
 module.exports = createVAONative
-},{"./do-bind.js":1021}],1024:[function(require,module,exports){
+},{"./do-bind.js":960}],963:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -95937,27 +76282,27 @@ function createVAO(gl, elements, attributes) {
 }
 
 module.exports = createVAO
-},{"./lib/vao-emulated.js":1022,"./lib/vao-native.js":1023,"webglew":1035}],1025:[function(require,module,exports){
-arguments[4][550][0].apply(exports,arguments)
-},{"cwise-compiler":1026,"dup":550}],1026:[function(require,module,exports){
-arguments[4][532][0].apply(exports,arguments)
-},{"./lib/thunk.js":1028,"dup":532}],1027:[function(require,module,exports){
-arguments[4][533][0].apply(exports,arguments)
-},{"dup":533,"uniq":1029}],1028:[function(require,module,exports){
+},{"./lib/vao-emulated.js":961,"./lib/vao-native.js":962,"webglew":974}],964:[function(require,module,exports){
+arguments[4][489][0].apply(exports,arguments)
+},{"cwise-compiler":965,"dup":489}],965:[function(require,module,exports){
+arguments[4][471][0].apply(exports,arguments)
+},{"./lib/thunk.js":967,"dup":471}],966:[function(require,module,exports){
+arguments[4][472][0].apply(exports,arguments)
+},{"dup":472,"uniq":968}],967:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":1027,"dup":94}],1029:[function(require,module,exports){
+},{"./compile.js":966,"dup":94}],968:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],1030:[function(require,module,exports){
-arguments[4][460][0].apply(exports,arguments)
-},{"buffer":1171,"dup":460,"iota-array":1031}],1031:[function(require,module,exports){
+},{"dup":122}],969:[function(require,module,exports){
+arguments[4][399][0].apply(exports,arguments)
+},{"buffer":1110,"dup":399,"iota-array":970}],970:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],1032:[function(require,module,exports){
+},{"dup":97}],971:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],1033:[function(require,module,exports){
+},{"dup":98}],972:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],1034:[function(require,module,exports){
-arguments[4][558][0].apply(exports,arguments)
-},{"bit-twiddle":1032,"dup":558}],1035:[function(require,module,exports){
+},{"dup":99}],973:[function(require,module,exports){
+arguments[4][497][0].apply(exports,arguments)
+},{"bit-twiddle":971,"dup":497}],974:[function(require,module,exports){
 "use strict";
 
 var VENDOR_PREFIX = [
@@ -95993,21 +76338,21 @@ function initWebGLEW(gl) {
   return extensions;
 }
 module.exports = initWebGLEW;
-},{}],1036:[function(require,module,exports){
-arguments[4][242][0].apply(exports,arguments)
-},{"dup":242,"gl-shader-core":1042}],1037:[function(require,module,exports){
-arguments[4][243][0].apply(exports,arguments)
-},{"dup":243}],1038:[function(require,module,exports){
-arguments[4][244][0].apply(exports,arguments)
-},{"dup":244}],1039:[function(require,module,exports){
-arguments[4][245][0].apply(exports,arguments)
-},{"./reflect":1040,"dup":245}],1040:[function(require,module,exports){
-arguments[4][246][0].apply(exports,arguments)
-},{"dup":246}],1041:[function(require,module,exports){
+},{}],975:[function(require,module,exports){
+arguments[4][181][0].apply(exports,arguments)
+},{"dup":181,"gl-shader-core":981}],976:[function(require,module,exports){
+arguments[4][182][0].apply(exports,arguments)
+},{"dup":182}],977:[function(require,module,exports){
+arguments[4][183][0].apply(exports,arguments)
+},{"dup":183}],978:[function(require,module,exports){
+arguments[4][184][0].apply(exports,arguments)
+},{"./reflect":979,"dup":184}],979:[function(require,module,exports){
+arguments[4][185][0].apply(exports,arguments)
+},{"dup":185}],980:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],1042:[function(require,module,exports){
-arguments[4][248][0].apply(exports,arguments)
-},{"./lib/create-attributes":1038,"./lib/create-uniforms":1039,"./lib/reflect":1040,"dup":248}],1043:[function(require,module,exports){
+},{"dup":99}],981:[function(require,module,exports){
+arguments[4][187][0].apply(exports,arguments)
+},{"./lib/create-attributes":977,"./lib/create-uniforms":978,"./lib/reflect":979,"dup":187}],982:[function(require,module,exports){
 /*
 
    Converts gl-matrix mat4 objects into strings that can be applied as matrix3d transforms.
@@ -96049,7 +76394,7 @@ function generateCSSString(matrix ){
 }
 
 module.exports = generateCSSString;
-},{}],1044:[function(require,module,exports){
+},{}],983:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -96178,125 +76523,125 @@ WebviewPlugin.prototype.render = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171,"gl-css3d":993}],1045:[function(require,module,exports){
+},{"buffer":1110,"gl-css3d":932}],984:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90,"ndarray":1046,"ndarray-ops":1083,"typedarray-pool":1050,"webglew":1052}],1046:[function(require,module,exports){
+},{"dup":90,"ndarray":985,"ndarray-ops":1022,"typedarray-pool":989,"webglew":991}],985:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":1047}],1047:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":986}],986:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],1048:[function(require,module,exports){
+},{"dup":97}],987:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],1049:[function(require,module,exports){
+},{"dup":98}],988:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],1050:[function(require,module,exports){
+},{"dup":99}],989:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"bit-twiddle":1048,"buffer":1171,"dup":100}],1051:[function(require,module,exports){
+},{"bit-twiddle":987,"buffer":1110,"dup":100}],990:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],1052:[function(require,module,exports){
+},{"dup":101}],991:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":1051}],1053:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212}],1054:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],1055:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],1056:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"dup":215}],1057:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"dup":216}],1058:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],1059:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"dup":218}],1060:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],1061:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],1062:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"./adjoint":1053,"./clone":1054,"./copy":1055,"./create":1056,"./determinant":1057,"./fromQuat":1058,"./fromRotationTranslation":1059,"./frustum":1060,"./identity":1061,"./invert":1063,"./lookAt":1064,"./multiply":1065,"./ortho":1066,"./perspective":1067,"./perspectiveFromFieldOfView":1068,"./rotate":1069,"./rotateX":1070,"./rotateY":1071,"./rotateZ":1072,"./scale":1073,"./str":1074,"./translate":1075,"./transpose":1076,"dup":221}],1063:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"dup":222}],1064:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"./identity":1061,"dup":223}],1065:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"dup":224}],1066:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],1067:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"dup":226}],1068:[function(require,module,exports){
-arguments[4][227][0].apply(exports,arguments)
-},{"dup":227}],1069:[function(require,module,exports){
-arguments[4][228][0].apply(exports,arguments)
-},{"dup":228}],1070:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],1071:[function(require,module,exports){
-arguments[4][230][0].apply(exports,arguments)
-},{"dup":230}],1072:[function(require,module,exports){
-arguments[4][231][0].apply(exports,arguments)
-},{"dup":231}],1073:[function(require,module,exports){
-arguments[4][232][0].apply(exports,arguments)
-},{"dup":232}],1074:[function(require,module,exports){
-arguments[4][233][0].apply(exports,arguments)
-},{"dup":233}],1075:[function(require,module,exports){
-arguments[4][234][0].apply(exports,arguments)
-},{"dup":234}],1076:[function(require,module,exports){
-arguments[4][235][0].apply(exports,arguments)
-},{"dup":235}],1077:[function(require,module,exports){
+},{"dup":102,"weakmap":990}],992:[function(require,module,exports){
+arguments[4][151][0].apply(exports,arguments)
+},{"dup":151}],993:[function(require,module,exports){
+arguments[4][152][0].apply(exports,arguments)
+},{"dup":152}],994:[function(require,module,exports){
+arguments[4][153][0].apply(exports,arguments)
+},{"dup":153}],995:[function(require,module,exports){
+arguments[4][154][0].apply(exports,arguments)
+},{"dup":154}],996:[function(require,module,exports){
+arguments[4][155][0].apply(exports,arguments)
+},{"dup":155}],997:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],998:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],999:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"dup":158}],1000:[function(require,module,exports){
+arguments[4][159][0].apply(exports,arguments)
+},{"dup":159}],1001:[function(require,module,exports){
+arguments[4][160][0].apply(exports,arguments)
+},{"./adjoint":992,"./clone":993,"./copy":994,"./create":995,"./determinant":996,"./fromQuat":997,"./fromRotationTranslation":998,"./frustum":999,"./identity":1000,"./invert":1002,"./lookAt":1003,"./multiply":1004,"./ortho":1005,"./perspective":1006,"./perspectiveFromFieldOfView":1007,"./rotate":1008,"./rotateX":1009,"./rotateY":1010,"./rotateZ":1011,"./scale":1012,"./str":1013,"./translate":1014,"./transpose":1015,"dup":160}],1002:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"dup":161}],1003:[function(require,module,exports){
+arguments[4][162][0].apply(exports,arguments)
+},{"./identity":1000,"dup":162}],1004:[function(require,module,exports){
+arguments[4][163][0].apply(exports,arguments)
+},{"dup":163}],1005:[function(require,module,exports){
+arguments[4][164][0].apply(exports,arguments)
+},{"dup":164}],1006:[function(require,module,exports){
+arguments[4][165][0].apply(exports,arguments)
+},{"dup":165}],1007:[function(require,module,exports){
+arguments[4][166][0].apply(exports,arguments)
+},{"dup":166}],1008:[function(require,module,exports){
+arguments[4][167][0].apply(exports,arguments)
+},{"dup":167}],1009:[function(require,module,exports){
+arguments[4][168][0].apply(exports,arguments)
+},{"dup":168}],1010:[function(require,module,exports){
+arguments[4][169][0].apply(exports,arguments)
+},{"dup":169}],1011:[function(require,module,exports){
+arguments[4][170][0].apply(exports,arguments)
+},{"dup":170}],1012:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171}],1013:[function(require,module,exports){
+arguments[4][172][0].apply(exports,arguments)
+},{"dup":172}],1014:[function(require,module,exports){
+arguments[4][173][0].apply(exports,arguments)
+},{"dup":173}],1015:[function(require,module,exports){
+arguments[4][174][0].apply(exports,arguments)
+},{"dup":174}],1016:[function(require,module,exports){
 arguments[4][103][0].apply(exports,arguments)
-},{"dup":103}],1078:[function(require,module,exports){
+},{"dup":103}],1017:[function(require,module,exports){
 arguments[4][104][0].apply(exports,arguments)
-},{"./do-bind.js":1077,"dup":104}],1079:[function(require,module,exports){
+},{"./do-bind.js":1016,"dup":104}],1018:[function(require,module,exports){
 arguments[4][105][0].apply(exports,arguments)
-},{"./do-bind.js":1077,"dup":105}],1080:[function(require,module,exports){
+},{"./do-bind.js":1016,"dup":105}],1019:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],1081:[function(require,module,exports){
+},{"dup":101}],1020:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102,"weakmap":1080}],1082:[function(require,module,exports){
+},{"dup":102,"weakmap":1019}],1021:[function(require,module,exports){
 arguments[4][108][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":1078,"./lib/vao-native.js":1079,"dup":108,"webglew":1081}],1083:[function(require,module,exports){
+},{"./lib/vao-emulated.js":1017,"./lib/vao-native.js":1018,"dup":108,"webglew":1020}],1022:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"cwise-compiler":1084,"dup":91}],1084:[function(require,module,exports){
+},{"cwise-compiler":1023,"dup":91}],1023:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"./lib/thunk.js":1086,"dup":92}],1085:[function(require,module,exports){
+},{"./lib/thunk.js":1025,"dup":92}],1024:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93,"uniq":1087}],1086:[function(require,module,exports){
+},{"dup":93,"uniq":1026}],1025:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"./compile.js":1085,"dup":94}],1087:[function(require,module,exports){
+},{"./compile.js":1024,"dup":94}],1026:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],1088:[function(require,module,exports){
+},{"dup":95}],1027:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"buffer":1171,"dup":96,"iota-array":1089}],1089:[function(require,module,exports){
+},{"buffer":1110,"dup":96,"iota-array":1028}],1028:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],1090:[function(require,module,exports){
+},{"dup":97}],1029:[function(require,module,exports){
 arguments[4][109][0].apply(exports,arguments)
-},{"dup":109,"gl-shader":1091}],1091:[function(require,module,exports){
+},{"dup":109,"gl-shader":1030}],1030:[function(require,module,exports){
 arguments[4][110][0].apply(exports,arguments)
-},{"dup":110,"glsl-exports":1092,"uniq":1103}],1092:[function(require,module,exports){
+},{"dup":110,"glsl-exports":1031,"uniq":1042}],1031:[function(require,module,exports){
 arguments[4][111][0].apply(exports,arguments)
-},{"dup":111,"glsl-parser":1093,"glsl-tokenizer":1098,"through":1102}],1093:[function(require,module,exports){
+},{"dup":111,"glsl-parser":1032,"glsl-tokenizer":1037,"through":1041}],1032:[function(require,module,exports){
 arguments[4][112][0].apply(exports,arguments)
-},{"./lib/index":1095,"dup":112}],1094:[function(require,module,exports){
+},{"./lib/index":1034,"dup":112}],1033:[function(require,module,exports){
 arguments[4][113][0].apply(exports,arguments)
-},{"dup":113}],1095:[function(require,module,exports){
+},{"dup":113}],1034:[function(require,module,exports){
 arguments[4][114][0].apply(exports,arguments)
-},{"./expr":1094,"./scope":1096,"dup":114,"through":1097}],1096:[function(require,module,exports){
+},{"./expr":1033,"./scope":1035,"dup":114,"through":1036}],1035:[function(require,module,exports){
 arguments[4][115][0].apply(exports,arguments)
-},{"dup":115}],1097:[function(require,module,exports){
+},{"dup":115}],1036:[function(require,module,exports){
 arguments[4][116][0].apply(exports,arguments)
-},{"_process":1179,"dup":116,"stream":1191}],1098:[function(require,module,exports){
+},{"_process":1118,"dup":116,"stream":1130}],1037:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"./lib/builtins":1099,"./lib/literals":1100,"./lib/operators":1101,"dup":117,"through":1102}],1099:[function(require,module,exports){
+},{"./lib/builtins":1038,"./lib/literals":1039,"./lib/operators":1040,"dup":117,"through":1041}],1038:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"dup":118}],1100:[function(require,module,exports){
+},{"dup":118}],1039:[function(require,module,exports){
 arguments[4][119][0].apply(exports,arguments)
-},{"dup":119}],1101:[function(require,module,exports){
+},{"dup":119}],1040:[function(require,module,exports){
 arguments[4][120][0].apply(exports,arguments)
-},{"dup":120}],1102:[function(require,module,exports){
+},{"dup":120}],1041:[function(require,module,exports){
 arguments[4][121][0].apply(exports,arguments)
-},{"_process":1179,"dup":121,"stream":1191}],1103:[function(require,module,exports){
+},{"_process":1118,"dup":121,"stream":1130}],1042:[function(require,module,exports){
 arguments[4][122][0].apply(exports,arguments)
-},{"dup":122}],1104:[function(require,module,exports){
+},{"dup":122}],1043:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -96420,9 +76765,9 @@ WireframePlugin.prototype.render = function() {
 };
 
 
-},{"gl-buffer":1045,"gl-mat4":1062,"gl-vao":1082,"ndarray":1088,"ndarray-ops":1083,"simple-3d-shader":1090}],1105:[function(require,module,exports){
+},{"gl-buffer":984,"gl-mat4":1001,"gl-vao":1021,"ndarray":1027,"ndarray-ops":1022,"simple-3d-shader":1029}],1044:[function(require,module,exports){
 arguments[4][25][0].apply(exports,arguments)
-},{"dup":25}],1106:[function(require,module,exports){
+},{"dup":25}],1045:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -96473,7 +76818,7 @@ WoolPlugin = (function() {
 
 
 
-},{"ucfirst":1105}],1107:[function(require,module,exports){
+},{"ucfirst":1044}],1046:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -96920,7 +77265,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":1108,"events":1175,"ever":1110,"ftooltip":1113,"touchup":1115}],1108:[function(require,module,exports){
+},{"cube-icon":1047,"events":1114,"ever":1049,"ftooltip":1052,"touchup":1054}],1047:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -96988,21 +77333,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":1109}],1109:[function(require,module,exports){
+},{"cube-side-array":1048}],1048:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],1110:[function(require,module,exports){
+},{"dup":39}],1049:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1111,"./types.json":1112,"dup":15,"events":1175}],1111:[function(require,module,exports){
+},{"./init.json":1050,"./types.json":1051,"dup":15,"events":1114}],1050:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1112:[function(require,module,exports){
+},{"dup":16}],1051:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1113:[function(require,module,exports){
+},{"dup":17}],1052:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":1114}],1114:[function(require,module,exports){
+},{"dup":43,"toarray":1053}],1053:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],1115:[function(require,module,exports){
+},{"dup":44}],1054:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],1116:[function(require,module,exports){
+},{"dup":45}],1055:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -97163,13 +77508,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":1117,"events":1175,"itempile":1120}],1117:[function(require,module,exports){
+},{"deep-equal":1056,"events":1114,"itempile":1059}],1056:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1118,"./lib/keys.js":1119,"dup":22}],1118:[function(require,module,exports){
+},{"./lib/is_arguments.js":1057,"./lib/keys.js":1058,"dup":22}],1057:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1119:[function(require,module,exports){
+},{"dup":23}],1058:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1120:[function(require,module,exports){
+},{"dup":24}],1059:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -97466,15 +77811,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":1121,"deep-equal":1122}],1121:[function(require,module,exports){
+},{"clone":1060,"deep-equal":1061}],1060:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],1122:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],1061:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1123,"./lib/keys.js":1124,"dup":22}],1123:[function(require,module,exports){
+},{"./lib/is_arguments.js":1062,"./lib/keys.js":1063,"dup":22}],1062:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1124:[function(require,module,exports){
+},{"dup":23}],1063:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1125:[function(require,module,exports){
+},{"dup":24}],1064:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -97551,7 +77896,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 
 
 
-},{"inventory":1135,"inventory-window":1126,"itempile":1144,"voxel-modal-dialog":1149}],1126:[function(require,module,exports){
+},{"inventory":1074,"inventory-window":1065,"itempile":1083,"voxel-modal-dialog":1088}],1065:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -97998,7 +78343,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":1127,"events":1175,"ever":1129,"ftooltip":1132,"touchup":1134}],1127:[function(require,module,exports){
+},{"cube-icon":1066,"events":1114,"ever":1068,"ftooltip":1071,"touchup":1073}],1066:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -98066,21 +78411,21 @@ CubeIcon = (function() {
 
 
 
-},{"cube-side-array":1128}],1128:[function(require,module,exports){
+},{"cube-side-array":1067}],1067:[function(require,module,exports){
 arguments[4][39][0].apply(exports,arguments)
-},{"dup":39}],1129:[function(require,module,exports){
+},{"dup":39}],1068:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1130,"./types.json":1131,"dup":15,"events":1175}],1130:[function(require,module,exports){
+},{"./init.json":1069,"./types.json":1070,"dup":15,"events":1114}],1069:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1131:[function(require,module,exports){
+},{"dup":16}],1070:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1132:[function(require,module,exports){
+},{"dup":17}],1071:[function(require,module,exports){
 arguments[4][43][0].apply(exports,arguments)
-},{"dup":43,"toarray":1133}],1133:[function(require,module,exports){
+},{"dup":43,"toarray":1072}],1072:[function(require,module,exports){
 arguments[4][44][0].apply(exports,arguments)
-},{"dup":44}],1134:[function(require,module,exports){
+},{"dup":44}],1073:[function(require,module,exports){
 arguments[4][45][0].apply(exports,arguments)
-},{"dup":45}],1135:[function(require,module,exports){
+},{"dup":45}],1074:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -98241,13 +78586,13 @@ module.exports = Inventory = (function(superClass) {
 
 
 
-},{"deep-equal":1136,"events":1175,"itempile":1139}],1136:[function(require,module,exports){
+},{"deep-equal":1075,"events":1114,"itempile":1078}],1075:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1137,"./lib/keys.js":1138,"dup":22}],1137:[function(require,module,exports){
+},{"./lib/is_arguments.js":1076,"./lib/keys.js":1077,"dup":22}],1076:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1138:[function(require,module,exports){
+},{"dup":23}],1077:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1139:[function(require,module,exports){
+},{"dup":24}],1078:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -98544,15 +78889,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":1140,"deep-equal":1141}],1140:[function(require,module,exports){
+},{"clone":1079,"deep-equal":1080}],1079:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],1141:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],1080:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1142,"./lib/keys.js":1143,"dup":22}],1142:[function(require,module,exports){
+},{"./lib/is_arguments.js":1081,"./lib/keys.js":1082,"dup":22}],1081:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1143:[function(require,module,exports){
+},{"dup":23}],1082:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1144:[function(require,module,exports){
+},{"dup":24}],1083:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -98849,25 +79194,25 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":1145,"deep-equal":1146}],1145:[function(require,module,exports){
+},{"clone":1084,"deep-equal":1085}],1084:[function(require,module,exports){
 arguments[4][21][0].apply(exports,arguments)
-},{"buffer":1171,"dup":21}],1146:[function(require,module,exports){
+},{"buffer":1110,"dup":21}],1085:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":1147,"./lib/keys.js":1148,"dup":22}],1147:[function(require,module,exports){
+},{"./lib/is_arguments.js":1086,"./lib/keys.js":1087,"dup":22}],1086:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],1148:[function(require,module,exports){
+},{"dup":23}],1087:[function(require,module,exports){
 arguments[4][24][0].apply(exports,arguments)
-},{"dup":24}],1149:[function(require,module,exports){
+},{"dup":24}],1088:[function(require,module,exports){
 arguments[4][13][0].apply(exports,arguments)
-},{"dup":13,"voxel-modal":1150}],1150:[function(require,module,exports){
+},{"dup":13,"voxel-modal":1089}],1089:[function(require,module,exports){
 arguments[4][14][0].apply(exports,arguments)
-},{"dup":14,"ever":1151}],1151:[function(require,module,exports){
+},{"dup":14,"ever":1090}],1090:[function(require,module,exports){
 arguments[4][15][0].apply(exports,arguments)
-},{"./init.json":1152,"./types.json":1153,"dup":15,"events":1175}],1152:[function(require,module,exports){
+},{"./init.json":1091,"./types.json":1092,"dup":15,"events":1114}],1091:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
-},{"dup":16}],1153:[function(require,module,exports){
+},{"dup":16}],1092:[function(require,module,exports){
 arguments[4][17][0].apply(exports,arguments)
-},{"dup":17}],1154:[function(require,module,exports){
+},{"dup":17}],1093:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -99048,7 +79393,7 @@ WorkbenchDialog = (function(superClass) {
 
 
 
-},{"inventory":1116,"inventory-window":1107,"voxel-inventory-dialog":1125}],1155:[function(require,module,exports){
+},{"inventory":1055,"inventory-window":1046,"voxel-inventory-dialog":1064}],1094:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -99155,9 +79500,9 @@ ZenPlugin = (function() {
 
 
 
-},{}],1156:[function(require,module,exports){
+},{}],1095:[function(require,module,exports){
 
-},{}],1157:[function(require,module,exports){
+},{}],1096:[function(require,module,exports){
 // http://wiki.commonjs.org/wiki/Unit_Testing/1.0
 //
 // THIS IS NOT TESTED NOR LIKELY TO WORK OUTSIDE V8!
@@ -99518,7 +79863,7 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":1194}],1158:[function(require,module,exports){
+},{"util/":1133}],1097:[function(require,module,exports){
 'use strict';
 
 
@@ -99621,7 +79966,7 @@ exports.setTyped = function (on) {
 };
 
 exports.setTyped(TYPED_OK);
-},{}],1159:[function(require,module,exports){
+},{}],1098:[function(require,module,exports){
 'use strict';
 
 // Note: adler32 takes 12% for level 0 and 2% for level 6.
@@ -99654,7 +79999,7 @@ function adler32(adler, buf, len, pos) {
 
 
 module.exports = adler32;
-},{}],1160:[function(require,module,exports){
+},{}],1099:[function(require,module,exports){
 module.exports = {
 
   /* Allowed flush values; see deflate() and inflate() below for details */
@@ -99702,7 +80047,7 @@ module.exports = {
   Z_DEFLATED:               8
   //Z_NULL:                 null // Use -1 or null inline, depending on var type
 };
-},{}],1161:[function(require,module,exports){
+},{}],1100:[function(require,module,exports){
 'use strict';
 
 // Note: we can't get significant speed boost here.
@@ -99744,7 +80089,7 @@ function crc32(crc, buf, len, pos) {
 
 
 module.exports = crc32;
-},{}],1162:[function(require,module,exports){
+},{}],1101:[function(require,module,exports){
 'use strict';
 
 var utils   = require('../utils/common');
@@ -101510,7 +81855,7 @@ exports.deflatePending = deflatePending;
 exports.deflatePrime = deflatePrime;
 exports.deflateTune = deflateTune;
 */
-},{"../utils/common":1158,"./adler32":1159,"./crc32":1161,"./messages":1166,"./trees":1167}],1163:[function(require,module,exports){
+},{"../utils/common":1097,"./adler32":1098,"./crc32":1100,"./messages":1105,"./trees":1106}],1102:[function(require,module,exports){
 'use strict';
 
 // See state defs from inflate.js
@@ -101837,7 +82182,7 @@ module.exports = function inflate_fast(strm, start) {
   return;
 };
 
-},{}],1164:[function(require,module,exports){
+},{}],1103:[function(require,module,exports){
 'use strict';
 
 
@@ -103341,7 +83686,7 @@ exports.inflateSync = inflateSync;
 exports.inflateSyncPoint = inflateSyncPoint;
 exports.inflateUndermine = inflateUndermine;
 */
-},{"../utils/common":1158,"./adler32":1159,"./crc32":1161,"./inffast":1163,"./inftrees":1165}],1165:[function(require,module,exports){
+},{"../utils/common":1097,"./adler32":1098,"./crc32":1100,"./inffast":1102,"./inftrees":1104}],1104:[function(require,module,exports){
 'use strict';
 
 
@@ -103668,7 +84013,7 @@ module.exports = function inflate_table(type, lens, lens_index, codes, table, ta
   return 0;
 };
 
-},{"../utils/common":1158}],1166:[function(require,module,exports){
+},{"../utils/common":1097}],1105:[function(require,module,exports){
 'use strict';
 
 module.exports = {
@@ -103682,7 +84027,7 @@ module.exports = {
   '-5':   'buffer error',        /* Z_BUF_ERROR     (-5) */
   '-6':   'incompatible version' /* Z_VERSION_ERROR (-6) */
 };
-},{}],1167:[function(require,module,exports){
+},{}],1106:[function(require,module,exports){
 'use strict';
 
 
@@ -104882,7 +85227,7 @@ exports._tr_stored_block = _tr_stored_block;
 exports._tr_flush_block  = _tr_flush_block;
 exports._tr_tally = _tr_tally;
 exports._tr_align = _tr_align;
-},{"../utils/common":1158}],1168:[function(require,module,exports){
+},{"../utils/common":1097}],1107:[function(require,module,exports){
 'use strict';
 
 
@@ -104912,7 +85257,7 @@ function ZStream() {
 }
 
 module.exports = ZStream;
-},{}],1169:[function(require,module,exports){
+},{}],1108:[function(require,module,exports){
 (function (process,Buffer){
 var msg = require('pako/lib/zlib/messages');
 var zstream = require('pako/lib/zlib/zstream');
@@ -105152,7 +85497,7 @@ Zlib.prototype._error = function(status) {
 exports.Zlib = Zlib;
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":1179,"buffer":1171,"pako/lib/zlib/constants":1160,"pako/lib/zlib/deflate.js":1162,"pako/lib/zlib/inflate.js":1164,"pako/lib/zlib/messages":1166,"pako/lib/zlib/zstream":1168}],1170:[function(require,module,exports){
+},{"_process":1118,"buffer":1110,"pako/lib/zlib/constants":1099,"pako/lib/zlib/deflate.js":1101,"pako/lib/zlib/inflate.js":1103,"pako/lib/zlib/messages":1105,"pako/lib/zlib/zstream":1107}],1109:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -105766,7 +86111,7 @@ util.inherits(InflateRaw, Zlib);
 util.inherits(Unzip, Zlib);
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"./binding":1169,"_process":1179,"_stream_transform":1189,"assert":1157,"buffer":1171,"util":1194}],1171:[function(require,module,exports){
+},{"./binding":1108,"_process":1118,"_stream_transform":1128,"assert":1096,"buffer":1110,"util":1133}],1110:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -107084,7 +87429,7 @@ function decodeUtf8Char (str) {
   }
 }
 
-},{"base64-js":1172,"ieee754":1173,"is-array":1174}],1172:[function(require,module,exports){
+},{"base64-js":1111,"ieee754":1112,"is-array":1113}],1111:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -107210,7 +87555,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	exports.fromByteArray = uint8ToBase64
 }(typeof exports === 'undefined' ? (this.base64js = {}) : exports))
 
-},{}],1173:[function(require,module,exports){
+},{}],1112:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -107296,7 +87641,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],1174:[function(require,module,exports){
+},{}],1113:[function(require,module,exports){
 
 /**
  * isArray
@@ -107331,7 +87676,7 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],1175:[function(require,module,exports){
+},{}],1114:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -107634,14 +87979,14 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],1176:[function(require,module,exports){
-arguments[4][292][0].apply(exports,arguments)
-},{"dup":292}],1177:[function(require,module,exports){
+},{}],1115:[function(require,module,exports){
+arguments[4][231][0].apply(exports,arguments)
+},{"dup":231}],1116:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],1178:[function(require,module,exports){
+},{}],1117:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -107869,7 +88214,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require('_process'))
-},{"_process":1179}],1179:[function(require,module,exports){
+},{"_process":1118}],1118:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -107928,10 +88273,10 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],1180:[function(require,module,exports){
+},{}],1119:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":1181}],1181:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":1120}],1120:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -108024,7 +88369,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_readable":1183,"./_stream_writable":1185,"_process":1179,"core-util-is":1186,"inherits":1176}],1182:[function(require,module,exports){
+},{"./_stream_readable":1122,"./_stream_writable":1124,"_process":1118,"core-util-is":1125,"inherits":1115}],1121:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -108072,7 +88417,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":1184,"core-util-is":1186,"inherits":1176}],1183:[function(require,module,exports){
+},{"./_stream_transform":1123,"core-util-is":1125,"inherits":1115}],1122:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -109058,7 +89403,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require('_process'))
-},{"_process":1179,"buffer":1171,"core-util-is":1186,"events":1175,"inherits":1176,"isarray":1177,"stream":1191,"string_decoder/":1192}],1184:[function(require,module,exports){
+},{"_process":1118,"buffer":1110,"core-util-is":1125,"events":1114,"inherits":1115,"isarray":1116,"stream":1130,"string_decoder/":1131}],1123:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -109270,7 +89615,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":1181,"core-util-is":1186,"inherits":1176}],1185:[function(require,module,exports){
+},{"./_stream_duplex":1120,"core-util-is":1125,"inherits":1115}],1124:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -109660,7 +90005,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require('_process'))
-},{"./_stream_duplex":1181,"_process":1179,"buffer":1171,"core-util-is":1186,"inherits":1176,"stream":1191}],1186:[function(require,module,exports){
+},{"./_stream_duplex":1120,"_process":1118,"buffer":1110,"core-util-is":1125,"inherits":1115,"stream":1130}],1125:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -109770,10 +90115,10 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":1171}],1187:[function(require,module,exports){
+},{"buffer":1110}],1126:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":1182}],1188:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":1121}],1127:[function(require,module,exports){
 var Stream = require('stream'); // hack to fix a circular dependency issue when used with browserify
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Stream = Stream;
@@ -109783,13 +90128,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":1181,"./lib/_stream_passthrough.js":1182,"./lib/_stream_readable.js":1183,"./lib/_stream_transform.js":1184,"./lib/_stream_writable.js":1185,"stream":1191}],1189:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":1120,"./lib/_stream_passthrough.js":1121,"./lib/_stream_readable.js":1122,"./lib/_stream_transform.js":1123,"./lib/_stream_writable.js":1124,"stream":1130}],1128:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":1184}],1190:[function(require,module,exports){
+},{"./lib/_stream_transform.js":1123}],1129:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":1185}],1191:[function(require,module,exports){
+},{"./lib/_stream_writable.js":1124}],1130:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -109918,7 +90263,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":1175,"inherits":1176,"readable-stream/duplex.js":1180,"readable-stream/passthrough.js":1187,"readable-stream/readable.js":1188,"readable-stream/transform.js":1189,"readable-stream/writable.js":1190}],1192:[function(require,module,exports){
+},{"events":1114,"inherits":1115,"readable-stream/duplex.js":1119,"readable-stream/passthrough.js":1126,"readable-stream/readable.js":1127,"readable-stream/transform.js":1128,"readable-stream/writable.js":1129}],1131:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -110141,14 +90486,14 @@ function base64DetectIncompleteChar(buffer) {
   this.charLength = this.charReceived ? 3 : 0;
 }
 
-},{"buffer":1171}],1193:[function(require,module,exports){
+},{"buffer":1110}],1132:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],1194:[function(require,module,exports){
+},{}],1133:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -110738,7 +91083,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":1193,"_process":1179,"inherits":1176}],1195:[function(require,module,exports){
+},{"./support/isBuffer":1132,"_process":1118,"inherits":1115}],1134:[function(require,module,exports){
 var indexOf = require('indexof');
 
 var Object_keys = function (obj) {
@@ -110878,7 +91223,7 @@ exports.createContext = Script.createContext = function (context) {
     return copy;
 };
 
-},{"indexof":1196}],1196:[function(require,module,exports){
+},{"indexof":1135}],1135:[function(require,module,exports){
 
 var indexOf = [].indexOf;
 
