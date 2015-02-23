@@ -41,7 +41,7 @@ require 'voxel-glass'
 require 'voxel-land'
 require 'voxel-decorative'
 require 'voxel-inventory-creative'
-require 'voxel-clientmc'
+#require 'voxel-clientmc' # TODO: after published
 require 'voxel-console'
 require 'voxel-commands'
 require 'voxel-drop'
@@ -144,7 +144,7 @@ main = () ->
     'voxel-land': {populateTrees: true}
     'voxel-decorative': {}
     'voxel-inventory-creative': {}
-    'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}
+    #'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true} # TODO
 
     'voxel-console': {}
     'voxel-commands': {}
