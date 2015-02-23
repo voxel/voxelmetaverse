@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#402d3d0463ad95608cf7b205babe8cd20380c7b9",
+    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#ndarray",
     "voxel-artpacks": "^0.1.2",
     "voxel-wireframe": "^0.6.0",
     "voxel-chunkborder": "^0.5.0",
@@ -57,7 +57,7 @@
     "voxel-land": "^0.2.1",
     "voxel-decorative": "^0.1.1",
     "voxel-inventory-creative": "^0.1.2",
-    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#67d38a17e6d2f742da2aae212b809d54175e45de",
+    "voxel-clientmc": "git://github.com/deathcap/voxel-clientmc.git#master",
     "voxel-console": "^0.2.1",
     "voxel-commands": "^0.3.1"
   },
