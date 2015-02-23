@@ -21,7 +21,7 @@ require 'voxel-inventory-crafting'
 require 'voxel-voila'
 require 'voxel-health'
 require 'voxel-health-bar'
-require 'voxel-health-fall'
+#require 'voxel-health-fall' # TODO: after https://github.com/deathcap/voxel-health-fall/issues/1
 require 'voxel-food'
 require 'voxel-sfx'
 require 'voxel-flight'

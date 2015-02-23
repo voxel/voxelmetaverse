@@ -20,7 +20,6 @@
     "voxel-voila": "^0.6.0",
     "voxel-health": "^0.1.0",
     "voxel-health-bar": "^0.1.1",
-    "voxel-health-fall": "git://github.com/deathcap/voxel-health-fall.git#01fc438f05a4c2548b07ee858ae79a87c78180d8",
     "voxel-food": "^0.1.0",
     "voxel-sfx": "^0.2.0",
     "voxel-flight": "^0.2.0",
