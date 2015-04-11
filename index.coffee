@@ -51,6 +51,7 @@ require 'voxel-plugins-ui'
 require 'voxel-fullscreen'
 require 'voxel-keys'
 require 'kb-bindings-ui'
+require 'voxel-background-music'
 
 createEngine = require 'voxel-engine-stackgl'
 
@@ -183,6 +184,7 @@ main = () ->
     'camera-debug': {} # TODO: port from game-shell-fps-camera
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
+    'voxel-background-music': {}
   }
 
 main()
