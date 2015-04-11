@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "ever": "0.0.3",
-    "voxel-engine": "git://github.com/deathcap/voxel-engine.git#ndarray",
+    "voxel-engine-stackgl": "^1.0.0",
     "voxel-artpacks": "^0.1.2",
     "voxel-wireframe": "^0.6.0",
     "voxel-chunkborder": "^0.5.0",
