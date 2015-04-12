@@ -51,6 +51,7 @@ require 'voxel-plugins-ui'
 require 'voxel-fullscreen'
 require 'voxel-keys'
 require 'kb-bindings-ui'
+require 'voxel-background-music'
 
 createEngine = require 'voxel-engine-stackgl'
 
@@ -161,7 +162,7 @@ main = () ->
     'voxel-flight': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-sprint': {}
-    'voxel-inventory-hotbar': {inventorySize:10}
+    'voxel-inventory-hotbar': {inventorySize:10, wheelEnable:true}
     'voxel-inventory-crafting': {}
     'voxel-reach': { reachDistance: 8 }
     'voxel-decals': {}
@@ -183,6 +184,7 @@ main = () ->
     'camera-debug': {} # TODO: port from game-shell-fps-camera
     'voxel-plugins-ui': {}
     'kb-bindings-ui': {}
+    'voxel-background-music': {}
   }
 
 main()
