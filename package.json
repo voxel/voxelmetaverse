@@ -1,7 +1,7 @@
 {
   "name": "voxelmetaverse",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git@github.com:deathcap/voxelmetaverse.git"
@@ -49,7 +49,7 @@
     "voxel-quarry": "^0.2.0",
     "voxel-reach": "^0.2.2",
     "voxel-recipes": "^0.3.3",
-    "voxel-sfx": "git://github.com/z3t0/voxel-sfx#master",
+    "voxel-sfx": "^0.3.2",
     "voxel-skyhook": "^0.1.1",
     "voxel-sprint": "^0.1.0",
     "voxel-use": "^0.1.2",
