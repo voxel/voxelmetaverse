@@ -126,7 +126,7 @@ main = () ->
     'voxel-measure': {}
     'voxel-webview': {}
     'voxel-vr': {onDemand: true} # has to be enabled after gl-init to replace renderer
-    'voxel-carry': {inventoryWidth:10, inventoryRows:5}
+    'voxel-carry': {}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
     #'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true} # requires this.game.materials TODO: water
