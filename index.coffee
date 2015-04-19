@@ -52,13 +52,13 @@ require 'voxel-fullscreen'
 require 'voxel-keys'
 require 'kb-bindings-ui'
 
-createEngine = require 'voxel-engine'
+createEngine = require 'voxel-engine-stackgl'
 
 main = () ->
   console.log 'voxelmetaverse starting: ', global.__BROWSERIFY_META_DATA__GIT_VERSION, global.__BROWSERIFY_META_DATA__CREATED_AT # TODO: display somewhere on page
 
   createEngine {require:require, exposeGlobal:true, pluginOpts:
-    'voxel-engine':
+    'voxel-engine-stackgl':
       appendDocument: true
       exposeGlobal: true  # for debugging
 
@@ -126,7 +126,7 @@ main = () ->
     'voxel-measure': {}
     'voxel-webview': {}
     'voxel-vr': {onDemand: true} # has to be enabled after gl-init to replace renderer
-    'voxel-carry': {inventoryWidth:10, inventoryRows:5}
+    'voxel-carry': {}
     'voxel-bucket': {fluids: ['water', 'lava']}
     'voxel-fluid': {}
     #'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true} # requires this.game.materials TODO: water
