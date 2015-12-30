@@ -2,9 +2,9 @@
 (function (global){
 var createEngine, main;
 
-global.__BROWSERIFY_META_DATA__GIT_VERSION = "5aefe3eb9be10a7a2ee0078b483cfb8c1298e83d";
+global.__BROWSERIFY_META_DATA__GIT_VERSION = "a33f36c906134c9a4a9cbf5cac953a2ae38fdbee";
 
-global.__BROWSERIFY_META_DATA__CREATED_AT = "Wed Dec 30 2015 01:45:33 GMT-0800 (PST)";
+global.__BROWSERIFY_META_DATA__CREATED_AT = "Wed Dec 30 2015 01:49:59 GMT-0800 (PST)";
 
 require('voxel-artpacks');
 
