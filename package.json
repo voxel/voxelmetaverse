@@ -70,13 +70,7 @@
     "coffeeify": "^1.0.0",
     "watchify": "^2.4.0"
   },
-  "browserify": {
-    "transform": [
-      "browserify-commit-sha",
-      "coffeeify"
-    ]
-  },
   "scripts": {
-    "start": "beefy index.coffee:bundle.js --watchify --port 8080 -- --debug"
+    "start": "beefy index.js:bundle.js --watchify --port 8080 -- --debug"
   }
 }
