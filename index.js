@@ -76,7 +76,7 @@
   require('voxel-pumpkin'); // TODO: pending rename https://github.com/voxel/voxel-pumpkin/issues/6
   // Allows for adding additional data to blocks
   require('voxel-blockdata');
-  // Addds glass blocks
+  // Adds glass blocks
   require('voxel-glass'); // TODO: pending rename https://github.com/voxel/voxel-glass/issues/6
   // Terrain generator
   require('voxel-land');
@@ -168,7 +168,6 @@
         'voxel-recipes': {},
         'voxel-quarry': {},
         'voxel-measure': {},
-        'voxel-webview': {},
         'voxel-vr': {
           onDemand: true
         },
