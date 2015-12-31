@@ -161,7 +161,7 @@ main = () ->
     'voxel-flight': {flySpeed: 0.8, onDemand: true}
     'voxel-gamemode': {}
     'voxel-sprint': {}
-    'voxel-inventory-hotbar': {inventorySize:10}
+    'voxel-inventory-hotbar': {inventorySize:10, wheelEnable:true}
     'voxel-inventory-crafting': {}
     'voxel-reach': { reachDistance: 8 }
     'voxel-decals': {}
