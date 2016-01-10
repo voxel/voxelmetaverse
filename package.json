@@ -65,13 +65,11 @@
   },
   "devDependencies": {
     "browserify": "^13.0.0",
-    "browserify-commit-sha": "^0.1.1",
     "watchify": "^2.4.0",
     "wzrd": "^1.3.1"
   },
   "browserify": {
     "transform": [
-      "browserify-commit-sha"
     ]
   },
   "scripts": {

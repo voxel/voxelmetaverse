@@ -56,7 +56,7 @@ require('kb-bindings-ui');
 const createEngine = require('voxel-engine-stackgl');
 
 function main() {
-  console.log('voxelmetaverse starting: ', global.__BROWSERIFY_META_DATA__GIT_VERSION, global.__BROWSERIFY_META_DATA__CREATED_AT); // TODO: display somewhere on page
+  console.log('voxelmetaverse starting'); // TODO: show git version (browserify-commit-sha)
 
   createEngine({require:require, exposeGlobal:true, pluginOpts: {
     'voxel-engine-stackgl': {
