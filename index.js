@@ -1,64 +1,62 @@
 
-// plugins (loaded by voxel-plugins; listed here for browserify)
-// TODO: https://github.com/voxel/voxel-plugins/issues/8 Less magic in voxel-plugins require() plugin loading
-require('voxel-artpacks');
-require('voxel-wireframe');
-require('voxel-chunkborder');
-require('voxel-outline');
-require('voxel-carry');
-require('voxel-bucket');
-require('voxel-fluid');
-require('voxel-skyhook');
-require('voxel-recipes');
-require('voxel-quarry');
-require('voxel-measure');
-require('voxel-webview');
-require('voxel-vr');
-require('voxel-workbench');
-require('voxel-furnace');
-require('voxel-chest');
-require('voxel-inventory-hotbar');
-require('voxel-inventory-crafting');
-require('voxel-voila');
-require('voxel-health');
-require('voxel-health-bar');
-//require('voxel-health-fall'); // TODO: after https://github.com/deathcap/voxel-health-fall/issues/1
-require('voxel-food');
-require('voxel-sfx');
-require('voxel-flight');
-require('voxel-gamemode');
-require('voxel-sprint');
-require('voxel-decals');
-require('voxel-mine');
-require('voxel-harvest');
-require('voxel-use');
-require('voxel-reach');
-require('voxel-pickaxe');
-require('voxel-hammer');
-require('voxel-wool');
-require('voxel-pumpkin');
-require('voxel-blockdata');
-require('voxel-glass');
-require('voxel-land');
-require('voxel-decorative');
-require('voxel-inventory-creative');
-//require('voxel-clientmc'); // TODO: after published
-require('voxel-console');
-require('voxel-commands');
-require('voxel-drop');
-require('voxel-zen');
-require('camera-debug');
-require('voxel-plugins-ui');
-require('voxel-fullscreen');
-require('voxel-keys');
-require('kb-bindings-ui');
-
 const createEngine = require('voxel-engine-stackgl');
 
 function main() {
   console.log('voxelmetaverse starting'); // TODO: show git version (browserify-commit-sha)
 
-  createEngine({require:require, exposeGlobal:true, pluginOpts: {
+  createEngine({exposeGlobal: true, pluginLoaders: {
+      'voxel-artpacks': require('voxel-artpacks'),
+      'voxel-wireframe': require('voxel-wireframe'),
+      'voxel-chunkborder': require('voxel-chunkborder'),
+      'voxel-outline': require('voxel-outline'),
+      'voxel-carry': require('voxel-carry'),
+      'voxel-bucket': require('voxel-bucket'),
+      'voxel-fluid': require('voxel-fluid'),
+      'voxel-skyhook': require('voxel-skyhook'),
+      'voxel-recipes': require('voxel-recipes'),
+      'voxel-quarry': require('voxel-quarry'),
+      'voxel-measure': require('voxel-measure'),
+      'voxel-webview': require('voxel-webview'),
+      'voxel-vr': require('voxel-vr'),
+      'voxel-workbench': require('voxel-workbench'),
+      'voxel-furnace': require('voxel-furnace'),
+      'voxel-chest': require('voxel-chest'),
+      'voxel-inventory-hotbar': require('voxel-inventory-hotbar'),
+      'voxel-inventory-crafting': require('voxel-inventory-crafting'),
+      'voxel-voila': require('voxel-voila'),
+      'voxel-health': require('voxel-health'),
+      'voxel-health-bar': require('voxel-health-bar'),
+      //'voxel-health-fall': require('voxel-health-fall'); // TODO: after https://github.com/deathcap/voxel-health-fall/issues/1
+      'voxel-food': require('voxel-food'),
+      'voxel-sfx': require('voxel-sfx'),
+      'voxel-flight': require('voxel-flight'),
+      'voxel-gamemode': require('voxel-gamemode'),
+      'voxel-sprint': require('voxel-sprint'),
+      'voxel-decals': require('voxel-decals'),
+      'voxel-mine': require('voxel-mine'),
+      'voxel-harvest': require('voxel-harvest'),
+      'voxel-use': require('voxel-use'),
+      'voxel-reach': require('voxel-reach'),
+      'voxel-pickaxe': require('voxel-pickaxe'),
+      'voxel-hammer': require('voxel-hammer'),
+      'voxel-wool': require('voxel-wool'),
+      'voxel-pumpkin': require('voxel-pumpkin'),
+      'voxel-blockdata': require('voxel-blockdata'),
+      'voxel-glass': require('voxel-glass'),
+      'voxel-land': require('voxel-land'),
+      'voxel-decorative': require('voxel-decorative'),
+      'voxel-inventory-creative': require('voxel-inventory-creative'),
+      //'voxel-clientmc': require('voxel-clientmc');  // TODO: after published
+      'voxel-console': require('voxel-console'),
+      'voxel-commands': require('voxel-commands'),
+      'voxel-drop': require('voxel-drop'),
+      'voxel-zen': require('voxel-zen'),
+      'camera-debug': require('camera-debug'),
+      'voxel-plugins-ui': require('voxel-plugins-ui'),
+      'voxel-fullscreen': require('voxel-fullscreen'),
+      'voxel-keys': require('voxel-keys'),
+      'kb-bindings-ui': require('kb-bindings-ui')
+    }, pluginOpts: {
     'voxel-engine-stackgl': {
       appendDocument: true,
       exposeGlobal: true,  // for debugging
