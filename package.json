@@ -21,7 +21,7 @@
     "voxel-decals": "^0.2.1",
     "voxel-decorative": "^0.1.1",
     "voxel-drop": "^0.1.3",
-    "voxel-engine-stackgl": "^1.0.2",
+    "voxel-engine-stackgl": "^1.1.0",
     "voxel-flight": "^0.2.0",
     "voxel-fluid": "^0.0.2",
     "voxel-food": "^0.1.0",
@@ -42,7 +42,6 @@
     "voxel-mine": "^0.5.0",
     "voxel-outline": "^0.4.2",
     "voxel-pickaxe": "^0.2.2",
-    "voxel-plugins": "^0.3.2",
     "voxel-plugins-ui": "^0.3.0",
     "voxel-pumpkin": "^0.1.3",
     "voxel-quarry": "^0.2.0",
@@ -64,19 +63,15 @@
     "node": "0.12.x"
   },
   "devDependencies": {
-    "beefy": "^2.1.3",
     "browserify": "^13.0.0",
-    "browserify-commit-sha": "^0.1.1",
-    "coffeeify": "^1.0.0",
-    "watchify": "^2.4.0"
+    "watchify": "^2.4.0",
+    "wzrd": "^1.3.1"
   },
   "browserify": {
     "transform": [
-      "browserify-commit-sha",
-      "coffeeify"
     ]
   },
   "scripts": {
-    "start": "beefy index.coffee:bundle.js --watchify --port 8080 -- --debug"
+    "start": "wzrd index.js:bundle.js --watchify --port 8080 -- --debug"
   }
 }
