@@ -28,6 +28,7 @@ function main() {
       'voxel-health-bar': require('voxel-health-bar'),
       //'voxel-health-fall': require('voxel-health-fall'); // TODO: after https://github.com/deathcap/voxel-health-fall/issues/1
       'voxel-food': require('voxel-food'),
+      'voxel-scriptblock': require('voxel-scriptblock'),
       'voxel-sfx': require('voxel-sfx'),
       'voxel-flight': require('voxel-flight'),
       'voxel-gamemode': require('voxel-gamemode'),
@@ -161,6 +162,7 @@ function main() {
     'voxel-health-bar': {},
     //'voxel-health-fall': {}, // requires voxel-player TODO: enable and test
     'voxel-food': {},
+    'voxel-scriptblock': {},
     'voxel-sfx': {},
     'voxel-flight': {flySpeed: 0.8, onDemand: true},
     'voxel-gamemode': {},

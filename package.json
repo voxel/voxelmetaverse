@@ -47,6 +47,7 @@
     "voxel-quarry": "^0.2.0",
     "voxel-reach": "^0.2.2",
     "voxel-recipes": "^0.3.3",
+    "voxel-scriptblock": "^1.0.0",
     "voxel-sfx": "^0.3.0",
     "voxel-skyhook": "^0.1.1",
     "voxel-sprint": "^0.1.0",
@@ -68,8 +69,7 @@
     "wzrd": "^1.3.1"
   },
   "browserify": {
-    "transform": [
-    ]
+    "transform": []
   },
   "scripts": {
     "start": "wzrd index.js:bundle.js --watchify --port 8080 -- --debug"
