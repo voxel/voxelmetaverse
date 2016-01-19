@@ -13,6 +13,7 @@ function main() {
       'voxel-bucket': require('voxel-bucket'),
       'voxel-fluid': require('voxel-fluid'),
       'voxel-skyhook': require('voxel-skyhook'),
+      'voxel-bedrock': require('voxel-bedrock'),
       'voxel-recipes': require('voxel-recipes'),
       'voxel-quarry': require('voxel-quarry'),
       'voxel-measure': require('voxel-measure'),
@@ -136,6 +137,7 @@ function main() {
     'voxel-fluid': {},
     //'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true}, // requires this.game.materials TODO: water
     'voxel-skyhook': {},
+    'voxel-bedrock': {},
     'voxel-blockdata': {},
     'voxel-chest': {},
     'voxel-workbench': {},
