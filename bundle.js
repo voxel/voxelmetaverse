@@ -12135,6 +12135,32 @@ module.exports = function(arr, obj){
   return -1;
 };
 },{}],46:[function(require,module,exports){
+'use strict';
+
+module.exports = function(game, opts) {
+  return new BedrockPlugin(game, opts);
+};
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-registry']
+};
+
+function BedrockPlugin(game, opts) {
+  this.registry = game.plugins.get('voxel-registry');
+
+  if (!this.registry) throw new Error('voxel-bedrock requires voxel-registry plugin');
+
+  this.enable();
+};
+
+BedrockPlugin.prototype.enable = function() {
+  this.registry.registerBlock('bedrock', {texture: 'bedrock', hardness: Infinity});
+};
+
+BedrockPlugin.prototype.disable = function() {
+  // TODO: unregister block
+};
+
+},{}],47:[function(require,module,exports){
 (function (process){
 'use strict'
 var voxel = require('voxel')
@@ -12947,7 +12973,7 @@ Game.prototype.destroy = function() {
 }
 
 }).call(this,require('_process'))
-},{"./":46,"./lib/detector":47,"_process":26,"aabb-3d":48,"collide-3d-tilemap":50,"events":21,"extend":51,"game-shell-fps-camera":52,"gl-now":57,"gl-vec3":81,"inherits":103,"isndarray":104,"ndarray":105,"obsolete":107,"path":25,"spatial-events":108,"tic":110,"voxel":367,"voxel-controls":111,"voxel-mesher":113,"voxel-physicals":172,"voxel-plugins":378,"voxel-raycast":173,"voxel-region-change":174,"voxel-registry":177,"voxel-shader":178,"voxel-stitch":365}],47:[function(require,module,exports){
+},{"./":47,"./lib/detector":48,"_process":26,"aabb-3d":49,"collide-3d-tilemap":51,"events":21,"extend":52,"game-shell-fps-camera":53,"gl-now":58,"gl-vec3":82,"inherits":104,"isndarray":105,"ndarray":106,"obsolete":108,"path":25,"spatial-events":109,"tic":111,"voxel":319,"voxel-controls":112,"voxel-mesher":114,"voxel-physicals":173,"voxel-plugins":330,"voxel-raycast":174,"voxel-region-change":175,"voxel-registry":178,"voxel-shader":331,"voxel-stitch":317}],48:[function(require,module,exports){
 /**
  * @author alteredq / http://alteredqualia.com/
  * @author mr.doob / http://mrdoob.com/
@@ -13008,7 +13034,7 @@ module.exports = function() {
   };
 }
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -13125,7 +13151,7 @@ proto.union = function(aabb) {
 
 
 
-},{"gl-matrix":49}],49:[function(require,module,exports){
+},{"gl-matrix":50}],50:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -17375,7 +17401,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })(this);
 
-},{}],50:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 module.exports = function(field, tilesize, dimensions, offset) {
   dimensions = dimensions || [ 
     Math.sqrt(field.length) >> 0
@@ -17464,7 +17490,7 @@ module.exports = function(field, tilesize, dimensions, offset) {
   }  
 }
 
-},{}],51:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 var hasOwn = Object.prototype.hasOwnProperty;
 var toString = Object.prototype.toString;
 var undefined;
@@ -17546,7 +17572,7 @@ module.exports = function extend() {
 };
 
 
-},{}],52:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 'use strict';
 
 var glm = require('gl-matrix');
@@ -17675,7 +17701,7 @@ CameraPlugin.prototype.getVector = function(out) {
   out[2] = -_scratch1[2];
 };
 
-},{"./pointer-stream.js":56,"basic-camera":53,"events":21,"gl-matrix":54,"inherits":55}],53:[function(require,module,exports){
+},{"./pointer-stream.js":57,"basic-camera":54,"events":21,"gl-matrix":55,"inherits":56}],54:[function(require,module,exports){
 var glm = require('gl-matrix')
 var vec3 = glm.vec3
 var mat4 = glm.mat4
@@ -17729,11 +17755,11 @@ noclip.prototype.rotateZ   = function(angle) {
   return this
 }
 
-},{"gl-matrix":54}],54:[function(require,module,exports){
-arguments[4][49][0].apply(exports,arguments)
-},{"dup":49}],55:[function(require,module,exports){
+},{"gl-matrix":55}],55:[function(require,module,exports){
+arguments[4][50][0].apply(exports,arguments)
+},{"dup":50}],56:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],56:[function(require,module,exports){
+},{"dup":22}],57:[function(require,module,exports){
 'use strict';
 
 var Readable = require('stream').Readable;
@@ -17777,7 +17803,7 @@ PointerStream.prototype._read = function() {
 
 module.exports = PointerStream;
 
-},{"inherits":55,"stream":40}],57:[function(require,module,exports){
+},{"inherits":56,"stream":40}],58:[function(require,module,exports){
 "use strict"
 
 var makeGameShell = require("game-shell")
@@ -17919,7 +17945,7 @@ function createGLShell(options) {
 
 module.exports = createGLShell
 
-},{"game-shell":67,"webglew":69}],58:[function(require,module,exports){
+},{"game-shell":68,"webglew":70}],59:[function(require,module,exports){
 if(typeof window.performance === "object") {
   if(window.performance.now) {
     module.exports = function() { return window.performance.now() }
@@ -17932,7 +17958,7 @@ if(typeof window.performance === "object") {
   module.exports = function() { return (new Date()).getTime() }
 }
 
-},{}],59:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 //Adapted from here: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel?redirectlocale=en-US&redirectslug=DOM%2FMozilla_event_reference%2Fwheel
 
 var prefix = "", _addEventListener, onwheel, support;
@@ -17992,7 +18018,7 @@ module.exports = function( elem, callback, useCapture ) {
     _addWheelListener( elem, "MozMousePixelScroll", callback, useCapture );
   }
 };
-},{}],60:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
 // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
  
@@ -18022,7 +18048,7 @@ if (!window.cancelAnimationFrame)
         clearTimeout(id);
     };
 
-},{}],61:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 "use strict"
 
 function compileSearch(funcName, predicate, reversed, extraArgs, useNdarray, earlyOut) {
@@ -18084,7 +18110,7 @@ module.exports = {
   eq: compileBoundsSearch("-", true, "EQ", true)
 }
 
-},{}],62:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /*!
   * domready (c) Dustin Diaz 2014 - License MIT
   */
@@ -18114,7 +18140,7 @@ module.exports = {
 
 });
 
-},{}],63:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 "use strict"
 
 function invert(hash) {
@@ -18128,7 +18154,7 @@ function invert(hash) {
 }
 
 module.exports = invert
-},{}],64:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 "use strict"
 
 function iota(n) {
@@ -18140,7 +18166,7 @@ function iota(n) {
 }
 
 module.exports = iota
-},{}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -18199,7 +18225,7 @@ function unique(list, compare, sorted) {
 
 module.exports = unique
 
-},{}],66:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 var ua = typeof window !== 'undefined' ? window.navigator.userAgent : ''
   , isOSX = /OS X/.test(ua)
   , isOpera = /Opera/.test(ua)
@@ -18337,7 +18363,7 @@ for(i = 112; i < 136; ++i) {
   output[i] = 'F'+(i-111)
 }
 
-},{}],67:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 "use strict"
 
 var EventEmitter = require("events").EventEmitter
@@ -19057,7 +19083,7 @@ function createShell(options) {
 
 module.exports = createShell
 
-},{"./lib/hrtime-polyfill.js":58,"./lib/mousewheel-polyfill.js":59,"./lib/raf-polyfill.js":60,"binary-search-bounds":61,"domready":62,"events":21,"invert-hash":63,"iota-array":64,"uniq":65,"util":43,"vkey":66}],68:[function(require,module,exports){
+},{"./lib/hrtime-polyfill.js":59,"./lib/mousewheel-polyfill.js":60,"./lib/raf-polyfill.js":61,"binary-search-bounds":62,"domready":63,"events":21,"invert-hash":64,"iota-array":65,"uniq":66,"util":43,"vkey":67}],69:[function(require,module,exports){
 /* (The MIT License)
  *
  * Copyright (c) 2012 Brandon Benvie <http://bbenvie.com>
@@ -19299,7 +19325,7 @@ void function(global, undefined_, undefined){
     global.WeakMap.createStorage = createStorage;
 }((0, eval)('this'));
 
-},{}],69:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 "use strict";
 
 var weakMap = typeof WeakMap === "undefined" ? require("weakmap") : WeakMap
@@ -19336,7 +19362,7 @@ function initWebGLEW(gl) {
   return extensions
 }
 module.exports = initWebGLEW
-},{"weakmap":68}],70:[function(require,module,exports){
+},{"weakmap":69}],71:[function(require,module,exports){
 module.exports = add;
 
 /**
@@ -19353,7 +19379,7 @@ function add(out, a, b) {
     out[2] = a[2] + b[2]
     return out
 }
-},{}],71:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 module.exports = angle
 
 var fromValues = require('./fromValues')
@@ -19382,7 +19408,7 @@ function angle(a, b) {
     }     
 }
 
-},{"./dot":78,"./fromValues":80,"./normalize":89}],72:[function(require,module,exports){
+},{"./dot":79,"./fromValues":81,"./normalize":90}],73:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -19398,7 +19424,7 @@ function clone(a) {
     out[2] = a[2]
     return out
 }
-},{}],73:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -19414,7 +19440,7 @@ function copy(out, a) {
     out[2] = a[2]
     return out
 }
-},{}],74:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -19429,7 +19455,7 @@ function create() {
     out[2] = 0
     return out
 }
-},{}],75:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 module.exports = cross;
 
 /**
@@ -19449,7 +19475,7 @@ function cross(out, a, b) {
     out[2] = ax * by - ay * bx
     return out
 }
-},{}],76:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 module.exports = distance;
 
 /**
@@ -19465,7 +19491,7 @@ function distance(a, b) {
         z = b[2] - a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],77:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 module.exports = divide;
 
 /**
@@ -19482,7 +19508,7 @@ function divide(out, a, b) {
     out[2] = a[2] / b[2]
     return out
 }
-},{}],78:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 module.exports = dot;
 
 /**
@@ -19495,7 +19521,7 @@ module.exports = dot;
 function dot(a, b) {
     return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
 }
-},{}],79:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 module.exports = forEach;
 
 var vec = require('./create')()
@@ -19540,7 +19566,7 @@ function forEach(a, stride, offset, count, fn, arg) {
         
         return a
 }
-},{"./create":74}],80:[function(require,module,exports){
+},{"./create":75}],81:[function(require,module,exports){
 module.exports = fromValues;
 
 /**
@@ -19558,7 +19584,7 @@ function fromValues(x, y, z) {
     out[2] = z
     return out
 }
-},{}],81:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -19593,7 +19619,7 @@ module.exports = {
   , rotateZ: require('./rotateZ')
   , forEach: require('./forEach')
 }
-},{"./add":70,"./angle":71,"./clone":72,"./copy":73,"./create":74,"./cross":75,"./distance":76,"./divide":77,"./dot":78,"./forEach":79,"./fromValues":80,"./inverse":82,"./length":83,"./lerp":84,"./max":85,"./min":86,"./multiply":87,"./negate":88,"./normalize":89,"./random":90,"./rotateX":91,"./rotateY":92,"./rotateZ":93,"./scale":94,"./scaleAndAdd":95,"./set":96,"./squaredDistance":97,"./squaredLength":98,"./subtract":99,"./transformMat3":100,"./transformMat4":101,"./transformQuat":102}],82:[function(require,module,exports){
+},{"./add":71,"./angle":72,"./clone":73,"./copy":74,"./create":75,"./cross":76,"./distance":77,"./divide":78,"./dot":79,"./forEach":80,"./fromValues":81,"./inverse":83,"./length":84,"./lerp":85,"./max":86,"./min":87,"./multiply":88,"./negate":89,"./normalize":90,"./random":91,"./rotateX":92,"./rotateY":93,"./rotateZ":94,"./scale":95,"./scaleAndAdd":96,"./set":97,"./squaredDistance":98,"./squaredLength":99,"./subtract":100,"./transformMat3":101,"./transformMat4":102,"./transformQuat":103}],83:[function(require,module,exports){
 module.exports = inverse;
 
 /**
@@ -19609,7 +19635,7 @@ function inverse(out, a) {
   out[2] = 1.0 / a[2]
   return out
 }
-},{}],83:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 module.exports = length;
 
 /**
@@ -19624,7 +19650,7 @@ function length(a) {
         z = a[2]
     return Math.sqrt(x*x + y*y + z*z)
 }
-},{}],84:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 module.exports = lerp;
 
 /**
@@ -19645,7 +19671,7 @@ function lerp(out, a, b, t) {
     out[2] = az + t * (b[2] - az)
     return out
 }
-},{}],85:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 module.exports = max;
 
 /**
@@ -19662,7 +19688,7 @@ function max(out, a, b) {
     out[2] = Math.max(a[2], b[2])
     return out
 }
-},{}],86:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 module.exports = min;
 
 /**
@@ -19679,7 +19705,7 @@ function min(out, a, b) {
     out[2] = Math.min(a[2], b[2])
     return out
 }
-},{}],87:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -19696,7 +19722,7 @@ function multiply(out, a, b) {
     out[2] = a[2] * b[2]
     return out
 }
-},{}],88:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 module.exports = negate;
 
 /**
@@ -19712,7 +19738,7 @@ function negate(out, a) {
     out[2] = -a[2]
     return out
 }
-},{}],89:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 module.exports = normalize;
 
 /**
@@ -19736,7 +19762,7 @@ function normalize(out, a) {
     }
     return out
 }
-},{}],90:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 module.exports = random;
 
 /**
@@ -19758,7 +19784,7 @@ function random(out, scale) {
     out[2] = z * scale
     return out
 }
-},{}],91:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -19788,7 +19814,7 @@ function rotateX(out, a, b, c){
 
     return out
 }
-},{}],92:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -19818,7 +19844,7 @@ function rotateY(out, a, b, c){
   
     return out
 }
-},{}],93:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -19848,7 +19874,7 @@ function rotateZ(out, a, b, c){
   
     return out
 }
-},{}],94:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -19865,7 +19891,7 @@ function scale(out, a, b) {
     out[2] = a[2] * b
     return out
 }
-},{}],95:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 module.exports = scaleAndAdd;
 
 /**
@@ -19883,7 +19909,7 @@ function scaleAndAdd(out, a, b, scale) {
     out[2] = a[2] + (b[2] * scale)
     return out
 }
-},{}],96:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 module.exports = set;
 
 /**
@@ -19901,7 +19927,7 @@ function set(out, x, y, z) {
     out[2] = z
     return out
 }
-},{}],97:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 module.exports = squaredDistance;
 
 /**
@@ -19917,7 +19943,7 @@ function squaredDistance(a, b) {
         z = b[2] - a[2]
     return x*x + y*y + z*z
 }
-},{}],98:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 module.exports = squaredLength;
 
 /**
@@ -19932,7 +19958,7 @@ function squaredLength(a) {
         z = a[2]
     return x*x + y*y + z*z
 }
-},{}],99:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 module.exports = subtract;
 
 /**
@@ -19949,7 +19975,7 @@ function subtract(out, a, b) {
     out[2] = a[2] - b[2]
     return out
 }
-},{}],100:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 module.exports = transformMat3;
 
 /**
@@ -19967,7 +19993,7 @@ function transformMat3(out, a, m) {
     out[2] = x * m[2] + y * m[5] + z * m[8]
     return out
 }
-},{}],101:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 module.exports = transformMat4;
 
 /**
@@ -19988,7 +20014,7 @@ function transformMat4(out, a, m) {
     out[2] = (m[2] * x + m[6] * y + m[10] * z + m[14]) / w
     return out
 }
-},{}],102:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 module.exports = transformQuat;
 
 /**
@@ -20017,9 +20043,9 @@ function transformQuat(out, a, q) {
     out[2] = iz * qw + iw * -qz + ix * -qy - iy * -qx
     return out
 }
-},{}],103:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],104:[function(require,module,exports){
+},{"dup":22}],105:[function(require,module,exports){
 module.exports = function(arr) {
   if (!arr) return false
   if (!arr.dtype) return false
@@ -20027,7 +20053,7 @@ module.exports = function(arr) {
   return re.test(String(arr.constructor))
 }
 
-},{}],105:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -20427,9 +20453,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"iota-array":106}],106:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],107:[function(require,module,exports){
+},{"buffer":17,"iota-array":107}],107:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],108:[function(require,module,exports){
 'use strict';
 
 var obsolete = function(object, property, reason) {
@@ -20445,7 +20471,7 @@ var obsolete = function(object, property, reason) {
 
 module.exports = obsolete;
 
-},{}],108:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 module.exports = SpatialEventEmitter
 
 var slice = [].slice
@@ -20581,7 +20607,7 @@ function finite(bbox) {
          isFinite(bbox.z1())
 }
 
-},{"./tree":109,"aabb-3d":48}],109:[function(require,module,exports){
+},{"./tree":110,"aabb-3d":49}],110:[function(require,module,exports){
 module.exports = Tree
 
 var aabb = require('aabb-3d')
@@ -20707,7 +20733,7 @@ proto.send = function(event, bbox, args) {
   }
 }
 
-},{"aabb-3d":48}],110:[function(require,module,exports){
+},{"aabb-3d":49}],111:[function(require,module,exports){
 /*
  * tic
  * https://github.com/shama/tic
@@ -20754,7 +20780,7 @@ Tic.prototype.tick = function(dt) {
   });
 };
 
-},{}],111:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 module.exports = control
 
 var Stream = require('stream').Stream
@@ -21048,7 +21074,7 @@ function clamp(value, to) {
   return isFinite(to) ? max(min(value, to), -to) : value
 }
 
-},{"stream":40}],112:[function(require,module,exports){
+},{"stream":40}],113:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -21115,7 +21141,7 @@ function createVoxelMesh(gl, voxels, voxelSideTextureIDs, voxelSideTextureSizes,
 
 module.exports = createVoxelMesh
 
-},{"./mesh.js":114,"gl-buffer":120,"gl-mat4":132,"gl-vao":152,"ndarray":165,"ndarray-ops":160}],113:[function(require,module,exports){
+},{"./mesh.js":115,"gl-buffer":121,"gl-mat4":133,"gl-vao":153,"ndarray":166,"ndarray-ops":161}],114:[function(require,module,exports){
 'use strict';
 
 var createVoxelMesh = require('./mesh-buffer.js');
@@ -21244,7 +21270,7 @@ MesherPlugin.prototype.splitVoxelArray = function(voxels) {
 };
 
 
-},{"./mesh-buffer.js":112,"block-models":115,"events":21,"gl-buffer":120,"gl-vao":152,"inherits":159,"ndarray":165,"ndarray-ops":160}],114:[function(require,module,exports){
+},{"./mesh-buffer.js":113,"block-models":116,"events":21,"gl-buffer":121,"gl-vao":153,"inherits":160,"ndarray":166,"ndarray-ops":161}],115:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -21795,7 +21821,7 @@ function computeMesh(array, voxelSideTextureIDs, voxelSideTextureSizes) {
 
 module.exports = computeMesh
 
-},{"cwise-compiler":116,"greedy-mesher":153,"ndarray":165,"typedarray-pool":169}],115:[function(require,module,exports){
+},{"cwise-compiler":117,"greedy-mesher":154,"ndarray":166,"typedarray-pool":170}],116:[function(require,module,exports){
 'use strict';
 
 // get all coordinates for a cube ranging from vertex a to b
@@ -21941,7 +21967,7 @@ var parseBlockModel = function(elements, getTextureUV, x, y, z) {
 module.exports = parseBlockModel;
 
 
-},{}],116:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -22049,7 +22075,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":118}],117:[function(require,module,exports){
+},{"./lib/thunk.js":119}],118:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -22337,7 +22363,7 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":119}],118:[function(require,module,exports){
+},{"uniq":120}],119:[function(require,module,exports){
 "use strict"
 
 var compile = require("./compile.js")
@@ -22386,9 +22412,9 @@ function createThunk(proc) {
 
 module.exports = createThunk
 
-},{"./compile.js":117}],119:[function(require,module,exports){
-arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],120:[function(require,module,exports){
+},{"./compile.js":118}],120:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],121:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -22540,11 +22566,11 @@ function createBuffer(gl, data, type, usage) {
 }
 
 module.exports = createBuffer
-},{"ndarray":165,"ndarray-ops":160,"typedarray-pool":169,"webglew":122}],121:[function(require,module,exports){
-arguments[4][68][0].apply(exports,arguments)
-},{"dup":68}],122:[function(require,module,exports){
+},{"ndarray":166,"ndarray-ops":161,"typedarray-pool":170,"webglew":123}],122:[function(require,module,exports){
 arguments[4][69][0].apply(exports,arguments)
-},{"dup":69,"weakmap":121}],123:[function(require,module,exports){
+},{"dup":69}],123:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"dup":70,"weakmap":122}],124:[function(require,module,exports){
 module.exports = adjoint;
 
 /**
@@ -22578,7 +22604,7 @@ function adjoint(out, a) {
     out[15] =  (a00 * (a11 * a22 - a12 * a21) - a10 * (a01 * a22 - a02 * a21) + a20 * (a01 * a12 - a02 * a11));
     return out;
 };
-},{}],124:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 module.exports = clone;
 
 /**
@@ -22607,7 +22633,7 @@ function clone(a) {
     out[15] = a[15];
     return out;
 };
-},{}],125:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 module.exports = copy;
 
 /**
@@ -22636,7 +22662,7 @@ function copy(out, a) {
     out[15] = a[15];
     return out;
 };
-},{}],126:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 module.exports = create;
 
 /**
@@ -22664,7 +22690,7 @@ function create() {
     out[15] = 1;
     return out;
 };
-},{}],127:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 module.exports = determinant;
 
 /**
@@ -22695,7 +22721,7 @@ function determinant(a) {
     // Calculate the determinant
     return b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
 };
-},{}],128:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 module.exports = fromQuat;
 
 /**
@@ -22743,7 +22769,7 @@ function fromQuat(out, q) {
 
     return out;
 };
-},{}],129:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 module.exports = fromRotationTranslation;
 
 /**
@@ -22797,7 +22823,7 @@ function fromRotationTranslation(out, q, v) {
     
     return out;
 };
-},{}],130:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 module.exports = frustum;
 
 /**
@@ -22834,7 +22860,7 @@ function frustum(out, left, right, bottom, top, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],131:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 module.exports = identity;
 
 /**
@@ -22862,7 +22888,7 @@ function identity(out) {
     out[15] = 1;
     return out;
 };
-},{}],132:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 module.exports = {
   create: require('./create')
   , clone: require('./clone')
@@ -22888,7 +22914,7 @@ module.exports = {
   , lookAt: require('./lookAt')
   , str: require('./str')
 }
-},{"./adjoint":123,"./clone":124,"./copy":125,"./create":126,"./determinant":127,"./fromQuat":128,"./fromRotationTranslation":129,"./frustum":130,"./identity":131,"./invert":133,"./lookAt":134,"./multiply":135,"./ortho":136,"./perspective":137,"./perspectiveFromFieldOfView":138,"./rotate":139,"./rotateX":140,"./rotateY":141,"./rotateZ":142,"./scale":143,"./str":144,"./translate":145,"./transpose":146}],133:[function(require,module,exports){
+},{"./adjoint":124,"./clone":125,"./copy":126,"./create":127,"./determinant":128,"./fromQuat":129,"./fromRotationTranslation":130,"./frustum":131,"./identity":132,"./invert":134,"./lookAt":135,"./multiply":136,"./ortho":137,"./perspective":138,"./perspectiveFromFieldOfView":139,"./rotate":140,"./rotateX":141,"./rotateY":142,"./rotateZ":143,"./scale":144,"./str":145,"./translate":146,"./transpose":147}],134:[function(require,module,exports){
 module.exports = invert;
 
 /**
@@ -22944,7 +22970,7 @@ function invert(out, a) {
 
     return out;
 };
-},{}],134:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 var identity = require('./identity');
 
 module.exports = lookAt;
@@ -23035,7 +23061,7 @@ function lookAt(out, eye, center, up) {
 
     return out;
 };
-},{"./identity":131}],135:[function(require,module,exports){
+},{"./identity":132}],136:[function(require,module,exports){
 module.exports = multiply;
 
 /**
@@ -23078,7 +23104,7 @@ function multiply(out, a, b) {
     out[15] = b0*a03 + b1*a13 + b2*a23 + b3*a33;
     return out;
 };
-},{}],136:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 module.exports = ortho;
 
 /**
@@ -23115,7 +23141,7 @@ function ortho(out, left, right, bottom, top, near, far) {
     out[15] = 1;
     return out;
 };
-},{}],137:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 module.exports = perspective;
 
 /**
@@ -23149,7 +23175,7 @@ function perspective(out, fovy, aspect, near, far) {
     out[15] = 0;
     return out;
 };
-},{}],138:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 module.exports = perspectiveFromFieldOfView;
 
 /**
@@ -23191,7 +23217,7 @@ function perspectiveFromFieldOfView(out, fov, near, far) {
 }
 
 
-},{}],139:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 module.exports = rotate;
 
 /**
@@ -23256,7 +23282,7 @@ function rotate(out, a, rad, axis) {
     }
     return out;
 };
-},{}],140:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 module.exports = rotateX;
 
 /**
@@ -23301,7 +23327,7 @@ function rotateX(out, a, rad) {
     out[11] = a23 * c - a13 * s;
     return out;
 };
-},{}],141:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 module.exports = rotateY;
 
 /**
@@ -23346,7 +23372,7 @@ function rotateY(out, a, rad) {
     out[11] = a03 * s + a23 * c;
     return out;
 };
-},{}],142:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 module.exports = rotateZ;
 
 /**
@@ -23391,7 +23417,7 @@ function rotateZ(out, a, rad) {
     out[7] = a13 * c - a03 * s;
     return out;
 };
-},{}],143:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 module.exports = scale;
 
 /**
@@ -23423,7 +23449,7 @@ function scale(out, a, v) {
     out[15] = a[15];
     return out;
 };
-},{}],144:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 module.exports = str;
 
 /**
@@ -23438,7 +23464,7 @@ function str(a) {
                     a[8] + ', ' + a[9] + ', ' + a[10] + ', ' + a[11] + ', ' + 
                     a[12] + ', ' + a[13] + ', ' + a[14] + ', ' + a[15] + ')';
 };
-},{}],145:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 module.exports = translate;
 
 /**
@@ -23477,7 +23503,7 @@ function translate(out, a, v) {
 
     return out;
 };
-},{}],146:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 module.exports = transpose;
 
 /**
@@ -23527,7 +23553,7 @@ function transpose(out, a) {
     
     return out;
 };
-},{}],147:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 "use strict"
 
 function doBind(gl, elements, attributes) {
@@ -23582,7 +23608,7 @@ function doBind(gl, elements, attributes) {
 }
 
 module.exports = doBind
-},{}],148:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -23620,7 +23646,7 @@ function createVAOEmulated(gl) {
 }
 
 module.exports = createVAOEmulated
-},{"./do-bind.js":147}],149:[function(require,module,exports){
+},{"./do-bind.js":148}],150:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -23706,11 +23732,11 @@ function createVAONative(gl, ext) {
 }
 
 module.exports = createVAONative
-},{"./do-bind.js":147}],150:[function(require,module,exports){
-arguments[4][68][0].apply(exports,arguments)
-},{"dup":68}],151:[function(require,module,exports){
+},{"./do-bind.js":148}],151:[function(require,module,exports){
 arguments[4][69][0].apply(exports,arguments)
-},{"dup":69,"weakmap":150}],152:[function(require,module,exports){
+},{"dup":69}],152:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"dup":70,"weakmap":151}],153:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -23730,7 +23756,7 @@ function createVAO(gl, attributes, elements) {
 }
 
 module.exports = createVAO
-},{"./lib/vao-emulated.js":148,"./lib/vao-native.js":149,"webglew":151}],153:[function(require,module,exports){
+},{"./lib/vao-emulated.js":149,"./lib/vao-native.js":150,"webglew":152}],154:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -23929,9 +23955,9 @@ function compileMesher(options) {
 }
 module.exports = compileMesher
 
-},{"iota-array":154,"typedarray-pool":157,"uniq":158}],154:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],155:[function(require,module,exports){
+},{"iota-array":155,"typedarray-pool":158,"uniq":159}],155:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],156:[function(require,module,exports){
 /**
  * Bit twiddling hacks for JavaScript.
  *
@@ -24137,7 +24163,7 @@ exports.nextCombination = function(v) {
 }
 
 
-},{}],156:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 "use strict"
 
 function dupe_array(count, value, i) {
@@ -24187,7 +24213,7 @@ function dupe(count, value) {
 }
 
 module.exports = dupe
-},{}],157:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 (function (global,Buffer){
 var bits = require("bit-twiddle")
 var dup = require("dup")
@@ -24557,11 +24583,11 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":155,"buffer":17,"dup":156}],158:[function(require,module,exports){
-arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],159:[function(require,module,exports){
+},{"bit-twiddle":156,"buffer":17,"dup":157}],159:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],160:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],160:[function(require,module,exports){
+},{"dup":22}],161:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -25024,25 +25050,25 @@ exports.equals = compile({
 
 
 
-},{"cwise-compiler":161}],161:[function(require,module,exports){
-arguments[4][116][0].apply(exports,arguments)
-},{"./lib/thunk.js":163,"dup":116}],162:[function(require,module,exports){
+},{"cwise-compiler":162}],162:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"dup":117,"uniq":164}],163:[function(require,module,exports){
+},{"./lib/thunk.js":164,"dup":117}],163:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":162,"dup":118}],164:[function(require,module,exports){
+},{"dup":118,"uniq":165}],164:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":163,"dup":119}],165:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],166:[function(require,module,exports){
+arguments[4][106][0].apply(exports,arguments)
+},{"buffer":17,"dup":106,"iota-array":167}],167:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],165:[function(require,module,exports){
-arguments[4][105][0].apply(exports,arguments)
-},{"buffer":17,"dup":105,"iota-array":166}],166:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],167:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],168:[function(require,module,exports){
+},{"dup":65}],168:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
 },{"dup":156}],169:[function(require,module,exports){
 arguments[4][157][0].apply(exports,arguments)
-},{"bit-twiddle":167,"buffer":17,"dup":157}],170:[function(require,module,exports){
+},{"dup":157}],170:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"bit-twiddle":168,"buffer":17,"dup":158}],171:[function(require,module,exports){
 module.exports = AABB
 
 var vec3 = require('gl-matrix').vec3
@@ -25141,9 +25167,9 @@ proto.union = function(aabb) {
   return new AABB([base_x, base_y, base_z], [max_x - base_x, max_y - base_y, max_z - base_z])
 }
 
-},{"gl-matrix":171}],171:[function(require,module,exports){
-arguments[4][49][0].apply(exports,arguments)
-},{"dup":49}],172:[function(require,module,exports){
+},{"gl-matrix":172}],172:[function(require,module,exports){
+arguments[4][50][0].apply(exports,arguments)
+},{"dup":50}],173:[function(require,module,exports){
 module.exports = physical
 
 var aabb = require('aabb-3d')
@@ -25403,7 +25429,7 @@ proto.fell = function(distance) {
   return
 }
 
-},{"aabb-3d":170,"gl-matrix":171}],173:[function(require,module,exports){
+},{"aabb-3d":171,"gl-matrix":172}],174:[function(require,module,exports){
 "use strict"
 
 function traceRay_impl(
@@ -25625,7 +25651,7 @@ function traceRay(voxels, origin, direction, max_d, hit_pos, hit_norm, EPSILON) 
 }
 
 module.exports = traceRay
-},{}],174:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 module.exports = coordinates
 
 var aabb = require('aabb-3d')
@@ -25653,9 +25679,9 @@ function coordinates(spatial, box, regionWidth) {
  
   return emitter
 }
-},{"aabb-3d":175,"events":21}],175:[function(require,module,exports){
-arguments[4][170][0].apply(exports,arguments)
-},{"dup":170,"gl-matrix":176}],176:[function(require,module,exports){
+},{"aabb-3d":176,"events":21}],176:[function(require,module,exports){
+arguments[4][171][0].apply(exports,arguments)
+},{"dup":171,"gl-matrix":177}],177:[function(require,module,exports){
 /**
  * @fileoverview gl-matrix - High performance matrix and vector operations
  * @author Brandon Jones
@@ -29528,7 +29554,7 @@ if(typeof(exports) !== 'undefined') {
   })(shim.exports);
 })();
 
-},{}],177:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -29786,2627 +29812,7 @@ Registry.prototype.getTextureURL = function(name) {
 
 
 
-},{}],178:[function(require,module,exports){
-
-var fs = require("fs")
-var glShader = require('gl-shader')
-var mat4 = require('gl-mat4')
-var inherits = require('inherits');
-var EventEmitter = require('events').EventEmitter;
-
-module.exports = function(game, opts) {
-  return new ShaderPlugin(game, opts);
-};
-module.exports.pluginInfo = {
-  clientOnly: true,
-  loadAfter: ['voxel-stitch', 'game-shell-fps-camera'],
-};
-
-function ShaderPlugin(game, opts) {
-  this.shell = game.shell;
-
-  this.stitcher = game.plugins.get('voxel-stitch');
-  if (!this.stitcher) throw new Error('voxel-shader requires voxel-stitch plugin'); // for tileCount uniform and updateTexture event
-
-  this.meshes = opts.meshes || game.voxels.meshes
-  if (!this.meshes) throw new Error('voxel-shader requires "meshes" option or game.voxels.meshes set to array of voxel-mesher meshes')
-
-  if (game.getCamera) {
-    this.camera = game.getCamera()
-    if (!(this.camera && this.camera.view)) throw new Error('voxel-shader requires a camera with a view matrix'); // for camera view matrix
-  } else {
-    this.camera = game.plugins.get('game-shell-fps-camera');
-    if (!this.camera) throw new Error('voxel-shader requires game-shell-fps-camera plugin'); // for camera view matrix
-  }
-
-  this.perspectiveResize = opts.perspectiveResize !== undefined ? opts.perspectiveResize : true;
-  this.cameraNear = opts.cameraNear !== undefined ? opts.cameraNear : 0.1;
-  this.cameraFar = opts.cameraFar !== undefined ? opts.cameraFar : 200.0;
-  this.cameraFOV = opts.cameraFOV !== undefined ? opts.cameraFOV : 45.0;
-
-  this.projectionMatrix = mat4.create();
-
-  this.enable();
-}
-inherits(ShaderPlugin, EventEmitter);
-
-ShaderPlugin.prototype.enable = function() {
-  this.on('updateProjectionMatrix', this.perspective.bind(this));
-  this.shell.on('gl-init', this.onInit = this.ginit.bind(this));
-  this.shell.on('gl-render', this.onRender = this.render.bind(this));
-  if (this.perspectiveResize) this.shell.on('gl-resize', this.onResize = this.updateProjectionMatrix.bind(this));
-  this.stitcher.on('updateTexture', this.onUpdateTexture = this.texturesReady.bind(this));
-};
-
-ShaderPlugin.prototype.disable = function() {
-  this.shell.removeListener('gl-init', this.onInit);
-  this.shell.removeListener('gl-render', this.onRender);
-  if (this.onResize) this.shell.removeListener('gl-resize', this.onResize);
-  this.stitcher.removeListener('updateTexture', this.onUpdateTexture);
-};
-
-ShaderPlugin.prototype.texturesReady = function(texture) {
-  this.texture = texture; // used in tileMap uniform
-}
-
-ShaderPlugin.prototype.ginit = function() {
-  this.shader = this.createAOShader();
-  this.shader2 = this.createCustomModelShader();
-  this.updateProjectionMatrix();
-  this.viewMatrix = mat4.create();
-
-};
-
-ShaderPlugin.prototype.perspective = function(out) {
-  mat4.perspective(out, this.cameraFOV*Math.PI/180, this.shell.width/this.shell.height, this.cameraNear, this.cameraFar)
-};
-
-ShaderPlugin.prototype.updateProjectionMatrix = function() {
-  this.emit('updateProjectionMatrix', this.projectionMatrix);
-};
-
-ShaderPlugin.prototype.render = function() {
-  var gl = this.shell.gl
-
-  this.camera.view(this.viewMatrix)
-
-  gl.enable(gl.CULL_FACE)
-  gl.enable(gl.DEPTH_TEST)
-
-  //Bind the shader
-  // phase 1 - solid blocks
-  gl.disable(gl.BLEND)
-  var shader = this.shader
-  if (!shader) throw new Error('voxel-shader render() called before gl-init, shader=', this.shader)
-  shader.bind()
-  shader.attributes.attrib0.location = 0
-  shader.attributes.attrib1.location = 1
-  shader.uniforms.projection = this.projectionMatrix
-  shader.uniforms.view = this.viewMatrix
-  shader.uniforms.tileCount = this.stitcher.tileCount
-
-  if (this.texture) shader.uniforms.tileMap = this.texture.bind() // if a texture is loaded
-
-  var keys = Object.keys(this.meshes)
-  var length = keys.length
-
-  for (var k = 0; k < length; ++k) {
-    var chunkIndex = keys[k]
-    var mesh = this.meshes[chunkIndex]
-
-    var triangleVAO = mesh.vertexArrayObjects.surface
-    if (triangleVAO) {  // if there are triangles to render
-      shader.uniforms.model = mesh.modelMatrix
-      triangleVAO.bind()
-      gl.drawArrays(gl.TRIANGLES, 0, triangleVAO.length)
-      triangleVAO.unbind()
-    }
-  }
-
-  // phase 2 - "porous" blocks
-  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)  // TODO: premult alpha? https://github.com/deathcap/voxel-stitch/issues/6
-  gl.enable(gl.BLEND)
-  var shader2 = this.shader2
-  shader2.bind()
-  shader2.attributes.position.location = 0
-  shader2.uniforms.view = this.viewMatrix
-  shader2.uniforms.projection = this.projectionMatrix
-  if (this.texture) shader2.uniforms.texture = this.texture.bind()
-
-  for (k = 0; k < length; ++k) {
-    var chunkIndex = keys[k]
-    var mesh = this.meshes[chunkIndex]
-
-    var blockMesh = mesh.vertexArrayObjects.porous
-    if (blockMesh) {
-      shader2.uniforms.model = this.meshes[chunkIndex].modelMatrix
-
-      blockMesh.bind()
-      blockMesh.draw(gl.TRIANGLES, blockMesh.length)
-      blockMesh.unbind()
-    }
-  }
-};
-
-ShaderPlugin.prototype.createAOShader = function() {
-    return glShader(this.shell.gl ,
-    "#define GLSLIFY 1\nattribute vec4 attrib0;\nattribute vec4 attrib1;\n\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nuniform float tileCount;\n\nvarying vec3  normal;\nvarying vec2  tileCoord;\nvarying float tileSize;\nvarying vec2  texCoord;\nvarying float ambientOcclusion;\n\nmat4 translate(float x, float y, float z) { // TODO: @import glslify? same as in avatar\n    return mat4(1.0, 0.0, 0.0, 0.0,\n                0.0, 1.0, 0.0, 0.0,\n                0.0, 0.0, 1.0, 0.0,\n                  x,   y,   z, 1.0);\n}\n\nvoid main() {\n  //Compute position\n  vec3 position = attrib0.xyz;\n  \n  //Compute ambient occlusion\n  ambientOcclusion = attrib0.w / 255.0;\n  \n  //Extracted packed bits of normal. GLSL 1.0 doesn't support bitfieldExtract or even bitwise operations :(\n  int packedNormal = int(attrib1.x);\n  int nx = packedNormal / 16;               // xx____\n  int ny = packedNormal / 4 - nx * 4;       // __xx__\n  int nz = packedNormal - nx * 16 - ny * 4; // ____xx\n\n  normal = 128.0 - vec3(nx + 127, ny + 127, nz + 127);\n  \n  //Compute texture coordinate\n  texCoord = vec2(dot(position, vec3(normal.y-normal.z, 0, normal.x)),\n                  dot(position, vec3(0, -abs(normal.x+normal.z), normal.y)));\n  \n  //Compute tile coordinate\n  tileSize    = exp2(attrib1.y);\n  float tx    = (attrib1.z * 256.0 + attrib1.w) / tileCount; // 16-bit\n  tileCoord.x = floor(tx);\n  tileCoord.y = fract(tx) * tileCount;\n\n  // Offset to account for air padding (separate from other matrices so they can be reused)\n  mat4 shift = translate(-1.0, -1.0, -1.0);\n\n  gl_Position = projection * view * model * shift * vec4(position, 1.0);\n}\n",
-    "#define GLSLIFY 1\nprecision highp float;\n\nuniform sampler2D tileMap;\nuniform float tileCount;\n\nvarying vec3  normal;\nvarying vec2  tileCoord;\nvarying float tileSize;\nvarying vec2  texCoord;\nvarying float ambientOcclusion;\n\nvoid main() {\n\n  vec2 uv      = texCoord;\n  vec4 color   = vec4(0,0,0,0);\n  float weight = 0.0;\n\n  vec2 tileOffset = 2.0 * pow(2.0, 4.0) * tileCoord;\n  float denom     = 2.0 * pow(2.0, 4.0) * tileCount;\n\n  for(int dx=0; dx<2; ++dx) {\n    for(int dy=0; dy<2; ++dy) {\n      vec2 offset = 2.0 * fract(0.5 * (uv + vec2(dx, dy)));\n      float w = pow(1.0 - max(abs(offset.x-1.0), abs(offset.y-1.0)), 16.0);\n      \n      vec2 tc = (tileOffset + tileSize * offset) / denom;\n      color  += w * texture2D(tileMap, tc);\n      weight += w;\n    }\n  }\n  color /= weight;\n  \n  if(color.w < 0.5) {\n    discard;\n  }\n  \n  float light = ambientOcclusion + max(0.15*dot(normal, vec3(1,1,1)), 0.0);\n  \n  gl_FragColor = vec4(color.xyz * light, color.w);\n}\n"
-    )
-  // return glslify({
-  //   vertex: './lib/ao.vsh',
-  //   fragment: './lib/ao.fsh'
-  // })(this.shell.gl)
-};
-
-ShaderPlugin.prototype.createCustomModelShader = function() {
-  // TODO: refactor with voxel-decals, voxel-chunkborder?
-  return glShader(this.shell.gl,
-                 "#define GLSLIFY 1\n                        attribute vec3 position;                        attribute vec2 uv;                                                uniform mat4 projection;                        uniform mat4 view;                        uniform mat4 model;                        varying vec2 vUv;                                                void main() {                        gl_Position = projection * view * model * vec4(position, 1.0);                        vUv = uv;                        }",
-                "#define GLSLIFY 1\n                        precision highp float;                                                uniform sampler2D texture;                        varying vec2 vUv;                                                void main() {                        gl_FragColor = texture2D(texture, vUv);                        }");
-};
-
-},{"events":21,"fs":1,"gl-mat4":188,"gl-shader":203,"inherits":103}],179:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],180:[function(require,module,exports){
-arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],181:[function(require,module,exports){
-arguments[4][125][0].apply(exports,arguments)
-},{"dup":125}],182:[function(require,module,exports){
-arguments[4][126][0].apply(exports,arguments)
-},{"dup":126}],183:[function(require,module,exports){
-arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],184:[function(require,module,exports){
-arguments[4][128][0].apply(exports,arguments)
-},{"dup":128}],185:[function(require,module,exports){
-arguments[4][129][0].apply(exports,arguments)
-},{"dup":129}],186:[function(require,module,exports){
-arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],187:[function(require,module,exports){
-arguments[4][131][0].apply(exports,arguments)
-},{"dup":131}],188:[function(require,module,exports){
-arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":179,"./clone":180,"./copy":181,"./create":182,"./determinant":183,"./fromQuat":184,"./fromRotationTranslation":185,"./frustum":186,"./identity":187,"./invert":189,"./lookAt":190,"./multiply":191,"./ortho":192,"./perspective":193,"./perspectiveFromFieldOfView":194,"./rotate":195,"./rotateX":196,"./rotateY":197,"./rotateZ":198,"./scale":199,"./str":200,"./translate":201,"./transpose":202,"dup":132}],189:[function(require,module,exports){
-arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],190:[function(require,module,exports){
-arguments[4][134][0].apply(exports,arguments)
-},{"./identity":187,"dup":134}],191:[function(require,module,exports){
-arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],192:[function(require,module,exports){
-arguments[4][136][0].apply(exports,arguments)
-},{"dup":136}],193:[function(require,module,exports){
-arguments[4][137][0].apply(exports,arguments)
-},{"dup":137}],194:[function(require,module,exports){
-arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],195:[function(require,module,exports){
-arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],196:[function(require,module,exports){
-arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],197:[function(require,module,exports){
-arguments[4][141][0].apply(exports,arguments)
-},{"dup":141}],198:[function(require,module,exports){
-arguments[4][142][0].apply(exports,arguments)
-},{"dup":142}],199:[function(require,module,exports){
-arguments[4][143][0].apply(exports,arguments)
-},{"dup":143}],200:[function(require,module,exports){
-arguments[4][144][0].apply(exports,arguments)
-},{"dup":144}],201:[function(require,module,exports){
-arguments[4][145][0].apply(exports,arguments)
-},{"dup":145}],202:[function(require,module,exports){
-arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],203:[function(require,module,exports){
-'use strict'
-
-var createUniformWrapper   = require('./lib/create-uniforms')
-var createAttributeWrapper = require('./lib/create-attributes')
-var makeReflect            = require('./lib/reflect')
-var shaderCache            = require('./lib/shader-cache')
-var runtime                = require('./lib/runtime-reflect')
-var GLError                = require("./lib/GLError")
-
-//Shader object
-function Shader(gl) {
-  this.gl         = gl
-
-  //Default initialize these to null
-  this._vref      =
-  this._fref      =
-  this._relink    =
-  this.vertShader =
-  this.fragShader =
-  this.program    =
-  this.attributes =
-  this.uniforms   =
-  this.types      = null
-}
-
-var proto = Shader.prototype
-
-proto.bind = function() {
-  if(!this.program) {
-    this._relink()
-  }
-  this.gl.useProgram(this.program)
-}
-
-proto.dispose = function() {
-  if(this._fref) {
-    this._fref.dispose()
-  }
-  if(this._vref) {
-    this._vref.dispose()
-  }
-  this.attributes =
-  this.types      =
-  this.vertShader =
-  this.fragShader =
-  this.program    =
-  this._relink    =
-  this._fref      =
-  this._vref      = null
-}
-
-function compareAttributes(a, b) {
-  if(a.name < b.name) {
-    return -1
-  }
-  return 1
-}
-
-//Update export hook for glslify-live
-proto.update = function(
-    vertSource
-  , fragSource
-  , uniforms
-  , attributes) {
-
-  //If only one object passed, assume glslify style output
-  if(!fragSource || arguments.length === 1) {
-    var obj = vertSource
-    vertSource = obj.vertex
-    fragSource = obj.fragment
-    uniforms   = obj.uniforms
-    attributes = obj.attributes
-  }
-
-  var wrapper = this
-  var gl      = wrapper.gl
-
-  //Compile vertex and fragment shaders
-  var pvref = wrapper._vref
-  wrapper._vref = shaderCache.shader(gl, gl.VERTEX_SHADER, vertSource)
-  if(pvref) {
-    pvref.dispose()
-  }
-  wrapper.vertShader = wrapper._vref.shader
-  var pfref = this._fref
-  wrapper._fref = shaderCache.shader(gl, gl.FRAGMENT_SHADER, fragSource)
-  if(pfref) {
-    pfref.dispose()
-  }
-  wrapper.fragShader = wrapper._fref.shader
-
-  //If uniforms/attributes is not specified, use RT reflection
-  if(!uniforms || !attributes) {
-
-    //Create initial test program
-    var testProgram = gl.createProgram()
-    gl.attachShader(testProgram, wrapper.fragShader)
-    gl.attachShader(testProgram, wrapper.vertShader)
-    gl.linkProgram(testProgram)
-    if(!gl.getProgramParameter(testProgram, gl.LINK_STATUS)) {
-      var errLog = gl.getProgramInfoLog(testProgram)
-      throw new GLError(errLog, 'Error linking program:' + errLog)
-    }
-
-    //Load data from runtime
-    uniforms   = uniforms   || runtime.uniforms(gl, testProgram)
-    attributes = attributes || runtime.attributes(gl, testProgram)
-
-    //Release test program
-    gl.deleteProgram(testProgram)
-  }
-
-  //Sort attributes lexicographically
-  // overrides undefined WebGL behavior for attribute locations
-  attributes = attributes.slice()
-  attributes.sort(compareAttributes)
-
-  //Convert attribute types, read out locations
-  var attributeUnpacked  = []
-  var attributeNames     = []
-  var attributeLocations = []
-  for(var i=0; i<attributes.length; ++i) {
-    var attr = attributes[i]
-    if(attr.type.indexOf('mat') >= 0) {
-      var size = attr.type.charAt(attr.type.length-1)|0
-      var locVector = new Array(size)
-      for(var j=0; j<size; ++j) {
-        locVector[j] = attributeLocations.length
-        attributeNames.push(attr.name + '[' + j + ']')
-        if(typeof attr.location === 'number') {
-          attributeLocations.push(attr.location + j)
-        } else if(Array.isArray(attr.location) &&
-                  attr.location.length === size &&
-                  typeof attr.location[j] === 'number') {
-          attributeLocations.push(attr.location[j]|0)
-        } else {
-          attributeLocations.push(-1)
-        }
-      }
-      attributeUnpacked.push({
-        name: attr.name,
-        type: attr.type,
-        locations: locVector
-      })
-    } else {
-      attributeUnpacked.push({
-        name: attr.name,
-        type: attr.type,
-        locations: [ attributeLocations.length ]
-      })
-      attributeNames.push(attr.name)
-      if(typeof attr.location === 'number') {
-        attributeLocations.push(attr.location|0)
-      } else {
-        attributeLocations.push(-1)
-      }
-    }
-  }
-
-  //For all unspecified attributes, assign them lexicographically min attribute
-  var curLocation = 0
-  for(var i=0; i<attributeLocations.length; ++i) {
-    if(attributeLocations[i] < 0) {
-      while(attributeLocations.indexOf(curLocation) >= 0) {
-        curLocation += 1
-      }
-      attributeLocations[i] = curLocation
-    }
-  }
-
-  //Rebuild program and recompute all uniform locations
-  var uniformLocations = new Array(uniforms.length)
-  function relink() {
-    wrapper.program = shaderCache.program(
-        gl
-      , wrapper._vref
-      , wrapper._fref
-      , attributeNames
-      , attributeLocations)
-
-    for(var i=0; i<uniforms.length; ++i) {
-      uniformLocations[i] = gl.getUniformLocation(
-          wrapper.program
-        , uniforms[i].name)
-    }
-  }
-
-  //Perform initial linking, reuse program used for reflection
-  relink()
-
-  //Save relinking procedure, defer until runtime
-  wrapper._relink = relink
-
-  //Generate type info
-  wrapper.types = {
-    uniforms:   makeReflect(uniforms),
-    attributes: makeReflect(attributes)
-  }
-
-  //Generate attribute wrappers
-  wrapper.attributes = createAttributeWrapper(
-      gl
-    , wrapper
-    , attributeUnpacked
-    , attributeLocations)
-
-  //Generate uniform wrappers
-  Object.defineProperty(wrapper, 'uniforms', createUniformWrapper(
-      gl
-    , wrapper
-    , uniforms
-    , uniformLocations))
-}
-
-//Compiles and links a shader program with the given attribute and vertex list
-function createShader(
-    gl
-  , vertSource
-  , fragSource
-  , uniforms
-  , attributes) {
-
-  var shader = new Shader(gl)
-
-  shader.update(
-      vertSource
-    , fragSource
-    , uniforms
-    , attributes)
-
-  return shader
-}
-
-module.exports = createShader
-
-},{"./lib/GLError":204,"./lib/create-attributes":205,"./lib/create-uniforms":206,"./lib/reflect":207,"./lib/runtime-reflect":208,"./lib/shader-cache":209}],204:[function(require,module,exports){
-function GLError (rawError, shortMessage, longMessage) {
-    this.shortMessage = shortMessage || ''
-    this.longMessage = longMessage || ''
-    this.rawError = rawError || ''
-    this.message =
-      'gl-shader: ' + (shortMessage || rawError || '') +
-      (longMessage ? '\n'+longMessage : '')
-    this.stack = (new Error()).stack
-}
-GLError.prototype = new Error
-GLError.prototype.name = 'GLError'
-GLError.prototype.constructor = GLError
-module.exports = GLError
-
-},{}],205:[function(require,module,exports){
-'use strict'
-
-module.exports = createAttributeWrapper
-
-var GLError = require("./GLError")
-
-function ShaderAttribute(
-    gl
-  , wrapper
-  , index
-  , locations
-  , dimension
-  , constFunc) {
-  this._gl        = gl
-  this._wrapper   = wrapper
-  this._index     = index
-  this._locations = locations
-  this._dimension = dimension
-  this._constFunc = constFunc
-}
-
-var proto = ShaderAttribute.prototype
-
-proto.pointer = function setAttribPointer(
-    type
-  , normalized
-  , stride
-  , offset) {
-
-  var self      = this
-  var gl        = self._gl
-  var location  = self._locations[self._index]
-
-  gl.vertexAttribPointer(
-      location
-    , self._dimension
-    , type || gl.FLOAT
-    , !!normalized
-    , stride || 0
-    , offset || 0)
-  gl.enableVertexAttribArray(location)
-}
-
-proto.set = function(x0, x1, x2, x3) {
-  return this._constFunc(this._locations[this._index], x0, x1, x2, x3)
-}
-
-Object.defineProperty(proto, 'location', {
-  get: function() {
-    return this._locations[this._index]
-  }
-  , set: function(v) {
-    if(v !== this._locations[this._index]) {
-      this._locations[this._index] = v|0
-      this._wrapper.program = null
-    }
-    return v|0
-  }
-})
-
-//Adds a vector attribute to obj
-function addVectorAttribute(
-    gl
-  , wrapper
-  , index
-  , locations
-  , dimension
-  , obj
-  , name) {
-
-  //Construct constant function
-  var constFuncArgs = [ 'gl', 'v' ]
-  var varNames = []
-  for(var i=0; i<dimension; ++i) {
-    constFuncArgs.push('x'+i)
-    varNames.push('x'+i)
-  }
-  constFuncArgs.push(
-    'if(x0.length===void 0){return gl.vertexAttrib' +
-    dimension + 'f(v,' +
-    varNames.join() +
-    ')}else{return gl.vertexAttrib' +
-    dimension +
-    'fv(v,x0)}')
-  var constFunc = Function.apply(null, constFuncArgs)
-
-  //Create attribute wrapper
-  var attr = new ShaderAttribute(
-      gl
-    , wrapper
-    , index
-    , locations
-    , dimension
-    , constFunc)
-
-  //Create accessor
-  Object.defineProperty(obj, name, {
-    set: function(x) {
-      gl.disableVertexAttribArray(locations[index])
-      constFunc(gl, locations[index], x)
-      return x
-    }
-    , get: function() {
-      return attr
-    }
-    , enumerable: true
-  })
-}
-
-function addMatrixAttribute(
-    gl
-  , wrapper
-  , index
-  , locations
-  , dimension
-  , obj
-  , name) {
-
-  var parts = new Array(dimension)
-  var attrs = new Array(dimension)
-  for(var i=0; i<dimension; ++i) {
-    addVectorAttribute(
-        gl
-      , wrapper
-      , index[i]
-      , locations
-      , dimension
-      , parts
-      , i)
-    attrs[i] = parts[i]
-  }
-
-  Object.defineProperty(parts, 'location', {
-    set: function(v) {
-      if(Array.isArray(v)) {
-        for(var i=0; i<dimension; ++i) {
-          attrs[i].location = v[i]
-        }
-      } else {
-        for(var i=0; i<dimension; ++i) {
-          attrs[i].location = v + i
-        }
-      }
-      return v
-    }
-    , get: function() {
-      var result = new Array(dimension)
-      for(var i=0; i<dimension; ++i) {
-        result[i] = locations[index[i]]
-      }
-      return result
-    }
-    , enumerable: true
-  })
-
-  parts.pointer = function(type, normalized, stride, offset) {
-    type       = type || gl.FLOAT
-    normalized = !!normalized
-    stride     = stride || (dimension * dimension)
-    offset     = offset || 0
-    for(var i=0; i<dimension; ++i) {
-      var location = locations[index[i]]
-      gl.vertexAttribPointer(
-            location
-          , dimension
-          , type
-          , normalized
-          , stride
-          , offset + i * dimension)
-      gl.enableVertexAttribArray(location)
-    }
-  }
-
-  var scratch = new Array(dimension)
-  var vertexAttrib = gl['vertexAttrib' + dimension + 'fv']
-
-  Object.defineProperty(obj, name, {
-    set: function(x) {
-      for(var i=0; i<dimension; ++i) {
-        var loc = locations[index[i]]
-        gl.disableVertexAttribArray(loc)
-        if(Array.isArray(x[0])) {
-          vertexAttrib.call(gl, loc, x[i])
-        } else {
-          for(var j=0; j<dimension; ++j) {
-            scratch[j] = x[dimension*i + j]
-          }
-          vertexAttrib.call(gl, loc, scratch)
-        }
-      }
-      return x
-    }
-    , get: function() {
-      return parts
-    }
-    , enumerable: true
-  })
-}
-
-//Create shims for attributes
-function createAttributeWrapper(
-    gl
-  , wrapper
-  , attributes
-  , locations) {
-
-  var obj = {}
-  for(var i=0, n=attributes.length; i<n; ++i) {
-
-    var a = attributes[i]
-    var name = a.name
-    var type = a.type
-    var locs = a.locations
-
-    switch(type) {
-      case 'bool':
-      case 'int':
-      case 'float':
-        addVectorAttribute(
-            gl
-          , wrapper
-          , locs[0]
-          , locations
-          , 1
-          , obj
-          , name)
-      break
-
-      default:
-        if(type.indexOf('vec') >= 0) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid data type for attribute ' + name + ': ' + type)
-          }
-          addVectorAttribute(
-              gl
-            , wrapper
-            , locs[0]
-            , locations
-            , d
-            , obj
-            , name)
-        } else if(type.indexOf('mat') >= 0) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid data type for attribute ' + name + ': ' + type)
-          }
-          addMatrixAttribute(
-              gl
-            , wrapper
-            , locs
-            , locations
-            , d
-            , obj
-            , name)
-        } else {
-          throw new GLError('', 'Unknown data type for attribute ' + name + ': ' + type)
-        }
-      break
-    }
-  }
-  return obj
-}
-
-},{"./GLError":204}],206:[function(require,module,exports){
-'use strict'
-
-var coallesceUniforms = require('./reflect')
-var GLError = require("./GLError")
-
-module.exports = createUniformWrapper
-
-//Binds a function and returns a value
-function identity(x) {
-  var c = new Function('y', 'return function(){return y}')
-  return c(x)
-}
-
-function makeVector(length, fill) {
-  var result = new Array(length)
-  for(var i=0; i<length; ++i) {
-    result[i] = fill
-  }
-  return result
-}
-
-//Create shims for uniforms
-function createUniformWrapper(gl, wrapper, uniforms, locations) {
-
-  function makeGetter(index) {
-    var proc = new Function(
-        'gl'
-      , 'wrapper'
-      , 'locations'
-      , 'return function(){return gl.getUniform(wrapper.program,locations[' + index + '])}')
-    return proc(gl, wrapper, locations)
-  }
-
-  function makePropSetter(path, index, type) {
-    switch(type) {
-      case 'bool':
-      case 'int':
-      case 'sampler2D':
-      case 'samplerCube':
-        return 'gl.uniform1i(locations[' + index + '],obj' + path + ')'
-      case 'float':
-        return 'gl.uniform1f(locations[' + index + '],obj' + path + ')'
-      default:
-        var vidx = type.indexOf('vec')
-        if(0 <= vidx && vidx <= 1 && type.length === 4 + vidx) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid data type')
-          }
-          switch(type.charAt(0)) {
-            case 'b':
-            case 'i':
-              return 'gl.uniform' + d + 'iv(locations[' + index + '],obj' + path + ')'
-            case 'v':
-              return 'gl.uniform' + d + 'fv(locations[' + index + '],obj' + path + ')'
-            default:
-              throw new GLError('', 'Unrecognized data type for vector ' + name + ': ' + type)
-          }
-        } else if(type.indexOf('mat') === 0 && type.length === 4) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid uniform dimension type for matrix ' + name + ': ' + type)
-          }
-          return 'gl.uniformMatrix' + d + 'fv(locations[' + index + '],false,obj' + path + ')'
-        } else {
-          throw new GLError('', 'Unknown uniform data type for ' + name + ': ' + type)
-        }
-      break
-    }
-  }
-
-  function enumerateIndices(prefix, type) {
-    if(typeof type !== 'object') {
-      return [ [prefix, type] ]
-    }
-    var indices = []
-    for(var id in type) {
-      var prop = type[id]
-      var tprefix = prefix
-      if(parseInt(id) + '' === id) {
-        tprefix += '[' + id + ']'
-      } else {
-        tprefix += '.' + id
-      }
-      if(typeof prop === 'object') {
-        indices.push.apply(indices, enumerateIndices(tprefix, prop))
-      } else {
-        indices.push([tprefix, prop])
-      }
-    }
-    return indices
-  }
-
-  function makeSetter(type) {
-    var code = [ 'return function updateProperty(obj){' ]
-    var indices = enumerateIndices('', type)
-    for(var i=0; i<indices.length; ++i) {
-      var item = indices[i]
-      var path = item[0]
-      var idx  = item[1]
-      if(locations[idx]) {
-        code.push(makePropSetter(path, idx, uniforms[idx].type))
-      }
-    }
-    code.push('return obj}')
-    var proc = new Function('gl', 'locations', code.join('\n'))
-    return proc(gl, locations)
-  }
-
-  function defaultValue(type) {
-    switch(type) {
-      case 'bool':
-        return false
-      case 'int':
-      case 'sampler2D':
-      case 'samplerCube':
-        return 0
-      case 'float':
-        return 0.0
-      default:
-        var vidx = type.indexOf('vec')
-        if(0 <= vidx && vidx <= 1 && type.length === 4 + vidx) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid data type')
-          }
-          if(type.charAt(0) === 'b') {
-            return makeVector(d, false)
-          }
-          return makeVector(d, 0)
-        } else if(type.indexOf('mat') === 0 && type.length === 4) {
-          var d = type.charCodeAt(type.length-1) - 48
-          if(d < 2 || d > 4) {
-            throw new GLError('', 'Invalid uniform dimension type for matrix ' + name + ': ' + type)
-          }
-          return makeVector(d*d, 0)
-        } else {
-          throw new GLError('', 'Unknown uniform data type for ' + name + ': ' + type)
-        }
-      break
-    }
-  }
-
-  function storeProperty(obj, prop, type) {
-    if(typeof type === 'object') {
-      var child = processObject(type)
-      Object.defineProperty(obj, prop, {
-        get: identity(child),
-        set: makeSetter(type),
-        enumerable: true,
-        configurable: false
-      })
-    } else {
-      if(locations[type]) {
-        Object.defineProperty(obj, prop, {
-          get: makeGetter(type),
-          set: makeSetter(type),
-          enumerable: true,
-          configurable: false
-        })
-      } else {
-        obj[prop] = defaultValue(uniforms[type].type)
-      }
-    }
-  }
-
-  function processObject(obj) {
-    var result
-    if(Array.isArray(obj)) {
-      result = new Array(obj.length)
-      for(var i=0; i<obj.length; ++i) {
-        storeProperty(result, i, obj[i])
-      }
-    } else {
-      result = {}
-      for(var id in obj) {
-        storeProperty(result, id, obj[id])
-      }
-    }
-    return result
-  }
-
-  //Return data
-  var coallesced = coallesceUniforms(uniforms, true)
-  return {
-    get: identity(processObject(coallesced)),
-    set: makeSetter(coallesced),
-    enumerable: true,
-    configurable: true
-  }
-}
-
-},{"./GLError":204,"./reflect":207}],207:[function(require,module,exports){
-'use strict'
-
-module.exports = makeReflectTypes
-
-//Construct type info for reflection.
-//
-// This iterates over the flattened list of uniform type values and smashes them into a JSON object.
-//
-// The leaves of the resulting object are either indices or type strings representing primitive glslify types
-function makeReflectTypes(uniforms, useIndex) {
-  var obj = {}
-  for(var i=0; i<uniforms.length; ++i) {
-    var n = uniforms[i].name
-    var parts = n.split(".")
-    var o = obj
-    for(var j=0; j<parts.length; ++j) {
-      var x = parts[j].split("[")
-      if(x.length > 1) {
-        if(!(x[0] in o)) {
-          o[x[0]] = []
-        }
-        o = o[x[0]]
-        for(var k=1; k<x.length; ++k) {
-          var y = parseInt(x[k])
-          if(k<x.length-1 || j<parts.length-1) {
-            if(!(y in o)) {
-              if(k < x.length-1) {
-                o[y] = []
-              } else {
-                o[y] = {}
-              }
-            }
-            o = o[y]
-          } else {
-            if(useIndex) {
-              o[y] = i
-            } else {
-              o[y] = uniforms[i].type
-            }
-          }
-        }
-      } else if(j < parts.length-1) {
-        if(!(x[0] in o)) {
-          o[x[0]] = {}
-        }
-        o = o[x[0]]
-      } else {
-        if(useIndex) {
-          o[x[0]] = i
-        } else {
-          o[x[0]] = uniforms[i].type
-        }
-      }
-    }
-  }
-  return obj
-}
-},{}],208:[function(require,module,exports){
-'use strict'
-
-exports.uniforms    = runtimeUniforms
-exports.attributes  = runtimeAttributes
-
-var GL_TO_GLSL_TYPES = {
-  'FLOAT':       'float',
-  'FLOAT_VEC2':  'vec2',
-  'FLOAT_VEC3':  'vec3',
-  'FLOAT_VEC4':  'vec4',
-  'INT':         'int',
-  'INT_VEC2':    'ivec2',
-  'INT_VEC3':    'ivec3',
-  'INT_VEC4':    'ivec4',
-  'BOOL':        'bool',
-  'BOOL_VEC2':   'bvec2',
-  'BOOL_VEC3':   'bvec3',
-  'BOOL_VEC4':   'bvec4',
-  'FLOAT_MAT2':  'mat2',
-  'FLOAT_MAT3':  'mat3',
-  'FLOAT_MAT4':  'mat4',
-  'SAMPLER_2D':  'sampler2D',
-  'SAMPLER_CUBE':'samplerCube'
-}
-
-var GL_TABLE = null
-
-function getType(gl, type) {
-  if(!GL_TABLE) {
-    var typeNames = Object.keys(GL_TO_GLSL_TYPES)
-    GL_TABLE = {}
-    for(var i=0; i<typeNames.length; ++i) {
-      var tn = typeNames[i]
-      GL_TABLE[gl[tn]] = GL_TO_GLSL_TYPES[tn]
-    }
-  }
-  return GL_TABLE[type]
-}
-
-function runtimeUniforms(gl, program) {
-  var numUniforms = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
-  var result = []
-  for(var i=0; i<numUniforms; ++i) {
-    var info = gl.getActiveUniform(program, i)
-    if(info) {
-      var type = getType(gl, info.type)
-      if(info.size > 1) {
-        for(var j=0; j<info.size; ++j) {
-          result.push({
-            name: info.name.replace('[0]', '[' + j + ']'),
-            type: type
-          })
-        }
-      } else {
-        result.push({
-          name: info.name,
-          type: type
-        })
-      }
-    }
-  }
-  return result
-}
-
-function runtimeAttributes(gl, program) {
-  var numAttributes = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES)
-  var result = []
-  for(var i=0; i<numAttributes; ++i) {
-    var info = gl.getActiveAttrib(program, i)
-    if(info) {
-      result.push({
-        name: info.name,
-        type: getType(gl, info.type)
-      })
-    }
-  }
-  return result
-}
-
-},{}],209:[function(require,module,exports){
-'use strict'
-
-exports.shader   = getShaderReference
-exports.program  = createProgram
-
-var GLError = require("./GLError")
-var formatCompilerError = require('gl-format-compiler-error');
-
-var weakMap = typeof WeakMap === 'undefined' ? require('weakmap-shim') : WeakMap
-var CACHE = new weakMap()
-
-var SHADER_COUNTER = 0
-
-function ShaderReference(id, src, type, shader, programs, count, cache) {
-  this.id       = id
-  this.src      = src
-  this.type     = type
-  this.shader   = shader
-  this.count    = count
-  this.programs = []
-  this.cache    = cache
-}
-
-ShaderReference.prototype.dispose = function() {
-  if(--this.count === 0) {
-    var cache    = this.cache
-    var gl       = cache.gl
-
-    //Remove program references
-    var programs = this.programs
-    for(var i=0, n=programs.length; i<n; ++i) {
-      var p = cache.programs[programs[i]]
-      if(p) {
-        delete cache.programs[i]
-        gl.deleteProgram(p)
-      }
-    }
-
-    //Remove shader reference
-    gl.deleteShader(this.shader)
-    delete cache.shaders[(this.type === gl.FRAGMENT_SHADER)|0][this.src]
-  }
-}
-
-function ContextCache(gl) {
-  this.gl       = gl
-  this.shaders  = [{}, {}]
-  this.programs = {}
-}
-
-var proto = ContextCache.prototype
-
-function compileShader(gl, type, src) {
-  var shader = gl.createShader(type)
-  gl.shaderSource(shader, src)
-  gl.compileShader(shader)
-  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    var errLog = gl.getShaderInfoLog(shader)
-    try {
-        var fmt = formatCompilerError(errLog, src, type);
-    } catch (e){
-        console.warn('Failed to format compiler error: ' + e);
-        throw new GLError(errLog, 'Error compiling shader:\n' + errLog)
-    }
-    throw new GLError(errLog, fmt.short, fmt.long)
-  }
-  return shader
-}
-
-proto.getShaderReference = function(type, src) {
-  var gl      = this.gl
-  var shaders = this.shaders[(type === gl.FRAGMENT_SHADER)|0]
-  var shader  = shaders[src]
-  if(!shader || !gl.isShader(shader.shader)) {
-    var shaderObj = compileShader(gl, type, src)
-    shader = shaders[src] = new ShaderReference(
-      SHADER_COUNTER++,
-      src,
-      type,
-      shaderObj,
-      [],
-      1,
-      this)
-  } else {
-    shader.count += 1
-  }
-  return shader
-}
-
-function linkProgram(gl, vshader, fshader, attribs, locations) {
-  var program = gl.createProgram()
-  gl.attachShader(program, vshader)
-  gl.attachShader(program, fshader)
-  for(var i=0; i<attribs.length; ++i) {
-    gl.bindAttribLocation(program, locations[i], attribs[i])
-  }
-  gl.linkProgram(program)
-  if(!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    var errLog = gl.getProgramInfoLog(program)
-    throw new GLError(errLog, 'Error linking program: ' + errLog)
-  }
-  return program
-}
-
-proto.getProgram = function(vref, fref, attribs, locations) {
-  var token = [vref.id, fref.id, attribs.join(':'), locations.join(':')].join('@')
-  var prog  = this.programs[token]
-  if(!prog || !this.gl.isProgram(prog)) {
-    this.programs[token] = prog = linkProgram(
-      this.gl,
-      vref.shader,
-      fref.shader,
-      attribs,
-      locations)
-    vref.programs.push(token)
-    fref.programs.push(token)
-  }
-  return prog
-}
-
-function getCache(gl) {
-  var ctxCache = CACHE.get(gl)
-  if(!ctxCache) {
-    ctxCache = new ContextCache(gl)
-    CACHE.set(gl, ctxCache)
-  }
-  return ctxCache
-}
-
-function getShaderReference(gl, type, src) {
-  return getCache(gl).getShaderReference(type, src)
-}
-
-function createProgram(gl, vref, fref, attribs, locations) {
-  return getCache(gl).getProgram(vref, fref, attribs, locations)
-}
-
-},{"./GLError":204,"gl-format-compiler-error":210,"weakmap-shim":226}],210:[function(require,module,exports){
-
-var sprintf = require('sprintf-js').sprintf;
-var glConstants = require('gl-constants/lookup');
-var shaderName = require('glsl-shader-name');
-var addLineNumbers = require('add-line-numbers');
-
-module.exports = formatCompilerError;
-
-function formatCompilerError(errLog, src, type) {
-    "use strict";
-
-    var name = shaderName(src) || 'of unknown name (see npm glsl-shader-name)';
-
-    var typeName = 'unknown type';
-    if (type !== undefined) {
-        typeName = type === glConstants.FRAGMENT_SHADER ? 'fragment' : 'vertex'
-    }
-
-    var longForm = sprintf('Error compiling %s shader %s:\n', typeName, name);
-    var shortForm = sprintf("%s%s", longForm, errLog);
-
-    var errorStrings = errLog.split('\n');
-    var errors = {};
-
-    for (var i = 0; i < errorStrings.length; i++) {
-        var errorString = errorStrings[i];
-        if (errorString === '') continue;
-        var lineNo = parseInt(errorString.split(':')[2]);
-        if (isNaN(lineNo)) {
-            throw new Error(sprintf('Could not parse error: %s', errorString));
-        }
-        errors[lineNo] = errorString;
-    }
-
-    var lines = addLineNumbers(src).split('\n');
-
-    for (var i = 0; i < lines.length; i++) {
-        if (!errors[i+3] && !errors[i+2] && !errors[i+1]) continue;
-        var line = lines[i];
-        longForm += line + '\n';
-        if (errors[i+1]) {
-            var e = errors[i+1];
-            e = e.substr(e.split(':', 3).join(':').length + 1).trim();
-            longForm += sprintf('^^^ %s\n\n', e);
-        }
-    }
-
-    return {
-        long: longForm.trim(),
-        short: shortForm.trim()
-    };
-}
-
-
-},{"add-line-numbers":211,"gl-constants/lookup":215,"glsl-shader-name":216,"sprintf-js":223}],211:[function(require,module,exports){
-var padLeft = require('pad-left')
-
-module.exports = addLineNumbers
-function addLineNumbers (string, start, delim) {
-  start = typeof start === 'number' ? start : 1
-  delim = delim || ': '
-
-  var lines = string.split(/\r?\n/)
-  var totalDigits = String(lines.length + start - 1).length
-  return lines.map(function (line, i) {
-    var c = i + start
-    var digits = String(c).length
-    var prefix = padLeft(c, totalDigits - digits)
-    return prefix + delim + line
-  }).join('\n')
-}
-
-},{"pad-left":212}],212:[function(require,module,exports){
-/*!
- * pad-left <https://github.com/jonschlinkert/pad-left>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT license.
- */
-
-'use strict';
-
-var repeat = require('repeat-string');
-
-module.exports = function padLeft(str, num, ch) {
-  ch = typeof ch !== 'undefined' ? (ch + '') : ' ';
-  return repeat(ch, num) + str;
-};
-},{"repeat-string":213}],213:[function(require,module,exports){
-/*!
- * repeat-string <https://github.com/jonschlinkert/repeat-string>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
-'use strict';
-
-/**
- * Expose `repeat`
- */
-
-module.exports = repeat;
-
-/**
- * Repeat the given `string` the specified `number`
- * of times.
- *
- * **Example:**
- *
- * ```js
- * var repeat = require('repeat-string');
- * repeat('A', 5);
- * //=> AAAAA
- * ```
- *
- * @param {String} `string` The string to repeat
- * @param {Number} `number` The number of times to repeat the string
- * @return {String} Repeated string
- * @api public
- */
-
-function repeat(str, num) {
-  if (typeof str !== 'string') {
-    throw new TypeError('repeat-string expects a string.');
-  }
-
-  if (num === 1) return str;
-  if (num === 2) return str + str;
-
-  var max = str.length * num;
-  if (cache !== str || typeof cache === 'undefined') {
-    cache = str;
-    res = '';
-  }
-
-  while (max > res.length && num > 0) {
-    if (num & 1) {
-      res += str;
-    }
-
-    num >>= 1;
-    if (!num) break;
-    str += str;
-  }
-
-  return res.substr(0, max);
-}
-
-/**
- * Results cache
- */
-
-var res = '';
-var cache;
-
-},{}],214:[function(require,module,exports){
-module.exports = {
-  0: 'NONE',
-  1: 'ONE',
-  2: 'LINE_LOOP',
-  3: 'LINE_STRIP',
-  4: 'TRIANGLES',
-  5: 'TRIANGLE_STRIP',
-  6: 'TRIANGLE_FAN',
-  256: 'DEPTH_BUFFER_BIT',
-  512: 'NEVER',
-  513: 'LESS',
-  514: 'EQUAL',
-  515: 'LEQUAL',
-  516: 'GREATER',
-  517: 'NOTEQUAL',
-  518: 'GEQUAL',
-  519: 'ALWAYS',
-  768: 'SRC_COLOR',
-  769: 'ONE_MINUS_SRC_COLOR',
-  770: 'SRC_ALPHA',
-  771: 'ONE_MINUS_SRC_ALPHA',
-  772: 'DST_ALPHA',
-  773: 'ONE_MINUS_DST_ALPHA',
-  774: 'DST_COLOR',
-  775: 'ONE_MINUS_DST_COLOR',
-  776: 'SRC_ALPHA_SATURATE',
-  1024: 'STENCIL_BUFFER_BIT',
-  1028: 'FRONT',
-  1029: 'BACK',
-  1032: 'FRONT_AND_BACK',
-  1280: 'INVALID_ENUM',
-  1281: 'INVALID_VALUE',
-  1282: 'INVALID_OPERATION',
-  1285: 'OUT_OF_MEMORY',
-  1286: 'INVALID_FRAMEBUFFER_OPERATION',
-  2304: 'CW',
-  2305: 'CCW',
-  2849: 'LINE_WIDTH',
-  2884: 'CULL_FACE',
-  2885: 'CULL_FACE_MODE',
-  2886: 'FRONT_FACE',
-  2928: 'DEPTH_RANGE',
-  2929: 'DEPTH_TEST',
-  2930: 'DEPTH_WRITEMASK',
-  2931: 'DEPTH_CLEAR_VALUE',
-  2932: 'DEPTH_FUNC',
-  2960: 'STENCIL_TEST',
-  2961: 'STENCIL_CLEAR_VALUE',
-  2962: 'STENCIL_FUNC',
-  2963: 'STENCIL_VALUE_MASK',
-  2964: 'STENCIL_FAIL',
-  2965: 'STENCIL_PASS_DEPTH_FAIL',
-  2966: 'STENCIL_PASS_DEPTH_PASS',
-  2967: 'STENCIL_REF',
-  2968: 'STENCIL_WRITEMASK',
-  2978: 'VIEWPORT',
-  3024: 'DITHER',
-  3042: 'BLEND',
-  3088: 'SCISSOR_BOX',
-  3089: 'SCISSOR_TEST',
-  3106: 'COLOR_CLEAR_VALUE',
-  3107: 'COLOR_WRITEMASK',
-  3317: 'UNPACK_ALIGNMENT',
-  3333: 'PACK_ALIGNMENT',
-  3379: 'MAX_TEXTURE_SIZE',
-  3386: 'MAX_VIEWPORT_DIMS',
-  3408: 'SUBPIXEL_BITS',
-  3410: 'RED_BITS',
-  3411: 'GREEN_BITS',
-  3412: 'BLUE_BITS',
-  3413: 'ALPHA_BITS',
-  3414: 'DEPTH_BITS',
-  3415: 'STENCIL_BITS',
-  3553: 'TEXTURE_2D',
-  4352: 'DONT_CARE',
-  4353: 'FASTEST',
-  4354: 'NICEST',
-  5120: 'BYTE',
-  5121: 'UNSIGNED_BYTE',
-  5122: 'SHORT',
-  5123: 'UNSIGNED_SHORT',
-  5124: 'INT',
-  5125: 'UNSIGNED_INT',
-  5126: 'FLOAT',
-  5386: 'INVERT',
-  5890: 'TEXTURE',
-  6401: 'STENCIL_INDEX',
-  6402: 'DEPTH_COMPONENT',
-  6406: 'ALPHA',
-  6407: 'RGB',
-  6408: 'RGBA',
-  6409: 'LUMINANCE',
-  6410: 'LUMINANCE_ALPHA',
-  7680: 'KEEP',
-  7681: 'REPLACE',
-  7682: 'INCR',
-  7683: 'DECR',
-  7936: 'VENDOR',
-  7937: 'RENDERER',
-  7938: 'VERSION',
-  9728: 'NEAREST',
-  9729: 'LINEAR',
-  9984: 'NEAREST_MIPMAP_NEAREST',
-  9985: 'LINEAR_MIPMAP_NEAREST',
-  9986: 'NEAREST_MIPMAP_LINEAR',
-  9987: 'LINEAR_MIPMAP_LINEAR',
-  10240: 'TEXTURE_MAG_FILTER',
-  10241: 'TEXTURE_MIN_FILTER',
-  10242: 'TEXTURE_WRAP_S',
-  10243: 'TEXTURE_WRAP_T',
-  10497: 'REPEAT',
-  10752: 'POLYGON_OFFSET_UNITS',
-  16384: 'COLOR_BUFFER_BIT',
-  32769: 'CONSTANT_COLOR',
-  32770: 'ONE_MINUS_CONSTANT_COLOR',
-  32771: 'CONSTANT_ALPHA',
-  32772: 'ONE_MINUS_CONSTANT_ALPHA',
-  32773: 'BLEND_COLOR',
-  32774: 'FUNC_ADD',
-  32777: 'BLEND_EQUATION_RGB',
-  32778: 'FUNC_SUBTRACT',
-  32779: 'FUNC_REVERSE_SUBTRACT',
-  32819: 'UNSIGNED_SHORT_4_4_4_4',
-  32820: 'UNSIGNED_SHORT_5_5_5_1',
-  32823: 'POLYGON_OFFSET_FILL',
-  32824: 'POLYGON_OFFSET_FACTOR',
-  32854: 'RGBA4',
-  32855: 'RGB5_A1',
-  32873: 'TEXTURE_BINDING_2D',
-  32926: 'SAMPLE_ALPHA_TO_COVERAGE',
-  32928: 'SAMPLE_COVERAGE',
-  32936: 'SAMPLE_BUFFERS',
-  32937: 'SAMPLES',
-  32938: 'SAMPLE_COVERAGE_VALUE',
-  32939: 'SAMPLE_COVERAGE_INVERT',
-  32968: 'BLEND_DST_RGB',
-  32969: 'BLEND_SRC_RGB',
-  32970: 'BLEND_DST_ALPHA',
-  32971: 'BLEND_SRC_ALPHA',
-  33071: 'CLAMP_TO_EDGE',
-  33170: 'GENERATE_MIPMAP_HINT',
-  33189: 'DEPTH_COMPONENT16',
-  33306: 'DEPTH_STENCIL_ATTACHMENT',
-  33635: 'UNSIGNED_SHORT_5_6_5',
-  33648: 'MIRRORED_REPEAT',
-  33901: 'ALIASED_POINT_SIZE_RANGE',
-  33902: 'ALIASED_LINE_WIDTH_RANGE',
-  33984: 'TEXTURE0',
-  33985: 'TEXTURE1',
-  33986: 'TEXTURE2',
-  33987: 'TEXTURE3',
-  33988: 'TEXTURE4',
-  33989: 'TEXTURE5',
-  33990: 'TEXTURE6',
-  33991: 'TEXTURE7',
-  33992: 'TEXTURE8',
-  33993: 'TEXTURE9',
-  33994: 'TEXTURE10',
-  33995: 'TEXTURE11',
-  33996: 'TEXTURE12',
-  33997: 'TEXTURE13',
-  33998: 'TEXTURE14',
-  33999: 'TEXTURE15',
-  34000: 'TEXTURE16',
-  34001: 'TEXTURE17',
-  34002: 'TEXTURE18',
-  34003: 'TEXTURE19',
-  34004: 'TEXTURE20',
-  34005: 'TEXTURE21',
-  34006: 'TEXTURE22',
-  34007: 'TEXTURE23',
-  34008: 'TEXTURE24',
-  34009: 'TEXTURE25',
-  34010: 'TEXTURE26',
-  34011: 'TEXTURE27',
-  34012: 'TEXTURE28',
-  34013: 'TEXTURE29',
-  34014: 'TEXTURE30',
-  34015: 'TEXTURE31',
-  34016: 'ACTIVE_TEXTURE',
-  34024: 'MAX_RENDERBUFFER_SIZE',
-  34041: 'DEPTH_STENCIL',
-  34055: 'INCR_WRAP',
-  34056: 'DECR_WRAP',
-  34067: 'TEXTURE_CUBE_MAP',
-  34068: 'TEXTURE_BINDING_CUBE_MAP',
-  34069: 'TEXTURE_CUBE_MAP_POSITIVE_X',
-  34070: 'TEXTURE_CUBE_MAP_NEGATIVE_X',
-  34071: 'TEXTURE_CUBE_MAP_POSITIVE_Y',
-  34072: 'TEXTURE_CUBE_MAP_NEGATIVE_Y',
-  34073: 'TEXTURE_CUBE_MAP_POSITIVE_Z',
-  34074: 'TEXTURE_CUBE_MAP_NEGATIVE_Z',
-  34076: 'MAX_CUBE_MAP_TEXTURE_SIZE',
-  34338: 'VERTEX_ATTRIB_ARRAY_ENABLED',
-  34339: 'VERTEX_ATTRIB_ARRAY_SIZE',
-  34340: 'VERTEX_ATTRIB_ARRAY_STRIDE',
-  34341: 'VERTEX_ATTRIB_ARRAY_TYPE',
-  34342: 'CURRENT_VERTEX_ATTRIB',
-  34373: 'VERTEX_ATTRIB_ARRAY_POINTER',
-  34466: 'NUM_COMPRESSED_TEXTURE_FORMATS',
-  34467: 'COMPRESSED_TEXTURE_FORMATS',
-  34660: 'BUFFER_SIZE',
-  34661: 'BUFFER_USAGE',
-  34816: 'STENCIL_BACK_FUNC',
-  34817: 'STENCIL_BACK_FAIL',
-  34818: 'STENCIL_BACK_PASS_DEPTH_FAIL',
-  34819: 'STENCIL_BACK_PASS_DEPTH_PASS',
-  34877: 'BLEND_EQUATION_ALPHA',
-  34921: 'MAX_VERTEX_ATTRIBS',
-  34922: 'VERTEX_ATTRIB_ARRAY_NORMALIZED',
-  34930: 'MAX_TEXTURE_IMAGE_UNITS',
-  34962: 'ARRAY_BUFFER',
-  34963: 'ELEMENT_ARRAY_BUFFER',
-  34964: 'ARRAY_BUFFER_BINDING',
-  34965: 'ELEMENT_ARRAY_BUFFER_BINDING',
-  34975: 'VERTEX_ATTRIB_ARRAY_BUFFER_BINDING',
-  35040: 'STREAM_DRAW',
-  35044: 'STATIC_DRAW',
-  35048: 'DYNAMIC_DRAW',
-  35632: 'FRAGMENT_SHADER',
-  35633: 'VERTEX_SHADER',
-  35660: 'MAX_VERTEX_TEXTURE_IMAGE_UNITS',
-  35661: 'MAX_COMBINED_TEXTURE_IMAGE_UNITS',
-  35663: 'SHADER_TYPE',
-  35664: 'FLOAT_VEC2',
-  35665: 'FLOAT_VEC3',
-  35666: 'FLOAT_VEC4',
-  35667: 'INT_VEC2',
-  35668: 'INT_VEC3',
-  35669: 'INT_VEC4',
-  35670: 'BOOL',
-  35671: 'BOOL_VEC2',
-  35672: 'BOOL_VEC3',
-  35673: 'BOOL_VEC4',
-  35674: 'FLOAT_MAT2',
-  35675: 'FLOAT_MAT3',
-  35676: 'FLOAT_MAT4',
-  35678: 'SAMPLER_2D',
-  35680: 'SAMPLER_CUBE',
-  35712: 'DELETE_STATUS',
-  35713: 'COMPILE_STATUS',
-  35714: 'LINK_STATUS',
-  35715: 'VALIDATE_STATUS',
-  35716: 'INFO_LOG_LENGTH',
-  35717: 'ATTACHED_SHADERS',
-  35718: 'ACTIVE_UNIFORMS',
-  35719: 'ACTIVE_UNIFORM_MAX_LENGTH',
-  35720: 'SHADER_SOURCE_LENGTH',
-  35721: 'ACTIVE_ATTRIBUTES',
-  35722: 'ACTIVE_ATTRIBUTE_MAX_LENGTH',
-  35724: 'SHADING_LANGUAGE_VERSION',
-  35725: 'CURRENT_PROGRAM',
-  36003: 'STENCIL_BACK_REF',
-  36004: 'STENCIL_BACK_VALUE_MASK',
-  36005: 'STENCIL_BACK_WRITEMASK',
-  36006: 'FRAMEBUFFER_BINDING',
-  36007: 'RENDERBUFFER_BINDING',
-  36048: 'FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE',
-  36049: 'FRAMEBUFFER_ATTACHMENT_OBJECT_NAME',
-  36050: 'FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL',
-  36051: 'FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE',
-  36053: 'FRAMEBUFFER_COMPLETE',
-  36054: 'FRAMEBUFFER_INCOMPLETE_ATTACHMENT',
-  36055: 'FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT',
-  36057: 'FRAMEBUFFER_INCOMPLETE_DIMENSIONS',
-  36061: 'FRAMEBUFFER_UNSUPPORTED',
-  36064: 'COLOR_ATTACHMENT0',
-  36096: 'DEPTH_ATTACHMENT',
-  36128: 'STENCIL_ATTACHMENT',
-  36160: 'FRAMEBUFFER',
-  36161: 'RENDERBUFFER',
-  36162: 'RENDERBUFFER_WIDTH',
-  36163: 'RENDERBUFFER_HEIGHT',
-  36164: 'RENDERBUFFER_INTERNAL_FORMAT',
-  36168: 'STENCIL_INDEX8',
-  36176: 'RENDERBUFFER_RED_SIZE',
-  36177: 'RENDERBUFFER_GREEN_SIZE',
-  36178: 'RENDERBUFFER_BLUE_SIZE',
-  36179: 'RENDERBUFFER_ALPHA_SIZE',
-  36180: 'RENDERBUFFER_DEPTH_SIZE',
-  36181: 'RENDERBUFFER_STENCIL_SIZE',
-  36194: 'RGB565',
-  36336: 'LOW_FLOAT',
-  36337: 'MEDIUM_FLOAT',
-  36338: 'HIGH_FLOAT',
-  36339: 'LOW_INT',
-  36340: 'MEDIUM_INT',
-  36341: 'HIGH_INT',
-  36346: 'SHADER_COMPILER',
-  36347: 'MAX_VERTEX_UNIFORM_VECTORS',
-  36348: 'MAX_VARYING_VECTORS',
-  36349: 'MAX_FRAGMENT_UNIFORM_VECTORS',
-  37440: 'UNPACK_FLIP_Y_WEBGL',
-  37441: 'UNPACK_PREMULTIPLY_ALPHA_WEBGL',
-  37442: 'CONTEXT_LOST_WEBGL',
-  37443: 'UNPACK_COLORSPACE_CONVERSION_WEBGL',
-  37444: 'BROWSER_DEFAULT_WEBGL'
-}
-
-},{}],215:[function(require,module,exports){
-var gl10 = require('./1.0/numbers')
-
-module.exports = function lookupConstant (number) {
-  return gl10[number]
-}
-
-},{"./1.0/numbers":214}],216:[function(require,module,exports){
-var tokenize = require('glsl-tokenizer')
-var atob     = require('atob-lite')
-
-module.exports = getName
-
-function getName(src) {
-  var tokens = Array.isArray(src)
-    ? src
-    : tokenize(src)
-
-  for (var i = 0; i < tokens.length; i++) {
-    var token = tokens[i]
-    if (token.type !== 'preprocessor') continue
-    var match = token.data.match(/\#define\s+SHADER_NAME(_B64)?\s+(.+)$/)
-    if (!match) continue
-    if (!match[2]) continue
-
-    var b64  = match[1]
-    var name = match[2]
-
-    return (b64 ? atob(name) : name).trim()
-  }
-}
-
-},{"atob-lite":217,"glsl-tokenizer":222}],217:[function(require,module,exports){
-module.exports = function _atob(str) {
-  return atob(str)
-}
-
-},{}],218:[function(require,module,exports){
-module.exports = tokenize
-
-var literals = require('./lib/literals')
-  , operators = require('./lib/operators')
-  , builtins = require('./lib/builtins')
-
-var NORMAL = 999          // <-- never emitted
-  , TOKEN = 9999          // <-- never emitted
-  , BLOCK_COMMENT = 0
-  , LINE_COMMENT = 1
-  , PREPROCESSOR = 2
-  , OPERATOR = 3
-  , INTEGER = 4
-  , FLOAT = 5
-  , IDENT = 6
-  , BUILTIN = 7
-  , KEYWORD = 8
-  , WHITESPACE = 9
-  , EOF = 10
-  , HEX = 11
-
-var map = [
-    'block-comment'
-  , 'line-comment'
-  , 'preprocessor'
-  , 'operator'
-  , 'integer'
-  , 'float'
-  , 'ident'
-  , 'builtin'
-  , 'keyword'
-  , 'whitespace'
-  , 'eof'
-  , 'integer'
-]
-
-function tokenize() {
-  var i = 0
-    , total = 0
-    , mode = NORMAL
-    , c
-    , last
-    , content = []
-    , tokens = []
-    , token_idx = 0
-    , token_offs = 0
-    , line = 1
-    , col = 0
-    , start = 0
-    , isnum = false
-    , isoperator = false
-    , input = ''
-    , len
-
-  return function(data) {
-    tokens = []
-    if (data !== null) return write(data)
-    return end()
-  }
-
-  function token(data) {
-    if (data.length) {
-      tokens.push({
-        type: map[mode]
-      , data: data
-      , position: start
-      , line: line
-      , column: col
-      })
-    }
-  }
-
-  function write(chunk) {
-    i = 0
-    input += chunk
-    len = input.length
-
-    var last
-
-    while(c = input[i], i < len) {
-      last = i
-
-      switch(mode) {
-        case BLOCK_COMMENT: i = block_comment(); break
-        case LINE_COMMENT: i = line_comment(); break
-        case PREPROCESSOR: i = preprocessor(); break
-        case OPERATOR: i = operator(); break
-        case INTEGER: i = integer(); break
-        case HEX: i = hex(); break
-        case FLOAT: i = decimal(); break
-        case TOKEN: i = readtoken(); break
-        case WHITESPACE: i = whitespace(); break
-        case NORMAL: i = normal(); break
-      }
-
-      if(last !== i) {
-        switch(input[last]) {
-          case '\n': col = 0; ++line; break
-          default: ++col; break
-        }
-      }
-    }
-
-    total += i
-    input = input.slice(i)
-    return tokens
-  }
-
-  function end(chunk) {
-    if(content.length) {
-      token(content.join(''))
-    }
-
-    mode = EOF
-    token('(eof)')
-    return tokens
-  }
-
-  function normal() {
-    content = content.length ? [] : content
-
-    if(last === '/' && c === '*') {
-      start = total + i - 1
-      mode = BLOCK_COMMENT
-      last = c
-      return i + 1
-    }
-
-    if(last === '/' && c === '/') {
-      start = total + i - 1
-      mode = LINE_COMMENT
-      last = c
-      return i + 1
-    }
-
-    if(c === '#') {
-      mode = PREPROCESSOR
-      start = total + i
-      return i
-    }
-
-    if(/\s/.test(c)) {
-      mode = WHITESPACE
-      start = total + i
-      return i
-    }
-
-    isnum = /\d/.test(c)
-    isoperator = /[^\w_]/.test(c)
-
-    start = total + i
-    mode = isnum ? INTEGER : isoperator ? OPERATOR : TOKEN
-    return i
-  }
-
-  function whitespace() {
-    if(/[^\s]/g.test(c)) {
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function preprocessor() {
-    if(c === '\n' && last !== '\\') {
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function line_comment() {
-    return preprocessor()
-  }
-
-  function block_comment() {
-    if(c === '/' && last === '*') {
-      content.push(c)
-      token(content.join(''))
-      mode = NORMAL
-      return i + 1
-    }
-
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function operator() {
-    if(last === '.' && /\d/.test(c)) {
-      mode = FLOAT
-      return i
-    }
-
-    if(last === '/' && c === '*') {
-      mode = BLOCK_COMMENT
-      return i
-    }
-
-    if(last === '/' && c === '/') {
-      mode = LINE_COMMENT
-      return i
-    }
-
-    if(c === '.' && content.length) {
-      while(determine_operator(content));
-
-      mode = FLOAT
-      return i
-    }
-
-    if(c === ';' || c === ')' || c === '(') {
-      if(content.length) while(determine_operator(content));
-      token(c)
-      mode = NORMAL
-      return i + 1
-    }
-
-    var is_composite_operator = content.length === 2 && c !== '='
-    if(/[\w_\d\s]/.test(c) || is_composite_operator) {
-      while(determine_operator(content));
-      mode = NORMAL
-      return i
-    }
-
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function determine_operator(buf) {
-    var j = 0
-      , idx
-      , res
-
-    do {
-      idx = operators.indexOf(buf.slice(0, buf.length + j).join(''))
-      res = operators[idx]
-
-      if(idx === -1) {
-        if(j-- + buf.length > 0) continue
-        res = buf.slice(0, 1).join('')
-      }
-
-      token(res)
-
-      start += res.length
-      content = content.slice(res.length)
-      return content.length
-    } while(1)
-  }
-
-  function hex() {
-    if(/[^a-fA-F0-9]/.test(c)) {
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function integer() {
-    if(c === '.') {
-      content.push(c)
-      mode = FLOAT
-      last = c
-      return i + 1
-    }
-
-    if(/[eE]/.test(c)) {
-      content.push(c)
-      mode = FLOAT
-      last = c
-      return i + 1
-    }
-
-    if(c === 'x' && content.length === 1 && content[0] === '0') {
-      mode = HEX
-      content.push(c)
-      last = c
-      return i + 1
-    }
-
-    if(/[^\d]/.test(c)) {
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function decimal() {
-    if(c === 'f') {
-      content.push(c)
-      last = c
-      i += 1
-    }
-
-    if(/[eE]/.test(c)) {
-      content.push(c)
-      last = c
-      return i + 1
-    }
-
-    if(/[^\d]/.test(c)) {
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-    content.push(c)
-    last = c
-    return i + 1
-  }
-
-  function readtoken() {
-    if(/[^\d\w_]/.test(c)) {
-      var contentstr = content.join('')
-      if(literals.indexOf(contentstr) > -1) {
-        mode = KEYWORD
-      } else if(builtins.indexOf(contentstr) > -1) {
-        mode = BUILTIN
-      } else {
-        mode = IDENT
-      }
-      token(content.join(''))
-      mode = NORMAL
-      return i
-    }
-    content.push(c)
-    last = c
-    return i + 1
-  }
-}
-
-},{"./lib/builtins":219,"./lib/literals":220,"./lib/operators":221}],219:[function(require,module,exports){
-module.exports = [
-    'gl_Position'
-  , 'gl_PointSize'
-  , 'gl_ClipVertex'
-  , 'gl_FragCoord'
-  , 'gl_FrontFacing'
-  , 'gl_FragColor'
-  , 'gl_FragData'
-  , 'gl_FragDepth'
-  , 'gl_Color'
-  , 'gl_SecondaryColor'
-  , 'gl_Normal'
-  , 'gl_Vertex'
-  , 'gl_MultiTexCoord0'
-  , 'gl_MultiTexCoord1'
-  , 'gl_MultiTexCoord2'
-  , 'gl_MultiTexCoord3'
-  , 'gl_MultiTexCoord4'
-  , 'gl_MultiTexCoord5'
-  , 'gl_MultiTexCoord6'
-  , 'gl_MultiTexCoord7'
-  , 'gl_FogCoord'
-  , 'gl_MaxLights'
-  , 'gl_MaxClipPlanes'
-  , 'gl_MaxTextureUnits'
-  , 'gl_MaxTextureCoords'
-  , 'gl_MaxVertexAttribs'
-  , 'gl_MaxVertexUniformComponents'
-  , 'gl_MaxVaryingFloats'
-  , 'gl_MaxVertexTextureImageUnits'
-  , 'gl_MaxCombinedTextureImageUnits'
-  , 'gl_MaxTextureImageUnits'
-  , 'gl_MaxFragmentUniformComponents'
-  , 'gl_MaxDrawBuffers'
-  , 'gl_ModelViewMatrix'
-  , 'gl_ProjectionMatrix'
-  , 'gl_ModelViewProjectionMatrix'
-  , 'gl_TextureMatrix'
-  , 'gl_NormalMatrix'
-  , 'gl_ModelViewMatrixInverse'
-  , 'gl_ProjectionMatrixInverse'
-  , 'gl_ModelViewProjectionMatrixInverse'
-  , 'gl_TextureMatrixInverse'
-  , 'gl_ModelViewMatrixTranspose'
-  , 'gl_ProjectionMatrixTranspose'
-  , 'gl_ModelViewProjectionMatrixTranspose'
-  , 'gl_TextureMatrixTranspose'
-  , 'gl_ModelViewMatrixInverseTranspose'
-  , 'gl_ProjectionMatrixInverseTranspose'
-  , 'gl_ModelViewProjectionMatrixInverseTranspose'
-  , 'gl_TextureMatrixInverseTranspose'
-  , 'gl_NormalScale'
-  , 'gl_DepthRangeParameters'
-  , 'gl_DepthRange'
-  , 'gl_ClipPlane'
-  , 'gl_PointParameters'
-  , 'gl_Point'
-  , 'gl_MaterialParameters'
-  , 'gl_FrontMaterial'
-  , 'gl_BackMaterial'
-  , 'gl_LightSourceParameters'
-  , 'gl_LightSource'
-  , 'gl_LightModelParameters'
-  , 'gl_LightModel'
-  , 'gl_LightModelProducts'
-  , 'gl_FrontLightModelProduct'
-  , 'gl_BackLightModelProduct'
-  , 'gl_LightProducts'
-  , 'gl_FrontLightProduct'
-  , 'gl_BackLightProduct'
-  , 'gl_FogParameters'
-  , 'gl_Fog'
-  , 'gl_TextureEnvColor'
-  , 'gl_EyePlaneS'
-  , 'gl_EyePlaneT'
-  , 'gl_EyePlaneR'
-  , 'gl_EyePlaneQ'
-  , 'gl_ObjectPlaneS'
-  , 'gl_ObjectPlaneT'
-  , 'gl_ObjectPlaneR'
-  , 'gl_ObjectPlaneQ'
-  , 'gl_FrontColor'
-  , 'gl_BackColor'
-  , 'gl_FrontSecondaryColor'
-  , 'gl_BackSecondaryColor'
-  , 'gl_TexCoord'
-  , 'gl_FogFragCoord'
-  , 'gl_Color'
-  , 'gl_SecondaryColor'
-  , 'gl_TexCoord'
-  , 'gl_FogFragCoord'
-  , 'gl_PointCoord'
-  , 'radians'
-  , 'degrees'
-  , 'sin'
-  , 'cos'
-  , 'tan'
-  , 'asin'
-  , 'acos'
-  , 'atan'
-  , 'pow'
-  , 'exp'
-  , 'log'
-  , 'exp2'
-  , 'log2'
-  , 'sqrt'
-  , 'inversesqrt'
-  , 'abs'
-  , 'sign'
-  , 'floor'
-  , 'ceil'
-  , 'fract'
-  , 'mod'
-  , 'min'
-  , 'max'
-  , 'clamp'
-  , 'mix'
-  , 'step'
-  , 'smoothstep'
-  , 'length'
-  , 'distance'
-  , 'dot'
-  , 'cross'
-  , 'normalize'
-  , 'faceforward'
-  , 'reflect'
-  , 'refract'
-  , 'matrixCompMult'
-  , 'lessThan'
-  , 'lessThanEqual'
-  , 'greaterThan'
-  , 'greaterThanEqual'
-  , 'equal'
-  , 'notEqual'
-  , 'any'
-  , 'all'
-  , 'not'
-  , 'texture2D'
-  , 'texture2DProj'
-  , 'texture2DLod'
-  , 'texture2DProjLod'
-  , 'textureCube'
-  , 'textureCubeLod'
-  , 'dFdx'
-  , 'dFdy'
-]
-
-},{}],220:[function(require,module,exports){
-module.exports = [
-  // current
-    'precision'
-  , 'highp'
-  , 'mediump'
-  , 'lowp'
-  , 'attribute'
-  , 'const'
-  , 'uniform'
-  , 'varying'
-  , 'break'
-  , 'continue'
-  , 'do'
-  , 'for'
-  , 'while'
-  , 'if'
-  , 'else'
-  , 'in'
-  , 'out'
-  , 'inout'
-  , 'float'
-  , 'int'
-  , 'void'
-  , 'bool'
-  , 'true'
-  , 'false'
-  , 'discard'
-  , 'return'
-  , 'mat2'
-  , 'mat3'
-  , 'mat4'
-  , 'vec2'
-  , 'vec3'
-  , 'vec4'
-  , 'ivec2'
-  , 'ivec3'
-  , 'ivec4'
-  , 'bvec2'
-  , 'bvec3'
-  , 'bvec4'
-  , 'sampler1D'
-  , 'sampler2D'
-  , 'sampler3D'
-  , 'samplerCube'
-  , 'sampler1DShadow'
-  , 'sampler2DShadow'
-  , 'struct'
-
-  // future
-  , 'asm'
-  , 'class'
-  , 'union'
-  , 'enum'
-  , 'typedef'
-  , 'template'
-  , 'this'
-  , 'packed'
-  , 'goto'
-  , 'switch'
-  , 'default'
-  , 'inline'
-  , 'noinline'
-  , 'volatile'
-  , 'public'
-  , 'static'
-  , 'extern'
-  , 'external'
-  , 'interface'
-  , 'long'
-  , 'short'
-  , 'double'
-  , 'half'
-  , 'fixed'
-  , 'unsigned'
-  , 'input'
-  , 'output'
-  , 'hvec2'
-  , 'hvec3'
-  , 'hvec4'
-  , 'dvec2'
-  , 'dvec3'
-  , 'dvec4'
-  , 'fvec2'
-  , 'fvec3'
-  , 'fvec4'
-  , 'sampler2DRect'
-  , 'sampler3DRect'
-  , 'sampler2DRectShadow'
-  , 'sizeof'
-  , 'cast'
-  , 'namespace'
-  , 'using'
-]
-
-},{}],221:[function(require,module,exports){
-module.exports = [
-    '<<='
-  , '>>='
-  , '++'
-  , '--'
-  , '<<'
-  , '>>'
-  , '<='
-  , '>='
-  , '=='
-  , '!='
-  , '&&'
-  , '||'
-  , '+='
-  , '-='
-  , '*='
-  , '/='
-  , '%='
-  , '&='
-  , '^^'
-  , '^='
-  , '|='
-  , '('
-  , ')'
-  , '['
-  , ']'
-  , '.'
-  , '!'
-  , '~'
-  , '*'
-  , '/'
-  , '%'
-  , '+'
-  , '-'
-  , '<'
-  , '>'
-  , '&'
-  , '^'
-  , '|'
-  , '?'
-  , ':'
-  , '='
-  , ','
-  , ';'
-  , '{'
-  , '}'
-]
-
-},{}],222:[function(require,module,exports){
-var tokenize = require('./index')
-
-module.exports = tokenizeString
-
-function tokenizeString(str) {
-  var generator = tokenize()
-  var tokens = []
-
-  tokens = tokens.concat(generator(str))
-  tokens = tokens.concat(generator(null))
-
-  return tokens
-}
-
-},{"./index":218}],223:[function(require,module,exports){
-(function(window) {
-    var re = {
-        not_string: /[^s]/,
-        number: /[diefg]/,
-        json: /[j]/,
-        not_json: /[^j]/,
-        text: /^[^\x25]+/,
-        modulo: /^\x25{2}/,
-        placeholder: /^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijosuxX])/,
-        key: /^([a-z_][a-z_\d]*)/i,
-        key_access: /^\.([a-z_][a-z_\d]*)/i,
-        index_access: /^\[(\d+)\]/,
-        sign: /^[\+\-]/
-    }
-
-    function sprintf() {
-        var key = arguments[0], cache = sprintf.cache
-        if (!(cache[key] && cache.hasOwnProperty(key))) {
-            cache[key] = sprintf.parse(key)
-        }
-        return sprintf.format.call(null, cache[key], arguments)
-    }
-
-    sprintf.format = function(parse_tree, argv) {
-        var cursor = 1, tree_length = parse_tree.length, node_type = "", arg, output = [], i, k, match, pad, pad_character, pad_length, is_positive = true, sign = ""
-        for (i = 0; i < tree_length; i++) {
-            node_type = get_type(parse_tree[i])
-            if (node_type === "string") {
-                output[output.length] = parse_tree[i]
-            }
-            else if (node_type === "array") {
-                match = parse_tree[i] // convenience purposes only
-                if (match[2]) { // keyword argument
-                    arg = argv[cursor]
-                    for (k = 0; k < match[2].length; k++) {
-                        if (!arg.hasOwnProperty(match[2][k])) {
-                            throw new Error(sprintf("[sprintf] property '%s' does not exist", match[2][k]))
-                        }
-                        arg = arg[match[2][k]]
-                    }
-                }
-                else if (match[1]) { // positional argument (explicit)
-                    arg = argv[match[1]]
-                }
-                else { // positional argument (implicit)
-                    arg = argv[cursor++]
-                }
-
-                if (get_type(arg) == "function") {
-                    arg = arg()
-                }
-
-                if (re.not_string.test(match[8]) && re.not_json.test(match[8]) && (get_type(arg) != "number" && isNaN(arg))) {
-                    throw new TypeError(sprintf("[sprintf] expecting number but found %s", get_type(arg)))
-                }
-
-                if (re.number.test(match[8])) {
-                    is_positive = arg >= 0
-                }
-
-                switch (match[8]) {
-                    case "b":
-                        arg = arg.toString(2)
-                    break
-                    case "c":
-                        arg = String.fromCharCode(arg)
-                    break
-                    case "d":
-                    case "i":
-                        arg = parseInt(arg, 10)
-                    break
-                    case "j":
-                        arg = JSON.stringify(arg, null, match[6] ? parseInt(match[6]) : 0)
-                    break
-                    case "e":
-                        arg = match[7] ? arg.toExponential(match[7]) : arg.toExponential()
-                    break
-                    case "f":
-                        arg = match[7] ? parseFloat(arg).toFixed(match[7]) : parseFloat(arg)
-                    break
-                    case "g":
-                        arg = match[7] ? parseFloat(arg).toPrecision(match[7]) : parseFloat(arg)
-                    break
-                    case "o":
-                        arg = arg.toString(8)
-                    break
-                    case "s":
-                        arg = ((arg = String(arg)) && match[7] ? arg.substring(0, match[7]) : arg)
-                    break
-                    case "u":
-                        arg = arg >>> 0
-                    break
-                    case "x":
-                        arg = arg.toString(16)
-                    break
-                    case "X":
-                        arg = arg.toString(16).toUpperCase()
-                    break
-                }
-                if (re.json.test(match[8])) {
-                    output[output.length] = arg
-                }
-                else {
-                    if (re.number.test(match[8]) && (!is_positive || match[3])) {
-                        sign = is_positive ? "+" : "-"
-                        arg = arg.toString().replace(re.sign, "")
-                    }
-                    else {
-                        sign = ""
-                    }
-                    pad_character = match[4] ? match[4] === "0" ? "0" : match[4].charAt(1) : " "
-                    pad_length = match[6] - (sign + arg).length
-                    pad = match[6] ? (pad_length > 0 ? str_repeat(pad_character, pad_length) : "") : ""
-                    output[output.length] = match[5] ? sign + arg + pad : (pad_character === "0" ? sign + pad + arg : pad + sign + arg)
-                }
-            }
-        }
-        return output.join("")
-    }
-
-    sprintf.cache = {}
-
-    sprintf.parse = function(fmt) {
-        var _fmt = fmt, match = [], parse_tree = [], arg_names = 0
-        while (_fmt) {
-            if ((match = re.text.exec(_fmt)) !== null) {
-                parse_tree[parse_tree.length] = match[0]
-            }
-            else if ((match = re.modulo.exec(_fmt)) !== null) {
-                parse_tree[parse_tree.length] = "%"
-            }
-            else if ((match = re.placeholder.exec(_fmt)) !== null) {
-                if (match[2]) {
-                    arg_names |= 1
-                    var field_list = [], replacement_field = match[2], field_match = []
-                    if ((field_match = re.key.exec(replacement_field)) !== null) {
-                        field_list[field_list.length] = field_match[1]
-                        while ((replacement_field = replacement_field.substring(field_match[0].length)) !== "") {
-                            if ((field_match = re.key_access.exec(replacement_field)) !== null) {
-                                field_list[field_list.length] = field_match[1]
-                            }
-                            else if ((field_match = re.index_access.exec(replacement_field)) !== null) {
-                                field_list[field_list.length] = field_match[1]
-                            }
-                            else {
-                                throw new SyntaxError("[sprintf] failed to parse named argument key")
-                            }
-                        }
-                    }
-                    else {
-                        throw new SyntaxError("[sprintf] failed to parse named argument key")
-                    }
-                    match[2] = field_list
-                }
-                else {
-                    arg_names |= 2
-                }
-                if (arg_names === 3) {
-                    throw new Error("[sprintf] mixing positional and named placeholders is not (yet) supported")
-                }
-                parse_tree[parse_tree.length] = match
-            }
-            else {
-                throw new SyntaxError("[sprintf] unexpected placeholder")
-            }
-            _fmt = _fmt.substring(match[0].length)
-        }
-        return parse_tree
-    }
-
-    var vsprintf = function(fmt, argv, _argv) {
-        _argv = (argv || []).slice(0)
-        _argv.splice(0, 0, fmt)
-        return sprintf.apply(null, _argv)
-    }
-
-    /**
-     * helpers
-     */
-    function get_type(variable) {
-        return Object.prototype.toString.call(variable).slice(8, -1).toLowerCase()
-    }
-
-    function str_repeat(input, multiplier) {
-        return Array(multiplier + 1).join(input)
-    }
-
-    /**
-     * export to either browser or node.js
-     */
-    if (typeof exports !== "undefined") {
-        exports.sprintf = sprintf
-        exports.vsprintf = vsprintf
-    }
-    else {
-        window.sprintf = sprintf
-        window.vsprintf = vsprintf
-
-        if (typeof define === "function" && define.amd) {
-            define(function() {
-                return {
-                    sprintf: sprintf,
-                    vsprintf: vsprintf
-                }
-            })
-        }
-    }
-})(typeof window === "undefined" ? this : window);
-
-},{}],224:[function(require,module,exports){
-var hiddenStore = require('./hidden-store.js');
-
-module.exports = createStore;
-
-function createStore() {
-    var key = {};
-
-    return function (obj) {
-        if ((typeof obj !== 'object' || obj === null) &&
-            typeof obj !== 'function'
-        ) {
-            throw new Error('Weakmap-shim: Key must be object')
-        }
-
-        var store = obj.valueOf(key);
-        return store && store.identity === key ?
-            store : hiddenStore(obj, key);
-    };
-}
-
-},{"./hidden-store.js":225}],225:[function(require,module,exports){
-module.exports = hiddenStore;
-
-function hiddenStore(obj, key) {
-    var store = { identity: key };
-    var valueOf = obj.valueOf;
-
-    Object.defineProperty(obj, "valueOf", {
-        value: function (value) {
-            return value !== key ?
-                valueOf.apply(this, arguments) : store;
-        },
-        writable: true
-    });
-
-    return store;
-}
-
-},{}],226:[function(require,module,exports){
-// Original - @Gozola. 
-// https://gist.github.com/Gozala/1269991
-// This is a reimplemented version (with a few bug fixes).
-
-var createStore = require('./create-store.js');
-
-module.exports = weakMap;
-
-function weakMap() {
-    var privates = createStore();
-
-    return {
-        'get': function (key, fallback) {
-            var store = privates(key)
-            return store.hasOwnProperty('value') ?
-                store.value : fallback
-        },
-        'set': function (key, value) {
-            privates(key).value = value;
-        },
-        'has': function(key) {
-            return 'value' in privates(key);
-        },
-        'delete': function (key) {
-            return delete privates(key).value;
-        }
-    }
-}
-
-},{"./create-store.js":224}],227:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 var ArtPackArchive, ArtPacks, EventEmitter, ZIP, arrayBufferToString, binaryXHR, fs, getFrames, getPixels, graycolorize, path, savePixels, splitNamespace,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -32889,7 +30295,7 @@ module.exports = function(opts) {
   return new ArtPacks(opts);
 };
 
-},{"binary-xhr":228,"events":21,"fs":1,"get-pixels":230,"graycolorize":243,"mcmeta":247,"path":25,"save-pixels":268,"zip":284}],228:[function(require,module,exports){
+},{"binary-xhr":180,"events":21,"fs":1,"get-pixels":182,"graycolorize":195,"mcmeta":199,"path":25,"save-pixels":220,"zip":236}],180:[function(require,module,exports){
 var inherits = require('inherits')
 
 module.exports = function(url, cb) {
@@ -32917,7 +30323,7 @@ function BinaryXHR(url, cb) {
   xhr.send(null)
 }
 
-},{"inherits":229}],229:[function(require,module,exports){
+},{"inherits":181}],181:[function(require,module,exports){
 module.exports = inherits
 
 function inherits (c, p, proto) {
@@ -32948,7 +30354,7 @@ function inherits (c, p, proto) {
 //inherits(Child, Parent)
 //new Child
 
-},{}],230:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 "use strict"
 
 var path = require("path")
@@ -33075,7 +30481,7 @@ module.exports = function getPixels(url, cb) {
   }
 }
 
-},{"ndarray":237,"ndarray-pack":231,"omggif":239,"path":25,"ppm":241,"through":242}],231:[function(require,module,exports){
+},{"ndarray":189,"ndarray-pack":183,"omggif":191,"path":25,"ppm":193,"through":194}],183:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -33098,10 +30504,10 @@ module.exports = function convert(arr, result) {
   return result
 }
 
-},{"./doConvert.js":232,"ndarray":237}],232:[function(require,module,exports){
+},{"./doConvert.js":184,"ndarray":189}],184:[function(require,module,exports){
 module.exports=require('cwise-compiler')({"args":["array","scalar","index"],"pre":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"body":{"body":"{\nvar _inline_1_v=_inline_1_arg1_,_inline_1_i\nfor(_inline_1_i=0;_inline_1_i<_inline_1_arg2_.length-1;++_inline_1_i) {\n_inline_1_v=_inline_1_v[_inline_1_arg2_[_inline_1_i]]\n}\n_inline_1_arg0_=_inline_1_v[_inline_1_arg2_[_inline_1_arg2_.length-1]]\n}","args":[{"name":"_inline_1_arg0_","lvalue":true,"rvalue":false,"count":1},{"name":"_inline_1_arg1_","lvalue":false,"rvalue":true,"count":1},{"name":"_inline_1_arg2_","lvalue":false,"rvalue":true,"count":4}],"thisVars":[],"localVars":["_inline_1_i","_inline_1_v"]},"post":{"body":"{}","args":[],"thisVars":[],"localVars":[]},"funcName":"convert","blockSize":64})
 
-},{"cwise-compiler":233}],233:[function(require,module,exports){
+},{"cwise-compiler":185}],185:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -33209,7 +30615,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":235}],234:[function(require,module,exports){
+},{"./lib/thunk.js":187}],186:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -33493,9 +30899,9 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":236}],235:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":234,"dup":118}],236:[function(require,module,exports){
+},{"uniq":188}],187:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":186,"dup":119}],188:[function(require,module,exports){
 "use strict"
 
 function unique_pred(list, compare) {
@@ -33553,7 +30959,7 @@ function unique(list, compare, sorted) {
 }
 
 module.exports = unique
-},{}],237:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 (function (Buffer){
 var iota = require("iota-array")
 
@@ -33901,9 +31307,9 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"iota-array":238}],238:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],239:[function(require,module,exports){
+},{"buffer":17,"iota-array":190}],190:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],191:[function(require,module,exports){
 // (c) Dean McNamee <dean@gmail.com>, 2013.
 //
 // https://github.com/deanm/omggif
@@ -34634,7 +32040,7 @@ function GifReaderLZWOutputIndexStream(code_stream, p, output, output_length) {
 
 try { exports.GifWriter = GifWriter; exports.GifReader = GifReader } catch(e) { }  // CommonJS.
 
-},{}],240:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -34741,7 +32147,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":26,"stream":40}],241:[function(require,module,exports){
+},{"_process":26,"stream":40}],193:[function(require,module,exports){
 (function (process,Buffer){
 "use strict";
 var through = require("through");
@@ -35063,7 +32469,7 @@ exports.serialize = function(image) {
 }
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"_process":26,"buffer":17,"through":240}],242:[function(require,module,exports){
+},{"_process":26,"buffer":17,"through":192}],194:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -35175,7 +32581,7 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":26,"stream":40}],243:[function(require,module,exports){
+},{"_process":26,"stream":40}],195:[function(require,module,exports){
 'use strict';
 
 var color = require('onecolor');
@@ -35259,11 +32665,11 @@ var graycolorize = function(pixels, colors) {
 module.exports = graycolorize;
 module.exports.generateMap = generateMap;
 
-},{"ndarray":244,"onecolor":246}],244:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":245}],245:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],246:[function(require,module,exports){
+},{"ndarray":196,"onecolor":198}],196:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":197}],197:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],198:[function(require,module,exports){
 /*jshint evil:true, onevar:false*/
 /*global define*/
 var installedColorSpaces = [],
@@ -36019,7 +33425,7 @@ ONECOLOR.installMethod('toAlpha', function (color) {
 // Convenience functions
 
 
-},{}],247:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 'use strict';
 
 var getPixels = require('get-pixels');
@@ -36161,7 +33567,7 @@ module.exports.getFrames = getFrames;
 module.exports.parseFramesInfo = parseFramesInfo;
 module.exports.splitTiles = splitTiles;
 
-},{"get-pixels":248,"save-pixels":259}],248:[function(require,module,exports){
+},{"get-pixels":200,"save-pixels":211}],200:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -36183,11 +33589,11 @@ module.exports = function getPixels(url, cb) {
   img.src = url
 }
 
-},{"ndarray":249}],249:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":250}],250:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],251:[function(require,module,exports){
+},{"ndarray":201}],201:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":202}],202:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],203:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -36389,7 +33795,7 @@ ChunkStream.prototype._process = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"stream":40,"util":43}],252:[function(require,module,exports){
+},{"buffer":17,"stream":40,"util":43}],204:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36429,7 +33835,7 @@ module.exports = {
     COLOR_ALPHA: 4
 };
 
-},{}],253:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 // Copyright (c) 2012 Kuba Niegowski
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36510,7 +33916,7 @@ for (var i = 0; i < 256; i++) {
     crcTable[i] = c;
 }
 
-},{"stream":40,"util":43}],254:[function(require,module,exports){
+},{"stream":40,"util":43}],206:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -36828,7 +34234,7 @@ var PaethPredictor = function(left, above, upLeft) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":251,"buffer":17,"util":43,"zlib":16}],255:[function(require,module,exports){
+},{"./chunkstream":203,"buffer":17,"util":43,"zlib":16}],207:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -36942,7 +34348,7 @@ Packer.prototype._packIEND = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./constants":252,"./crc":253,"./filter":254,"buffer":17,"stream":40,"util":43,"zlib":16}],256:[function(require,module,exports){
+},{"./constants":204,"./crc":205,"./filter":206,"buffer":17,"stream":40,"util":43,"zlib":16}],208:[function(require,module,exports){
 (function (Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -37305,7 +34711,7 @@ Parser.prototype._reverseFiltered = function(data, width, height) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"./chunkstream":251,"./constants":252,"./crc":253,"./filter":254,"buffer":17,"util":43,"zlib":16}],257:[function(require,module,exports){
+},{"./chunkstream":203,"./constants":204,"./crc":205,"./filter":206,"buffer":17,"util":43,"zlib":16}],209:[function(require,module,exports){
 (function (process,Buffer){
 // Copyright (c) 2012 Kuba Niegowski
 //
@@ -37456,9 +34862,9 @@ PNG.prototype.bitblt = function(dst, sx, sy, w, h, dx, dy) {
 };
 
 }).call(this,require('_process'),require("buffer").Buffer)
-},{"./packer":255,"./parser":256,"_process":26,"buffer":17,"stream":40,"util":43}],258:[function(require,module,exports){
-arguments[4][242][0].apply(exports,arguments)
-},{"_process":26,"dup":242,"stream":40}],259:[function(require,module,exports){
+},{"./packer":207,"./parser":208,"_process":26,"buffer":17,"stream":40,"util":43}],210:[function(require,module,exports){
+arguments[4][194][0].apply(exports,arguments)
+},{"_process":26,"dup":194,"stream":40}],211:[function(require,module,exports){
 "use strict"
 
 var PNG = require("pngjs").PNG
@@ -37550,25 +34956,25 @@ module.exports = function savePixels(array, type) {
   }
 }
 
-},{"pngjs":257,"through":258}],260:[function(require,module,exports){
-arguments[4][251][0].apply(exports,arguments)
-},{"buffer":17,"dup":251,"stream":40,"util":43}],261:[function(require,module,exports){
-arguments[4][252][0].apply(exports,arguments)
-},{"dup":252}],262:[function(require,module,exports){
-arguments[4][253][0].apply(exports,arguments)
-},{"dup":253,"stream":40,"util":43}],263:[function(require,module,exports){
-arguments[4][254][0].apply(exports,arguments)
-},{"./chunkstream":260,"buffer":17,"dup":254,"util":43,"zlib":16}],264:[function(require,module,exports){
-arguments[4][255][0].apply(exports,arguments)
-},{"./constants":261,"./crc":262,"./filter":263,"buffer":17,"dup":255,"stream":40,"util":43,"zlib":16}],265:[function(require,module,exports){
-arguments[4][256][0].apply(exports,arguments)
-},{"./chunkstream":260,"./constants":261,"./crc":262,"./filter":263,"buffer":17,"dup":256,"util":43,"zlib":16}],266:[function(require,module,exports){
-arguments[4][257][0].apply(exports,arguments)
-},{"./packer":264,"./parser":265,"_process":26,"buffer":17,"dup":257,"stream":40,"util":43}],267:[function(require,module,exports){
-arguments[4][242][0].apply(exports,arguments)
-},{"_process":26,"dup":242,"stream":40}],268:[function(require,module,exports){
-arguments[4][259][0].apply(exports,arguments)
-},{"dup":259,"pngjs":266,"through":267}],269:[function(require,module,exports){
+},{"pngjs":209,"through":210}],212:[function(require,module,exports){
+arguments[4][203][0].apply(exports,arguments)
+},{"buffer":17,"dup":203,"stream":40,"util":43}],213:[function(require,module,exports){
+arguments[4][204][0].apply(exports,arguments)
+},{"dup":204}],214:[function(require,module,exports){
+arguments[4][205][0].apply(exports,arguments)
+},{"dup":205,"stream":40,"util":43}],215:[function(require,module,exports){
+arguments[4][206][0].apply(exports,arguments)
+},{"./chunkstream":212,"buffer":17,"dup":206,"util":43,"zlib":16}],216:[function(require,module,exports){
+arguments[4][207][0].apply(exports,arguments)
+},{"./constants":213,"./crc":214,"./filter":215,"buffer":17,"dup":207,"stream":40,"util":43,"zlib":16}],217:[function(require,module,exports){
+arguments[4][208][0].apply(exports,arguments)
+},{"./chunkstream":212,"./constants":213,"./crc":214,"./filter":215,"buffer":17,"dup":208,"util":43,"zlib":16}],218:[function(require,module,exports){
+arguments[4][209][0].apply(exports,arguments)
+},{"./packer":216,"./parser":217,"_process":26,"buffer":17,"dup":209,"stream":40,"util":43}],219:[function(require,module,exports){
+arguments[4][194][0].apply(exports,arguments)
+},{"_process":26,"dup":194,"stream":40}],220:[function(require,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"dup":211,"pngjs":218,"through":219}],221:[function(require,module,exports){
 
 var bops = require("bops");
 
@@ -37627,7 +35033,7 @@ function consolidate(buffers) {
 }
 
 
-},{"bops":271}],270:[function(require,module,exports){
+},{"bops":223}],222:[function(require,module,exports){
 /* Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
  * Version: 1.0.0.1
  * LastModified: Dec 25 1999
@@ -38383,7 +35789,7 @@ exports.inflate = function (input) {
 };
 
 
-},{"./buffer-io":269,"bops":271}],271:[function(require,module,exports){
+},{"./buffer-io":221,"bops":223}],223:[function(require,module,exports){
 var proto = {}
 module.exports = proto
 
@@ -38404,7 +35810,7 @@ function mix(from, into) {
   }
 }
 
-},{"./copy.js":274,"./create.js":275,"./from.js":276,"./is.js":277,"./join.js":278,"./read.js":280,"./subarray.js":281,"./to.js":282,"./write.js":283}],272:[function(require,module,exports){
+},{"./copy.js":226,"./create.js":227,"./from.js":228,"./is.js":229,"./join.js":230,"./read.js":232,"./subarray.js":233,"./to.js":234,"./write.js":235}],224:[function(require,module,exports){
 (function (exports) {
 	'use strict';
 
@@ -38490,7 +35896,7 @@ function mix(from, into) {
 	module.exports.fromByteArray = uint8ToBase64;
 }());
 
-},{}],273:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 module.exports = to_utf8
 
 var out = []
@@ -38565,7 +35971,7 @@ function reduced(list) {
   return out
 }
 
-},{}],274:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 module.exports = copy
 
 var slice = [].slice
@@ -38619,12 +36025,12 @@ function slow_copy(from, to, j, i, jend) {
   }
 }
 
-},{}],275:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 module.exports = function(size) {
   return new Uint8Array(size)
 }
 
-},{}],276:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 module.exports = from
 
 var base64 = require('base64-js')
@@ -38760,13 +36166,13 @@ function from_base64(str) {
   return new Uint8Array(base64.toByteArray(str)) 
 }
 
-},{"base64-js":272}],277:[function(require,module,exports){
+},{"base64-js":224}],229:[function(require,module,exports){
 
 module.exports = function(buffer) {
   return buffer instanceof Uint8Array;
 }
 
-},{}],278:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 module.exports = join
 
 function join(targets, hint) {
@@ -38804,7 +36210,7 @@ function get_length(targets) {
   return size
 }
 
-},{}],279:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 var proto
   , map
 
@@ -38826,7 +36232,7 @@ function get(target) {
   return out
 }
 
-},{}],280:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 module.exports = {
     readUInt8:      read_uint8
   , readInt8:       read_int8
@@ -38915,14 +36321,14 @@ function read_double_be(target, at) {
   return dv.getFloat64(at + target.byteOffset, false)
 }
 
-},{"./mapped.js":279}],281:[function(require,module,exports){
+},{"./mapped.js":231}],233:[function(require,module,exports){
 module.exports = subarray
 
 function subarray(buf, from, to) {
   return buf.subarray(from || 0, to || buf.length)
 }
 
-},{}],282:[function(require,module,exports){
+},{}],234:[function(require,module,exports){
 module.exports = to
 
 var base64 = require('base64-js')
@@ -38960,7 +36366,7 @@ function to_base64(buf) {
 }
 
 
-},{"base64-js":272,"to-utf8":273}],283:[function(require,module,exports){
+},{"base64-js":224,"to-utf8":225}],235:[function(require,module,exports){
 module.exports = {
     writeUInt8:      write_uint8
   , writeInt8:       write_int8
@@ -39048,7 +36454,7 @@ function write_double_be(target, value, at) {
   return dv.setFloat64(at + target.byteOffset, value, false)
 }
 
-},{"./mapped.js":279}],284:[function(require,module,exports){
+},{"./mapped.js":231}],236:[function(require,module,exports){
 (function (process){
 // Tom Robinson
 // Kris Kowal
@@ -39513,7 +36919,7 @@ var decodeDateTime = function (date, time) {
 
 
 }).call(this,require('_process'))
-},{"./inflate":270,"_process":26,"bops":271,"fs":1}],285:[function(require,module,exports){
+},{"./inflate":222,"_process":26,"bops":223,"fs":1}],237:[function(require,module,exports){
 (function (global){
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.atlaspack=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /*
@@ -39775,7 +37181,7 @@ Atlas.prototype._debug = function() {
 });;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],286:[function(require,module,exports){
+},{}],238:[function(require,module,exports){
 'use strict';
 
 var expandName = function(name, order) {
@@ -39850,31 +37256,31 @@ var expandName = function(name, order) {
 module.exports = expandName;
 
 
-},{}],287:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":288,"dup":160}],288:[function(require,module,exports){
-arguments[4][116][0].apply(exports,arguments)
-},{"./lib/thunk.js":290,"dup":116}],289:[function(require,module,exports){
+},{}],239:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":240,"dup":161}],240:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"dup":117,"uniq":291}],290:[function(require,module,exports){
+},{"./lib/thunk.js":242,"dup":117}],241:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":289,"dup":118}],291:[function(require,module,exports){
+},{"dup":118,"uniq":243}],242:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":241,"dup":119}],243:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],244:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":245}],245:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],292:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":293}],293:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],294:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],295:[function(require,module,exports){
+},{"dup":65}],246:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],296:[function(require,module,exports){
+},{"dup":156}],247:[function(require,module,exports){
 arguments[4][157][0].apply(exports,arguments)
-},{"bit-twiddle":294,"buffer":17,"dup":157}],297:[function(require,module,exports){
-arguments[4][68][0].apply(exports,arguments)
-},{"dup":68}],298:[function(require,module,exports){
+},{"dup":157}],248:[function(require,module,exports){
+arguments[4][158][0].apply(exports,arguments)
+},{"bit-twiddle":246,"buffer":17,"dup":158}],249:[function(require,module,exports){
 arguments[4][69][0].apply(exports,arguments)
-},{"dup":69,"weakmap":297}],299:[function(require,module,exports){
+},{"dup":69}],250:[function(require,module,exports){
+arguments[4][70][0].apply(exports,arguments)
+},{"dup":70,"weakmap":249}],251:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -40369,9 +37775,9 @@ function createTexture2D(gl) {
 }
 module.exports = createTexture2D
 
-},{"ndarray":292,"ndarray-ops":287,"typedarray-pool":296,"webglew":298}],300:[function(require,module,exports){
+},{"ndarray":244,"ndarray-ops":239,"typedarray-pool":248,"webglew":250}],252:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],301:[function(require,module,exports){
+},{"dup":22}],253:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -40396,15 +37802,15 @@ function createNDHash(shape) {
 }
 
 module.exports = createNDHash
-},{"ndarray":302}],302:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":303}],303:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],304:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":305}],305:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],306:[function(require,module,exports){
+},{"ndarray":254}],254:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":255}],255:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],256:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":257}],257:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],258:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -40520,7 +37926,7 @@ var makeMipMaps = function(array, rects, maxLevels) {
 
 module.exports = makeMipMaps;
 
-},{"ndarray":352,"ndarray-downsample2x":307,"ndarray-ops":347}],307:[function(require,module,exports){
+},{"ndarray":304,"ndarray-downsample2x":259,"ndarray-ops":299}],259:[function(require,module,exports){
 "use strict"
 
 var fft = require("ndarray-fft")
@@ -40605,7 +38011,7 @@ function downsample2x(out, inp, clamp_lo, clamp_hi) {
 }
 
 module.exports = downsample2x
-},{"cwise":308,"ndarray-fft":316,"ndarray-ops":336,"ndarray-scratch":346}],308:[function(require,module,exports){
+},{"cwise":260,"ndarray-fft":268,"ndarray-ops":288,"ndarray-scratch":298}],260:[function(require,module,exports){
 "use strict"
 
 var parse   = require("cwise-parser")
@@ -40642,7 +38048,7 @@ function createCWise(user_args) {
 
 module.exports = createCWise
 
-},{"cwise-compiler":309,"cwise-parser":313}],309:[function(require,module,exports){
+},{"cwise-compiler":261,"cwise-parser":265}],261:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -40748,7 +38154,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":311}],310:[function(require,module,exports){
+},{"./lib/thunk.js":263}],262:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -41005,11 +38411,11 @@ function generateCWiseOp(proc, typesig) {
   return f()
 }
 module.exports = generateCWiseOp
-},{"uniq":312}],311:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":310,"dup":118}],312:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],313:[function(require,module,exports){
+},{"uniq":264}],263:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":262,"dup":119}],264:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],265:[function(require,module,exports){
 "use strict"
 
 var esprima = require("esprima")
@@ -41205,7 +38611,7 @@ function preprocess(func) {
 }
 
 module.exports = preprocess
-},{"esprima":314,"uniq":315}],314:[function(require,module,exports){
+},{"esprima":266,"uniq":267}],266:[function(require,module,exports){
 /*
   Copyright (C) 2012 Ariya Hidayat <ariya.hidayat@gmail.com>
   Copyright (C) 2012 Mathias Bynens <mathias@qiwi.be>
@@ -45115,9 +42521,9 @@ parseStatement: true, parseSourceElement: true */
 }));
 /* vim: set sw=4 ts=4 et tw=80 : */
 
-},{}],315:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],316:[function(require,module,exports){
+},{}],267:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],268:[function(require,module,exports){
 "use strict"
 
 var ops = require("ndarray-ops")
@@ -45202,7 +42608,7 @@ function ndfft(dir, x, y) {
 
 module.exports = ndfft
 
-},{"./lib/fft-matrix.js":317,"cwise":319,"ndarray":332,"ndarray-ops":327,"typedarray-pool":335}],317:[function(require,module,exports){
+},{"./lib/fft-matrix.js":269,"cwise":271,"ndarray":284,"ndarray-ops":279,"typedarray-pool":287}],269:[function(require,module,exports){
 var bits = require("bit-twiddle")
 
 function fft(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
@@ -45421,25 +42827,25 @@ function fftBluestein(dir, nrows, ncols, buffer, x_ptr, y_ptr, scratch_ptr) {
   }
 }
 
-},{"bit-twiddle":318}],318:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],319:[function(require,module,exports){
-arguments[4][308][0].apply(exports,arguments)
-},{"cwise-compiler":320,"cwise-parser":324,"dup":308}],320:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"./lib/thunk.js":322,"dup":309}],321:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310,"uniq":323}],322:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":321,"dup":118}],323:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],324:[function(require,module,exports){
-arguments[4][313][0].apply(exports,arguments)
-},{"dup":313,"esprima":325,"uniq":326}],325:[function(require,module,exports){
-arguments[4][314][0].apply(exports,arguments)
-},{"dup":314}],326:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],327:[function(require,module,exports){
+},{"bit-twiddle":270}],270:[function(require,module,exports){
+arguments[4][156][0].apply(exports,arguments)
+},{"dup":156}],271:[function(require,module,exports){
+arguments[4][260][0].apply(exports,arguments)
+},{"cwise-compiler":272,"cwise-parser":276,"dup":260}],272:[function(require,module,exports){
+arguments[4][261][0].apply(exports,arguments)
+},{"./lib/thunk.js":274,"dup":261}],273:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262,"uniq":275}],274:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":273,"dup":119}],275:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],276:[function(require,module,exports){
+arguments[4][265][0].apply(exports,arguments)
+},{"dup":265,"esprima":277,"uniq":278}],277:[function(require,module,exports){
+arguments[4][266][0].apply(exports,arguments)
+},{"dup":266}],278:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],279:[function(require,module,exports){
 "use strict"
 
 var compile = require("cwise-compiler")
@@ -45888,21 +43294,21 @@ exports.assigns = makeOp({
   funcName: "assigns" })
 
 
-},{"cwise-compiler":328}],328:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"./lib/thunk.js":330,"dup":309}],329:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310,"uniq":331}],330:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":329,"dup":118}],331:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],332:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":333}],333:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],334:[function(require,module,exports){
-arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],335:[function(require,module,exports){
+},{"cwise-compiler":280}],280:[function(require,module,exports){
+arguments[4][261][0].apply(exports,arguments)
+},{"./lib/thunk.js":282,"dup":261}],281:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262,"uniq":283}],282:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":281,"dup":119}],283:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],284:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":285}],285:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],286:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],287:[function(require,module,exports){
 (function (global){
 "use strict"
 
@@ -46187,27 +43593,27 @@ exports.clearCache = function clearCache() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"bit-twiddle":318,"dup":334}],336:[function(require,module,exports){
-arguments[4][327][0].apply(exports,arguments)
-},{"cwise-compiler":337,"dup":327}],337:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"./lib/thunk.js":339,"dup":309}],338:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310,"uniq":340}],339:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":338,"dup":118}],340:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],341:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":342}],342:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],343:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],344:[function(require,module,exports){
+},{"bit-twiddle":270,"dup":286}],288:[function(require,module,exports){
+arguments[4][279][0].apply(exports,arguments)
+},{"cwise-compiler":289,"dup":279}],289:[function(require,module,exports){
+arguments[4][261][0].apply(exports,arguments)
+},{"./lib/thunk.js":291,"dup":261}],290:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262,"uniq":292}],291:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":290,"dup":119}],292:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],293:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":294}],294:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],295:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],345:[function(require,module,exports){
-arguments[4][335][0].apply(exports,arguments)
-},{"bit-twiddle":343,"dup":335}],346:[function(require,module,exports){
+},{"dup":156}],296:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],297:[function(require,module,exports){
+arguments[4][287][0].apply(exports,arguments)
+},{"bit-twiddle":295,"dup":287}],298:[function(require,module,exports){
 "use strict"
 
 var ndarray = require("ndarray")
@@ -46231,44 +43637,44 @@ function free(array) {
   pool.free(array.data)
 }
 exports.free = free
-},{"ndarray":341,"typedarray-pool":345}],347:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":348,"dup":160}],348:[function(require,module,exports){
-arguments[4][116][0].apply(exports,arguments)
-},{"./lib/thunk.js":350,"dup":116}],349:[function(require,module,exports){
+},{"ndarray":293,"typedarray-pool":297}],299:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":300,"dup":161}],300:[function(require,module,exports){
 arguments[4][117][0].apply(exports,arguments)
-},{"dup":117,"uniq":351}],350:[function(require,module,exports){
+},{"./lib/thunk.js":302,"dup":117}],301:[function(require,module,exports){
 arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":349,"dup":118}],351:[function(require,module,exports){
+},{"dup":118,"uniq":303}],302:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":301,"dup":119}],303:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],304:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":305}],305:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],352:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":353}],353:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],354:[function(require,module,exports){
-arguments[4][251][0].apply(exports,arguments)
-},{"buffer":17,"dup":251,"stream":40,"util":43}],355:[function(require,module,exports){
-arguments[4][252][0].apply(exports,arguments)
-},{"dup":252}],356:[function(require,module,exports){
-arguments[4][253][0].apply(exports,arguments)
-},{"dup":253,"stream":40,"util":43}],357:[function(require,module,exports){
-arguments[4][254][0].apply(exports,arguments)
-},{"./chunkstream":354,"buffer":17,"dup":254,"util":43,"zlib":16}],358:[function(require,module,exports){
-arguments[4][255][0].apply(exports,arguments)
-},{"./constants":355,"./crc":356,"./filter":357,"buffer":17,"dup":255,"stream":40,"util":43,"zlib":16}],359:[function(require,module,exports){
-arguments[4][256][0].apply(exports,arguments)
-},{"./chunkstream":354,"./constants":355,"./crc":356,"./filter":357,"buffer":17,"dup":256,"util":43,"zlib":16}],360:[function(require,module,exports){
-arguments[4][257][0].apply(exports,arguments)
-},{"./packer":358,"./parser":359,"_process":26,"buffer":17,"dup":257,"stream":40,"util":43}],361:[function(require,module,exports){
-arguments[4][242][0].apply(exports,arguments)
-},{"_process":26,"dup":242,"stream":40}],362:[function(require,module,exports){
-arguments[4][259][0].apply(exports,arguments)
-},{"dup":259,"pngjs":360,"through":361}],363:[function(require,module,exports){
+},{"dup":65}],306:[function(require,module,exports){
+arguments[4][203][0].apply(exports,arguments)
+},{"buffer":17,"dup":203,"stream":40,"util":43}],307:[function(require,module,exports){
+arguments[4][204][0].apply(exports,arguments)
+},{"dup":204}],308:[function(require,module,exports){
+arguments[4][205][0].apply(exports,arguments)
+},{"dup":205,"stream":40,"util":43}],309:[function(require,module,exports){
+arguments[4][206][0].apply(exports,arguments)
+},{"./chunkstream":306,"buffer":17,"dup":206,"util":43,"zlib":16}],310:[function(require,module,exports){
+arguments[4][207][0].apply(exports,arguments)
+},{"./constants":307,"./crc":308,"./filter":309,"buffer":17,"dup":207,"stream":40,"util":43,"zlib":16}],311:[function(require,module,exports){
+arguments[4][208][0].apply(exports,arguments)
+},{"./chunkstream":306,"./constants":307,"./crc":308,"./filter":309,"buffer":17,"dup":208,"util":43,"zlib":16}],312:[function(require,module,exports){
+arguments[4][209][0].apply(exports,arguments)
+},{"./packer":310,"./parser":311,"_process":26,"buffer":17,"dup":209,"stream":40,"util":43}],313:[function(require,module,exports){
+arguments[4][194][0].apply(exports,arguments)
+},{"_process":26,"dup":194,"stream":40}],314:[function(require,module,exports){
+arguments[4][211][0].apply(exports,arguments)
+},{"dup":211,"pngjs":312,"through":313}],315:[function(require,module,exports){
 module.exports = function(item) {
   if(item === undefined)  return [];
   return Object.prototype.toString.call(item) === "[object Array]" ? item : [item];
 }
-},{}],364:[function(require,module,exports){
+},{}],316:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var createCanvas, crop, overallSize, overlay, repeat, scale;
@@ -46358,7 +43764,7 @@ module.exports = function(item) {
 
 }).call(this);
 
-},{}],365:[function(require,module,exports){
+},{}],317:[function(require,module,exports){
 'use strict';
 
 var createArtpacks = require('artpacks');
@@ -46647,7 +44053,7 @@ StitchPlugin.prototype.showAtlas = function() {
 
 
 
-},{"artpacks":227,"atlaspack":285,"cube-side-array":286,"events":21,"gl-texture2d":299,"inherits":300,"ndarray":304,"ndarray-hash":301,"rect-mip-map":306,"save-pixels":362,"toarray":363,"touchup":364}],366:[function(require,module,exports){
+},{"artpacks":179,"atlaspack":237,"cube-side-array":238,"events":21,"gl-texture2d":251,"inherits":252,"ndarray":256,"ndarray-hash":253,"rect-mip-map":258,"save-pixels":314,"toarray":315,"touchup":316}],318:[function(require,module,exports){
 var events = require('events')
 var inherits = require('inherits')
 
@@ -46768,7 +44174,7 @@ Chunker.prototype.voxelAtPosition = function(pos, val) {
 }
 
 
-},{"events":21,"inherits":373}],367:[function(require,module,exports){
+},{"events":21,"inherits":325}],319:[function(require,module,exports){
 var chunker = require('./chunker')
 var ndarray = require('ndarray')
 
@@ -46871,7 +44277,7 @@ module.exports.generateExamples = function() {
 }
 
 
-},{"./chunker":366,"./meshers/culled":368,"./meshers/greedy":369,"./meshers/monotone":370,"./meshers/stupid":371,"./meshers/transgreedy":372,"ndarray":374}],368:[function(require,module,exports){
+},{"./chunker":318,"./meshers/culled":320,"./meshers/greedy":321,"./meshers/monotone":322,"./meshers/stupid":323,"./meshers/transgreedy":324,"ndarray":326}],320:[function(require,module,exports){
 //Naive meshing (with face culling)
 function CulledMesh(volume, dims) {
   //Precalculate direction vectors for convenience
@@ -46923,7 +44329,7 @@ if(exports) {
   exports.mesher = CulledMesh;
 }
 
-},{}],369:[function(require,module,exports){
+},{}],321:[function(require,module,exports){
 var GreedyMesh = (function() {
 //Cache buffer internally
 var mask = new Int32Array(4096);
@@ -47040,7 +44446,7 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],370:[function(require,module,exports){
+},{}],322:[function(require,module,exports){
 "use strict";
 
 var MonotoneMesh = (function(){
@@ -47293,7 +44699,7 @@ if(exports) {
   exports.mesher = MonotoneMesh;
 }
 
-},{}],371:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 //The stupidest possible way to generate a Minecraft mesh (I think)
 function StupidMesh(volume, dims) {
   var vertices = [], faces = [], x = [0,0,0], n = 0;
@@ -47329,7 +44735,7 @@ if(exports) {
   exports.mesher = StupidMesh;
 }
 
-},{}],372:[function(require,module,exports){
+},{}],324:[function(require,module,exports){
 var GreedyMesh = (function greedyLoader() {
     
 // contains all forward faces (in terms of scan direction)
@@ -47521,15 +44927,15 @@ if(exports) {
   exports.mesher = GreedyMesh;
 }
 
-},{}],373:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],374:[function(require,module,exports){
-arguments[4][237][0].apply(exports,arguments)
-},{"buffer":17,"dup":237,"iota-array":375}],375:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],376:[function(require,module,exports){
+},{}],325:[function(require,module,exports){
+arguments[4][181][0].apply(exports,arguments)
+},{"dup":181}],326:[function(require,module,exports){
+arguments[4][189][0].apply(exports,arguments)
+},{"buffer":17,"dup":189,"iota-array":327}],327:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],328:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],377:[function(require,module,exports){
+},{"dup":22}],329:[function(require,module,exports){
 var util = require('util');
 
 module.exports = function tsort(initial) {
@@ -47603,7 +45009,7 @@ Graph.prototype.sort = function() {
   }
 };
 
-},{"util":43}],378:[function(require,module,exports){
+},{"util":43}],330:[function(require,module,exports){
 (function (process){
 'use strict';
 var EventEmitter = require('events').EventEmitter;
@@ -47929,7 +45335,2650 @@ Plugins.prototype.destroy = function(name) {
 };
 
 }).call(this,require('_process'))
-},{"_process":26,"events":21,"inherits":376,"tsort":377}],379:[function(require,module,exports){
+},{"_process":26,"events":21,"inherits":328,"tsort":329}],331:[function(require,module,exports){
+
+var fs = require("fs")
+var glShader = require('gl-shader')
+var mat4 = require('gl-mat4')
+var inherits = require('inherits');
+var EventEmitter = require('events').EventEmitter;
+
+module.exports = function(game, opts) {
+  return new ShaderPlugin(game, opts);
+};
+module.exports.pluginInfo = {
+  clientOnly: true,
+  loadAfter: ['voxel-stitch', 'game-shell-fps-camera'],
+};
+
+function ShaderPlugin(game, opts) {
+  this.shell = game.shell;
+
+  this.stitcher = game.plugins.get('voxel-stitch');
+  if (!this.stitcher) throw new Error('voxel-shader requires voxel-stitch plugin'); // for tileCount uniform and updateTexture event
+
+  this.meshes = opts.meshes || game.voxels.meshes
+  if (!this.meshes) throw new Error('voxel-shader requires "meshes" option or game.voxels.meshes set to array of voxel-mesher meshes')
+
+  if (game.getCamera) {
+    this.camera = game.getCamera()
+    if (!(this.camera && this.camera.view)) throw new Error('voxel-shader requires a camera with a view matrix'); // for camera view matrix
+  } else {
+    this.camera = game.plugins.get('game-shell-fps-camera');
+    if (!this.camera) throw new Error('voxel-shader requires game-shell-fps-camera plugin'); // for camera view matrix
+  }
+
+  this.perspectiveResize = opts.perspectiveResize !== undefined ? opts.perspectiveResize : true;
+  this.cameraNear = opts.cameraNear !== undefined ? opts.cameraNear : 0.1;
+  this.cameraFar = opts.cameraFar !== undefined ? opts.cameraFar : 200.0;
+  this.cameraFOV = opts.cameraFOV !== undefined ? opts.cameraFOV : 45.0;
+
+  this.projectionMatrix = mat4.create();
+
+  this.enable();
+}
+inherits(ShaderPlugin, EventEmitter);
+
+ShaderPlugin.prototype.enable = function() {
+  this.on('updateProjectionMatrix', this.perspective.bind(this));
+  this.shell.on('gl-init', this.onInit = this.ginit.bind(this));
+  this.shell.on('gl-render', this.onRender = this.render.bind(this));
+  if (this.perspectiveResize) this.shell.on('gl-resize', this.onResize = this.updateProjectionMatrix.bind(this));
+  this.stitcher.on('updateTexture', this.onUpdateTexture = this.texturesReady.bind(this));
+};
+
+ShaderPlugin.prototype.disable = function() {
+  this.shell.removeListener('gl-init', this.onInit);
+  this.shell.removeListener('gl-render', this.onRender);
+  if (this.onResize) this.shell.removeListener('gl-resize', this.onResize);
+  this.stitcher.removeListener('updateTexture', this.onUpdateTexture);
+};
+
+ShaderPlugin.prototype.texturesReady = function(texture) {
+  this.texture = texture; // used in tileMap uniform
+}
+
+ShaderPlugin.prototype.ginit = function() {
+  this.shader = this.createAOShader();
+  this.shader2 = this.createCustomModelShader();
+  this.updateProjectionMatrix();
+  this.viewMatrix = mat4.create();
+
+};
+
+ShaderPlugin.prototype.perspective = function(out) {
+  mat4.perspective(out, this.cameraFOV*Math.PI/180, this.shell.width/this.shell.height, this.cameraNear, this.cameraFar)
+};
+
+ShaderPlugin.prototype.updateProjectionMatrix = function() {
+  this.emit('updateProjectionMatrix', this.projectionMatrix);
+};
+
+ShaderPlugin.prototype.render = function() {
+  var gl = this.shell.gl
+
+  this.camera.view(this.viewMatrix)
+
+  gl.enable(gl.CULL_FACE)
+  gl.enable(gl.DEPTH_TEST)
+
+  //Bind the shader
+  // phase 1 - solid blocks
+  gl.disable(gl.BLEND)
+  var shader = this.shader
+  if (!shader) throw new Error('voxel-shader render() called before gl-init, shader=', this.shader)
+  shader.bind()
+  shader.attributes.attrib0.location = 0
+  shader.attributes.attrib1.location = 1
+  shader.uniforms.projection = this.projectionMatrix
+  shader.uniforms.view = this.viewMatrix
+  shader.uniforms.tileCount = this.stitcher.tileCount
+
+  if (this.texture) shader.uniforms.tileMap = this.texture.bind() // if a texture is loaded
+
+  var keys = Object.keys(this.meshes)
+  var length = keys.length
+
+  for (var k = 0; k < length; ++k) {
+    var chunkIndex = keys[k]
+    var mesh = this.meshes[chunkIndex]
+
+    var triangleVAO = mesh.vertexArrayObjects.surface
+    if (triangleVAO) {  // if there are triangles to render
+      shader.uniforms.model = mesh.modelMatrix
+      triangleVAO.bind()
+      gl.drawArrays(gl.TRIANGLES, 0, triangleVAO.length)
+      triangleVAO.unbind()
+    }
+  }
+
+  // phase 2 - "porous" blocks
+  gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA)  // TODO: premult alpha? https://github.com/deathcap/voxel-stitch/issues/6
+  gl.enable(gl.BLEND)
+  var shader2 = this.shader2
+  shader2.bind()
+  shader2.attributes.position.location = 0
+  shader2.uniforms.view = this.viewMatrix
+  shader2.uniforms.projection = this.projectionMatrix
+  if (this.texture) shader2.uniforms.texture = this.texture.bind()
+
+  for (k = 0; k < length; ++k) {
+    var chunkIndex = keys[k]
+    var mesh = this.meshes[chunkIndex]
+
+    var blockMesh = mesh.vertexArrayObjects.porous
+    if (blockMesh) {
+      shader2.uniforms.model = this.meshes[chunkIndex].modelMatrix
+
+      blockMesh.bind()
+      blockMesh.draw(gl.TRIANGLES, blockMesh.length)
+      blockMesh.unbind()
+    }
+  }
+};
+
+ShaderPlugin.prototype.createAOShader = function() {
+    return glShader(this.shell.gl ,
+    "#define GLSLIFY 1\nattribute vec4 attrib0;\nattribute vec4 attrib1;\n\nuniform mat4 projection;\nuniform mat4 view;\nuniform mat4 model;\nuniform float tileCount;\n\nvarying vec3  normal;\nvarying vec2  tileCoord;\nvarying float tileSize;\nvarying vec2  texCoord;\nvarying float ambientOcclusion;\n\nmat4 translate(float x, float y, float z) { // TODO: @import glslify? same as in avatar\n    return mat4(1.0, 0.0, 0.0, 0.0,\n                0.0, 1.0, 0.0, 0.0,\n                0.0, 0.0, 1.0, 0.0,\n                  x,   y,   z, 1.0);\n}\n\nvoid main() {\n  //Compute position\n  vec3 position = attrib0.xyz;\n  \n  //Compute ambient occlusion\n  ambientOcclusion = attrib0.w / 255.0;\n  \n  //Extracted packed bits of normal. GLSL 1.0 doesn't support bitfieldExtract or even bitwise operations :(\n  int packedNormal = int(attrib1.x);\n  int nx = packedNormal / 16;               // xx____\n  int ny = packedNormal / 4 - nx * 4;       // __xx__\n  int nz = packedNormal - nx * 16 - ny * 4; // ____xx\n\n  normal = 128.0 - vec3(nx + 127, ny + 127, nz + 127);\n  \n  //Compute texture coordinate\n  texCoord = vec2(dot(position, vec3(normal.y-normal.z, 0, normal.x)),\n                  dot(position, vec3(0, -abs(normal.x+normal.z), normal.y)));\n  \n  //Compute tile coordinate\n  tileSize    = exp2(attrib1.y);\n  float tx    = (attrib1.z * 256.0 + attrib1.w) / tileCount; // 16-bit\n  tileCoord.x = floor(tx);\n  tileCoord.y = fract(tx) * tileCount;\n\n  // Offset to account for air padding (separate from other matrices so they can be reused)\n  mat4 shift = translate(-1.0, -1.0, -1.0);\n\n  gl_Position = projection * view * model * shift * vec4(position, 1.0);\n}\n",
+    "#define GLSLIFY 1\nprecision highp float;\n\nuniform sampler2D tileMap;\nuniform float tileCount;\n\nvarying vec3  normal;\nvarying vec2  tileCoord;\nvarying float tileSize;\nvarying vec2  texCoord;\nvarying float ambientOcclusion;\n\nvoid main() {\n\n  vec2 uv      = texCoord;\n  vec4 color   = vec4(0,0,0,0);\n  float weight = 0.0;\n\n  vec2 tileOffset = 2.0 * pow(2.0, 4.0) * tileCoord;\n  float denom     = 2.0 * pow(2.0, 4.0) * tileCount;\n\n  for(int dx=0; dx<2; ++dx) {\n    for(int dy=0; dy<2; ++dy) {\n      vec2 offset = 2.0 * fract(0.5 * (uv + vec2(dx, dy)));\n      float w = pow(1.0 - max(abs(offset.x-1.0), abs(offset.y-1.0)), 16.0);\n      \n      vec2 tc = (tileOffset + tileSize * offset) / denom;\n      color  += w * texture2D(tileMap, tc);\n      weight += w;\n    }\n  }\n  color /= weight;\n  \n  if(color.w < 0.5) {\n    discard;\n  }\n  \n  float light = ambientOcclusion + max(0.15*dot(normal, vec3(1,1,1)), 0.0);\n  \n  gl_FragColor = vec4(color.xyz * light, color.w);\n}\n"
+    )
+  // return glslify({
+  //   vertex: './lib/ao.vsh',
+  //   fragment: './lib/ao.fsh'
+  // })(this.shell.gl)
+};
+
+ShaderPlugin.prototype.createCustomModelShader = function() {
+  // TODO: refactor with voxel-decals, voxel-chunkborder?
+  return glShader(this.shell.gl,
+                 "#define GLSLIFY 1\n                        attribute vec3 position;                        attribute vec2 uv;                                                uniform mat4 projection;                        uniform mat4 view;                        uniform mat4 model;                        varying vec2 vUv;                                                void main() {                        gl_Position = projection * view * model * vec4(position, 1.0);                        vUv = uv;                        }",
+                "#define GLSLIFY 1\n                        precision highp float;                                                uniform sampler2D texture;                        varying vec2 vUv;                                                void main() {                        gl_FragColor = texture2D(texture, vUv);                        }");
+};
+
+},{"events":21,"fs":1,"gl-mat4":341,"gl-shader":355,"inherits":379}],332:[function(require,module,exports){
+arguments[4][124][0].apply(exports,arguments)
+},{"dup":124}],333:[function(require,module,exports){
+arguments[4][125][0].apply(exports,arguments)
+},{"dup":125}],334:[function(require,module,exports){
+arguments[4][126][0].apply(exports,arguments)
+},{"dup":126}],335:[function(require,module,exports){
+arguments[4][127][0].apply(exports,arguments)
+},{"dup":127}],336:[function(require,module,exports){
+arguments[4][128][0].apply(exports,arguments)
+},{"dup":128}],337:[function(require,module,exports){
+arguments[4][129][0].apply(exports,arguments)
+},{"dup":129}],338:[function(require,module,exports){
+arguments[4][130][0].apply(exports,arguments)
+},{"dup":130}],339:[function(require,module,exports){
+arguments[4][131][0].apply(exports,arguments)
+},{"dup":131}],340:[function(require,module,exports){
+arguments[4][132][0].apply(exports,arguments)
+},{"dup":132}],341:[function(require,module,exports){
+module.exports = {
+  create: require('./create')
+  , clone: require('./clone')
+  , copy: require('./copy')
+  , identity: require('./identity')
+  , transpose: require('./transpose')
+  , invert: require('./invert')
+  , adjoint: require('./adjoint')
+  , determinant: require('./determinant')
+  , multiply: require('./multiply')
+  , translate: require('./translate')
+  , scale: require('./scale')
+  , rotate: require('./rotate')
+  , rotateX: require('./rotateX')
+  , rotateY: require('./rotateY')
+  , rotateZ: require('./rotateZ')
+  , fromRotationTranslation: require('./fromRotationTranslation')
+  , fromQuat: require('./fromQuat')
+  , frustum: require('./frustum')
+  , perspective: require('./perspective')
+  , ortho: require('./ortho')
+  , lookAt: require('./lookAt')
+  , str: require('./str')
+}
+},{"./adjoint":332,"./clone":333,"./copy":334,"./create":335,"./determinant":336,"./fromQuat":337,"./fromRotationTranslation":338,"./frustum":339,"./identity":340,"./invert":342,"./lookAt":343,"./multiply":344,"./ortho":345,"./perspective":346,"./rotate":347,"./rotateX":348,"./rotateY":349,"./rotateZ":350,"./scale":351,"./str":352,"./translate":353,"./transpose":354}],342:[function(require,module,exports){
+arguments[4][134][0].apply(exports,arguments)
+},{"dup":134}],343:[function(require,module,exports){
+arguments[4][135][0].apply(exports,arguments)
+},{"./identity":340,"dup":135}],344:[function(require,module,exports){
+arguments[4][136][0].apply(exports,arguments)
+},{"dup":136}],345:[function(require,module,exports){
+arguments[4][137][0].apply(exports,arguments)
+},{"dup":137}],346:[function(require,module,exports){
+arguments[4][138][0].apply(exports,arguments)
+},{"dup":138}],347:[function(require,module,exports){
+arguments[4][140][0].apply(exports,arguments)
+},{"dup":140}],348:[function(require,module,exports){
+arguments[4][141][0].apply(exports,arguments)
+},{"dup":141}],349:[function(require,module,exports){
+arguments[4][142][0].apply(exports,arguments)
+},{"dup":142}],350:[function(require,module,exports){
+arguments[4][143][0].apply(exports,arguments)
+},{"dup":143}],351:[function(require,module,exports){
+arguments[4][144][0].apply(exports,arguments)
+},{"dup":144}],352:[function(require,module,exports){
+arguments[4][145][0].apply(exports,arguments)
+},{"dup":145}],353:[function(require,module,exports){
+arguments[4][146][0].apply(exports,arguments)
+},{"dup":146}],354:[function(require,module,exports){
+arguments[4][147][0].apply(exports,arguments)
+},{"dup":147}],355:[function(require,module,exports){
+'use strict'
+
+var createUniformWrapper   = require('./lib/create-uniforms')
+var createAttributeWrapper = require('./lib/create-attributes')
+var makeReflect            = require('./lib/reflect')
+var shaderCache            = require('./lib/shader-cache')
+var runtime                = require('./lib/runtime-reflect')
+var GLError                = require("./lib/GLError")
+
+//Shader object
+function Shader(gl) {
+  this.gl         = gl
+
+  //Default initialize these to null
+  this._vref      =
+  this._fref      =
+  this._relink    =
+  this.vertShader =
+  this.fragShader =
+  this.program    =
+  this.attributes =
+  this.uniforms   =
+  this.types      = null
+}
+
+var proto = Shader.prototype
+
+proto.bind = function() {
+  if(!this.program) {
+    this._relink()
+  }
+  this.gl.useProgram(this.program)
+}
+
+proto.dispose = function() {
+  if(this._fref) {
+    this._fref.dispose()
+  }
+  if(this._vref) {
+    this._vref.dispose()
+  }
+  this.attributes =
+  this.types      =
+  this.vertShader =
+  this.fragShader =
+  this.program    =
+  this._relink    =
+  this._fref      =
+  this._vref      = null
+}
+
+function compareAttributes(a, b) {
+  if(a.name < b.name) {
+    return -1
+  }
+  return 1
+}
+
+//Update export hook for glslify-live
+proto.update = function(
+    vertSource
+  , fragSource
+  , uniforms
+  , attributes) {
+
+  //If only one object passed, assume glslify style output
+  if(!fragSource || arguments.length === 1) {
+    var obj = vertSource
+    vertSource = obj.vertex
+    fragSource = obj.fragment
+    uniforms   = obj.uniforms
+    attributes = obj.attributes
+  }
+
+  var wrapper = this
+  var gl      = wrapper.gl
+
+  //Compile vertex and fragment shaders
+  var pvref = wrapper._vref
+  wrapper._vref = shaderCache.shader(gl, gl.VERTEX_SHADER, vertSource)
+  if(pvref) {
+    pvref.dispose()
+  }
+  wrapper.vertShader = wrapper._vref.shader
+  var pfref = this._fref
+  wrapper._fref = shaderCache.shader(gl, gl.FRAGMENT_SHADER, fragSource)
+  if(pfref) {
+    pfref.dispose()
+  }
+  wrapper.fragShader = wrapper._fref.shader
+
+  //If uniforms/attributes is not specified, use RT reflection
+  if(!uniforms || !attributes) {
+
+    //Create initial test program
+    var testProgram = gl.createProgram()
+    gl.attachShader(testProgram, wrapper.fragShader)
+    gl.attachShader(testProgram, wrapper.vertShader)
+    gl.linkProgram(testProgram)
+    if(!gl.getProgramParameter(testProgram, gl.LINK_STATUS)) {
+      var errLog = gl.getProgramInfoLog(testProgram)
+      throw new GLError(errLog, 'Error linking program:' + errLog)
+    }
+
+    //Load data from runtime
+    uniforms   = uniforms   || runtime.uniforms(gl, testProgram)
+    attributes = attributes || runtime.attributes(gl, testProgram)
+
+    //Release test program
+    gl.deleteProgram(testProgram)
+  }
+
+  //Sort attributes lexicographically
+  // overrides undefined WebGL behavior for attribute locations
+  attributes = attributes.slice()
+  attributes.sort(compareAttributes)
+
+  //Convert attribute types, read out locations
+  var attributeUnpacked  = []
+  var attributeNames     = []
+  var attributeLocations = []
+  for(var i=0; i<attributes.length; ++i) {
+    var attr = attributes[i]
+    if(attr.type.indexOf('mat') >= 0) {
+      var size = attr.type.charAt(attr.type.length-1)|0
+      var locVector = new Array(size)
+      for(var j=0; j<size; ++j) {
+        locVector[j] = attributeLocations.length
+        attributeNames.push(attr.name + '[' + j + ']')
+        if(typeof attr.location === 'number') {
+          attributeLocations.push(attr.location + j)
+        } else if(Array.isArray(attr.location) &&
+                  attr.location.length === size &&
+                  typeof attr.location[j] === 'number') {
+          attributeLocations.push(attr.location[j]|0)
+        } else {
+          attributeLocations.push(-1)
+        }
+      }
+      attributeUnpacked.push({
+        name: attr.name,
+        type: attr.type,
+        locations: locVector
+      })
+    } else {
+      attributeUnpacked.push({
+        name: attr.name,
+        type: attr.type,
+        locations: [ attributeLocations.length ]
+      })
+      attributeNames.push(attr.name)
+      if(typeof attr.location === 'number') {
+        attributeLocations.push(attr.location|0)
+      } else {
+        attributeLocations.push(-1)
+      }
+    }
+  }
+
+  //For all unspecified attributes, assign them lexicographically min attribute
+  var curLocation = 0
+  for(var i=0; i<attributeLocations.length; ++i) {
+    if(attributeLocations[i] < 0) {
+      while(attributeLocations.indexOf(curLocation) >= 0) {
+        curLocation += 1
+      }
+      attributeLocations[i] = curLocation
+    }
+  }
+
+  //Rebuild program and recompute all uniform locations
+  var uniformLocations = new Array(uniforms.length)
+  function relink() {
+    wrapper.program = shaderCache.program(
+        gl
+      , wrapper._vref
+      , wrapper._fref
+      , attributeNames
+      , attributeLocations)
+
+    for(var i=0; i<uniforms.length; ++i) {
+      uniformLocations[i] = gl.getUniformLocation(
+          wrapper.program
+        , uniforms[i].name)
+    }
+  }
+
+  //Perform initial linking, reuse program used for reflection
+  relink()
+
+  //Save relinking procedure, defer until runtime
+  wrapper._relink = relink
+
+  //Generate type info
+  wrapper.types = {
+    uniforms:   makeReflect(uniforms),
+    attributes: makeReflect(attributes)
+  }
+
+  //Generate attribute wrappers
+  wrapper.attributes = createAttributeWrapper(
+      gl
+    , wrapper
+    , attributeUnpacked
+    , attributeLocations)
+
+  //Generate uniform wrappers
+  Object.defineProperty(wrapper, 'uniforms', createUniformWrapper(
+      gl
+    , wrapper
+    , uniforms
+    , uniformLocations))
+}
+
+//Compiles and links a shader program with the given attribute and vertex list
+function createShader(
+    gl
+  , vertSource
+  , fragSource
+  , uniforms
+  , attributes) {
+
+  var shader = new Shader(gl)
+
+  shader.update(
+      vertSource
+    , fragSource
+    , uniforms
+    , attributes)
+
+  return shader
+}
+
+module.exports = createShader
+
+},{"./lib/GLError":356,"./lib/create-attributes":357,"./lib/create-uniforms":358,"./lib/reflect":359,"./lib/runtime-reflect":360,"./lib/shader-cache":361}],356:[function(require,module,exports){
+function GLError (rawError, shortMessage, longMessage) {
+    this.shortMessage = shortMessage || ''
+    this.longMessage = longMessage || ''
+    this.rawError = rawError || ''
+    this.message =
+      'gl-shader: ' + (shortMessage || rawError || '') +
+      (longMessage ? '\n'+longMessage : '')
+    this.stack = (new Error()).stack
+}
+GLError.prototype = new Error
+GLError.prototype.name = 'GLError'
+GLError.prototype.constructor = GLError
+module.exports = GLError
+
+},{}],357:[function(require,module,exports){
+'use strict'
+
+module.exports = createAttributeWrapper
+
+var GLError = require("./GLError")
+
+function ShaderAttribute(
+    gl
+  , wrapper
+  , index
+  , locations
+  , dimension
+  , constFunc) {
+  this._gl        = gl
+  this._wrapper   = wrapper
+  this._index     = index
+  this._locations = locations
+  this._dimension = dimension
+  this._constFunc = constFunc
+}
+
+var proto = ShaderAttribute.prototype
+
+proto.pointer = function setAttribPointer(
+    type
+  , normalized
+  , stride
+  , offset) {
+
+  var self      = this
+  var gl        = self._gl
+  var location  = self._locations[self._index]
+
+  gl.vertexAttribPointer(
+      location
+    , self._dimension
+    , type || gl.FLOAT
+    , !!normalized
+    , stride || 0
+    , offset || 0)
+  gl.enableVertexAttribArray(location)
+}
+
+proto.set = function(x0, x1, x2, x3) {
+  return this._constFunc(this._locations[this._index], x0, x1, x2, x3)
+}
+
+Object.defineProperty(proto, 'location', {
+  get: function() {
+    return this._locations[this._index]
+  }
+  , set: function(v) {
+    if(v !== this._locations[this._index]) {
+      this._locations[this._index] = v|0
+      this._wrapper.program = null
+    }
+    return v|0
+  }
+})
+
+//Adds a vector attribute to obj
+function addVectorAttribute(
+    gl
+  , wrapper
+  , index
+  , locations
+  , dimension
+  , obj
+  , name) {
+
+  //Construct constant function
+  var constFuncArgs = [ 'gl', 'v' ]
+  var varNames = []
+  for(var i=0; i<dimension; ++i) {
+    constFuncArgs.push('x'+i)
+    varNames.push('x'+i)
+  }
+  constFuncArgs.push(
+    'if(x0.length===void 0){return gl.vertexAttrib' +
+    dimension + 'f(v,' +
+    varNames.join() +
+    ')}else{return gl.vertexAttrib' +
+    dimension +
+    'fv(v,x0)}')
+  var constFunc = Function.apply(null, constFuncArgs)
+
+  //Create attribute wrapper
+  var attr = new ShaderAttribute(
+      gl
+    , wrapper
+    , index
+    , locations
+    , dimension
+    , constFunc)
+
+  //Create accessor
+  Object.defineProperty(obj, name, {
+    set: function(x) {
+      gl.disableVertexAttribArray(locations[index])
+      constFunc(gl, locations[index], x)
+      return x
+    }
+    , get: function() {
+      return attr
+    }
+    , enumerable: true
+  })
+}
+
+function addMatrixAttribute(
+    gl
+  , wrapper
+  , index
+  , locations
+  , dimension
+  , obj
+  , name) {
+
+  var parts = new Array(dimension)
+  var attrs = new Array(dimension)
+  for(var i=0; i<dimension; ++i) {
+    addVectorAttribute(
+        gl
+      , wrapper
+      , index[i]
+      , locations
+      , dimension
+      , parts
+      , i)
+    attrs[i] = parts[i]
+  }
+
+  Object.defineProperty(parts, 'location', {
+    set: function(v) {
+      if(Array.isArray(v)) {
+        for(var i=0; i<dimension; ++i) {
+          attrs[i].location = v[i]
+        }
+      } else {
+        for(var i=0; i<dimension; ++i) {
+          attrs[i].location = v + i
+        }
+      }
+      return v
+    }
+    , get: function() {
+      var result = new Array(dimension)
+      for(var i=0; i<dimension; ++i) {
+        result[i] = locations[index[i]]
+      }
+      return result
+    }
+    , enumerable: true
+  })
+
+  parts.pointer = function(type, normalized, stride, offset) {
+    type       = type || gl.FLOAT
+    normalized = !!normalized
+    stride     = stride || (dimension * dimension)
+    offset     = offset || 0
+    for(var i=0; i<dimension; ++i) {
+      var location = locations[index[i]]
+      gl.vertexAttribPointer(
+            location
+          , dimension
+          , type
+          , normalized
+          , stride
+          , offset + i * dimension)
+      gl.enableVertexAttribArray(location)
+    }
+  }
+
+  var scratch = new Array(dimension)
+  var vertexAttrib = gl['vertexAttrib' + dimension + 'fv']
+
+  Object.defineProperty(obj, name, {
+    set: function(x) {
+      for(var i=0; i<dimension; ++i) {
+        var loc = locations[index[i]]
+        gl.disableVertexAttribArray(loc)
+        if(Array.isArray(x[0])) {
+          vertexAttrib.call(gl, loc, x[i])
+        } else {
+          for(var j=0; j<dimension; ++j) {
+            scratch[j] = x[dimension*i + j]
+          }
+          vertexAttrib.call(gl, loc, scratch)
+        }
+      }
+      return x
+    }
+    , get: function() {
+      return parts
+    }
+    , enumerable: true
+  })
+}
+
+//Create shims for attributes
+function createAttributeWrapper(
+    gl
+  , wrapper
+  , attributes
+  , locations) {
+
+  var obj = {}
+  for(var i=0, n=attributes.length; i<n; ++i) {
+
+    var a = attributes[i]
+    var name = a.name
+    var type = a.type
+    var locs = a.locations
+
+    switch(type) {
+      case 'bool':
+      case 'int':
+      case 'float':
+        addVectorAttribute(
+            gl
+          , wrapper
+          , locs[0]
+          , locations
+          , 1
+          , obj
+          , name)
+      break
+
+      default:
+        if(type.indexOf('vec') >= 0) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid data type for attribute ' + name + ': ' + type)
+          }
+          addVectorAttribute(
+              gl
+            , wrapper
+            , locs[0]
+            , locations
+            , d
+            , obj
+            , name)
+        } else if(type.indexOf('mat') >= 0) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid data type for attribute ' + name + ': ' + type)
+          }
+          addMatrixAttribute(
+              gl
+            , wrapper
+            , locs
+            , locations
+            , d
+            , obj
+            , name)
+        } else {
+          throw new GLError('', 'Unknown data type for attribute ' + name + ': ' + type)
+        }
+      break
+    }
+  }
+  return obj
+}
+
+},{"./GLError":356}],358:[function(require,module,exports){
+'use strict'
+
+var coallesceUniforms = require('./reflect')
+var GLError = require("./GLError")
+
+module.exports = createUniformWrapper
+
+//Binds a function and returns a value
+function identity(x) {
+  var c = new Function('y', 'return function(){return y}')
+  return c(x)
+}
+
+function makeVector(length, fill) {
+  var result = new Array(length)
+  for(var i=0; i<length; ++i) {
+    result[i] = fill
+  }
+  return result
+}
+
+//Create shims for uniforms
+function createUniformWrapper(gl, wrapper, uniforms, locations) {
+
+  function makeGetter(index) {
+    var proc = new Function(
+        'gl'
+      , 'wrapper'
+      , 'locations'
+      , 'return function(){return gl.getUniform(wrapper.program,locations[' + index + '])}')
+    return proc(gl, wrapper, locations)
+  }
+
+  function makePropSetter(path, index, type) {
+    switch(type) {
+      case 'bool':
+      case 'int':
+      case 'sampler2D':
+      case 'samplerCube':
+        return 'gl.uniform1i(locations[' + index + '],obj' + path + ')'
+      case 'float':
+        return 'gl.uniform1f(locations[' + index + '],obj' + path + ')'
+      default:
+        var vidx = type.indexOf('vec')
+        if(0 <= vidx && vidx <= 1 && type.length === 4 + vidx) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid data type')
+          }
+          switch(type.charAt(0)) {
+            case 'b':
+            case 'i':
+              return 'gl.uniform' + d + 'iv(locations[' + index + '],obj' + path + ')'
+            case 'v':
+              return 'gl.uniform' + d + 'fv(locations[' + index + '],obj' + path + ')'
+            default:
+              throw new GLError('', 'Unrecognized data type for vector ' + name + ': ' + type)
+          }
+        } else if(type.indexOf('mat') === 0 && type.length === 4) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid uniform dimension type for matrix ' + name + ': ' + type)
+          }
+          return 'gl.uniformMatrix' + d + 'fv(locations[' + index + '],false,obj' + path + ')'
+        } else {
+          throw new GLError('', 'Unknown uniform data type for ' + name + ': ' + type)
+        }
+      break
+    }
+  }
+
+  function enumerateIndices(prefix, type) {
+    if(typeof type !== 'object') {
+      return [ [prefix, type] ]
+    }
+    var indices = []
+    for(var id in type) {
+      var prop = type[id]
+      var tprefix = prefix
+      if(parseInt(id) + '' === id) {
+        tprefix += '[' + id + ']'
+      } else {
+        tprefix += '.' + id
+      }
+      if(typeof prop === 'object') {
+        indices.push.apply(indices, enumerateIndices(tprefix, prop))
+      } else {
+        indices.push([tprefix, prop])
+      }
+    }
+    return indices
+  }
+
+  function makeSetter(type) {
+    var code = [ 'return function updateProperty(obj){' ]
+    var indices = enumerateIndices('', type)
+    for(var i=0; i<indices.length; ++i) {
+      var item = indices[i]
+      var path = item[0]
+      var idx  = item[1]
+      if(locations[idx]) {
+        code.push(makePropSetter(path, idx, uniforms[idx].type))
+      }
+    }
+    code.push('return obj}')
+    var proc = new Function('gl', 'locations', code.join('\n'))
+    return proc(gl, locations)
+  }
+
+  function defaultValue(type) {
+    switch(type) {
+      case 'bool':
+        return false
+      case 'int':
+      case 'sampler2D':
+      case 'samplerCube':
+        return 0
+      case 'float':
+        return 0.0
+      default:
+        var vidx = type.indexOf('vec')
+        if(0 <= vidx && vidx <= 1 && type.length === 4 + vidx) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid data type')
+          }
+          if(type.charAt(0) === 'b') {
+            return makeVector(d, false)
+          }
+          return makeVector(d, 0)
+        } else if(type.indexOf('mat') === 0 && type.length === 4) {
+          var d = type.charCodeAt(type.length-1) - 48
+          if(d < 2 || d > 4) {
+            throw new GLError('', 'Invalid uniform dimension type for matrix ' + name + ': ' + type)
+          }
+          return makeVector(d*d, 0)
+        } else {
+          throw new GLError('', 'Unknown uniform data type for ' + name + ': ' + type)
+        }
+      break
+    }
+  }
+
+  function storeProperty(obj, prop, type) {
+    if(typeof type === 'object') {
+      var child = processObject(type)
+      Object.defineProperty(obj, prop, {
+        get: identity(child),
+        set: makeSetter(type),
+        enumerable: true,
+        configurable: false
+      })
+    } else {
+      if(locations[type]) {
+        Object.defineProperty(obj, prop, {
+          get: makeGetter(type),
+          set: makeSetter(type),
+          enumerable: true,
+          configurable: false
+        })
+      } else {
+        obj[prop] = defaultValue(uniforms[type].type)
+      }
+    }
+  }
+
+  function processObject(obj) {
+    var result
+    if(Array.isArray(obj)) {
+      result = new Array(obj.length)
+      for(var i=0; i<obj.length; ++i) {
+        storeProperty(result, i, obj[i])
+      }
+    } else {
+      result = {}
+      for(var id in obj) {
+        storeProperty(result, id, obj[id])
+      }
+    }
+    return result
+  }
+
+  //Return data
+  var coallesced = coallesceUniforms(uniforms, true)
+  return {
+    get: identity(processObject(coallesced)),
+    set: makeSetter(coallesced),
+    enumerable: true,
+    configurable: true
+  }
+}
+
+},{"./GLError":356,"./reflect":359}],359:[function(require,module,exports){
+'use strict'
+
+module.exports = makeReflectTypes
+
+//Construct type info for reflection.
+//
+// This iterates over the flattened list of uniform type values and smashes them into a JSON object.
+//
+// The leaves of the resulting object are either indices or type strings representing primitive glslify types
+function makeReflectTypes(uniforms, useIndex) {
+  var obj = {}
+  for(var i=0; i<uniforms.length; ++i) {
+    var n = uniforms[i].name
+    var parts = n.split(".")
+    var o = obj
+    for(var j=0; j<parts.length; ++j) {
+      var x = parts[j].split("[")
+      if(x.length > 1) {
+        if(!(x[0] in o)) {
+          o[x[0]] = []
+        }
+        o = o[x[0]]
+        for(var k=1; k<x.length; ++k) {
+          var y = parseInt(x[k])
+          if(k<x.length-1 || j<parts.length-1) {
+            if(!(y in o)) {
+              if(k < x.length-1) {
+                o[y] = []
+              } else {
+                o[y] = {}
+              }
+            }
+            o = o[y]
+          } else {
+            if(useIndex) {
+              o[y] = i
+            } else {
+              o[y] = uniforms[i].type
+            }
+          }
+        }
+      } else if(j < parts.length-1) {
+        if(!(x[0] in o)) {
+          o[x[0]] = {}
+        }
+        o = o[x[0]]
+      } else {
+        if(useIndex) {
+          o[x[0]] = i
+        } else {
+          o[x[0]] = uniforms[i].type
+        }
+      }
+    }
+  }
+  return obj
+}
+},{}],360:[function(require,module,exports){
+'use strict'
+
+exports.uniforms    = runtimeUniforms
+exports.attributes  = runtimeAttributes
+
+var GL_TO_GLSL_TYPES = {
+  'FLOAT':       'float',
+  'FLOAT_VEC2':  'vec2',
+  'FLOAT_VEC3':  'vec3',
+  'FLOAT_VEC4':  'vec4',
+  'INT':         'int',
+  'INT_VEC2':    'ivec2',
+  'INT_VEC3':    'ivec3',
+  'INT_VEC4':    'ivec4',
+  'BOOL':        'bool',
+  'BOOL_VEC2':   'bvec2',
+  'BOOL_VEC3':   'bvec3',
+  'BOOL_VEC4':   'bvec4',
+  'FLOAT_MAT2':  'mat2',
+  'FLOAT_MAT3':  'mat3',
+  'FLOAT_MAT4':  'mat4',
+  'SAMPLER_2D':  'sampler2D',
+  'SAMPLER_CUBE':'samplerCube'
+}
+
+var GL_TABLE = null
+
+function getType(gl, type) {
+  if(!GL_TABLE) {
+    var typeNames = Object.keys(GL_TO_GLSL_TYPES)
+    GL_TABLE = {}
+    for(var i=0; i<typeNames.length; ++i) {
+      var tn = typeNames[i]
+      GL_TABLE[gl[tn]] = GL_TO_GLSL_TYPES[tn]
+    }
+  }
+  return GL_TABLE[type]
+}
+
+function runtimeUniforms(gl, program) {
+  var numUniforms = gl.getProgramParameter(program, gl.ACTIVE_UNIFORMS)
+  var result = []
+  for(var i=0; i<numUniforms; ++i) {
+    var info = gl.getActiveUniform(program, i)
+    if(info) {
+      var type = getType(gl, info.type)
+      if(info.size > 1) {
+        for(var j=0; j<info.size; ++j) {
+          result.push({
+            name: info.name.replace('[0]', '[' + j + ']'),
+            type: type
+          })
+        }
+      } else {
+        result.push({
+          name: info.name,
+          type: type
+        })
+      }
+    }
+  }
+  return result
+}
+
+function runtimeAttributes(gl, program) {
+  var numAttributes = gl.getProgramParameter(program, gl.ACTIVE_ATTRIBUTES)
+  var result = []
+  for(var i=0; i<numAttributes; ++i) {
+    var info = gl.getActiveAttrib(program, i)
+    if(info) {
+      result.push({
+        name: info.name,
+        type: getType(gl, info.type)
+      })
+    }
+  }
+  return result
+}
+
+},{}],361:[function(require,module,exports){
+'use strict'
+
+exports.shader   = getShaderReference
+exports.program  = createProgram
+
+var GLError = require("./GLError")
+var formatCompilerError = require('gl-format-compiler-error');
+
+var weakMap = typeof WeakMap === 'undefined' ? require('weakmap-shim') : WeakMap
+var CACHE = new weakMap()
+
+var SHADER_COUNTER = 0
+
+function ShaderReference(id, src, type, shader, programs, count, cache) {
+  this.id       = id
+  this.src      = src
+  this.type     = type
+  this.shader   = shader
+  this.count    = count
+  this.programs = []
+  this.cache    = cache
+}
+
+ShaderReference.prototype.dispose = function() {
+  if(--this.count === 0) {
+    var cache    = this.cache
+    var gl       = cache.gl
+
+    //Remove program references
+    var programs = this.programs
+    for(var i=0, n=programs.length; i<n; ++i) {
+      var p = cache.programs[programs[i]]
+      if(p) {
+        delete cache.programs[i]
+        gl.deleteProgram(p)
+      }
+    }
+
+    //Remove shader reference
+    gl.deleteShader(this.shader)
+    delete cache.shaders[(this.type === gl.FRAGMENT_SHADER)|0][this.src]
+  }
+}
+
+function ContextCache(gl) {
+  this.gl       = gl
+  this.shaders  = [{}, {}]
+  this.programs = {}
+}
+
+var proto = ContextCache.prototype
+
+function compileShader(gl, type, src) {
+  var shader = gl.createShader(type)
+  gl.shaderSource(shader, src)
+  gl.compileShader(shader)
+  if(!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    var errLog = gl.getShaderInfoLog(shader)
+    try {
+        var fmt = formatCompilerError(errLog, src, type);
+    } catch (e){
+        console.warn('Failed to format compiler error: ' + e);
+        throw new GLError(errLog, 'Error compiling shader:\n' + errLog)
+    }
+    throw new GLError(errLog, fmt.short, fmt.long)
+  }
+  return shader
+}
+
+proto.getShaderReference = function(type, src) {
+  var gl      = this.gl
+  var shaders = this.shaders[(type === gl.FRAGMENT_SHADER)|0]
+  var shader  = shaders[src]
+  if(!shader || !gl.isShader(shader.shader)) {
+    var shaderObj = compileShader(gl, type, src)
+    shader = shaders[src] = new ShaderReference(
+      SHADER_COUNTER++,
+      src,
+      type,
+      shaderObj,
+      [],
+      1,
+      this)
+  } else {
+    shader.count += 1
+  }
+  return shader
+}
+
+function linkProgram(gl, vshader, fshader, attribs, locations) {
+  var program = gl.createProgram()
+  gl.attachShader(program, vshader)
+  gl.attachShader(program, fshader)
+  for(var i=0; i<attribs.length; ++i) {
+    gl.bindAttribLocation(program, locations[i], attribs[i])
+  }
+  gl.linkProgram(program)
+  if(!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    var errLog = gl.getProgramInfoLog(program)
+    throw new GLError(errLog, 'Error linking program: ' + errLog)
+  }
+  return program
+}
+
+proto.getProgram = function(vref, fref, attribs, locations) {
+  var token = [vref.id, fref.id, attribs.join(':'), locations.join(':')].join('@')
+  var prog  = this.programs[token]
+  if(!prog || !this.gl.isProgram(prog)) {
+    this.programs[token] = prog = linkProgram(
+      this.gl,
+      vref.shader,
+      fref.shader,
+      attribs,
+      locations)
+    vref.programs.push(token)
+    fref.programs.push(token)
+  }
+  return prog
+}
+
+function getCache(gl) {
+  var ctxCache = CACHE.get(gl)
+  if(!ctxCache) {
+    ctxCache = new ContextCache(gl)
+    CACHE.set(gl, ctxCache)
+  }
+  return ctxCache
+}
+
+function getShaderReference(gl, type, src) {
+  return getCache(gl).getShaderReference(type, src)
+}
+
+function createProgram(gl, vref, fref, attribs, locations) {
+  return getCache(gl).getProgram(vref, fref, attribs, locations)
+}
+
+},{"./GLError":356,"gl-format-compiler-error":362,"weakmap-shim":378}],362:[function(require,module,exports){
+
+var sprintf = require('sprintf-js').sprintf;
+var glConstants = require('gl-constants/lookup');
+var shaderName = require('glsl-shader-name');
+var addLineNumbers = require('add-line-numbers');
+
+module.exports = formatCompilerError;
+
+function formatCompilerError(errLog, src, type) {
+    "use strict";
+
+    var name = shaderName(src) || 'of unknown name (see npm glsl-shader-name)';
+
+    var typeName = 'unknown type';
+    if (type !== undefined) {
+        typeName = type === glConstants.FRAGMENT_SHADER ? 'fragment' : 'vertex'
+    }
+
+    var longForm = sprintf('Error compiling %s shader %s:\n', typeName, name);
+    var shortForm = sprintf("%s%s", longForm, errLog);
+
+    var errorStrings = errLog.split('\n');
+    var errors = {};
+
+    for (var i = 0; i < errorStrings.length; i++) {
+        var errorString = errorStrings[i];
+        if (errorString === '') continue;
+        var lineNo = parseInt(errorString.split(':')[2]);
+        if (isNaN(lineNo)) {
+            throw new Error(sprintf('Could not parse error: %s', errorString));
+        }
+        errors[lineNo] = errorString;
+    }
+
+    var lines = addLineNumbers(src).split('\n');
+
+    for (var i = 0; i < lines.length; i++) {
+        if (!errors[i+3] && !errors[i+2] && !errors[i+1]) continue;
+        var line = lines[i];
+        longForm += line + '\n';
+        if (errors[i+1]) {
+            var e = errors[i+1];
+            e = e.substr(e.split(':', 3).join(':').length + 1).trim();
+            longForm += sprintf('^^^ %s\n\n', e);
+        }
+    }
+
+    return {
+        long: longForm.trim(),
+        short: shortForm.trim()
+    };
+}
+
+
+},{"add-line-numbers":363,"gl-constants/lookup":367,"glsl-shader-name":368,"sprintf-js":375}],363:[function(require,module,exports){
+var padLeft = require('pad-left')
+
+module.exports = addLineNumbers
+function addLineNumbers (string, start, delim) {
+  start = typeof start === 'number' ? start : 1
+  delim = delim || ': '
+
+  var lines = string.split(/\r?\n/)
+  var totalDigits = String(lines.length + start - 1).length
+  return lines.map(function (line, i) {
+    var c = i + start
+    var digits = String(c).length
+    var prefix = padLeft(c, totalDigits - digits)
+    return prefix + delim + line
+  }).join('\n')
+}
+
+},{"pad-left":364}],364:[function(require,module,exports){
+/*!
+ * pad-left <https://github.com/jonschlinkert/pad-left>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT license.
+ */
+
+'use strict';
+
+var repeat = require('repeat-string');
+
+module.exports = function padLeft(str, num, ch) {
+  ch = typeof ch !== 'undefined' ? (ch + '') : ' ';
+  return repeat(ch, num) + str;
+};
+},{"repeat-string":365}],365:[function(require,module,exports){
+/*!
+ * repeat-string <https://github.com/jonschlinkert/repeat-string>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+'use strict';
+
+/**
+ * Expose `repeat`
+ */
+
+module.exports = repeat;
+
+/**
+ * Repeat the given `string` the specified `number`
+ * of times.
+ *
+ * **Example:**
+ *
+ * ```js
+ * var repeat = require('repeat-string');
+ * repeat('A', 5);
+ * //=> AAAAA
+ * ```
+ *
+ * @param {String} `string` The string to repeat
+ * @param {Number} `number` The number of times to repeat the string
+ * @return {String} Repeated string
+ * @api public
+ */
+
+function repeat(str, num) {
+  if (typeof str !== 'string') {
+    throw new TypeError('repeat-string expects a string.');
+  }
+
+  if (num === 1) return str;
+  if (num === 2) return str + str;
+
+  var max = str.length * num;
+  if (cache !== str || typeof cache === 'undefined') {
+    cache = str;
+    res = '';
+  }
+
+  while (max > res.length && num > 0) {
+    if (num & 1) {
+      res += str;
+    }
+
+    num >>= 1;
+    if (!num) break;
+    str += str;
+  }
+
+  return res.substr(0, max);
+}
+
+/**
+ * Results cache
+ */
+
+var res = '';
+var cache;
+
+},{}],366:[function(require,module,exports){
+module.exports = {
+  0: 'NONE',
+  1: 'ONE',
+  2: 'LINE_LOOP',
+  3: 'LINE_STRIP',
+  4: 'TRIANGLES',
+  5: 'TRIANGLE_STRIP',
+  6: 'TRIANGLE_FAN',
+  256: 'DEPTH_BUFFER_BIT',
+  512: 'NEVER',
+  513: 'LESS',
+  514: 'EQUAL',
+  515: 'LEQUAL',
+  516: 'GREATER',
+  517: 'NOTEQUAL',
+  518: 'GEQUAL',
+  519: 'ALWAYS',
+  768: 'SRC_COLOR',
+  769: 'ONE_MINUS_SRC_COLOR',
+  770: 'SRC_ALPHA',
+  771: 'ONE_MINUS_SRC_ALPHA',
+  772: 'DST_ALPHA',
+  773: 'ONE_MINUS_DST_ALPHA',
+  774: 'DST_COLOR',
+  775: 'ONE_MINUS_DST_COLOR',
+  776: 'SRC_ALPHA_SATURATE',
+  1024: 'STENCIL_BUFFER_BIT',
+  1028: 'FRONT',
+  1029: 'BACK',
+  1032: 'FRONT_AND_BACK',
+  1280: 'INVALID_ENUM',
+  1281: 'INVALID_VALUE',
+  1282: 'INVALID_OPERATION',
+  1285: 'OUT_OF_MEMORY',
+  1286: 'INVALID_FRAMEBUFFER_OPERATION',
+  2304: 'CW',
+  2305: 'CCW',
+  2849: 'LINE_WIDTH',
+  2884: 'CULL_FACE',
+  2885: 'CULL_FACE_MODE',
+  2886: 'FRONT_FACE',
+  2928: 'DEPTH_RANGE',
+  2929: 'DEPTH_TEST',
+  2930: 'DEPTH_WRITEMASK',
+  2931: 'DEPTH_CLEAR_VALUE',
+  2932: 'DEPTH_FUNC',
+  2960: 'STENCIL_TEST',
+  2961: 'STENCIL_CLEAR_VALUE',
+  2962: 'STENCIL_FUNC',
+  2963: 'STENCIL_VALUE_MASK',
+  2964: 'STENCIL_FAIL',
+  2965: 'STENCIL_PASS_DEPTH_FAIL',
+  2966: 'STENCIL_PASS_DEPTH_PASS',
+  2967: 'STENCIL_REF',
+  2968: 'STENCIL_WRITEMASK',
+  2978: 'VIEWPORT',
+  3024: 'DITHER',
+  3042: 'BLEND',
+  3088: 'SCISSOR_BOX',
+  3089: 'SCISSOR_TEST',
+  3106: 'COLOR_CLEAR_VALUE',
+  3107: 'COLOR_WRITEMASK',
+  3317: 'UNPACK_ALIGNMENT',
+  3333: 'PACK_ALIGNMENT',
+  3379: 'MAX_TEXTURE_SIZE',
+  3386: 'MAX_VIEWPORT_DIMS',
+  3408: 'SUBPIXEL_BITS',
+  3410: 'RED_BITS',
+  3411: 'GREEN_BITS',
+  3412: 'BLUE_BITS',
+  3413: 'ALPHA_BITS',
+  3414: 'DEPTH_BITS',
+  3415: 'STENCIL_BITS',
+  3553: 'TEXTURE_2D',
+  4352: 'DONT_CARE',
+  4353: 'FASTEST',
+  4354: 'NICEST',
+  5120: 'BYTE',
+  5121: 'UNSIGNED_BYTE',
+  5122: 'SHORT',
+  5123: 'UNSIGNED_SHORT',
+  5124: 'INT',
+  5125: 'UNSIGNED_INT',
+  5126: 'FLOAT',
+  5386: 'INVERT',
+  5890: 'TEXTURE',
+  6401: 'STENCIL_INDEX',
+  6402: 'DEPTH_COMPONENT',
+  6406: 'ALPHA',
+  6407: 'RGB',
+  6408: 'RGBA',
+  6409: 'LUMINANCE',
+  6410: 'LUMINANCE_ALPHA',
+  7680: 'KEEP',
+  7681: 'REPLACE',
+  7682: 'INCR',
+  7683: 'DECR',
+  7936: 'VENDOR',
+  7937: 'RENDERER',
+  7938: 'VERSION',
+  9728: 'NEAREST',
+  9729: 'LINEAR',
+  9984: 'NEAREST_MIPMAP_NEAREST',
+  9985: 'LINEAR_MIPMAP_NEAREST',
+  9986: 'NEAREST_MIPMAP_LINEAR',
+  9987: 'LINEAR_MIPMAP_LINEAR',
+  10240: 'TEXTURE_MAG_FILTER',
+  10241: 'TEXTURE_MIN_FILTER',
+  10242: 'TEXTURE_WRAP_S',
+  10243: 'TEXTURE_WRAP_T',
+  10497: 'REPEAT',
+  10752: 'POLYGON_OFFSET_UNITS',
+  16384: 'COLOR_BUFFER_BIT',
+  32769: 'CONSTANT_COLOR',
+  32770: 'ONE_MINUS_CONSTANT_COLOR',
+  32771: 'CONSTANT_ALPHA',
+  32772: 'ONE_MINUS_CONSTANT_ALPHA',
+  32773: 'BLEND_COLOR',
+  32774: 'FUNC_ADD',
+  32777: 'BLEND_EQUATION_RGB',
+  32778: 'FUNC_SUBTRACT',
+  32779: 'FUNC_REVERSE_SUBTRACT',
+  32819: 'UNSIGNED_SHORT_4_4_4_4',
+  32820: 'UNSIGNED_SHORT_5_5_5_1',
+  32823: 'POLYGON_OFFSET_FILL',
+  32824: 'POLYGON_OFFSET_FACTOR',
+  32854: 'RGBA4',
+  32855: 'RGB5_A1',
+  32873: 'TEXTURE_BINDING_2D',
+  32926: 'SAMPLE_ALPHA_TO_COVERAGE',
+  32928: 'SAMPLE_COVERAGE',
+  32936: 'SAMPLE_BUFFERS',
+  32937: 'SAMPLES',
+  32938: 'SAMPLE_COVERAGE_VALUE',
+  32939: 'SAMPLE_COVERAGE_INVERT',
+  32968: 'BLEND_DST_RGB',
+  32969: 'BLEND_SRC_RGB',
+  32970: 'BLEND_DST_ALPHA',
+  32971: 'BLEND_SRC_ALPHA',
+  33071: 'CLAMP_TO_EDGE',
+  33170: 'GENERATE_MIPMAP_HINT',
+  33189: 'DEPTH_COMPONENT16',
+  33306: 'DEPTH_STENCIL_ATTACHMENT',
+  33635: 'UNSIGNED_SHORT_5_6_5',
+  33648: 'MIRRORED_REPEAT',
+  33901: 'ALIASED_POINT_SIZE_RANGE',
+  33902: 'ALIASED_LINE_WIDTH_RANGE',
+  33984: 'TEXTURE0',
+  33985: 'TEXTURE1',
+  33986: 'TEXTURE2',
+  33987: 'TEXTURE3',
+  33988: 'TEXTURE4',
+  33989: 'TEXTURE5',
+  33990: 'TEXTURE6',
+  33991: 'TEXTURE7',
+  33992: 'TEXTURE8',
+  33993: 'TEXTURE9',
+  33994: 'TEXTURE10',
+  33995: 'TEXTURE11',
+  33996: 'TEXTURE12',
+  33997: 'TEXTURE13',
+  33998: 'TEXTURE14',
+  33999: 'TEXTURE15',
+  34000: 'TEXTURE16',
+  34001: 'TEXTURE17',
+  34002: 'TEXTURE18',
+  34003: 'TEXTURE19',
+  34004: 'TEXTURE20',
+  34005: 'TEXTURE21',
+  34006: 'TEXTURE22',
+  34007: 'TEXTURE23',
+  34008: 'TEXTURE24',
+  34009: 'TEXTURE25',
+  34010: 'TEXTURE26',
+  34011: 'TEXTURE27',
+  34012: 'TEXTURE28',
+  34013: 'TEXTURE29',
+  34014: 'TEXTURE30',
+  34015: 'TEXTURE31',
+  34016: 'ACTIVE_TEXTURE',
+  34024: 'MAX_RENDERBUFFER_SIZE',
+  34041: 'DEPTH_STENCIL',
+  34055: 'INCR_WRAP',
+  34056: 'DECR_WRAP',
+  34067: 'TEXTURE_CUBE_MAP',
+  34068: 'TEXTURE_BINDING_CUBE_MAP',
+  34069: 'TEXTURE_CUBE_MAP_POSITIVE_X',
+  34070: 'TEXTURE_CUBE_MAP_NEGATIVE_X',
+  34071: 'TEXTURE_CUBE_MAP_POSITIVE_Y',
+  34072: 'TEXTURE_CUBE_MAP_NEGATIVE_Y',
+  34073: 'TEXTURE_CUBE_MAP_POSITIVE_Z',
+  34074: 'TEXTURE_CUBE_MAP_NEGATIVE_Z',
+  34076: 'MAX_CUBE_MAP_TEXTURE_SIZE',
+  34338: 'VERTEX_ATTRIB_ARRAY_ENABLED',
+  34339: 'VERTEX_ATTRIB_ARRAY_SIZE',
+  34340: 'VERTEX_ATTRIB_ARRAY_STRIDE',
+  34341: 'VERTEX_ATTRIB_ARRAY_TYPE',
+  34342: 'CURRENT_VERTEX_ATTRIB',
+  34373: 'VERTEX_ATTRIB_ARRAY_POINTER',
+  34466: 'NUM_COMPRESSED_TEXTURE_FORMATS',
+  34467: 'COMPRESSED_TEXTURE_FORMATS',
+  34660: 'BUFFER_SIZE',
+  34661: 'BUFFER_USAGE',
+  34816: 'STENCIL_BACK_FUNC',
+  34817: 'STENCIL_BACK_FAIL',
+  34818: 'STENCIL_BACK_PASS_DEPTH_FAIL',
+  34819: 'STENCIL_BACK_PASS_DEPTH_PASS',
+  34877: 'BLEND_EQUATION_ALPHA',
+  34921: 'MAX_VERTEX_ATTRIBS',
+  34922: 'VERTEX_ATTRIB_ARRAY_NORMALIZED',
+  34930: 'MAX_TEXTURE_IMAGE_UNITS',
+  34962: 'ARRAY_BUFFER',
+  34963: 'ELEMENT_ARRAY_BUFFER',
+  34964: 'ARRAY_BUFFER_BINDING',
+  34965: 'ELEMENT_ARRAY_BUFFER_BINDING',
+  34975: 'VERTEX_ATTRIB_ARRAY_BUFFER_BINDING',
+  35040: 'STREAM_DRAW',
+  35044: 'STATIC_DRAW',
+  35048: 'DYNAMIC_DRAW',
+  35632: 'FRAGMENT_SHADER',
+  35633: 'VERTEX_SHADER',
+  35660: 'MAX_VERTEX_TEXTURE_IMAGE_UNITS',
+  35661: 'MAX_COMBINED_TEXTURE_IMAGE_UNITS',
+  35663: 'SHADER_TYPE',
+  35664: 'FLOAT_VEC2',
+  35665: 'FLOAT_VEC3',
+  35666: 'FLOAT_VEC4',
+  35667: 'INT_VEC2',
+  35668: 'INT_VEC3',
+  35669: 'INT_VEC4',
+  35670: 'BOOL',
+  35671: 'BOOL_VEC2',
+  35672: 'BOOL_VEC3',
+  35673: 'BOOL_VEC4',
+  35674: 'FLOAT_MAT2',
+  35675: 'FLOAT_MAT3',
+  35676: 'FLOAT_MAT4',
+  35678: 'SAMPLER_2D',
+  35680: 'SAMPLER_CUBE',
+  35712: 'DELETE_STATUS',
+  35713: 'COMPILE_STATUS',
+  35714: 'LINK_STATUS',
+  35715: 'VALIDATE_STATUS',
+  35716: 'INFO_LOG_LENGTH',
+  35717: 'ATTACHED_SHADERS',
+  35718: 'ACTIVE_UNIFORMS',
+  35719: 'ACTIVE_UNIFORM_MAX_LENGTH',
+  35720: 'SHADER_SOURCE_LENGTH',
+  35721: 'ACTIVE_ATTRIBUTES',
+  35722: 'ACTIVE_ATTRIBUTE_MAX_LENGTH',
+  35724: 'SHADING_LANGUAGE_VERSION',
+  35725: 'CURRENT_PROGRAM',
+  36003: 'STENCIL_BACK_REF',
+  36004: 'STENCIL_BACK_VALUE_MASK',
+  36005: 'STENCIL_BACK_WRITEMASK',
+  36006: 'FRAMEBUFFER_BINDING',
+  36007: 'RENDERBUFFER_BINDING',
+  36048: 'FRAMEBUFFER_ATTACHMENT_OBJECT_TYPE',
+  36049: 'FRAMEBUFFER_ATTACHMENT_OBJECT_NAME',
+  36050: 'FRAMEBUFFER_ATTACHMENT_TEXTURE_LEVEL',
+  36051: 'FRAMEBUFFER_ATTACHMENT_TEXTURE_CUBE_MAP_FACE',
+  36053: 'FRAMEBUFFER_COMPLETE',
+  36054: 'FRAMEBUFFER_INCOMPLETE_ATTACHMENT',
+  36055: 'FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT',
+  36057: 'FRAMEBUFFER_INCOMPLETE_DIMENSIONS',
+  36061: 'FRAMEBUFFER_UNSUPPORTED',
+  36064: 'COLOR_ATTACHMENT0',
+  36096: 'DEPTH_ATTACHMENT',
+  36128: 'STENCIL_ATTACHMENT',
+  36160: 'FRAMEBUFFER',
+  36161: 'RENDERBUFFER',
+  36162: 'RENDERBUFFER_WIDTH',
+  36163: 'RENDERBUFFER_HEIGHT',
+  36164: 'RENDERBUFFER_INTERNAL_FORMAT',
+  36168: 'STENCIL_INDEX8',
+  36176: 'RENDERBUFFER_RED_SIZE',
+  36177: 'RENDERBUFFER_GREEN_SIZE',
+  36178: 'RENDERBUFFER_BLUE_SIZE',
+  36179: 'RENDERBUFFER_ALPHA_SIZE',
+  36180: 'RENDERBUFFER_DEPTH_SIZE',
+  36181: 'RENDERBUFFER_STENCIL_SIZE',
+  36194: 'RGB565',
+  36336: 'LOW_FLOAT',
+  36337: 'MEDIUM_FLOAT',
+  36338: 'HIGH_FLOAT',
+  36339: 'LOW_INT',
+  36340: 'MEDIUM_INT',
+  36341: 'HIGH_INT',
+  36346: 'SHADER_COMPILER',
+  36347: 'MAX_VERTEX_UNIFORM_VECTORS',
+  36348: 'MAX_VARYING_VECTORS',
+  36349: 'MAX_FRAGMENT_UNIFORM_VECTORS',
+  37440: 'UNPACK_FLIP_Y_WEBGL',
+  37441: 'UNPACK_PREMULTIPLY_ALPHA_WEBGL',
+  37442: 'CONTEXT_LOST_WEBGL',
+  37443: 'UNPACK_COLORSPACE_CONVERSION_WEBGL',
+  37444: 'BROWSER_DEFAULT_WEBGL'
+}
+
+},{}],367:[function(require,module,exports){
+var gl10 = require('./1.0/numbers')
+
+module.exports = function lookupConstant (number) {
+  return gl10[number]
+}
+
+},{"./1.0/numbers":366}],368:[function(require,module,exports){
+var tokenize = require('glsl-tokenizer')
+var atob     = require('atob-lite')
+
+module.exports = getName
+
+function getName(src) {
+  var tokens = Array.isArray(src)
+    ? src
+    : tokenize(src)
+
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i]
+    if (token.type !== 'preprocessor') continue
+    var match = token.data.match(/\#define\s+SHADER_NAME(_B64)?\s+(.+)$/)
+    if (!match) continue
+    if (!match[2]) continue
+
+    var b64  = match[1]
+    var name = match[2]
+
+    return (b64 ? atob(name) : name).trim()
+  }
+}
+
+},{"atob-lite":369,"glsl-tokenizer":374}],369:[function(require,module,exports){
+module.exports = function _atob(str) {
+  return atob(str)
+}
+
+},{}],370:[function(require,module,exports){
+module.exports = tokenize
+
+var literals = require('./lib/literals')
+  , operators = require('./lib/operators')
+  , builtins = require('./lib/builtins')
+
+var NORMAL = 999          // <-- never emitted
+  , TOKEN = 9999          // <-- never emitted
+  , BLOCK_COMMENT = 0
+  , LINE_COMMENT = 1
+  , PREPROCESSOR = 2
+  , OPERATOR = 3
+  , INTEGER = 4
+  , FLOAT = 5
+  , IDENT = 6
+  , BUILTIN = 7
+  , KEYWORD = 8
+  , WHITESPACE = 9
+  , EOF = 10
+  , HEX = 11
+
+var map = [
+    'block-comment'
+  , 'line-comment'
+  , 'preprocessor'
+  , 'operator'
+  , 'integer'
+  , 'float'
+  , 'ident'
+  , 'builtin'
+  , 'keyword'
+  , 'whitespace'
+  , 'eof'
+  , 'integer'
+]
+
+function tokenize() {
+  var i = 0
+    , total = 0
+    , mode = NORMAL
+    , c
+    , last
+    , content = []
+    , tokens = []
+    , token_idx = 0
+    , token_offs = 0
+    , line = 1
+    , col = 0
+    , start = 0
+    , isnum = false
+    , isoperator = false
+    , input = ''
+    , len
+
+  return function(data) {
+    tokens = []
+    if (data !== null) return write(data)
+    return end()
+  }
+
+  function token(data) {
+    if (data.length) {
+      tokens.push({
+        type: map[mode]
+      , data: data
+      , position: start
+      , line: line
+      , column: col
+      })
+    }
+  }
+
+  function write(chunk) {
+    i = 0
+    input += chunk
+    len = input.length
+
+    var last
+
+    while(c = input[i], i < len) {
+      last = i
+
+      switch(mode) {
+        case BLOCK_COMMENT: i = block_comment(); break
+        case LINE_COMMENT: i = line_comment(); break
+        case PREPROCESSOR: i = preprocessor(); break
+        case OPERATOR: i = operator(); break
+        case INTEGER: i = integer(); break
+        case HEX: i = hex(); break
+        case FLOAT: i = decimal(); break
+        case TOKEN: i = readtoken(); break
+        case WHITESPACE: i = whitespace(); break
+        case NORMAL: i = normal(); break
+      }
+
+      if(last !== i) {
+        switch(input[last]) {
+          case '\n': col = 0; ++line; break
+          default: ++col; break
+        }
+      }
+    }
+
+    total += i
+    input = input.slice(i)
+    return tokens
+  }
+
+  function end(chunk) {
+    if(content.length) {
+      token(content.join(''))
+    }
+
+    mode = EOF
+    token('(eof)')
+    return tokens
+  }
+
+  function normal() {
+    content = content.length ? [] : content
+
+    if(last === '/' && c === '*') {
+      start = total + i - 1
+      mode = BLOCK_COMMENT
+      last = c
+      return i + 1
+    }
+
+    if(last === '/' && c === '/') {
+      start = total + i - 1
+      mode = LINE_COMMENT
+      last = c
+      return i + 1
+    }
+
+    if(c === '#') {
+      mode = PREPROCESSOR
+      start = total + i
+      return i
+    }
+
+    if(/\s/.test(c)) {
+      mode = WHITESPACE
+      start = total + i
+      return i
+    }
+
+    isnum = /\d/.test(c)
+    isoperator = /[^\w_]/.test(c)
+
+    start = total + i
+    mode = isnum ? INTEGER : isoperator ? OPERATOR : TOKEN
+    return i
+  }
+
+  function whitespace() {
+    if(/[^\s]/g.test(c)) {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function preprocessor() {
+    if(c === '\n' && last !== '\\') {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function line_comment() {
+    return preprocessor()
+  }
+
+  function block_comment() {
+    if(c === '/' && last === '*') {
+      content.push(c)
+      token(content.join(''))
+      mode = NORMAL
+      return i + 1
+    }
+
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function operator() {
+    if(last === '.' && /\d/.test(c)) {
+      mode = FLOAT
+      return i
+    }
+
+    if(last === '/' && c === '*') {
+      mode = BLOCK_COMMENT
+      return i
+    }
+
+    if(last === '/' && c === '/') {
+      mode = LINE_COMMENT
+      return i
+    }
+
+    if(c === '.' && content.length) {
+      while(determine_operator(content));
+
+      mode = FLOAT
+      return i
+    }
+
+    if(c === ';' || c === ')' || c === '(') {
+      if(content.length) while(determine_operator(content));
+      token(c)
+      mode = NORMAL
+      return i + 1
+    }
+
+    var is_composite_operator = content.length === 2 && c !== '='
+    if(/[\w_\d\s]/.test(c) || is_composite_operator) {
+      while(determine_operator(content));
+      mode = NORMAL
+      return i
+    }
+
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function determine_operator(buf) {
+    var j = 0
+      , idx
+      , res
+
+    do {
+      idx = operators.indexOf(buf.slice(0, buf.length + j).join(''))
+      res = operators[idx]
+
+      if(idx === -1) {
+        if(j-- + buf.length > 0) continue
+        res = buf.slice(0, 1).join('')
+      }
+
+      token(res)
+
+      start += res.length
+      content = content.slice(res.length)
+      return content.length
+    } while(1)
+  }
+
+  function hex() {
+    if(/[^a-fA-F0-9]/.test(c)) {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function integer() {
+    if(c === '.') {
+      content.push(c)
+      mode = FLOAT
+      last = c
+      return i + 1
+    }
+
+    if(/[eE]/.test(c)) {
+      content.push(c)
+      mode = FLOAT
+      last = c
+      return i + 1
+    }
+
+    if(c === 'x' && content.length === 1 && content[0] === '0') {
+      mode = HEX
+      content.push(c)
+      last = c
+      return i + 1
+    }
+
+    if(/[^\d]/.test(c)) {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function decimal() {
+    if(c === 'f') {
+      content.push(c)
+      last = c
+      i += 1
+    }
+
+    if(/[eE]/.test(c)) {
+      content.push(c)
+      last = c
+      return i + 1
+    }
+
+    if(/[^\d]/.test(c)) {
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+    content.push(c)
+    last = c
+    return i + 1
+  }
+
+  function readtoken() {
+    if(/[^\d\w_]/.test(c)) {
+      var contentstr = content.join('')
+      if(literals.indexOf(contentstr) > -1) {
+        mode = KEYWORD
+      } else if(builtins.indexOf(contentstr) > -1) {
+        mode = BUILTIN
+      } else {
+        mode = IDENT
+      }
+      token(content.join(''))
+      mode = NORMAL
+      return i
+    }
+    content.push(c)
+    last = c
+    return i + 1
+  }
+}
+
+},{"./lib/builtins":371,"./lib/literals":372,"./lib/operators":373}],371:[function(require,module,exports){
+module.exports = [
+    'gl_Position'
+  , 'gl_PointSize'
+  , 'gl_ClipVertex'
+  , 'gl_FragCoord'
+  , 'gl_FrontFacing'
+  , 'gl_FragColor'
+  , 'gl_FragData'
+  , 'gl_FragDepth'
+  , 'gl_Color'
+  , 'gl_SecondaryColor'
+  , 'gl_Normal'
+  , 'gl_Vertex'
+  , 'gl_MultiTexCoord0'
+  , 'gl_MultiTexCoord1'
+  , 'gl_MultiTexCoord2'
+  , 'gl_MultiTexCoord3'
+  , 'gl_MultiTexCoord4'
+  , 'gl_MultiTexCoord5'
+  , 'gl_MultiTexCoord6'
+  , 'gl_MultiTexCoord7'
+  , 'gl_FogCoord'
+  , 'gl_MaxLights'
+  , 'gl_MaxClipPlanes'
+  , 'gl_MaxTextureUnits'
+  , 'gl_MaxTextureCoords'
+  , 'gl_MaxVertexAttribs'
+  , 'gl_MaxVertexUniformComponents'
+  , 'gl_MaxVaryingFloats'
+  , 'gl_MaxVertexTextureImageUnits'
+  , 'gl_MaxCombinedTextureImageUnits'
+  , 'gl_MaxTextureImageUnits'
+  , 'gl_MaxFragmentUniformComponents'
+  , 'gl_MaxDrawBuffers'
+  , 'gl_ModelViewMatrix'
+  , 'gl_ProjectionMatrix'
+  , 'gl_ModelViewProjectionMatrix'
+  , 'gl_TextureMatrix'
+  , 'gl_NormalMatrix'
+  , 'gl_ModelViewMatrixInverse'
+  , 'gl_ProjectionMatrixInverse'
+  , 'gl_ModelViewProjectionMatrixInverse'
+  , 'gl_TextureMatrixInverse'
+  , 'gl_ModelViewMatrixTranspose'
+  , 'gl_ProjectionMatrixTranspose'
+  , 'gl_ModelViewProjectionMatrixTranspose'
+  , 'gl_TextureMatrixTranspose'
+  , 'gl_ModelViewMatrixInverseTranspose'
+  , 'gl_ProjectionMatrixInverseTranspose'
+  , 'gl_ModelViewProjectionMatrixInverseTranspose'
+  , 'gl_TextureMatrixInverseTranspose'
+  , 'gl_NormalScale'
+  , 'gl_DepthRangeParameters'
+  , 'gl_DepthRange'
+  , 'gl_ClipPlane'
+  , 'gl_PointParameters'
+  , 'gl_Point'
+  , 'gl_MaterialParameters'
+  , 'gl_FrontMaterial'
+  , 'gl_BackMaterial'
+  , 'gl_LightSourceParameters'
+  , 'gl_LightSource'
+  , 'gl_LightModelParameters'
+  , 'gl_LightModel'
+  , 'gl_LightModelProducts'
+  , 'gl_FrontLightModelProduct'
+  , 'gl_BackLightModelProduct'
+  , 'gl_LightProducts'
+  , 'gl_FrontLightProduct'
+  , 'gl_BackLightProduct'
+  , 'gl_FogParameters'
+  , 'gl_Fog'
+  , 'gl_TextureEnvColor'
+  , 'gl_EyePlaneS'
+  , 'gl_EyePlaneT'
+  , 'gl_EyePlaneR'
+  , 'gl_EyePlaneQ'
+  , 'gl_ObjectPlaneS'
+  , 'gl_ObjectPlaneT'
+  , 'gl_ObjectPlaneR'
+  , 'gl_ObjectPlaneQ'
+  , 'gl_FrontColor'
+  , 'gl_BackColor'
+  , 'gl_FrontSecondaryColor'
+  , 'gl_BackSecondaryColor'
+  , 'gl_TexCoord'
+  , 'gl_FogFragCoord'
+  , 'gl_Color'
+  , 'gl_SecondaryColor'
+  , 'gl_TexCoord'
+  , 'gl_FogFragCoord'
+  , 'gl_PointCoord'
+  , 'radians'
+  , 'degrees'
+  , 'sin'
+  , 'cos'
+  , 'tan'
+  , 'asin'
+  , 'acos'
+  , 'atan'
+  , 'pow'
+  , 'exp'
+  , 'log'
+  , 'exp2'
+  , 'log2'
+  , 'sqrt'
+  , 'inversesqrt'
+  , 'abs'
+  , 'sign'
+  , 'floor'
+  , 'ceil'
+  , 'fract'
+  , 'mod'
+  , 'min'
+  , 'max'
+  , 'clamp'
+  , 'mix'
+  , 'step'
+  , 'smoothstep'
+  , 'length'
+  , 'distance'
+  , 'dot'
+  , 'cross'
+  , 'normalize'
+  , 'faceforward'
+  , 'reflect'
+  , 'refract'
+  , 'matrixCompMult'
+  , 'lessThan'
+  , 'lessThanEqual'
+  , 'greaterThan'
+  , 'greaterThanEqual'
+  , 'equal'
+  , 'notEqual'
+  , 'any'
+  , 'all'
+  , 'not'
+  , 'texture2D'
+  , 'texture2DProj'
+  , 'texture2DLod'
+  , 'texture2DProjLod'
+  , 'textureCube'
+  , 'textureCubeLod'
+  , 'dFdx'
+  , 'dFdy'
+]
+
+},{}],372:[function(require,module,exports){
+module.exports = [
+  // current
+    'precision'
+  , 'highp'
+  , 'mediump'
+  , 'lowp'
+  , 'attribute'
+  , 'const'
+  , 'uniform'
+  , 'varying'
+  , 'break'
+  , 'continue'
+  , 'do'
+  , 'for'
+  , 'while'
+  , 'if'
+  , 'else'
+  , 'in'
+  , 'out'
+  , 'inout'
+  , 'float'
+  , 'int'
+  , 'void'
+  , 'bool'
+  , 'true'
+  , 'false'
+  , 'discard'
+  , 'return'
+  , 'mat2'
+  , 'mat3'
+  , 'mat4'
+  , 'vec2'
+  , 'vec3'
+  , 'vec4'
+  , 'ivec2'
+  , 'ivec3'
+  , 'ivec4'
+  , 'bvec2'
+  , 'bvec3'
+  , 'bvec4'
+  , 'sampler1D'
+  , 'sampler2D'
+  , 'sampler3D'
+  , 'samplerCube'
+  , 'sampler1DShadow'
+  , 'sampler2DShadow'
+  , 'struct'
+
+  // future
+  , 'asm'
+  , 'class'
+  , 'union'
+  , 'enum'
+  , 'typedef'
+  , 'template'
+  , 'this'
+  , 'packed'
+  , 'goto'
+  , 'switch'
+  , 'default'
+  , 'inline'
+  , 'noinline'
+  , 'volatile'
+  , 'public'
+  , 'static'
+  , 'extern'
+  , 'external'
+  , 'interface'
+  , 'long'
+  , 'short'
+  , 'double'
+  , 'half'
+  , 'fixed'
+  , 'unsigned'
+  , 'input'
+  , 'output'
+  , 'hvec2'
+  , 'hvec3'
+  , 'hvec4'
+  , 'dvec2'
+  , 'dvec3'
+  , 'dvec4'
+  , 'fvec2'
+  , 'fvec3'
+  , 'fvec4'
+  , 'sampler2DRect'
+  , 'sampler3DRect'
+  , 'sampler2DRectShadow'
+  , 'sizeof'
+  , 'cast'
+  , 'namespace'
+  , 'using'
+]
+
+},{}],373:[function(require,module,exports){
+module.exports = [
+    '<<='
+  , '>>='
+  , '++'
+  , '--'
+  , '<<'
+  , '>>'
+  , '<='
+  , '>='
+  , '=='
+  , '!='
+  , '&&'
+  , '||'
+  , '+='
+  , '-='
+  , '*='
+  , '/='
+  , '%='
+  , '&='
+  , '^^'
+  , '^='
+  , '|='
+  , '('
+  , ')'
+  , '['
+  , ']'
+  , '.'
+  , '!'
+  , '~'
+  , '*'
+  , '/'
+  , '%'
+  , '+'
+  , '-'
+  , '<'
+  , '>'
+  , '&'
+  , '^'
+  , '|'
+  , '?'
+  , ':'
+  , '='
+  , ','
+  , ';'
+  , '{'
+  , '}'
+]
+
+},{}],374:[function(require,module,exports){
+var tokenize = require('./index')
+
+module.exports = tokenizeString
+
+function tokenizeString(str) {
+  var generator = tokenize()
+  var tokens = []
+
+  tokens = tokens.concat(generator(str))
+  tokens = tokens.concat(generator(null))
+
+  return tokens
+}
+
+},{"./index":370}],375:[function(require,module,exports){
+(function(window) {
+    var re = {
+        not_string: /[^s]/,
+        number: /[diefg]/,
+        json: /[j]/,
+        not_json: /[^j]/,
+        text: /^[^\x25]+/,
+        modulo: /^\x25{2}/,
+        placeholder: /^\x25(?:([1-9]\d*)\$|\(([^\)]+)\))?(\+)?(0|'[^$])?(-)?(\d+)?(?:\.(\d+))?([b-gijosuxX])/,
+        key: /^([a-z_][a-z_\d]*)/i,
+        key_access: /^\.([a-z_][a-z_\d]*)/i,
+        index_access: /^\[(\d+)\]/,
+        sign: /^[\+\-]/
+    }
+
+    function sprintf() {
+        var key = arguments[0], cache = sprintf.cache
+        if (!(cache[key] && cache.hasOwnProperty(key))) {
+            cache[key] = sprintf.parse(key)
+        }
+        return sprintf.format.call(null, cache[key], arguments)
+    }
+
+    sprintf.format = function(parse_tree, argv) {
+        var cursor = 1, tree_length = parse_tree.length, node_type = "", arg, output = [], i, k, match, pad, pad_character, pad_length, is_positive = true, sign = ""
+        for (i = 0; i < tree_length; i++) {
+            node_type = get_type(parse_tree[i])
+            if (node_type === "string") {
+                output[output.length] = parse_tree[i]
+            }
+            else if (node_type === "array") {
+                match = parse_tree[i] // convenience purposes only
+                if (match[2]) { // keyword argument
+                    arg = argv[cursor]
+                    for (k = 0; k < match[2].length; k++) {
+                        if (!arg.hasOwnProperty(match[2][k])) {
+                            throw new Error(sprintf("[sprintf] property '%s' does not exist", match[2][k]))
+                        }
+                        arg = arg[match[2][k]]
+                    }
+                }
+                else if (match[1]) { // positional argument (explicit)
+                    arg = argv[match[1]]
+                }
+                else { // positional argument (implicit)
+                    arg = argv[cursor++]
+                }
+
+                if (get_type(arg) == "function") {
+                    arg = arg()
+                }
+
+                if (re.not_string.test(match[8]) && re.not_json.test(match[8]) && (get_type(arg) != "number" && isNaN(arg))) {
+                    throw new TypeError(sprintf("[sprintf] expecting number but found %s", get_type(arg)))
+                }
+
+                if (re.number.test(match[8])) {
+                    is_positive = arg >= 0
+                }
+
+                switch (match[8]) {
+                    case "b":
+                        arg = arg.toString(2)
+                    break
+                    case "c":
+                        arg = String.fromCharCode(arg)
+                    break
+                    case "d":
+                    case "i":
+                        arg = parseInt(arg, 10)
+                    break
+                    case "j":
+                        arg = JSON.stringify(arg, null, match[6] ? parseInt(match[6]) : 0)
+                    break
+                    case "e":
+                        arg = match[7] ? arg.toExponential(match[7]) : arg.toExponential()
+                    break
+                    case "f":
+                        arg = match[7] ? parseFloat(arg).toFixed(match[7]) : parseFloat(arg)
+                    break
+                    case "g":
+                        arg = match[7] ? parseFloat(arg).toPrecision(match[7]) : parseFloat(arg)
+                    break
+                    case "o":
+                        arg = arg.toString(8)
+                    break
+                    case "s":
+                        arg = ((arg = String(arg)) && match[7] ? arg.substring(0, match[7]) : arg)
+                    break
+                    case "u":
+                        arg = arg >>> 0
+                    break
+                    case "x":
+                        arg = arg.toString(16)
+                    break
+                    case "X":
+                        arg = arg.toString(16).toUpperCase()
+                    break
+                }
+                if (re.json.test(match[8])) {
+                    output[output.length] = arg
+                }
+                else {
+                    if (re.number.test(match[8]) && (!is_positive || match[3])) {
+                        sign = is_positive ? "+" : "-"
+                        arg = arg.toString().replace(re.sign, "")
+                    }
+                    else {
+                        sign = ""
+                    }
+                    pad_character = match[4] ? match[4] === "0" ? "0" : match[4].charAt(1) : " "
+                    pad_length = match[6] - (sign + arg).length
+                    pad = match[6] ? (pad_length > 0 ? str_repeat(pad_character, pad_length) : "") : ""
+                    output[output.length] = match[5] ? sign + arg + pad : (pad_character === "0" ? sign + pad + arg : pad + sign + arg)
+                }
+            }
+        }
+        return output.join("")
+    }
+
+    sprintf.cache = {}
+
+    sprintf.parse = function(fmt) {
+        var _fmt = fmt, match = [], parse_tree = [], arg_names = 0
+        while (_fmt) {
+            if ((match = re.text.exec(_fmt)) !== null) {
+                parse_tree[parse_tree.length] = match[0]
+            }
+            else if ((match = re.modulo.exec(_fmt)) !== null) {
+                parse_tree[parse_tree.length] = "%"
+            }
+            else if ((match = re.placeholder.exec(_fmt)) !== null) {
+                if (match[2]) {
+                    arg_names |= 1
+                    var field_list = [], replacement_field = match[2], field_match = []
+                    if ((field_match = re.key.exec(replacement_field)) !== null) {
+                        field_list[field_list.length] = field_match[1]
+                        while ((replacement_field = replacement_field.substring(field_match[0].length)) !== "") {
+                            if ((field_match = re.key_access.exec(replacement_field)) !== null) {
+                                field_list[field_list.length] = field_match[1]
+                            }
+                            else if ((field_match = re.index_access.exec(replacement_field)) !== null) {
+                                field_list[field_list.length] = field_match[1]
+                            }
+                            else {
+                                throw new SyntaxError("[sprintf] failed to parse named argument key")
+                            }
+                        }
+                    }
+                    else {
+                        throw new SyntaxError("[sprintf] failed to parse named argument key")
+                    }
+                    match[2] = field_list
+                }
+                else {
+                    arg_names |= 2
+                }
+                if (arg_names === 3) {
+                    throw new Error("[sprintf] mixing positional and named placeholders is not (yet) supported")
+                }
+                parse_tree[parse_tree.length] = match
+            }
+            else {
+                throw new SyntaxError("[sprintf] unexpected placeholder")
+            }
+            _fmt = _fmt.substring(match[0].length)
+        }
+        return parse_tree
+    }
+
+    var vsprintf = function(fmt, argv, _argv) {
+        _argv = (argv || []).slice(0)
+        _argv.splice(0, 0, fmt)
+        return sprintf.apply(null, _argv)
+    }
+
+    /**
+     * helpers
+     */
+    function get_type(variable) {
+        return Object.prototype.toString.call(variable).slice(8, -1).toLowerCase()
+    }
+
+    function str_repeat(input, multiplier) {
+        return Array(multiplier + 1).join(input)
+    }
+
+    /**
+     * export to either browser or node.js
+     */
+    if (typeof exports !== "undefined") {
+        exports.sprintf = sprintf
+        exports.vsprintf = vsprintf
+    }
+    else {
+        window.sprintf = sprintf
+        window.vsprintf = vsprintf
+
+        if (typeof define === "function" && define.amd) {
+            define(function() {
+                return {
+                    sprintf: sprintf,
+                    vsprintf: vsprintf
+                }
+            })
+        }
+    }
+})(typeof window === "undefined" ? this : window);
+
+},{}],376:[function(require,module,exports){
+var hiddenStore = require('./hidden-store.js');
+
+module.exports = createStore;
+
+function createStore() {
+    var key = {};
+
+    return function (obj) {
+        if ((typeof obj !== 'object' || obj === null) &&
+            typeof obj !== 'function'
+        ) {
+            throw new Error('Weakmap-shim: Key must be object')
+        }
+
+        var store = obj.valueOf(key);
+        return store && store.identity === key ?
+            store : hiddenStore(obj, key);
+    };
+}
+
+},{"./hidden-store.js":377}],377:[function(require,module,exports){
+module.exports = hiddenStore;
+
+function hiddenStore(obj, key) {
+    var store = { identity: key };
+    var valueOf = obj.valueOf;
+
+    Object.defineProperty(obj, "valueOf", {
+        value: function (value) {
+            return value !== key ?
+                valueOf.apply(this, arguments) : store;
+        },
+        writable: true
+    });
+
+    return store;
+}
+
+},{}],378:[function(require,module,exports){
+// Original - @Gozola. 
+// https://gist.github.com/Gozala/1269991
+// This is a reimplemented version (with a few bug fixes).
+
+var createStore = require('./create-store.js');
+
+module.exports = weakMap;
+
+function weakMap() {
+    var privates = createStore();
+
+    return {
+        'get': function (key, fallback) {
+            var store = privates(key)
+            return store.hasOwnProperty('value') ?
+                store.value : fallback
+        },
+        'set': function (key, value) {
+            privates(key).value = value;
+        },
+        'has': function(key) {
+            return 'value' in privates(key);
+        },
+        'delete': function (key) {
+            return delete privates(key).value;
+        }
+    }
+}
+
+},{"./create-store.js":376}],379:[function(require,module,exports){
+arguments[4][22][0].apply(exports,arguments)
+},{"dup":22}],380:[function(require,module,exports){
 
 const createEngine = require('voxel-engine-stackgl');
 
@@ -47945,6 +47994,7 @@ function main() {
       'voxel-bucket': require('voxel-bucket'),
       'voxel-fluid': require('voxel-fluid'),
       'voxel-skyhook': require('voxel-skyhook'),
+      'voxel-bedrock': require('voxel-bedrock'),
       'voxel-recipes': require('voxel-recipes'),
       'voxel-quarry': require('voxel-quarry'),
       'voxel-measure': require('voxel-measure'),
@@ -47977,6 +48027,7 @@ function main() {
       'voxel-blockdata': require('voxel-blockdata'),
       'voxel-glass': require('voxel-glass'),
       'voxel-land': require('voxel-land'),
+      'voxel-flatland': require('voxel-flatland'),
       'voxel-decorative': require('voxel-decorative'),
       'voxel-inventory-creative': require('voxel-inventory-creative'),
       //'voxel-clientmc': require('voxel-clientmc');  // TODO: after published
@@ -48068,6 +48119,7 @@ function main() {
     'voxel-fluid': {},
     //'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true}, // requires this.game.materials TODO: water
     'voxel-skyhook': {},
+    'voxel-bedrock': {},
     'voxel-blockdata': {},
     'voxel-chest': {},
     'voxel-workbench': {},
@@ -48079,6 +48131,7 @@ function main() {
 
     'voxel-glass': {},
     'voxel-land': {populateTrees: true},
+    'voxel-flatland': {block: 'bedrock', onDemand:true},
     'voxel-decorative': {},
     'voxel-inventory-creative': {},
     //'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}, // TODO
@@ -48128,7 +48181,7 @@ function main() {
 
 main();
 
-},{"camera-debug":380,"kb-bindings-ui":387,"voxel-artpacks":392,"voxel-blockdata":396,"voxel-bucket":397,"voxel-carry":404,"voxel-chest":411,"voxel-chunkborder":430,"voxel-commands":461,"voxel-console":468,"voxel-decals":472,"voxel-decorative":537,"voxel-drop":539,"voxel-engine-stackgl":46,"voxel-flight":562,"voxel-fluid":563,"voxel-food":565,"voxel-fullscreen":566,"voxel-furnace":567,"voxel-gamemode":586,"voxel-glass":587,"voxel-hammer":594,"voxel-harvest":595,"voxel-health":602,"voxel-health-bar":601,"voxel-inventory-crafting":604,"voxel-inventory-creative":623,"voxel-inventory-hotbar":642,"voxel-keys":649,"voxel-land":653,"voxel-measure":669,"voxel-mine":704,"voxel-outline":763,"voxel-pickaxe":770,"voxel-plugins-ui":774,"voxel-pumpkin":781,"voxel-quarry":782,"voxel-reach":785,"voxel-recipes":792,"voxel-scriptblock":793,"voxel-sfx":803,"voxel-skyhook":804,"voxel-sprint":805,"voxel-use":806,"voxel-voila":807,"voxel-vr":840,"voxel-webview":910,"voxel-wireframe":965,"voxel-wool":967,"voxel-workbench":988,"voxel-zen":989}],380:[function(require,module,exports){
+},{"camera-debug":381,"kb-bindings-ui":388,"voxel-artpacks":393,"voxel-bedrock":46,"voxel-blockdata":397,"voxel-bucket":398,"voxel-carry":405,"voxel-chest":412,"voxel-chunkborder":431,"voxel-commands":462,"voxel-console":469,"voxel-decals":473,"voxel-decorative":538,"voxel-drop":540,"voxel-engine-stackgl":47,"voxel-flatland":563,"voxel-flight":567,"voxel-fluid":568,"voxel-food":570,"voxel-fullscreen":571,"voxel-furnace":572,"voxel-gamemode":591,"voxel-glass":592,"voxel-hammer":599,"voxel-harvest":600,"voxel-health":607,"voxel-health-bar":606,"voxel-inventory-crafting":609,"voxel-inventory-creative":628,"voxel-inventory-hotbar":647,"voxel-keys":654,"voxel-land":658,"voxel-measure":674,"voxel-mine":709,"voxel-outline":768,"voxel-pickaxe":775,"voxel-plugins-ui":779,"voxel-pumpkin":786,"voxel-quarry":787,"voxel-reach":790,"voxel-recipes":797,"voxel-scriptblock":798,"voxel-sfx":808,"voxel-skyhook":809,"voxel-sprint":810,"voxel-use":811,"voxel-voila":812,"voxel-vr":845,"voxel-webview":915,"voxel-wireframe":970,"voxel-wool":972,"voxel-workbench":993,"voxel-zen":994}],381:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -48220,10 +48273,10 @@ CameraDebug.prototype.tick = function() {
 };
 
 
-},{"dat-gui":381}],381:[function(require,module,exports){
+},{"dat-gui":382}],382:[function(require,module,exports){
 module.exports = require('./vendor/dat.gui')
 module.exports.color = require('./vendor/dat.color')
-},{"./vendor/dat.color":382,"./vendor/dat.gui":383}],382:[function(require,module,exports){
+},{"./vendor/dat.color":383,"./vendor/dat.gui":384}],383:[function(require,module,exports){
 /**
  * dat-gui JavaScript Controller Library
  * http://code.google.com/p/dat-gui
@@ -48979,7 +49032,7 @@ dat.color.math = (function () {
 })(),
 dat.color.toString,
 dat.utils.common);
-},{}],383:[function(require,module,exports){
+},{}],384:[function(require,module,exports){
 /**
  * dat-gui JavaScript Controller Library
  * http://code.google.com/p/dat-gui
@@ -52640,7 +52693,7 @@ dat.dom.CenteredDiv = (function (dom, common) {
 dat.utils.common),
 dat.dom.dom,
 dat.utils.common);
-},{}],384:[function(require,module,exports){
+},{}],385:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter;
 
 module.exports = function (elem) {
@@ -52752,7 +52805,7 @@ Ever.typeOf = (function () {
     };
 })();;
 
-},{"./init.json":385,"./types.json":386,"events":21}],385:[function(require,module,exports){
+},{"./init.json":386,"./types.json":387,"events":21}],386:[function(require,module,exports){
 module.exports={
   "initEvent" : [
     "type",
@@ -52795,7 +52848,7 @@ module.exports={
   ]
 }
 
-},{}],386:[function(require,module,exports){
+},{}],387:[function(require,module,exports){
 module.exports={
   "MouseEvent" : [
     "click",
@@ -52840,7 +52893,7 @@ module.exports={
   ]
 }
 
-},{}],387:[function(require,module,exports){
+},{}],388:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -53003,15 +53056,15 @@ BindingsUI.prototype.removeBindings = function(binding) {
 };
 
 
-},{"dat-gui":388,"vkey":391}],388:[function(require,module,exports){
-arguments[4][381][0].apply(exports,arguments)
-},{"./vendor/dat.color":389,"./vendor/dat.gui":390,"dup":381}],389:[function(require,module,exports){
+},{"dat-gui":389,"vkey":392}],389:[function(require,module,exports){
 arguments[4][382][0].apply(exports,arguments)
-},{"dup":382}],390:[function(require,module,exports){
+},{"./vendor/dat.color":390,"./vendor/dat.gui":391,"dup":382}],390:[function(require,module,exports){
 arguments[4][383][0].apply(exports,arguments)
 },{"dup":383}],391:[function(require,module,exports){
-arguments[4][66][0].apply(exports,arguments)
-},{"dup":66}],392:[function(require,module,exports){
+arguments[4][384][0].apply(exports,arguments)
+},{"dup":384}],392:[function(require,module,exports){
+arguments[4][67][0].apply(exports,arguments)
+},{"dup":67}],393:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var APDialog, APPlugin, ModalDialog, createSelector,
@@ -53122,7 +53175,7 @@ arguments[4][66][0].apply(exports,arguments)
 
 }).call(this);
 
-},{"artpacks-ui":393,"voxel-modal-dialog":394}],393:[function(require,module,exports){
+},{"artpacks-ui":394,"voxel-modal-dialog":395}],394:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var APSelector;
@@ -53270,7 +53323,7 @@ arguments[4][66][0].apply(exports,arguments)
 
 }).call(this);
 
-},{}],394:[function(require,module,exports){
+},{}],395:[function(require,module,exports){
 // Generated by CoffeeScript 1.7.0
 (function() {
   var Modal, ModalDialog,
@@ -53322,7 +53375,7 @@ arguments[4][66][0].apply(exports,arguments)
 
 }).call(this);
 
-},{"voxel-modal":395}],395:[function(require,module,exports){
+},{"voxel-modal":396}],396:[function(require,module,exports){
 /*jshint globalstrict: true*/
 'use strict';
 
@@ -53431,7 +53484,7 @@ Modal.prototype.toggle = function() {
     this.open();
 };
 
-},{"ever":384}],396:[function(require,module,exports){
+},{"ever":385}],397:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -53502,7 +53555,7 @@ BlockData.prototype.clear = function(x, y, z) {
   delete blockdataMap[this.coordsToKey(x, y,z)];
 };
 
-},{}],397:[function(require,module,exports){
+},{}],398:[function(require,module,exports){
 var BucketPlugin, ItemPile, ucfirst;
 
 ItemPile = require('itempile');
@@ -53633,7 +53686,7 @@ BucketPlugin = (function() {
 })();
 
 
-},{"itempile":398,"ucfirst":403}],398:[function(require,module,exports){
+},{"itempile":399,"ucfirst":404}],399:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -53891,7 +53944,7 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":399,"deep-equal":400}],399:[function(require,module,exports){
+},{"clone":400,"deep-equal":401}],400:[function(require,module,exports){
 (function (Buffer){
 var clone = (function() {
 'use strict';
@@ -54055,7 +54108,7 @@ if (typeof module === 'object' && module.exports) {
 }
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17}],400:[function(require,module,exports){
+},{"buffer":17}],401:[function(require,module,exports){
 var pSlice = Array.prototype.slice;
 var objectKeys = require('./lib/keys.js');
 var isArguments = require('./lib/is_arguments.js');
@@ -54151,7 +54204,7 @@ function objEquiv(a, b, opts) {
   return typeof a === typeof b;
 }
 
-},{"./lib/is_arguments.js":401,"./lib/keys.js":402}],401:[function(require,module,exports){
+},{"./lib/is_arguments.js":402,"./lib/keys.js":403}],402:[function(require,module,exports){
 var supportsArgumentsClass = (function(){
   return Object.prototype.toString.call(arguments)
 })() == '[object Arguments]';
@@ -54173,7 +54226,7 @@ function unsupported(object){
     false;
 };
 
-},{}],402:[function(require,module,exports){
+},{}],403:[function(require,module,exports){
 exports = module.exports = typeof Object.keys === 'function'
   ? Object.keys : shim;
 
@@ -54184,7 +54237,7 @@ function shim (obj) {
   return keys;
 }
 
-},{}],403:[function(require,module,exports){
+},{}],404:[function(require,module,exports){
 'use strict';
 
 module.exports = function(s) {
@@ -54192,7 +54245,7 @@ module.exports = function(s) {
 };
 
 
-},{}],404:[function(require,module,exports){
+},{}],405:[function(require,module,exports){
 
 var Inventory = require('inventory');
 
@@ -54208,7 +54261,7 @@ function Carry(game, opts) {
   this.inventory = new Inventory(opts.inventoryWidth, opts.inventoryRows);
 }
 
-},{"inventory":405}],405:[function(require,module,exports){
+},{"inventory":406}],406:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -54368,13 +54421,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":406,"events":21,"itempile":409}],406:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":407,"./lib/keys.js":408,"dup":400}],407:[function(require,module,exports){
+},{"deep-equal":407,"events":21,"itempile":410}],407:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],408:[function(require,module,exports){
+},{"./lib/is_arguments.js":408,"./lib/keys.js":409,"dup":401}],408:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],409:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],410:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -54632,9 +54685,9 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":410,"deep-equal":406}],410:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],411:[function(require,module,exports){
+},{"clone":411,"deep-equal":407}],411:[function(require,module,exports){
+arguments[4][400][0].apply(exports,arguments)
+},{"buffer":17,"dup":400}],412:[function(require,module,exports){
 var Chest, ChestDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -54789,7 +54842,7 @@ ChestDialog = (function(superClass) {
 })(InventoryDialog);
 
 
-},{"inventory":418,"inventory-window":412,"itempile":422,"voxel-inventory-dialog":427}],412:[function(require,module,exports){
+},{"inventory":419,"inventory-window":413,"itempile":423,"voxel-inventory-dialog":428}],413:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -55235,7 +55288,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":413,"events":21,"ever":384,"ftooltip":415,"touchup":417}],413:[function(require,module,exports){
+},{"cube-icon":414,"events":21,"ever":385,"ftooltip":416,"touchup":418}],414:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -55302,9 +55355,9 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":414}],414:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],415:[function(require,module,exports){
+},{"cube-side-array":415}],415:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],416:[function(require,module,exports){
 (function (global){
 'use strict';
 
@@ -55409,11 +55462,11 @@ Tooltip.prototype.hide = function() {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"toarray":416}],416:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],417:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],418:[function(require,module,exports){
+},{"toarray":417}],417:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],418:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],419:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -55573,13 +55626,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":419,"events":21,"itempile":422}],419:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":420,"./lib/keys.js":421,"dup":400}],420:[function(require,module,exports){
+},{"deep-equal":420,"events":21,"itempile":423}],420:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],421:[function(require,module,exports){
+},{"./lib/is_arguments.js":421,"./lib/keys.js":422,"dup":401}],421:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],422:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],423:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -55837,15 +55890,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":423,"deep-equal":424}],423:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],424:[function(require,module,exports){
+},{"clone":424,"deep-equal":425}],424:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":425,"./lib/keys.js":426,"dup":400}],425:[function(require,module,exports){
+},{"buffer":17,"dup":400}],425:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],426:[function(require,module,exports){
+},{"./lib/is_arguments.js":426,"./lib/keys.js":427,"dup":401}],426:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],427:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],428:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -55921,11 +55974,11 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 })(ModalDialog);
 
 
-},{"inventory":418,"inventory-window":412,"itempile":422,"voxel-modal-dialog":428}],428:[function(require,module,exports){
-arguments[4][394][0].apply(exports,arguments)
-},{"dup":394,"voxel-modal":429}],429:[function(require,module,exports){
+},{"inventory":419,"inventory-window":413,"itempile":423,"voxel-modal-dialog":429}],429:[function(require,module,exports){
 arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],430:[function(require,module,exports){
+},{"dup":395,"voxel-modal":430}],430:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],431:[function(require,module,exports){
 'use strict';
 
 var createBuffer = require('gl-buffer');
@@ -56048,7 +56101,7 @@ BorderPlugin.prototype.createBorderMesh = function(mesh, gl, _vert_data, voxels)
   mesh.vertexArrayObjects.chunkborder = borderVAO
 };
 
-},{"gl-buffer":431,"gl-vao":446,"simple-3d-shader":447}],431:[function(require,module,exports){
+},{"gl-buffer":432,"gl-vao":447,"simple-3d-shader":448}],432:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -56202,9 +56255,9 @@ function createBuffer(gl, data, type, usage) {
 
 module.exports = createBuffer
 
-},{"ndarray":437,"ndarray-ops":432,"typedarray-pool":442}],432:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":433,"dup":160}],433:[function(require,module,exports){
+},{"ndarray":438,"ndarray-ops":433,"typedarray-pool":443}],433:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":434,"dup":161}],434:[function(require,module,exports){
 "use strict"
 
 var createThunk = require("./lib/thunk.js")
@@ -56315,7 +56368,7 @@ function compileCwise(user_args) {
 
 module.exports = compileCwise
 
-},{"./lib/thunk.js":435}],434:[function(require,module,exports){
+},{"./lib/thunk.js":436}],435:[function(require,module,exports){
 "use strict"
 
 var uniq = require("uniq")
@@ -56671,7 +56724,7 @@ function generateCWiseOp(proc, typesig) {
 }
 module.exports = generateCWiseOp
 
-},{"uniq":436}],435:[function(require,module,exports){
+},{"uniq":437}],436:[function(require,module,exports){
 "use strict"
 
 // The function below is called when constructing a cwise function object, and does the following:
@@ -56759,9 +56812,9 @@ function createThunk(proc) {
 
 module.exports = createThunk
 
-},{"./compile.js":434}],436:[function(require,module,exports){
-arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],437:[function(require,module,exports){
+},{"./compile.js":435}],437:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],438:[function(require,module,exports){
 var iota = require("iota-array")
 var isBuffer = require("is-buffer")
 
@@ -57106,15 +57159,15 @@ function wrappedNDArrayCtor(data, shape, stride, offset) {
 
 module.exports = wrappedNDArrayCtor
 
-},{"iota-array":438,"is-buffer":439}],438:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],439:[function(require,module,exports){
+},{"iota-array":439,"is-buffer":440}],439:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],440:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],440:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],441:[function(require,module,exports){
+},{"dup":23}],441:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
 },{"dup":156}],442:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],443:[function(require,module,exports){
 (function (global,Buffer){
 'use strict'
 
@@ -57331,9 +57384,9 @@ exports.clearCache = function clearCache() {
   }
 }
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
-},{"bit-twiddle":440,"buffer":17,"dup":441}],443:[function(require,module,exports){
-arguments[4][147][0].apply(exports,arguments)
-},{"dup":147}],444:[function(require,module,exports){
+},{"bit-twiddle":441,"buffer":17,"dup":442}],444:[function(require,module,exports){
+arguments[4][148][0].apply(exports,arguments)
+},{"dup":148}],445:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -57373,7 +57426,7 @@ function createVAOEmulated(gl) {
 }
 
 module.exports = createVAOEmulated
-},{"./do-bind.js":443}],445:[function(require,module,exports){
+},{"./do-bind.js":444}],446:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -57461,7 +57514,7 @@ function createVAONative(gl, ext) {
 }
 
 module.exports = createVAONative
-},{"./do-bind.js":443}],446:[function(require,module,exports){
+},{"./do-bind.js":444}],447:[function(require,module,exports){
 "use strict"
 
 var createVAONative = require("./lib/vao-native.js")
@@ -57481,7 +57534,7 @@ function createVAO(gl, attributes, elements, elementsType) {
 
 module.exports = createVAO
 
-},{"./lib/vao-emulated.js":444,"./lib/vao-native.js":445}],447:[function(require,module,exports){
+},{"./lib/vao-emulated.js":445,"./lib/vao-native.js":446}],448:[function(require,module,exports){
 "use strict"
 
 var createShader = require("gl-shader")
@@ -57505,7 +57558,7 @@ void main() {\
 }")
 }
 
-},{"gl-shader":448}],448:[function(require,module,exports){
+},{"gl-shader":449}],449:[function(require,module,exports){
 "use strict"
 
 var glslExports = require("glsl-exports")
@@ -57731,7 +57784,7 @@ function makeShader(gl, vert_source, frag_source) {
 
 module.exports = makeShader
 
-},{"glsl-exports":449,"uniq":460}],449:[function(require,module,exports){
+},{"glsl-exports":450,"uniq":461}],450:[function(require,module,exports){
 "use strict"
 
 var glslTokenizer = require("glsl-tokenizer")
@@ -57792,10 +57845,10 @@ function glslGlobals(src) {
 }
 
 module.exports = glslGlobals
-},{"glsl-parser":450,"glsl-tokenizer":455,"through":459}],450:[function(require,module,exports){
+},{"glsl-parser":451,"glsl-tokenizer":456,"through":460}],451:[function(require,module,exports){
 module.exports = require('./lib/index')
 
-},{"./lib/index":452}],451:[function(require,module,exports){
+},{"./lib/index":453}],452:[function(require,module,exports){
 var state
   , token
   , tokens
@@ -58062,7 +58115,7 @@ function fail(message) {
   return function() { return state.unexpected(message) }
 }
 
-},{}],452:[function(require,module,exports){
+},{}],453:[function(require,module,exports){
 module.exports = parser
 
 var through = require('through')
@@ -59027,7 +59080,7 @@ function is_precision(token) {
          token.data === 'lowp'
 }
 
-},{"./expr":451,"./scope":453,"through":454}],453:[function(require,module,exports){
+},{"./expr":452,"./scope":454,"through":455}],454:[function(require,module,exports){
 module.exports = scope
 
 function scope(state) {
@@ -59067,7 +59120,7 @@ proto.find = function(name, fail) {
   return null
 }
 
-},{}],454:[function(require,module,exports){
+},{}],455:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -59169,7 +59222,7 @@ function through (write, end) {
 
 
 }).call(this,require('_process'))
-},{"_process":26,"stream":40}],455:[function(require,module,exports){
+},{"_process":26,"stream":40}],456:[function(require,module,exports){
 module.exports = tokenize
 
 var through = require('through')
@@ -59503,7 +59556,7 @@ function tokenize() {
   }
 }
 
-},{"./lib/builtins":456,"./lib/literals":457,"./lib/operators":458,"through":459}],456:[function(require,module,exports){
+},{"./lib/builtins":457,"./lib/literals":458,"./lib/operators":459,"through":460}],457:[function(require,module,exports){
 module.exports = [
     'gl_Position'
   , 'gl_PointSize'
@@ -59649,9 +59702,9 @@ module.exports = [
   , 'textureCubeLod'
 ]
 
-},{}],457:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],458:[function(require,module,exports){
+},{}],458:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"dup":372}],459:[function(require,module,exports){
 module.exports = [
     '<<='
   , '>>='
@@ -59699,7 +59752,7 @@ module.exports = [
   , '}'
 ]
 
-},{}],459:[function(require,module,exports){
+},{}],460:[function(require,module,exports){
 (function (process){
 var Stream = require('stream')
 
@@ -59811,9 +59864,9 @@ function through (write, end, opts) {
 
 
 }).call(this,require('_process'))
-},{"_process":26,"stream":40}],460:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],461:[function(require,module,exports){
+},{"_process":26,"stream":40}],461:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],462:[function(require,module,exports){
 var CommandsPlugin, ItemPile, shellwords,
   slice = [].slice,
   indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
@@ -60065,7 +60118,7 @@ CommandsPlugin = (function() {
 })();
 
 
-},{"itempile":462,"shellwords":467}],462:[function(require,module,exports){
+},{"itempile":463,"shellwords":468}],463:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -60323,15 +60376,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":463,"deep-equal":464}],463:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],464:[function(require,module,exports){
+},{"clone":464,"deep-equal":465}],464:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":465,"./lib/keys.js":466,"dup":400}],465:[function(require,module,exports){
+},{"buffer":17,"dup":400}],465:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],466:[function(require,module,exports){
+},{"./lib/is_arguments.js":466,"./lib/keys.js":467,"dup":401}],466:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],467:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],468:[function(require,module,exports){
 // Generated by CoffeeScript 1.3.3
 (function() {
   var scan;
@@ -60390,7 +60443,7 @@ arguments[4][402][0].apply(exports,arguments)
 
 }).call(this);
 
-},{}],468:[function(require,module,exports){
+},{}],469:[function(require,module,exports){
 var Console, ConsoleWidget, Modal,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -60477,7 +60530,7 @@ Console = (function(superClass) {
 })(Modal);
 
 
-},{"console-widget":469,"voxel-modal":471}],469:[function(require,module,exports){
+},{"console-widget":470,"voxel-modal":472}],470:[function(require,module,exports){
 var ConsoleWidget, EventEmitter, MAX_LINES, vkey,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
@@ -60701,11 +60754,11 @@ module.exports = function(opts) {
   return new ConsoleWidget(opts);
 };
 
-},{"events":21,"vkey":470}],470:[function(require,module,exports){
-arguments[4][66][0].apply(exports,arguments)
-},{"dup":66}],471:[function(require,module,exports){
-arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],472:[function(require,module,exports){
+},{"events":21,"vkey":471}],471:[function(require,module,exports){
+arguments[4][67][0].apply(exports,arguments)
+},{"dup":67}],472:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],473:[function(require,module,exports){
 'use strict';
 
 var createBuffer = require('gl-buffer');
@@ -60963,33 +61016,31 @@ DecalsPlugin.prototype.render = function() {
   }
 };
 
-},{"gl-buffer":473,"gl-mat4":494,"gl-shader":509,"gl-vao":536}],473:[function(require,module,exports){
-arguments[4][431][0].apply(exports,arguments)
-},{"dup":431,"ndarray":479,"ndarray-ops":474,"typedarray-pool":484}],474:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":475,"dup":160}],475:[function(require,module,exports){
-arguments[4][433][0].apply(exports,arguments)
-},{"./lib/thunk.js":477,"dup":433}],476:[function(require,module,exports){
+},{"gl-buffer":474,"gl-mat4":495,"gl-shader":510,"gl-vao":537}],474:[function(require,module,exports){
+arguments[4][432][0].apply(exports,arguments)
+},{"dup":432,"ndarray":480,"ndarray-ops":475,"typedarray-pool":485}],475:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":476,"dup":161}],476:[function(require,module,exports){
 arguments[4][434][0].apply(exports,arguments)
-},{"dup":434,"uniq":478}],477:[function(require,module,exports){
+},{"./lib/thunk.js":478,"dup":434}],477:[function(require,module,exports){
 arguments[4][435][0].apply(exports,arguments)
-},{"./compile.js":476,"dup":435}],478:[function(require,module,exports){
+},{"dup":435,"uniq":479}],478:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"./compile.js":477,"dup":436}],479:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],480:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":481,"is-buffer":482}],481:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],479:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437,"iota-array":480,"is-buffer":481}],480:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],481:[function(require,module,exports){
+},{"dup":65}],482:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],482:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],483:[function(require,module,exports){
+},{"dup":23}],483:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
 },{"dup":156}],484:[function(require,module,exports){
-arguments[4][442][0].apply(exports,arguments)
-},{"bit-twiddle":482,"buffer":17,"dup":442}],485:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],486:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],485:[function(require,module,exports){
+arguments[4][443][0].apply(exports,arguments)
+},{"bit-twiddle":483,"buffer":17,"dup":443}],486:[function(require,module,exports){
 arguments[4][124][0].apply(exports,arguments)
 },{"dup":124}],487:[function(require,module,exports){
 arguments[4][125][0].apply(exports,arguments)
@@ -61007,13 +61058,13 @@ arguments[4][130][0].apply(exports,arguments)
 arguments[4][131][0].apply(exports,arguments)
 },{"dup":131}],494:[function(require,module,exports){
 arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":485,"./clone":486,"./copy":487,"./create":488,"./determinant":489,"./fromQuat":490,"./fromRotationTranslation":491,"./frustum":492,"./identity":493,"./invert":495,"./lookAt":496,"./multiply":497,"./ortho":498,"./perspective":499,"./perspectiveFromFieldOfView":500,"./rotate":501,"./rotateX":502,"./rotateY":503,"./rotateZ":504,"./scale":505,"./str":506,"./translate":507,"./transpose":508,"dup":132}],495:[function(require,module,exports){
+},{"dup":132}],495:[function(require,module,exports){
 arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],496:[function(require,module,exports){
+},{"./adjoint":486,"./clone":487,"./copy":488,"./create":489,"./determinant":490,"./fromQuat":491,"./fromRotationTranslation":492,"./frustum":493,"./identity":494,"./invert":496,"./lookAt":497,"./multiply":498,"./ortho":499,"./perspective":500,"./perspectiveFromFieldOfView":501,"./rotate":502,"./rotateX":503,"./rotateY":504,"./rotateZ":505,"./scale":506,"./str":507,"./translate":508,"./transpose":509,"dup":133}],496:[function(require,module,exports){
 arguments[4][134][0].apply(exports,arguments)
-},{"./identity":493,"dup":134}],497:[function(require,module,exports){
+},{"dup":134}],497:[function(require,module,exports){
 arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],498:[function(require,module,exports){
+},{"./identity":494,"dup":135}],498:[function(require,module,exports){
 arguments[4][136][0].apply(exports,arguments)
 },{"dup":136}],499:[function(require,module,exports){
 arguments[4][137][0].apply(exports,arguments)
@@ -61036,62 +61087,64 @@ arguments[4][145][0].apply(exports,arguments)
 },{"dup":145}],508:[function(require,module,exports){
 arguments[4][146][0].apply(exports,arguments)
 },{"dup":146}],509:[function(require,module,exports){
-arguments[4][203][0].apply(exports,arguments)
-},{"./lib/GLError":510,"./lib/create-attributes":511,"./lib/create-uniforms":512,"./lib/reflect":513,"./lib/runtime-reflect":514,"./lib/shader-cache":515,"dup":203}],510:[function(require,module,exports){
-arguments[4][204][0].apply(exports,arguments)
-},{"dup":204}],511:[function(require,module,exports){
-arguments[4][205][0].apply(exports,arguments)
-},{"./GLError":510,"dup":205}],512:[function(require,module,exports){
-arguments[4][206][0].apply(exports,arguments)
-},{"./GLError":510,"./reflect":513,"dup":206}],513:[function(require,module,exports){
-arguments[4][207][0].apply(exports,arguments)
-},{"dup":207}],514:[function(require,module,exports){
-arguments[4][208][0].apply(exports,arguments)
-},{"dup":208}],515:[function(require,module,exports){
-arguments[4][209][0].apply(exports,arguments)
-},{"./GLError":510,"dup":209,"gl-format-compiler-error":516,"weakmap-shim":532}],516:[function(require,module,exports){
-arguments[4][210][0].apply(exports,arguments)
-},{"add-line-numbers":517,"dup":210,"gl-constants/lookup":521,"glsl-shader-name":522,"sprintf-js":529}],517:[function(require,module,exports){
-arguments[4][211][0].apply(exports,arguments)
-},{"dup":211,"pad-left":518}],518:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212,"repeat-string":519}],519:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],520:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],521:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"./1.0/numbers":520,"dup":215}],522:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"atob-lite":523,"dup":216,"glsl-tokenizer":528}],523:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],524:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"./lib/builtins":525,"./lib/literals":526,"./lib/operators":527,"dup":218}],525:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],526:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],527:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"dup":221}],528:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"./index":524,"dup":222}],529:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"dup":223}],530:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"./hidden-store.js":531,"dup":224}],531:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],532:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"./create-store.js":530,"dup":226}],533:[function(require,module,exports){
 arguments[4][147][0].apply(exports,arguments)
-},{"dup":147}],534:[function(require,module,exports){
-arguments[4][444][0].apply(exports,arguments)
-},{"./do-bind.js":533,"dup":444}],535:[function(require,module,exports){
+},{"dup":147}],510:[function(require,module,exports){
+arguments[4][355][0].apply(exports,arguments)
+},{"./lib/GLError":511,"./lib/create-attributes":512,"./lib/create-uniforms":513,"./lib/reflect":514,"./lib/runtime-reflect":515,"./lib/shader-cache":516,"dup":355}],511:[function(require,module,exports){
+arguments[4][356][0].apply(exports,arguments)
+},{"dup":356}],512:[function(require,module,exports){
+arguments[4][357][0].apply(exports,arguments)
+},{"./GLError":511,"dup":357}],513:[function(require,module,exports){
+arguments[4][358][0].apply(exports,arguments)
+},{"./GLError":511,"./reflect":514,"dup":358}],514:[function(require,module,exports){
+arguments[4][359][0].apply(exports,arguments)
+},{"dup":359}],515:[function(require,module,exports){
+arguments[4][360][0].apply(exports,arguments)
+},{"dup":360}],516:[function(require,module,exports){
+arguments[4][361][0].apply(exports,arguments)
+},{"./GLError":511,"dup":361,"gl-format-compiler-error":517,"weakmap-shim":533}],517:[function(require,module,exports){
+arguments[4][362][0].apply(exports,arguments)
+},{"add-line-numbers":518,"dup":362,"gl-constants/lookup":522,"glsl-shader-name":523,"sprintf-js":530}],518:[function(require,module,exports){
+arguments[4][363][0].apply(exports,arguments)
+},{"dup":363,"pad-left":519}],519:[function(require,module,exports){
+arguments[4][364][0].apply(exports,arguments)
+},{"dup":364,"repeat-string":520}],520:[function(require,module,exports){
+arguments[4][365][0].apply(exports,arguments)
+},{"dup":365}],521:[function(require,module,exports){
+arguments[4][366][0].apply(exports,arguments)
+},{"dup":366}],522:[function(require,module,exports){
+arguments[4][367][0].apply(exports,arguments)
+},{"./1.0/numbers":521,"dup":367}],523:[function(require,module,exports){
+arguments[4][368][0].apply(exports,arguments)
+},{"atob-lite":524,"dup":368,"glsl-tokenizer":529}],524:[function(require,module,exports){
+arguments[4][369][0].apply(exports,arguments)
+},{"dup":369}],525:[function(require,module,exports){
+arguments[4][370][0].apply(exports,arguments)
+},{"./lib/builtins":526,"./lib/literals":527,"./lib/operators":528,"dup":370}],526:[function(require,module,exports){
+arguments[4][371][0].apply(exports,arguments)
+},{"dup":371}],527:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"dup":372}],528:[function(require,module,exports){
+arguments[4][373][0].apply(exports,arguments)
+},{"dup":373}],529:[function(require,module,exports){
+arguments[4][374][0].apply(exports,arguments)
+},{"./index":525,"dup":374}],530:[function(require,module,exports){
+arguments[4][375][0].apply(exports,arguments)
+},{"dup":375}],531:[function(require,module,exports){
+arguments[4][376][0].apply(exports,arguments)
+},{"./hidden-store.js":532,"dup":376}],532:[function(require,module,exports){
+arguments[4][377][0].apply(exports,arguments)
+},{"dup":377}],533:[function(require,module,exports){
+arguments[4][378][0].apply(exports,arguments)
+},{"./create-store.js":531,"dup":378}],534:[function(require,module,exports){
+arguments[4][148][0].apply(exports,arguments)
+},{"dup":148}],535:[function(require,module,exports){
 arguments[4][445][0].apply(exports,arguments)
-},{"./do-bind.js":533,"dup":445}],536:[function(require,module,exports){
+},{"./do-bind.js":534,"dup":445}],536:[function(require,module,exports){
 arguments[4][446][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":534,"./lib/vao-native.js":535,"dup":446}],537:[function(require,module,exports){
+},{"./do-bind.js":534,"dup":446}],537:[function(require,module,exports){
+arguments[4][447][0].apply(exports,arguments)
+},{"./lib/vao-emulated.js":535,"./lib/vao-native.js":536,"dup":447}],538:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -61171,9 +61224,9 @@ DecorativePlugin.prototype.disable = function() {
 };
 
 
-},{"ucfirst":538}],538:[function(require,module,exports){
-arguments[4][403][0].apply(exports,arguments)
-},{"dup":403}],539:[function(require,module,exports){
+},{"ucfirst":539}],539:[function(require,module,exports){
+arguments[4][404][0].apply(exports,arguments)
+},{"dup":404}],540:[function(require,module,exports){
 var DropPlugin, coffee_script, ever, playerdat;
 
 ever = require('ever');
@@ -61357,7 +61410,7 @@ DropPlugin = (function() {
 })();
 
 
-},{"coffee-script":540,"ever":384,"playerdat":560,"string.prototype.endswith":561}],540:[function(require,module,exports){
+},{"coffee-script":541,"ever":385,"playerdat":561,"string.prototype.endswith":562}],541:[function(require,module,exports){
 (function (process,global){
 // Generated by CoffeeScript 1.10.0
 (function() {
@@ -61737,7 +61790,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./helpers":541,"./lexer":542,"./nodes":543,"./parser":544,"./register":545,"./sourcemap":548,"_process":26,"fs":1,"module":1,"path":25,"vm":44}],541:[function(require,module,exports){
+},{"./helpers":542,"./lexer":543,"./nodes":544,"./parser":545,"./register":546,"./sourcemap":549,"_process":26,"fs":1,"module":1,"path":25,"vm":44}],542:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.10.0
 (function() {
@@ -61989,7 +62042,7 @@ DropPlugin = (function() {
 }).call(this);
 
 }).call(this,require('_process'))
-},{"_process":26}],542:[function(require,module,exports){
+},{"_process":26}],543:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var BOM, BOOL, CALLABLE, CODE, COFFEE_ALIASES, COFFEE_ALIAS_MAP, COFFEE_KEYWORDS, COMMENT, COMPARE, COMPOUND_ASSIGN, HERECOMMENT_ILLEGAL, HEREDOC_DOUBLE, HEREDOC_INDENT, HEREDOC_SINGLE, HEREGEX, HEREGEX_OMIT, IDENTIFIER, INDENTABLE_CLOSERS, INDEXABLE, INVALID_ESCAPE, INVERSES, JSTOKEN, JS_FORBIDDEN, JS_KEYWORDS, LEADING_BLANK_LINE, LINE_BREAK, LINE_CONTINUER, LOGIC, Lexer, MATH, MULTI_DENT, NOT_REGEX, NUMBER, OPERATOR, POSSIBLY_DIVISION, REGEX, REGEX_FLAGS, REGEX_ILLEGAL, RELATION, RESERVED, Rewriter, SHIFT, SIMPLE_STRING_OMIT, STRICT_PROSCRIBED, STRING_DOUBLE, STRING_OMIT, STRING_SINGLE, STRING_START, TRAILING_BLANK_LINE, TRAILING_SPACES, UNARY, UNARY_MATH, VALID_FLAGS, WHITESPACE, compact, count, invertLiterate, key, locationDataToString, ref, ref1, repeat, starts, throwSyntaxError,
@@ -63002,7 +63055,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":541,"./rewriter":546}],543:[function(require,module,exports){
+},{"./helpers":542,"./rewriter":547}],544:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var Access, Arr, Assign, Base, Block, Call, Class, Code, CodeFragment, Comment, Existence, Expansion, Extends, For, HEXNUM, IDENTIFIER, IS_REGEX, IS_STRING, If, In, Index, LEVEL_ACCESS, LEVEL_COND, LEVEL_LIST, LEVEL_OP, LEVEL_PAREN, LEVEL_TOP, Literal, NEGATE, NO, NUMBER, Obj, Op, Param, Parens, RESERVED, Range, Return, SIMPLENUM, STRICT_PROSCRIBED, Scope, Slice, Splat, Switch, TAB, THIS, Throw, Try, UTILITIES, Value, While, YES, addLocationDataFn, compact, del, ends, extend, flatten, fragmentsToText, isComplexOrAssignable, isLiteralArguments, isLiteralThis, locationDataToString, merge, multident, parseNum, ref1, ref2, some, starts, throwSyntaxError, unfoldSoak, utility,
@@ -66311,7 +66364,7 @@ DropPlugin = (function() {
 
 }).call(this);
 
-},{"./helpers":541,"./lexer":542,"./scope":547}],544:[function(require,module,exports){
+},{"./helpers":542,"./lexer":543,"./scope":548}],545:[function(require,module,exports){
 (function (process){
 /* parser generated by jison 0.4.15 */
 /*
@@ -67049,7 +67102,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 }
 }
 }).call(this,require('_process'))
-},{"_process":26,"fs":1,"path":25}],545:[function(require,module,exports){
+},{"_process":26,"fs":1,"path":25}],546:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var CoffeeScript, Module, binary, child_process, ext, findExtension, fork, helpers, i, len, loadFile, path, ref;
@@ -67117,7 +67170,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{"./coffee-script":540,"./helpers":541,"child_process":1,"module":1,"path":25}],546:[function(require,module,exports){
+},{"./coffee-script":541,"./helpers":542,"child_process":1,"module":1,"path":25}],547:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var BALANCED_PAIRS, CALL_CLOSERS, EXPRESSION_CLOSE, EXPRESSION_END, EXPRESSION_START, IMPLICIT_CALL, IMPLICIT_END, IMPLICIT_FUNC, IMPLICIT_UNSPACED_CALL, INVERSES, LINEBREAKS, SINGLE_CLOSERS, SINGLE_LINERS, generate, k, left, len, ref, rite,
@@ -67623,7 +67676,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],547:[function(require,module,exports){
+},{}],548:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var Scope,
@@ -67780,7 +67833,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],548:[function(require,module,exports){
+},{}],549:[function(require,module,exports){
 // Generated by CoffeeScript 1.10.0
 (function() {
   var LineMap, SourceMap;
@@ -67943,7 +67996,7 @@ if (typeof module !== 'undefined' && require.main === module) {
 
 }).call(this);
 
-},{}],549:[function(require,module,exports){
+},{}],550:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -68103,13 +68156,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":550,"events":21,"itempile":553}],550:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":551,"./lib/keys.js":552,"dup":400}],551:[function(require,module,exports){
+},{"deep-equal":551,"events":21,"itempile":554}],551:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],552:[function(require,module,exports){
+},{"./lib/is_arguments.js":552,"./lib/keys.js":553,"dup":401}],552:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],553:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],554:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -68367,15 +68420,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":554,"deep-equal":555}],554:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],555:[function(require,module,exports){
+},{"clone":555,"deep-equal":556}],555:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":556,"./lib/keys.js":557,"dup":400}],556:[function(require,module,exports){
+},{"buffer":17,"dup":400}],556:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],557:[function(require,module,exports){
+},{"./lib/is_arguments.js":557,"./lib/keys.js":558,"dup":401}],557:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
 },{"dup":402}],558:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],559:[function(require,module,exports){
 (function (Buffer){
 /*
 	NBT.js - a JavaScript parser for NBT archives
@@ -68545,7 +68598,7 @@ arguments[4][402][0].apply(exports,arguments)
 }).apply(exports || (nbt = {}));
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"node-int64":559,"zlib":16}],559:[function(require,module,exports){
+},{"buffer":17,"node-int64":560,"zlib":16}],560:[function(require,module,exports){
 (function (Buffer){
 //     Int64.js
 //
@@ -68783,7 +68836,7 @@ Int64.prototype = {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17}],560:[function(require,module,exports){
+},{"buffer":17}],561:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -68897,7 +68950,7 @@ module.exports = {
 
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"inventory":549,"itempile":553,"nbt":558}],561:[function(require,module,exports){
+},{"buffer":17,"inventory":550,"itempile":554,"nbt":559}],562:[function(require,module,exports){
 /*! http://mths.be/endswith v0.1.0 by @mathias */
 if (!String.prototype.endsWith) {
 	(function() {
@@ -68950,7 +69003,80 @@ if (!String.prototype.endsWith) {
 	}());
 }
 
-},{}],562:[function(require,module,exports){
+},{}],563:[function(require,module,exports){
+'use strict';
+
+var ndarray = require('ndarray');
+
+module.exports = function(game, opts) {
+  return new Flatland(game, opts);
+};
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-registry']
+};
+
+function Flatland(game, opts) {
+  this.game = game;
+
+  this.registry = game.plugins.get('voxel-registry');
+  if (!this.registry) throw new Error('voxel-flatland requires voxel-registry plugin');
+
+  this.block = opts.block;
+  if (!this.block) throw new Error('voxel-flatland requires block option');
+
+  this.enable();
+}
+
+Flatland.prototype.enable = function() {
+  this.game.voxels.on('missingChunk', this.onMissingChunk = this.missingChunk.bind(this));
+};
+
+Flatland.prototype.disable = function() {
+  this.game.voxels.removeListener('missingChunk', this.onMissingChunk);
+};
+
+
+Flatland.prototype.missingChunk = function(position) {
+  console.log('missingChunk',position);
+
+  if (position[1] > 0) return; // everything above y=0 is air
+
+  var blockIndex = this.registry.getBlockIndex(this.block);
+  if (!blockIndex) {
+    throw new Error('voxel-flatland unable to find block of name: '+this.block);
+  };
+
+  var width = this.game.chunkSize;
+  var pad = this.game.chunkPad;
+  var arrayType = this.game.arrayType;
+
+  var buffer = new ArrayBuffer((width+pad) * (width+pad) * (width+pad) * arrayType.BYTES_PER_ELEMENT);
+  var voxelsPadded = ndarray(new arrayType(buffer), [width+pad, width+pad, width+pad]);
+  var h = pad >> 1;
+  var voxels = voxelsPadded.lo(h,h,h).hi(width,width,width);
+
+  for (var x = 0; x < this.game.chunkSize; ++x) {
+    for (var z = 0; z < this.game.chunkSize; ++z) {
+      for (var y = 0; y < this.game.chunkSize; ++y) {
+        voxels.set(x,y,z, blockIndex);
+      }
+    }
+  }
+
+  var chunk = voxelsPadded;
+  chunk.position = position;
+
+  console.log('about to showChunk',chunk);
+  this.game.showChunk(chunk);
+};
+
+},{"ndarray":564}],564:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":565,"is-buffer":566}],565:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],566:[function(require,module,exports){
+arguments[4][23][0].apply(exports,arguments)
+},{"dup":23}],567:[function(require,module,exports){
 
 module.exports = function(game, opts) {
   return new Fly(game, opts)
@@ -69046,7 +69172,7 @@ Fly.prototype.toggleFlying = function() {
   }
 }
 
-},{}],563:[function(require,module,exports){
+},{}],568:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -69125,9 +69251,9 @@ FluidPlugin.prototype.getFluidNames = function() {
   return Object.keys(this.fluids);
 };
 
-},{"ucfirst":564}],564:[function(require,module,exports){
-arguments[4][403][0].apply(exports,arguments)
-},{"dup":403}],565:[function(require,module,exports){
+},{"ucfirst":569}],569:[function(require,module,exports){
+arguments[4][404][0].apply(exports,arguments)
+},{"dup":404}],570:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -69194,7 +69320,7 @@ FoodPlugin.prototype.eat = function(amount, item) {
   }
 };
 
-},{}],566:[function(require,module,exports){
+},{}],571:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -69329,7 +69455,7 @@ FullscreenPlugin.prototype.click = function() {
   }
 };
 
-},{}],567:[function(require,module,exports){
+},{}],572:[function(require,module,exports){
 var Furnace, FurnaceDialog, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -69619,7 +69745,7 @@ FurnaceDialog = (function(superClass) {
 })(InventoryDialog);
 
 
-},{"inventory":574,"inventory-window":568,"itempile":578,"voxel-inventory-dialog":583}],568:[function(require,module,exports){
+},{"inventory":579,"inventory-window":573,"itempile":583,"voxel-inventory-dialog":588}],573:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -70065,7 +70191,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":569,"events":21,"ever":384,"ftooltip":571,"touchup":573}],569:[function(require,module,exports){
+},{"cube-icon":574,"events":21,"ever":385,"ftooltip":576,"touchup":578}],574:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -70132,15 +70258,15 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":570}],570:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],571:[function(require,module,exports){
-arguments[4][415][0].apply(exports,arguments)
-},{"dup":415,"toarray":572}],572:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],573:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],574:[function(require,module,exports){
+},{"cube-side-array":575}],575:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],576:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"dup":416,"toarray":577}],577:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],578:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],579:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -70300,13 +70426,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":575,"events":21,"itempile":578}],575:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":576,"./lib/keys.js":577,"dup":400}],576:[function(require,module,exports){
+},{"deep-equal":580,"events":21,"itempile":583}],580:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],577:[function(require,module,exports){
+},{"./lib/is_arguments.js":581,"./lib/keys.js":582,"dup":401}],581:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],578:[function(require,module,exports){
+},{"dup":402}],582:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],583:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -70564,15 +70690,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":579,"deep-equal":580}],579:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],580:[function(require,module,exports){
+},{"clone":584,"deep-equal":585}],584:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":581,"./lib/keys.js":582,"dup":400}],581:[function(require,module,exports){
+},{"buffer":17,"dup":400}],585:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],582:[function(require,module,exports){
+},{"./lib/is_arguments.js":586,"./lib/keys.js":587,"dup":401}],586:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],583:[function(require,module,exports){
+},{"dup":402}],587:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],588:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -70648,11 +70774,11 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 })(ModalDialog);
 
 
-},{"inventory":574,"inventory-window":568,"itempile":578,"voxel-modal-dialog":584}],584:[function(require,module,exports){
-arguments[4][394][0].apply(exports,arguments)
-},{"dup":394,"voxel-modal":585}],585:[function(require,module,exports){
+},{"inventory":579,"inventory-window":573,"itempile":583,"voxel-modal-dialog":589}],589:[function(require,module,exports){
 arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],586:[function(require,module,exports){
+},{"dup":395,"voxel-modal":590}],590:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],591:[function(require,module,exports){
 var Gamemode;
 
 module.exports = function(game, opts) {
@@ -70755,7 +70881,7 @@ Gamemode = (function() {
 })();
 
 
-},{}],587:[function(require,module,exports){
+},{}],592:[function(require,module,exports){
 'use strict';
 
 var ItemPile = require('itempile');
@@ -70883,7 +71009,7 @@ GlassPlugin.prototype.disable = function() {
 };
 
 
-},{"itempile":588,"ucfirst":593}],588:[function(require,module,exports){
+},{"itempile":593,"ucfirst":598}],593:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -71141,17 +71267,17 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":589,"deep-equal":590}],589:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],590:[function(require,module,exports){
+},{"clone":594,"deep-equal":595}],594:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":591,"./lib/keys.js":592,"dup":400}],591:[function(require,module,exports){
+},{"buffer":17,"dup":400}],595:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],592:[function(require,module,exports){
+},{"./lib/is_arguments.js":596,"./lib/keys.js":597,"dup":401}],596:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],593:[function(require,module,exports){
+},{"dup":402}],597:[function(require,module,exports){
 arguments[4][403][0].apply(exports,arguments)
-},{"dup":403}],594:[function(require,module,exports){
+},{"dup":403}],598:[function(require,module,exports){
+arguments[4][404][0].apply(exports,arguments)
+},{"dup":404}],599:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -71225,7 +71351,7 @@ HammerPlugin.prototype.break = function(target) {
   }.bind(this));
 };
 
-},{}],595:[function(require,module,exports){
+},{}],600:[function(require,module,exports){
 var EventEmitter, Harvest, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -71373,7 +71499,7 @@ Harvest = (function(superClass) {
 })(EventEmitter);
 
 
-},{"events":21,"itempile":596}],596:[function(require,module,exports){
+},{"events":21,"itempile":601}],601:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -71631,15 +71757,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":597,"deep-equal":598}],597:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],598:[function(require,module,exports){
+},{"clone":602,"deep-equal":603}],602:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":599,"./lib/keys.js":600,"dup":400}],599:[function(require,module,exports){
+},{"buffer":17,"dup":400}],603:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],600:[function(require,module,exports){
+},{"./lib/is_arguments.js":604,"./lib/keys.js":605,"dup":401}],604:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],601:[function(require,module,exports){
+},{"dup":402}],605:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],606:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -71710,7 +71836,7 @@ HealthBarPlugin.prototype.update = function() {
   if (this.bar) this.bar.style.width = this.healthPlugin.percentage() + '%';
 };
 
-},{}],602:[function(require,module,exports){
+},{}],607:[function(require,module,exports){
 'use strict';
 
 var inherits = require('inherits');
@@ -71798,9 +71924,9 @@ Health.prototype.percentage = function() {
 };
 
 
-},{"events":21,"inherits":603}],603:[function(require,module,exports){
+},{"events":21,"inherits":608}],608:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],604:[function(require,module,exports){
+},{"dup":22}],609:[function(require,module,exports){
 var Inventory, InventoryCrafting, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -71919,7 +72045,7 @@ InventoryCrafting = (function(superClass) {
 })(InventoryDialog);
 
 
-},{"inventory":611,"inventory-window":605,"itempile":615,"voxel-inventory-dialog":620}],605:[function(require,module,exports){
+},{"inventory":616,"inventory-window":610,"itempile":620,"voxel-inventory-dialog":625}],610:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -72365,7 +72491,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":606,"events":21,"ever":384,"ftooltip":608,"touchup":610}],606:[function(require,module,exports){
+},{"cube-icon":611,"events":21,"ever":385,"ftooltip":613,"touchup":615}],611:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -72432,15 +72558,15 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":607}],607:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],608:[function(require,module,exports){
-arguments[4][415][0].apply(exports,arguments)
-},{"dup":415,"toarray":609}],609:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],610:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],611:[function(require,module,exports){
+},{"cube-side-array":612}],612:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],613:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"dup":416,"toarray":614}],614:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],615:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],616:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -72600,13 +72726,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":612,"events":21,"itempile":615}],612:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":613,"./lib/keys.js":614,"dup":400}],613:[function(require,module,exports){
+},{"deep-equal":617,"events":21,"itempile":620}],617:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],614:[function(require,module,exports){
+},{"./lib/is_arguments.js":618,"./lib/keys.js":619,"dup":401}],618:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],615:[function(require,module,exports){
+},{"dup":402}],619:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],620:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -72864,15 +72990,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":616,"deep-equal":617}],616:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],617:[function(require,module,exports){
+},{"clone":621,"deep-equal":622}],621:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":618,"./lib/keys.js":619,"dup":400}],618:[function(require,module,exports){
+},{"buffer":17,"dup":400}],622:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],619:[function(require,module,exports){
+},{"./lib/is_arguments.js":623,"./lib/keys.js":624,"dup":401}],623:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],620:[function(require,module,exports){
+},{"dup":402}],624:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],625:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -72948,11 +73074,11 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 })(ModalDialog);
 
 
-},{"inventory":611,"inventory-window":605,"itempile":615,"voxel-modal-dialog":621}],621:[function(require,module,exports){
-arguments[4][394][0].apply(exports,arguments)
-},{"dup":394,"voxel-modal":622}],622:[function(require,module,exports){
+},{"inventory":616,"inventory-window":610,"itempile":620,"voxel-modal-dialog":626}],626:[function(require,module,exports){
 arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],623:[function(require,module,exports){
+},{"dup":395,"voxel-modal":627}],627:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],628:[function(require,module,exports){
 var CreativeInventoryPlugin, Inventory, InventoryDialog, InventoryWindow, ItemPile,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -73122,7 +73248,7 @@ CreativeInventoryPlugin = (function(superClass) {
 })(InventoryDialog);
 
 
-},{"inventory":630,"inventory-window":624,"itempile":634,"voxel-inventory-dialog":639}],624:[function(require,module,exports){
+},{"inventory":635,"inventory-window":629,"itempile":639,"voxel-inventory-dialog":644}],629:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -73568,7 +73694,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":625,"events":21,"ever":384,"ftooltip":627,"touchup":629}],625:[function(require,module,exports){
+},{"cube-icon":630,"events":21,"ever":385,"ftooltip":632,"touchup":634}],630:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -73635,15 +73761,15 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":626}],626:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],627:[function(require,module,exports){
-arguments[4][415][0].apply(exports,arguments)
-},{"dup":415,"toarray":628}],628:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],629:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],630:[function(require,module,exports){
+},{"cube-side-array":631}],631:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],632:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"dup":416,"toarray":633}],633:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],634:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],635:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -73803,13 +73929,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":631,"events":21,"itempile":634}],631:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":632,"./lib/keys.js":633,"dup":400}],632:[function(require,module,exports){
+},{"deep-equal":636,"events":21,"itempile":639}],636:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],633:[function(require,module,exports){
+},{"./lib/is_arguments.js":637,"./lib/keys.js":638,"dup":401}],637:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],634:[function(require,module,exports){
+},{"dup":402}],638:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],639:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -74067,15 +74193,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":635,"deep-equal":636}],635:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],636:[function(require,module,exports){
+},{"clone":640,"deep-equal":641}],640:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":637,"./lib/keys.js":638,"dup":400}],637:[function(require,module,exports){
+},{"buffer":17,"dup":400}],641:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],638:[function(require,module,exports){
+},{"./lib/is_arguments.js":642,"./lib/keys.js":643,"dup":401}],642:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],639:[function(require,module,exports){
+},{"dup":402}],643:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],644:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -74151,11 +74277,11 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 })(ModalDialog);
 
 
-},{"inventory":630,"inventory-window":624,"itempile":634,"voxel-modal-dialog":640}],640:[function(require,module,exports){
-arguments[4][394][0].apply(exports,arguments)
-},{"dup":394,"voxel-modal":641}],641:[function(require,module,exports){
+},{"inventory":635,"inventory-window":629,"itempile":639,"voxel-modal-dialog":645}],645:[function(require,module,exports){
 arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],642:[function(require,module,exports){
+},{"dup":395,"voxel-modal":646}],646:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],647:[function(require,module,exports){
 var EventEmitter, InventoryHotbarClient, InventoryHotbarCommon, InventoryWindow, ever,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty,
@@ -74386,7 +74512,7 @@ InventoryHotbarClient = (function(superClass) {
 })(InventoryHotbarCommon);
 
 
-},{"events":21,"ever":384,"inventory-window":643}],643:[function(require,module,exports){
+},{"events":21,"ever":385,"inventory-window":648}],648:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -74832,7 +74958,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":644,"events":21,"ever":384,"ftooltip":646,"touchup":648}],644:[function(require,module,exports){
+},{"cube-icon":649,"events":21,"ever":385,"ftooltip":651,"touchup":653}],649:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -74899,15 +75025,15 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":645}],645:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],646:[function(require,module,exports){
-arguments[4][415][0].apply(exports,arguments)
-},{"dup":415,"toarray":647}],647:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],648:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],649:[function(require,module,exports){
+},{"cube-side-array":650}],650:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],651:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"dup":416,"toarray":652}],652:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],653:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],654:[function(require,module,exports){
 'use strict';
 
 var vkey = require('vkey');
@@ -75092,13 +75218,13 @@ KeysPlugin.prototype.keyUp = function(ev) {
 };
 
 
-},{"events":21,"inherits":650,"toarray":651,"vkey":652}],650:[function(require,module,exports){
+},{"events":21,"inherits":655,"toarray":656,"vkey":657}],655:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],651:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],652:[function(require,module,exports){
-arguments[4][66][0].apply(exports,arguments)
-},{"dup":66}],653:[function(require,module,exports){
+},{"dup":22}],656:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],657:[function(require,module,exports){
+arguments[4][67][0].apply(exports,arguments)
+},{"dup":67}],658:[function(require,module,exports){
 (function (process){
 
 var webworkify = require('webworkify');
@@ -75251,7 +75377,7 @@ Land.prototype.unbindEvents = function() {
 };
 
 }).call(this,require('_process'))
-},{"./worker.js":668,"_process":26,"ndarray":660,"unworkify":664,"webworkify":667}],654:[function(require,module,exports){
+},{"./worker.js":673,"_process":26,"ndarray":665,"unworkify":669,"webworkify":672}],659:[function(require,module,exports){
 (function (root, factory) {
   if (typeof exports === 'object') {
       module.exports = factory();
@@ -75362,23 +75488,23 @@ Land.prototype.unbindEvents = function() {
   }
 }));
 
-},{}],655:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":656,"dup":160}],656:[function(require,module,exports){
-arguments[4][433][0].apply(exports,arguments)
-},{"./lib/thunk.js":658,"dup":433}],657:[function(require,module,exports){
+},{}],660:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":661,"dup":161}],661:[function(require,module,exports){
 arguments[4][434][0].apply(exports,arguments)
-},{"dup":434,"uniq":659}],658:[function(require,module,exports){
+},{"./lib/thunk.js":663,"dup":434}],662:[function(require,module,exports){
 arguments[4][435][0].apply(exports,arguments)
-},{"./compile.js":657,"dup":435}],659:[function(require,module,exports){
+},{"dup":435,"uniq":664}],663:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"./compile.js":662,"dup":436}],664:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],665:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":666,"is-buffer":667}],666:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],660:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437,"iota-array":661,"is-buffer":662}],661:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],662:[function(require,module,exports){
+},{"dup":65}],667:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],663:[function(require,module,exports){
+},{"dup":23}],668:[function(require,module,exports){
 /*
  * A fast javascript implementation of simplex noise by Jonas Wagner
  *
@@ -75784,7 +75910,7 @@ if (typeof module !== 'undefined') {
 
 })();
 
-},{}],664:[function(require,module,exports){
+},{}],669:[function(require,module,exports){
 (function (global){
 
 var EventEmitter = require('events').EventEmitter;
@@ -75809,9 +75935,9 @@ module.exports = function(fn) {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"events":21,"inherits":665}],665:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],666:[function(require,module,exports){
+},{"events":21,"inherits":670}],670:[function(require,module,exports){
+arguments[4][181][0].apply(exports,arguments)
+},{"dup":181}],671:[function(require,module,exports){
 module.exports = function (opts) {
     if (!opts) opts = {};
     if (opts.bark === undefined) opts.bark = 1;
@@ -76020,7 +76146,7 @@ function applyRules(axiom, rules) {
     return axiom.replace(regexRules(rules), matchRule);
 }
 
-},{}],667:[function(require,module,exports){
+},{}],672:[function(require,module,exports){
 var bundleFn = arguments[3];
 var sources = arguments[4];
 var cache = arguments[5];
@@ -76074,7 +76200,7 @@ module.exports = function (fn) {
     ));
 };
 
-},{}],668:[function(require,module,exports){
+},{}],673:[function(require,module,exports){
 //'use strict'; // TODO
 
 var ever = require('ever');
@@ -76376,7 +76502,7 @@ module.exports = function() {
 
 
 
-},{"alea":654,"ever":384,"ndarray":660,"ndarray-ops":655,"simplex-noise":663,"voxel-trees":666}],669:[function(require,module,exports){
+},{"alea":659,"ever":385,"ndarray":665,"ndarray-ops":660,"simplex-noise":668,"voxel-trees":671}],674:[function(require,module,exports){
 'use strict';
 
 var vec3 = require('gl-vec3');
@@ -76444,7 +76570,7 @@ MeasurePlugin.prototype.use = function(held, target) {
   }
 };
 
-},{"asarray":670,"gl-vec3":682}],670:[function(require,module,exports){
+},{"asarray":675,"gl-vec3":687}],675:[function(require,module,exports){
 'use strict';
 
 module.exports = function(o) {
@@ -76458,73 +76584,73 @@ module.exports = function(o) {
   return a;
 }
 
-},{}],671:[function(require,module,exports){
-arguments[4][70][0].apply(exports,arguments)
-},{"dup":70}],672:[function(require,module,exports){
+},{}],676:[function(require,module,exports){
 arguments[4][71][0].apply(exports,arguments)
-},{"./dot":679,"./fromValues":681,"./normalize":690,"dup":71}],673:[function(require,module,exports){
+},{"dup":71}],677:[function(require,module,exports){
 arguments[4][72][0].apply(exports,arguments)
-},{"dup":72}],674:[function(require,module,exports){
+},{"./dot":684,"./fromValues":686,"./normalize":695,"dup":72}],678:[function(require,module,exports){
 arguments[4][73][0].apply(exports,arguments)
-},{"dup":73}],675:[function(require,module,exports){
+},{"dup":73}],679:[function(require,module,exports){
 arguments[4][74][0].apply(exports,arguments)
-},{"dup":74}],676:[function(require,module,exports){
+},{"dup":74}],680:[function(require,module,exports){
 arguments[4][75][0].apply(exports,arguments)
-},{"dup":75}],677:[function(require,module,exports){
+},{"dup":75}],681:[function(require,module,exports){
 arguments[4][76][0].apply(exports,arguments)
-},{"dup":76}],678:[function(require,module,exports){
+},{"dup":76}],682:[function(require,module,exports){
 arguments[4][77][0].apply(exports,arguments)
-},{"dup":77}],679:[function(require,module,exports){
+},{"dup":77}],683:[function(require,module,exports){
 arguments[4][78][0].apply(exports,arguments)
-},{"dup":78}],680:[function(require,module,exports){
+},{"dup":78}],684:[function(require,module,exports){
 arguments[4][79][0].apply(exports,arguments)
-},{"./create":675,"dup":79}],681:[function(require,module,exports){
+},{"dup":79}],685:[function(require,module,exports){
 arguments[4][80][0].apply(exports,arguments)
-},{"dup":80}],682:[function(require,module,exports){
+},{"./create":680,"dup":80}],686:[function(require,module,exports){
 arguments[4][81][0].apply(exports,arguments)
-},{"./add":671,"./angle":672,"./clone":673,"./copy":674,"./create":675,"./cross":676,"./distance":677,"./divide":678,"./dot":679,"./forEach":680,"./fromValues":681,"./inverse":683,"./length":684,"./lerp":685,"./max":686,"./min":687,"./multiply":688,"./negate":689,"./normalize":690,"./random":691,"./rotateX":692,"./rotateY":693,"./rotateZ":694,"./scale":695,"./scaleAndAdd":696,"./set":697,"./squaredDistance":698,"./squaredLength":699,"./subtract":700,"./transformMat3":701,"./transformMat4":702,"./transformQuat":703,"dup":81}],683:[function(require,module,exports){
+},{"dup":81}],687:[function(require,module,exports){
 arguments[4][82][0].apply(exports,arguments)
-},{"dup":82}],684:[function(require,module,exports){
+},{"./add":676,"./angle":677,"./clone":678,"./copy":679,"./create":680,"./cross":681,"./distance":682,"./divide":683,"./dot":684,"./forEach":685,"./fromValues":686,"./inverse":688,"./length":689,"./lerp":690,"./max":691,"./min":692,"./multiply":693,"./negate":694,"./normalize":695,"./random":696,"./rotateX":697,"./rotateY":698,"./rotateZ":699,"./scale":700,"./scaleAndAdd":701,"./set":702,"./squaredDistance":703,"./squaredLength":704,"./subtract":705,"./transformMat3":706,"./transformMat4":707,"./transformQuat":708,"dup":82}],688:[function(require,module,exports){
 arguments[4][83][0].apply(exports,arguments)
-},{"dup":83}],685:[function(require,module,exports){
+},{"dup":83}],689:[function(require,module,exports){
 arguments[4][84][0].apply(exports,arguments)
-},{"dup":84}],686:[function(require,module,exports){
+},{"dup":84}],690:[function(require,module,exports){
 arguments[4][85][0].apply(exports,arguments)
-},{"dup":85}],687:[function(require,module,exports){
+},{"dup":85}],691:[function(require,module,exports){
 arguments[4][86][0].apply(exports,arguments)
-},{"dup":86}],688:[function(require,module,exports){
+},{"dup":86}],692:[function(require,module,exports){
 arguments[4][87][0].apply(exports,arguments)
-},{"dup":87}],689:[function(require,module,exports){
+},{"dup":87}],693:[function(require,module,exports){
 arguments[4][88][0].apply(exports,arguments)
-},{"dup":88}],690:[function(require,module,exports){
+},{"dup":88}],694:[function(require,module,exports){
 arguments[4][89][0].apply(exports,arguments)
-},{"dup":89}],691:[function(require,module,exports){
+},{"dup":89}],695:[function(require,module,exports){
 arguments[4][90][0].apply(exports,arguments)
-},{"dup":90}],692:[function(require,module,exports){
+},{"dup":90}],696:[function(require,module,exports){
 arguments[4][91][0].apply(exports,arguments)
-},{"dup":91}],693:[function(require,module,exports){
+},{"dup":91}],697:[function(require,module,exports){
 arguments[4][92][0].apply(exports,arguments)
-},{"dup":92}],694:[function(require,module,exports){
+},{"dup":92}],698:[function(require,module,exports){
 arguments[4][93][0].apply(exports,arguments)
-},{"dup":93}],695:[function(require,module,exports){
+},{"dup":93}],699:[function(require,module,exports){
 arguments[4][94][0].apply(exports,arguments)
-},{"dup":94}],696:[function(require,module,exports){
+},{"dup":94}],700:[function(require,module,exports){
 arguments[4][95][0].apply(exports,arguments)
-},{"dup":95}],697:[function(require,module,exports){
+},{"dup":95}],701:[function(require,module,exports){
 arguments[4][96][0].apply(exports,arguments)
-},{"dup":96}],698:[function(require,module,exports){
+},{"dup":96}],702:[function(require,module,exports){
 arguments[4][97][0].apply(exports,arguments)
-},{"dup":97}],699:[function(require,module,exports){
+},{"dup":97}],703:[function(require,module,exports){
 arguments[4][98][0].apply(exports,arguments)
-},{"dup":98}],700:[function(require,module,exports){
+},{"dup":98}],704:[function(require,module,exports){
 arguments[4][99][0].apply(exports,arguments)
-},{"dup":99}],701:[function(require,module,exports){
+},{"dup":99}],705:[function(require,module,exports){
 arguments[4][100][0].apply(exports,arguments)
-},{"dup":100}],702:[function(require,module,exports){
+},{"dup":100}],706:[function(require,module,exports){
 arguments[4][101][0].apply(exports,arguments)
-},{"dup":101}],703:[function(require,module,exports){
+},{"dup":101}],707:[function(require,module,exports){
 arguments[4][102][0].apply(exports,arguments)
-},{"dup":102}],704:[function(require,module,exports){
+},{"dup":102}],708:[function(require,module,exports){
+arguments[4][103][0].apply(exports,arguments)
+},{"dup":103}],709:[function(require,module,exports){
 var EventEmitter, Mine,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -76887,89 +77013,89 @@ Mine.prototype.destroyOverlay = function() {
 };
 
 
-},{"events":21}],705:[function(require,module,exports){
-arguments[4][431][0].apply(exports,arguments)
-},{"dup":431,"ndarray":711,"ndarray-ops":706,"typedarray-pool":716}],706:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":707,"dup":160}],707:[function(require,module,exports){
-arguments[4][433][0].apply(exports,arguments)
-},{"./lib/thunk.js":709,"dup":433}],708:[function(require,module,exports){
+},{"events":21}],710:[function(require,module,exports){
+arguments[4][432][0].apply(exports,arguments)
+},{"dup":432,"ndarray":716,"ndarray-ops":711,"typedarray-pool":721}],711:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":712,"dup":161}],712:[function(require,module,exports){
 arguments[4][434][0].apply(exports,arguments)
-},{"dup":434,"uniq":710}],709:[function(require,module,exports){
+},{"./lib/thunk.js":714,"dup":434}],713:[function(require,module,exports){
 arguments[4][435][0].apply(exports,arguments)
-},{"./compile.js":708,"dup":435}],710:[function(require,module,exports){
+},{"dup":435,"uniq":715}],714:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"./compile.js":713,"dup":436}],715:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],716:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":717,"is-buffer":718}],717:[function(require,module,exports){
 arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],711:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437,"iota-array":712,"is-buffer":713}],712:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],713:[function(require,module,exports){
+},{"dup":65}],718:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],714:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],715:[function(require,module,exports){
+},{"dup":23}],719:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],716:[function(require,module,exports){
-arguments[4][442][0].apply(exports,arguments)
-},{"bit-twiddle":714,"buffer":17,"dup":442}],717:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],718:[function(require,module,exports){
+},{"dup":156}],720:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],721:[function(require,module,exports){
+arguments[4][443][0].apply(exports,arguments)
+},{"bit-twiddle":719,"buffer":17,"dup":443}],722:[function(require,module,exports){
 arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],719:[function(require,module,exports){
+},{"dup":124}],723:[function(require,module,exports){
 arguments[4][125][0].apply(exports,arguments)
-},{"dup":125}],720:[function(require,module,exports){
+},{"dup":125}],724:[function(require,module,exports){
 arguments[4][126][0].apply(exports,arguments)
-},{"dup":126}],721:[function(require,module,exports){
+},{"dup":126}],725:[function(require,module,exports){
 arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],722:[function(require,module,exports){
+},{"dup":127}],726:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
-},{"dup":128}],723:[function(require,module,exports){
+},{"dup":128}],727:[function(require,module,exports){
 arguments[4][129][0].apply(exports,arguments)
-},{"dup":129}],724:[function(require,module,exports){
+},{"dup":129}],728:[function(require,module,exports){
 arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],725:[function(require,module,exports){
+},{"dup":130}],729:[function(require,module,exports){
 arguments[4][131][0].apply(exports,arguments)
-},{"dup":131}],726:[function(require,module,exports){
+},{"dup":131}],730:[function(require,module,exports){
 arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":717,"./clone":718,"./copy":719,"./create":720,"./determinant":721,"./fromQuat":722,"./fromRotationTranslation":723,"./frustum":724,"./identity":725,"./invert":727,"./lookAt":728,"./multiply":729,"./ortho":730,"./perspective":731,"./perspectiveFromFieldOfView":732,"./rotate":733,"./rotateX":734,"./rotateY":735,"./rotateZ":736,"./scale":737,"./str":738,"./translate":739,"./transpose":740,"dup":132}],727:[function(require,module,exports){
+},{"dup":132}],731:[function(require,module,exports){
 arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],728:[function(require,module,exports){
+},{"./adjoint":722,"./clone":723,"./copy":724,"./create":725,"./determinant":726,"./fromQuat":727,"./fromRotationTranslation":728,"./frustum":729,"./identity":730,"./invert":732,"./lookAt":733,"./multiply":734,"./ortho":735,"./perspective":736,"./perspectiveFromFieldOfView":737,"./rotate":738,"./rotateX":739,"./rotateY":740,"./rotateZ":741,"./scale":742,"./str":743,"./translate":744,"./transpose":745,"dup":133}],732:[function(require,module,exports){
 arguments[4][134][0].apply(exports,arguments)
-},{"./identity":725,"dup":134}],729:[function(require,module,exports){
+},{"dup":134}],733:[function(require,module,exports){
 arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],730:[function(require,module,exports){
+},{"./identity":730,"dup":135}],734:[function(require,module,exports){
 arguments[4][136][0].apply(exports,arguments)
-},{"dup":136}],731:[function(require,module,exports){
+},{"dup":136}],735:[function(require,module,exports){
 arguments[4][137][0].apply(exports,arguments)
-},{"dup":137}],732:[function(require,module,exports){
+},{"dup":137}],736:[function(require,module,exports){
 arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],733:[function(require,module,exports){
+},{"dup":138}],737:[function(require,module,exports){
 arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],734:[function(require,module,exports){
+},{"dup":139}],738:[function(require,module,exports){
 arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],735:[function(require,module,exports){
+},{"dup":140}],739:[function(require,module,exports){
 arguments[4][141][0].apply(exports,arguments)
-},{"dup":141}],736:[function(require,module,exports){
+},{"dup":141}],740:[function(require,module,exports){
 arguments[4][142][0].apply(exports,arguments)
-},{"dup":142}],737:[function(require,module,exports){
+},{"dup":142}],741:[function(require,module,exports){
 arguments[4][143][0].apply(exports,arguments)
-},{"dup":143}],738:[function(require,module,exports){
+},{"dup":143}],742:[function(require,module,exports){
 arguments[4][144][0].apply(exports,arguments)
-},{"dup":144}],739:[function(require,module,exports){
+},{"dup":144}],743:[function(require,module,exports){
 arguments[4][145][0].apply(exports,arguments)
-},{"dup":145}],740:[function(require,module,exports){
+},{"dup":145}],744:[function(require,module,exports){
 arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],741:[function(require,module,exports){
+},{"dup":146}],745:[function(require,module,exports){
 arguments[4][147][0].apply(exports,arguments)
-},{"dup":147}],742:[function(require,module,exports){
-arguments[4][444][0].apply(exports,arguments)
-},{"./do-bind.js":741,"dup":444}],743:[function(require,module,exports){
+},{"dup":147}],746:[function(require,module,exports){
+arguments[4][148][0].apply(exports,arguments)
+},{"dup":148}],747:[function(require,module,exports){
 arguments[4][445][0].apply(exports,arguments)
-},{"./do-bind.js":741,"dup":445}],744:[function(require,module,exports){
+},{"./do-bind.js":746,"dup":445}],748:[function(require,module,exports){
 arguments[4][446][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":742,"./lib/vao-native.js":743,"dup":446}],745:[function(require,module,exports){
+},{"./do-bind.js":746,"dup":446}],749:[function(require,module,exports){
+arguments[4][447][0].apply(exports,arguments)
+},{"./lib/vao-emulated.js":747,"./lib/vao-native.js":748,"dup":447}],750:[function(require,module,exports){
 arguments[4][22][0].apply(exports,arguments)
-},{"dup":22}],746:[function(require,module,exports){
+},{"dup":22}],751:[function(require,module,exports){
 /**
  * lodash 3.0.4 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -77067,7 +77193,7 @@ function isObject(value) {
 
 module.exports = throttle;
 
-},{"lodash.debounce":747}],747:[function(require,module,exports){
+},{"lodash.debounce":752}],752:[function(require,module,exports){
 /**
  * lodash 3.1.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -77303,7 +77429,7 @@ function isObject(value) {
 
 module.exports = debounce;
 
-},{"lodash._getnative":748}],748:[function(require,module,exports){
+},{"lodash._getnative":753}],753:[function(require,module,exports){
 /**
  * lodash 3.9.1 (Custom Build) <https://lodash.com/>
  * Build: `lodash modern modularize exports="npm" -o ./`
@@ -77442,35 +77568,35 @@ function isNative(value) {
 
 module.exports = getNative;
 
-},{}],749:[function(require,module,exports){
-arguments[4][447][0].apply(exports,arguments)
-},{"dup":447,"gl-shader":750}],750:[function(require,module,exports){
+},{}],754:[function(require,module,exports){
 arguments[4][448][0].apply(exports,arguments)
-},{"dup":448,"glsl-exports":751,"uniq":762}],751:[function(require,module,exports){
+},{"dup":448,"gl-shader":755}],755:[function(require,module,exports){
 arguments[4][449][0].apply(exports,arguments)
-},{"dup":449,"glsl-parser":752,"glsl-tokenizer":757,"through":761}],752:[function(require,module,exports){
+},{"dup":449,"glsl-exports":756,"uniq":767}],756:[function(require,module,exports){
 arguments[4][450][0].apply(exports,arguments)
-},{"./lib/index":754,"dup":450}],753:[function(require,module,exports){
+},{"dup":450,"glsl-parser":757,"glsl-tokenizer":762,"through":766}],757:[function(require,module,exports){
 arguments[4][451][0].apply(exports,arguments)
-},{"dup":451}],754:[function(require,module,exports){
+},{"./lib/index":759,"dup":451}],758:[function(require,module,exports){
 arguments[4][452][0].apply(exports,arguments)
-},{"./expr":753,"./scope":755,"dup":452,"through":756}],755:[function(require,module,exports){
+},{"dup":452}],759:[function(require,module,exports){
 arguments[4][453][0].apply(exports,arguments)
-},{"dup":453}],756:[function(require,module,exports){
+},{"./expr":758,"./scope":760,"dup":453,"through":761}],760:[function(require,module,exports){
 arguments[4][454][0].apply(exports,arguments)
-},{"_process":26,"dup":454,"stream":40}],757:[function(require,module,exports){
+},{"dup":454}],761:[function(require,module,exports){
 arguments[4][455][0].apply(exports,arguments)
-},{"./lib/builtins":758,"./lib/literals":759,"./lib/operators":760,"dup":455,"through":761}],758:[function(require,module,exports){
+},{"_process":26,"dup":455,"stream":40}],762:[function(require,module,exports){
 arguments[4][456][0].apply(exports,arguments)
-},{"dup":456}],759:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],760:[function(require,module,exports){
-arguments[4][458][0].apply(exports,arguments)
-},{"dup":458}],761:[function(require,module,exports){
+},{"./lib/builtins":763,"./lib/literals":764,"./lib/operators":765,"dup":456,"through":766}],763:[function(require,module,exports){
+arguments[4][457][0].apply(exports,arguments)
+},{"dup":457}],764:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"dup":372}],765:[function(require,module,exports){
 arguments[4][459][0].apply(exports,arguments)
-},{"_process":26,"dup":459,"stream":40}],762:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],763:[function(require,module,exports){
+},{"dup":459}],766:[function(require,module,exports){
+arguments[4][460][0].apply(exports,arguments)
+},{"_process":26,"dup":460,"stream":40}],767:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],768:[function(require,module,exports){
 'use strict';
 
 var createBuffer = require('gl-buffer');
@@ -77483,6 +77609,9 @@ var throttle = require('lodash.throttle');
 
 module.exports = function(game, opts) {
   return new OutlinePlugin(game, opts);
+};
+module.exports.pluginInfo = {
+  loadAfter: ['voxel-mesher', 'voxel-shader']
 };
 
 function OutlinePlugin(game, opts) {
@@ -77621,7 +77750,7 @@ OutlinePlugin.prototype.shaderInit = function() {
 };
 
 
-},{"events":21,"gl-buffer":705,"gl-mat4":726,"gl-vao":744,"inherits":745,"lodash.throttle":746,"simple-3d-shader":749}],764:[function(require,module,exports){
+},{"events":21,"gl-buffer":710,"gl-mat4":731,"gl-vao":749,"inherits":750,"lodash.throttle":751,"simple-3d-shader":754}],769:[function(require,module,exports){
 (function (global){
 var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -77925,7 +78054,7 @@ module.exports.RecipeList = RecipeList;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],765:[function(require,module,exports){
+},{}],770:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -78183,15 +78312,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":766,"deep-equal":767}],766:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],767:[function(require,module,exports){
+},{"clone":771,"deep-equal":772}],771:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":768,"./lib/keys.js":769,"dup":400}],768:[function(require,module,exports){
+},{"buffer":17,"dup":400}],772:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],769:[function(require,module,exports){
+},{"./lib/is_arguments.js":773,"./lib/keys.js":774,"dup":401}],773:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],770:[function(require,module,exports){
+},{"dup":402}],774:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],775:[function(require,module,exports){
 var AmorphousRecipe, CraftingThesaurus, ItemPile, PositionalRecipe, Recipe, RecipeLocator, RepairRecipe, ToolsPlugin, ref,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -78406,13 +78535,13 @@ RepairRecipe = (function(superClass) {
 })(Recipe);
 
 
-},{"craftingrecipes":764,"itempile":765}],771:[function(require,module,exports){
-arguments[4][381][0].apply(exports,arguments)
-},{"./vendor/dat.color":772,"./vendor/dat.gui":773,"dup":381}],772:[function(require,module,exports){
+},{"craftingrecipes":769,"itempile":770}],776:[function(require,module,exports){
 arguments[4][382][0].apply(exports,arguments)
-},{"dup":382}],773:[function(require,module,exports){
+},{"./vendor/dat.color":777,"./vendor/dat.gui":778,"dup":382}],777:[function(require,module,exports){
 arguments[4][383][0].apply(exports,arguments)
-},{"dup":383}],774:[function(require,module,exports){
+},{"dup":383}],778:[function(require,module,exports){
+arguments[4][384][0].apply(exports,arguments)
+},{"dup":384}],779:[function(require,module,exports){
 'use strict';
 
 var createDatgui = require('dat-gui');
@@ -78492,7 +78621,7 @@ function setStateForPlugin(self, name) {
   };
 }
 
-},{"dat-gui":771}],775:[function(require,module,exports){
+},{"dat-gui":776}],780:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -78750,17 +78879,17 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":776,"deep-equal":777}],776:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],777:[function(require,module,exports){
+},{"clone":781,"deep-equal":782}],781:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":778,"./lib/keys.js":779,"dup":400}],778:[function(require,module,exports){
+},{"buffer":17,"dup":400}],782:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],779:[function(require,module,exports){
+},{"./lib/is_arguments.js":783,"./lib/keys.js":784,"dup":401}],783:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],780:[function(require,module,exports){
+},{"dup":402}],784:[function(require,module,exports){
 arguments[4][403][0].apply(exports,arguments)
-},{"dup":403}],781:[function(require,module,exports){
+},{"dup":403}],785:[function(require,module,exports){
+arguments[4][404][0].apply(exports,arguments)
+},{"dup":404}],786:[function(require,module,exports){
 'use strict';
 
 var ucfirst = require('ucfirst');
@@ -78969,7 +79098,7 @@ PumpkinPlugin.prototype.useLighter = function(held, target) {
 
 
 
-},{"itempile":775,"ucfirst":780}],782:[function(require,module,exports){
+},{"itempile":780,"ucfirst":785}],787:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -79103,7 +79232,7 @@ QuarryPlugin.prototype.mine = function(x, y, z) {
 };
 
 
-},{}],783:[function(require,module,exports){
+},{}],788:[function(require,module,exports){
 'use strict';
 
 function fract(f) {
@@ -79112,9 +79241,9 @@ function fract(f) {
 
 module.exports = fract;
 
-},{}],784:[function(require,module,exports){
-arguments[4][229][0].apply(exports,arguments)
-},{"dup":229}],785:[function(require,module,exports){
+},{}],789:[function(require,module,exports){
+arguments[4][181][0].apply(exports,arguments)
+},{"dup":181}],790:[function(require,module,exports){
 'use strict';
 
 var ever = require('ever');
@@ -79298,7 +79427,7 @@ Reach.prototype.action = function(kb_state) {
 
 inherits(Reach, EventEmitter);
 
-},{"events":21,"ever":384,"fract":783,"inherits":784}],786:[function(require,module,exports){
+},{"events":21,"ever":385,"fract":788,"inherits":789}],791:[function(require,module,exports){
 (function (global){
 var AmorphousRecipe, CraftingThesaurus, PositionalRecipe, Recipe, RecipeList,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -79602,7 +79731,7 @@ module.exports.RecipeList = RecipeList;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],787:[function(require,module,exports){
+},{}],792:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -79860,15 +79989,15 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":788,"deep-equal":789}],788:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],789:[function(require,module,exports){
+},{"clone":793,"deep-equal":794}],793:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":790,"./lib/keys.js":791,"dup":400}],790:[function(require,module,exports){
+},{"buffer":17,"dup":400}],794:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],791:[function(require,module,exports){
+},{"./lib/is_arguments.js":795,"./lib/keys.js":796,"dup":401}],795:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],792:[function(require,module,exports){
+},{"dup":402}],796:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],797:[function(require,module,exports){
 
 var craftingrecipes = require('craftingrecipes');
 var ItemPile = require('itempile');
@@ -79917,7 +80046,7 @@ RecipesPlugin.prototype.smelt = function(input) {
   return output ? output.clone() : undefined;
 };
 
-},{"craftingrecipes":786,"itempile":787}],793:[function(require,module,exports){
+},{"craftingrecipes":791,"itempile":792}],798:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -79981,10 +80110,10 @@ ScriptblockPlugin.prototype.interact = function(target) {
   return true;
 };
 
-},{}],794:[function(require,module,exports){
+},{}],799:[function(require,module,exports){
 module.exports = require('media').audio;
 
-},{"media":795}],795:[function(require,module,exports){
+},{"media":800}],800:[function(require,module,exports){
 module.exports = require('./lib/player');
 module.exports.audio = media('audio');
 module.exports.video = media('video');
@@ -79995,7 +80124,7 @@ function media (kind) {
   };
 }
 
-},{"./lib/player":797}],796:[function(require,module,exports){
+},{"./lib/player":802}],801:[function(require,module,exports){
 var table = {
   aif  : "audio/x-aiff",
   aiff : "audio/x-aiff",
@@ -80019,7 +80148,7 @@ function mimeOf(url){
   return table[ url.split('.').slice(-1)[0] ];
 }
 
-},{}],797:[function(require,module,exports){
+},{}],802:[function(require,module,exports){
 var newChain  = require('new-chain'),
     src = require('./src'),
     render = require('./render');
@@ -80096,7 +80225,7 @@ function play(media, urls, dom){
 
 }
 
-},{"./render":798,"./src":799,"new-chain":802}],798:[function(require,module,exports){
+},{"./render":803,"./src":804,"new-chain":807}],803:[function(require,module,exports){
 var domify = require('domify'),
     templates = require("./templates");
 
@@ -80106,7 +80235,7 @@ function render(media){
   return domify(templates[media + '.html']);
 }
 
-},{"./templates":800,"domify":801}],799:[function(require,module,exports){
+},{"./templates":805,"domify":806}],804:[function(require,module,exports){
 var mimeOf = require("./mime");
 
 module.exports = {
@@ -80143,10 +80272,10 @@ function pick(el, urls){
   return canPlay[0].url || canPlay[0];
 }
 
-},{"./mime":796}],800:[function(require,module,exports){
+},{"./mime":801}],805:[function(require,module,exports){
 exports["audio.html"] = "<audio preload=\"auto\" /></audio>"
 exports["video.html"] = "<video preload=\"auto\" /></video>"
-},{}],801:[function(require,module,exports){
+},{}],806:[function(require,module,exports){
 
 /**
  * Expose `parse`.
@@ -80219,7 +80348,7 @@ function parse(html) {
   return fragment;
 }
 
-},{}],802:[function(require,module,exports){
+},{}],807:[function(require,module,exports){
 module.exports = newChain;
 module.exports.from = from;
 
@@ -80276,7 +80405,7 @@ function newChain(){
   return from({}).apply(undefined, arguments);
 }
 
-},{}],803:[function(require,module,exports){
+},{}],808:[function(require,module,exports){
 'use strict';
 
 var play_audio = require('play-audio');
@@ -80341,7 +80470,7 @@ SfxPlugin.prototype.play = function(name, loop, url) {
   }
 };
 
-},{"play-audio":794}],804:[function(require,module,exports){
+},{"play-audio":799}],809:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -80393,7 +80522,7 @@ Skyhook.prototype.use = function(held, target) {
   return true; // use up item
 };
 
-},{}],805:[function(require,module,exports){
+},{}],810:[function(require,module,exports){
 'use strict';
 
 module.exports = function(game, opts) {
@@ -80466,7 +80595,7 @@ SprintPlugin.prototype.stopSprint = function() {
 };
 
 
-},{}],806:[function(require,module,exports){
+},{}],811:[function(require,module,exports){
 var EventEmitter, Use,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -80586,7 +80715,7 @@ Use = (function(superClass) {
 })(EventEmitter);
 
 
-},{"events":21}],807:[function(require,module,exports){
+},{"events":21}],812:[function(require,module,exports){
 (function (process){
 var VoilaPlugin;
 
@@ -80724,55 +80853,55 @@ VoilaPlugin = (function() {
 
 
 }).call(this,require('_process'))
-},{"_process":26}],808:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],809:[function(require,module,exports){
+},{"_process":26}],813:[function(require,module,exports){
 arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],810:[function(require,module,exports){
+},{"dup":124}],814:[function(require,module,exports){
 arguments[4][125][0].apply(exports,arguments)
-},{"dup":125}],811:[function(require,module,exports){
+},{"dup":125}],815:[function(require,module,exports){
 arguments[4][126][0].apply(exports,arguments)
-},{"dup":126}],812:[function(require,module,exports){
+},{"dup":126}],816:[function(require,module,exports){
 arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],813:[function(require,module,exports){
+},{"dup":127}],817:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
-},{"dup":128}],814:[function(require,module,exports){
+},{"dup":128}],818:[function(require,module,exports){
 arguments[4][129][0].apply(exports,arguments)
-},{"dup":129}],815:[function(require,module,exports){
+},{"dup":129}],819:[function(require,module,exports){
 arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],816:[function(require,module,exports){
+},{"dup":130}],820:[function(require,module,exports){
 arguments[4][131][0].apply(exports,arguments)
-},{"dup":131}],817:[function(require,module,exports){
+},{"dup":131}],821:[function(require,module,exports){
 arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":808,"./clone":809,"./copy":810,"./create":811,"./determinant":812,"./fromQuat":813,"./fromRotationTranslation":814,"./frustum":815,"./identity":816,"./invert":818,"./lookAt":819,"./multiply":820,"./ortho":821,"./perspective":822,"./perspectiveFromFieldOfView":823,"./rotate":824,"./rotateX":825,"./rotateY":826,"./rotateZ":827,"./scale":828,"./str":829,"./translate":830,"./transpose":831,"dup":132}],818:[function(require,module,exports){
+},{"dup":132}],822:[function(require,module,exports){
 arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],819:[function(require,module,exports){
+},{"./adjoint":813,"./clone":814,"./copy":815,"./create":816,"./determinant":817,"./fromQuat":818,"./fromRotationTranslation":819,"./frustum":820,"./identity":821,"./invert":823,"./lookAt":824,"./multiply":825,"./ortho":826,"./perspective":827,"./perspectiveFromFieldOfView":828,"./rotate":829,"./rotateX":830,"./rotateY":831,"./rotateZ":832,"./scale":833,"./str":834,"./translate":835,"./transpose":836,"dup":133}],823:[function(require,module,exports){
 arguments[4][134][0].apply(exports,arguments)
-},{"./identity":816,"dup":134}],820:[function(require,module,exports){
+},{"dup":134}],824:[function(require,module,exports){
 arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],821:[function(require,module,exports){
+},{"./identity":821,"dup":135}],825:[function(require,module,exports){
 arguments[4][136][0].apply(exports,arguments)
-},{"dup":136}],822:[function(require,module,exports){
+},{"dup":136}],826:[function(require,module,exports){
 arguments[4][137][0].apply(exports,arguments)
-},{"dup":137}],823:[function(require,module,exports){
+},{"dup":137}],827:[function(require,module,exports){
 arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],824:[function(require,module,exports){
+},{"dup":138}],828:[function(require,module,exports){
 arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],825:[function(require,module,exports){
+},{"dup":139}],829:[function(require,module,exports){
 arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],826:[function(require,module,exports){
+},{"dup":140}],830:[function(require,module,exports){
 arguments[4][141][0].apply(exports,arguments)
-},{"dup":141}],827:[function(require,module,exports){
+},{"dup":141}],831:[function(require,module,exports){
 arguments[4][142][0].apply(exports,arguments)
-},{"dup":142}],828:[function(require,module,exports){
+},{"dup":142}],832:[function(require,module,exports){
 arguments[4][143][0].apply(exports,arguments)
-},{"dup":143}],829:[function(require,module,exports){
+},{"dup":143}],833:[function(require,module,exports){
 arguments[4][144][0].apply(exports,arguments)
-},{"dup":144}],830:[function(require,module,exports){
+},{"dup":144}],834:[function(require,module,exports){
 arguments[4][145][0].apply(exports,arguments)
-},{"dup":145}],831:[function(require,module,exports){
+},{"dup":145}],835:[function(require,module,exports){
 arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],832:[function(require,module,exports){
+},{"dup":146}],836:[function(require,module,exports){
+arguments[4][147][0].apply(exports,arguments)
+},{"dup":147}],837:[function(require,module,exports){
 module.exports = function (obj) {
     if (!obj || typeof obj !== 'object') return obj;
     
@@ -80809,7 +80938,7 @@ var isArray = Array.isArray || function (xs) {
     return {}.toString.call(xs) === '[object Array]';
 };
 
-},{}],833:[function(require,module,exports){
+},{}],838:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -80850,7 +80979,7 @@ module.exports.VRDevice = VRDevice;
 module.exports.HMDVRDevice = HMDVRDevice;
 module.exports.PositionSensorVRDevice = PositionSensorVRDevice;
 
-},{}],834:[function(require,module,exports){
+},{}],839:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -80914,7 +81043,7 @@ CardboardHMDVRDevice.prototype.getEyeTranslation = function(whichEye) {
 
 module.exports = CardboardHMDVRDevice;
 
-},{"./base.js":833}],835:[function(require,module,exports){
+},{"./base.js":838}],840:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -81000,7 +81129,7 @@ GyroPositionSensorVRDevice.prototype.getOrientation = function() {
 
 module.exports = GyroPositionSensorVRDevice;
 
-},{"./base.js":833,"./three-math.js":838}],836:[function(require,module,exports){
+},{"./base.js":838,"./three-math.js":843}],841:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -81019,7 +81148,7 @@ var WebVRPolyfill = require('./webvr-polyfill.js');
 
 new WebVRPolyfill();
 
-},{"./webvr-polyfill.js":839}],837:[function(require,module,exports){
+},{"./webvr-polyfill.js":844}],842:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -81161,7 +81290,7 @@ MouseKeyboardPositionSensorVRDevice.prototype.onMouseUp_ = function(e) {
 
 module.exports = MouseKeyboardPositionSensorVRDevice;
 
-},{"./base.js":833,"./three-math.js":838}],838:[function(require,module,exports){
+},{"./base.js":838,"./three-math.js":843}],843:[function(require,module,exports){
 /*
  * A subset of THREE.js, providing mostly quaternion and euler-related
  * operations, manually lifted from
@@ -83285,7 +83414,7 @@ THREE.Euler.prototype = {
 
 module.exports = THREE;
 
-},{}],839:[function(require,module,exports){
+},{}],844:[function(require,module,exports){
 /*
  * Copyright 2015 Boris Smus. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -83360,7 +83489,7 @@ WebVRPolyfill.prototype.isCardboardCompatible = function() {
 
 module.exports = WebVRPolyfill;
 
-},{"./base.js":833,"./cardboard-hmd-vr-device.js":834,"./gyro-position-sensor-vr-device.js":835,"./mouse-keyboard-position-sensor-vr-device.js":837}],840:[function(require,module,exports){
+},{"./base.js":838,"./cardboard-hmd-vr-device.js":839,"./gyro-position-sensor-vr-device.js":840,"./mouse-keyboard-position-sensor-vr-device.js":842}],845:[function(require,module,exports){
 'use strict';
 
 require('webvr-polyfill'); // fills navigator.getVRDevices(), etc.
@@ -83554,7 +83683,7 @@ VRPlugin.prototype.renderVR = function(t) {
   this.currentEye = undefined
 };
 
-},{"gl-mat4":817,"shallow-copy":832,"webvr-polyfill":836}],841:[function(require,module,exports){
+},{"gl-mat4":822,"shallow-copy":837,"webvr-polyfill":841}],846:[function(require,module,exports){
 'use strict';
 
 var matrixToCSS = require('matrix-to-css');
@@ -83703,55 +83832,55 @@ GLCSS3D.prototype.render = function(view, proj) {
   this.renderCutout(view, proj);
 };
 
-},{"gl-mat4":851,"gl-mesh":866,"gl-shader":885,"matrix-to-css":909}],842:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],843:[function(require,module,exports){
+},{"gl-mat4":856,"gl-mesh":871,"gl-shader":890,"matrix-to-css":914}],847:[function(require,module,exports){
 arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],844:[function(require,module,exports){
+},{"dup":124}],848:[function(require,module,exports){
 arguments[4][125][0].apply(exports,arguments)
-},{"dup":125}],845:[function(require,module,exports){
+},{"dup":125}],849:[function(require,module,exports){
 arguments[4][126][0].apply(exports,arguments)
-},{"dup":126}],846:[function(require,module,exports){
+},{"dup":126}],850:[function(require,module,exports){
 arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],847:[function(require,module,exports){
+},{"dup":127}],851:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
-},{"dup":128}],848:[function(require,module,exports){
+},{"dup":128}],852:[function(require,module,exports){
 arguments[4][129][0].apply(exports,arguments)
-},{"dup":129}],849:[function(require,module,exports){
+},{"dup":129}],853:[function(require,module,exports){
 arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],850:[function(require,module,exports){
+},{"dup":130}],854:[function(require,module,exports){
 arguments[4][131][0].apply(exports,arguments)
-},{"dup":131}],851:[function(require,module,exports){
+},{"dup":131}],855:[function(require,module,exports){
 arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":842,"./clone":843,"./copy":844,"./create":845,"./determinant":846,"./fromQuat":847,"./fromRotationTranslation":848,"./frustum":849,"./identity":850,"./invert":852,"./lookAt":853,"./multiply":854,"./ortho":855,"./perspective":856,"./perspectiveFromFieldOfView":857,"./rotate":858,"./rotateX":859,"./rotateY":860,"./rotateZ":861,"./scale":862,"./str":863,"./translate":864,"./transpose":865,"dup":132}],852:[function(require,module,exports){
+},{"dup":132}],856:[function(require,module,exports){
 arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],853:[function(require,module,exports){
+},{"./adjoint":847,"./clone":848,"./copy":849,"./create":850,"./determinant":851,"./fromQuat":852,"./fromRotationTranslation":853,"./frustum":854,"./identity":855,"./invert":857,"./lookAt":858,"./multiply":859,"./ortho":860,"./perspective":861,"./perspectiveFromFieldOfView":862,"./rotate":863,"./rotateX":864,"./rotateY":865,"./rotateZ":866,"./scale":867,"./str":868,"./translate":869,"./transpose":870,"dup":133}],857:[function(require,module,exports){
 arguments[4][134][0].apply(exports,arguments)
-},{"./identity":850,"dup":134}],854:[function(require,module,exports){
+},{"dup":134}],858:[function(require,module,exports){
 arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],855:[function(require,module,exports){
+},{"./identity":855,"dup":135}],859:[function(require,module,exports){
 arguments[4][136][0].apply(exports,arguments)
-},{"dup":136}],856:[function(require,module,exports){
+},{"dup":136}],860:[function(require,module,exports){
 arguments[4][137][0].apply(exports,arguments)
-},{"dup":137}],857:[function(require,module,exports){
+},{"dup":137}],861:[function(require,module,exports){
 arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],858:[function(require,module,exports){
+},{"dup":138}],862:[function(require,module,exports){
 arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],859:[function(require,module,exports){
+},{"dup":139}],863:[function(require,module,exports){
 arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],860:[function(require,module,exports){
+},{"dup":140}],864:[function(require,module,exports){
 arguments[4][141][0].apply(exports,arguments)
-},{"dup":141}],861:[function(require,module,exports){
+},{"dup":141}],865:[function(require,module,exports){
 arguments[4][142][0].apply(exports,arguments)
-},{"dup":142}],862:[function(require,module,exports){
+},{"dup":142}],866:[function(require,module,exports){
 arguments[4][143][0].apply(exports,arguments)
-},{"dup":143}],863:[function(require,module,exports){
+},{"dup":143}],867:[function(require,module,exports){
 arguments[4][144][0].apply(exports,arguments)
-},{"dup":144}],864:[function(require,module,exports){
+},{"dup":144}],868:[function(require,module,exports){
 arguments[4][145][0].apply(exports,arguments)
-},{"dup":145}],865:[function(require,module,exports){
+},{"dup":145}],869:[function(require,module,exports){
 arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],866:[function(require,module,exports){
+},{"dup":146}],870:[function(require,module,exports){
+arguments[4][147][0].apply(exports,arguments)
+},{"dup":147}],871:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -84215,7 +84344,7 @@ function createMesh(gl, elements, attributes) {
 }
 
 module.exports = createMesh
-},{"./lib/mesh.js":867,"gl-buffer":868,"gl-vao":872,"ndarray":878,"ndarray-ops":873,"typedarray-pool":883,"webglew":884}],867:[function(require,module,exports){
+},{"./lib/mesh.js":872,"gl-buffer":873,"gl-vao":877,"ndarray":883,"ndarray-ops":878,"typedarray-pool":888,"webglew":889}],872:[function(require,module,exports){
 "use strict"
 
 function Mesh(gl, mode, numElements, vao, elements, attributes, attributeNames) {
@@ -84268,7 +84397,7 @@ Mesh.prototype.draw = function() {
 }
 
 module.exports = Mesh
-},{}],868:[function(require,module,exports){
+},{}],873:[function(require,module,exports){
 "use strict"
 
 var pool = require("typedarray-pool")
@@ -84433,7 +84562,7 @@ function createBuffer(gl, type, data, usage) {
 }
 
 module.exports = createBuffer
-},{"ndarray":878,"ndarray-ops":873,"typedarray-pool":883}],869:[function(require,module,exports){
+},{"ndarray":883,"ndarray-ops":878,"typedarray-pool":888}],874:[function(require,module,exports){
 "use strict"
 
 function doBind(gl, elements, attributes) {
@@ -84488,7 +84617,7 @@ function doBind(gl, elements, attributes) {
 }
 
 module.exports = doBind
-},{}],870:[function(require,module,exports){
+},{}],875:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -84516,7 +84645,7 @@ function createVAOEmulated(gl) {
 }
 
 module.exports = createVAOEmulated
-},{"./do-bind.js":869}],871:[function(require,module,exports){
+},{"./do-bind.js":874}],876:[function(require,module,exports){
 "use strict"
 
 var bindAttribs = require("./do-bind.js")
@@ -84550,7 +84679,7 @@ function createVAONative(gl, ext) {
 }
 
 module.exports = createVAONative
-},{"./do-bind.js":869}],872:[function(require,module,exports){
+},{"./do-bind.js":874}],877:[function(require,module,exports){
 "use strict"
 
 var webglew = require("webglew")
@@ -84570,29 +84699,29 @@ function createVAO(gl, elements, attributes) {
 }
 
 module.exports = createVAO
-},{"./lib/vao-emulated.js":870,"./lib/vao-native.js":871,"webglew":884}],873:[function(require,module,exports){
-arguments[4][327][0].apply(exports,arguments)
-},{"cwise-compiler":874,"dup":327}],874:[function(require,module,exports){
-arguments[4][309][0].apply(exports,arguments)
-},{"./lib/thunk.js":876,"dup":309}],875:[function(require,module,exports){
-arguments[4][310][0].apply(exports,arguments)
-},{"dup":310,"uniq":877}],876:[function(require,module,exports){
-arguments[4][118][0].apply(exports,arguments)
-},{"./compile.js":875,"dup":118}],877:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],878:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437,"iota-array":879,"is-buffer":880}],879:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],880:[function(require,module,exports){
+},{"./lib/vao-emulated.js":875,"./lib/vao-native.js":876,"webglew":889}],878:[function(require,module,exports){
+arguments[4][279][0].apply(exports,arguments)
+},{"cwise-compiler":879,"dup":279}],879:[function(require,module,exports){
+arguments[4][261][0].apply(exports,arguments)
+},{"./lib/thunk.js":881,"dup":261}],880:[function(require,module,exports){
+arguments[4][262][0].apply(exports,arguments)
+},{"dup":262,"uniq":882}],881:[function(require,module,exports){
+arguments[4][119][0].apply(exports,arguments)
+},{"./compile.js":880,"dup":119}],882:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],883:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":884,"is-buffer":885}],884:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],885:[function(require,module,exports){
 arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],881:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],882:[function(require,module,exports){
+},{"dup":23}],886:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],883:[function(require,module,exports){
-arguments[4][335][0].apply(exports,arguments)
-},{"bit-twiddle":881,"dup":335}],884:[function(require,module,exports){
+},{"dup":156}],887:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],888:[function(require,module,exports){
+arguments[4][287][0].apply(exports,arguments)
+},{"bit-twiddle":886,"dup":287}],889:[function(require,module,exports){
 "use strict";
 
 var VENDOR_PREFIX = [
@@ -84628,55 +84757,55 @@ function initWebGLEW(gl) {
   return extensions;
 }
 module.exports = initWebGLEW;
-},{}],885:[function(require,module,exports){
-arguments[4][203][0].apply(exports,arguments)
-},{"./lib/GLError":886,"./lib/create-attributes":887,"./lib/create-uniforms":888,"./lib/reflect":889,"./lib/runtime-reflect":890,"./lib/shader-cache":891,"dup":203}],886:[function(require,module,exports){
-arguments[4][204][0].apply(exports,arguments)
-},{"dup":204}],887:[function(require,module,exports){
-arguments[4][205][0].apply(exports,arguments)
-},{"./GLError":886,"dup":205}],888:[function(require,module,exports){
-arguments[4][206][0].apply(exports,arguments)
-},{"./GLError":886,"./reflect":889,"dup":206}],889:[function(require,module,exports){
-arguments[4][207][0].apply(exports,arguments)
-},{"dup":207}],890:[function(require,module,exports){
-arguments[4][208][0].apply(exports,arguments)
-},{"dup":208}],891:[function(require,module,exports){
-arguments[4][209][0].apply(exports,arguments)
-},{"./GLError":886,"dup":209,"gl-format-compiler-error":892,"weakmap-shim":908}],892:[function(require,module,exports){
-arguments[4][210][0].apply(exports,arguments)
-},{"add-line-numbers":893,"dup":210,"gl-constants/lookup":897,"glsl-shader-name":898,"sprintf-js":905}],893:[function(require,module,exports){
-arguments[4][211][0].apply(exports,arguments)
-},{"dup":211,"pad-left":894}],894:[function(require,module,exports){
-arguments[4][212][0].apply(exports,arguments)
-},{"dup":212,"repeat-string":895}],895:[function(require,module,exports){
-arguments[4][213][0].apply(exports,arguments)
-},{"dup":213}],896:[function(require,module,exports){
-arguments[4][214][0].apply(exports,arguments)
-},{"dup":214}],897:[function(require,module,exports){
-arguments[4][215][0].apply(exports,arguments)
-},{"./1.0/numbers":896,"dup":215}],898:[function(require,module,exports){
-arguments[4][216][0].apply(exports,arguments)
-},{"atob-lite":899,"dup":216,"glsl-tokenizer":904}],899:[function(require,module,exports){
-arguments[4][217][0].apply(exports,arguments)
-},{"dup":217}],900:[function(require,module,exports){
-arguments[4][218][0].apply(exports,arguments)
-},{"./lib/builtins":901,"./lib/literals":902,"./lib/operators":903,"dup":218}],901:[function(require,module,exports){
-arguments[4][219][0].apply(exports,arguments)
-},{"dup":219}],902:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],903:[function(require,module,exports){
-arguments[4][221][0].apply(exports,arguments)
-},{"dup":221}],904:[function(require,module,exports){
-arguments[4][222][0].apply(exports,arguments)
-},{"./index":900,"dup":222}],905:[function(require,module,exports){
-arguments[4][223][0].apply(exports,arguments)
-},{"dup":223}],906:[function(require,module,exports){
-arguments[4][224][0].apply(exports,arguments)
-},{"./hidden-store.js":907,"dup":224}],907:[function(require,module,exports){
-arguments[4][225][0].apply(exports,arguments)
-},{"dup":225}],908:[function(require,module,exports){
-arguments[4][226][0].apply(exports,arguments)
-},{"./create-store.js":906,"dup":226}],909:[function(require,module,exports){
+},{}],890:[function(require,module,exports){
+arguments[4][355][0].apply(exports,arguments)
+},{"./lib/GLError":891,"./lib/create-attributes":892,"./lib/create-uniforms":893,"./lib/reflect":894,"./lib/runtime-reflect":895,"./lib/shader-cache":896,"dup":355}],891:[function(require,module,exports){
+arguments[4][356][0].apply(exports,arguments)
+},{"dup":356}],892:[function(require,module,exports){
+arguments[4][357][0].apply(exports,arguments)
+},{"./GLError":891,"dup":357}],893:[function(require,module,exports){
+arguments[4][358][0].apply(exports,arguments)
+},{"./GLError":891,"./reflect":894,"dup":358}],894:[function(require,module,exports){
+arguments[4][359][0].apply(exports,arguments)
+},{"dup":359}],895:[function(require,module,exports){
+arguments[4][360][0].apply(exports,arguments)
+},{"dup":360}],896:[function(require,module,exports){
+arguments[4][361][0].apply(exports,arguments)
+},{"./GLError":891,"dup":361,"gl-format-compiler-error":897,"weakmap-shim":913}],897:[function(require,module,exports){
+arguments[4][362][0].apply(exports,arguments)
+},{"add-line-numbers":898,"dup":362,"gl-constants/lookup":902,"glsl-shader-name":903,"sprintf-js":910}],898:[function(require,module,exports){
+arguments[4][363][0].apply(exports,arguments)
+},{"dup":363,"pad-left":899}],899:[function(require,module,exports){
+arguments[4][364][0].apply(exports,arguments)
+},{"dup":364,"repeat-string":900}],900:[function(require,module,exports){
+arguments[4][365][0].apply(exports,arguments)
+},{"dup":365}],901:[function(require,module,exports){
+arguments[4][366][0].apply(exports,arguments)
+},{"dup":366}],902:[function(require,module,exports){
+arguments[4][367][0].apply(exports,arguments)
+},{"./1.0/numbers":901,"dup":367}],903:[function(require,module,exports){
+arguments[4][368][0].apply(exports,arguments)
+},{"atob-lite":904,"dup":368,"glsl-tokenizer":909}],904:[function(require,module,exports){
+arguments[4][369][0].apply(exports,arguments)
+},{"dup":369}],905:[function(require,module,exports){
+arguments[4][370][0].apply(exports,arguments)
+},{"./lib/builtins":906,"./lib/literals":907,"./lib/operators":908,"dup":370}],906:[function(require,module,exports){
+arguments[4][371][0].apply(exports,arguments)
+},{"dup":371}],907:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"dup":372}],908:[function(require,module,exports){
+arguments[4][373][0].apply(exports,arguments)
+},{"dup":373}],909:[function(require,module,exports){
+arguments[4][374][0].apply(exports,arguments)
+},{"./index":905,"dup":374}],910:[function(require,module,exports){
+arguments[4][375][0].apply(exports,arguments)
+},{"dup":375}],911:[function(require,module,exports){
+arguments[4][376][0].apply(exports,arguments)
+},{"./hidden-store.js":912,"dup":376}],912:[function(require,module,exports){
+arguments[4][377][0].apply(exports,arguments)
+},{"dup":377}],913:[function(require,module,exports){
+arguments[4][378][0].apply(exports,arguments)
+},{"./create-store.js":911,"dup":378}],914:[function(require,module,exports){
 /*
 
    Converts gl-matrix mat4 objects into strings that can be applied as matrix3d transforms.
@@ -84718,7 +84847,7 @@ function generateCSSString(matrix ){
 }
 
 module.exports = generateCSSString;
-},{}],910:[function(require,module,exports){
+},{}],915:[function(require,module,exports){
 (function (Buffer){
 'use strict';
 
@@ -84847,115 +84976,115 @@ WebviewPlugin.prototype.render = function() {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":17,"gl-css3d":841}],911:[function(require,module,exports){
-arguments[4][431][0].apply(exports,arguments)
-},{"dup":431,"ndarray":948,"ndarray-ops":943,"typedarray-pool":914}],912:[function(require,module,exports){
-arguments[4][155][0].apply(exports,arguments)
-},{"dup":155}],913:[function(require,module,exports){
+},{"buffer":17,"gl-css3d":846}],916:[function(require,module,exports){
+arguments[4][432][0].apply(exports,arguments)
+},{"dup":432,"ndarray":953,"ndarray-ops":948,"typedarray-pool":919}],917:[function(require,module,exports){
 arguments[4][156][0].apply(exports,arguments)
-},{"dup":156}],914:[function(require,module,exports){
-arguments[4][442][0].apply(exports,arguments)
-},{"bit-twiddle":912,"buffer":17,"dup":442}],915:[function(require,module,exports){
-arguments[4][123][0].apply(exports,arguments)
-},{"dup":123}],916:[function(require,module,exports){
+},{"dup":156}],918:[function(require,module,exports){
+arguments[4][157][0].apply(exports,arguments)
+},{"dup":157}],919:[function(require,module,exports){
+arguments[4][443][0].apply(exports,arguments)
+},{"bit-twiddle":917,"buffer":17,"dup":443}],920:[function(require,module,exports){
 arguments[4][124][0].apply(exports,arguments)
-},{"dup":124}],917:[function(require,module,exports){
+},{"dup":124}],921:[function(require,module,exports){
 arguments[4][125][0].apply(exports,arguments)
-},{"dup":125}],918:[function(require,module,exports){
+},{"dup":125}],922:[function(require,module,exports){
 arguments[4][126][0].apply(exports,arguments)
-},{"dup":126}],919:[function(require,module,exports){
+},{"dup":126}],923:[function(require,module,exports){
 arguments[4][127][0].apply(exports,arguments)
-},{"dup":127}],920:[function(require,module,exports){
+},{"dup":127}],924:[function(require,module,exports){
 arguments[4][128][0].apply(exports,arguments)
-},{"dup":128}],921:[function(require,module,exports){
+},{"dup":128}],925:[function(require,module,exports){
 arguments[4][129][0].apply(exports,arguments)
-},{"dup":129}],922:[function(require,module,exports){
+},{"dup":129}],926:[function(require,module,exports){
 arguments[4][130][0].apply(exports,arguments)
-},{"dup":130}],923:[function(require,module,exports){
+},{"dup":130}],927:[function(require,module,exports){
 arguments[4][131][0].apply(exports,arguments)
-},{"dup":131}],924:[function(require,module,exports){
+},{"dup":131}],928:[function(require,module,exports){
 arguments[4][132][0].apply(exports,arguments)
-},{"./adjoint":915,"./clone":916,"./copy":917,"./create":918,"./determinant":919,"./fromQuat":920,"./fromRotationTranslation":921,"./frustum":922,"./identity":923,"./invert":925,"./lookAt":926,"./multiply":927,"./ortho":928,"./perspective":929,"./perspectiveFromFieldOfView":930,"./rotate":931,"./rotateX":932,"./rotateY":933,"./rotateZ":934,"./scale":935,"./str":936,"./translate":937,"./transpose":938,"dup":132}],925:[function(require,module,exports){
+},{"dup":132}],929:[function(require,module,exports){
 arguments[4][133][0].apply(exports,arguments)
-},{"dup":133}],926:[function(require,module,exports){
+},{"./adjoint":920,"./clone":921,"./copy":922,"./create":923,"./determinant":924,"./fromQuat":925,"./fromRotationTranslation":926,"./frustum":927,"./identity":928,"./invert":930,"./lookAt":931,"./multiply":932,"./ortho":933,"./perspective":934,"./perspectiveFromFieldOfView":935,"./rotate":936,"./rotateX":937,"./rotateY":938,"./rotateZ":939,"./scale":940,"./str":941,"./translate":942,"./transpose":943,"dup":133}],930:[function(require,module,exports){
 arguments[4][134][0].apply(exports,arguments)
-},{"./identity":923,"dup":134}],927:[function(require,module,exports){
+},{"dup":134}],931:[function(require,module,exports){
 arguments[4][135][0].apply(exports,arguments)
-},{"dup":135}],928:[function(require,module,exports){
+},{"./identity":928,"dup":135}],932:[function(require,module,exports){
 arguments[4][136][0].apply(exports,arguments)
-},{"dup":136}],929:[function(require,module,exports){
+},{"dup":136}],933:[function(require,module,exports){
 arguments[4][137][0].apply(exports,arguments)
-},{"dup":137}],930:[function(require,module,exports){
+},{"dup":137}],934:[function(require,module,exports){
 arguments[4][138][0].apply(exports,arguments)
-},{"dup":138}],931:[function(require,module,exports){
+},{"dup":138}],935:[function(require,module,exports){
 arguments[4][139][0].apply(exports,arguments)
-},{"dup":139}],932:[function(require,module,exports){
+},{"dup":139}],936:[function(require,module,exports){
 arguments[4][140][0].apply(exports,arguments)
-},{"dup":140}],933:[function(require,module,exports){
+},{"dup":140}],937:[function(require,module,exports){
 arguments[4][141][0].apply(exports,arguments)
-},{"dup":141}],934:[function(require,module,exports){
+},{"dup":141}],938:[function(require,module,exports){
 arguments[4][142][0].apply(exports,arguments)
-},{"dup":142}],935:[function(require,module,exports){
+},{"dup":142}],939:[function(require,module,exports){
 arguments[4][143][0].apply(exports,arguments)
-},{"dup":143}],936:[function(require,module,exports){
+},{"dup":143}],940:[function(require,module,exports){
 arguments[4][144][0].apply(exports,arguments)
-},{"dup":144}],937:[function(require,module,exports){
+},{"dup":144}],941:[function(require,module,exports){
 arguments[4][145][0].apply(exports,arguments)
-},{"dup":145}],938:[function(require,module,exports){
+},{"dup":145}],942:[function(require,module,exports){
 arguments[4][146][0].apply(exports,arguments)
-},{"dup":146}],939:[function(require,module,exports){
+},{"dup":146}],943:[function(require,module,exports){
 arguments[4][147][0].apply(exports,arguments)
-},{"dup":147}],940:[function(require,module,exports){
-arguments[4][444][0].apply(exports,arguments)
-},{"./do-bind.js":939,"dup":444}],941:[function(require,module,exports){
+},{"dup":147}],944:[function(require,module,exports){
+arguments[4][148][0].apply(exports,arguments)
+},{"dup":148}],945:[function(require,module,exports){
 arguments[4][445][0].apply(exports,arguments)
-},{"./do-bind.js":939,"dup":445}],942:[function(require,module,exports){
+},{"./do-bind.js":944,"dup":445}],946:[function(require,module,exports){
 arguments[4][446][0].apply(exports,arguments)
-},{"./lib/vao-emulated.js":940,"./lib/vao-native.js":941,"dup":446}],943:[function(require,module,exports){
-arguments[4][160][0].apply(exports,arguments)
-},{"cwise-compiler":944,"dup":160}],944:[function(require,module,exports){
-arguments[4][433][0].apply(exports,arguments)
-},{"./lib/thunk.js":946,"dup":433}],945:[function(require,module,exports){
-arguments[4][434][0].apply(exports,arguments)
-},{"dup":434,"uniq":947}],946:[function(require,module,exports){
-arguments[4][435][0].apply(exports,arguments)
-},{"./compile.js":945,"dup":435}],947:[function(require,module,exports){
-arguments[4][65][0].apply(exports,arguments)
-},{"dup":65}],948:[function(require,module,exports){
-arguments[4][437][0].apply(exports,arguments)
-},{"dup":437,"iota-array":949,"is-buffer":950}],949:[function(require,module,exports){
-arguments[4][64][0].apply(exports,arguments)
-},{"dup":64}],950:[function(require,module,exports){
-arguments[4][23][0].apply(exports,arguments)
-},{"dup":23}],951:[function(require,module,exports){
+},{"./do-bind.js":944,"dup":446}],947:[function(require,module,exports){
 arguments[4][447][0].apply(exports,arguments)
-},{"dup":447,"gl-shader":952}],952:[function(require,module,exports){
+},{"./lib/vao-emulated.js":945,"./lib/vao-native.js":946,"dup":447}],948:[function(require,module,exports){
+arguments[4][161][0].apply(exports,arguments)
+},{"cwise-compiler":949,"dup":161}],949:[function(require,module,exports){
+arguments[4][434][0].apply(exports,arguments)
+},{"./lib/thunk.js":951,"dup":434}],950:[function(require,module,exports){
+arguments[4][435][0].apply(exports,arguments)
+},{"dup":435,"uniq":952}],951:[function(require,module,exports){
+arguments[4][436][0].apply(exports,arguments)
+},{"./compile.js":950,"dup":436}],952:[function(require,module,exports){
+arguments[4][66][0].apply(exports,arguments)
+},{"dup":66}],953:[function(require,module,exports){
+arguments[4][438][0].apply(exports,arguments)
+},{"dup":438,"iota-array":954,"is-buffer":955}],954:[function(require,module,exports){
+arguments[4][65][0].apply(exports,arguments)
+},{"dup":65}],955:[function(require,module,exports){
+arguments[4][23][0].apply(exports,arguments)
+},{"dup":23}],956:[function(require,module,exports){
 arguments[4][448][0].apply(exports,arguments)
-},{"dup":448,"glsl-exports":953,"uniq":964}],953:[function(require,module,exports){
+},{"dup":448,"gl-shader":957}],957:[function(require,module,exports){
 arguments[4][449][0].apply(exports,arguments)
-},{"dup":449,"glsl-parser":954,"glsl-tokenizer":959,"through":963}],954:[function(require,module,exports){
+},{"dup":449,"glsl-exports":958,"uniq":969}],958:[function(require,module,exports){
 arguments[4][450][0].apply(exports,arguments)
-},{"./lib/index":956,"dup":450}],955:[function(require,module,exports){
+},{"dup":450,"glsl-parser":959,"glsl-tokenizer":964,"through":968}],959:[function(require,module,exports){
 arguments[4][451][0].apply(exports,arguments)
-},{"dup":451}],956:[function(require,module,exports){
+},{"./lib/index":961,"dup":451}],960:[function(require,module,exports){
 arguments[4][452][0].apply(exports,arguments)
-},{"./expr":955,"./scope":957,"dup":452,"through":958}],957:[function(require,module,exports){
+},{"dup":452}],961:[function(require,module,exports){
 arguments[4][453][0].apply(exports,arguments)
-},{"dup":453}],958:[function(require,module,exports){
+},{"./expr":960,"./scope":962,"dup":453,"through":963}],962:[function(require,module,exports){
 arguments[4][454][0].apply(exports,arguments)
-},{"_process":26,"dup":454,"stream":40}],959:[function(require,module,exports){
+},{"dup":454}],963:[function(require,module,exports){
 arguments[4][455][0].apply(exports,arguments)
-},{"./lib/builtins":960,"./lib/literals":961,"./lib/operators":962,"dup":455,"through":963}],960:[function(require,module,exports){
+},{"_process":26,"dup":455,"stream":40}],964:[function(require,module,exports){
 arguments[4][456][0].apply(exports,arguments)
-},{"dup":456}],961:[function(require,module,exports){
-arguments[4][220][0].apply(exports,arguments)
-},{"dup":220}],962:[function(require,module,exports){
-arguments[4][458][0].apply(exports,arguments)
-},{"dup":458}],963:[function(require,module,exports){
+},{"./lib/builtins":965,"./lib/literals":966,"./lib/operators":967,"dup":456,"through":968}],965:[function(require,module,exports){
+arguments[4][457][0].apply(exports,arguments)
+},{"dup":457}],966:[function(require,module,exports){
+arguments[4][372][0].apply(exports,arguments)
+},{"dup":372}],967:[function(require,module,exports){
 arguments[4][459][0].apply(exports,arguments)
-},{"_process":26,"dup":459,"stream":40}],964:[function(require,module,exports){
-arguments[4][236][0].apply(exports,arguments)
-},{"dup":236}],965:[function(require,module,exports){
+},{"dup":459}],968:[function(require,module,exports){
+arguments[4][460][0].apply(exports,arguments)
+},{"_process":26,"dup":460,"stream":40}],969:[function(require,module,exports){
+arguments[4][188][0].apply(exports,arguments)
+},{"dup":188}],970:[function(require,module,exports){
 'use strict';
 
 var ndarray = require('ndarray');
@@ -85079,9 +85208,9 @@ WireframePlugin.prototype.render = function() {
 };
 
 
-},{"gl-buffer":911,"gl-mat4":924,"gl-vao":942,"ndarray":948,"ndarray-ops":943,"simple-3d-shader":951}],966:[function(require,module,exports){
-arguments[4][403][0].apply(exports,arguments)
-},{"dup":403}],967:[function(require,module,exports){
+},{"gl-buffer":916,"gl-mat4":929,"gl-vao":947,"ndarray":953,"ndarray-ops":948,"simple-3d-shader":956}],971:[function(require,module,exports){
+arguments[4][404][0].apply(exports,arguments)
+},{"dup":404}],972:[function(require,module,exports){
 var WoolPlugin, ucfirst;
 
 ucfirst = require('ucfirst');
@@ -85131,7 +85260,7 @@ WoolPlugin = (function() {
 })();
 
 
-},{"ucfirst":966}],968:[function(require,module,exports){
+},{"ucfirst":971}],973:[function(require,module,exports){
 (function (global){
 var CubeIcon, EventEmitter, InventoryWindow, createTooltip, ever, touchup,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -85577,7 +85706,7 @@ module.exports = InventoryWindow = (function(superClass) {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"cube-icon":969,"events":21,"ever":384,"ftooltip":971,"touchup":973}],969:[function(require,module,exports){
+},{"cube-icon":974,"events":21,"ever":385,"ftooltip":976,"touchup":978}],974:[function(require,module,exports){
 var CubeIcon, expandName;
 
 expandName = require('cube-side-array');
@@ -85644,15 +85773,15 @@ CubeIcon = (function() {
 })();
 
 
-},{"cube-side-array":970}],970:[function(require,module,exports){
-arguments[4][286][0].apply(exports,arguments)
-},{"dup":286}],971:[function(require,module,exports){
-arguments[4][415][0].apply(exports,arguments)
-},{"dup":415,"toarray":972}],972:[function(require,module,exports){
-arguments[4][363][0].apply(exports,arguments)
-},{"dup":363}],973:[function(require,module,exports){
-arguments[4][364][0].apply(exports,arguments)
-},{"dup":364}],974:[function(require,module,exports){
+},{"cube-side-array":975}],975:[function(require,module,exports){
+arguments[4][238][0].apply(exports,arguments)
+},{"dup":238}],976:[function(require,module,exports){
+arguments[4][416][0].apply(exports,arguments)
+},{"dup":416,"toarray":977}],977:[function(require,module,exports){
+arguments[4][315][0].apply(exports,arguments)
+},{"dup":315}],978:[function(require,module,exports){
+arguments[4][316][0].apply(exports,arguments)
+},{"dup":316}],979:[function(require,module,exports){
 var EventEmitter, Inventory, ItemPile, deepEqual,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -85812,13 +85941,13 @@ module.exports = Inventory = (function(superClass) {
 })(EventEmitter);
 
 
-},{"deep-equal":975,"events":21,"itempile":978}],975:[function(require,module,exports){
-arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":976,"./lib/keys.js":977,"dup":400}],976:[function(require,module,exports){
+},{"deep-equal":980,"events":21,"itempile":983}],980:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],977:[function(require,module,exports){
+},{"./lib/is_arguments.js":981,"./lib/keys.js":982,"dup":401}],981:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],978:[function(require,module,exports){
+},{"dup":402}],982:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],983:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -86076,9 +86205,9 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":979,"deep-equal":975}],979:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],980:[function(require,module,exports){
+},{"clone":984,"deep-equal":980}],984:[function(require,module,exports){
+arguments[4][400][0].apply(exports,arguments)
+},{"buffer":17,"dup":400}],985:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, ItemPile, ModalDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -86154,7 +86283,7 @@ module.exports.InventoryDialog = InventoryDialog = (function(superClass) {
 })(ModalDialog);
 
 
-},{"inventory":974,"inventory-window":968,"itempile":981,"voxel-modal-dialog":986}],981:[function(require,module,exports){
+},{"inventory":979,"inventory-window":973,"itempile":986,"voxel-modal-dialog":991}],986:[function(require,module,exports){
 "use strict";
 
 var _slicedToArray = function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { var _arr = []; for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) { _arr.push(_step.value); if (i && _arr.length === i) break; } return _arr; } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } };
@@ -86412,19 +86541,19 @@ var ItemPile = (function () {
 
 module.exports = ItemPile;
 
-},{"clone":982,"deep-equal":983}],982:[function(require,module,exports){
-arguments[4][399][0].apply(exports,arguments)
-},{"buffer":17,"dup":399}],983:[function(require,module,exports){
+},{"clone":987,"deep-equal":988}],987:[function(require,module,exports){
 arguments[4][400][0].apply(exports,arguments)
-},{"./lib/is_arguments.js":984,"./lib/keys.js":985,"dup":400}],984:[function(require,module,exports){
+},{"buffer":17,"dup":400}],988:[function(require,module,exports){
 arguments[4][401][0].apply(exports,arguments)
-},{"dup":401}],985:[function(require,module,exports){
+},{"./lib/is_arguments.js":989,"./lib/keys.js":990,"dup":401}],989:[function(require,module,exports){
 arguments[4][402][0].apply(exports,arguments)
-},{"dup":402}],986:[function(require,module,exports){
-arguments[4][394][0].apply(exports,arguments)
-},{"dup":394,"voxel-modal":987}],987:[function(require,module,exports){
+},{"dup":402}],990:[function(require,module,exports){
+arguments[4][403][0].apply(exports,arguments)
+},{"dup":403}],991:[function(require,module,exports){
 arguments[4][395][0].apply(exports,arguments)
-},{"dup":395,"ever":384}],988:[function(require,module,exports){
+},{"dup":395,"voxel-modal":992}],992:[function(require,module,exports){
+arguments[4][396][0].apply(exports,arguments)
+},{"dup":396,"ever":385}],993:[function(require,module,exports){
 var Inventory, InventoryDialog, InventoryWindow, Workbench, WorkbenchDialog,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
@@ -86604,7 +86733,7 @@ WorkbenchDialog = (function(superClass) {
 })(InventoryDialog);
 
 
-},{"inventory":974,"inventory-window":968,"voxel-inventory-dialog":980}],989:[function(require,module,exports){
+},{"inventory":979,"inventory-window":973,"voxel-inventory-dialog":985}],994:[function(require,module,exports){
 var ZenPlugin;
 
 module.exports = function(game, opts) {
@@ -86710,4 +86839,4 @@ ZenPlugin = (function() {
 })();
 
 
-},{}]},{},[379]);
+},{}]},{},[380]);
