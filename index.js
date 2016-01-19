@@ -46,6 +46,7 @@ function main() {
       'voxel-blockdata': require('voxel-blockdata'),
       'voxel-glass': require('voxel-glass'),
       'voxel-land': require('voxel-land'),
+      'voxel-flatland': require('voxel-flatland'),
       'voxel-decorative': require('voxel-decorative'),
       'voxel-inventory-creative': require('voxel-inventory-creative'),
       //'voxel-clientmc': require('voxel-clientmc');  // TODO: after published
@@ -149,6 +150,7 @@ function main() {
 
     'voxel-glass': {},
     'voxel-land': {populateTrees: true},
+    'voxel-flatland': {block: 'bedrock', onDemand:true},
     'voxel-decorative': {},
     'voxel-inventory-creative': {},
     //'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}, // TODO

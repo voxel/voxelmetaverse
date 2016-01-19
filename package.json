@@ -23,6 +23,7 @@
     "voxel-decorative": "^0.1.1",
     "voxel-drop": "^0.1.3",
     "voxel-engine-stackgl": "^1.1.0",
+    "voxel-flatland": "^0.1.0",
     "voxel-flight": "^0.2.0",
     "voxel-fluid": "^0.0.2",
     "voxel-food": "^0.1.0",
