@@ -13,6 +13,7 @@ function main() {
       'voxel-bucket': require('voxel-bucket'),
       'voxel-fluid': require('voxel-fluid'),
       'voxel-skyhook': require('voxel-skyhook'),
+      'voxel-bedrock': require('voxel-bedrock'),
       'voxel-recipes': require('voxel-recipes'),
       'voxel-quarry': require('voxel-quarry'),
       'voxel-measure': require('voxel-measure'),
@@ -45,6 +46,7 @@ function main() {
       'voxel-blockdata': require('voxel-blockdata'),
       'voxel-glass': require('voxel-glass'),
       'voxel-land': require('voxel-land'),
+      'voxel-flatland': require('voxel-flatland'),
       'voxel-decorative': require('voxel-decorative'),
       'voxel-inventory-creative': require('voxel-inventory-creative'),
       //'voxel-clientmc': require('voxel-clientmc');  // TODO: after published
@@ -136,6 +138,7 @@ function main() {
     'voxel-fluid': {},
     //'voxel-virus': {materialSource: 'water', material: 'waterFlow', isWater: true}, // requires this.game.materials TODO: water
     'voxel-skyhook': {},
+    'voxel-bedrock': {},
     'voxel-blockdata': {},
     'voxel-chest': {},
     'voxel-workbench': {},
@@ -147,6 +150,7 @@ function main() {
 
     'voxel-glass': {},
     'voxel-land': {populateTrees: true},
+    'voxel-flatland': {block: 'bedrock', onDemand:true},
     'voxel-decorative': {},
     'voxel-inventory-creative': {},
     //'voxel-clientmc': {url: 'ws://localhost:1234', onDemand: true}, // TODO
