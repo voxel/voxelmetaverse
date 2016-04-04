@@ -59,7 +59,7 @@
     "voxel-webview": "^0.2.4",
     "voxel-wireframe": "^0.6.0",
     "voxel-wool": "^0.1.2",
-    "voxel-workbench": "^0.2.2",
+    "voxel-workbench": "^1.0.0",
     "voxel-zen": "^1.0.0"
   },
   "engine": {
