@@ -14,7 +14,7 @@
     "voxel-bedrock": "^1.0.1",
     "voxel-blockdata": "^0.2.1",
     "voxel-bucket": "^1.0.0",
-    "voxel-carry": "^0.2.0",
+    "voxel-carry": "^1.0.0",
     "voxel-chest": "^1.0.0",
     "voxel-chunkborder": "^0.5.0",
     "voxel-commands": "^1.0.0",
