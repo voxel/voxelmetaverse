@@ -66,7 +66,7 @@
     "node": "0.12.x"
   },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "browserify": "^13.0.1",
     "coffeeify": "^1.2.0",
     "watchify": "^3.7.0",
     "wzrd": "^1.3.1"
