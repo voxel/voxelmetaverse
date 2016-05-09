@@ -66,15 +66,15 @@
     "node": "0.12.x"
   },
   "devDependencies": {
+    "beefy": "^2.1.6",
     "browserify": "^13.0.1",
     "coffeeify": "^1.2.0",
-    "watchify": "^3.7.0",
-    "wzrd": "^1.3.1"
+    "watchify": "^3.7.0"
   },
   "browserify": {
     "transform": []
   },
   "scripts": {
-    "start": "wzrd index.js:bundle.js --watchify --port 8080 -- --debug"
+    "start": "beefy index.js:bundle.js --watchify --port 8080 -- --debug"
   }
 }
