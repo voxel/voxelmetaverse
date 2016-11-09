@@ -9,7 +9,7 @@
   "dependencies": {
     "camera-debug": "^0.3.0",
     "ever": "0.0.3",
-    "kb-bindings-ui": "^0.3.2",
+    "kb-bindings-ui": "^0.3.3",
     "voxel-artpacks": "^1.0.0",
     "voxel-bedrock": "^1.0.1",
     "voxel-blockdata": "^0.2.1",
