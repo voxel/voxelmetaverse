@@ -68,7 +68,7 @@
   "devDependencies": {
     "beefy": "^2.1.6",
     "browserify": "^13.0.1",
-    "watchify": "^3.7.0"
+    "watchify": "^3.9.0"
   },
   "scripts": {
     "start": "beefy index.js:bundle.js --watchify --port 8080 -- --debug"
