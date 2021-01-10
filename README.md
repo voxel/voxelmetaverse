@@ -7,6 +7,12 @@ voxelmetaverse: playing with [voxel.js](https://github.com/voxel)
 
 **Live demo: [https://voxel.github.io/voxelmetaverse/](https://voxel.github.io/voxelmetaverse/)**
 
+* [2021/01/09 6 years after 6 months of voxel.js: A Retrospective](https://medium.com/@deathcap1/6-years-after-6-months-of-voxel-js-a-retrospective-1e8a2eadeb0)
+* [2016/05/10 voxel.js modules, now 100% transpile-free](https://medium.com/@deathcap1/voxel-js-modules-now-100-transpile-free-f8df34ea74b5)
+* [2014/04/20 Six Months of voxel.js: a look back through my git commit history](https://medium.com/@deathcap1/six-months-of-voxel-js-494be64dd1cc)
+
+---
+
 Core plugins:
 * [voxel-engine-stackgl](https://github.com/voxel/voxel-engine-stackgl): An experimental port of [voxel-engine](https://github.com/maxogden/voxel-engine) replacing [three.js](http://threejs.org) with [stackgl](http://stack.gl)
 * [voxel-registry](https://github.com/voxel/voxel-registry): A shared registry for managing item and block IDs
