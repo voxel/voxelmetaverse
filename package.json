@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "beefy": "^2.1.6",
-    "browserify": "^13.0.1",
+    "browserify": "^13.1.0",
     "watchify": "^3.7.0"
   },
   "scripts": {
